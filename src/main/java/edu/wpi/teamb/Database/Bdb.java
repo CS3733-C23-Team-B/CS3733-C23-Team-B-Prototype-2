@@ -6,7 +6,7 @@ public class Bdb {
   private Connection c;
   private static Bdb db;
 
-  public static void main(String args[]) {
+  static {
     try {
       db = new Bdb();
       db.init();

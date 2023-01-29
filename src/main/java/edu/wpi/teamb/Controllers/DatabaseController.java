@@ -95,10 +95,12 @@ public class DatabaseController {
     String newLoc = locationField.getText();
     Map<String, LocationName> allLocs = LocationName.getAll();
     LocationName loc = allLocs.get(oldLocName);
-    loc.set
-    if (newLoc.length() > 0) {
-      n.setShortName(newLoc);
-    }
+
+    //@TODO: Jack, what is goin on here
+//    loc.set
+//    if (newLoc.length() > 0) {
+//      n.setShortName(newLoc);
+//    }
   }
 
   /** Queries data from database, displays in list */

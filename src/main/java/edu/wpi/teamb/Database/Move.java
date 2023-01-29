@@ -3,7 +3,6 @@ package edu.wpi.teamb.Database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,12 +28,12 @@ public class Move {
         String.join(
             " ",
             "CREATE TABLE move",
-                "(nodeID CHAR(10),",
-                "longName VARCHAR(70),",
-                "moveDate VARCHAR(10),",
-                "PRIMARY KEY (nodeID, longName, moveDate),",
-                "FOREIGN KEY (nodeID) REFERENCES Node(nodeID) ON UPDATE CASCADE,",
-                "FOREIGN KEY (longName) REFERENCES LocationName (longName) ON UPDATE CASCADE );");
+            "(nodeID CHAR(10),",
+            "longName VARCHAR(70),",
+            "moveDate VARCHAR(10),",
+            "PRIMARY KEY (nodeID, longName, moveDate),",
+            "FOREIGN KEY (nodeID) REFERENCES Node(nodeID) ON UPDATE CASCADE,",
+            "FOREIGN KEY (longName) REFERENCES LocationName (longName) ON UPDATE CASCADE );");
     Bdb.processUpdate(sql);
   }
 
@@ -96,15 +95,20 @@ public class Move {
     String sql = "SELECT longName FROM move WHERE nodeID = " + nodeID;
     ResultSet rs = Bdb.processQuery(sql);
     rs.next();
-    if(rs.wasNull()) {
+    if (rs.wasNull()) {
       return "";
     } else {
       return rs.getString("longName");
     }
   }
 
+  public String getLongName() {
+    return longName;
+  }
+
   /**
    * Given a longName of a department, determines node that the department occupies
+   *
    * @param longName the long name of the department being located
    * @return the NodeID of the node that the department currently occupies
    * @throws SQLException
@@ -112,14 +116,11 @@ public class Move {
   public static String getMostRecentNode(String longName) throws SQLException {
     List<Move> moves = getAllLN(longName);
 
-    if (moves.isEmpty())
-      return "NO MOVES";
+    if (moves.isEmpty()) return "NO MOVES";
 
     Move mostRecent = moves.get(0);
 
-    for (Move move : moves)
-      if (moreRecentThan(move, mostRecent))
-        mostRecent = move;
+    for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
 
     return mostRecent.nodeID;
   }
@@ -128,15 +129,14 @@ public class Move {
     String sql = "SELECT * FROM move WHERE longName = '" + LNSearch + "';";
     ArrayList<Move> moves = new ArrayList<Move>();
     ResultSet rs = Bdb.processQuery(sql);
-    while(rs.next()) {
-      moves.add(new Move(rs.getString("nodeID"),
-              rs.getString("longName"),
-              rs.getString("moveDate")));
+    while (rs.next()) {
+      moves.add(
+          new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getString("moveDate")));
     }
     return moves;
   }
 
-  private static boolean moreRecentThan(Move move1, Move move2){
+  private static boolean moreRecentThan(Move move1, Move move2) {
     Date date1 = parseStringAsDate(move1.moveDate);
     Date date2 = parseStringAsDate(move2.moveDate);
     return date1.after(date2);

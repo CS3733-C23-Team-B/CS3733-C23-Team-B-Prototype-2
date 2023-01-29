@@ -6,7 +6,7 @@ plugins {
     id "io.freefair.lombok" version "6.6.1"
     id 'org.openjfx.javafxplugin' version '0.0.13'
 }
-mainClassName = 'edu.wpi.teamname.Main'
+mainClassName = 'edu.wpi.teamb.Main'
 
 repositories {
     mavenCentral()
@@ -69,8 +69,8 @@ jar {
 }
 
 def codeCoverageExcludes = [
-        'edu.wpi.teamname.App',
-        'edu.wpi.teamname.Main',
+        'edu.wpi.teamb.App',
+        'edu.wpi.teamb.Main',
 ]
 
 jacoco {

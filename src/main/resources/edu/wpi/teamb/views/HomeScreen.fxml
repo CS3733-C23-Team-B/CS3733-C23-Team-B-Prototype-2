@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane alignment="CENTER" layoutX="260.0" layoutY="77.0" prefHeight="262.0" prefWidth="482.0" style="-fx-background-color: white; -fx-background-radius: 5px;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="196.0" minHeight="20.0" prefHeight="196.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="32.0" prefWidth="421.0" text="Welcome to Brigham and Women’s Hospital!" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <GridPane prefHeight="196.0" prefWidth="378.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="132.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="40.0" left="30.0" right="30.0" />
+               </GridPane.margin>
+               <children>
+                  <Label text="Sanitation Service: Luke Grady and Jolie Walts" GridPane.halignment="CENTER" />
+                  <Label prefHeight="32.0" prefWidth="314.0" text="Patient Transportation: Cierra O'Grady and Christina Aube" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

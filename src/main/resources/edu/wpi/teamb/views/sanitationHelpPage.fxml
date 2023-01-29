@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane prefHeight="488.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.sanitationHelpController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea fx:id="textArea" editable="false" layoutX="360.0" layoutY="90.0" maxHeight="-Infinity" prefHeight="275.0" prefWidth="240.0" text="1)  To select a field to enter information&#10;please just tap on it with your cursor and&#10;fill in your information&#10;2)  To select the choices in the drop &#10;down menus please tap on it with your &#10;cursor and select your choice&#10;3)  If you would like to return to the &#10;Homepage you can select &quot;Cancel&quot; at  &#10;the bottom of the form&#10;4)  If you want to clear the entire form &#10;please select &quot;Clear&quot;&#10;5)  If your form is complete please select&#10;&quot;Submit&quot; " />
+            <Button fx:id="backButton" layoutX="518.0" layoutY="393.0" mnemonicParsing="false" onAction="#backButtonClicked" prefWidth="55.0" text="Back" />
+            <Text layoutX="353.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sanitation Services Help">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

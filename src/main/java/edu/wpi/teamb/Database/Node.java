@@ -58,9 +58,6 @@ public class Node {
             "ycoord INTEGER,",
             "floor VARCHAR(4),",
             "building VARCHAR(15),",
-            "nodeType CHAR(4),",
-            "longName VARCHAR(70),",
-            "shortName VARCHAR(40),",
             "PRIMARY KEY (nodeID) );");
     Bdb.processUpdate(sql);
   }
@@ -84,8 +81,8 @@ public class Node {
 
   public void insert() throws SQLException {
     String sql =
-        "INSERT INTO node (nodeID, xcoord, ycoord, floor, building, nodeType, longName, shortName) "
-            + "VALUES (?,?,?,?,?,?,?,?);";
+        "INSERT INTO node (nodeID, xcoord, ycoord, floor, building) "
+            + "VALUES (?,?,?,?,?);";
     PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
     ps.setString(1, nodeID);
     ps.setInt(2, xcoord);
@@ -103,11 +100,11 @@ public class Node {
     String sql =
         "UPDATE node "
             + "SET xcoord = ?, ycoord = ?, floor = ?, "
-            + "building = ?, nodeType = ?, longName = ?, shortName = ? "
+            + "building = ? "
             + "WHERE nodeID = ?;";
 
     PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(8, nodeID);
+    ps.setString(5, nodeID);
     ps.setInt(1, xcoord);
     ps.setInt(2, ycoord);
     ps.setString(3, floor);

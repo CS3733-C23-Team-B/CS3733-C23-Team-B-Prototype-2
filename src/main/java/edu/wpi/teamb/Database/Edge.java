@@ -16,10 +16,10 @@ public class Edge {
   //Primary Key and Foreign Key
   private String node2;
 
-  public Edge(String startNode, String endNode) {
+  public Edge(String node1, String node2) {
 
-    this.node1 = startNode;
-    this.node2 = endNode;
+    this.node1 = node1;
+    this.node2 = node2;
   }
 
 
@@ -28,12 +28,11 @@ public class Edge {
         String.join(
             " ",
             "CREATE TABLE edge",
-            "(edgeID CHAR(10),",
-            "startNode CHAR(10),",
-            "endNode CHAR(10),",
-            "PRIMARY KEY(edgeID),",
-            "FOREIGN KEY(startNode) REFERENCES Node(nodeID),",
-            "FOREIGN KEY(endNode) REFERENCES Node(nodeID) );");
+            "(node1 CHAR(10),",
+            "node2 CHAR(10),",
+            "PRIMARY KEY(node1, node2),",
+            "FOREIGN KEY(node1) REFERENCES Node(nodeID),",
+            "FOREIGN KEY(node2) REFERENCES Node(nodeID) );");
     Bdb.processUpdate(sql);
   }
 
@@ -43,16 +42,16 @@ public class Edge {
     ResultSet rs = Bdb.processQuery(sql);
     while (rs.next()) {
       Edges.add(
-          new Edge(rs.getString("startNode"), rs.getString("endNode")));
+          new Edge(rs.getString("node1"), rs.getString("node2")));
     }
     return Edges;
   }
 
   public void insert() throws SQLException {
-    String sql = "INSERT INTO edge (edgeID, startNode, endNode) VALUES (?,?,?);";
+    String sql = "INSERT INTO edge (node1, node2) VALUES (?,?);";
     PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
-    ps.setString(2, node1);
-    ps.setString(3, node2);
+    ps.setString(1, node1);
+    ps.setString(2, node2);
 
     /// not sure how we will deal with generating new edgeID yet but left at string for now
     /// so ignore duplicate in update() for now
@@ -60,20 +59,23 @@ public class Edge {
     ps.executeUpdate();
   }
 
-  public void update() throws SQLException {
+  public void update(String newNode1, String newNode2) throws SQLException {
 
-    String sql = "UPDATE edge SET startNode = ?, endNode = ? WHERE edgeID = ?;";
+    String sql = "UPDATE edge SET node1 = ?, node2 = ? WHERE node1 = ?, node2 = ?;";
 
     PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, node1);
-    ps.setString(2, node2);
+    ps.setString(1, newNode1);
+    ps.setString(2, newNode2);
+    ps.setString(3, node1);
+    ps.setString(4, node2);
     ps.executeUpdate();
   }
 
   public void delete() throws SQLException {
-    String sql = "DELETE FROM edge WHERE edgeID = ?";
+    String sql = "DELETE FROM edge WHERE node1 = ?, node2 = ?";
     PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, edgeID);
+    ps.setString(1, node1);
+    ps.setString(2, node2);
     ps.executeUpdate();
   }
 
@@ -93,7 +95,7 @@ public class Edge {
   public String getInfo() {
 
     String str =
-        "Start Node: " + node1 + ", " + "End Node: " + node2;
+        "Node 1: " + node1 + ", " + "Node 2: " + node2;
     return str;
   }
 }

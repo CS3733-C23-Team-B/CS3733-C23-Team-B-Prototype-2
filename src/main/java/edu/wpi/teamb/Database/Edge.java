@@ -18,8 +18,8 @@ public class Edge {
 
   public Edge(String startNode, String endNode) {
 
-    this.startNode = startNode;
-    this.endNode = endNode;
+    this.node1 = startNode;
+    this.node2 = endNode;
   }
 
 
@@ -51,8 +51,8 @@ public class Edge {
   public void insert() throws SQLException {
     String sql = "INSERT INTO edge (edgeID, startNode, endNode) VALUES (?,?,?);";
     PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
-    ps.setString(2, startNode);
-    ps.setString(3, endNode);
+    ps.setString(2, node1);
+    ps.setString(3, node2);
 
     /// not sure how we will deal with generating new edgeID yet but left at string for now
     /// so ignore duplicate in update() for now
@@ -65,8 +65,8 @@ public class Edge {
     String sql = "UPDATE edge SET startNode = ?, endNode = ? WHERE edgeID = ?;";
 
     PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, startNode);
-    ps.setString(2, endNode);
+    ps.setString(1, node1);
+    ps.setString(2, node2);
     ps.executeUpdate();
   }
 
@@ -83,17 +83,17 @@ public class Edge {
 
 
   public String getStartNode() {
-    return startNode;
+    return node1;
   }
 
   public String getEndNode() {
-    return endNode;
+    return node2;
   }
 
   public String getInfo() {
 
     String str =
-        "Start Node: " + startNode + ", " + "End Node: " + endNode;
+        "Start Node: " + node1 + ", " + "End Node: " + node2;
     return str;
   }
 }

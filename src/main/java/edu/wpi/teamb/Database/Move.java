@@ -26,10 +26,12 @@ public class Move {
         String.join(
             " ",
             "CREATE TABLE move",
-            "(nodeID CHAR(10),",
-            "longName VARCHAR(70),",
-            "moveDate VARCHAR(10),",
-            "PRIMARY KEY (nodeID, longName, moveDate) );");
+                "(nodeID CHAR(10),",
+                "longName VARCHAR(70),",
+                "moveDate VARCHAR(10),",
+                "PRIMARY KEY (nodeID, longName, moveDate),",
+                "FOREIGN KEY (nodeID) REFERENCES Node(nodeID) ON UPDATE CASCADE,",
+                "FOREIGN KEY (longName) REFERENCES LocationName (longName) ON UPDATE CASCADE );");
     Bdb.processUpdate(sql);
   }
 

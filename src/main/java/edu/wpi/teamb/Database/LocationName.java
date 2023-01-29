@@ -58,8 +58,12 @@ public class LocationName {
     return locations;
   }
 
-  public void updateLongName(String newName) {
-    this.longName = newName;
-
+  public void updateLN(String newName) throws SQLException {
+    String old = longName;
+    longName = newName;
+    String sql = "UPDATE LocationName SET longName = " + longName
+            + " WHERE longName = " + old;
+    Bdb.processUpdate(sql);
   }
+
 }

@@ -30,8 +30,8 @@ public class Edge {
             "(node1 CHAR(10),",
             "node2 CHAR(10),",
             "PRIMARY KEY(node1, node2),",
-            "FOREIGN KEY(node1) REFERENCES Node(nodeID),",
-            "FOREIGN KEY(node2) REFERENCES Node(nodeID) );");
+            "FOREIGN KEY(node1) REFERENCES Node(nodeID) ON UPDATE CASCADE,",
+            "FOREIGN KEY(node2) REFERENCES Node(nodeID) ON UPDATE CASCADE);");
     Bdb.processUpdate(sql);
   }
 

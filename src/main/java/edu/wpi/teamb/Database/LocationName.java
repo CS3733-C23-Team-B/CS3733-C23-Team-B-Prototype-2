@@ -61,8 +61,8 @@ public class LocationName {
   public void updateLN(String newName) throws SQLException {
     String old = longName;
     longName = newName;
-    String sql = "UPDATE LocationName SET longName = " + longName
-            + " WHERE longName = " + old;
+    String sql = "UPDATE LocationName SET longName = '" + longName
+            + "' WHERE longName = '" + old + "';";
     Bdb.processUpdate(sql);
   }
 

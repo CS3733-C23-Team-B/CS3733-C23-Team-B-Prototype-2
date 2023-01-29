@@ -99,4 +99,16 @@ public class Move {
       return rs.getString("longName");
     }
   }
+
+  public static ArrayList<Move> getAllLN(String LNSearch) throws SQLException {
+    String sql = "SELECT * FROM move WHERE longName = '" + LNSearch + "';";
+    ArrayList<Move> moves = new ArrayList<Move>();
+    ResultSet rs = Bdb.processQuery(sql);
+    while(rs.next()) {
+      moves.add(new Move(rs.getString("nodeID"),
+              rs.getString("longName"),
+              rs.getString("moveDate")));
+    }
+    return moves;
+  }
 }

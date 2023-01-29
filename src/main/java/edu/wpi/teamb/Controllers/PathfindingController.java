@@ -1,9 +1,9 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Database.Node;
+import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.sql.SQLException;
-import java.util.Map;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,39 +13,35 @@ import javafx.scene.control.Label;
 
 public class PathfindingController {
 
-  @FXML ChoiceBox startNode;
-  @FXML ChoiceBox endNode;
+  @FXML ChoiceBox startLoc;
+  @FXML ChoiceBox endLoc;
   @FXML Button pathfind;
   @FXML Label pathLabel;
 
   public void initialize() {
-    startNode.setItems(getNodes());
-    endNode.setItems(getNodes());
+    startLoc.setItems(getLocations());
+    endLoc.setItems(getLocations());
     pathfind.setOnAction((eventAction) -> findPath());
   }
 
   private void findPath() {
-    Map<String, Node> nodes;
-    try {
-      nodes = Node.getAll();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-    Node start = nodes.get(startNode.getValue());
-    Node end = nodes.get(endNode.getValue());
-    String path = Pathfinding.getShortestPath(start.getID(), end.getID());
+    String start = (String) startLoc.getValue();
+    String end = (String) endLoc.getValue();
+    String path = Pathfinding.getShortestPath(start, end);
     pathLabel.setText("Path: " + path);
   }
 
-  static ObservableList<String> getNodes() {
+  static ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    Map<String, Node> nodes;
+
+    List<Move> moves;
     try {
-      nodes = Node.getAll();
+      moves = Move.getAll();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
-    nodes.forEach((key, value) -> list.add(key));
+
+    moves.forEach((move) -> list.add(move.getLongName()));
 
     return list;
   }

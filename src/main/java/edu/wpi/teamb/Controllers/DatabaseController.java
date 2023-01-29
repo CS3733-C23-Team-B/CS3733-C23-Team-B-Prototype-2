@@ -8,7 +8,6 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.collections.FXCollections;
@@ -96,11 +95,11 @@ public class DatabaseController {
     Map<String, LocationName> allLocs = LocationName.getAll();
     LocationName loc = allLocs.get(oldLocName);
 
-    //@TODO: Jack, what is goin on here
-//    loc.set
-//    if (newLoc.length() > 0) {
-//      n.setShortName(newLoc);
-//    }
+    // @TODO: Jack, what is goin on here
+    //    loc.set
+    //    if (newLoc.length() > 0) {
+    //      n.setShortName(newLoc);
+    //    }
   }
 
   /** Queries data from database, displays in list */

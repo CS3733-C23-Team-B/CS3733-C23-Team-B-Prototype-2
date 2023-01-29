@@ -103,7 +103,15 @@ public class Move {
     }
   }
 
-  public static String getMostRecentNode(List<Move> moves) {
+  /**
+   * Given a longName of a department, determines node that the department occupies
+   * @param longName the long name of the department being located
+   * @return the NodeID of the node that the department currently occupies
+   * @throws SQLException
+   */
+  public static String getMostRecentNode(String longName) throws SQLException {
+    List<Move> moves = getAllLN(longName);
+
     if (moves.isEmpty())
       return "NO MOVES";
 
@@ -114,6 +122,18 @@ public class Move {
         mostRecent = move;
 
     return mostRecent.nodeID;
+  }
+
+  public static List<Move> getAllLN(String LNSearch) throws SQLException {
+    String sql = "SELECT * FROM move WHERE longName = '" + LNSearch + "';";
+    ArrayList<Move> moves = new ArrayList<Move>();
+    ResultSet rs = Bdb.processQuery(sql);
+    while(rs.next()) {
+      moves.add(new Move(rs.getString("nodeID"),
+              rs.getString("longName"),
+              rs.getString("moveDate")));
+    }
+    return moves;
   }
 
   private static boolean moreRecentThan(Move move1, Move move2){

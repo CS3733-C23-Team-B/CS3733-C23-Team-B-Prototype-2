@@ -9,25 +9,19 @@ import java.util.List; // import java.util.stream.Stream;
 public class Edge {
 
   public static final String tableName = "edge";
-  private String edgeID;
 
-  private String startNode;
+  //Primary Key and Foreign Key
+  private String node1;
 
-  private String endNode;
+  //Primary Key and Foreign Key
+  private String node2;
 
   public Edge(String startNode, String endNode) {
 
-    this.edgeID = null;
     this.startNode = startNode;
     this.endNode = endNode;
   }
 
-  public Edge(String edgeID, String startNode, String endNode) {
-
-    this.edgeID = edgeID;
-    this.startNode = startNode;
-    this.endNode = endNode;
-  }
 
   public static void initTable() throws SQLException {
     String sql =
@@ -49,7 +43,7 @@ public class Edge {
     ResultSet rs = Bdb.processQuery(sql);
     while (rs.next()) {
       Edges.add(
-          new Edge(rs.getString("edgeID"), rs.getString("startNode"), rs.getString("endNode")));
+          new Edge(rs.getString("startNode"), rs.getString("endNode")));
     }
     return Edges;
   }
@@ -57,7 +51,6 @@ public class Edge {
   public void insert() throws SQLException {
     String sql = "INSERT INTO edge (edgeID, startNode, endNode) VALUES (?,?,?);";
     PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
-    ps.setString(1, edgeID);
     ps.setString(2, startNode);
     ps.setString(3, endNode);
 
@@ -72,7 +65,6 @@ public class Edge {
     String sql = "UPDATE edge SET startNode = ?, endNode = ? WHERE edgeID = ?;";
 
     PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(3, edgeID);
     ps.setString(1, startNode);
     ps.setString(2, endNode);
     ps.executeUpdate();
@@ -89,9 +81,6 @@ public class Edge {
     return tableName.toLowerCase();
   }
 
-  public String getID() {
-    return edgeID;
-  }
 
   public String getStartNode() {
     return startNode;
@@ -104,7 +93,7 @@ public class Edge {
   public String getInfo() {
 
     String str =
-        "Edge: " + edgeID + ", " + "Start Node: " + startNode + ", " + "End Node: " + endNode;
+        "Start Node: " + startNode + ", " + "End Node: " + endNode;
     return str;
   }
 }

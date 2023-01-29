@@ -9,32 +9,27 @@ import java.util.Map;
 public class Node {
 
   public static final String tableName = "node";
+
+  //Primary Key
   private String nodeID;
   private int xcoord;
   private int ycoord;
   private String floor;
   private String building;
-  private String nodeType;
-  private String longName;
-  private String shortName;
 
   public Node(
       int xcoord,
       int ycoord,
       String floor,
-      String building,
-      String nodeType,
-      String longName,
-      String shortName) {
+      String building
+  ) {
 
     this.nodeID = null;
     this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.floor = floor;
     this.building = building;
-    this.nodeType = nodeType;
-    this.longName = longName;
-    this.shortName = shortName;
+
   }
 
   public Node(
@@ -42,19 +37,15 @@ public class Node {
       int xcoord,
       int ycoord,
       String floor,
-      String building,
-      String nodeType,
-      String longName,
-      String shortName) {
+      String building)
+      {
 
     this.nodeID = nodeID;
     this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.floor = floor;
     this.building = building;
-    this.nodeType = nodeType;
-    this.longName = longName;
-    this.shortName = shortName;
+
   }
 
   public static void initTable() throws SQLException {
@@ -86,10 +77,7 @@ public class Node {
               rs.getInt("xcoord"),
               rs.getInt("ycoord"),
               rs.getString("floor"),
-              rs.getString("building"),
-              rs.getString("nodeType"),
-              rs.getString("longName"),
-              rs.getString("shortName")));
+              rs.getString("building")));
     }
     return nodes;
   }
@@ -104,9 +92,6 @@ public class Node {
     ps.setInt(3, ycoord);
     ps.setString(4, floor);
     ps.setString(5, building);
-    ps.setString(6, nodeType);
-    ps.setString(7, longName);
-    ps.setString(8, shortName);
 
     /// not sure how we will deal with generating new nodeID yet but left at string for now
     /// so ignore duplicate in update() for now
@@ -127,9 +112,6 @@ public class Node {
     ps.setInt(2, ycoord);
     ps.setString(3, floor);
     ps.setString(4, building);
-    ps.setString(5, nodeType);
-    ps.setString(6, longName);
-    ps.setString(7, shortName);
     ps.executeUpdate();
   }
 
@@ -175,16 +157,7 @@ public class Node {
             + floor
             + ", "
             + "Building: "
-            + building
-            + ", "
-            + "Node Type: "
-            + nodeType
-            + ", "
-            + "Long Name: "
-            + longName
-            + ", "
-            + "Short Name: "
-            + shortName;
+            + building;
     return str;
   }
 
@@ -194,13 +167,4 @@ public class Node {
     update();
   }
 
-  public void setShortName(String newName) throws SQLException {
-    if (newName.length() > 40) {
-      System.out.println("Error, new name is too long (max 40)");
-      return;
-    } else {
-      shortName = newName;
-      update();
-    }
-  }
 }

@@ -3,7 +3,10 @@ package edu.wpi.teamb.Database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Move {
 
@@ -98,5 +101,33 @@ public class Move {
     } else {
       return rs.getString("longName");
     }
+  }
+
+  public static String getMostRecentNode(List<Move> moves) {
+    if (moves.isEmpty())
+      return "NO MOVES";
+
+    Move mostRecent = moves.get(0);
+
+    for (Move move : moves)
+      if (moreRecentThan(move, mostRecent))
+        mostRecent = move;
+
+    return mostRecent.nodeID;
+  }
+
+  private static boolean moreRecentThan(Move move1, Move move2){
+    Date date1 = parseStringAsDate(move1.moveDate);
+    Date date2 = parseStringAsDate(move2.moveDate);
+    return date1.after(date2);
+  }
+
+  private static Date parseStringAsDate(String d) {
+    int year, month, day;
+    String[] split = d.split("/");
+    year = Integer.parseInt(split[0]);
+    month = Integer.parseInt(split[1]);
+    day = Integer.parseInt(split[2]);
+    return new Date(year, month, day);
   }
 }

@@ -57,4 +57,9 @@ public class LocationName {
     }
     return locations;
   }
+
+  public void updateLongName(String newName) {
+    this.longName = newName;
+
+  }
 }

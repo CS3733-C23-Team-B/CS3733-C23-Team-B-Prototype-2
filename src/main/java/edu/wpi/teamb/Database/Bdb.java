@@ -6,7 +6,7 @@ public class Bdb {
   private Connection c;
   private static Bdb db;
 
-  static {
+  public static void main(String args[]) {
     try {
       db = new Bdb();
       db.init();
@@ -39,9 +39,13 @@ public class Bdb {
       Login.initTable();
     }
 
-    //    if (!tableExists(LocationName.getTableName())) {
-    //      LocationName.initTable();
-    //    }
+    if (!tableExists(LocationName.getTableName())) {
+      LocationName.initTable();
+    }
+
+    if (!tableExists(LocationName.getTableName())) {
+      Move.initTable();
+    }
 
     if (!tableExists(TransportationDataset.getTableName())) {
       TransportationDataset.initTable();

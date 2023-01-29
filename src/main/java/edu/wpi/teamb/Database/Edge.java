@@ -10,10 +10,10 @@ public class Edge {
 
   public static final String tableName = "edge";
 
-  //Primary Key and Foreign Key
+  // Primary Key and Foreign Key
   private String node1;
 
-  //Primary Key and Foreign Key
+  // Primary Key and Foreign Key
   private String node2;
 
   public Edge(String node1, String node2) {
@@ -21,7 +21,6 @@ public class Edge {
     this.node1 = node1;
     this.node2 = node2;
   }
-
 
   public static void initTable() throws SQLException {
     String sql =
@@ -41,8 +40,7 @@ public class Edge {
     String sql = "SELECT * FROM edge;";
     ResultSet rs = Bdb.processQuery(sql);
     while (rs.next()) {
-      Edges.add(
-          new Edge(rs.getString("node1"), rs.getString("node2")));
+      Edges.add(new Edge(rs.getString("node1"), rs.getString("node2")));
     }
     return Edges;
   }
@@ -83,7 +81,6 @@ public class Edge {
     return tableName.toLowerCase();
   }
 
-
   public String getStartNode() {
     return node1;
   }
@@ -94,8 +91,7 @@ public class Edge {
 
   public String getInfo() {
 
-    String str =
-        "Node 1: " + node1 + ", " + "Node 2: " + node2;
+    String str = "Node 1: " + node1 + ", " + "Node 2: " + node2;
     return str;
   }
 }

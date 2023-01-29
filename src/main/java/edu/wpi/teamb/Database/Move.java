@@ -26,12 +26,12 @@ public class Move {
         String.join(
             " ",
             "CREATE TABLE move",
-                "(nodeID CHAR(10),",
-                "longName VARCHAR(70),",
-                "moveDate VARCHAR(10),",
-                "PRIMARY KEY (nodeID, longName, moveDate),",
-                "FOREIGN KEY (nodeID) REFERENCES Node(nodeID) ON UPDATE CASCADE,",
-                "FOREIGN KEY (longName) REFERENCES LocationName (longName) ON UPDATE CASCADE );");
+            "(nodeID CHAR(10),",
+            "longName VARCHAR(70),",
+            "moveDate VARCHAR(10),",
+            "PRIMARY KEY (nodeID, longName, moveDate),",
+            "FOREIGN KEY (nodeID) REFERENCES Node(nodeID) ON UPDATE CASCADE,",
+            "FOREIGN KEY (longName) REFERENCES LocationName (longName) ON UPDATE CASCADE );");
     Bdb.processUpdate(sql);
   }
 
@@ -93,7 +93,7 @@ public class Move {
     String sql = "SELECT longName FROM move WHERE nodeID = " + nodeID;
     ResultSet rs = Bdb.processQuery(sql);
     rs.next();
-    if(rs.wasNull()) {
+    if (rs.wasNull()) {
       return "";
     } else {
       return rs.getString("longName");
@@ -104,10 +104,9 @@ public class Move {
     String sql = "SELECT * FROM move WHERE longName = '" + LNSearch + "';";
     ArrayList<Move> moves = new ArrayList<Move>();
     ResultSet rs = Bdb.processQuery(sql);
-    while(rs.next()) {
-      moves.add(new Move(rs.getString("nodeID"),
-              rs.getString("longName"),
-              rs.getString("moveDate")));
+    while (rs.next()) {
+      moves.add(
+          new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getString("moveDate")));
     }
     return moves;
   }

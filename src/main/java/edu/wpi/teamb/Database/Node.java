@@ -22,6 +22,13 @@ public class Node {
   private String floor;
   private String building;
 
+  /**
+   * Constructor of a node with a "null" nodeID
+   * @param xcoord
+   * @param ycoord
+   * @param floor
+   * @param building
+   */
   public Node(int xcoord, int ycoord, String floor, String building) {
 
     this.nodeID = null;
@@ -31,6 +38,14 @@ public class Node {
     this.building = building;
   }
 
+  /**
+   * Constructor for node
+   * @param nodeID
+   * @param xcoord
+   * @param ycoord
+   * @param floor
+   * @param building
+   */
   public Node(String nodeID, int xcoord, int ycoord, String floor, String building) {
 
     this.nodeID = nodeID;
@@ -58,6 +73,11 @@ public class Node {
     Bdb.processUpdate(sql);
   }
 
+  /**
+   *Gets all the nodes in the database
+   * @return nodes
+   * @throws SQLException
+   */
   public static Map<String, Node> getAll() throws SQLException {
     HashMap<String, Node> nodes = new HashMap<String, Node>();
     String sql = "SELECT * FROM Node;";
@@ -76,8 +96,7 @@ public class Node {
   }
 
   /**
-   * Method to insert an instance of a node into the database using an instance of the node class
-   * in java
+   *Inserts a new node into the database.
    * @throws SQLException
    */
   public void insert() throws SQLException {
@@ -97,8 +116,7 @@ public class Node {
   }
 
   /**
-   * method to update an instance of a node in the database using an instance of the node class in
-   * java
+   * Updates all the fields of a node already in the database.
    * @throws SQLException
    */
   public void update() throws SQLException {
@@ -118,8 +136,7 @@ public class Node {
   }
 
   /**
-   * method to delete an instance of an edge in the database using an instance of the node class in
-   * java
+   * Deletes a node that is already in the database based on the nodeID.
    * @throws SQLException
    */
   public void delete() throws SQLException {
@@ -130,47 +147,47 @@ public class Node {
   }
 
   /**
-   * method to get the name of the table
-   * @return a String representing the name of the table ("node")
+   * Gets the name of a table.
+   * @return tablename
    */
   public static String getTableName() {
     return tableName.toLowerCase();
   }
 
   /**
-   * method to get the node id of an instance of node
-   * @return String representing the node ID
+   * Gets the nodeID of a node.
+   * @return nodeID
    */
   public String getID() {
     return nodeID;
   }
 
   /**
-   * method to get the x coordinate of an instance of a node
-   * @return an integer representing the x coordinate of the instance of the node
+   * Gets the x-coordinate of a node.
+   * @return xcoord
    */
   public int getXcoord() {
     return xcoord;
   }
   /**
-   * method to get the y coordinate of an instance of a node
-   * @return an integer representing the y coordinate of the instance of the node
+   * Gets the y-coordinate of a node.
+   * @return ycoord
    */
   public int getYcoord() {
     return ycoord;
   }
 
   /**
-   * method to get the floor level of an instance of a node
-   * @return a string representing the floor level 
+   * Gets the floor of a node.
+   * @return floor
    */
   public String getFloor() {
     return floor;
   }
 
   /**
-   * method to get the nodeID, x coordinate, y coordinate, floor, and building  of a node
-   * @return a string, an integer of the x and y coordinate, and a string of the floor and building
+   * Gets all the information of a node and returns it as a string
+   * @return str
    */
   public String getInfo() {
     String str =
@@ -193,6 +210,7 @@ public class Node {
 
   /**
    * method to set the new coordinates of an instance of a node in the database
+   * Sets the coordinates of a node.
    * @param newX
    * @param newY
    * @throws SQLException
@@ -204,8 +222,8 @@ public class Node {
   }
 
   /**
-   * method to get all instance of the node from the database
-   * @return a ArrayList<Node> representing all the nodes in the database
+   * Returns a list of the empty nodes.
+   * @return mtNodes
    * @throws SQLException
    */
   public static ArrayList<Node> getEmptyNodes() throws SQLException {

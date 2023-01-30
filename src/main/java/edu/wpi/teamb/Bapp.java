@@ -1,5 +1,7 @@
 package edu.wpi.teamb;
 
+import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +26,8 @@ public class Bapp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("views/SignIn.fxml"));
-    root.setId("pane");
+    Parent root = FXMLLoader.load(getClass().getResource("views/root.fxml"));
+    root.setId("home");
     Scene scene = new Scene(root, 800, 600);
     scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
 
@@ -35,6 +37,7 @@ public class Bapp extends Application {
     primaryStage.setScene(scene);
     primaryStage.setTitle("Brigham and Women's Hospital");
     primaryStage.show();
+    Navigation.navigate(Screen.SIGN_IN);
   }
 
   @Override

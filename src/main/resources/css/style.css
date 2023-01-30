@@ -16,6 +16,7 @@
 
 #toolbar{
     -fx-background-color: rgba(0, 61, 166, 0.6);
+    -fx-opacity: .5;
 }
 
 

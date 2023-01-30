@@ -1,10 +1,10 @@
 package edu.wpi.teamb.Database;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Move {
@@ -15,9 +15,9 @@ public class Move {
 
   private String longName;
 
-  private String moveDate;
+  private Date moveDate;
 
-  public Move(String nodeID, String longName, String moveDate) {
+  public Move(String nodeID, String longName, Date moveDate) {
     this.nodeID = nodeID;
     this.longName = longName;
     this.moveDate = moveDate;
@@ -30,7 +30,7 @@ public class Move {
             "CREATE TABLE move",
             "(nodeID CHAR(10),",
             "longName VARCHAR(70),",
-            "moveDate VARCHAR(10),",
+            "moveDate DATE,",
             "PRIMARY KEY (nodeID, longName, moveDate),",
             "FOREIGN KEY (nodeID) REFERENCES Node(nodeID) ON UPDATE CASCADE,",
             "FOREIGN KEY (longName) REFERENCES LocationName (longName) ON UPDATE CASCADE );");
@@ -42,8 +42,7 @@ public class Move {
     String sql = "SELECT * FROM move;";
     ResultSet rs = Bdb.processQuery(sql);
     while (rs.next()) {
-      moves.add(
-          new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getString("moveDate")));
+      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
     }
     return moves;
   }
@@ -53,7 +52,7 @@ public class Move {
     PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
     ps.setString(1, nodeID);
     ps.setString(2, longName);
-    ps.setString(3, moveDate);
+    ps.setDate(3, moveDate);
   }
 
   public void update() throws SQLException {
@@ -65,10 +64,10 @@ public class Move {
     PreparedStatement ps = Bdb.prepareStatement(sql);
     ps.setString(1, nodeID);
     ps.setString(2, longName);
-    ps.setString(3, moveDate);
+    ps.setDate(3, moveDate);
     ps.setString(4, nodeID);
     ps.setString(5, longName);
-    ps.setString(6, moveDate);
+    ps.setDate(6, moveDate);
     ps.executeUpdate();
   }
 
@@ -77,7 +76,7 @@ public class Move {
     PreparedStatement ps = Bdb.prepareStatement(sql);
     ps.setString(1, nodeID);
     ps.setString(2, longName);
-    ps.setString(3, moveDate);
+    ps.setDate(3, moveDate);
     ps.executeUpdate();
   }
 
@@ -130,24 +129,12 @@ public class Move {
     ArrayList<Move> moves = new ArrayList<Move>();
     ResultSet rs = Bdb.processQuery(sql);
     while (rs.next()) {
-      moves.add(
-          new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getString("moveDate")));
+      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
     }
     return moves;
   }
 
   private static boolean moreRecentThan(Move move1, Move move2) {
-    Date date1 = parseStringAsDate(move1.moveDate);
-    Date date2 = parseStringAsDate(move2.moveDate);
-    return date1.after(date2);
-  }
-
-  private static Date parseStringAsDate(String d) {
-    int year, month, day;
-    String[] split = d.split("/");
-    year = Integer.parseInt(split[0]);
-    month = Integer.parseInt(split[1]);
-    day = Integer.parseInt(split[2]);
-    return new Date(year, month, day);
+    return move1.moveDate.after(move2.moveDate);
   }
 }

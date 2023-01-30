@@ -28,12 +28,12 @@
             <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="usernameField" maxWidth="215.0" minWidth="215.0" onKeyPressed="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Username" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <TextField fx:id="usernameField" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Username" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="60.0" right="60.0" />
                </GridPane.margin>
             </TextField>
-            <PasswordField fx:id="passwordField" maxWidth="215.0" minWidth="215.0" onKeyPressed="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Password" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <PasswordField fx:id="passwordField" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Password" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

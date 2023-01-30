@@ -44,8 +44,7 @@ public class Controller {
   }
 
   public void initialize() {
-    if (deleteAccountButton == null)
-      return;
+    if (deleteAccountButton == null) return;
     deleteAccountButton.setDisable(true);
   }
 
@@ -130,7 +129,9 @@ public class Controller {
 
     usernameField.clear();
     passwordField.clear();
-    prompt.setText("Account successfully deleted");
+    users.remove(username);
+    prompt.setText("Account deleted");
+    deleteAccountButton.setDisable(true);
   }
 
   public void checkEnableDeleteAccountButton() {

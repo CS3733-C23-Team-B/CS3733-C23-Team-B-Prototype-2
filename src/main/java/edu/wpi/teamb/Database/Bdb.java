@@ -39,9 +39,13 @@ public class Bdb {
       Login.initTable();
     }
 
-    //    if (!tableExists(LocationName.getTableName())) {
-    //      LocationName.initTable();
-    //    }
+    if (!tableExists(LocationName.getTableName())) {
+      LocationName.initTable();
+    }
+
+    if (!tableExists(LocationName.getTableName())) {
+      Move.initTable();
+    }
 
     if (!tableExists(TransportationDataset.getTableName())) {
       TransportationDataset.initTable();

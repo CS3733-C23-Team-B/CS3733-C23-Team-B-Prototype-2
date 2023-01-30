@@ -1,6 +1,8 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.Edge;
+import edu.wpi.teamb.Database.LocationName;
+import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -87,10 +89,17 @@ public class DatabaseController {
       throw new RuntimeException(e);
     }
     Node n = nodes.get(nodeChange.getValue());
+    String nID = n.getID();
+    String oldLocName = Move.getLocationName(nID);
     String newLoc = locationField.getText();
-    if (newLoc.length() > 0) {
-      n.setShortName(newLoc);
-    }
+    Map<String, LocationName> allLocs = LocationName.getAll();
+    LocationName loc = allLocs.get(oldLocName);
+
+    // @TODO: Jack, what is goin on here
+    //    loc.set
+    //    if (newLoc.length() > 0) {
+    //      n.setShortName(newLoc);
+    //    }
   }
 
   /** Queries data from database, displays in list */

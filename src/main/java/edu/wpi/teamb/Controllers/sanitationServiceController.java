@@ -32,6 +32,7 @@ public class sanitationServiceController extends BaseRequestController {
       cleanUpLocationField,
       urgencyBox,
       typeOfCleanUpBox,
+      assignedEmployeeField,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));

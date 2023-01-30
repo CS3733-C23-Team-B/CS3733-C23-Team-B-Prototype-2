@@ -38,6 +38,13 @@ public class Login {
     ps.executeUpdate();
   }
 
+  public void delete() throws SQLException {
+    String sql = "DELETE FROM login WHERE username = ?";
+    PreparedStatement ps = Bdb.prepareStatement(sql);
+    ps.setString(1, username);
+    ps.executeUpdate();
+  }
+
   public static Map<String, Login> getAll() throws SQLException {
     HashMap<String, Login> users = new HashMap<String, Login>();
     String sql = "SELECT * FROM login;";

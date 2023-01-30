@@ -84,4 +84,19 @@ public class BaseRequestController {
   public void submitButtonClicked() throws IOException, SQLException {
     // stub
   }
+
+  /**
+   * Returns the text in the given component, whether it's a TextField or ChoiceBox
+   * @param component the TextField or ChoiceBox
+   * @return a String containing the inputted text
+   */
+  protected String getText(Control component) {
+    if (component instanceof TextField)
+      return ((TextField) component).getText();
+    else if (component instanceof ChoiceBox) {
+      String s = (String) ((ChoiceBox) component).getValue();
+      if (s == null) s = "";
+    }
+    return "";
+  }
 }

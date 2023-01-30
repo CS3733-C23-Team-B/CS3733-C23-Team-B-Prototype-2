@@ -80,12 +80,7 @@ public class PatientTransportationController extends BaseRequestController {
     // Add all input components to the list of data
     for (int i = 0; i < components.size(); i++) {
       Control c = components.get(i);
-      if (c instanceof TextField) saveInfo[i] = ((TextField) c).getText();
-      if (c instanceof ChoiceBox) {
-        String s = (String) ((ChoiceBox) c).getValue();
-        if (s == null) s = "None";
-        saveInfo[i] = s;
-      }
+      saveInfo[i] = getText(c);
     }
 
     CSVWriter.writeCsv("patientTransportationRequests", saveInfo);

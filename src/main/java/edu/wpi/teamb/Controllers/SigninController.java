@@ -18,8 +18,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 public class SigninController {
-  @FXML private Button signInButton;
-
   @FXML private Button deleteAccountButton;
   @FXML private TextField usernameField;
   @FXML private TextField passwordField;
@@ -28,6 +26,8 @@ public class SigninController {
 
   private final String USER = "bodacious";
   private final String PASS = "badgers";
+
+  public static Login currentUser;
 
   private Map<String, Login> users;
 
@@ -78,7 +78,9 @@ public class SigninController {
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
+
     Navigation.navigate(Screen.HOME);
+    currentUser = users.get(usernameField.getText());
   }
 
   public void deleteAccountClicked() {

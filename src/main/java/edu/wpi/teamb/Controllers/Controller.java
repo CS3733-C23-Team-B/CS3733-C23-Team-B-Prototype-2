@@ -6,7 +6,9 @@ import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -40,6 +42,10 @@ public class Controller {
   public void exitButtonClicked() {
     Stage stage = (Stage) homeButton.getScene().getWindow();
     stage.close();
+  }
+
+  public void profileButtonClicked() {
+    Navigation.navigate(Screen.PROFILE);
   }
 
   public void signOutClicked() {

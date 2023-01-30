@@ -41,7 +41,7 @@ public class PathfindingController {
       throw new RuntimeException(e);
     }
 
-    moves.forEach((move) -> list.add(move.getLongName()));
+    for (Move move : moves) if (!list.contains(move.getLongName())) list.add(move.getLongName());
 
     return list;
   }

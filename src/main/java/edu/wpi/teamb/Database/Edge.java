@@ -116,7 +116,7 @@ public class Edge {
    * method to get the start node of an instance of edge
    * @return String representing the nodeID of the start node
    */
-  public String getStartNode() {
+  public String getNode1() {
     return node1;
   }
 
@@ -124,7 +124,7 @@ public class Edge {
    * method to get the end node of an instance of edge
    * @return String representing the nodeID of the end node
    */
-  public String getEndNode() {
+  public String getNode2() {
     return node2;
   }
 

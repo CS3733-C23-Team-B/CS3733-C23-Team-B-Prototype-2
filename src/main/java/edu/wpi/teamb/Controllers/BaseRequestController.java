@@ -1,2 +1,6 @@
-package edu.wpi.teamb.Controllers;public class BaseController {
+package edu.wpi.teamb.Controllers;
+
+public class BaseRequestController {
+    
+
 }

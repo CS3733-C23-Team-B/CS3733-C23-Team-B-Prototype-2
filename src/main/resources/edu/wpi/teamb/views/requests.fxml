@@ -5,19 +5,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane prefHeight="574.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.RequestsController">
    <center>
-      <AnchorPane prefHeight="621.0" prefWidth="598.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="492.0" prefWidth="583.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="131.0" layoutY="39.0" text="Current Requests">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
-            <TableView fx:id="requestsTable1" layoutX="10.0" layoutY="208.0" prefHeight="271.0" prefWidth="611.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <TableView fx:id="requestsTable1" layoutX="10.0" layoutY="107.0" prefHeight="271.0" prefWidth="611.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <columns>
                   <TableColumn fx:id="nameColumn1" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="equipmentColumn1" prefWidth="75.0" text="Equipment" />
@@ -30,4 +25,16 @@
          </children>
       </AnchorPane>
    </center>
+   <top>
+      <AnchorPane prefHeight="87.0" prefWidth="583.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="85.0" stroke="BLACK" strokeType="INSIDE" width="583.0" />
+            <Label layoutX="178.0" layoutY="21.0" text="Current Requests" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
 </BorderPane>

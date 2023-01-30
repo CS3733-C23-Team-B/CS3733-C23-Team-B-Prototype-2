@@ -23,10 +23,8 @@ public class Controller {
   @FXML private Button homeButton;
   @FXML private BorderPane border;
   @FXML private Button signInButton;
-
-  @FXML private Button deleteAccountButton;
-  @FXML private TextField usernameField;
-  @FXML private TextField passwordField;
+  @FXML private TextField username;
+  @FXML private TextField password;
   @FXML private CheckBox newAccount;
   @FXML private Label prompt;
 
@@ -43,31 +41,23 @@ public class Controller {
     }
   }
 
-  public void initialize() {
-    if (deleteAccountButton == null) return;
-    deleteAccountButton.setDisable(true);
-  }
-
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
-    else checkEnableDeleteAccountButton();
   }
 
   public boolean validateLogin() throws SQLException {
-    if (usernameField.getText().equals(USER) && passwordField.getText().equals(PASS)) return true;
-    else if (users.containsKey(usernameField.getText())
-        && users.get(usernameField.getText()).getPassword().equals(passwordField.getText()))
-      return true;
+    if (username.getText().equals(USER) && password.getText().equals(PASS)) return true;
+    else if (users.containsKey(username.getText())
+        && users.get(username.getText()).getPassword().equals(password.getText())) return true;
     else if (newAccount.isSelected()) {
-      if (users.containsKey(usernameField.getText())) return true;
-      Login newLogin = new Login(usernameField.getText(), passwordField.getText());
+      Login newLogin = new Login(username.getText(), password.getText());
       newLogin.insert();
       return true;
     }
     prompt.setText("\tInvalid login");
     prompt.setTextFill(Color.RED);
-    usernameField.clear();
-    passwordField.clear();
+    username.clear();
+    password.clear();
     return false;
   }
 
@@ -102,6 +92,10 @@ public class Controller {
     Navigation.navigate(Screen.HOME);
   }
 
+  public void requestsButtonClicked() throws IOException {
+    Navigation.navigate(Screen.REQUESTS);
+  }
+
   public void databaseButtonClicked() throws IOException {
     Navigation.navigate(Screen.DATABASE_UI);
   }
@@ -114,38 +108,5 @@ public class Controller {
   public void signOutClicked() {
     Navigation.navigate(Screen.SIGN_IN);
     Bapp.getRootPane().setTop(null);
-  }
-
-  public void deleteAccountClicked() {
-    String username = usernameField.getText();
-    String password = passwordField.getText();
-    Login user = users.get(username);
-    if (user.getPassword().equals(password)) {
-      try {
-        user.delete();
-      } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    usernameField.clear();
-    passwordField.clear();
-    users.remove(username);
-    prompt.setText("Account deleted");
-    deleteAccountButton.setDisable(true);
-  }
-
-  public void checkEnableDeleteAccountButton() {
-    String username = usernameField.getText();
-    String password = passwordField.getText();
-
-    if (username.equals("") && password.equals("")) {
-      deleteAccountButton.setDisable(true);
-      return;
-    }
-
-    boolean enable =
-        (users.containsKey(username) && users.get(username).getPassword().equals(password));
-    deleteAccountButton.setDisable(!enable);
   }
 }

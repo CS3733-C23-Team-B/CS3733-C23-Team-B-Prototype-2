@@ -9,10 +9,7 @@ import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class sanitationServiceController {
   // Lists for checkboxes
@@ -30,6 +27,7 @@ public class sanitationServiceController {
   @FXML private TextField additionalNotesField;
   @FXML private Button helpButton;
   @FXML private Button cancelButton;
+  @FXML private Button submitButton;
 
   private ArrayList<Control> components;
   private ArrayList<TextField> textFields;
@@ -117,5 +115,9 @@ public class sanitationServiceController {
     // may need to clear fields can be done with functions made for clear
     resetChoiceBoxes();
     resetTextFields();
+
+    // have to make FXML file for submission success
+    // this will then change to the success screen
+    Navigation.navigate(Screen.HOME);
   }
 }

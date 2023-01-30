@@ -59,6 +59,7 @@ public class Controller {
         && users.get(usernameField.getText()).getPassword().equals(passwordField.getText()))
       return true;
     else if (newAccount.isSelected()) {
+      if (users.containsKey(usernameField.getText())) return true;
       Login newLogin = new Login(usernameField.getText(), passwordField.getText(), "");
       newLogin.insert();
       return true;

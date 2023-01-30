@@ -3,17 +3,17 @@ package edu.wpi.teamb.Entities;
 import lombok.Getter;
 import lombok.Setter;
 
-public class sanitationRequest extends generalRequest {
+public class SanitationRequest extends GeneralRequest {
   @Getter @Setter private String cleanUpLocation;
   @Getter @Setter private String typeOfCleanUp;
 
-  private static sanitationRequest instance = null;
+  private static SanitationRequest instance = null;
 
   public void sanitationRequest() {}
 
-  public static sanitationRequest getInstance() {
+  public static SanitationRequest getInstance() {
     if (instance == null) {
-      instance = new sanitationRequest();
+      instance = new SanitationRequest();
     }
     return instance;
   }

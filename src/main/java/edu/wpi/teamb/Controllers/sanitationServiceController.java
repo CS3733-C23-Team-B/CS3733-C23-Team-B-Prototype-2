@@ -1,6 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Entities.sanitationRequest;
+import edu.wpi.teamb.Entities.SanitationRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
@@ -91,7 +91,7 @@ public class sanitationServiceController {
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
-    sanitationRequest request = sanitationRequest.getInstance();
+    SanitationRequest request = SanitationRequest.getInstance();
 
     request.setFirstName(firstNameField.getText());
     request.setLastName(lastNameField.getText());

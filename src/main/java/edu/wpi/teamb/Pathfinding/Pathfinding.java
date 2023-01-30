@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Pathfinding;
 
 import edu.wpi.teamb.Database.Edge;
+import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import java.sql.SQLException;
 import java.util.*;
@@ -8,8 +9,6 @@ import java.util.*;
 public class Pathfinding {
   private static List<Edge> edges;
   private static Map<String, Node> nodes;
-
-  private static final boolean BREADTH = true;
 
   static {
     try {
@@ -98,73 +97,31 @@ public class Pathfinding {
   /**
    * Finds a path from start to end, by stringing together nodes and edges
    *
-   * @param start the node to start from
-   * @param end the node to end at
+   * @param start the longName of the location to start from
+   * @param end the longName of the location to end at
    * @return a String representation of the optimal path to take
    */
   public static String getShortestPath(String start, String end) {
-    return getPathDepth(start, end);
-  }
-
-  /**
-   * Finds a path from start to end using depth/breadth-first search
-   *
-   * @param start the node to start from
-   * @param end the node to end at
-   * @return a String representation of the path taken
-   */
-  private static String getPathDepth(String start, String end) {
-
-    boolean done = false;
-    HashMap<String, String> cameFrom = new HashMap<String, String>();
-
-    ArrayList<String> toExpand = new ArrayList<String>();
-    toExpand.add(start);
-
-    while (toExpand.size() > 0) {
-
-      // BREADTH is field that tells program to use breadth-first instead of depth-first
-      int index = BREADTH ? 0 : toExpand.size() - 1;
-      String current = toExpand.remove(index);
-
-      ArrayList<String> directPaths = getDirectPaths(current);
-      for (String path : directPaths) {
-        if (path.equals(end)) {
-          cameFrom.put(path, current);
-          done = true;
-          break;
-        }
-        if (!cameFrom.containsKey(path)) {
-          cameFrom.put(path, current);
-          toExpand.add(path);
-        }
-      }
-
-      if (done) break;
-    }
-
-    if (!done) return "PATH NOT FOUND";
-
-    ArrayList<String> path = new ArrayList<>();
-    path.add(start);
-
-    String current = end;
-    while (!current.equals(start)) {
-      path.add(1, current);
-      current = cameFrom.get(current);
-    }
-
-    return pathToString(path);
+    return getPathAStar(start, end);
   }
 
   /**
    * Finds an optimal path from start to end using A* search
    *
-   * @param start the node to start from
-   * @param end the node to end at
+   * @param startLoc the longName of the location to start from
+   * @param endLoc the longName of the location to end at
    * @return a String representation of the path taken
    */
-  private static String getPathAStar(String start, String end) {
+  private static String getPathAStar(String startLoc, String endLoc) {
+    String start;
+    String end;
+    try {
+      start = Move.getMostRecentNode(startLoc);
+      end = Move.getMostRecentNode(endLoc);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
     PriorityQueue<GraphNode> queue = new PriorityQueue<GraphNode>();
     queue.add(new GraphNode(start, 0));
 

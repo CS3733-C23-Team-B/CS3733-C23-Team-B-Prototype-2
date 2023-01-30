@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Move {
 
@@ -101,7 +103,30 @@ public class Move {
     }
   }
 
-  public static ArrayList<Move> getAllLN(String LNSearch) throws SQLException {
+  public String getLongName() {
+    return longName;
+  }
+
+  /**
+   * Given a longName of a department, determines node that the department occupies
+   *
+   * @param longName the long name of the department being located
+   * @return the NodeID of the node that the department currently occupies
+   * @throws SQLException
+   */
+  public static String getMostRecentNode(String longName) throws SQLException {
+    List<Move> moves = getAllLN(longName);
+
+    if (moves.isEmpty()) return "NO MOVES";
+
+    Move mostRecent = moves.get(0);
+
+    for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+
+    return mostRecent.nodeID;
+  }
+
+  public static List<Move> getAllLN(String LNSearch) throws SQLException {
     String sql = "SELECT * FROM move WHERE longName = '" + LNSearch + "';";
     ArrayList<Move> moves = new ArrayList<Move>();
     ResultSet rs = Bdb.processQuery(sql);
@@ -110,5 +135,20 @@ public class Move {
           new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
     }
     return moves;
+  }
+
+  private static boolean moreRecentThan(Move move1, Move move2) {
+    Date date1 = parseStringAsDate(move1.moveDate);
+    Date date2 = parseStringAsDate(move2.moveDate);
+    return date1.after(date2);
+  }
+
+  private static Date parseStringAsDate(String d) {
+    int year, month, day;
+    String[] split = d.split("/");
+    year = Integer.parseInt(split[0]);
+    month = Integer.parseInt(split[1]);
+    day = Integer.parseInt(split[2]);
+    return new Date(year, month, day);
   }
 }

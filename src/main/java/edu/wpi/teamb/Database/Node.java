@@ -10,42 +10,29 @@ public class Node {
 
   public static final String tableName = "node";
 
-  //Primary Key
+  // Primary Key
   private String nodeID;
   private int xcoord;
   private int ycoord;
   private String floor;
   private String building;
 
-  public Node(
-      int xcoord,
-      int ycoord,
-      String floor,
-      String building
-  ) {
+  public Node(int xcoord, int ycoord, String floor, String building) {
 
     this.nodeID = null;
     this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.floor = floor;
     this.building = building;
-
   }
 
-  public Node(
-      String nodeID,
-      int xcoord,
-      int ycoord,
-      String floor,
-      String building)
-      {
+  public Node(String nodeID, int xcoord, int ycoord, String floor, String building) {
 
     this.nodeID = nodeID;
     this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.floor = floor;
     this.building = building;
-
   }
 
   public static void initTable() throws SQLException {
@@ -81,8 +68,7 @@ public class Node {
 
   public void insert() throws SQLException {
     String sql =
-        "INSERT INTO node (nodeID, xcoord, ycoord, floor, building) "
-            + "VALUES (?,?,?,?,?);";
+        "INSERT INTO node (nodeID, xcoord, ycoord, floor, building) " + "VALUES (?,?,?,?,?);";
     PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
     ps.setString(1, nodeID);
     ps.setInt(2, xcoord);
@@ -163,5 +149,4 @@ public class Node {
     ycoord = newY;
     update();
   }
-
 }

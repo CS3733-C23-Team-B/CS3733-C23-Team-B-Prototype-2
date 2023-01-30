@@ -6,6 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List; // import java.util.stream.Stream;
 
+/**
+ * class that represents the edge table in the Database,
+ * allows updates, insertions, deletions, and other interactions
+ * with the edge table in the database
+ */
 public class Edge {
 
   public static final String tableName = "edge";
@@ -22,6 +27,10 @@ public class Edge {
     this.node2 = node2;
   }
 
+  /**
+   * Method to initialize the edge table in the database
+   * @throws SQLException
+   */
   public static void initTable() throws SQLException {
     String sql =
         String.join(
@@ -35,6 +44,11 @@ public class Edge {
     Bdb.processUpdate(sql);
   }
 
+  /**
+   * Method to get all instances of an edge from the database
+   * @return a List<Edge> representing all the edges in the database
+   * @throws SQLException
+   */
   public static List<Edge> getAll() throws SQLException {
     ArrayList<Edge> Edges = new ArrayList<>();
     String sql = "SELECT * FROM edge;";
@@ -45,18 +59,26 @@ public class Edge {
     return Edges;
   }
 
+  /**
+   * method to insert an instance of an edge into the database using an instance
+   * of the edge class in java
+   * @throws SQLException
+   */
   public void insert() throws SQLException {
     String sql = "INSERT INTO edge (node1, node2) VALUES (?,?);";
-    PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
+    PreparedStatement ps = Bdb.prepareStatement(sql);
     ps.setString(1, node1);
     ps.setString(2, node2);
-
-    /// not sure how we will deal with generating new edgeID yet but left at string for now
-    /// so ignore duplicate in update() for now
-
     ps.executeUpdate();
   }
 
+  /**
+   * method to update an instance of an edge in the database using an instance
+   * of the edge class in java
+   * @param newNode1
+   * @param newNode2
+   * @throws SQLException
+   */
   public void update(String newNode1, String newNode2) throws SQLException {
 
     String sql = "UPDATE edge SET node1 = ?, node2 = ? WHERE node1 = ?, node2 = ?;";
@@ -69,6 +91,11 @@ public class Edge {
     ps.executeUpdate();
   }
 
+  /**
+   * method to delete an instance of an edge in the database using an instance
+   * of the edge class in java
+   * @throws SQLException
+   */
   public void delete() throws SQLException {
     String sql = "DELETE FROM edge WHERE node1 = ?, node2 = ?";
     PreparedStatement ps = Bdb.prepareStatement(sql);
@@ -77,18 +104,34 @@ public class Edge {
     ps.executeUpdate();
   }
 
+  /**
+   * method to get the name of the table
+   * @return a String representing the name of the table ("edge")
+   */
   public static String getTableName() {
     return tableName.toLowerCase();
   }
 
-  public String getStartNode() {
+  /**
+   * method to get the start node of an instance of edge
+   * @return String representing the nodeID of the start node
+   */
+  public String getNode1() {
     return node1;
   }
 
-  public String getEndNode() {
+  /**
+   * method to get the end node of an instance of edge
+   * @return String representing the nodeID of the end node
+   */
+  public String getNode2() {
     return node2;
   }
 
+  /**
+   * method to get the start and end node IDs of an edge
+   * @return a String indicating the start node and end node IDs
+   */
   public String getInfo() {
 
     String str = "Node 1: " + node1 + ", " + "Node 2: " + node2;

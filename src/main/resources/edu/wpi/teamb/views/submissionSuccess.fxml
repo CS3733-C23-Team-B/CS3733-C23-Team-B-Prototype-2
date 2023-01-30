@@ -40,7 +40,7 @@
                   <Insets top="190.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Return Home">
+                  <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnHomeButton" prefHeight="40.0" prefWidth="100.0" text="Return Home">
                      <HBox.margin>
                         <Insets left="350.0" />
                      </HBox.margin>

@@ -1,6 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.CSVWriter;
+import edu.wpi.teamb.Entities.SanitationRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
@@ -91,22 +91,31 @@ public class sanitationServiceController {
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
-    String[] saveInfo = new String[components.size()];
+    SanitationRequest request = SanitationRequest.getInstance();
 
-    // Add all input components to the list of data
-    for (int i = 0; i < components.size(); i++) {
-      Control c = components.get(i);
-      if (c instanceof TextField) saveInfo[i] = ((TextField) c).getText();
-      if (c instanceof ChoiceBox) {
-        String s = (String) ((ChoiceBox) c).getValue();
-        if (s == null) s = "None";
-        saveInfo[i] = s;
-      }
+    request.setFirstName(firstNameField.getText());
+    request.setLastName(lastNameField.getText());
+    request.setEmployeeID(employeeIDField.getText());
+    request.setEmail(emailField.getText());
+    request.setNotes(additionalNotesField.getText());
+
+    var urgency = urgencyBox.getValue();
+    if (urgency == null) {
+      urgency = "";
     }
+    request.setUrgency(urgency.toString());
 
+    request.setCleanUpLocation(cleanUpLocationField.getText());
+
+    var typeOfcleanUp = typeOfCleanUpBox.getValue();
+    if (typeOfcleanUp == null) {
+      typeOfcleanUp = "";
+    }
+    request.setTypeOfCleanUp(typeOfcleanUp.toString());
+
+    System.out.println(request);
     // may need to clear fields can be done with functions made for clear
     resetChoiceBoxes();
     resetTextFields();
-    CSVWriter.writeCsv("sanitationServiceCSV", saveInfo);
   }
 }

@@ -76,7 +76,7 @@ public class sanitationServiceController extends BaseRequestController {
       typeOfcleanUp = "";
     }
     request.setTypeOfCleanUp(typeOfcleanUp.toString());
-    
+
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
   }

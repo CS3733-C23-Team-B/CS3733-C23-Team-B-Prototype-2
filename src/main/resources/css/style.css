@@ -7,7 +7,7 @@
 }
 
 #home{
-    -fx-background-image: url("/media/buildingImage.jpg");
+    -fx-background-image: url("/media/output-onlinepngtools.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 1400 800;
     -fx-background-position: top left;
@@ -16,7 +16,6 @@
 
 #toolbar{
     -fx-background-color: rgba(0, 61, 166, 0.6);
-    -fx-opacity: .5;
 }
 
 

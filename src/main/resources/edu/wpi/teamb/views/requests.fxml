@@ -4,24 +4,37 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="425.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.RequestsController">
-   <children>
-      <Label layoutX="290.0" layoutY="44.0" text="Current Requests">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-      <TableView fx:id="requestsTable" layoutX="73.0" layoutY="132.0" prefHeight="269.0" prefWidth="608.0">
-        <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="equipmentColumn" prefWidth="75.0" text="Equipment" />
-            <TableColumn fx:id="urgencyColumn" prefWidth="75.0" text="Urgency" />
-            <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
-            <TableColumn fx:id="destinationColumn" prefWidth="75.0" text="Destination" />
-            <TableColumn fx:id="notesColumn" prefWidth="230.0" text="Notes" />
-        </columns>
-      </TableView>
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="574.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.RequestsController">
+   <center>
+      <AnchorPane prefHeight="492.0" prefWidth="583.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="requestsTable1" layoutX="10.0" layoutY="107.0" prefHeight="271.0" prefWidth="611.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <columns>
+                  <TableColumn fx:id="nameColumn1" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="equipmentColumn1" prefWidth="75.0" text="Equipment" />
+                  <TableColumn fx:id="urgencyColumn1" prefWidth="75.0" text="Urgency" />
+                  <TableColumn fx:id="locationColumn1" prefWidth="75.0" text="Location" />
+                  <TableColumn fx:id="destinationColumn1" prefWidth="75.0" text="Destination" />
+                  <TableColumn fx:id="notesColumn1" prefWidth="230.0" text="Notes" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="87.0" prefWidth="583.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="85.0" stroke="BLACK" strokeType="INSIDE" width="583.0" />
+            <Label layoutX="178.0" layoutY="21.0" text="Current Requests" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

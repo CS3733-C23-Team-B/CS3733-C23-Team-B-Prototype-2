@@ -123,7 +123,7 @@ public class Move {
     return mostRecent.nodeID;
   }
 
-  public static String getMostRecentLocation(String NodeID) {
+  public static Move getMostRecentMove(String NodeID) {
     List<Move> moves = null;
     try {
       moves = getAllNodeID(NodeID);
@@ -131,12 +131,16 @@ public class Move {
       throw new RuntimeException(e);
     }
 
-    if (moves.isEmpty()) return "NO MOVES";
+    if (moves.isEmpty()) return null;
 
     Move mostRecent = moves.get(0);
     for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
 
-    return mostRecent.longName;
+    return mostRecent;
+  }
+
+  public static String getMostRecentLocation(String NodeID) {
+    return getMostRecentMove(NodeID).longName;
   }
 
   private static List<Move> getAllLN(String LNSearch) throws SQLException {

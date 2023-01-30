@@ -3,6 +3,7 @@ package edu.wpi.teamb.Database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class Node {
         String.join(
             " ",
             "CREATE TABLE node",
-            "(nodeID CHAR(10),",
+            "(nodeID VARCHAR(14),",
             "xcoord INTEGER,",
             "ycoord INTEGER,",
             "floor VARCHAR(4),",
@@ -148,6 +149,20 @@ public class Node {
     xcoord = newX;
     ycoord = newY;
     update();
+  }
+
+  public static ArrayList<Node> getEmptyNodes() throws SQLException {
+    ArrayList<Node> mtNodes = new ArrayList<Node>();
+    String sql = "SELECT * FROM node WHERE nodeID not in (SELECT nodeID FROM move);";
+    ResultSet rs = Bdb.processQuery(sql);
+    while(rs.next()) {
+      mtNodes.add(new Node(rs.getString("nodeID"),
+              rs.getInt("xcoord"),
+              rs.getInt("ycoord"),
+              rs.getString("floor"),
+              rs.getString("building")));
+    }
+    return mtNodes;
   }
 
 

@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="477.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Controller">
+<AnchorPane prefHeight="477.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Controller">
    <children>
-      <AnchorPane layoutX="141.0" layoutY="148.0" prefHeight="228.0" prefWidth="279.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-opacity: 50;">
+      <AnchorPane layoutX="141.0" layoutY="148.0" prefHeight="274.0" prefWidth="279.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-opacity: 50;">
          <children>
-            <TextField fx:id="username" layoutX="32.0" layoutY="64.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Username" />
-            <PasswordField fx:id="password" layoutX="32.0" layoutY="102.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Password" />
+            <TextField fx:id="usernameField" layoutX="32.0" layoutY="64.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Username" />
+            <PasswordField fx:id="passwordField" layoutX="32.0" layoutY="102.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Password" />
             <Button id="signInButton" fx:id="signInButton" layoutX="31.0" layoutY="143.0" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="25.0" prefWidth="215.0" text="Sign In" />
             <CheckBox fx:id="newAccount" layoutX="68.0" layoutY="168.0" mnemonicParsing="false" text="Create as new account">
                <padding>
@@ -18,6 +22,7 @@
                </padding>
             </CheckBox>
             <Label fx:id="prompt" layoutX="82.0" layoutY="32.0" prefHeight="17.0" prefWidth="114.0" text="Please sign In below." />
+            <Button fx:id="deleteAccountButton" layoutX="90.0" layoutY="220.0" mnemonicParsing="false" onAction="#deleteAccountClicked" style="-fx-background-color: red;" text="Delete Account" textFill="WHITE" />
          </children>
       </AnchorPane>
       <Label layoutX="49.0" layoutY="23.0" prefHeight="52.0" prefWidth="463.0" style="-fx-background-color: white; -fx-background-radius: 5;" text="Welcome to Brigham and Women’s Hospital!">

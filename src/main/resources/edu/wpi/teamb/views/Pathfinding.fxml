@@ -8,8 +8,8 @@
 
 <AnchorPane prefHeight="478.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.PathfindingController">
    <children>
-      <ChoiceBox fx:id="endNode" layoutX="394.0" layoutY="179.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="startNode" layoutX="394.0" layoutY="136.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="endLoc" layoutX="394.0" layoutY="179.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="startLoc" layoutX="394.0" layoutY="136.0" prefWidth="150.0" />
       <Button fx:id="pathfind" layoutX="394.0" layoutY="229.0" mnemonicParsing="false" text="Find Fastest Path" />
       <Label layoutX="345.0" layoutY="56.0" text="Pathfinding ">
          <font>

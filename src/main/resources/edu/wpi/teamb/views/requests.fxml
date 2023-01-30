@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="425.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.RequestsController">
+   <children>
+      <Label layoutX="290.0" layoutY="44.0" text="Current Requests">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TableView fx:id="requestsTable" layoutX="73.0" layoutY="132.0" prefHeight="269.0" prefWidth="608.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="equipmentColumn" prefWidth="75.0" text="Equipment" />
+            <TableColumn fx:id="urgencyColumn" prefWidth="75.0" text="Urgency" />
+            <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
+            <TableColumn fx:id="destinationColumn" prefWidth="75.0" text="Destination" />
+            <TableColumn fx:id="notesColumn" prefWidth="230.0" text="Notes" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

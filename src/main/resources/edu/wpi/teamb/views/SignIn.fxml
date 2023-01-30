@@ -1,61 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="540.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Controller">
-   <center>
-      <GridPane id="signInGrid" prefHeight="290.0" prefWidth="538.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="46.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="55.0" valignment="CENTER" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="103.0" minHeight="0.0" prefHeight="43.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="88.0" minHeight="3.0" prefHeight="50.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+<AnchorPane prefHeight="477.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Controller">
+   <children>
+      <AnchorPane layoutX="141.0" layoutY="148.0" prefHeight="274.0" prefWidth="279.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-opacity: 50;">
          <children>
-            <TextField fx:id="username" maxWidth="215.0" minWidth="215.0" prefHeight="25.0" prefWidth="215.0" promptText="Username" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="60.0" right="60.0" />
-               </GridPane.margin>
-            </TextField>
-            <PasswordField fx:id="password" maxWidth="215.0" minWidth="215.0" prefHeight="25.0" prefWidth="215.0" promptText="Password" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </PasswordField>
-            <Button id="signInButton" fx:id="signInButton" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="25.0" prefWidth="215.0" text="Sign In" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Button>
-            <CheckBox fx:id="newAccount" mnemonicParsing="false" text="Create as new account" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <TextField fx:id="usernameField" layoutX="32.0" layoutY="64.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Username" />
+            <PasswordField fx:id="passwordField" layoutX="32.0" layoutY="102.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Password" />
+            <Button id="signInButton" fx:id="signInButton" layoutX="31.0" layoutY="143.0" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="25.0" prefWidth="215.0" text="Sign In" />
+            <CheckBox fx:id="newAccount" layoutX="68.0" layoutY="168.0" mnemonicParsing="false" text="Create as new account">
                <padding>
                   <Insets top="10.0" />
                </padding>
-               <GridPane.margin>
-                  <Insets bottom="40.0" />
-               </GridPane.margin>
             </CheckBox>
-            <Label prefHeight="32.0" prefWidth="441.0" text="Welcome to Brigham and Women’s Hospital!" GridPane.halignment="CENTER">
-               <font>
-                  <Font size="22.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets top="30.0" />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="prompt" prefHeight="17.0" prefWidth="114.0" text="Please sign In below." GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="prompt" layoutX="82.0" layoutY="32.0" prefHeight="17.0" prefWidth="114.0" text="Please sign In below." />
+            <Button fx:id="deleteAccountButton" layoutX="90.0" layoutY="220.0" mnemonicParsing="false" onAction="#deleteAccountClicked" style="-fx-background-color: red;" text="Delete Account" textFill="WHITE" />
          </children>
-         <BorderPane.margin>
-            <Insets bottom="100.0" left="230.0" right="80.0" top="150.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </center>
-</BorderPane>
+      </AnchorPane>
+      <Label layoutX="49.0" layoutY="23.0" prefHeight="52.0" prefWidth="463.0" style="-fx-background-color: white; -fx-background-radius: 5;" text="Welcome to Brigham and Women’s Hospital!">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+   </children>
+   <padding>
+      <Insets right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

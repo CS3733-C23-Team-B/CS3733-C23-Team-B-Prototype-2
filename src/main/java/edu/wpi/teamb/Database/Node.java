@@ -155,8 +155,10 @@ public class Node {
     ArrayList<Node> mtNodes = new ArrayList<Node>();
     String sql = "SELECT * FROM node WHERE nodeID not in (SELECT nodeID FROM move);";
     ResultSet rs = Bdb.processQuery(sql);
-    while(rs.next()) {
-      mtNodes.add(new Node(rs.getString("nodeID"),
+    while (rs.next()) {
+      mtNodes.add(
+          new Node(
+              rs.getString("nodeID"),
               rs.getInt("xcoord"),
               rs.getInt("ycoord"),
               rs.getString("floor"),

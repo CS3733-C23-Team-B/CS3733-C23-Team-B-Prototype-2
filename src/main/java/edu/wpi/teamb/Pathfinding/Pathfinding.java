@@ -26,8 +26,8 @@ public class Pathfinding {
    * @return the weight of the edge via Euclidean distance
    */
   private static double getWeight(Edge edge) {
-    Node node1 = nodes.get(edge.getStartNode());
-    Node node2 = nodes.get(edge.getEndNode());
+    Node node1 = nodes.get(edge.getNode1());
+    Node node2 = nodes.get(edge.getNode2());
 
     return getDist(node1, node2);
   }
@@ -73,8 +73,8 @@ public class Pathfinding {
   private static ArrayList<String> getDirectPaths(String node) {
     ArrayList<String> retList = new ArrayList<String>();
     for (Edge edge : edges) {
-      if (edge.getStartNode().equals(node)) retList.add(edge.getEndNode());
-      else if (edge.getEndNode().equals(node)) retList.add(edge.getStartNode());
+      if (edge.getNode1().equals(node)) retList.add(edge.getNode2());
+      else if (edge.getNode2().equals(node)) retList.add(edge.getNode1());
     }
     return retList;
   }

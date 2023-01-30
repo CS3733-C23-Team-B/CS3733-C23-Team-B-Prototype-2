@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.List; // import java.util.stream.Stream;
 
 /**
- * class that represents the edge table in the Database,
- * allows updates, insertions, deletions, and other interactions
- * with the edge table in the database
+ * class that represents the edge table in the Database, allows updates, insertions, deletions, and
+ * other interactions with the edge table in the database
  */
 public class Edge {
 
@@ -29,6 +28,7 @@ public class Edge {
 
   /**
    * Method to initialize the edge table in the database
+   *
    * @throws SQLException
    */
   public static void initTable() throws SQLException {
@@ -46,6 +46,7 @@ public class Edge {
 
   /**
    * Method to get all instances of an edge from the database
+   *
    * @return a List<Edge> representing all the edges in the database
    * @throws SQLException
    */
@@ -60,8 +61,9 @@ public class Edge {
   }
 
   /**
-   * method to insert an instance of an edge into the database using an instance
-   * of the edge class in java
+   * method to insert an instance of an edge into the database using an instance of the edge class
+   * in java
+   *
    * @throws SQLException
    */
   public void insert() throws SQLException {
@@ -73,8 +75,9 @@ public class Edge {
   }
 
   /**
-   * method to update an instance of an edge in the database using an instance
-   * of the edge class in java
+   * method to update an instance of an edge in the database using an instance of the edge class in
+   * java
+   *
    * @param newNode1
    * @param newNode2
    * @throws SQLException
@@ -92,8 +95,9 @@ public class Edge {
   }
 
   /**
-   * method to delete an instance of an edge in the database using an instance
-   * of the edge class in java
+   * method to delete an instance of an edge in the database using an instance of the edge class in
+   * java
+   *
    * @throws SQLException
    */
   public void delete() throws SQLException {
@@ -106,6 +110,7 @@ public class Edge {
 
   /**
    * method to get the name of the table
+   *
    * @return a String representing the name of the table ("edge")
    */
   public static String getTableName() {
@@ -114,6 +119,7 @@ public class Edge {
 
   /**
    * method to get the start node of an instance of edge
+   *
    * @return String representing the nodeID of the start node
    */
   public String getNode1() {
@@ -122,6 +128,7 @@ public class Edge {
 
   /**
    * method to get the end node of an instance of edge
+   *
    * @return String representing the nodeID of the end node
    */
   public String getNode2() {
@@ -130,6 +137,7 @@ public class Edge {
 
   /**
    * method to get the start and end node IDs of an edge
+   *
    * @return a String indicating the start node and end node IDs
    */
   public String getInfo() {

@@ -2,9 +2,7 @@ package edu.wpi.teamb.Database;
 
 import java.sql.*;
 
-/**
- * Singleton class that establishes connection with database
- */
+/** Singleton class that establishes connection with database */
 public class Bdb {
   private Connection c;
   private static Bdb db;
@@ -20,6 +18,7 @@ public class Bdb {
 
   /**
    * Establishes jdbc driver and creates connection
+   *
    * @throws ClassNotFoundException
    * @throws SQLException
    */
@@ -34,6 +33,7 @@ public class Bdb {
 
   /**
    * Method to initialize all required tables in database if they do not exist
+   *
    * @throws SQLException
    */
   public void init() throws SQLException {
@@ -66,6 +66,7 @@ public class Bdb {
 
   /**
    * Creates a type PreparedStatement that can be used for sql commands
+   *
    * @param s the string used in the creation fo the PreparedStatement
    * @return a PreparedStatement
    * @throws SQLException
@@ -75,8 +76,9 @@ public class Bdb {
   }
 
   /**
-   * Creates a type PreparedStatement that can be used for sql commands,
-   * this function also auto generates a key
+   * Creates a type PreparedStatement that can be used for sql commands, this function also auto
+   * generates a key
+   *
    * @param s the string used in the creation of the PreparedStatement
    * @return a PreparedStatement
    * @throws SQLException
@@ -87,6 +89,7 @@ public class Bdb {
 
   /**
    * Method used to execute a query in the database and return the results
+   *
    * @param s the string representing the sql query
    * @return a ResultSet, the result of the sql query
    * @throws SQLException
@@ -99,6 +102,7 @@ public class Bdb {
 
   /**
    * Method used to execute an update in the database
+   *
    * @param s the string representing the sql update
    * @return an int representing the number of updates
    * @throws SQLException
@@ -111,6 +115,7 @@ public class Bdb {
 
   /**
    * Method to close the database connection
+   *
    * @throws SQLException
    */
   public static void closeConnection() throws SQLException {
@@ -120,6 +125,7 @@ public class Bdb {
 
   /**
    * Method to check if a table exists in the database
+   *
    * @param tableName the name of the table to be checked
    * @return a Boolean, true if the table exists in the database, otherwise false
    * @throws SQLException
@@ -144,6 +150,7 @@ public class Bdb {
 
   /**
    * Method to get the instance of this class
+   *
    * @return
    */
   public static Bdb getInstance() {

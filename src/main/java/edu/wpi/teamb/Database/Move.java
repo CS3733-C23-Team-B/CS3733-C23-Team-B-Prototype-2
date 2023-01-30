@@ -42,8 +42,7 @@ public class Move {
     String sql = "SELECT * FROM move;";
     ResultSet rs = Bdb.processQuery(sql);
     while (rs.next()) {
-      moves.add(
-          new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
+      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
     }
     return moves;
   }
@@ -130,24 +129,12 @@ public class Move {
     ArrayList<Move> moves = new ArrayList<Move>();
     ResultSet rs = Bdb.processQuery(sql);
     while (rs.next()) {
-      moves.add(
-          new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
+      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
     }
     return moves;
   }
 
   private static boolean moreRecentThan(Move move1, Move move2) {
-    Date date1 = parseStringAsDate(move1.moveDate);
-    Date date2 = parseStringAsDate(move2.moveDate);
-    return date1.after(date2);
-  }
-
-  private static Date parseStringAsDate(String d) {
-    int year, month, day;
-    String[] split = d.split("/");
-    year = Integer.parseInt(split[0]);
-    month = Integer.parseInt(split[1]);
-    day = Integer.parseInt(split[2]);
-    return new Date(year, month, day);
+    return move1.moveDate.after(move2.moveDate);
   }
 }

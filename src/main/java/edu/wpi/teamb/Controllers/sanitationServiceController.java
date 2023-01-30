@@ -1,7 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Entities.SanitationRequest;
-import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,33 +8,19 @@ import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 
-public class sanitationServiceController {
+public class sanitationServiceController extends BaseRequestController {
   // Lists for checkboxes
-  ObservableList<String> urgencyList =
-      FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
   ObservableList<String> typeOfCleanUpList =
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
-  @FXML private TextField firstNameField;
-  @FXML private TextField lastNameField;
-  @FXML private TextField employeeIDField;
-  @FXML private TextField emailField;
   @FXML private TextField cleanUpLocationField;
-  @FXML private ChoiceBox urgencyBox;
   @FXML private ChoiceBox typeOfCleanUpBox;
-  @FXML private TextField additionalNotesField;
-  @FXML private Button helpButton;
-  @FXML private Button cancelButton;
-
-  private ArrayList<Control> components;
-  private ArrayList<TextField> textFields;
-  private ArrayList<ChoiceBox> choiceBoxes;
 
   @FXML
+  @Override
   public void initialize() {
     // initialization goes here
     // Create list of components
@@ -58,36 +43,14 @@ public class sanitationServiceController {
       if (c instanceof TextField) textFields.add((TextField) c);
       if (c instanceof ChoiceBox) choiceBoxes.add((ChoiceBox) c);
     }
-    urgencyBox.setItems(urgencyList);
+    urgencyBox.setItems(urgencyOptions);
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
-  }
 
-  public void clearButtonClicked() throws IOException {
-    // Stuff to handle the clearing of fields goes here
-    resetTextFields();
-    resetChoiceBoxes();
-  }
-
-  private void resetTextFields() {
-    // clear text fields
-    for (TextField t : textFields) t.clear();
-  }
-
-  private void resetChoiceBoxes() throws IOException {
-    // clear choices
-    // not sure if this function is the right one to clear it yet
-    for (ChoiceBox c : choiceBoxes) c.valueProperty().set(null);
-  }
-
-  public void helpButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SANITATION_HELP);
-  }
-
-  public void cancelButtonClicked() throws IOException {
-    Navigation.navigate(Screen.HOME);
+    helpScreen = Screen.SANITATION_HELP;
   }
 
   @FXML
+  @Override
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
@@ -112,10 +75,8 @@ public class sanitationServiceController {
       typeOfcleanUp = "";
     }
     request.setTypeOfCleanUp(typeOfcleanUp.toString());
-
-    System.out.println(request);
+    
     // may need to clear fields can be done with functions made for clear
-    resetChoiceBoxes();
-    resetTextFields();
+    clearButtonClicked();
   }
 }

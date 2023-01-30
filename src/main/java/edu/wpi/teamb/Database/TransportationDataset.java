@@ -5,10 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 
 public class TransportationDataset {
   private static final String tableName = "transportation";
-  private String firstname,
+  @Getter
+  String firstname,
       lastname,
       email,
       equipment,
@@ -102,5 +104,24 @@ public class TransportationDataset {
 
   public static String getTableName() {
     return tableName.toLowerCase();
+  }
+
+  public String getInfo() {
+    String ret =
+        "Name:"
+            + firstname
+            + " "
+            + lastname
+            + " Equipment: "
+            + equipment
+            + " Urgency: "
+            + urgency
+            + " Location: "
+            + lastname
+            + " Destination: "
+            + destination
+            + " Notes: "
+            + notes;
+    return ret;
   }
 }

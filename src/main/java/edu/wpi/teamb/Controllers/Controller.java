@@ -106,6 +106,10 @@ public class Controller {
     Navigation.navigate(Screen.DATABASE_UI);
   }
 
+  public void requestsButtonClicked() throws IOException {
+    Navigation.navigate(Screen.REQUESTS);
+  }
+
   public void exitButtonClicked() {
     Stage stage = (Stage) homeButton.getScene().getWindow();
     stage.close();

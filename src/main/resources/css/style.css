@@ -6,6 +6,14 @@
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 
+#home{
+    -fx-background-image: url("/media/buildingImage.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1400 800;
+    -fx-background-position: top left;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
 #toolbar{
     -fx-background-color: rgba(163, 233, 228, 0.6);
 }

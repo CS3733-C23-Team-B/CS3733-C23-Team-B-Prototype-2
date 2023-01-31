@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Navigation;
 
 public enum Screen {
-  HOME("views/Home2.fxml"),
+  HOME("views/HomeScreen.fxml"),
   DATABASE_HELP("views/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/MapDataEditor.fxml"),
   NAVIGATION("views/Navigation.fxml"),
@@ -14,7 +14,8 @@ public enum Screen {
   REQUESTS("views/requests.fxml"),
   PROFILE("views/Profile.fxml"),
   MAINHELP("views/MainHelpPage"),
-  FOOTER("views/Footer.fxml");
+  FOOTER("views/Footer.fxml"),
+  SUBMISSION_SUCCESS("view/submissionSuccess.fxml");
 
   private final String filename;
 

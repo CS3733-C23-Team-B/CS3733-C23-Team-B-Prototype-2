@@ -17,7 +17,7 @@
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="790.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="960.0" prefWidth="780.0">
                <children>
                   <VBox prefHeight="800.0" prefWidth="800.0">
                      <children>
@@ -154,49 +154,9 @@
                               <Insets top="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox layoutX="10.0" layoutY="341.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="338.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="44.0" prefWidth="200.0">
-                           <children>
-                              <ChoiceBox prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </ChoiceBox>
-                              <ChoiceBox layoutX="50.0" layoutY="10.0" minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </ChoiceBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </HBox>
                         <HBox layoutX="10.0" layoutY="443.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -204,12 +164,39 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="623.0" prefHeight="22.0" prefWidth="200.0">
+                           <children>
+                              <TextField maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="720.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" top="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="635.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's Current Location">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="338.0" />
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's Destination">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="130.0" />
                                  </HBox.margin>
                               </Text>
                            </children>
@@ -217,7 +204,7 @@
                               <Insets top="15.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox layoutX="10.0" layoutY="384.0" prefHeight="22.0" prefWidth="200.0">
+                        <HBox layoutX="10.0" layoutY="704.0" prefHeight="22.0" prefWidth="200.0">
                            <children>
                               <TextField maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
@@ -235,6 +222,33 @@
                                     <Font size="17.0" />
                                  </font>
                               </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="341.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Needed">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="44.0" prefWidth="200.0">
+                           <children>
+                              <ChoiceBox minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />
@@ -309,7 +323,7 @@
       <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <Text fill="WHITE" layoutX="229.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Title Here">
+            <Text fill="WHITE" layoutX="58.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Transportation Request" textAlignment="CENTER">
                <font>
                   <Font size="50.0" />
                </font>

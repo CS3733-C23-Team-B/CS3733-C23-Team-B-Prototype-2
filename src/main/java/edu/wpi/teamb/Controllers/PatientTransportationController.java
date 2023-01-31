@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.CSVWriter;
 import edu.wpi.teamb.Database.TransportationDataset;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Screen;
@@ -90,7 +89,7 @@ public class PatientTransportationController extends BaseRequestController {
       }
     }
 
-    CSVWriter.writeCsv("patientTransportationRequests", saveInfo);
+    // CSVWriter.writeCsv("patientTransportationRequests", saveInfo);
     clearButtonClicked();
 
     // insert into database:

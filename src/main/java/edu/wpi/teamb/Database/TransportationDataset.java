@@ -21,7 +21,7 @@ public class TransportationDataset {
       notes,
       patientid,
       employeeId;
-  RequestStatus status;
+  @Getter RequestStatus status;
 
   public TransportationDataset(
       String firstname,

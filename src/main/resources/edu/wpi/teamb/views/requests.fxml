@@ -19,7 +19,7 @@
             <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
             <TableColumn fx:id="destinationColumn" prefWidth="75.0" text="Destination" />
             <TableColumn fx:id="notesColumn" prefWidth="113.0" text="Notes" />
-            <TableColumn prefWidth="116.0" text="Status" />
+            <TableColumn fx:id="statusColumn" prefWidth="116.0" text="Status" />
         </columns>
       </TableView>
    </children>

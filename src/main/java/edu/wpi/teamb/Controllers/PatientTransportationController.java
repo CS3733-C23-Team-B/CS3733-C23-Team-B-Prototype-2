@@ -59,17 +59,6 @@ public class PatientTransportationController extends BaseRequestController {
   }
 
   /**
-   * Remove all inputted data from the form
-   *
-   * @throws IOException
-   */
-  public void clearButtonClicked() throws IOException {
-    for (TextField t : textFields) t.clear();
-
-    for (ChoiceBox c : choiceBoxes) c.getSelectionModel().clearSelection();
-  }
-
-  /**
    * Store the data from the form in a csv file and return to home screen
    *
    * @throws IOException

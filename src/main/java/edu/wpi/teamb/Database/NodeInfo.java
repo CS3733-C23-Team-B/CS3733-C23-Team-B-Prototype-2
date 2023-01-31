@@ -34,9 +34,11 @@ public class NodeInfo {
   }
 
   public void update() {
+    nodeID = node.buildID();
     node.setNodeID(nodeID);
     node.setXcoord(xCoord);
     node.setYcoord(yCoord);
+
     try {
       node.update();
     } catch (SQLException e) {
@@ -66,10 +68,6 @@ public class NodeInfo {
 
   public String getEdges() {
     return edges;
-  }
-
-  public void setNodeID(String nodeID) {
-    this.nodeID = nodeID;
   }
 
   public void setxCoord(int xCoord) {

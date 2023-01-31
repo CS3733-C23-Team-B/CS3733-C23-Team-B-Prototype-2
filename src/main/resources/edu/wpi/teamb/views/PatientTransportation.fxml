@@ -299,9 +299,17 @@
                                     <Font size="22.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="submitButton" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#submitButtonClicked" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
+                              <Button fx:id="helpButton" layoutX="10.0" layoutY="10.0" minHeight="44.0" minWidth="87.0" mnemonicParsing="false" onAction="#helpButtonClicked" style="-fx-background-color: #AAAAAA;" text="Help" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
                                  <HBox.margin>
-                                    <Insets left="346.0" />
+                                    <Insets left="270.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="submitButton" layoutX="62.0" layoutY="10.0" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#submitButtonClicked" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="22.0" />

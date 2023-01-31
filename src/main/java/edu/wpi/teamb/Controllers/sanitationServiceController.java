@@ -19,7 +19,7 @@ public class sanitationServiceController extends BaseRequestController {
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
   @FXML private TextField cleanUpLocationField;
   @FXML private ChoiceBox typeOfCleanUpBox;
-  
+
   @FXML
   @Override
   public void initialize() {

@@ -1,3 +1,7 @@
 package edu.wpi.teamb.Entities;
 
-public enum RequestStatus {blank, processing, done}
+public enum RequestStatus {
+  blank,
+  processing,
+  done
+}

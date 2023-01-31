@@ -13,8 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
-import lombok.Getter;
-import lombok.Setter;
 
 public class BaseRequestController {
   // JavaFX components

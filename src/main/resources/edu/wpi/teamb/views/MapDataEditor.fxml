@@ -20,7 +20,7 @@
                   <TableColumn fx:id="yColumn" prefWidth="52.5" text="y-coord" />
                   <TableColumn fx:id="locationColumn" prefWidth="222.0" text="Location" />
                   <TableColumn fx:id="dateColumn" prefWidth="79.5" text="Date Moved" />
-                  <TableColumn fx:id="edgesColumn" prefWidth="264.5" text="Edges" />
+                  <TableColumn fx:id="edgesColumn" prefWidth="293.33330281575525" text="Edges" />
                </columns>
             </TableView>
          </children>

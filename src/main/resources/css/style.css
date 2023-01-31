@@ -28,7 +28,7 @@
     -fx-background-radius: 30px;
     -fx-background-image: url("/media/profile-icon.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 66 66;
+    -fx-background-size: 48 48;
     -fx-background-position: top center;
     -fx-background-color: black;
 }

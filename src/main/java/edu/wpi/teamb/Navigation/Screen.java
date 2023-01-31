@@ -4,7 +4,7 @@ public enum Screen {
   HOME("views/Home2.fxml"),
   DATABASE_HELP("views/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/MapDataEditor.fxml"),
-  NAVIGATION("views/Navigation.fxml"),
+  NAVIGATION("views/navigation2.fxml"),
   PATHFINDING("views/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/PatientTransportation.fxml"),
   PATIENT_TRANSPORTATION_HELP("views/PatientTransportationHelpPage.fxml"),
@@ -15,7 +15,8 @@ public enum Screen {
   PROFILE("views/Profile.fxml"),
   MAINHELP("views/MainHelpPage"),
   FOOTER("views/Footer.fxml"),
-  SUBMISSION_SUCCESS("views/submissionSuccess.fxml");
+  SUBMISSION_SUCCESS("views/submissionSuccess.fxml"),
+  ABOUT("views/About.fxml");
 
   private final String filename;
 

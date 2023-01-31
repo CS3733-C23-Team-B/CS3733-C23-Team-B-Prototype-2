@@ -25,6 +25,10 @@ public class NavigationController {
     Navigation.navigate(Screen.PATHFINDING);
   }
 
+  public void aboutButtonClicked() {
+    Navigation.navigate(Screen.ABOUT);
+  }
+
   public void homeButtonClicked() throws IOException {
     Navigation.navigate(Screen.HOME);
   }

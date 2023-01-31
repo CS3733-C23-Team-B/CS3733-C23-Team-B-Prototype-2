@@ -13,11 +13,11 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
-        <Button id="featureOneButton" fx:id="patientTransportationButton" maxHeight="44.0" minHeight="44.0" mnemonicParsing="false" onAction="#patientTransportationButtonClicked" style="-fx-background-color: #003DA6;" text="Patient Transportation" textAlignment="CENTER" textFill="WHITE">
+        <Button id="featureOneButton" fx:id="patientTransportationButton" maxHeight="44.0" minHeight="44.0" mnemonicParsing="false" onAction="#featureOneButtonClicked" style="-fx-background-color: #003DA6;" text="Patient Transportation" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
-        <Button id="featureOneButton" fx:id="sanitationServicesButton" mnemonicParsing="false" onAction="#sanitationServicesButtonClicked" style="-fx-background-color: #003DA6;" text="Sanitation Services" textFill="WHITE">
+        <Button id="featureOneButton" fx:id="sanitationServicesButton" mnemonicParsing="false" onAction="#featureTwoButtonClicked" style="-fx-background-color: #003DA6;" text="Sanitation Services" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
@@ -25,7 +25,7 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
-        <Button fx:id="pathfindingButton" mnemonicParsing="false" onAction="#pathfindingButtonClicked" style="-fx-background-color: #003DA6;" text="Pathfinding" textFill="WHITE">
+        <Button fx:id="pathfindingButton" mnemonicParsing="false" onAction="#pathfindingClicked" style="-fx-background-color: #003DA6;" text="Pathfinding" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
@@ -33,10 +33,15 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
-        <MenuButton id="menuIcon" fx:id="menuButton" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="66.4" prefWidth="66.4">
+      <Button id="homeButton" fx:id="aboutButton" maxHeight="44.0" minHeight="44.0" mnemonicParsing="false" onAction="#aboutButtonClicked" style="-fx-background-color: #003DA6;" text="About" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+        <MenuButton id="menuIcon" fx:id="menuButton" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0">
             <items>
-                <MenuItem mnemonicParsing="false" text="Help" />
-                <MenuItem mnemonicParsing="false" text="Profile" />
+                <MenuItem mnemonicParsing="false" onAction="#helpClicked" text="Help" />
+                <MenuItem mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
                 <MenuItem fx:id="signOut" mnemonicParsing="false" onAction="#signOutClicked" text="Sign Out" />
                 <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#exitButtonClicked" text="Exit Application" />
             </items>

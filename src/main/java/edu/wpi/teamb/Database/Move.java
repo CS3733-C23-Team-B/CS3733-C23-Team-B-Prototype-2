@@ -49,7 +49,7 @@ public class Move {
 
   public void insert() throws SQLException {
     String sql = "INSERT INTO move (nodeID, longName, moveDate) " + "VALUES (?,?,?);";
-    PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
+    PreparedStatement ps = Bdb.prepareStatement(sql);
     ps.setString(1, nodeID);
     ps.setString(2, longName);
     ps.setDate(3, moveDate);
@@ -105,6 +105,10 @@ public class Move {
     return longName;
   }
 
+  public Date getMoveDate() {
+    return moveDate;
+  }
+
   /**
    * Given a longName of a department, determines node that the department occupies
    *
@@ -118,14 +122,43 @@ public class Move {
     if (moves.isEmpty()) return "NO MOVES";
 
     Move mostRecent = moves.get(0);
-
     for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
 
     return mostRecent.nodeID;
   }
 
-  public static List<Move> getAllLN(String LNSearch) throws SQLException {
+  public static Move getMostRecentMove(String NodeID) {
+    List<Move> moves = null;
+    try {
+      moves = getAllNodeID(NodeID);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    if (moves.isEmpty()) return null;
+
+    Move mostRecent = moves.get(0);
+    for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+
+    return mostRecent;
+  }
+
+  public static String getMostRecentLocation(String NodeID) {
+    return getMostRecentMove(NodeID).longName;
+  }
+
+  private static List<Move> getAllLN(String LNSearch) throws SQLException {
     String sql = "SELECT * FROM move WHERE longName = '" + LNSearch + "';";
+    ArrayList<Move> moves = new ArrayList<Move>();
+    ResultSet rs = Bdb.processQuery(sql);
+    while (rs.next()) {
+      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
+    }
+    return moves;
+  }
+
+  private static List<Move> getAllNodeID(String IDSearch) throws SQLException {
+    String sql = "SELECT * FROM move WHERE nodeID = '" + IDSearch + "';";
     ArrayList<Move> moves = new ArrayList<Move>();
     ResultSet rs = Bdb.processQuery(sql);
     while (rs.next()) {

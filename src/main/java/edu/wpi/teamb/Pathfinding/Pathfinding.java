@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Pathfinding {
   private static List<Edge> edges;
@@ -70,7 +71,7 @@ public class Pathfinding {
    * @param node the node to generate paths from
    * @return a list of all nodes reachable via one edge
    */
-  private static ArrayList<String> getDirectPaths(String node) {
+  public static ArrayList<String> getDirectPaths(String node) {
     ArrayList<String> retList = new ArrayList<String>();
     for (Edge edge : edges) {
       if (edge.getNode1().equals(node)) retList.add(edge.getNode2());
@@ -86,12 +87,18 @@ public class Pathfinding {
    * @return a String representation of the path taken
    */
   private static String pathToString(List<String> path) {
+    path = nodesToLocations(path);
+
     String retStr = "";
 
     for (String a : path) retStr += a + " -> ";
 
     retStr = retStr.substring(0, retStr.length() - 4);
     return retStr;
+  }
+
+  private static List<String> nodesToLocations(List<String> path) {
+    return path.stream().map(Move::getMostRecentLocation).collect(Collectors.toList());
   }
 
   /**
@@ -153,6 +160,7 @@ public class Pathfinding {
     while (!current.equals(start)) {
       path.add(1, current);
       current = cameFrom.get(current);
+      if (current == null) return "PATH NOT FOUND";
     }
 
     return pathToString(path);

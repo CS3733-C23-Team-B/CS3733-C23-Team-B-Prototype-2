@@ -105,6 +105,10 @@ public class Move {
     return longName;
   }
 
+  public Date getMoveDate() {
+    return moveDate;
+  }
+
   /**
    * Given a longName of a department, determines node that the department occupies
    *

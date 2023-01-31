@@ -23,7 +23,7 @@ public class sanitationServiceController extends BaseRequestController {
   @Override
   public void initialize() {
     // initialization goes here
-    // Create list of components
+    // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
       firstNameField,
       lastNameField,
@@ -43,10 +43,10 @@ public class sanitationServiceController extends BaseRequestController {
       if (c instanceof TextField) textFields.add((TextField) c);
       if (c instanceof ChoiceBox) choiceBoxes.add((ChoiceBox) c);
     }
-    urgencyBox.setItems(urgencyOptions);
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
 
     helpScreen = Screen.SANITATION_HELP;
+    super.initialize();
   }
 
   @FXML

@@ -27,7 +27,7 @@ public class PatientTransportationController extends BaseRequestController {
   /** Initialize the page by declaring choice-box options */
   @Override
   public void initialize() {
-    // Create list of components
+    // Create list of components; additionalNotesField MUST be last
     Control[] cl = {
       firstNameField,
       lastNameField,
@@ -52,9 +52,9 @@ public class PatientTransportationController extends BaseRequestController {
 
     // Initialize the choice boxes with their options
     equipmentNeededBox.setItems(equipmentOptions);
-    urgencyBox.setItems(urgencyOptions);
 
     helpScreen = Screen.PATIENT_TRANSPORTATION_HELP;
+    super.initialize();
   }
 
   /**

@@ -134,9 +134,6 @@ public class Node {
 
     PreparedStatement ps = Bdb.prepareStatement(sql);
     String nid = buildID();
-
-    System.out.println("New nodeID: " + nid);
-
     ps.setString(1, nid);
     ps.setInt(2, xcoord);
     ps.setInt(3, ycoord);

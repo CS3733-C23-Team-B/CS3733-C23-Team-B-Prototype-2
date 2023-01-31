@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.CSVWriter;
 import edu.wpi.teamb.Database.TransportationDataset;
+import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -38,7 +38,7 @@ public class PatientTransportationController extends BaseRequestController {
       patientLocationField,
       patientDestinationField,
       patientIDField,
-      assignedEmployeeField,
+      // assignedEmployeeField, <-add in when it's actually in SceneBuilder
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(cl));
@@ -59,17 +59,6 @@ public class PatientTransportationController extends BaseRequestController {
   }
 
   /**
-   * Remove all inputted data from the form
-   *
-   * @throws IOException
-   */
-  public void clearButtonClicked() throws IOException {
-    for (TextField t : textFields) t.clear();
-
-    for (ChoiceBox c : choiceBoxes) c.getSelectionModel().clearSelection();
-  }
-
-  /**
    * Store the data from the form in a csv file and return to home screen
    *
    * @throws IOException
@@ -84,7 +73,7 @@ public class PatientTransportationController extends BaseRequestController {
       saveInfo[i] = getText(c);
     }
 
-    CSVWriter.writeCsv("patientTransportationRequests", saveInfo);
+    // CSVWriter.writeCsv("patientTransportationRequests", saveInfo);
     clearButtonClicked();
 
     // insert into database:
@@ -99,7 +88,8 @@ public class PatientTransportationController extends BaseRequestController {
             saveInfo[6],
             saveInfo[7],
             saveInfo[9],
-            saveInfo[8]);
+            saveInfo[8],
+            RequestStatus.PROCESSING);
     newRequest.insert();
 
     // TODO: show confirmation page

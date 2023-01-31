@@ -6,7 +6,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ToolBar?>
 
-<ToolBar id="toolbar" fx:id="toolbar" prefHeight="43.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Controller">
+<ToolBar id="toolbar" fx:id="toolbar" prefHeight="43.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
    <items>
       <Button id="homeButton" fx:id="homeButton" mnemonicParsing="false" onAction="#homeButtonClicked" style="-fx-opacity: 1;" text="Home" textAlignment="CENTER" />
       <Button id="featureOneButton" fx:id="featureOneButton" mnemonicParsing="false" onAction="#featureOneButtonClicked" text="Patient Transportation" textAlignment="CENTER" />

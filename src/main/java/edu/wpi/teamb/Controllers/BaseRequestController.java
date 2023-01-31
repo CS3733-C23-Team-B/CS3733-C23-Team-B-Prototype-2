@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
+import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
@@ -20,7 +21,9 @@ public class BaseRequestController {
   @FXML protected TextField employeeIDField;
   @FXML protected TextField emailField;
   @FXML protected ChoiceBox urgencyBox;
+  @FXML protected TextField assignedEmployeeField;
   @FXML protected TextField additionalNotesField;
+  private RequestStatus request;
   @FXML protected Button cancelButton;
   @FXML protected Button helpButton;
   @FXML protected Button clearButton;

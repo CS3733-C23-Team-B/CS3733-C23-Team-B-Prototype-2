@@ -38,6 +38,7 @@ public class PatientTransportationController extends BaseRequestController {
       patientLocationField,
       patientDestinationField,
       patientIDField,
+      assignedEmployeeField,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(cl));

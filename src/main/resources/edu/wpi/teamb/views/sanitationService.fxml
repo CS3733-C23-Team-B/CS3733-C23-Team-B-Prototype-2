@@ -39,7 +39,7 @@
                         </Text>
                         <HBox prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="firstNameField" maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="340.0" promptText="First">
+                              <TextField fx:id="firstNameField" maxHeight="44.0" minHeight="44.0" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0" promptText="First">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -47,7 +47,7 @@
                                     <Font size="17.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="lastNameField" minHeight="44.0" prefWidth="340.0" promptText="Last">
+                              <TextField fx:id="lastNameField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0" promptText="Last">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -82,7 +82,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="105.0" prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="employeeIDField" maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
+                              <TextField fx:id="employeeIDField" maxHeight="44.0" minHeight="44.0" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -90,7 +90,7 @@
                                     <Font size="17.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="emailField" minHeight="44.0" prefWidth="340.0">
+                              <TextField fx:id="emailField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -136,12 +136,12 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="199.0" prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <ChoiceBox fx:id="urgencyBox" prefHeight="44.0" prefWidth="340.0">
+                              <ChoiceBox fx:id="urgencyBox" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </ChoiceBox>
-                              <TextField fx:id="assignedStaffField" minHeight="44.0" prefWidth="340.0">
+                              <TextField fx:id="assignedStaffField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -179,12 +179,12 @@
                         </HBox>
                         <HBox prefHeight="44.0" prefWidth="200.0">
                            <children>
-                              <ChoiceBox fx:id="typeOfCleanUpBox" prefHeight="44.0" prefWidth="340.0">
+                              <ChoiceBox fx:id="typeOfCleanUpBox" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </ChoiceBox>
-                              <TextField fx:id="cleanUpLocationField" minHeight="44.0" prefWidth="340.0">
+                              <TextField fx:id="cleanUpLocationField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0">
                                  <font>
                                     <Font size="17.0" />
                                  </font>

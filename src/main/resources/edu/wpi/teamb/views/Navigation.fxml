@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
 
-<ToolBar id="toolbar" fx:id="toolbar" prefHeight="43.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
+<ToolBar id="toolbar" fx:id="toolbar" prefHeight="43.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
    <items>
       <Button id="homeButton" fx:id="homeButton" mnemonicParsing="false" onAction="#homeButtonClicked" style="-fx-opacity: 1;" text="Home" textAlignment="CENTER" />
       <Button id="featureOneButton" fx:id="featureOneButton" mnemonicParsing="false" onAction="#featureOneButtonClicked" text="Patient Transportation" textAlignment="CENTER" />
       <Button id="featureOneButton" fx:id="featureTwoButton" mnemonicParsing="false" onAction="#featureTwoButtonClicked" text="Sanitation Services" />
-      <Button fx:id="databaseButton" mnemonicParsing="false" onAction="#databaseButtonClicked" text="Database" />
+      <Button fx:id="databaseButton" mnemonicParsing="false" onAction="#databaseButtonClicked" text="Map Data Editor" />
       <Button fx:id="pathfindingButton" mnemonicParsing="false" onAction="#pathfindingClicked" text="Pathfinding" />
       <Button mnemonicParsing="false" onAction="#requestsButtonClicked" text="Requests" />
       <MenuButton id="menuIcon" fx:id="menuButton" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="39.0">

@@ -2,7 +2,6 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.Login;
-import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -60,17 +59,20 @@ public class SigninController {
   public void signInButtonClicked() throws IOException, SQLException {
     if (!validateLogin()) return;
     final String filename = Screen.NAVIGATION.getFilename();
+    final String footer = Screen.FOOTER.getFilename();
 
     try {
       final var resource = Bapp.class.getResource(filename);
+      final var res = Bapp.class.getResource(footer);
       final FXMLLoader loader = new FXMLLoader(resource);
+      final FXMLLoader loader2 = new FXMLLoader(res);
 
       Bapp.getRootPane().setTop(loader.load());
+      Bapp.getRootPane().setBottom(loader2.load());
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
 
-    Navigation.navigate(Screen.HOME);
     currentUser = users.get(usernameField.getText());
   }
 }

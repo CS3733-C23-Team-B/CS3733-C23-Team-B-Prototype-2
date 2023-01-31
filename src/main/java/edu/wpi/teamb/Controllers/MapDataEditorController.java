@@ -44,9 +44,9 @@ public class MapDataEditorController {
       String nodeID = node.getID();
       int xCoord = node.getXcoord();
       int yCoord = node.getYcoord();
-      String location = Move.getMostRecentLocation(nodeID);
       Move move = Move.getMostRecentMove(nodeID);
       Date moveDate = move.getMoveDate();
+      String location = move.getLongName();
       String edges = "";
       for (String edge : Pathfinding.getDirectPaths(nodeID)) edges += edge + ", ";
       edges = edges.substring(0, edges.length() - 2);

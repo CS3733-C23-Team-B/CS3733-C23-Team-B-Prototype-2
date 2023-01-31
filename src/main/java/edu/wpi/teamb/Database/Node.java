@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * class that represents the node table in the Database, allows, insertions, deletions, and
- * other interactions with the node table in the database
+ * class that represents the node table in the Database, allows, insertions, deletions, and other
+ * interactions with the node table in the database
  */
 public class Node {
 
@@ -24,6 +24,7 @@ public class Node {
 
   /**
    * Constructor of a node with a "null" nodeID
+   *
    * @param xcoord
    * @param ycoord
    * @param floor
@@ -40,6 +41,7 @@ public class Node {
 
   /**
    * Constructor for node
+   *
    * @param nodeID
    * @param xcoord
    * @param ycoord
@@ -57,6 +59,7 @@ public class Node {
 
   /**
    * Method to initalize the node table in the database
+   *
    * @throws SQLException
    */
   public static void initTable() throws SQLException {
@@ -74,7 +77,8 @@ public class Node {
   }
 
   /**
-   *Gets all the nodes in the database
+   * Gets all the nodes in the database
+   *
    * @return nodes
    * @throws SQLException
    */
@@ -96,7 +100,8 @@ public class Node {
   }
 
   /**
-   *Inserts a new node into the database.
+   * Inserts a new node into the database.
+   *
    * @throws SQLException
    */
   public void insert() throws SQLException {
@@ -117,6 +122,7 @@ public class Node {
 
   /**
    * Updates all the fields of a node already in the database.
+   *
    * @throws SQLException
    */
   public void update() throws SQLException {
@@ -137,6 +143,7 @@ public class Node {
 
   /**
    * Deletes a node that is already in the database based on the nodeID.
+   *
    * @throws SQLException
    */
   public void delete() throws SQLException {
@@ -148,6 +155,7 @@ public class Node {
 
   /**
    * Gets the name of a table.
+   *
    * @return tablename
    */
   public static String getTableName() {
@@ -156,6 +164,7 @@ public class Node {
 
   /**
    * Gets the nodeID of a node.
+   *
    * @return nodeID
    */
   public String getID() {
@@ -164,6 +173,7 @@ public class Node {
 
   /**
    * Gets the x-coordinate of a node.
+   *
    * @return xcoord
    */
   public int getXcoord() {
@@ -171,6 +181,7 @@ public class Node {
   }
   /**
    * Gets the y-coordinate of a node.
+   *
    * @return ycoord
    */
   public int getYcoord() {
@@ -179,6 +190,7 @@ public class Node {
 
   /**
    * Gets the floor of a node.
+   *
    * @return floor
    */
   public String getFloor() {
@@ -187,6 +199,7 @@ public class Node {
 
   /**
    * Gets all the information of a node and returns it as a string
+   *
    * @return str
    */
   public String getInfo() {
@@ -209,8 +222,9 @@ public class Node {
   }
 
   /**
-   * method to set the new coordinates of an instance of a node in the database
-   * Sets the coordinates of a node.
+   * method to set the new coordinates of an instance of a node in the database Sets the coordinates
+   * of a node.
+   *
    * @param newX
    * @param newY
    * @throws SQLException
@@ -223,6 +237,7 @@ public class Node {
 
   /**
    * Returns a list of the empty nodes.
+   *
    * @return mtNodes
    * @throws SQLException
    */

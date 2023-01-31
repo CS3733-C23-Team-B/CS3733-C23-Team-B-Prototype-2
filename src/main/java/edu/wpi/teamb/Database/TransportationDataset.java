@@ -1,12 +1,11 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.RequestStatus;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import edu.wpi.teamb.Entities.RequestStatus;
 import lombok.Getter;
 
 public class TransportationDataset {
@@ -120,7 +119,7 @@ public class TransportationDataset {
               rs.getString("destination"),
               rs.getString("notes"),
               rs.getString("patientid"),
-                  newStatus));
+              newStatus));
     }
     return requests;
   }

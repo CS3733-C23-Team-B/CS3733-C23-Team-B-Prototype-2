@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.CSVWriter;
 import edu.wpi.teamb.Database.TransportationDataset;
+import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -104,7 +105,8 @@ public class PatientTransportationController extends BaseRequestController {
             saveInfo[6],
             saveInfo[7],
             saveInfo[9],
-            saveInfo[8]);
+            saveInfo[8],
+            RequestStatus.PROCESSING);
     newRequest.insert();
 
     // TODO: show confirmation page

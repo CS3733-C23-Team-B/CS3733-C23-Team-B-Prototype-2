@@ -166,4 +166,16 @@ public class Node {
     }
     return mtNodes;
   }
+
+  public void setNodeID(String nodeID) {
+    this.nodeID = nodeID;
+  }
+
+  public void setXcoord(int xcoord) {
+    this.xcoord = xcoord;
+  }
+
+  public void setYcoord(int ycoord) {
+    this.ycoord = ycoord;
+  }
 }

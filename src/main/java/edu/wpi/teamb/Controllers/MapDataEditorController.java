@@ -45,11 +45,12 @@ public class MapDataEditorController {
       int xCoord = node.getXcoord();
       int yCoord = node.getYcoord();
       String location = Move.getMostRecentLocation(nodeID);
-      Date moveDate = Move.getMostRecentMove(nodeID).getMoveDate();
+      Move move = Move.getMostRecentMove(nodeID);
+      Date moveDate = move.getMoveDate();
       String edges = "";
       for (String edge : Pathfinding.getDirectPaths(nodeID)) edges += edge + ", ";
       edges = edges.substring(0, edges.length() - 2);
-      nodeList.add(new NodeInfo(nodeID, xCoord, yCoord, location, moveDate, edges));
+      nodeList.add(new NodeInfo(nodeID, xCoord, yCoord, location, moveDate, edges, node, move));
     }
 
     nodeList.forEach((value) -> dataTable.getItems().add(value));

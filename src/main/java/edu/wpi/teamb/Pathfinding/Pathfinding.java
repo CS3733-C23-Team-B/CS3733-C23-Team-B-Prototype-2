@@ -165,4 +165,13 @@ public class Pathfinding {
 
     return pathToString(path);
   }
+
+  public static void refreshData() {
+    try {
+      edges = Edge.getAll();
+      nodes = Node.getAll();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }

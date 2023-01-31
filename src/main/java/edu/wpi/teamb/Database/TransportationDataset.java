@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.RequestStatus;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ public class TransportationDataset {
       notes,
       patientid,
       employeeId;
+  @Getter RequestStatus status;
 
   public TransportationDataset(
       String firstname,
@@ -31,7 +33,8 @@ public class TransportationDataset {
       String location,
       String destination,
       String notes,
-      String patientid) {
+      String patientid,
+      RequestStatus status) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
@@ -42,6 +45,7 @@ public class TransportationDataset {
     this.notes = notes;
     this.employeeId = employeeId;
     this.patientid = patientid;
+    this.status = status;
   }
 
   public static void initTable() throws SQLException {
@@ -59,15 +63,16 @@ public class TransportationDataset {
             "destination VARCHAR,",
             "notes VARCHAR(500),",
             "patientid VARCHAR",
+            "status VARCHAR",
             ");");
     Bdb.processUpdate(sql);
   }
 
   public void insert() throws SQLException {
     String sql =
-        "INSERT INTO transportation (firstname, lastname, employeeid, email, equipment, urgency, currentlocation, destination, notes, patientid)"
-            + "VALUES (?,?,?,?,?,?,?,?,?,?);";
-    PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
+        "INSERT INTO transportation (firstname, lastname, employeeid, email, equipment, urgency, currentlocation, destination, notes, patientid, status)"
+            + "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    PreparedStatement ps = Bdb.prepareStatement(sql);
     ps.setString(1, firstname);
     ps.setString(2, lastname);
     ps.setString(3, employeeId);
@@ -78,6 +83,7 @@ public class TransportationDataset {
     ps.setString(8, destination);
     ps.setString(9, notes);
     ps.setString(10, patientid);
+    ps.setString(11, status.toString());
     ps.executeUpdate();
   }
 
@@ -86,6 +92,21 @@ public class TransportationDataset {
     String sql = "SELECT * FROM transportation;";
     ResultSet rs = Bdb.processQuery(sql);
     while (rs.next()) {
+      RequestStatus newStatus;
+      switch (rs.getString("status")) {
+        case ("blank"):
+          newStatus = RequestStatus.BLANK;
+          break;
+        case ("processing"):
+          newStatus = RequestStatus.PROCESSING;
+          break;
+        case ("done"):
+          newStatus = RequestStatus.DONE;
+          break;
+        default:
+          newStatus = RequestStatus.BLANK;
+          break;
+      }
       requests.add(
           new TransportationDataset(
               rs.getString("firstname"),
@@ -97,31 +118,13 @@ public class TransportationDataset {
               rs.getString("currentlocation"),
               rs.getString("destination"),
               rs.getString("notes"),
-              rs.getString("patientid")));
+              rs.getString("patientid"),
+              newStatus));
     }
     return requests;
   }
 
   public static String getTableName() {
     return tableName.toLowerCase();
-  }
-
-  public String getInfo() {
-    String ret =
-        "Name:"
-            + firstname
-            + " "
-            + lastname
-            + " Equipment: "
-            + equipment
-            + " Urgency: "
-            + urgency
-            + " Location: "
-            + lastname
-            + " Destination: "
-            + destination
-            + " Notes: "
-            + notes;
-    return ret;
   }
 }

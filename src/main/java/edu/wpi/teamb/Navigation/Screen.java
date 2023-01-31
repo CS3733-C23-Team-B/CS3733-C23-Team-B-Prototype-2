@@ -1,12 +1,12 @@
 package edu.wpi.teamb.Navigation;
 
 public enum Screen {
-  HOME("views/Home2.fxml"),
+  HOME("views/HomeScreen.fxml"),
   DATABASE_HELP("views/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/MapDataEditor.fxml"),
   NAVIGATION("views/Navigation.fxml"),
   PATHFINDING("views/Pathfinding.fxml"),
-  PATIENT_TRANSPORTATION("views/patientTransportation2.fxml"),
+  PATIENT_TRANSPORTATION("views/PatientTransportation.fxml"),
   PATIENT_TRANSPORTATION_HELP("views/PatientTransportationHelpPage.fxml"),
   SANITATION("views/sanitationService.fxml"),
   SANITATION_HELP("views/sanitationHelpPage.fxml"),

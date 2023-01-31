@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -47,7 +46,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text layoutX="82.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Nodes: Sam Colebourn" textAlignment="CENTER" wrappingWidth="448.63604736328125">
+            <Text layoutX="82.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Nodes: Sean Lendrum, Jack Lafond" textAlignment="CENTER" wrappingWidth="448.63604736328125">
                <font>
                   <Font size="18.0" />
                </font>

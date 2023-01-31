@@ -7,7 +7,7 @@ public enum Screen {
   DATABASE_UI("views/DatabaseUI.fxml"),
   NAVIGATION("views/Navigation.fxml"),
   PATHFINDING("views/Pathfinding.fxml"),
-  PATIENT_TRANSPORTATION("views/PatientTransportation.fxml"),
+  PATIENT_TRANSPORTATION("views/patientTransportation2.fxml"),
   PATIENT_TRANSPORTATION_HELP("views/PatientTransportationHelpPage.fxml"),
   SANITATION("views/sanitationService.fxml"),
   SANITATION_HELP("views/sanitationHelpPage.fxml"),

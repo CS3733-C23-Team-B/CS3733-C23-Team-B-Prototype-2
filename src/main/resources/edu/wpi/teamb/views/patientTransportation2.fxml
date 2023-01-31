@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.PatientTransportationController">
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
@@ -141,7 +141,7 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </ChoiceBox>
-                              <TextField fx:id="assignedStaffField" minHeight="44.0" prefWidth="340.0">
+                              <TextField fx:id="assignedEmployeeField" minHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -171,7 +171,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="623.0" prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <TextField maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="720.0">
+                              <TextField fx:id="patientIDField" maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="720.0">
                                  <HBox.margin>
                                     <Insets left="40.0" top="5.0" />
                                  </HBox.margin>
@@ -206,7 +206,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="704.0" prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <TextField maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
+                              <TextField fx:id="patientLocationField" maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -214,7 +214,7 @@
                                     <Font size="17.0" />
                                  </font>
                               </TextField>
-                              <TextField minHeight="44.0" prefWidth="340.0">
+                              <TextField fx:id="patientDestinationField" minHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -244,7 +244,7 @@
                         </HBox>
                         <HBox prefHeight="44.0" prefWidth="200.0">
                            <children>
-                              <ChoiceBox minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
+                              <ChoiceBox fx:id="equipmentNeededBox" minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -271,7 +271,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="388.0" prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="notesField" maxHeight="44.0" minHeight="100.0" prefHeight="88.0" prefWidth="720.0">
+                              <TextField fx:id="additionalNotesField" maxHeight="44.0" minHeight="100.0" prefHeight="88.0" prefWidth="720.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>

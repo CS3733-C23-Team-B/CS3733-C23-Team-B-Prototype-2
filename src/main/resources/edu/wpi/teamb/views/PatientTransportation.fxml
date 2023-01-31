@@ -175,7 +175,7 @@
                               </Button>
                               <Button fx:id="helpButton" mnemonicParsing="false" onMouseClicked="#helpButtonClicked" text="Help" />
                               <Button fx:id="clearButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#clearButtonClicked" prefWidth="55.0" text="Clear" />
-                              <Button fx:id="submitButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#submitButtonClicked" prefWidth="55.0" text="Submit" />
+                              <Button fx:id="submitButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#submitButtonClicked" onMouseClicked="#submitButtonClicked" prefWidth="55.0" text="Submit" />
                            </children>
                            <padding>
                               <Insets top="30.0" />

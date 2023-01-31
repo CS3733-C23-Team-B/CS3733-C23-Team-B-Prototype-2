@@ -40,6 +40,7 @@ public class BaseRequestController {
   protected ArrayList<ChoiceBox> choiceBoxes;
 
   protected Screen helpScreen;
+  protected Screen submissionScreen;
 
   /**
    * Initialize the page by instantiating 3 arrays of all components, text field components, and
@@ -86,7 +87,7 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void submitButtonClicked() throws IOException, SQLException {
-    // stub
+    Navigation.navigate(submissionScreen);
   }
 
   /**

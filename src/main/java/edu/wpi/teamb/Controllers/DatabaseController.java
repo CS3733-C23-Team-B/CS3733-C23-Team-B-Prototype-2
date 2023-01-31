@@ -123,7 +123,7 @@ public class DatabaseController {
     bor.setCenter(nodeBox);
     Button b = new Button();
     b.setText("Back");
-    b.setOnAction(e -> Navigation.navigate(Screen.DATABASE_UI));
+    b.setOnAction(e -> Navigation.navigate(Screen.MAP_DATA_EDITOR));
     nodeBox.getChildren().add(b);
   }
 
@@ -159,7 +159,7 @@ public class DatabaseController {
     bor.setCenter(edgeBox);
     Button b = new Button();
     b.setText("Back");
-    b.setOnAction(e -> Navigation.navigate(Screen.DATABASE_UI));
+    b.setOnAction(e -> Navigation.navigate(Screen.MAP_DATA_EDITOR));
     edgeBox.getChildren().add(b);
   }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ProfileController">
+   <center>
+      <ScrollPane prefHeight="427.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="790.0">
+               <children>
+                  <Text fx:id="usernameText" layoutX="187.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="250.17774963378906" />
+                  <Button fx:id="backButton" layoutX="374.0" layoutY="200.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Back" />
+                  <HBox alignment="CENTER_LEFT" layoutX="187.0" layoutY="113.0" prefHeight="25.0" prefWidth="321.0">
+                     <children>
+                        <Text fx:id="passwordText" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="250.17776489257812" HBox.hgrow="ALWAYS" />
+                        <ToggleButton fx:id="showPasswordButton" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="25.0" prefWidth="32.0" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="deleteAccountButton" layoutX="263.0" layoutY="200.0" mnemonicParsing="false" onAction="#deleteAccount" style="-fx-background-color: red;" text="Delete Account" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+            <Text fill="WHITE" layoutX="229.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile Info">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

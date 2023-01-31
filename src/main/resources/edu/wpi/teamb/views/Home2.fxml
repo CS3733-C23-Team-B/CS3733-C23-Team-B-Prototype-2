@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -15,6 +18,9 @@
 </AnchorPane>
 =======
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
+=======
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="970.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.HomeController">
+>>>>>>> Stashed changes
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -27,22 +33,38 @@
                   </Text>
                </children>
                <VBox.margin>
+<<<<<<< Updated upstream
                   <Insets top="100.0" />
+=======
+                  <Insets top="150.0" />
+>>>>>>> Stashed changes
                </VBox.margin>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
+<<<<<<< Updated upstream
                   <Button maxWidth="500.0" minHeight="200.0" minWidth="500.0" mnemonicParsing="false" onAction="#featureOneButtonClicked" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="50.0" />
+=======
+                  <Button fx:id="patientTransportationButton" maxWidth="500.0" minHeight="200.0" minWidth="500.0" mnemonicParsing="false" onAction="#patientTransportationButtonClicked" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Patient Transportation Request" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+>>>>>>> Stashed changes
                      </font>
                      <HBox.margin>
                         <Insets left="200.0" />
                      </HBox.margin>
                   </Button>
+<<<<<<< Updated upstream
                   <Button layoutX="10.0" layoutY="10.0" maxWidth="500.0" minHeight="200.0" minWidth="500.0" mnemonicParsing="false" onAction="#databaseButtonClicked" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Database" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="System Bold" size="50.0" />
+=======
+                  <Button fx:id="sanitationServiceButton" layoutX="10.0" layoutY="10.0" maxWidth="500.0" minHeight="200.0" minWidth="500.0" mnemonicParsing="false" onAction="#sanitationServiceButtonClicked" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Santitation Service Request" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+>>>>>>> Stashed changes
                      </font>
                      <HBox.margin>
                         <Insets left="320.0" />
@@ -50,11 +72,18 @@
                   </Button>
                </children>
                <VBox.margin>
+<<<<<<< Updated upstream
                   <Insets top="200.0" />
+=======
+                  <Insets top="150.0" />
+>>>>>>> Stashed changes
                </VBox.margin>
             </HBox>
          </children>
       </VBox>
    </center>
 </BorderPane>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

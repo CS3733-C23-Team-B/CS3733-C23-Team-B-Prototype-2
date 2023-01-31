@@ -13,8 +13,8 @@ public enum Screen {
   SIGN_IN("views/SignIn.fxml"),
   REQUESTS("views/requests.fxml"),
   PROFILE("views/Profile.fxml"),
-  FOOTER("views/Footer.fxml"),
-  MAINHELP("views/MainHelpPage.fxml");
+  MAINHELP("views/MainHelpPage"),
+  FOOTER("views/Footer.fxml");
 
   private final String filename;
 

@@ -38,7 +38,7 @@ public class PatientTransportationController extends BaseRequestController {
       patientLocationField,
       patientDestinationField,
       patientIDField,
-      assignedEmployeeField,
+      // assignedEmployeeField, <-add in when it's actually in SceneBuilder
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(cl));

@@ -49,7 +49,7 @@ public class Move {
 
   public void insert() throws SQLException {
     String sql = "INSERT INTO move (nodeID, longName, moveDate) " + "VALUES (?,?,?);";
-    PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
+    PreparedStatement ps = Bdb.prepareStatement(sql);
     ps.setString(1, nodeID);
     ps.setString(2, longName);
     ps.setDate(3, moveDate);

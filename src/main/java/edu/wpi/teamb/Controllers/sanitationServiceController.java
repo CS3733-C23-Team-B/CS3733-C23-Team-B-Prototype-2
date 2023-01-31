@@ -19,6 +19,8 @@ public class sanitationServiceController extends BaseRequestController {
   @FXML private TextField cleanUpLocationField;
   @FXML private ChoiceBox typeOfCleanUpBox;
 
+  @FXML private TextField assignedStaffField;
+
   @FXML
   @Override
   public void initialize() {
@@ -32,7 +34,7 @@ public class sanitationServiceController extends BaseRequestController {
       cleanUpLocationField,
       urgencyBox,
       typeOfCleanUpBox,
-      // assignedEmployeeField, <- add in when it's actually in SceneBuilder
+      assignedStaffField,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));

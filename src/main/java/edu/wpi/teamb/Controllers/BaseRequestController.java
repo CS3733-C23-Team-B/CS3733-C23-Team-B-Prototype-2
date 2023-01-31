@@ -21,7 +21,7 @@ public class BaseRequestController {
   @FXML protected TextField employeeIDField;
   @FXML protected TextField emailField;
   @FXML protected ChoiceBox urgencyBox;
-  @FXML protected TextField assignedEmployeeField;
+  @FXML protected TextField assignedStaffField;
   @FXML protected TextField additionalNotesField;
   private RequestStatus request;
   @FXML protected Button cancelButton;

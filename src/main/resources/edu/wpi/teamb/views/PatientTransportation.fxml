@@ -58,8 +58,8 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="25.0" prefWidth="200.0" spacing="40.0">
                            <children>
-                              <TextField fx:id="firstNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="130.0" promptText="First" />
-                              <TextField fx:id="lastNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="130.0" promptText="Last" />
+                              <TextField fx:id="firstNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonControl" prefHeight="30.0" prefWidth="130.0" promptText="First" />
+                              <TextField fx:id="lastNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonControl" prefHeight="30.0" prefWidth="130.0" promptText="Last" />
                            </children>
                            <padding>
                               <Insets right="235.0" />
@@ -76,8 +76,8 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" spacing="40.0">
                            <children>
-                              <TextField fx:id="employeeIDField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="130.0" />
-                              <TextField fx:id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="130.0" />
+                              <TextField fx:id="employeeIDField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonControl" prefHeight="30.0" prefWidth="130.0" />
+                              <TextField fx:id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonControl" prefHeight="30.0" prefWidth="130.0" />
                            </children>
                            <padding>
                               <Insets bottom="15.0" right="235.0" />
@@ -107,8 +107,8 @@
                               </HBox>
                               <HBox spacing="40.0">
                                  <children>
-                                    <ChoiceBox fx:id="equipmentNeededBox" prefWidth="150.0" />
-                                    <ChoiceBox fx:id="urgencyBox" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="equipmentNeededBox" onAction="#buttonControl" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="urgencyBox" onAction="#buttonControl" prefWidth="150.0" />
                                  </children>
                                  <padding>
                                     <Insets left="35.0" top="5.0" />
@@ -141,9 +141,9 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                            <children>
-                              <TextField fx:id="patientLocationField" />
-                              <TextField fx:id="patientDestinationField" />
-                              <TextField fx:id="patientIDField" />
+                              <TextField fx:id="patientLocationField" onKeyReleased="#buttonControl" />
+                              <TextField fx:id="patientDestinationField" onKeyReleased="#buttonControl" />
+                              <TextField fx:id="patientIDField" onKeyReleased="#buttonControl" />
                            </children>
                            <padding>
                               <Insets left="35.0" top="5.0" />
@@ -156,7 +156,7 @@
                                     <Insets bottom="5.0" left="35.0" top="10.0" />
                                  </VBox.margin>
                               </Text>
-                              <TextField fx:id="additionalNotesField" maxWidth="339.0" prefHeight="88.0" prefWidth="339.0">
+                              <TextField fx:id="additionalNotesField" maxWidth="339.0" onKeyReleased="#buttonControl" prefHeight="88.0" prefWidth="339.0">
                                  <VBox.margin>
                                     <Insets left="35.0" />
                                  </VBox.margin>

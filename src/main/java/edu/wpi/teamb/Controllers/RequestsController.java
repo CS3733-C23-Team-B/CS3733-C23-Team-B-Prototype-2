@@ -13,12 +13,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RequestsController {
   @FXML TableView requestsTable;
+  @FXML TableView requestsTable1;
   @FXML TableColumn nameColumn;
   @FXML TableColumn equipmentColumn;
   @FXML TableColumn urgencyColumn;
   @FXML TableColumn locationColumn;
   @FXML TableColumn destinationColumn;
   @FXML TableColumn notesColumn;
+  @FXML TableColumn statusColumn;
 
   public void initialize() {
     List<TransportationDataset> requestList;
@@ -28,6 +30,7 @@ public class RequestsController {
     locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
     destinationColumn.setCellValueFactory(new PropertyValueFactory<>("destination"));
     notesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
+    statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
     try {
       requestList = TransportationDataset.getAll();
@@ -36,7 +39,7 @@ public class RequestsController {
     }
     requestList.forEach(
         (value) -> {
-          requestsTable.getItems().add(value);
+          requestsTable1.getItems().add(value);
         });
     Button b = new Button();
     b.setText("Back");

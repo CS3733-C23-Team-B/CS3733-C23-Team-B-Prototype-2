@@ -1,68 +1,51 @@
-To assemble a jar file for your project, run the "jar" gradle task, either through IntelliJ or by doing
-`gradle jar` on a terminal. Gradle will automatically download all dependencies needed to compile your jar file,
-which will be stored in the build/libs folder.
 
-Make sure to edit the main class attribute the build.gradle file, you'll need to change it in order to obtain
-a working jar file.
+## Requirements
+<li>Java Development Kit (JDK) version 17.x
+<li>MaterialFX
 
-# Requirements
-## Java Development Kit (JDK) version 17.x
-This starter code was developed using JDK17 which can be acquired at this [link](https://www.oracle.com/java/technologies/downloads/#java17 "JDK Download")
-<br>Your submitted programs are expected to be written using this JDK and should not use other JDKs unless otherwise specified
-## MaterialFX
-MaterialFX is a JavaFX (JFX) module library for pre-made components. 
-<br>The MaterialFX Github page can be found [here](https://github.com/palexdev/MaterialFX "MaterialFX GitHub") and the corresponding Wiki with component examples can be found [here](https://github.com/palexdev/MaterialFX/wiki "MaterialFX GitHub Wiki") 
-<br>The library is a great <i>starting point</i> for UI design during the early iterations.
+# Important Features
+Note: All features have been implemented into the application User Interface, and all
+can be found inside this jar file
 
+## Front-End
+<li>A user-friendly interface for navigating and interacting with the system
+<li>Forms for inputting data and making requests
+<li>Display and visualization of data and results
+<li>Service Requests update csvfiles located in edu.wpi.teamb.resources.dataScources on submission of service forms
 
 
-# Important Files
-## build.gradle / gradle.properties
-This is the gradle configuration file. Modify this file to add dependencies to your project. In
- general you should only modify the depedencies section of this file, however there are a few
-  modification you will need to make when you begin the project
-  
-  - `mainClassName`
-    - Modifiy this variable to point to your main class. By default it is `edu.wpi.teamb.Main
-    `, but once you update your teamname package to your team letter you will need to update this
-     path.
-     
-  - jaCoCo
-    - jaCoCo is a JAva COde COverage checker that enforces testing. By default the rules are 25
-    % line coverage and 25% branch coverage, but if you would like to be more successful you
-     should raise these numbers higher to enforce team members to write more tests. Simply modify
-      the `minimum` values to enforce stricter tests (but do not change to below .25, as that is
-       the required minimum for this class)
-  - spotless
-    - spotless is a style guider checker/formatter that will automatically detect if your code
-     adheres to an agreed style guide. For this starter code I have defaulted to Google's style
-     guide, as it is well known and well liked. You can find more documentation for spotless 
-     [here](https://github.com/diffplug/spotless). If you would like to disable the spotless
-      checks, comment out the spotless plugin as well as the spotless configuration at the bottom
-       of the file
+## Back-End
+<li>Integration into front end user interface (in the Database page of the application)
+<li>JDBC program that includes an ORM
+<li>User authentication and authorization (in-progress)
+<li>Ability to interact with and manipulate Nodes in real-time
+<li>Ability to view node and edge tables
+<li>Error handling and logging
+<li>Help Display on how to use the database program
 
-## .travis.yml
-This is the Travis-CI configuration file. **Only modify this file if you are sure you know what you are doing**
 
-## lombox.config
-This is the configuration for [Lombok](https://projectlombok.org/), a very useful java library
- that makes 'enterprise' coding a breeze. **Only modify this file if you are sure you know what you are doing**
+## PathFinding
+<li>Integration into front end user interface (in the Pathfinding page of the application)
+<li>Finds a path between two given locations in the hospital
+<li>Returns the shortest path found as an easy-to-follow string representation
+<li>Locations are represented by their Unique ID
 
-## .gitignore
-This file tells git which files to ignore in the repo. It should be correctly configured already
-**Only modify this file if you are sure you know what you are doing**
+# Instructional:
 
-## .hooks/
-This directory contains a useful git hook that will force your teammates to run tests before
-pushing to github. This `pre-push` hook will run gradle tests to make sure code passes.
+<br>Sanitation Service - on the home page, click the Sanitation Service Navigation Button to visit the page.
+<br>Patient Transportation Service - on the home page, click the Transportation Service
+<br>Database Integration - on the home page, click the Database Navigation Button to visit the page.
+<br>Pathfinding Integration - on the home page, click the Pathfinding Navigation Button to visit the page.
+<br>Exit Application- on any of the navigation pages, click the Profile Icon Navigation Button and then the Exit Application button to Exit Application.
+<br>
+<br>Depth First Search - Navigate to the pathfinding page by clicking the Pathfinding navigation button. Then select a starting node and ending node from the dropdowns. Then generate a path by clicking the Find Shortest Path Button.
+<br>
+<br>View all nodes - Navigate to the database page by clicking on the Database navigation button. Then click on Query Nodes to view the nodes
+<br>View all Edges - Navigate to the database page by clicking on the Database navigation button. Then click on Query Edges to view the nodes
+<br>Update node coordinates- Navigate to the database page by clicking on the Database navigation button. Then select a node from the dropdown 
+and enter new x and y coordinates in the text fields. Click Submit change button to update the node coordinates.
+<br>Update node Coordinates- Navigate to the database page by clicking on the Database navigation button. Then select a node from the dropdown
+and enter new location in the location text field. Click submit change button to update the node coordinates. 
+<br>Sanitation Service Help Page- Click help button on Sanitation Service page to get to the Sanitation Help Page
+<br>Patient Transportation Help Page- Scroll down on Patient transportation Help page, Click help button on Patient Transportation Page to get to Transportation Help Page 
 
-To install these hooks, simply run `git config core.hookspath .hooks` from the root directory
-
-## config/
-Config contains styleguide config files both for checkstyle (another optional plugin for gradle
-) and for intellij. Teams should determine a style guide to follow to make 
-although it is not a requirement for this class.
-
-To install the styleguide scheme into IntelliJ, `Preferences -> Editor -> Code Style -> Scheme
- -> ... -> Import Scheme -> IntelliJ IDEA code style XML`, then select `config/intellij-java
- -google-style.xml` from the project's root directory 

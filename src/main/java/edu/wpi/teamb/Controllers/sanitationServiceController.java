@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Entities.SanitationRequest;
+import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class sanitationServiceController extends BaseRequestController {
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
 
     helpScreen = Screen.SANITATION_HELP;
+    submissionScreen = Screen.SUBMISSION_SUCCESS;
     super.initialize();
   }
 
@@ -81,5 +83,7 @@ public class sanitationServiceController extends BaseRequestController {
 
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
+
+    Navigation.navigate(submissionScreen);
   }
 }

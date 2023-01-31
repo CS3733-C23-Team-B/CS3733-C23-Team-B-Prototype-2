@@ -43,13 +43,13 @@
                         </Text>
                         <TableView fx:id="requestsTable1" prefHeight="271.0" prefWidth="611.0">
                             <columns>
-                                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-                                <TableColumn fx:id="equipmentColumn" prefWidth="75.0" text="Equipment" />
-                                <TableColumn fx:id="urgencyColumn" prefWidth="75.0" text="Urgency" />
-                                <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
-                                <TableColumn fx:id="destinationColumn" prefWidth="75.0" text="Destination" />
-                                <TableColumn fx:id="notesColumn" prefWidth="113.0" text="Notes" />
-                                <TableColumn fx:id="statusColumn" prefWidth="116.0" text="Status" />
+                                <TableColumn fx:id="nameColumn" prefWidth="110.00000011920929" text="Name" />
+                                <TableColumn fx:id="equipmentColumn" prefWidth="92.66665649414062" text="Equipment" />
+                                <TableColumn fx:id="urgencyColumn" prefWidth="76.66667175292969" text="Urgency" />
+                                <TableColumn fx:id="locationColumn" prefWidth="92.66667175292969" text="Location" />
+                                <TableColumn fx:id="destinationColumn" prefWidth="104.0" text="Destination" />
+                                <TableColumn fx:id="statusColumn" prefWidth="107.33331298828125" text="Status" />
+                                <TableColumn fx:id="notesColumn" prefWidth="201.3333740234375" text="Notes" />
                             </columns>
                         </TableView>
                      </children>

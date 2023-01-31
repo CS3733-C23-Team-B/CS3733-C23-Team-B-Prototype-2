@@ -9,192 +9,326 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="feature2BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.PatientTransportationController">
-   <top>
-      <HBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets top="7.0" />
-         </BorderPane.margin>
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Transportation Request">
-               <font>
-                  <Font size="30.0" />
-               </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Text>
-         </children>
-      </HBox>
-   </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.PatientTransportationController">
    <center>
-      <ScrollPane prefHeight="652.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="582.0">
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="960.0" prefWidth="780.0">
                <children>
-                  <VBox fx:id="pageVBox" alignment="CENTER" prefHeight="600.0" prefWidth="600.0">
+                  <VBox prefHeight="800.0" prefWidth="800.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Information">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="36.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="-10.0" right="300.0" />
+                              <Insets left="40.0" top="10.0" />
                            </VBox.margin>
                         </Text>
-                        <HBox fx:id="labels1" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0" spacing="115.0">
-                           <children>
-                              <Text fx:id="firstNameLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="57.076171875" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" top="15.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="34.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="200.0" spacing="40.0">
-                           <children>
-                              <TextField fx:id="firstNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonControl" prefHeight="30.0" prefWidth="130.0" promptText="First" />
-                              <TextField fx:id="lastNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonControl" prefHeight="30.0" prefWidth="130.0" promptText="Last" />
-                           </children>
-                           <padding>
-                              <Insets right="235.0" />
-                           </padding>
-                        </HBox>
-                        <HBox fx:id="labels2" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="567.0" spacing="105.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="33.0" top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" spacing="40.0">
-                           <children>
-                              <TextField fx:id="employeeIDField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonControl" prefHeight="30.0" prefWidth="130.0" />
-                              <TextField fx:id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonControl" prefHeight="30.0" prefWidth="130.0" />
-                           </children>
-                           <padding>
-                              <Insets bottom="15.0" right="235.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Request Information">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="22.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="-10.0" right="320.0" top="15.0" />
+                              <Insets left="40.0" top="10.0" />
                            </VBox.margin>
                         </Text>
-                        <VBox>
+                        <HBox prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <HBox spacing="86.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Needed" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Urgency of Transportation" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="35.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox spacing="40.0">
-                                 <children>
-                                    <ChoiceBox fx:id="equipmentNeededBox" onAction="#buttonControl" prefWidth="150.0" />
-                                    <ChoiceBox fx:id="urgencyBox" onAction="#buttonControl" prefWidth="150.0" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="35.0" top="5.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets top="15.0" />
-                           </padding>
-                        </VBox>
-                        <HBox prefHeight="20.0" prefWidth="200.0" spacing="53.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's Current Location" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's Destination" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID">
+                              <TextField fx:id="firstNameField" maxHeight="44.0" minHeight="44.0" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0" promptText="First">
                                  <HBox.margin>
-                                    <Insets left="29.0" />
+                                    <Insets left="40.0" />
                                  </HBox.margin>
-                              </Text>
-                           </children>
-                           <padding>
-                              <Insets left="35.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-                           <children>
-                              <TextField fx:id="patientLocationField" onKeyReleased="#buttonControl" />
-                              <TextField fx:id="patientDestinationField" onKeyReleased="#buttonControl" />
-                              <TextField fx:id="patientIDField" onKeyReleased="#buttonControl" />
-                           </children>
-                           <padding>
-                              <Insets left="35.0" top="5.0" />
-                           </padding>
-                        </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="35.0" top="10.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <TextField fx:id="additionalNotesField" maxWidth="339.0" onKeyReleased="#buttonControl" prefHeight="88.0" prefWidth="339.0">
-                                 <VBox.margin>
-                                    <Insets left="35.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="5.0" right="5.0" top="5.0" />
-                                 </padding>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="lastNameField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0" promptText="Last">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
                               </TextField>
                            </children>
-                        </VBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="600.0" spacing="15.0">
-                           <children>
-                              <Button fx:id="cancelButton" mnemonicParsing="false" onMouseClicked="#cancelButtonClicked" text="Cancel">
-                                 <HBox.margin>
-                                    <Insets right="280.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="helpButton" mnemonicParsing="false" onMouseClicked="#helpButtonClicked" text="Help" />
-                              <Button fx:id="clearButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#clearButtonClicked" prefWidth="55.0" text="Clear" />
-                              <Button fx:id="submitButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#submitButtonClicked" onMouseClicked="#submitButtonClicked" prefWidth="55.0" text="Submit" />
-                           </children>
-                           <padding>
-                              <Insets top="30.0" />
-                           </padding>
                            <VBox.margin>
-                              <Insets bottom="20.0" right="35.0" />
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <VBox.margin>
+                              <Insets left="40.0" top="15.0" />
+                           </VBox.margin>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="257.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="105.0" prefHeight="22.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="employeeIDField" maxHeight="44.0" minHeight="44.0" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="emailField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Text layoutX="50.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Request Information">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="40.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox layoutX="50.0" layoutY="170.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Urgency">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assigned Staff Member">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="299.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="199.0" prefHeight="22.0" prefWidth="200.0">
+                           <children>
+                              <ChoiceBox fx:id="urgencyBox" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                              <TextField fx:id="assignedStaffField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="443.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="623.0" prefHeight="22.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="patientIDField" maxHeight="44.0" minHeight="44.0" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="720.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" top="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="635.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's Current Location">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's Destination">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="130.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="704.0" prefHeight="22.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="patientLocationField" maxHeight="44.0" minHeight="44.0" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="patientDestinationField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="341.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Needed">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="44.0" prefWidth="200.0">
+                           <children>
+                              <ChoiceBox fx:id="equipmentNeededBox" minHeight="44.0" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="448.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="388.0" prefHeight="22.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="additionalNotesField" maxHeight="44.0" minHeight="100.0" onKeyReleased="#buttonControl" prefHeight="88.0" prefWidth="720.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="44.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="cancelButton" minHeight="44.0" minWidth="101.0" mnemonicParsing="false" onMouseClicked="#cancelButtonClicked" style="-fx-background-color: #797979;" text="Cancel" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="clearButton" layoutX="10.0" layoutY="10.0" minHeight="44.0" minWidth="87.0" mnemonicParsing="false" onMouseClicked="#clearButtonClicked" style="-fx-background-color: #AAAAAA;" text="Clear" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="submitButton" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#submitButtonClicked" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="346.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="40.0" top="30.0" />
                            </VBox.margin>
                         </HBox>
                      </children>
-                     <padding>
-                        <Insets top="3.0" />
-                     </padding>
                   </VBox>
                </children>
             </AnchorPane>
-        </content>
-         <BorderPane.margin>
-            <Insets top="5.0" />
-         </BorderPane.margin>
+         </content>
       </ScrollPane>
    </center>
+   <top>
+      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+            <Text fill="WHITE" layoutX="58.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Transportation Request" textAlignment="CENTER">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
 </BorderPane>

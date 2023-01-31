@@ -3,8 +3,7 @@ package edu.wpi.teamb.Navigation;
 public enum Screen {
   HOME("views/HomeScreen.fxml"),
   DATABASE_HELP("views/DatabaseHelp.fxml"),
-
-  DATABASE_UI("views/DatabaseUI.fxml"),
+  MAP_DATA_EDITOR("views/MapDataEditor.fxml"),
   NAVIGATION("views/Navigation.fxml"),
   PATHFINDING("views/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/PatientTransportation.fxml"),
@@ -12,7 +11,9 @@ public enum Screen {
   SANITATION("views/sanitationService.fxml"),
   SANITATION_HELP("views/sanitationHelpPage.fxml"),
   SIGN_IN("views/SignIn.fxml"),
-  REQUESTS("views/requests.fxml");
+  REQUESTS("views/requests.fxml"),
+  PROFILE("views/Profile.fxml"),
+  FOOTER("views/Footer.fxml");
 
   private final String filename;
 

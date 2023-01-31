@@ -1,6 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Database.TransportationDataset;
+import edu.wpi.teamb.Database.Transportation;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
@@ -77,8 +77,8 @@ public class PatientTransportationController extends BaseRequestController {
     clearButtonClicked();
 
     // insert into database:
-    TransportationDataset newRequest =
-        new TransportationDataset(
+    Transportation newRequest =
+        new Transportation(
             saveInfo[0],
             saveInfo[1],
             saveInfo[2],

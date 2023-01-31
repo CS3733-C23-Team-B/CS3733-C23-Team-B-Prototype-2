@@ -7,34 +7,38 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="477.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Controller">
-   <children>
-      <AnchorPane layoutX="141.0" layoutY="148.0" prefHeight="274.0" prefWidth="279.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-opacity: 50;">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SigninController">
+   <center>
+      <AnchorPane prefHeight="236.0" prefWidth="279.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-opacity: 50;">
          <children>
-            <TextField fx:id="usernameField" layoutX="32.0" layoutY="64.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Username" />
-            <PasswordField fx:id="passwordField" layoutX="32.0" layoutY="102.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Password" />
-            <Button id="signInButton" fx:id="signInButton" layoutX="31.0" layoutY="143.0" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="25.0" prefWidth="215.0" text="Sign In" />
-            <CheckBox fx:id="newAccount" layoutX="68.0" layoutY="168.0" mnemonicParsing="false" text="Create as new account">
+            <TextField fx:id="usernameField" layoutX="292.0" layoutY="146.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Username" />
+            <PasswordField fx:id="passwordField" layoutX="292.0" layoutY="184.0" maxWidth="215.0" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Password" />
+            <Button id="signInButton" fx:id="signInButton" layoutX="291.0" layoutY="225.0" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="25.0" prefWidth="215.0" text="Sign In" />
+            <CheckBox fx:id="newAccount" layoutX="328.0" layoutY="250.0" mnemonicParsing="false" text="Create as new account">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </CheckBox>
-            <Label fx:id="prompt" layoutX="82.0" layoutY="32.0" prefHeight="17.0" prefWidth="114.0" text="Please sign In below." />
-            <Button fx:id="deleteAccountButton" layoutX="90.0" layoutY="220.0" mnemonicParsing="false" onAction="#deleteAccountClicked" style="-fx-background-color: red;" text="Delete Account" textFill="WHITE" />
+            <Label fx:id="prompt" layoutX="342.0" layoutY="114.0" prefHeight="17.0" prefWidth="114.0" text="Please sign In below." />
+            <Button fx:id="exitButton" layoutX="672.0" layoutY="475.0" mnemonicParsing="false" onAction="#exitApplication" text="Exit Application" />
          </children>
       </AnchorPane>
-      <Label layoutX="49.0" layoutY="23.0" prefHeight="52.0" prefWidth="463.0" style="-fx-background-color: white; -fx-background-radius: 5;" text="Welcome to Brigham and Women’s Hospital!">
-         <font>
-            <Font size="22.0" />
-         </font>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </Label>
-   </children>
-   <padding>
-      <Insets right="10.0" top="10.0" />
-   </padding>
-</AnchorPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+            <Text fill="WHITE" layoutX="73.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Brigham and Women’s Hospital!">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

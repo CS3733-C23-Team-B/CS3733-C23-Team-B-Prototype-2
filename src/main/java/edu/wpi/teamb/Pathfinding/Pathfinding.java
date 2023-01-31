@@ -160,6 +160,7 @@ public class Pathfinding {
     while (!current.equals(start)) {
       path.add(1, current);
       current = cameFrom.get(current);
+      if (current == null) return "PATH NOT FOUND";
     }
 
     return pathToString(path);

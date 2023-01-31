@@ -9,6 +9,7 @@ public class GeneralRequest {
   @Getter @Setter private String email;
   @Getter @Setter private String EmployeeID;
   @Getter @Setter private String Urgency;
+  @Getter @Setter private String assignedEmployee;
   @Getter @Setter private String Notes;
 
   public void generalRequest() {}

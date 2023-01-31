@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
+import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
@@ -20,7 +21,9 @@ public class BaseRequestController {
   @FXML protected TextField employeeIDField;
   @FXML protected TextField emailField;
   @FXML protected ChoiceBox urgencyBox;
+  @FXML protected TextField assignedEmployeeField;
   @FXML protected TextField additionalNotesField;
+  private RequestStatus request;
   @FXML protected Button cancelButton;
   @FXML protected Button helpButton;
   @FXML protected Button clearButton;
@@ -44,6 +47,7 @@ public class BaseRequestController {
    */
   @FXML
   public void initialize() {
+    submitButton.setDisable(true);
     urgencyBox.setItems(urgencyOptions);
   }
 
@@ -83,5 +87,53 @@ public class BaseRequestController {
    */
   public void submitButtonClicked() throws IOException, SQLException {
     // stub
+  }
+
+  /**
+   * Returns the text in the given component, whether it's a TextField or ChoiceBox
+   *
+   * @param component the TextField or ChoiceBox
+   * @return a String containing the inputted text
+   */
+  protected String getText(Control component) {
+    if (component instanceof TextField) return ((TextField) component).getText();
+    else if (component instanceof ChoiceBox) {
+      String s = (String) ((ChoiceBox) component).getValue();
+      if (s == null) s = "";
+      return s;
+    } else {
+      return "";
+    }
+  }
+
+  /**
+   * Whenever a key is released, updates disable status of clearButton and submitButton
+   *
+   * @throws IOException
+   */
+  public void buttonControl() throws IOException {
+    boolean submitEnable = isFormFull();
+    submitButton.setDisable(!submitEnable);
+  }
+
+  /**
+   * Determine whether every field (except notes) in the request form is full
+   *
+   * @return true if form is full, false otherwise
+   */
+  private boolean isFormFull() {
+    return isFormFull(0);
+  }
+
+  /**
+   * Determine whether every field (except notes) in the request form is full
+   *
+   * @param i iterator i should be initialized as 0
+   * @return true if form is full, false otherwise
+   */
+  private boolean isFormFull(int i) {
+    // Skip final item, which should be the notes field
+    if (i == components.size() - 2) return !getText(components.get(i)).equals("");
+    return !getText(components.get(i)).equals("") && isFormFull(i + 1);
   }
 }

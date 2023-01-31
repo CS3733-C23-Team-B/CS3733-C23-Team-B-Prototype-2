@@ -28,7 +28,7 @@ public class Bapp extends Application {
   public void start(Stage primaryStage) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("views/root.fxml"));
     root.setId("home");
-    Scene scene = new Scene(root, 800, 600);
+    Scene scene = new Scene(root, 1200, 650);
     scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
 
     Bapp.primaryStage = primaryStage;

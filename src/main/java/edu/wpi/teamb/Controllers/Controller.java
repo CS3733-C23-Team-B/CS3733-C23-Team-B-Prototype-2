@@ -6,9 +6,7 @@ import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Controller {

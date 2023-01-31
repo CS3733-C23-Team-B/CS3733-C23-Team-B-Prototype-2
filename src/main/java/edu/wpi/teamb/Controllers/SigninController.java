@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -18,7 +17,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 public class SigninController {
-  @FXML private Button deleteAccountButton;
   @FXML private TextField usernameField;
   @FXML private TextField passwordField;
   @FXML private CheckBox newAccount;
@@ -26,9 +24,7 @@ public class SigninController {
 
   private final String USER = "bodacious";
   private final String PASS = "badgers";
-
   public static Login currentUser;
-
   private Map<String, Login> users;
 
   {
@@ -39,13 +35,8 @@ public class SigninController {
     }
   }
 
-  public void initialize() {
-    deleteAccountButton.setDisable(true);
-  }
-
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
-    else checkEnableDeleteAccountButton();
   }
 
   public boolean validateLogin() throws SQLException {
@@ -56,7 +47,7 @@ public class SigninController {
     else if (newAccount.isSelected()) {
       if (users.containsKey(usernameField.getText())) return true;
       Login newLogin = new Login(usernameField.getText(), passwordField.getText());
-      newLogin.insert();
+      users.put(usernameField.getText(), newLogin);
       return true;
     }
     prompt.setText("\tInvalid login");
@@ -81,38 +72,5 @@ public class SigninController {
 
     Navigation.navigate(Screen.HOME);
     currentUser = users.get(usernameField.getText());
-  }
-
-  public void deleteAccountClicked() {
-    String username = usernameField.getText();
-    String password = passwordField.getText();
-    Login user = users.get(username);
-    if (user.getPassword().equals(password)) {
-      try {
-        user.delete();
-      } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    usernameField.clear();
-    passwordField.clear();
-    users.remove(username);
-    prompt.setText("Account deleted");
-    deleteAccountButton.setDisable(true);
-  }
-
-  public void checkEnableDeleteAccountButton() {
-    String username = usernameField.getText();
-    String password = passwordField.getText();
-
-    if (username.equals("") && password.equals("")) {
-      deleteAccountButton.setDisable(true);
-      return;
-    }
-
-    boolean enable =
-        (users.containsKey(username) && users.get(username).getPassword().equals(password));
-    deleteAccountButton.setDisable(!enable);
   }
 }

@@ -19,6 +19,7 @@ public class RequestsController {
   @FXML TableColumn locationColumn;
   @FXML TableColumn destinationColumn;
   @FXML TableColumn notesColumn;
+  @FXML TableColumn statusColumn;
 
   public void initialize() {
     List<TransportationDataset> requestList;
@@ -28,6 +29,7 @@ public class RequestsController {
     locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
     destinationColumn.setCellValueFactory(new PropertyValueFactory<>("destination"));
     notesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
+    statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
     try {
       requestList = TransportationDataset.getAll();

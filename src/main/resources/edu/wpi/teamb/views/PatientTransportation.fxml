@@ -141,7 +141,7 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </ChoiceBox>
-                              <TextField fx:id="assignedEmployeeField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0">
+                              <TextField fx:id="assignedStaffField" minHeight="44.0" onKeyReleased="#buttonControl" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>

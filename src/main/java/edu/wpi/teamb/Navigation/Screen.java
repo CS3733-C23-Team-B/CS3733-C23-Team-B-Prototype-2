@@ -13,7 +13,7 @@ public enum Screen {
   SIGN_IN("views/SignIn.fxml"),
   REQUESTS("views/requests.fxml"),
   PROFILE("views/Profile.fxml"),
-  MAINHELP("views/MainHelpPage"),
+  MAINHELP("views/MainHelpPage.fxml"),
   FOOTER("views/Footer.fxml"),
   SUBMISSION_SUCCESS("views/submissionSuccess.fxml"),
   ABOUT("views/About.fxml");

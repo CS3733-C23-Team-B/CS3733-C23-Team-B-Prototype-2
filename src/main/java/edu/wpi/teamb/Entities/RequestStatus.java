@@ -1,7 +1,17 @@
 package edu.wpi.teamb.Entities;
 
 public enum RequestStatus {
-  blank,
-  processing,
-  done
+  BLANK("blank"),
+  PROCESSING("processing"),
+  DONE("done");
+
+  private String str;
+
+  RequestStatus(String str) {
+    this.str = str;
+  }
+
+  public String toString() {
+    return str;
+  }
 }

@@ -156,7 +156,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="341.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type of Clean Up">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -164,12 +164,12 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clean Up Location">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="338.0" />
+                                    <Insets left="213.0" />
                                  </HBox.margin>
                               </Text>
                            </children>
@@ -179,61 +179,18 @@
                         </HBox>
                         <HBox prefHeight="44.0" prefWidth="200.0">
                            <children>
-                              <ChoiceBox prefHeight="44.0" prefWidth="340.0">
+                              <ChoiceBox fx:id="typeOfCleanUpBox" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </ChoiceBox>
-                              <ChoiceBox layoutX="50.0" layoutY="10.0" minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </ChoiceBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="443.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="338.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="384.0" prefHeight="22.0" prefWidth="200.0">
-                           <children>
-                              <TextField maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
+                              <TextField fx:id="cleanUpLocationField" minHeight="44.0" prefWidth="340.0">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
-                              </TextField>
-                              <TextField minHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
                               </TextField>
                            </children>
                            <VBox.margin>

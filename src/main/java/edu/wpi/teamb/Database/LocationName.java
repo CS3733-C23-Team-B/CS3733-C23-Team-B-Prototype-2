@@ -65,4 +65,25 @@ public class LocationName {
         "UPDATE LocationName SET longName = '" + longName + "' WHERE longName = '" + old + "';";
     Bdb.processUpdate(sql);
   }
+
+  public void update() throws SQLException {
+    String sql =
+            "UPDATE locationname "
+                    + "SET longName = ?, shortName = ?, locationType = ? "
+                    + "WHERE longName = ?;";
+
+    PreparedStatement ps = Bdb.prepareStatement(sql);
+    ps.setString(1, longName);
+    ps.setString(2, shortName);
+    ps.setString(3, locationType);
+    ps.setString(4, longName);
+    ps.executeUpdate();
+  }
+
+  public void delete() throws SQLException {
+    String sql = "DELETE FROM locationname WHERE longName = ?;";
+    PreparedStatement ps = Bdb.prepareStatement(sql);
+    ps.setString(1, longName);
+    ps.executeUpdate();
+  }
 }

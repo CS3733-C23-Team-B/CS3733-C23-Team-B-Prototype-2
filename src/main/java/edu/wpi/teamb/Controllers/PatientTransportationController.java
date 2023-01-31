@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.Transportation;
 import edu.wpi.teamb.Entities.RequestStatus;
+import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -55,6 +56,7 @@ public class PatientTransportationController extends BaseRequestController {
     equipmentNeededBox.setItems(equipmentOptions);
 
     helpScreen = Screen.PATIENT_TRANSPORTATION_HELP;
+    submissionScreen = Screen.SUBMISSION_SUCCESS;
     super.initialize();
   }
 
@@ -93,5 +95,6 @@ public class PatientTransportationController extends BaseRequestController {
     newRequest.insert();
 
     // TODO: show confirmation page
+    Navigation.navigate(submissionScreen);
   }
 }

@@ -15,7 +15,7 @@ public enum Screen {
   PROFILE("views/Profile.fxml"),
   MAINHELP("views/MainHelpPage"),
   FOOTER("views/Footer.fxml"),
-  SUBMISSION_SUCCESS("view/submissionSuccess.fxml");
+  SUBMISSION_SUCCESS("views/submissionSuccess.fxml");
 
   private final String filename;
 

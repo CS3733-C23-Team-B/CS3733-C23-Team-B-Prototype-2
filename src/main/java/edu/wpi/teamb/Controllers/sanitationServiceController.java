@@ -19,7 +19,7 @@ public class sanitationServiceController extends BaseRequestController {
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
   @FXML private TextField cleanUpLocationField;
   @FXML private ChoiceBox typeOfCleanUpBox;
-  
+
   @FXML
   @Override
   public void initialize() {
@@ -48,7 +48,6 @@ public class sanitationServiceController extends BaseRequestController {
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
 
     helpScreen = Screen.SANITATION_HELP;
-    submissionScreen = Screen.SUBMISSION_SUCCESS;
     super.initialize();
   }
 
@@ -82,6 +81,6 @@ public class sanitationServiceController extends BaseRequestController {
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
 
-    Navigation.navigate(submissionScreen);
+    Navigation.navigate((Screen.SUBMISSION_SUCCESS));
   }
 }

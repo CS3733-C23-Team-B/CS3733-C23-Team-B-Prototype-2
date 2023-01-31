@@ -59,8 +59,8 @@ public class Bdb {
       Move.initTable();
     }
 
-    if (!tableExists(TransportationDataset.getTableName())) {
-      TransportationDataset.initTable();
+    if (!tableExists(Transportation.getTableName())) {
+      Transportation.initTable();
     }
   }
 

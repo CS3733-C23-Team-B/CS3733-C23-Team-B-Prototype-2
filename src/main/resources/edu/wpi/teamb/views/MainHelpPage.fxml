@@ -11,7 +11,19 @@
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="790.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="790.0">
+               <children>
+                  <Text layoutX="132.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Requests: Fill out the required form. Take note that all of the fields need to be filled out before the form can be submitted. You can also view your previously submitted requests via the labeled button." wrappingWidth="525.3366546630859">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="132.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Database: Scroll through the list of requests made." wrappingWidth="525.3366546630859">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children></AnchorPane>
          </content>
       </ScrollPane>
    </center>

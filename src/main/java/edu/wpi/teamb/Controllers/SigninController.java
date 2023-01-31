@@ -38,10 +38,23 @@ public class SigninController {
     }
   }
 
+  /**
+   * Handles a keypress in one of the two text fields. If it was the enter key, login is attempted
+   *
+   * @param event the keyEvent
+   * @throws IOException
+   * @throws SQLException
+   */
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
   }
 
+  /**
+   * Compares the provided login against the database of logins
+   *
+   * @return true if the login is valid according to the database, false otherwise
+   * @throws SQLException
+   */
   public boolean validateLogin() throws SQLException {
     if (usernameField.getText().equals(USER) && passwordField.getText().equals(PASS)) return true;
     else if (users.containsKey(usernameField.getText())
@@ -60,6 +73,12 @@ public class SigninController {
     return false;
   }
 
+  /**
+   * Signs into the application and navigates to the home screen
+   *
+   * @throws IOException
+   * @throws SQLException
+   */
   public void signInButtonClicked() throws IOException, SQLException {
     if (!validateLogin()) return;
     final String filename = Screen.NAVIGATION.getFilename();
@@ -81,6 +100,7 @@ public class SigninController {
     currentUser = users.get(usernameField.getText());
   }
 
+  /** Exits the application */
   public void exitApplication() {
     Stage stage = (Stage) exitButton.getScene().getWindow();
     stage.close();

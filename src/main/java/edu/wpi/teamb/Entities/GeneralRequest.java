@@ -11,6 +11,7 @@ public class GeneralRequest {
   @Getter @Setter private String urgency;
   @Getter @Setter private String assignedEmployee;
   @Getter @Setter private String notes;
+  @Getter @Setter private RequestStatus status;
 
   public void generalRequest() {}
 }

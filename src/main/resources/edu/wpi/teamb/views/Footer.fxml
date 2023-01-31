@@ -13,7 +13,7 @@
             <Image url="@/media/youtube_icon.png" />
          </image>
          <HBox.margin>
-            <Insets left="300.0" />
+            <Insets />
          </HBox.margin>
       </ImageView>
       <ImageView id="mediaIcon" fitHeight="22.0" fitWidth="25.0" layoutX="633.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">

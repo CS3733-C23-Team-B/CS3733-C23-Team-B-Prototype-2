@@ -128,17 +128,23 @@ public class Node {
   public void update() throws SQLException {
     String sql =
         "UPDATE node "
-            + "SET xcoord = ?, ycoord = ?, floor = ?, "
+            + "SET nodeid = ?, xcoord = ?, ycoord = ?, floor = ?, "
             + "building = ? "
             + "WHERE nodeID = ?;";
 
     PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(5, nodeID);
-    ps.setInt(1, xcoord);
-    ps.setInt(2, ycoord);
-    ps.setString(3, floor);
-    ps.setString(4, building);
+    String nid = buildID();
+
+    System.out.println("New nodeID: " + nid);
+
+    ps.setString(1, nid);
+    ps.setInt(2, xcoord);
+    ps.setInt(3, ycoord);
+    ps.setString(4, floor);
+    ps.setString(5, building);
+    ps.setString(6, nodeID);
     ps.executeUpdate();
+    nodeID = nid;
   }
 
   /**
@@ -267,5 +273,18 @@ public class Node {
 
   public void setYcoord(int ycoord) {
     this.ycoord = ycoord;
+  }
+
+  public String buildID() {
+    String x = Integer.toString(xcoord);
+    String y = Integer.toString(ycoord);
+    while (x.length() < 4) {
+      x = "0" + x;
+    }
+    while (y.length() < 4) {
+      y = "0" + y;
+    }
+    String id = floor + "X" + x + "Y" + y;
+    return id;
   }
 }

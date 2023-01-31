@@ -55,6 +55,7 @@ public class PatientTransportationController extends BaseRequestController {
     equipmentNeededBox.setItems(equipmentOptions);
 
     helpScreen = Screen.PATIENT_TRANSPORTATION_HELP;
+    submissionScreen = Screen.SUBMISSION_SUCCESS;
     super.initialize();
   }
 
@@ -93,5 +94,6 @@ public class PatientTransportationController extends BaseRequestController {
     newRequest.insert();
 
     // TODO: show confirmation page
+    Navigation.navigate(submissionScreen);
   }
 }

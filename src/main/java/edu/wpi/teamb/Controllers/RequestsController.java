@@ -1,6 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Database.TransportationDataset;
+import edu.wpi.teamb.Database.Transportation;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ public class RequestsController {
   @FXML TableColumn statusColumn;
 
   public void initialize() {
-    List<TransportationDataset> requestList;
+    List<Transportation> requestList;
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
     equipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipment"));
     urgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
@@ -33,7 +33,7 @@ public class RequestsController {
     statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
     try {
-      requestList = TransportationDataset.getAll();
+      requestList = Transportation.getAll();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }

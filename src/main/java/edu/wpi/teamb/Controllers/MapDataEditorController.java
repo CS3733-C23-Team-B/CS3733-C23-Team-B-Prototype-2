@@ -41,10 +41,12 @@ public class MapDataEditorController {
         }
       };
 
+  /** Refreshes the page */
   public void refresh() {
     Navigation.navigate(Screen.MAP_DATA_EDITOR);
   }
 
+  /** Initializes the data table with all the required columns */
   public void initialize() {
     IDColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, String>("nodeID"));
     xColumn.setCellValueFactory(new PropertyValueFactory<>("xCoord"));
@@ -79,6 +81,10 @@ public class MapDataEditorController {
     editableCols();
   }
 
+  /**
+   * Makes the columns editable that the user should have access to edit. When text is edited,
+   * handles editing the actual instances in the database
+   */
   public void editableCols() {
     xColumn.setCellFactory(TextFieldTableCell.forTableColumn(converter));
     xColumn.setOnEditCommit(

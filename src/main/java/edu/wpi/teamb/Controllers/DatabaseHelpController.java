@@ -14,6 +14,6 @@ public class DatabaseHelpController {
   }
 
   private void backToScene() {
-    Navigation.navigate(Screen.DATABASE_UI);
+    Navigation.navigate(Screen.MAP_DATA_EDITOR);
   }
 }

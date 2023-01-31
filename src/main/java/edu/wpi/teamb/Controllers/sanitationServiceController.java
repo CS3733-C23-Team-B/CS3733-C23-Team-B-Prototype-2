@@ -32,7 +32,7 @@ public class sanitationServiceController extends BaseRequestController {
       cleanUpLocationField,
       urgencyBox,
       typeOfCleanUpBox,
-      assignedEmployeeField,
+      // assignedEmployeeField, <- add in when it's actually in SceneBuilder
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));

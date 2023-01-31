@@ -15,24 +15,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Controller {
-  @FXML private Button homeButton;
-  @FXML private BorderPane border;
-  @FXML private Button signInButton;
-
-  @FXML private Button deleteAccountButton;
+public class SigninController {
   @FXML private TextField usernameField;
   @FXML private TextField passwordField;
   @FXML private CheckBox newAccount;
   @FXML private Label prompt;
+  @FXML private Button exitButton;
 
   private final String USER = "bodacious";
   private final String PASS = "badgers";
-
+  public static Login currentUser;
   private Map<String, Login> users;
 
   {
@@ -43,14 +38,8 @@ public class Controller {
     }
   }
 
-  public void initialize() {
-    if (deleteAccountButton == null) return;
-    deleteAccountButton.setDisable(true);
-  }
-
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
-    else checkEnableDeleteAccountButton();
   }
 
   public boolean validateLogin() throws SQLException {
@@ -61,7 +50,7 @@ public class Controller {
     else if (newAccount.isSelected()) {
       if (users.containsKey(usernameField.getText())) return true;
       Login newLogin = new Login(usernameField.getText(), passwordField.getText());
-      newLogin.insert();
+      users.put(usernameField.getText(), newLogin);
       return true;
     }
     prompt.setText("\tInvalid login");
@@ -74,82 +63,26 @@ public class Controller {
   public void signInButtonClicked() throws IOException, SQLException {
     if (!validateLogin()) return;
     final String filename = Screen.NAVIGATION.getFilename();
+    final String footer = Screen.FOOTER.getFilename();
 
     try {
       final var resource = Bapp.class.getResource(filename);
+      final var res = Bapp.class.getResource(footer);
       final FXMLLoader loader = new FXMLLoader(resource);
+      final FXMLLoader loader2 = new FXMLLoader(res);
 
       Bapp.getRootPane().setTop(loader.load());
+      Bapp.getRootPane().setBottom(loader2.load());
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
+
     Navigation.navigate(Screen.HOME);
+    currentUser = users.get(usernameField.getText());
   }
 
-  public void featureOneButtonClicked() throws IOException {
-    Navigation.navigate(Screen.PATIENT_TRANSPORTATION);
-  }
-
-  public void featureTwoButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SANITATION);
-  }
-
-  public void pathfindingClicked() throws IOException {
-    Navigation.navigate(Screen.PATHFINDING);
-  }
-
-  public void homeButtonClicked() throws IOException {
-    Navigation.navigate(Screen.HOME);
-  }
-
-  public void databaseButtonClicked() throws IOException {
-    Navigation.navigate(Screen.MAP_DATA_EDITOR);
-  }
-
-  public void requestsButtonClicked() throws IOException {
-    Navigation.navigate(Screen.REQUESTS);
-  }
-
-  public void exitButtonClicked() {
-    Stage stage = (Stage) homeButton.getScene().getWindow();
+  public void exitApplication() {
+    Stage stage = (Stage) exitButton.getScene().getWindow();
     stage.close();
-  }
-
-  public void signOutClicked() {
-    Navigation.navigate(Screen.SIGN_IN);
-    Bapp.getRootPane().setTop(null);
-  }
-
-  public void deleteAccountClicked() {
-    String username = usernameField.getText();
-    String password = passwordField.getText();
-    Login user = users.get(username);
-    if (user.getPassword().equals(password)) {
-      try {
-        user.delete();
-      } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    usernameField.clear();
-    passwordField.clear();
-    users.remove(username);
-    prompt.setText("Account deleted");
-    deleteAccountButton.setDisable(true);
-  }
-
-  public void checkEnableDeleteAccountButton() {
-    String username = usernameField.getText();
-    String password = passwordField.getText();
-
-    if (username.equals("") && password.equals("")) {
-      deleteAccountButton.setDisable(true);
-      return;
-    }
-
-    boolean enable =
-        (users.containsKey(username) && users.get(username).getPassword().equals(password));
-    deleteAccountButton.setDisable(!enable);
   }
 }

@@ -97,6 +97,12 @@ public class Pathfinding {
     return retStr;
   }
 
+  /**
+   * Takes a list of NodeIDs and converts to a list of associated locations
+   *
+   * @param path the list of NodeID's
+   * @return the list of locationLongNames associated with each NodeID
+   */
   private static List<String> nodesToLocations(List<String> path) {
     return path.stream().map(Move::getMostRecentLocation).collect(Collectors.toList());
   }
@@ -166,6 +172,7 @@ public class Pathfinding {
     return pathToString(path);
   }
 
+  /** Refreshes the node and edge fields from the database */
   public static void refreshData() {
     try {
       edges = Edge.getAll();

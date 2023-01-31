@@ -36,6 +36,7 @@ public class Bapp extends Application {
 
     primaryStage.setScene(scene);
     primaryStage.setTitle("Brigham and Women's Hospital");
+    primaryStage.setFullScreen(true);
     primaryStage.show();
     Navigation.navigate(Screen.SIGN_IN);
   }

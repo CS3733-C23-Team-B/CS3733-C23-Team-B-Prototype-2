@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RequestsController {
   @FXML TableView requestsTable;
+  @FXML TableView requestsTable1;
   @FXML TableColumn nameColumn;
   @FXML TableColumn equipmentColumn;
   @FXML TableColumn urgencyColumn;
@@ -38,7 +39,7 @@ public class RequestsController {
     }
     requestList.forEach(
         (value) -> {
-          requestsTable.getItems().add(value);
+          requestsTable1.getItems().add(value);
         });
     Button b = new Button();
     b.setText("Back");

@@ -70,10 +70,6 @@ public class NodeInfo {
     return edges;
   }
 
-  public void setNodeID(String nodeID) {
-    this.nodeID = nodeID;
-  }
-
   public void setxCoord(int xCoord) {
     this.xCoord = xCoord;
   }

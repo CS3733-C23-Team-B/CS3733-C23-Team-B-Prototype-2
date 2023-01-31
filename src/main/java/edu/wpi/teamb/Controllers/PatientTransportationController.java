@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.Transportation;
 import edu.wpi.teamb.Entities.RequestStatus;
+import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;

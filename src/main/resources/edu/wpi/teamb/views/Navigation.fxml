@@ -8,7 +8,7 @@
 
 <ToolBar id="toolbar" fx:id="toolbar" prefHeight="43.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Controller">
    <items>
-      <Button id="homeButton" fx:id="homeButton" mnemonicParsing="false" onAction="#homeButtonClicked" text="Home" textAlignment="CENTER" />
+      <Button id="homeButton" fx:id="homeButton" mnemonicParsing="false" onAction="#homeButtonClicked" style="-fx-opacity: 1;" text="Home" textAlignment="CENTER" />
       <Button id="featureOneButton" fx:id="featureOneButton" mnemonicParsing="false" onAction="#featureOneButtonClicked" text="Patient Transportation" textAlignment="CENTER" />
       <Button id="featureOneButton" fx:id="featureTwoButton" mnemonicParsing="false" onAction="#featureTwoButtonClicked" text="Sanitation Services" />
       <Button fx:id="databaseButton" mnemonicParsing="false" onAction="#databaseButtonClicked" text="Database" />

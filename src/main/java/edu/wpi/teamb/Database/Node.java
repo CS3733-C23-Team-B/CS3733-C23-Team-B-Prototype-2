@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * class that represents the node table in the Database, allows, insertions, deletions, and other
+ * interactions with the node table in the database
+ */
 public class Node {
 
   public static final String tableName = "node";
@@ -18,6 +22,14 @@ public class Node {
   private String floor;
   private String building;
 
+  /**
+   * Constructor of a node with a "null" nodeID
+   *
+   * @param xcoord
+   * @param ycoord
+   * @param floor
+   * @param building
+   */
   public Node(int xcoord, int ycoord, String floor, String building) {
 
     this.nodeID = null;
@@ -27,6 +39,15 @@ public class Node {
     this.building = building;
   }
 
+  /**
+   * Constructor for node
+   *
+   * @param nodeID
+   * @param xcoord
+   * @param ycoord
+   * @param floor
+   * @param building
+   */
   public Node(String nodeID, int xcoord, int ycoord, String floor, String building) {
 
     this.nodeID = nodeID;
@@ -36,6 +57,11 @@ public class Node {
     this.building = building;
   }
 
+  /**
+   * Method to initialize the node table in the database
+   *
+   * @throws SQLException
+   */
   public static void initTable() throws SQLException {
     String sql =
         String.join(
@@ -50,6 +76,12 @@ public class Node {
     Bdb.processUpdate(sql);
   }
 
+  /**
+   * Gets all the nodes in the database
+   *
+   * @return nodes
+   * @throws SQLException
+   */
   public static Map<String, Node> getAll() throws SQLException {
     HashMap<String, Node> nodes = new HashMap<String, Node>();
     String sql = "SELECT * FROM Node;";
@@ -67,6 +99,11 @@ public class Node {
     return nodes;
   }
 
+  /**
+   * Inserts a new node into the database.
+   *
+   * @throws SQLException
+   */
   public void insert() throws SQLException {
     String sql =
         "INSERT INTO node (nodeID, xcoord, ycoord, floor, building) " + "VALUES (?,?,?,?,?);";
@@ -83,6 +120,11 @@ public class Node {
     ps.executeUpdate();
   }
 
+  /**
+   * Updates all the fields of a node already in the database.
+   *
+   * @throws SQLException
+   */
   public void update() throws SQLException {
     String sql =
         "UPDATE node "
@@ -99,6 +141,11 @@ public class Node {
     ps.executeUpdate();
   }
 
+  /**
+   * Deletes a node that is already in the database based on the nodeID.
+   *
+   * @throws SQLException
+   */
   public void delete() throws SQLException {
     String sql = "DELETE FROM node WHERE nodeID = ?";
     PreparedStatement ps = Bdb.prepareStatement(sql);
@@ -106,26 +153,55 @@ public class Node {
     ps.executeUpdate();
   }
 
+  /**
+   * Gets the name of a table.
+   *
+   * @return tablename
+   */
   public static String getTableName() {
     return tableName.toLowerCase();
   }
 
+  /**
+   * Gets the nodeID of a node.
+   *
+   * @return nodeID
+   */
   public String getID() {
     return nodeID;
   }
 
+  /**
+   * Gets the x-coordinate of a node.
+   *
+   * @return xcoord
+   */
   public int getXcoord() {
     return xcoord;
   }
-
+  /**
+   * Gets the y-coordinate of a node.
+   *
+   * @return ycoord
+   */
   public int getYcoord() {
     return ycoord;
   }
 
+  /**
+   * Gets the floor of a node.
+   *
+   * @return floor
+   */
   public String getFloor() {
     return floor;
   }
 
+  /**
+   * Gets all the information of a node and returns it as a string
+   *
+   * @return str
+   */
   public String getInfo() {
     String str =
         "Node: "
@@ -145,12 +221,26 @@ public class Node {
     return str;
   }
 
+  /**
+   * method to set the new coordinates of an instance of a node in the database Sets the coordinates
+   * of a node.
+   *
+   * @param newX
+   * @param newY
+   * @throws SQLException
+   */
   public void setCoords(int newX, int newY) throws SQLException {
     xcoord = newX;
     ycoord = newY;
     update();
   }
 
+  /**
+   * Returns a list of the empty nodes.
+   *
+   * @return mtNodes
+   * @throws SQLException
+   */
   public static ArrayList<Node> getEmptyNodes() throws SQLException {
     ArrayList<Node> mtNodes = new ArrayList<Node>();
     String sql = "SELECT * FROM node WHERE nodeID not in (SELECT nodeID FROM move);";

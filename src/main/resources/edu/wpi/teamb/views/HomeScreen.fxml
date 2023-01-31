@@ -1,43 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <GridPane alignment="CENTER" layoutX="260.0" layoutY="77.0" prefHeight="262.0" prefWidth="482.0" style="-fx-background-color: white; -fx-background-radius: 5px;">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="196.0" minHeight="20.0" prefHeight="196.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label prefHeight="32.0" prefWidth="421.0" text="Welcome to Brigham and Women’s Hospital!" GridPane.halignment="CENTER">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <GridPane prefHeight="196.0" prefWidth="378.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="132.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <GridPane.margin>
-                  <Insets bottom="40.0" left="30.0" right="30.0" />
-               </GridPane.margin>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ScrollPane prefHeight="1117.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="449.0" prefWidth="600.0">
                <children>
-                  <Label text="Sanitation Service: Luke Grady and Jolie Walts" GridPane.halignment="CENTER" />
-                  <Label prefHeight="32.0" prefWidth="314.0" text="Patient Transportation: Cierra O'Grady and Christina Aube" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <VBox layoutX="-15.0" layoutY="2.0" prefHeight="509.0" prefWidth="600.0">
+                     <children>
+                        <AnchorPane prefHeight="52.0" prefWidth="605.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="55.0" layoutY="-10.0" stroke="BLACK" strokeType="INSIDE" width="612.0" />
+                              <Text fill="WHITE" layoutX="206.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home Page" textAlignment="CENTER" wrappingWidth="199.50390625">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Brigham and Women's Hospital! ">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox prefHeight="22.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <VBox.margin>
+                              <Insets left="40.0" top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="105.0" prefHeight="22.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Text layoutX="50.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page Information">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="40.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox layoutX="50.0" layoutY="170.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Patient Transportation Service">
+                                 <HBox.margin>
+                                    <Insets left="40.0" top="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="199.0" prefHeight="22.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Created By: Cierra O'Grady and Cristina Aube">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="341.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Sanitation Service">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="44.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label text="Created By: Luke Grady and Jolie Walts">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
-            </GridPane>
-         </children>
-      </GridPane>
-   </children>
-</AnchorPane>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

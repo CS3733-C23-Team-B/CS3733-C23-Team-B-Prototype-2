@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.Login;
+import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -76,6 +77,7 @@ public class SigninController {
       e.printStackTrace();
     }
 
+    Navigation.navigate(Screen.HOME);
     currentUser = users.get(usernameField.getText());
   }
 

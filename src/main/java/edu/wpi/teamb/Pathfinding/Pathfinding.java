@@ -71,7 +71,7 @@ public class Pathfinding {
    * @param node the node to generate paths from
    * @return a list of all nodes reachable via one edge
    */
-  private static ArrayList<String> getDirectPaths(String node) {
+  public static ArrayList<String> getDirectPaths(String node) {
     ArrayList<String> retList = new ArrayList<String>();
     for (Edge edge : edges) {
       if (edge.getNode1().equals(node)) retList.add(edge.getNode2());

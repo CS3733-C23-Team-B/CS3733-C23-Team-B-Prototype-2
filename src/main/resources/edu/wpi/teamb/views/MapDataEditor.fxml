@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="425.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.MapDataEditorController">
+   <children>
+      <Label layoutX="285.0" layoutY="50.0" text="Map Data Editor">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TableView fx:id="dataTable" layoutX="18.0" layoutY="132.0" prefHeight="269.0" prefWidth="769.0">
+         <columns>
+            <TableColumn fx:id="IDColumn" prefWidth="101.5" text="NodeID" />
+            <TableColumn prefWidth="48.0" text="x-coord" fx:id="xColumn" />
+            <TableColumn fx:id="yColumn" prefWidth="52.5" text="y-coord" />
+            <TableColumn fx:id="locationColumn" prefWidth="222.0" text="Location" />
+            <TableColumn fx:id="dateColumn" prefWidth="79.5" text="Date Moved" />
+            <TableColumn fx:id="edgesColumn" prefWidth="264.5" text="Edges" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

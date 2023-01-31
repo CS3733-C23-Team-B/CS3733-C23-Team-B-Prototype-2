@@ -103,7 +103,7 @@ public class Controller {
   }
 
   public void databaseButtonClicked() throws IOException {
-    Navigation.navigate(Screen.DATABASE_UI);
+    Navigation.navigate(Screen.MAP_DATA_EDITOR);
   }
 
   public void requestsButtonClicked() throws IOException {

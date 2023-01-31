@@ -13,7 +13,7 @@ public enum Screen {
   SANITATION_HELP("views/sanitationHelpPage.fxml"),
   SIGN_IN("views/SignIn.fxml"),
   REQUESTS("views/requests.fxml"),
-  SUBMISSION_SUCCESS("views/submission.fxml");
+  SUBMISSION_SUCCESS("views/submissionSuccess.fxml");
 
   private final String filename;
 

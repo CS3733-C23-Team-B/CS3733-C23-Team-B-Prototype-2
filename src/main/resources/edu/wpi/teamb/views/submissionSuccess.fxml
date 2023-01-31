@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="submissionSuccess" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.views.SubmissionSuccess">
+<AnchorPane fx:id="submissionSuccess" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.submissionSuccess">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -39,12 +39,12 @@
                   <Insets top="190.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnHomeButton" prefHeight="40.0" prefWidth="100.0" text="Return Home">
+                  <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnButtonClicked" prefHeight="40.0" prefWidth="100.0" text="Return Home">
                      <HBox.margin>
                         <Insets left="280.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Button">
+                  <Button fx:id="requestsButton" mnemonicParsing="false" onAction="#requestsButtonClicked" prefHeight="40.0" prefWidth="100.0" text="Button">
                      <HBox.margin>
                         <Insets left="70.0" />
                      </HBox.margin>

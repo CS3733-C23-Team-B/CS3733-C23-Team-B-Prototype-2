@@ -68,9 +68,9 @@ public class LocationName {
 
   public void update() throws SQLException {
     String sql =
-            "UPDATE locationname "
-                    + "SET longName = ?, shortName = ?, locationType = ? "
-                    + "WHERE longName = ?;";
+        "UPDATE locationname "
+            + "SET longName = ?, shortName = ?, locationType = ? "
+            + "WHERE longName = ?;";
 
     PreparedStatement ps = Bdb.prepareStatement(sql);
     ps.setString(1, longName);

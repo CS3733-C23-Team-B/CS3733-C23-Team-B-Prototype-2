@@ -46,6 +46,10 @@ public class NavigationController {
     Navigation.navigate(Screen.PROFILE);
   }
 
+  public void helpClicked(){
+    Navigation.navigate(Screen.MAINHELP);
+  }
+
   public void signOutClicked() {
     Navigation.navigate(Screen.SIGN_IN);
     Bapp.getRootPane().setTop(null);

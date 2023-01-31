@@ -46,7 +46,7 @@ public class NavigationController {
     Navigation.navigate(Screen.PROFILE);
   }
 
-  public void helpClicked(){
+  public void helpClicked() {
     Navigation.navigate(Screen.MAINHELP);
   }
 

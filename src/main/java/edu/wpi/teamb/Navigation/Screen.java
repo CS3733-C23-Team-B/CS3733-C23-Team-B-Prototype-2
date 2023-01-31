@@ -12,7 +12,9 @@ public enum Screen {
   SANITATION("views/sanitationService.fxml"),
   SANITATION_HELP("views/sanitationHelpPage.fxml"),
   SIGN_IN("views/SignIn.fxml"),
-  REQUESTS("views/requests.fxml");
+  REQUESTS("views/requests.fxml"),
+
+  FOOTER("views/Footer.fxml");
 
   private final String filename;
 

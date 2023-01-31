@@ -71,15 +71,20 @@ public class Controller {
     return false;
   }
 
-  public void signInButtonClicked() throws IOException, SQLException {
+  public void signInButtonClicked() throws SQLException {
     if (!validateLogin()) return;
     final String filename = Screen.NAVIGATION.getFilename();
+    final String footerName = Screen.FOOTER.getFilename();
 
     try {
       final var resource = Bapp.class.getResource(filename);
       final FXMLLoader loader = new FXMLLoader(resource);
 
+      final var resource1 = Bapp.class.getResource(footerName);
+      final FXMLLoader loader1 = new FXMLLoader(resource1);
+
       Bapp.getRootPane().setTop(loader.load());
+      Bapp.getRootPane().setBottom(loader1.load());
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

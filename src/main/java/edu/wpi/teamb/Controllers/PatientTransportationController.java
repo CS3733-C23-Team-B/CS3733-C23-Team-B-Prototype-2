@@ -27,7 +27,7 @@ public class PatientTransportationController extends BaseRequestController {
   /** Initialize the page by declaring choice-box options */
   @Override
   public void initialize() {
-    // Create list of components
+    // Create list of components; additionalNotesField MUST be last
     Control[] cl = {
       firstNameField,
       lastNameField,
@@ -53,9 +53,9 @@ public class PatientTransportationController extends BaseRequestController {
 
     // Initialize the choice boxes with their options
     equipmentNeededBox.setItems(equipmentOptions);
-    urgencyBox.setItems(urgencyOptions);
 
     helpScreen = Screen.PATIENT_TRANSPORTATION_HELP;
+    super.initialize();
   }
 
   /**
@@ -81,12 +81,7 @@ public class PatientTransportationController extends BaseRequestController {
     // Add all input components to the list of data
     for (int i = 0; i < components.size(); i++) {
       Control c = components.get(i);
-      if (c instanceof TextField) saveInfo[i] = ((TextField) c).getText();
-      if (c instanceof ChoiceBox) {
-        String s = (String) ((ChoiceBox) c).getValue();
-        if (s == null) s = "None";
-        saveInfo[i] = s;
-      }
+      saveInfo[i] = getText(c);
     }
 
     // CSVWriter.writeCsv("patientTransportationRequests", saveInfo);

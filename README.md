@@ -32,20 +32,18 @@ can be found inside this jar file
 
 # Instructional:
 
-<br>Sanitation Service - on the home page, click the Sanitation Service Navigation Button to visit the page.
-<br>Patient Transportation Service - on the home page, click the Transportation Service
+<br>Sanitation Service - on the home page, click the Sanitation Service Navigation Button to visit the page and fill out the fields to request.
+<br>Patient Transportation Service - on the home page, click the Transportation Service to visit the page and fill out the field to request.
+<br>Service Request - on the home page, click the request button to see all of the request's status.
 <br>Database Integration - on the home page, click the Database Navigation Button to visit the page.
 <br>Pathfinding Integration - on the home page, click the Pathfinding Navigation Button to visit the page.
 <br>Exit Application- on any of the navigation pages, click the Profile Icon Navigation Button and then the Exit Application button to Exit Application.
 <br>
 <br>Depth First Search - Navigate to the pathfinding page by clicking the Pathfinding navigation button. Then select a starting node and ending node from the dropdowns. Then generate a path by clicking the Find Shortest Path Button.
 <br>
-<br>View all nodes - Navigate to the database page by clicking on the Database navigation button. Then click on Query Nodes to view the nodes
-<br>View all Edges - Navigate to the database page by clicking on the Database navigation button. Then click on Query Edges to view the nodes
-<br>Update node coordinates- Navigate to the database page by clicking on the Database navigation button. Then select a node from the dropdown 
+<br>View all nodes and edges - Navigate to the database page by clicking on the Database navigation button to visit the page with all of the nodes and edges.
+<br>Update node coordinates (need to fix this)- Navigate to the pathfinding page by clicking on the pathfinding navigation button. Then select a node from the dropdown 
 and enter new x and y coordinates in the text fields. Click Submit change button to update the node coordinates.
-<br>Update node Coordinates- Navigate to the database page by clicking on the Database navigation button. Then select a node from the dropdown
-and enter new location in the location text field. Click submit change button to update the node coordinates. 
 <br>Sanitation Service Help Page- Click help button on Sanitation Service page to get to the Sanitation Help Page
-<br>Patient Transportation Help Page- Scroll down on Patient transportation Help page, Click help button on Patient Transportation Page to get to Transportation Help Page 
+<br>Patient Transportation Help Page- Scroll down on Patient transportation Help page, Click help button on Patient Transportation Page to get to Transportation Help Page
 

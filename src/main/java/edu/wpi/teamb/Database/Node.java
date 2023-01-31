@@ -58,7 +58,7 @@ public class Node {
   }
 
   /**
-   * Method to initalize the node table in the database
+   * Method to initialize the node table in the database
    *
    * @throws SQLException
    */

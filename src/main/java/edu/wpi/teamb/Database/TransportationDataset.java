@@ -72,7 +72,7 @@ public class TransportationDataset {
     String sql =
         "INSERT INTO transportation (firstname, lastname, employeeid, email, equipment, urgency, currentlocation, destination, notes, patientid, status)"
             + "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-    PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
+    PreparedStatement ps = Bdb.prepareStatement(sql);
     ps.setString(1, firstname);
     ps.setString(2, lastname);
     ps.setString(3, employeeId);

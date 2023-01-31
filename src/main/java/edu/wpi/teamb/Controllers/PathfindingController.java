@@ -18,12 +18,14 @@ public class PathfindingController {
   @FXML Button pathfind;
   @FXML Label pathLabel;
 
+  /** Initializes the dropdown menus */
   public void initialize() {
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
     pathfind.setOnAction((eventAction) -> findPath());
   }
 
+  /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() {
     String start = (String) startLoc.getValue();
     String end = (String) endLoc.getValue();
@@ -31,6 +33,11 @@ public class PathfindingController {
     pathLabel.setText("Path: " + path);
   }
 
+  /**
+   * Generates a list of the possible locations
+   *
+   * @return a list of the location longNames
+   */
   static ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
 

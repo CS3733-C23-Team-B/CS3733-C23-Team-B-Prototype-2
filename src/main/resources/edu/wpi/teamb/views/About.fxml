@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,44 +11,6 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="780.0" style="-fx-background-color: #FFFFFF;">
-               <children>
-                  <VBox prefHeight="530.0" prefWidth="800.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Badger Crossing Health Clinic app allows hospital employees to remotely request assistance, find the quickest path to an urgent destination, and adjust the internal hospital map." textAlignment="CENTER" wrappingWidth="448.63604736328125">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="170.0" top="50.0" />
-                           </VBox.margin>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Developers" textAlignment="CENTER" wrappingWidth="431.8360595703125">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="175.0" top="25.0" />
-                           </VBox.margin>
-                        </Text>
-                        <TextArea maxWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" text="                                  Home Page: Sam Colebourn&#10;   Patient Transportation Service: Christina Aube &amp; Cierra O'Grady&#10;                  Sanitation Services: Luke Grady &amp; Jolie Walts&#10;                     Edit Nodes: Sean Lendrum &amp; Jack Lafond&#10;                                Pathfinding: Sean Lendrum&#10;                                 About Page: Michael Gatti&#10;                                  Help Page: Michael Gatti">
-                           <VBox.margin>
-                              <Insets left="150.0" top="15.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </TextArea>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-   </center>
    <top>
       <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -69,4 +30,38 @@
          </children>
       </AnchorPane>
    </top>
+   <left>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="801.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="530.0" prefWidth="800.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Badger Crossing Health Clinic app allows hospital employees to remotely request assistance, find the quickest path to an urgent destination, and adjust the internal hospital map." textAlignment="CENTER" wrappingWidth="448.63604736328125">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="170.0" top="50.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Developers" textAlignment="CENTER" wrappingWidth="431.8360595703125">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="175.0" top="25.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextArea maxWidth="-Infinity" prefHeight="200.0" prefWidth="510.0" text="                                  Home Page: Sam Colebourn&#10;   Patient Transportation Service: Christina Aube &amp; Cierra O'Grady&#10;                  Sanitation Services: Luke Grady &amp; Jolie Walts&#10;                     Edit Nodes: Sean Lendrum &amp; Jack Lafond&#10;                                Pathfinding: Sean Lendrum&#10;                                 About Page: Michael Gatti&#10;                                  Help Page: Michael Gatti">
+                     <VBox.margin>
+                        <Insets left="150.0" top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
 </BorderPane>

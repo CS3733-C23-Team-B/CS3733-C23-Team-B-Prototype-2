@@ -24,11 +24,14 @@
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="790.0" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="790.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="17.0" prefWidth="439.0">
                <children>
-                  <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="250.17774963378906" />
+                  <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="250.17774963378906">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
                </children>
                <padding>
                   <Insets left="260.0" top="120.0" />
@@ -36,7 +39,10 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="146.0" prefWidth="567.0">
                <children>
-                  <Text fx:id="passwordText" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="250.17776489257812" HBox.hgrow="ALWAYS" />
+                  <Text fx:id="passwordText" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="250.17776489257812" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
                   <ToggleButton fx:id="showPasswordButton" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="25.0" prefWidth="32.0" />
                </children>
                <padding>
@@ -50,7 +56,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="backButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="100.0" text="Back" />
+                  <Button fx:id="backButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="100.0" text="Home" />
                </children>
                <padding>
                   <Insets left="280.0" top="320.0" />

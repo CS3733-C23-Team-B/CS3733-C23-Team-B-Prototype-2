@@ -23,7 +23,8 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-               </children></AnchorPane>
+               </children>
+            </AnchorPane>
          </content>
       </ScrollPane>
    </center>

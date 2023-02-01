@@ -9,6 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
+<?import javafx.scene.control.Button?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.MapDataEditorController">
    <center>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="790.0" style="-fx-background-color: WHITE;">
@@ -23,6 +24,8 @@
                   <TableColumn fx:id="edgesColumn" prefWidth="293.33330281575525" text="Edges" />
                </columns>
             </TableView>
+            <Text layoutX="34.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editing is allowed for any value under `x-coord`, `y-coord` and `location`." />
+            <Button layoutX="630.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
          </children>
       </AnchorPane>
    </center>

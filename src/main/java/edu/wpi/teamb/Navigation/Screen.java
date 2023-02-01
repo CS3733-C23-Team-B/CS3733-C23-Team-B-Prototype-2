@@ -1,10 +1,10 @@
 package edu.wpi.teamb.Navigation;
 
 public enum Screen {
-  HOME("views/HomeScreen.fxml"),
+  HOME("views/Home2.fxml"),
   DATABASE_HELP("views/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/MapDataEditor.fxml"),
-  NAVIGATION("views/Navigation.fxml"),
+  NAVIGATION("views/navigation2.fxml"),
   PATHFINDING("views/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/PatientTransportation.fxml"),
   PATIENT_TRANSPORTATION_HELP("views/PatientTransportationHelpPage.fxml"),
@@ -13,9 +13,10 @@ public enum Screen {
   SIGN_IN("views/SignIn.fxml"),
   REQUESTS("views/requests.fxml"),
   PROFILE("views/Profile.fxml"),
+  MAINHELP("views/MainHelpPage.fxml"),
   FOOTER("views/Footer.fxml"),
   SUBMISSION_SUCCESS("views/submissionSuccess.fxml"),
-  MAINHELP("views/MainHelpPage.fxml");
+  ABOUT("views/About.fxml");
 
   private final String filename;
 

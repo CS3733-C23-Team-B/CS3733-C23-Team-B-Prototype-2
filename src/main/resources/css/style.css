@@ -15,7 +15,7 @@
 }
 
 #toolbar{
-    -fx-background-color: rgba(0, 61, 166, 0.6);
+    -fx-background-color: rgba(0, 61, 166, 1);
 }
 
 
@@ -28,7 +28,7 @@
     -fx-background-radius: 30px;
     -fx-background-image: url("/media/profile-icon.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 40 40;
+    -fx-background-size: 48 48;
     -fx-background-position: top center;
     -fx-background-color: black;
 }

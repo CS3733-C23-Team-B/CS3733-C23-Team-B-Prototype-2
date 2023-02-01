@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -11,58 +15,36 @@
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="790.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="780.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Text layoutX="112.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Increase workplace productivity and efficiency" textAlignment="CENTER">
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="171.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Badger Crossing Health Clinic app allows hospital employees to remotely request assistance, find the quickest path to an urgent destination, and adjust the internal hospital map." textAlignment="CENTER" wrappingWidth="448.63604736328125">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="171.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Developers" textAlignment="CENTER" wrappingWidth="448.63604736328125">
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="157.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home Page: Sam Colebourn" wrappingWidth="448.63604736328125">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="157.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient: Transportation Service: Christina Aube, Cierra O'Grady" wrappingWidth="448.63604736328125">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="157.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sanitation Service: Luke Grady, Jolie Walts" wrappingWidth="448.63604736328125">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="157.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Nodes: Sean Lendrum, Jack Lafond" wrappingWidth="448.63604736328125">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="157.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding: Sean Lendrum" wrappingWidth="448.63604736328125">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="157.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About Page: Michael Gatti" wrappingWidth="448.63604736328125">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="157.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Help Page: Michael Gatti" wrappingWidth="448.63604736328125">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
+                  <VBox prefHeight="530.0" prefWidth="800.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Badger Crossing Health Clinic app allows hospital employees to remotely request assistance, find the quickest path to an urgent destination, and adjust the internal hospital map." textAlignment="CENTER" wrappingWidth="448.63604736328125">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="170.0" top="50.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Developers" textAlignment="CENTER" wrappingWidth="431.8360595703125">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="175.0" top="25.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextArea maxWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" text="                                  Home Page: Sam Colebourn&#10;   Patient Transportation Service: Christina Aube &amp; Cierra O'Grady&#10;                  Sanitation Services: Luke Grady &amp; Jolie Walts&#10;                     Edit Nodes: Sean Lendrum &amp; Jack Lafond&#10;                                Pathfinding: Sean Lendrum&#10;                                 About Page: Michael Gatti&#10;                                  Help Page: Michael Gatti">
+                           <VBox.margin>
+                              <Insets left="150.0" top="15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
          </content>
@@ -72,11 +54,18 @@
       <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <Text fill="WHITE" layoutX="229.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="About">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="325.0" top="25.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </top>

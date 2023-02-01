@@ -45,4 +45,5 @@ can be found inside this jar file
 and enter new x and y coordinates in the text fields
 <br>Sanitation Service Help Page- Click help button on Sanitation Service page to get to the Sanitation Help Page
 <br>Patient Transportation Help Page- Scroll down on Patient transportation Help page, Click help button on Patient Transportation Page to get to Transportation Help Page 
+<br>Contributions- Navigate to the About page by clicking on the About navigation button
 

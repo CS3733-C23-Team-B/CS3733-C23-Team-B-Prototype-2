@@ -51,7 +51,7 @@
                         <Insets left="175.0" top="25.0" />
                      </VBox.margin>
                   </Text>
-                  <TextArea maxWidth="-Infinity" prefHeight="200.0" prefWidth="510.0" text="                                  Home Page: Sam Colebourn&#10;   Patient Transportation Service: Christina Aube &amp; Cierra O'Grady&#10;                  Sanitation Services: Luke Grady &amp; Jolie Walts&#10;                     Edit Nodes: Sean Lendrum &amp; Jack Lafond&#10;                                Pathfinding: Sean Lendrum&#10;                                 About Page: Michael Gatti&#10;                                  Help Page: Michael Gatti">
+                  <TextArea editable="false" maxWidth="-Infinity" prefHeight="200.0" prefWidth="510.0" text="                                  Home Page: Sam Colebourn&#10;   Patient Transportation Service: Christina Aube &amp; Cierra O'Grady&#10;                  Sanitation Services: Luke Grady &amp; Jolie Walts&#10;                     Edit Nodes: Sean Lendrum &amp; Jack Lafond&#10;                                Pathfinding: Sean Lendrum&#10;                                 About Page: Michael Gatti&#10;                                  Help Page: Michael Gatti">
                      <VBox.margin>
                         <Insets left="150.0" top="15.0" />
                      </VBox.margin>

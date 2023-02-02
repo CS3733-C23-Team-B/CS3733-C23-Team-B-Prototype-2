@@ -64,6 +64,7 @@ public class SigninController {
       if (users.containsKey(usernameField.getText())) return true;
       Login newLogin = new Login(usernameField.getText(), passwordField.getText());
       users.put(usernameField.getText(), newLogin);
+      newLogin.insert();
       return true;
     }
     prompt.setText("\tInvalid login");

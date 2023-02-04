@@ -7,19 +7,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
+  private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
 
+  private GesturePane pane;
+  private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private List<Line> lines;
   @FXML ChoiceBox startLoc;
   @FXML ChoiceBox endLoc;
@@ -27,9 +36,17 @@ public class PathfindingController {
   @FXML Label pathLabel;
   @FXML AnchorPane anchor;
   @FXML AnchorPane linesPlane;
+  @FXML ImageView floor1;
 
   /** Initializes the dropdown menus */
   public void initialize() {
+    ImageView i =
+        new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
+    pane = new GesturePane(i);
+    pane.setPrefHeight(433);
+    pane.setPrefWidth(800);
+    anchor.getChildren().add(pane);
+
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
     pathfind.setOnAction(
@@ -47,6 +64,16 @@ public class PathfindingController {
       throw new RuntimeException(e);
     }
     nodes.forEach((key, value) -> placeNode(value));
+
+    selectedCircle.addListener(
+        (obs, oldSelection, newSelection) -> {
+          if (oldSelection != null) {
+            oldSelection.pseudoClassStateChanged(SELECTED_P_C, false);
+          }
+          if (newSelection != null) {
+            newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
+          }
+        });
   }
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
@@ -89,25 +116,30 @@ public class PathfindingController {
    * @param node
    */
   private void placeNode(Node node) {
-    Circle dot = new Circle(scaleX(node), scaleY(node), 6, Color.RED);
-    anchor.getChildren().add(dot);
+    Circle dot = new Circle(scaleX(node) + 75, scaleY(node) - 50, 6, Color.RED);
+    dot.getStyleClass().add("intersection");
+    dot.addEventHandler(
+        MouseEvent.MOUSE_CLICKED,
+        e -> {
+          selectedCircle.set(dot);
+        });
   }
 
   private void placeLine(Node start, Node end) {
-    Line l = new Line(scaleX(start), scaleY(start), scaleX(end), scaleY(end));
+    Line l = new Line(scaleX(start) + 75, scaleY(start) - 50, scaleX(end) + 75, scaleY(end) - 50);
     l.setFill(Color.BLACK);
     linesPlane.getChildren().add(l);
   }
 
   private double scaleX(Node n) {
-    double padding = 15;
-    double xScaler = (2770 - 1630) / (800 - padding);
-    return ((n.getXCoord() - 1637) / xScaler) + (padding / 2);
+    double padding = 200;
+    double xScalar = (2770 - 1630) / (611 - padding);
+    return ((n.getXCoord() - 1637) / xScalar) + (padding / 2);
   }
 
   private double scaleY(Node n) {
-    double padding = 15;
-    double yScaler = (2260 - 799) / (380 - padding);
-    return (((n.getYCoord() - 799) / yScaler) + (padding / 2)) + 150;
+    double padding = 250;
+    double yScalar = (2260 - 799) / (418 - padding);
+    return (((n.getYCoord() - 799) / yScalar) + (padding / 2));
   }
 }

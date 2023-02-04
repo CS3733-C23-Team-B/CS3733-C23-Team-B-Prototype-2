@@ -15,7 +15,7 @@
       <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <Text fill="WHITE" layoutX="275.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding" textAlignment="CENTER">
+            <Text fill="WHITE" layoutX="275.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Editor" textAlignment="CENTER">
                <font>
                   <Font size="50.0" />
                </font>
@@ -26,7 +26,7 @@
    <right>
       <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="linesPlane" prefHeight="530.0" prefWidth="800.0" />
+            <AnchorPane fx:id="linesPlane" onMouseClicked="#handleClick" prefHeight="530.0" prefWidth="800.0" />
             <VBox prefHeight="155.0" prefWidth="800.0">
                <children>
                   <HBox prefHeight="30.0" prefWidth="525.0" spacing="36.0">

@@ -6,14 +6,21 @@ import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.sql.SQLException;
 import java.util.*;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class MapEditorController {
   @FXML AnchorPane anchor;
+  private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
+  private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, NodeInfo> nodeList;
+  Circle lastClicked;
 
   public void initialize() {
     nodeList = new HashMap<>();
@@ -40,11 +47,29 @@ public class MapEditorController {
       Circle dot = placeNode(nodeInfo);
       nodeList.put(dot, nodeInfo);
     }
+
+    selectedCircle.addListener(
+        (obs, oldSelection, newSelection) -> {
+          if (oldSelection != null) {
+            oldSelection.pseudoClassStateChanged(SELECTED_P_C, false);
+          }
+          if (newSelection != null) {
+            newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
+            System.out.println(nodeList.get(newSelection).getNodeID());
+            lastClicked = newSelection;
+          }
+        });
   }
 
   private Circle placeNode(NodeInfo nodeInfo) {
     Circle dot = new Circle(scaleX(nodeInfo), scaleY(nodeInfo), 6, Color.RED);
     anchor.getChildren().add(dot);
+    dot.getStyleClass().add("intersection");
+    dot.addEventHandler(
+        MouseEvent.MOUSE_CLICKED,
+        e -> {
+          selectedCircle.set(dot);
+        });
     return dot;
   }
 
@@ -58,5 +83,9 @@ public class MapEditorController {
     double padding = 15;
     double yScaler = (2260 - 799) / (380 - padding);
     return (((n.getYCoord() - 799) / yScaler) + (padding / 2)) + 150;
+  }
+
+  public void handleClick() {
+    selectedCircle.set(null);
   }
 }

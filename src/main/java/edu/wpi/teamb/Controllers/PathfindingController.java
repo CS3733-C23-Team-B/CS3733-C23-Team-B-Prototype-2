@@ -102,12 +102,12 @@ public class PathfindingController {
   private double scaleX(Node n) {
     double padding = 15;
     double xScaler = (2770 - 1630) / (800 - padding);
-    return ((n.getXcoord() - 1637) / xScaler) + (padding / 2);
+    return ((n.getXCoord() - 1637) / xScaler) + (padding / 2);
   }
 
   private double scaleY(Node n) {
     double padding = 15;
     double yScaler = (2260 - 799) / (380 - padding);
-    return (((n.getYcoord() - 799) / yScaler) + (padding / 2)) + 150;
+    return (((n.getYCoord() - 799) / yScaler) + (padding / 2)) + 150;
   }
 }

@@ -179,7 +179,7 @@ public class Node {
    *
    * @return xcoord
    */
-  public int getXcoord() {
+  public int getXCoord() {
     return xcoord;
   }
   /**
@@ -187,7 +187,7 @@ public class Node {
    *
    * @return ycoord
    */
-  public int getYcoord() {
+  public int getYCoord() {
     return ycoord;
   }
 

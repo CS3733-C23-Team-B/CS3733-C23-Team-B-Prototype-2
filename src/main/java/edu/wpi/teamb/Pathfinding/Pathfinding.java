@@ -54,10 +54,10 @@ public class Pathfinding {
    * @param node2 end node
    */
   private static double getDist(Node node1, Node node2) {
-    double x1 = node1.getXcoord();
-    double x2 = node2.getXcoord();
-    double y1 = node1.getYcoord();
-    double y2 = node2.getYcoord();
+    double x1 = node1.getXCoord();
+    double x2 = node2.getXCoord();
+    double y1 = node1.getYCoord();
+    double y2 = node2.getYCoord();
     //    int f1 = Integer.parseInt(node1.getFloor().substring(1));
     //    int f2 = Integer.parseInt(node2.getFloor().substring(1));
 

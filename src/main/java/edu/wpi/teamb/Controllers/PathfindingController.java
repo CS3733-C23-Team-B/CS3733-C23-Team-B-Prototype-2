@@ -27,6 +27,7 @@ import net.kurobako.gesturefx.GesturePane;
 public class PathfindingController {
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
 
+  private GesturePane pane;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private List<Line> lines;
   @FXML ChoiceBox startLoc;
@@ -39,6 +40,13 @@ public class PathfindingController {
 
   /** Initializes the dropdown menus */
   public void initialize() {
+    ImageView i =
+        new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
+    pane = new GesturePane(i);
+    pane.setPrefHeight(433);
+    pane.setPrefWidth(800);
+    anchor.getChildren().add(pane);
+
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
     pathfind.setOnAction(
@@ -66,13 +74,6 @@ public class PathfindingController {
             newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
           }
         });
-
-    ImageView i =
-        new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
-    GesturePane pane = new GesturePane(i);
-    pane.setPrefHeight(433);
-    pane.setPrefWidth(800);
-    anchor.getChildren().add(pane);
   }
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
@@ -122,7 +123,7 @@ public class PathfindingController {
         e -> {
           selectedCircle.set(dot);
         });
-    anchor.getChildren().add(dot);
+    pane.
   }
 
   private void placeLine(Node start, Node end) {

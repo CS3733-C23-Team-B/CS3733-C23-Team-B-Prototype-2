@@ -114,7 +114,7 @@ public class Pathfinding {
    * @param end the longName of the location to end at
    * @return a String representation of the optimal path to take
    */
-  public static String getShortestPath(String start, String end) {
+  public static ArrayList<String> getShortestPath(String start, String end) {
     return getPathAStar(start, end);
   }
 
@@ -125,7 +125,7 @@ public class Pathfinding {
    * @param endLoc the longName of the location to end at
    * @return a String representation of the path taken
    */
-  private static String getPathAStar(String startLoc, String endLoc) {
+  private static ArrayList<String> getPathAStar(String startLoc, String endLoc) {
     String start;
     String end;
     try {
@@ -166,10 +166,10 @@ public class Pathfinding {
     while (!current.equals(start)) {
       path.add(1, current);
       current = cameFrom.get(current);
-      if (current == null) return "PATH NOT FOUND";
+      if (current == null) return null;
     }
 
-    return pathToString(path);
+    return path;
   }
 
   /** Refreshes the node and edge fields from the database */

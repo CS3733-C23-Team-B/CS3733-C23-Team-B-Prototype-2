@@ -22,9 +22,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
-
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
 
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
@@ -66,6 +66,13 @@ public class PathfindingController {
             newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
           }
         });
+
+    ImageView i =
+        new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
+    GesturePane pane = new GesturePane(i);
+    pane.setPrefHeight(433);
+    pane.setPrefWidth(800);
+    anchor.getChildren().add(pane);
   }
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */

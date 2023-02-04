@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.Transportation;
+import edu.wpi.teamb.Entities.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -78,20 +79,44 @@ public class PatientTransportationController extends BaseRequestController {
     clearButtonClicked();
 
     // insert into database:
-    Transportation newRequest =
-        new Transportation(
-            saveInfo[0],
-            saveInfo[1],
-            saveInfo[2],
-            saveInfo[3],
-            saveInfo[4],
-            saveInfo[5],
-            saveInfo[6],
-            saveInfo[7],
-            saveInfo[9],
-            saveInfo[8],
-            RequestStatus.PROCESSING);
-    newRequest.insert();
+//    Transportation newRequest =
+//        new Transportation(
+//            saveInfo[0],
+//            saveInfo[1],
+//            saveInfo[2],
+//            saveInfo[3],
+//            saveInfo[4],
+//            saveInfo[5],
+//            saveInfo[6],
+//            saveInfo[7],
+//            saveInfo[9],
+//            saveInfo[8],
+//            RequestStatus.PROCESSING);
+//    newRequest.insert();
+    PatientTransportationRequest request =PatientTransportationRequest.getInstance();
+    request.setFirstName(firstNameField.getText());
+    request.setLastName(lastNameField.getText());
+    request.setEmployeeID(employeeIDField.getText());
+    request.setEmail(emailField.getText());
+//    add status
+    request.setAssignedEmployee(this.assignedStaffField.getText());
+    request.setNotes(additionalNotesField.getText());
+
+    var urgency = urgencyBox.getValue();
+    if (urgency == null) {
+      urgency = "";
+    }
+    request.setUrgency(urgency.toString());
+
+    var equipment = equipmentNeededBox.getValue();
+    if (equipment == null) {
+      equipment = "";
+    }
+    request.setEquipmentNeeded(equipment.toString());
+    request.setPatientLocation(this.patientLocationField.getText());
+    request.setPatientDestination(this.patientDestinationField.getText());
+    request.setPatientID(this.patientIDField.getText());
+
 
     // TODO: show confirmation page
     Navigation.navigate(Screen.SUBMISSION_SUCCESS);

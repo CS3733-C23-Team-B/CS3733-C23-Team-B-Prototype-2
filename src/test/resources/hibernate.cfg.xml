@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or http://www.gnu.org/licenses/lgpl-2.1.html.
+  -->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://wpi-softeng-postgres-db.coyfss2f91ba.us-east-1.rds.amazonaws.com:2112/dbb</property>
+        <property name="connection.username">teamb</property>
+        <property name="connection.password">4ipr31GQJAKch9baIPQlSYyMlywZ0yTe</property>
+        <property name="connection.autocommit">false</property>
+
+        <property name="default_schema">public</property>
+
+        <property name="connection.pool_size">1</property>
+
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">false</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+<!--        <mapping class="edu.wpi.teamb.Person"/>-->
+
+        <!-- Names the annotated entity class -->
+    </session-factory>
+</hibernate-configuration>

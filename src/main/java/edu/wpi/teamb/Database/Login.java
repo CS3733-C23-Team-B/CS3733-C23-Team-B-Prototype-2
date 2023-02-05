@@ -4,8 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,17 +27,11 @@ public class Login {
 
   public Login() {}
 
-  public static void initTable() throws SQLException {
+  public static void initTable() throws SQLException {}
 
-  }
+  public void insert() throws SQLException {}
 
-  public void insert() throws SQLException {
-
-  }
-
-  public void delete() throws SQLException {
-
-  }
+  public void delete() throws SQLException {}
 
   public static Map<String, Login> getAll() throws SQLException {
     HashMap<String, Login> users = new HashMap<String, Login>();

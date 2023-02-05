@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="edu.wpi.teamb.Database.Move" table="move">
+        <id name="nodeID" type="String" column="nodeID">
+        </id>
+        <property name = "longname" type = "String">
+            <column name="longname"/>
+        </property>
+        <property name = "movedate" type = "java.sql.Date">
+            <column name="movedate"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,21 +1,16 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.LocationName;
-import edu.wpi.teamb.Database.Move;
-import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
 
@@ -48,37 +43,39 @@ public class MapDataEditorController {
 
   /** Initializes the data table with all the required columns */
   public void initialize() {
-    IDColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, String>("nodeID"));
-    xColumn.setCellValueFactory(new PropertyValueFactory<>("xCoord"));
-    yColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, Integer>("yCoord"));
-    locationColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, String>("location"));
-    dateColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, Date>("moveDate"));
-    edgesColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, String>("edges"));
-
-    List<NodeInfo> nodeList = new ArrayList<>();
-    Map<String, Node> nodes;
-
-    try {
-      nodes = Node.getAll();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-    for (Node node : nodes.values()) {
-      String nodeID = node.getnodeID();
-      int xCoord = node.getXcoord();
-      int yCoord = node.getYcoord();
-      Move move = Move.getMostRecentMove(nodeID);
-      Date moveDate = move.getMoveDate();
-      String location = move.getLongName();
-      String edges = "";
-      for (String edge : Pathfinding.getDirectPaths(nodeID)) edges += edge + ", ";
-      edges = edges.substring(0, edges.length() - 2);
-      nodeList.add(new NodeInfo(nodeID, xCoord, yCoord, location, moveDate, edges, node, move));
-    }
-
-    nodeList.forEach((value) -> dataTable.getItems().add(value));
-    editableCols();
+    //    IDColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, String>("nodeID"));
+    //    xColumn.setCellValueFactory(new PropertyValueFactory<>("xCoord"));
+    //    yColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, Integer>("yCoord"));
+    //    locationColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo,
+    // String>("location"));
+    //    dateColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, Date>("moveDate"));
+    //    edgesColumn.setCellValueFactory(new PropertyValueFactory<NodeInfo, String>("edges"));
+    //
+    //    List<NodeInfo> nodeList = new ArrayList<>();
+    //    Map<String, Node> nodes;
+    //
+    //    try {
+    //      nodes = Node.getAll();
+    //    } catch (SQLException e) {
+    //      throw new RuntimeException(e);
+    //    }
+    //
+    //    for (Node node : nodes.values()) {
+    //      String nodeID = node.getnodeID();
+    //      int xCoord = node.getXcoord();
+    //      int yCoord = node.getYcoord();
+    //      Move move = Move.getMostRecentMove(nodeID);
+    //      Date moveDate = move.getMoveDate();
+    //      String location = move.getLongName();
+    //      String edges = "";
+    //      for (String edge : Pathfinding.getDirectPaths(nodeID)) edges += edge + ", ";
+    //      edges = edges.substring(0, edges.length() - 2);
+    //      nodeList.add(new NodeInfo(nodeID, xCoord, yCoord, location, moveDate, edges, node,
+    // move));
+    //    }
+    //
+    //    nodeList.forEach((value) -> dataTable.getItems().add(value));
+    //    editableCols();
   }
 
   /**

@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Database;
 
-import java.sql.SQLException;
 import java.util.Date;
 
 public class NodeInfo {
@@ -34,16 +33,16 @@ public class NodeInfo {
   }
 
   public void update() {
-    nodeID = node.buildID();
-    node.setNodeID(nodeID);
-    node.setXcoord(xCoord);
-    node.setYcoord(yCoord);
-
-    try {
-      node.update();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+    //    nodeID = node.buildID();
+    //    node.setNodeID(nodeID);
+    //    node.setXcoord(xCoord);
+    //    node.setYcoord(yCoord);
+    //
+    //    try {
+    //      node.update();
+    //    } catch (SQLException e) {
+    //      throw new RuntimeException(e);
+    //    }
   }
 
   public String getNodeID() {

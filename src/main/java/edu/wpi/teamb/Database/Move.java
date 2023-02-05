@@ -4,25 +4,25 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Move")
+@Table(name = "move")
 public class Move {
 
   public static final String tableName = "move";
+
   @Id
-  @Column(name = "nodeID", length = 70)
+  @Column(name = "nodeID", length = 20)
   private String nodeID;
 
+  @Column(name = "longname", length = 70)
   private String longName;
 
+  @Column(name = "movedate", length = 20)
   private Date moveDate;
 
   public Move(String nodeID, String longName, Date moveDate) {
@@ -31,30 +31,20 @@ public class Move {
     this.moveDate = moveDate;
   }
 
-  public Move() {
+  public Move() {}
 
-  }
-
-  public static void initTable() throws SQLException {
-
-  }
+  public static void initTable() throws SQLException {}
 
   public static ArrayList<Move> getAll() throws SQLException {
     ArrayList<Move> moves = new ArrayList<Move>();
     return moves;
   }
 
-  public void insert() throws SQLException {
+  public void insert() throws SQLException {}
 
-  }
+  public void update() throws SQLException {}
 
-  public void update() throws SQLException {
-
-  }
-
-  public void delete() throws SQLException {
-
-  }
+  public void delete() throws SQLException {}
 
   public static String getTableName() {
     return tableName.toLowerCase();

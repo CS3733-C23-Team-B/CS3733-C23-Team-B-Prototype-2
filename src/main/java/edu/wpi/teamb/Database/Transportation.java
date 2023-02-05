@@ -7,11 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
+import lombok.Setter;
 
 public class Transportation {
   private static final String tableName = "transportation";
-  @Getter Integer requestId;
-  @Getter
+  @Getter @Setter Integer requestId;
+  @Getter @Setter
   String firstname,
       lastname,
       email,
@@ -22,7 +23,7 @@ public class Transportation {
       notes,
       patientid,
       employeeId;
-  @Getter RequestStatus status;
+  @Getter @Setter RequestStatus status;
 
   public Transportation(
       Integer requestId,
@@ -76,6 +77,8 @@ public class Transportation {
     this.patientid = patientid;
     this.status = status;
   }
+
+  public Transportation() {}
 
   public static void initTable() throws SQLException {
     String sql =

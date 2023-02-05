@@ -21,7 +21,10 @@ public enum SessionGetter {
   private static SessionFactory buildSessionFactory() {
     try {
       // Create the SessionFactory from hibernate.cfg.xml
-      ssr = new StandardServiceRegistryBuilder().configure("edu/wpi/teamb/hibernate/hibernate.cfg.xml").build();
+      ssr =
+          new StandardServiceRegistryBuilder()
+              .configure("edu/wpi/teamb/hibernate/hibernate.cfg.xml")
+              .build();
       System.out.println("Hibernate Configuration loaded");
 
       sessionFactory = new MetadataSources(ssr).buildMetadata().buildSessionFactory();

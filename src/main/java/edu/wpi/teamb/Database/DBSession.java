@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.IORM;
 import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Entities.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.SanitationRequest;
@@ -70,4 +71,17 @@ public class DBSession {
     return null;
   }
 
+  public static void delete(IORM iorm) {
+
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    Transaction tx = null;
+    try {
+      tx = session.beginTransaction();
+      session.createQuery("DELETE " + iorm.getSearchStr());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
 }

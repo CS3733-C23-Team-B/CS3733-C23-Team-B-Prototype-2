@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "move")
-public class Move {
+public class Move implements IORM {
 
   public static final String tableName = "move";
 
@@ -121,5 +122,10 @@ public class Move {
 
   private static boolean moreRecentThan(Move move1, Move move2) {
     return move1.moveDate.after(move2.moveDate);
+  }
+
+  @Override
+  public String getSearchStr() {
+    return "FROM move WHERE nodeid = '" + nodeID + "' and longname = '" + longName + "'";
   }
 }

@@ -6,7 +6,8 @@ import lombok.Setter;
 
 @Entity
 // this will need to be changed to have inheritance work
-@Table(name = "PatientTransportationRequest")
+@Table(name = "GeneralRequest")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class GeneralRequest {
 
   @Id private Long id;

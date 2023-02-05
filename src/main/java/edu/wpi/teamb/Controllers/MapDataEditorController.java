@@ -65,7 +65,7 @@ public class MapDataEditorController {
     }
 
     for (Node node : nodes.values()) {
-      String nodeID = node.getID();
+      String nodeID = node.getnodeID();
       int xCoord = node.getXcoord();
       int yCoord = node.getYcoord();
       Move move = Move.getMostRecentMove(nodeID);

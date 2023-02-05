@@ -1,5 +1,7 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.PatientTransportationRequest;
+import edu.wpi.teamb.Entities.SanitationRequest;
 import edu.wpi.teamb.SessionGetter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,15 +24,21 @@ public class DBSession {
     DBSession db = new DBSession();
     LocationName ln = new LocationName("test", "t", "bathroom");
     addLocationName(ln);
+
+    PatientTransportationRequest t = new PatientTransportationRequest();
+    db.addORM(t);
+    SanitationRequest s = new SanitationRequest();
+    db.addORM(s);
+
   }
 
-  public static void addNodeH(NodeH aNode) {
+  public static void addORM(Object o) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     Transaction tx = null;
     try {
       tx = session.beginTransaction();
-      session.persist(aNode);
+      session.persist(o);
       tx.commit();
     } catch (Exception e) {
       if (tx != null) tx.rollback();
@@ -55,4 +63,8 @@ public class DBSession {
       session.close();
     }
   }
+
+
+
+
 }

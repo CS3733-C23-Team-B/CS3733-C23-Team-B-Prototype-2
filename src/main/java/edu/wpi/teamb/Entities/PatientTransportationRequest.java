@@ -5,14 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "PatientTransportationRequest")
+@Table(name = "patienttransportationrequest")
 @PrimaryKeyJoinColumn(
     name = "PatientTransportationRequestID",
     foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey"))
 public class PatientTransportationRequest extends GeneralRequest {
-  @Id private Long id;
-
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "equipmentNeeded", length = 20)
   @Getter
   @Setter
@@ -28,7 +25,7 @@ public class PatientTransportationRequest extends GeneralRequest {
   @Setter
   private String patientDestination;
 
-  @Column(name = "patientid", length = 20)
+  @Column(name = "patientID", length = 20)
   @Getter
   @Setter
   private String patientID;
@@ -40,13 +37,5 @@ public class PatientTransportationRequest extends GeneralRequest {
       instance = new PatientTransportationRequest();
     }
     return instance;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Long getId() {
-    return id;
   }
 }

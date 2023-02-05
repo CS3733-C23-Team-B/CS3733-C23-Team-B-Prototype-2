@@ -30,7 +30,7 @@ public class DBSession {
     SanitationRequest s = new SanitationRequest();
     db.addORM(s);
     Date date = new Date(2001, 12, 1);
-    Move m = new Move("test", "test", date);
+    Edge m = new Edge("node1", "node2");
     db.addORM(m);
   }
 

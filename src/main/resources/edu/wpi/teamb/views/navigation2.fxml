@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXContextMenuItem?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -62,11 +63,16 @@
                   <Font size="24.0" />
                </font>
             </MFXButton>
-            <MFXContextMenuItem id="menuIcon">
+            <MenuButton id="menuIcon" minWidth="-Infinity" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-border-color: #00077A;" text="MenuButton">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Help" />
+                  <MenuItem mnemonicParsing="false" text="Profile" />
+                  <MenuItem mnemonicParsing="false" text="Sign Out" />
+              </items>
                <HBox.margin>
-                  <Insets left="55.0" />
+                  <Insets left="55.0" top="20.0" />
                </HBox.margin>
-            </MFXContextMenuItem>
+            </MenuButton>
             <MFXButton id="navBarButton" minWidth="-Infinity" prefWidth="80.0" style="-fx-background-color: #00077A;" text="Exit" textFill="WHITE">
                <HBox.margin>
                   <Insets left="10.0" top="20.0" />

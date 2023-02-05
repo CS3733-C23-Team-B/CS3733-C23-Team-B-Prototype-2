@@ -56,5 +56,6 @@ public class NodeEditorController {
   public void cancelClicked() {
     Stage s = (Stage) yField.getScene().getWindow();
     s.close();
+    MapEditorController.getInstance().refreshPopUp();
   }
 }

@@ -36,11 +36,11 @@ public class NodeInfo {
   }
 
   public void update() {
-    nodeID = node.buildID();
-    node.setNodeID(nodeID);
     node.setXcoord(xCoord);
     node.setYcoord(yCoord);
     node.setFloor(floor);
+    nodeID = node.buildID();
+    node.setNodeID(nodeID);
 
     try {
       node.update();

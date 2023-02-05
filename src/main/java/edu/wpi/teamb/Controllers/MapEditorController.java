@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.*;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,8 +40,10 @@ public class MapEditorController {
   private final int popUpHeight = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
+  private static MapEditorController instance;
 
   public void initialize() {
+    instance = this;
     nodeList = new HashMap<>();
     Map<String, Node> nodes;
 
@@ -184,5 +187,19 @@ public class MapEditorController {
 
   static NodeInfo getCurrentNode() {
     return currentNode;
+  }
+
+  public void refreshPopUp() {
+    ObservableList vboxChildren = ((VBox) (currentPopUp.getChildren().get(0))).getChildren();
+    Text id = (Text) vboxChildren.get(0);
+    Text pos = (Text) vboxChildren.get(1);
+    Text loc = (Text) vboxChildren.get(2);
+    id.setText("NodeID:   " + currentNode.getNodeID());
+    pos.setText("(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
+    loc.setText(currentNode.getLocation());
+  }
+
+  public static MapEditorController getInstance() {
+    return instance;
   }
 }

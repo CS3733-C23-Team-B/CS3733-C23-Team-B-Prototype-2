@@ -6,8 +6,11 @@ import lombok.Setter;
 
 @Entity
 // this will need to be changed to have inheritance work
-@Table(name = "transportation")
+@Table(name = "PatientTransportationRequest")
 public class GeneralRequest {
+
+  @Id private Long id;
+
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "firstname", length = 20)
   @Getter
@@ -48,8 +51,6 @@ public class GeneralRequest {
   @Getter
   @Setter
   private RequestStatus status;
-
-  @Id private Long id;
 
   public void generalRequest() {}
 

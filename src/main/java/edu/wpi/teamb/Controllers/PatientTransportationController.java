@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
+import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Entities.PatientTransportationRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -114,6 +115,9 @@ public class PatientTransportationController extends BaseRequestController {
     request.setPatientLocation(this.patientLocationField.getText());
     request.setPatientDestination(this.patientDestinationField.getText());
     request.setPatientID(this.patientIDField.getText());
+
+    DBSession DB = DBSession.getInstance();
+    DBSession.addTPRequest(request);
 
     // TODO: show confirmation page
     Navigation.navigate(Screen.SUBMISSION_SUCCESS);

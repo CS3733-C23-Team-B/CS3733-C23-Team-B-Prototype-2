@@ -21,6 +21,9 @@ public class NavigationController {
     Navigation.navigate(Screen.SANITATION);
   }
 
+  public void serviceRequestFormsButtonClicked() throws IOException {
+    Navigation.navigate(Screen.SERVICE_REQUEST_FORMS);
+  }
   public void pathfindingClicked() throws IOException {
     Navigation.navigate(Screen.PATHFINDING);
   }

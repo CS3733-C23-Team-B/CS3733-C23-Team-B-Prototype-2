@@ -34,11 +34,10 @@
 #menuIcon{
     -fx-background-radius: 30px;
     -fx-background-image: url("/media/profile-icon.png");
-    -fx-background-image-size: 30px;
     -fx-background-repeat: stretch;
-    -fx-background-size: 35 35;
+    -fx-background-size: 48 48;
     -fx-background-position: top center;
-    -fx-background-color: black;
+    -fx-background-color: rgba(0,7,122, 0.8);
 }
 
 .menu-button > .arrow-button {

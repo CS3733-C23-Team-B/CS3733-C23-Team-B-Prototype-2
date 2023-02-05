@@ -62,7 +62,7 @@
                   <Font size="24.0" />
                </font>
             </MFXButton>
-            <MFXComboBox id="menuIcon" minWidth="-Infinity" prefHeight="50.0" prefWidth="71.0">
+            <MFXComboBox id="menuIcon" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0" style="-fx-border-color: #00077A;">
                <HBox.margin>
                   <Insets left="55.0" top="20.0" />
                </HBox.margin>

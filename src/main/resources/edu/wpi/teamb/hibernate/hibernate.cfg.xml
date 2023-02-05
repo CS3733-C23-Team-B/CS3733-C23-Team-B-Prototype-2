@@ -33,6 +33,7 @@
 
         <mapping class="edu.wpi.teamb.Database.NodeH"/>
         <mapping class="edu.wpi.teamb.Entities.PatientTransportationRequest"/>
+        <mapping class="edu.wpi.teamb.Entities.SanitationRequest"/>
 
 
 

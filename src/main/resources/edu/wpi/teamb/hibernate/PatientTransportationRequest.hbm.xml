@@ -3,7 +3,6 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="edu.wpi.teamb.Entities.PatientTransportationRequest" table="patienttransportationrequest">
-        <id name="id" type="String" column="PatientTransportationRequestID"/>
         <property name = "equipmentNeeded" type = "String">
             <column name="equipmentNeeded"/>
         </property>

@@ -10,9 +10,6 @@ import lombok.Setter;
     name = "PatientTransportationRequestID",
     foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey"))
 public class PatientTransportationRequest extends GeneralRequest {
-  @Id private Long id;
-
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "equipmentNeeded", length = 20)
   @Getter
   @Setter
@@ -40,13 +37,5 @@ public class PatientTransportationRequest extends GeneralRequest {
       instance = new PatientTransportationRequest();
     }
     return instance;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Long getId() {
-    return id;
   }
 }

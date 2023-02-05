@@ -9,10 +9,10 @@ import lombok.Setter;
 @Table(name = "GeneralRequest")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class GeneralRequest {
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id
+  private int id;
 
-  @Id private Long id;
-
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "firstname", length = 20)
   @Getter
   @Setter
@@ -55,11 +55,11 @@ public class GeneralRequest {
 
   public void generalRequest() {}
 
-  public void setId(Long id) {
+  public void setId(int id) {
     this.id = id;
   }
 
-  public Long getId() {
+  public int getId() {
     return id;
   }
 }

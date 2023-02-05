@@ -15,7 +15,7 @@
    <items>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <MFXButton id="homeButton" fx:id="homeButton" minWidth="-Infinity" onAction="#homeButtonClicked" prefHeight="100.0" prefWidth="90.0" text="." textFill="WHITE">
+            <MFXButton id="homeButton" fx:id="homeButton" minWidth="-Infinity" onAction="#homeButtonClicked" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #00077A;" text="." textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -25,7 +25,7 @@
             </MFXButton>
             <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#serviceRequestFormsButtonClicked" prefHeight="209.0" prefWidth="286.0" style="-fx-background-color: #00077A;" text="Service Request Forms" textFill="WHITE">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="15.0" />
                </HBox.margin>
                <font>
                   <Font size="24.0" />

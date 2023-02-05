@@ -271,6 +271,9 @@ public class Node {
   public void setYcoord(int ycoord) {
     this.ycoord = ycoord;
   }
+  public void setFloor(String floor) {
+    this.floor = floor;
+  }
 
   public String buildID() {
     String x = Integer.toString(xcoord);

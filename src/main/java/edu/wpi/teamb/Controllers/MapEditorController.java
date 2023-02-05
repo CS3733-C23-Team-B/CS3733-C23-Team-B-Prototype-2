@@ -29,6 +29,7 @@ public class MapEditorController {
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, NodeInfo> nodeList;
   AnchorPane currentPopUp;
+  private static NodeInfo currentNode;
   private final int popUpHeight = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
@@ -59,11 +60,12 @@ public class MapEditorController {
       Move move = Move.getMostRecentMove(nodeID);
       Date moveDate = move.getMoveDate();
       String location = move.getLongName();
+      String floor = node.getFloor();
       String edges = "";
       for (String edge : Pathfinding.getDirectPaths(nodeID)) edges += edge + ", ";
       edges = edges.substring(0, edges.length() - 2);
       NodeInfo nodeInfo =
-          new NodeInfo(nodeID, xCoord, yCoord, location, moveDate, edges, node, move);
+          new NodeInfo(nodeID, xCoord, yCoord, location, floor, moveDate, edges, node, move);
       Circle dot = placeNode(nodeInfo);
       nodeList.put(dot, nodeInfo);
     }
@@ -113,12 +115,14 @@ public class MapEditorController {
 
     aPane.getChildren().add(popPane);
     currentPopUp = popPane;
+    currentNode = node;
   }
 
   public void clearPopUp() {
     if (currentPopUp != null) {
       aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
+      currentNode = null;
     }
   }
 
@@ -149,5 +153,9 @@ public class MapEditorController {
   public void handleClick() {
     selectedCircle.set(null);
     clearPopUp();
+  }
+
+  public static NodeInfo getCurrentNode() {
+    return currentNode;
   }
 }

@@ -19,7 +19,7 @@
         <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-                <Text fill="WHITE" layoutX="229.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Title Here">
+                <Text fill="WHITE" layoutX="29.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sanitation Services Request Form" textAlignment="CENTER" wrappingWidth="742.5367126464844">
                     <font>
                         <Font size="50.0" />
                     </font>
@@ -27,10 +27,10 @@
             </children>
         </AnchorPane>
     </top>
-   <left>
-      <MFXScrollPane minWidth="-Infinity" prefWidth="798.0" BorderPane.alignment="CENTER">
+   <center>
+      <MFXScrollPane minHeight="500.0" minWidth="-Infinity" prefWidth="798.0">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="780.0">
+            <AnchorPane maxHeight="760.0" minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="780.0">
                <children>
                   <VBox prefHeight="800.0" prefWidth="800.0">
                      <children>
@@ -169,7 +169,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="341.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type of Cleanup">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -177,12 +177,12 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cleanup Location">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="338.0" />
+                                    <Insets left="225.0" />
                                  </HBox.margin>
                               </Text>
                            </children>
@@ -206,46 +206,6 @@
                                  </HBox.margin>
                               </MFXFilterComboBox>
                            </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="443.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="338.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="384.0" prefHeight="22.0" prefWidth="200.0">
-                           <children>
-                              <MFXTextField minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                              <MFXTextField layoutX="10.0" layoutY="10.0" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
                         </HBox>
                         <HBox layoutX="10.0" layoutY="448.0">
                            <children>
@@ -322,5 +282,5 @@
             </AnchorPane>
          </content>
       </MFXScrollPane>
-   </left>
+   </center>
 </BorderPane>

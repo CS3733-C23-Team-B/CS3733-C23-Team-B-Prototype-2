@@ -14,12 +14,22 @@ public class DBSession {
 
   private DBSession() {};
 
-
   public static DBSession getInstance() {
     if (instance == null) {
       instance = new DBSession();
     }
     return instance;
+  }
+
+  public static void main(String[] args) {
+    DBSession db = new DBSession();
+    NodeH n = new NodeH();
+    n.setNodeID("Test");
+    n.setXcoord(5);
+    n.setYcoord(5);
+    n.setFloor("Tester");
+    n.setBuilding("Building Test");
+    db.addNodeH(n);
   }
 
   public static void addTPRequest(PatientTransportationRequest ptr) {
@@ -29,6 +39,22 @@ public class DBSession {
     try {
       tx = session.beginTransaction();
       session.persist(ptr);
+      tx.commit();
+    } catch (Exception e) {
+      if (tx != null) tx.rollback();
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
+
+  public static void addNodeH(NodeH aNode) {
+    SessionFactory sf = HibernateUtil.getSessionFactory();
+    Session session = sf.openSession();
+    Transaction tx = null;
+    try {
+      tx = session.beginTransaction();
+      session.persist(aNode);
       tx.commit();
     } catch (Exception e) {
       if (tx != null) tx.rollback();

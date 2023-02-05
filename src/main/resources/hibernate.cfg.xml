@@ -19,7 +19,7 @@
         <property name="connection.autocommit">false</property>
 
 
-        <property name="default_schema">iter1</property>
+        <property name="hibernate.default_schema">iterOne</property>
 
         <property name="connection.pool_size">1</property>
 
@@ -33,7 +33,7 @@
 
 
         <!--        <mapping class="edu.wpi.teamb.Person"/>-->
-
+        <mapping resource = "NodeH.hbm.xml"/>
         <!-- Names the annotated entity class -->
     </session-factory>
 </hibernate-configuration>

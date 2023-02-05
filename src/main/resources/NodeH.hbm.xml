@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="edu.wpi.teamb.Database.NodeH" table="nodeh" schema="iterOne">
+        <id name="nodeID" type="String" column="nodeID">
+        </id>
+        <property name = "xcoord" type = "int">
+            <column name="xcoord"/>
+        </property>
+        <property name = "ycoord" type = "int">
+            <column name="ycoord"/>
+        </property>
+        <property name = "floor" type = "String">
+            <column name="floor"/>
+        </property>
+        <property name = "building" type = "String">
+            <column name="building"/>
+        </property>
+    </class>
+</hibernate-mapping>

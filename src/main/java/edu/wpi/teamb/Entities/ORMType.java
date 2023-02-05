@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Entities;
 
 public enum ORMType {
-  PTREQUEST("patienttransportationrequest"),
+  PTREQUEST("PatientTransportationRequest"),
   SREQUEST("SanitationRequest"),
   CREQUEST("ComputerHelpRequest"),
   NODE("Node"),

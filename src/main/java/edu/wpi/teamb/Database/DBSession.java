@@ -10,6 +10,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class DBSession {
 
@@ -54,20 +55,18 @@ public class DBSession {
   }
 
   public static List<Object> getAll(ORMType ot) {
-
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
-    Transaction tx = null;
     try {
-      tx = session.beginTransaction();
-      List<Object> objects = session.createQuery("SELECT * FROM iter1." + ot.toString()).list();
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM " + ot.toString());
+      List<Object> objects = q.list();
       return objects;
     } catch (Exception e) {
       e.printStackTrace();
     }
     return null;
   }
-
 
   public static void delete(IORM iorm) {
 
@@ -81,5 +80,4 @@ public class DBSession {
       e.printStackTrace();
     }
   }
-
 }

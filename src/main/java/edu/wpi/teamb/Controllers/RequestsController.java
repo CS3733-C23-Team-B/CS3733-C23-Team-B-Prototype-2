@@ -32,11 +32,10 @@ public class RequestsController {
     statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
     requestList = DBSession.getAll(ORMType.PTREQUEST);
-    //        requestList.forEach(
-    //            (value) -> {
-    //               //requestsTable.getItems().add(value);
-    //              System.out.println(value);
-    //            });
+    requestList.forEach(
+        (value) -> {
+          requestsTable.getItems().add(value);
+        });
     Button b = new Button();
     b.setText("Back");
     b.setOnAction(e -> Navigation.navigate(Screen.REQUESTS));

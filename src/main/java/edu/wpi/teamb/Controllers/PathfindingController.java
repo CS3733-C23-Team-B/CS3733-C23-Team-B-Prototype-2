@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -43,7 +44,7 @@ public class PathfindingController {
   /** Initializes the dropdown menus */
   public void initialize() {
     ImageView i =
-        new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
+        new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
@@ -51,6 +52,7 @@ public class PathfindingController {
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
     aPane.getChildren().add(linesPlane);
+    pane.zoomBy(-2000, new Point2D(2500, 1700));
 
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
@@ -122,7 +124,7 @@ public class PathfindingController {
    * @param node
    */
   private void placeNode(Node node) {
-    Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 6, Color.RED);
+    Circle dot = new Circle(scaleX(node) + 75, scaleY(node) - 50, 10, Color.RED);
     dot.getStyleClass().add("intersection");
     dot.addEventHandler(
         MouseEvent.MOUSE_CLICKED,

@@ -28,24 +28,29 @@ public class PathfindingController {
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
 
   private GesturePane pane;
+
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private List<Line> lines;
+  private AnchorPane aPane = new AnchorPane();
+  private AnchorPane linesPlane = new AnchorPane();
   @FXML ChoiceBox startLoc;
   @FXML ChoiceBox endLoc;
   @FXML Button pathfind;
   @FXML Label pathLabel;
   @FXML AnchorPane anchor;
-  @FXML AnchorPane linesPlane;
   @FXML ImageView floor1;
 
   /** Initializes the dropdown menus */
   public void initialize() {
     ImageView i =
         new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
-    pane = new GesturePane(i);
+    pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
+    aPane.getChildren().add(i);
+    pane.setContent(aPane);
     anchor.getChildren().add(pane);
+    aPane.getChildren().add(linesPlane);
 
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
@@ -88,6 +93,7 @@ public class PathfindingController {
       String e = path.get(i + 1);
       placeLine(nodes.get(s), nodes.get(e));
     }
+    pane.toFront();
   }
 
   /**
@@ -123,6 +129,7 @@ public class PathfindingController {
         e -> {
           selectedCircle.set(dot);
         });
+    aPane.getChildren().add(dot);
   }
 
   private void placeLine(Node start, Node end) {
@@ -132,14 +139,14 @@ public class PathfindingController {
   }
 
   private double scaleX(Node n) {
-    double padding = 200;
-    double xScalar = (2770 - 1630) / (611 - padding);
+    double padding = 2000;
+    double xScalar = (2770 - 1630) / (5000 - padding);
     return ((n.getXCoord() - 1637) / xScalar) + (padding / 2);
   }
 
   private double scaleY(Node n) {
-    double padding = 250;
-    double yScalar = (2260 - 799) / (418 - padding);
+    double padding = 1000;
+    double yScalar = (2260 - 799) / (3400 - padding);
     return (((n.getYCoord() - 799) / yScalar) + (padding / 2));
   }
 }

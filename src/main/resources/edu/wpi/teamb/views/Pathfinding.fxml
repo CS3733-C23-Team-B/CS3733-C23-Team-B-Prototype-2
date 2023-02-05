@@ -28,11 +28,7 @@
    <right>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="anchor" layoutY="98.0" prefHeight="433.0" prefWidth="800.0">
-               <children>
-                  <AnchorPane fx:id="linesPlane" prefHeight="431.0" prefWidth="800.0" />
-               </children>
-            </AnchorPane>
+            <AnchorPane fx:id="anchor" layoutY="98.0" prefHeight="433.0" prefWidth="800.0" />
             <VBox prefHeight="155.0" prefWidth="800.0">
                <children>
                   <HBox prefHeight="30.0" prefWidth="525.0" spacing="36.0">

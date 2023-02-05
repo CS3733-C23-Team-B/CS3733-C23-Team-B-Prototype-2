@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -20,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
   @FXML AnchorPane anchor;
@@ -28,10 +30,21 @@ public class MapEditorController {
   Map<Circle, NodeInfo> nodeList;
   AnchorPane currentPopUp;
   private final int popUpHeight = 110;
+  private GesturePane pane;
+  private AnchorPane aPane = new AnchorPane();
 
   public void initialize() {
     nodeList = new HashMap<>();
     Map<String, Node> nodes;
+
+    ImageView i =
+        new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
+    pane = new GesturePane();
+    pane.setPrefHeight(433);
+    pane.setPrefWidth(800);
+    aPane.getChildren().add(i);
+    pane.setContent(aPane);
+    anchor.getChildren().add(pane);
 
     try {
       nodes = Node.getAll();
@@ -71,13 +84,13 @@ public class MapEditorController {
     clearPopUp();
     NodeInfo node = nodeList.get(dot);
 
-    AnchorPane aPane = new AnchorPane();
-    aPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
-    aPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 - popUpHeight);
-    aPane.setStyle("-fx-background-color: FFFFFF; -fx-border-color: black;");
+    AnchorPane popPane = new AnchorPane();
+    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
+    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 - popUpHeight);
+    popPane.setStyle("-fx-background-color: FFFFFF; -fx-border-color: black;");
 
     VBox vbox = new VBox();
-    aPane.getChildren().add(vbox);
+    popPane.getChildren().add(vbox);
 
     Text id = new Text("NodeID:   " + node.getNodeID());
     Text pos = new Text("(x, y):  " + "(" + node.getXCoord() + ", " + node.getYCoord() + ")");
@@ -98,7 +111,7 @@ public class MapEditorController {
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
 
-    anchor.getChildren().add(aPane);
+    aPane.getChildren().add(popPane);
     currentPopUp = aPane;
   }
 
@@ -111,7 +124,7 @@ public class MapEditorController {
 
   private Circle placeNode(NodeInfo nodeInfo) {
     Circle dot = new Circle(scaleX(nodeInfo), scaleY(nodeInfo), 6, Color.RED);
-    anchor.getChildren().add(dot);
+    aPane.getChildren().add(dot);
     dot.getStyleClass().add("intersection");
     dot.addEventHandler(
         MouseEvent.MOUSE_CLICKED,
@@ -122,15 +135,15 @@ public class MapEditorController {
   }
 
   private double scaleX(NodeInfo n) {
-    double padding = 15;
-    double xScaler = (2770 - 1630) / (800 - padding);
-    return ((n.getXCoord() - 1637) / xScaler) + (padding / 2);
+    double padding = 2000;
+    double xScalar = (2770 - 1630) / (5000 - padding);
+    return ((n.getXCoord() - 1637) / xScalar) + (padding / 2);
   }
 
   private double scaleY(NodeInfo n) {
-    double padding = 15;
-    double yScaler = (2260 - 799) / (380 - padding);
-    return (((n.getYCoord() - 799) / yScaler) + (padding / 2)) + 150;
+    double padding = 1000;
+    double yScalar = (2260 - 799) / (3400 - padding);
+    return (((n.getYCoord() - 799) / yScalar) + (padding / 2));
   }
 
   public void handleClick() {

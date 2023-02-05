@@ -37,7 +37,7 @@ public class NavigationController {
     Navigation.navigate(Screen.MAP_DATA_EDITOR);
   }
 
-  public void requestsButtonClicked() throws IOException {
+  public void submittedRequestsButtonClicked() throws IOException {
     Navigation.navigate(Screen.REQUESTS);
   }
 

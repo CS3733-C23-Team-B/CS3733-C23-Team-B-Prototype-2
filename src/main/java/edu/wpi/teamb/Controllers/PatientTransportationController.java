@@ -117,7 +117,7 @@ public class PatientTransportationController extends BaseRequestController {
     request.setPatientID(this.patientIDField.getText());
 
     DBSession DB = DBSession.getInstance();
-    DBSession.addTPRequest(request);
+    // DBSession.addTPRequest(request);
 
     // TODO: show confirmation page
     Navigation.navigate(Screen.SUBMISSION_SUCCESS);

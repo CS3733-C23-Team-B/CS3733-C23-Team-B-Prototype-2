@@ -1,7 +1,6 @@
 package edu.wpi.teamb.Database;
 
-import edu.wpi.teamb.Entities.PatientTransportationRequest;
-import edu.wpi.teamb.HibernateUtil;
+import edu.wpi.teamb.SessionGetter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,8 +8,6 @@ import org.hibernate.Transaction;
 public class DBSession {
 
   private static DBSession instance = null;
-
-  private static HibernateUtil hu = new HibernateUtil();
 
   private DBSession() {};
 
@@ -24,32 +21,16 @@ public class DBSession {
   public static void main(String[] args) {
     DBSession db = new DBSession();
     NodeH n = new NodeH();
-    n.setNodeID("Test");
-    n.setXcoord(5);
-    n.setYcoord(5);
-    n.setFloor("Tester");
-    n.setBuilding("Building Test");
+    n.setNodeID("Test2");
+    n.setXcoord(52);
+    n.setYcoord(52);
+    n.setFloor("Tester2");
+    n.setBuilding("Building Test2");
     db.addNodeH(n);
   }
 
-  public static void addTPRequest(PatientTransportationRequest ptr) {
-    SessionFactory sf = hu.getSessionFactory();
-    Session session = sf.openSession();
-    Transaction tx = null;
-    try {
-      tx = session.beginTransaction();
-      session.persist(ptr);
-      tx.commit();
-    } catch (Exception e) {
-      if (tx != null) tx.rollback();
-      e.printStackTrace();
-    } finally {
-      session.close();
-    }
-  }
-
   public static void addNodeH(NodeH aNode) {
-    SessionFactory sf = HibernateUtil.getSessionFactory();
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     Transaction tx = null;
     try {

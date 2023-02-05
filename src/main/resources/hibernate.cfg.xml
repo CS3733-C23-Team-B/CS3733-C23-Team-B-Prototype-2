@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version='1.0' encoding='utf-8'?>
 <!--
   ~ Hibernate, Relational Persistence for Idiomatic Java
   ~
   ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
-  ~ See the lgpl.txt file in the root directory or http://www.gnu.org/licenses/lgpl-2.1.html.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
   -->
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
@@ -18,8 +18,7 @@
         <property name="connection.password">teamb20</property>
         <property name="connection.autocommit">false</property>
 
-
-        <property name="hibernate.default_schema">iterOne</property>
+        <property name="default_schema">iter1</property>
 
         <property name="connection.pool_size">1</property>
 
@@ -29,11 +28,13 @@
         <property name="show_sql">false</property>
 
         <!-- Drop and re-create the database schema on startup -->
+
         <property name="hibernate.hbm2ddl.auto">update</property>
 
+        <mapping class="edu.wpi.teamb.Database.NodeH"/>
 
-        <!--        <mapping class="edu.wpi.teamb.Person"/>-->
-        <mapping resource = "NodeH.hbm.xml"/>
+
+
         <!-- Names the annotated entity class -->
     </session-factory>
 </hibernate-configuration>

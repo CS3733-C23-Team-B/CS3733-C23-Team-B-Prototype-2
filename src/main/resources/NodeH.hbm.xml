@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="edu.wpi.teamb.Database.NodeH" table="nodeh" schema="iterOne">
+    <class name="edu.wpi.teamb.Database.NodeH" table="nodeh">
         <id name="nodeID" type="String" column="nodeID">
         </id>
         <property name = "xcoord" type = "int">

@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -7,7 +8,7 @@ import java.util.Map;
 
 @Entity
 @Table(name = "locationname")
-public class LocationName {
+public class LocationName implements IORM {
   @Id
   @Column(name = "longname", length = 70)
   private String longName;
@@ -39,4 +40,9 @@ public class LocationName {
   public void update() throws SQLException {}
 
   public void delete() throws SQLException {}
+
+  @Override
+  public String getSearchStr() {
+    return "FROM locationname WHERE longname = '" + longName + "'";
+  }
 }

@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.Setter;
  * class that represents the node table in the Database, allows, insertions, deletions, and other
  * interactions with the node table in the database
  */
-public class Node {
+public class Node implements IORM {
 
   @Id @Getter @Setter private String nodeID;
 
@@ -54,5 +55,10 @@ public class Node {
     }
     String id = floor + "X" + x + "Y" + y;
     return id;
+  }
+
+  @Override
+  public String getSearchStr() {
+    return "FROM node WHERE nodeid = '" + nodeID + "'";
   }
 }

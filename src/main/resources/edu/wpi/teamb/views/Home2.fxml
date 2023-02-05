@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
    <center>
       <VBox prefHeight="539.0" prefWidth="1720.0" BorderPane.alignment="CENTER">
          <children>
@@ -16,27 +16,27 @@
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Welcome to Brigham and Women's Hospital" textAlignment="CENTER" wrappingWidth="1300.0">
                      <font>
-                        <Font name="System Bold" size="90.0" />
+                        <Font name="System Bold" size="96.0" />
                      </font>
                   </Text>
                </children>
                <VBox.margin>
-                  <Insets top="100.0" />
+                  <Insets />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button maxWidth="500.0" minHeight="200.0" minWidth="500.0" mnemonicParsing="false" onAction="#featureOneButtonClicked" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                  <Button maxWidth="500.0" minHeight="-Infinity" minWidth="508.0" mnemonicParsing="false" onAction="#featureOneButtonClicked" prefHeight="90.0" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
-                        <Font name="System Bold" size="50.0" />
+                        <Font name="System Bold" size="40.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="200.0" />
                      </HBox.margin>
                   </Button>
-                  <Button layoutX="10.0" layoutY="10.0" maxWidth="500.0" minHeight="200.0" minWidth="500.0" mnemonicParsing="false" onAction="#databaseButtonClicked" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Database" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                  <Button layoutX="10.0" layoutY="10.0" maxWidth="500.0" minHeight="-Infinity" minWidth="508.0" mnemonicParsing="false" onAction="#databaseButtonClicked" prefHeight="90.0" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Database" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                      <font>
-                        <Font name="System Bold" size="50.0" />
+                        <Font name="System Bold" size="40.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="320.0" />

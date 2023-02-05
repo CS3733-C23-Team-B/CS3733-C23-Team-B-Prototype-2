@@ -18,7 +18,7 @@
         <property name="connection.password">teamb20</property>
         <property name="connection.autocommit">false</property>
 
-        <property name="default_schema">public</property>
+        <property name="default_schema">iter1</property>
 
         <property name="connection.pool_size">1</property>
 

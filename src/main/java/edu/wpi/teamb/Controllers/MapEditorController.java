@@ -48,13 +48,14 @@ public class MapEditorController {
     Map<String, Node> nodes;
 
     ImageView i =
-        new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
+        new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
     aPane.getChildren().add(i);
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
+    i.setOnMouseClicked(e -> handleClick());
 
     try {
       nodes = Node.getAll();
@@ -107,7 +108,7 @@ public class MapEditorController {
     Text pos = new Text("(x, y):  " + "(" + node.getXCoord() + ", " + node.getYCoord() + ")");
     Text loc = new Text(node.getLocation());
     Button editButton = new Button("Edit");
-    editButton.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+    editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
     editButton.setOnAction(
         (eventAction) -> {
           try {
@@ -157,7 +158,7 @@ public class MapEditorController {
   }
 
   private Circle placeNode(NodeInfo nodeInfo) {
-    Circle dot = new Circle(scaleX(nodeInfo), scaleY(nodeInfo), 6, Color.RED);
+    Circle dot = new Circle(nodeInfo.getXCoord(), nodeInfo.getYCoord(), 6, Color.RED);
     aPane.getChildren().add(dot);
     dot.getStyleClass().add("intersection");
     dot.addEventHandler(

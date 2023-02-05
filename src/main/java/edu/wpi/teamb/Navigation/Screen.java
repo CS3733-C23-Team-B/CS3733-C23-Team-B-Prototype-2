@@ -5,6 +5,9 @@ public enum Screen {
   DATABASE_HELP("views/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/MapDataEditor.fxml"),
   MAP_EDITOR("views/MapEditor.fxml"),
+  NODE_EDITOR("views/EditNodePopup.fxml"),
+  LOCATION_EDITOR("views/LocationEditor.fxml"),
+  DATABASE_UI("views/DatabaseUI.fxml"),
   NAVIGATION("views/navigation2.fxml"),
   PATHFINDING("views/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/PatientTransportation.fxml"),
@@ -15,7 +18,6 @@ public enum Screen {
   REQUESTS("views/requests.fxml"),
   PROFILE("views/Profile.fxml"),
   MAINHELP("views/MainHelpPage.fxml"),
-  NODE_EDITOR("views/EditNodePopup.fxml"),
   FOOTER("views/Footer.fxml"),
   SUBMISSION_SUCCESS("views/submissionSuccess.fxml"),
   ABOUT("views/About.fxml");

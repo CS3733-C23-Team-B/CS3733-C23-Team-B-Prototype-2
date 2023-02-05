@@ -35,9 +35,9 @@ public class DatabaseController {
 
   /** Method run when controller is initialized */
   public void initialize() {
-    nodeSearchButton.setOnAction((actionEvent) -> getNodeData());
-    edgeQuery.setOnAction((actionEvent) -> getEdgeData());
-    dataHelp.setOnAction((actionEvent) -> changeToHelp());
+    //    nodeSearchButton.setOnAction((actionEvent) -> getNodeData());
+    //    edgeQuery.setOnAction((actionEvent) -> getEdgeData());
+    //    dataHelp.setOnAction((actionEvent) -> changeToHelp());
     exit.setOnAction(
         (actionEvent) -> {
           try {
@@ -94,12 +94,6 @@ public class DatabaseController {
     String newLoc = locationField.getText();
     Map<String, LocationName> allLocs = LocationName.getAll();
     LocationName loc = allLocs.get(oldLocName);
-
-    // @TODO: Jack, what is goin on here
-    //    loc.set
-    //    if (newLoc.length() > 0) {
-    //      n.setShortName(newLoc);
-    //    }
   }
 
   /** Queries data from database, displays in list */

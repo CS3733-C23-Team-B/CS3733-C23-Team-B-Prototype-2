@@ -26,7 +26,7 @@ public class NavigationController {
   }
 
   public void aboutButtonClicked() {
-    Navigation.navigate(Screen.ABOUT);
+    Navigation.navigate(Screen.DATABASE_UI);
   }
 
   public void homeButtonClicked() throws IOException {

@@ -4,6 +4,7 @@ import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
+import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.io.IOException;
@@ -184,6 +185,14 @@ public class MapEditorController {
   public void handleClick() {
     selectedCircle.set(null);
     clearPopUp();
+  }
+
+  public void locations() {
+    Navigation.navigate(Screen.LOCATION_EDITOR);
+  }
+
+  public void home() {
+    //    Navigation.navigate(Screen.HOME);
   }
 
   static NodeInfo getCurrentNode() {

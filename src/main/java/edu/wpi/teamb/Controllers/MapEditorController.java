@@ -10,17 +10,24 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
 public class MapEditorController {
   @FXML AnchorPane anchor;
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, NodeInfo> nodeList;
-  Circle lastClicked;
+  AnchorPane currentPopUp;
+  private final int popUpHeight = 110;
 
   public void initialize() {
     nodeList = new HashMap<>();
@@ -55,10 +62,51 @@ public class MapEditorController {
           }
           if (newSelection != null) {
             newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
-            System.out.println(nodeList.get(newSelection).getNodeID());
-            lastClicked = newSelection;
+            displayPopUp(newSelection);
           }
         });
+  }
+
+  public void displayPopUp(Circle dot) {
+    clearPopUp();
+    NodeInfo node = nodeList.get(dot);
+
+    AnchorPane aPane = new AnchorPane();
+    aPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
+    aPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 - popUpHeight);
+    aPane.setStyle("-fx-background-color: FFFFFF; -fx-border-color: black;");
+
+    VBox vbox = new VBox();
+    aPane.getChildren().add(vbox);
+
+    Text id = new Text("NodeID:   " + node.getNodeID());
+    Text pos = new Text("(x, y):  " + "(" + node.getXCoord() + ", " + node.getYCoord() + ")");
+    Text loc = new Text(node.getLocation());
+    Button editButton = new Button("Edit");
+    editButton.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+    vbox.setSpacing(5);
+    //    vbox.setAlignment(Pos.CENTER);
+    vbox.setPadding(new Insets(10, 10, 10, 10));
+
+    vbox.getChildren().add(id);
+    vbox.getChildren().add(pos);
+    vbox.getChildren().add(loc);
+
+    HBox hbox = new HBox();
+    hbox.getChildren().add(editButton);
+    hbox.setAlignment(Pos.CENTER);
+    vbox.getChildren().add(hbox);
+
+    anchor.getChildren().add(aPane);
+    currentPopUp = aPane;
+  }
+
+  public void clearPopUp() {
+    if (currentPopUp != null) {
+      anchor.getChildren().remove(currentPopUp);
+      currentPopUp = null;
+    }
   }
 
   private Circle placeNode(NodeInfo nodeInfo) {
@@ -87,5 +135,6 @@ public class MapEditorController {
 
   public void handleClick() {
     selectedCircle.set(null);
+    clearPopUp();
   }
 }

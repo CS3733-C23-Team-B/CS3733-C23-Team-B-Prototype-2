@@ -1,9 +1,9 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Database.Transportation;
+import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import java.sql.SQLException;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RequestsController {
   @FXML TableView requestsTable;
-  @FXML TableView requestsTable1;
   @FXML TableColumn nameColumn;
   @FXML TableColumn equipmentColumn;
   @FXML TableColumn urgencyColumn;
@@ -23,7 +22,7 @@ public class RequestsController {
   @FXML TableColumn statusColumn;
 
   public void initialize() {
-    List<Transportation> requestList;
+    List<Object> requestList;
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
     equipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipment"));
     urgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
@@ -32,15 +31,12 @@ public class RequestsController {
     notesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
     statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-    try {
-      requestList = Transportation.getAll();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-    requestList.forEach(
-        (value) -> {
-          requestsTable1.getItems().add(value);
-        });
+    requestList = DBSession.getAll(ORMType.PTREQUEST);
+    //        requestList.forEach(
+    //            (value) -> {
+    //               //requestsTable.getItems().add(value);
+    //              System.out.println(value);
+    //            });
     Button b = new Button();
     b.setText("Back");
     b.setOnAction(e -> Navigation.navigate(Screen.REQUESTS));

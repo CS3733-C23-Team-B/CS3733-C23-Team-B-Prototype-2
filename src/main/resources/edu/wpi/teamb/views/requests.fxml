@@ -34,7 +34,7 @@
                         <Insets left="40.0" top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <TableView fx:id="requestsTable1" prefHeight="494.0" prefWidth="800.0">
+                  <TableView fx:id="requestsTable" prefHeight="494.0" prefWidth="800.0">
                       <columns>
                           <TableColumn fx:id="nameColumn" prefWidth="110.00000011920929" text="Name" />
                           <TableColumn fx:id="equipmentColumn" prefWidth="92.66665649414062" text="Equipment" />

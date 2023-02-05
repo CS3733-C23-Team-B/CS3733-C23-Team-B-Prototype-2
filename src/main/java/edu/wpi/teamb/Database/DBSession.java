@@ -5,12 +5,10 @@ import edu.wpi.teamb.Entities.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.SanitationRequest;
 import edu.wpi.teamb.SessionGetter;
 import java.sql.Date;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DBSession {
 
@@ -61,13 +59,11 @@ public class DBSession {
     Transaction tx = null;
     try {
       tx = session.beginTransaction();
-      List<Object> objects = session.createQuery("SELECT * FROM "
-      + ot.toString()).list();
+      List<Object> objects = session.createQuery("SELECT * FROM iter1." + ot.toString()).list();
       return objects;
     } catch (Exception e) {
       e.printStackTrace();
     }
     return null;
   }
-
 }

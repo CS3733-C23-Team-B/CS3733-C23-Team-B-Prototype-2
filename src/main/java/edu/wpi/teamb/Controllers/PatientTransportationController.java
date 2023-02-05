@@ -75,24 +75,8 @@ public class PatientTransportationController extends BaseRequestController {
     }
 
     // CSVWriter.writeCsv("patientTransportationRequests", saveInfo);
-    clearButtonClicked();
 
-    // insert into database:
-    //    Transportation newRequest =
-    //        new Transportation(
-    //            saveInfo[0],
-    //            saveInfo[1],
-    //            saveInfo[2],
-    //            saveInfo[3],
-    //            saveInfo[4],
-    //            saveInfo[5],
-    //            saveInfo[6],
-    //            saveInfo[7],
-    //            saveInfo[9],
-    //            saveInfo[8],
-    //            RequestStatus.PROCESSING);
-    //    newRequest.insert();
-    PatientTransportationRequest request = PatientTransportationRequest.getInstance();
+    PatientTransportationRequest request = new PatientTransportationRequest();
     request.setFirstName(firstNameField.getText());
     request.setLastName(lastNameField.getText());
     request.setEmployeeID(employeeIDField.getText());
@@ -116,10 +100,9 @@ public class PatientTransportationController extends BaseRequestController {
     request.setPatientDestination(this.patientDestinationField.getText());
     request.setPatientID(this.patientIDField.getText());
 
-    DBSession DB = DBSession.getInstance();
-    // DBSession.addTPRequest(request);
+    DBSession.addORM(request);
 
-    // TODO: show confirmation page
+    clearButtonClicked();
     Navigation.navigate(Screen.SUBMISSION_SUCCESS);
   }
 }

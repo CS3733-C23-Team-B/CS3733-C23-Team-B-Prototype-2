@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Entities.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.SanitationRequest;
 import edu.wpi.teamb.SessionGetter;
@@ -7,6 +8,9 @@ import java.sql.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBSession {
 
@@ -49,4 +53,21 @@ public class DBSession {
       session.close();
     }
   }
+
+  public static List<Object> getAll(ORMType ot) {
+
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    Transaction tx = null;
+    try {
+      tx = session.beginTransaction();
+      List<Object> objects = session.createQuery("SELECT * FROM "
+      + ot.toString()).list();
+      return objects;
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
 }

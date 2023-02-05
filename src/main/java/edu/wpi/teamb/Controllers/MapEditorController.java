@@ -112,12 +112,12 @@ public class MapEditorController {
     vbox.getChildren().add(hbox);
 
     aPane.getChildren().add(popPane);
-    currentPopUp = aPane;
+    currentPopUp = popPane;
   }
 
   public void clearPopUp() {
     if (currentPopUp != null) {
-      anchor.getChildren().remove(currentPopUp);
+      aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
     }
   }

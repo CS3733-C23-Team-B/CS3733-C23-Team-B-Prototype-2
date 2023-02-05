@@ -22,7 +22,6 @@ public class DBSession {
 
   public static void main(String[] args) {
     DBSession db = new DBSession();
-
     PatientTransportationRequest t = new PatientTransportationRequest();
     db.addORM(t);
     SanitationRequest s = new SanitationRequest();
@@ -44,4 +43,8 @@ public class DBSession {
       session.close();
     }
   }
+
+  public static getAll()
+
+
 }

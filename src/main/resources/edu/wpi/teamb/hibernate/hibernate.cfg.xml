@@ -31,7 +31,9 @@
 
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="edu.wpi.teamb.Database.NodeH"/>
+
+        <!-- Mapping Classes       -->
+        <mapping class="edu.wpi.teamb.Database.Node"/>
         <mapping class="edu.wpi.teamb.Entities.PatientTransportationRequest"/>
         <mapping class="edu.wpi.teamb.Entities.SanitationRequest"/>
 

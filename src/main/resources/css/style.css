@@ -40,3 +40,18 @@
 .menu-button > .arrow-button > .arrow {
     -fx-padding: 0;
 }
+
+@font-face {
+    font-family: "Nunito";
+    src: url("media/Nunito-Regular.ttf");
+}
+
+#homeButton{
+    -fx-background-image: url("media/brigham.png");
+    -fx-background-position: top left;
+}
+
+.root {
+    -fx-font-family: "Nunito";
+    -fx-font-size: 14px;
+}

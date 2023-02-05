@@ -52,21 +52,27 @@ public class NodeInfo {
   public String getNodeID() {
     return nodeID;
   }
+
   public int getXCoord() {
     return xCoord;
   }
+
   public int getYCoord() {
     return yCoord;
   }
+
   public String getLocation() {
     return location;
   }
+
   public String getFloor() {
     return floor;
   }
+
   public Date getMoveDate() {
     return moveDate;
   }
+
   public String getEdges() {
     return edges;
   }
@@ -74,18 +80,23 @@ public class NodeInfo {
   public void setxCoord(int xCoord) {
     this.xCoord = xCoord;
   }
+
   public void setyCoord(int yCoord) {
     this.yCoord = yCoord;
   }
+
   public void setLocation(String location) {
     this.location = location;
   }
+
   public void setFloor(String floor) {
     this.floor = floor;
   }
+
   public void setMoveDate(Date moveDate) {
     this.moveDate = moveDate;
   }
+
   public void setEdges(String edges) {
     this.edges = edges;
   }

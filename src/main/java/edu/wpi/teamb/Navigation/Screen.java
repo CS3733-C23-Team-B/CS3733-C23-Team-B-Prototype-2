@@ -15,6 +15,7 @@ public enum Screen {
   REQUESTS("views/requests.fxml"),
   PROFILE("views/Profile.fxml"),
   MAINHELP("views/MainHelpPage.fxml"),
+  NODE_EDITOR("views/EditNodePopup.fxml"),
   FOOTER("views/Footer.fxml"),
   SUBMISSION_SUCCESS("views/submissionSuccess.fxml"),
   ABOUT("views/About.fxml");

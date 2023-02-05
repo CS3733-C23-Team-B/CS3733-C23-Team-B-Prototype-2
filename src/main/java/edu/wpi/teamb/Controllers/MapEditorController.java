@@ -1,17 +1,22 @@
 package edu.wpi.teamb.Controllers;
 
+import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
+import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
@@ -99,7 +105,14 @@ public class MapEditorController {
     Text loc = new Text(node.getLocation());
     Button editButton = new Button("Edit");
     editButton.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
-
+    editButton.setOnAction(
+        (eventAction) -> {
+          try {
+            editClicked();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     vbox.setSpacing(5);
     //    vbox.setAlignment(Pos.CENTER);
     vbox.setPadding(new Insets(10, 10, 10, 10));
@@ -118,7 +131,21 @@ public class MapEditorController {
     currentNode = node;
   }
 
-  public void clearPopUp() {
+  private void editClicked() throws IOException {
+    Stage newWindow = new Stage();
+    final String filename = Screen.NODE_EDITOR.getFilename();
+    try {
+      final var resource = Bapp.class.getResource(filename);
+      final FXMLLoader loader = new FXMLLoader(resource);
+      Scene scene = new Scene(loader.load(), 400, 350);
+      newWindow.setScene(scene);
+      newWindow.show();
+    } catch (NullPointerException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void clearPopUp() {
     if (currentPopUp != null) {
       aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
@@ -155,7 +182,7 @@ public class MapEditorController {
     clearPopUp();
   }
 
-  public static NodeInfo getCurrentNode() {
+  static NodeInfo getCurrentNode() {
     return currentNode;
   }
 }

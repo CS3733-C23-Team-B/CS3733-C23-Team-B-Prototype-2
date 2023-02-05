@@ -75,7 +75,8 @@ public class MapDataEditorController {
       String edges = "";
       for (String edge : Pathfinding.getDirectPaths(nodeID)) edges += edge + ", ";
       edges = edges.substring(0, edges.length() - 2);
-      nodeList.add(new NodeInfo(nodeID, xCoord, yCoord, location, floor, moveDate, edges, node, move));
+      nodeList.add(
+          new NodeInfo(nodeID, xCoord, yCoord, location, floor, moveDate, edges, node, move));
     }
 
     nodeList.forEach((value) -> dataTable.getItems().add(value));

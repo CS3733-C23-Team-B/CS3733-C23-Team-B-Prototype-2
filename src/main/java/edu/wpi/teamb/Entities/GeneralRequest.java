@@ -16,12 +16,12 @@ public class GeneralRequest {
   @Column(name = "firstname", length = 20)
   @Getter
   @Setter
-  private String firstName;
+  private String firstname;
 
   @Column(name = "lastname", length = 20)
   @Getter
   @Setter
-  private String lastName;
+  private String lastname;
 
   @Column(name = "email", length = 20)
   @Getter

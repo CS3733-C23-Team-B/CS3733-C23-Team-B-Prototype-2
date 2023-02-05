@@ -58,8 +58,8 @@ public class sanitationServiceController extends BaseRequestController {
 
     SanitationRequest request = SanitationRequest.getInstance();
 
-    request.setFirstName(firstNameField.getText());
-    request.setLastName(lastNameField.getText());
+    request.setFirstname(firstNameField.getText());
+    request.setLastname(lastNameField.getText());
     request.setEmployeeID(employeeIDField.getText());
     request.setEmail(emailField.getText());
     request.setNotes(additionalNotesField.getText());

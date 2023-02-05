@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Entities.PatientTransportationRequest;
+import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
@@ -77,8 +78,8 @@ public class PatientTransportationController extends BaseRequestController {
     // CSVWriter.writeCsv("patientTransportationRequests", saveInfo);
 
     PatientTransportationRequest request = new PatientTransportationRequest();
-    request.setFirstName(firstNameField.getText());
-    request.setLastName(lastNameField.getText());
+    request.setFirstname(firstNameField.getText());
+    request.setLastname(lastNameField.getText());
     request.setEmployeeID(employeeIDField.getText());
     request.setEmail(emailField.getText());
     //    add status
@@ -95,11 +96,11 @@ public class PatientTransportationController extends BaseRequestController {
     if (equipment == null) {
       equipment = "";
     }
-    request.setEquipmentNeeded(equipment.toString());
-    request.setPatientLocation(this.patientLocationField.getText());
-    request.setPatientDestination(this.patientDestinationField.getText());
+    request.setEquipment(equipment.toString());
+    request.setLocation(this.patientLocationField.getText());
+    request.setDestination(this.patientDestinationField.getText());
     request.setPatientID(this.patientIDField.getText());
-
+    request.setStatus(RequestStatus.PROCESSING);
     DBSession.addORM(request);
 
     clearButtonClicked();

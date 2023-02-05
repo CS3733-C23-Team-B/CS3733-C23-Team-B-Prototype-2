@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXContextMenuItem?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.HBox?>
@@ -62,11 +62,11 @@
                   <Font size="24.0" />
                </font>
             </MFXButton>
-            <MFXComboBox id="menuIcon" minWidth="-Infinity" prefHeight="48.0" prefWidth="48.0" style="-fx-border-color: #00077A;">
+            <MFXContextMenuItem id="menuIcon">
                <HBox.margin>
-                  <Insets left="55.0" top="20.0" />
+                  <Insets left="55.0" />
                </HBox.margin>
-            </MFXComboBox>
+            </MFXContextMenuItem>
             <MFXButton id="navBarButton" minWidth="-Infinity" prefWidth="80.0" style="-fx-background-color: #00077A;" text="Exit" textFill="WHITE">
                <HBox.margin>
                   <Insets left="10.0" top="20.0" />

@@ -61,6 +61,7 @@ public class DBSession {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery("FROM " + ot.toString());
       List<Object> objects = q.list();
+      session.close();
       return objects;
     } catch (Exception e) {
       e.printStackTrace();
@@ -76,6 +77,7 @@ public class DBSession {
     try {
       tx = session.beginTransaction();
       session.createQuery("DELETE " + iorm.getSearchStr());
+      session.close();
     } catch (Exception e) {
       e.printStackTrace();
     }

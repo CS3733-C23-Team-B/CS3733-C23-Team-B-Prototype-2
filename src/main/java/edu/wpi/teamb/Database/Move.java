@@ -1,20 +1,28 @@
 package edu.wpi.teamb.Database;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "move")
 public class Move {
 
   public static final String tableName = "move";
 
+  @Id
+  @Column(name = "nodeID", length = 20)
   private String nodeID;
 
+  @Column(name = "longname", length = 70)
   private String longName;
 
+  @Column(name = "movedate", length = 20)
   private Date moveDate;
 
   public Move(String nodeID, String longName, Date moveDate) {
@@ -23,62 +31,20 @@ public class Move {
     this.moveDate = moveDate;
   }
 
-  public static void initTable() throws SQLException {
-    String sql =
-        String.join(
-            " ",
-            "CREATE TABLE move",
-            "(nodeID CHAR(10),",
-            "longName VARCHAR(70),",
-            "moveDate DATE,",
-            "PRIMARY KEY (nodeID, longName, moveDate),",
-            "FOREIGN KEY (nodeID) REFERENCES Node(nodeID) ON UPDATE CASCADE,",
-            "FOREIGN KEY (longName) REFERENCES LocationName (longName) ON UPDATE CASCADE );");
-    Bdb.processUpdate(sql);
-  }
+  public Move() {}
+
+  public static void initTable() throws SQLException {}
 
   public static ArrayList<Move> getAll() throws SQLException {
     ArrayList<Move> moves = new ArrayList<Move>();
-    String sql = "SELECT * FROM move;";
-    ResultSet rs = Bdb.processQuery(sql);
-    while (rs.next()) {
-      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
-    }
     return moves;
   }
 
-  public void insert() throws SQLException {
-    String sql = "INSERT INTO move (nodeID, longName, moveDate) " + "VALUES (?,?,?);";
-    PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, nodeID);
-    ps.setString(2, longName);
-    ps.setDate(3, moveDate);
-  }
+  public void insert() throws SQLException {}
 
-  public void update() throws SQLException {
-    String sql =
-        "UPDATE move "
-            + "SET nodeID = ?, longName = ?, moveDate = ? "
-            + "WHERE nodeID = ?, longName = ?, moveDate = ?;";
+  public void update() throws SQLException {}
 
-    PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, nodeID);
-    ps.setString(2, longName);
-    ps.setDate(3, moveDate);
-    ps.setString(4, nodeID);
-    ps.setString(5, longName);
-    ps.setDate(6, moveDate);
-    ps.executeUpdate();
-  }
-
-  public void delete() throws SQLException {
-    String sql = "DELETE FROM move WHERE nodeID = ?, longName = ?, moveDate = ?;";
-    PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, nodeID);
-    ps.setString(2, longName);
-    ps.setDate(3, moveDate);
-    ps.executeUpdate();
-  }
+  public void delete() throws SQLException {}
 
   public static String getTableName() {
     return tableName.toLowerCase();
@@ -92,13 +58,7 @@ public class Move {
 
   public static String getLocationName(String nodeID) throws SQLException {
     String sql = "SELECT longName FROM move WHERE nodeID = " + nodeID;
-    ResultSet rs = Bdb.processQuery(sql);
-    rs.next();
-    if (rs.wasNull()) {
-      return "";
-    } else {
-      return rs.getString("longName");
-    }
+    return sql;
   }
 
   public String getLongName() {
@@ -150,20 +110,12 @@ public class Move {
   private static List<Move> getAllLN(String LNSearch) throws SQLException {
     String sql = "SELECT * FROM move WHERE longName = '" + LNSearch + "';";
     ArrayList<Move> moves = new ArrayList<Move>();
-    ResultSet rs = Bdb.processQuery(sql);
-    while (rs.next()) {
-      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
-    }
     return moves;
   }
 
   private static List<Move> getAllNodeID(String IDSearch) throws SQLException {
     String sql = "SELECT * FROM move WHERE nodeID = '" + IDSearch + "';";
     ArrayList<Move> moves = new ArrayList<Move>();
-    ResultSet rs = Bdb.processQuery(sql);
-    while (rs.next()) {
-      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
-    }
     return moves;
   }
 

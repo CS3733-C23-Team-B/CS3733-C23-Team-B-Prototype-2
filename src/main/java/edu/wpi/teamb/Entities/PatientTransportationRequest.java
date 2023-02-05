@@ -5,22 +5,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "transportation")
+@Table(name = "PatientTransportationRequest")
 public class PatientTransportationRequest extends GeneralRequest {
   @Id private Long id;
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "equipment", length = 20)
+  @Column(name = "equipmentNeeded", length = 20)
   @Getter
   @Setter
   private String equipmentNeeded;
 
-  @Column(name = "location", length = 20)
+  @Column(name = "patientLocation", length = 20)
   @Getter
   @Setter
   private String patientLocation;
 
-  @Column(name = "destination", length = 20)
+  @Column(name = "patientDestination", length = 20)
   @Getter
   @Setter
   private String patientDestination;

@@ -14,8 +14,6 @@ public class DBSession {
 
   private DBSession() {};
 
-  static {
-  }
 
   public static DBSession getInstance() {
     if (instance == null) {

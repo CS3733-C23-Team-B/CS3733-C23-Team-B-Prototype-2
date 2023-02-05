@@ -1,14 +1,22 @@
 package edu.wpi.teamb.Database;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Table(name = "login")
 public class Login {
   private static final String tableName = "login";
-  private String username, password;
+
+  @Column(name = "username", length = 70)
+  private String username;
+
+  @Column(name = "password", length = 70)
+  private String password;
 
   public Login(String username, String password) {
     this.username = username;

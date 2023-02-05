@@ -7,8 +7,8 @@ import lombok.Setter;
 @Entity
 @Table(name = "PatientTransportationRequest")
 @PrimaryKeyJoinColumn(
-        name = "PatientTransportationRequestID",
-        foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey"))
+    name = "PatientTransportationRequestID",
+    foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey"))
 public class PatientTransportationRequest extends GeneralRequest {
   @Id private Long id;
 

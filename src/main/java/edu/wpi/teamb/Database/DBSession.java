@@ -20,13 +20,8 @@ public class DBSession {
 
   public static void main(String[] args) {
     DBSession db = new DBSession();
-    NodeH n = new NodeH();
-    n.setNodeID("Test2");
-    n.setXcoord(52);
-    n.setYcoord(52);
-    n.setFloor("Tester2");
-    n.setBuilding("Building Test2");
-    db.addNodeH(n);
+    LocationName ln = new LocationName("test", "t", "bathroom");
+    addLocationName(ln);
   }
 
   public static void addNodeH(NodeH aNode) {
@@ -36,6 +31,22 @@ public class DBSession {
     try {
       tx = session.beginTransaction();
       session.persist(aNode);
+      tx.commit();
+    } catch (Exception e) {
+      if (tx != null) tx.rollback();
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
+
+  public static void addLocationName(LocationName ln) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    Transaction tx = null;
+    try {
+      tx = session.beginTransaction();
+      session.persist(ln);
       tx.commit();
     } catch (Exception e) {
       if (tx != null) tx.rollback();

@@ -29,6 +29,10 @@ public class NavigationController {
     Navigation.navigate(Screen.PATHFINDING);
   }
 
+  public void locationNodeEditorButtonClicked() throws IOException {
+    Navigation.navigate(Screen.LOCATION_NODE_EDITOR);
+  }
+
   public void aboutButtonClicked() {
     Navigation.navigate(Screen.ABOUT);
   }

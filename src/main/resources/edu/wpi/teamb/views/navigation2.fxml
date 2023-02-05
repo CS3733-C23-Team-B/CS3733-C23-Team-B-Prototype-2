@@ -70,7 +70,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#signOutClicked" text="Sign Out" />
               </items>
                <HBox.margin>
-                  <Insets left="55.0" top="20.0" />
+                  <Insets left="85.0" top="20.0" />
                </HBox.margin>
             </MenuButton>
             <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#exitButtonClicked" prefWidth="80.0" style="-fx-background-color: #00077A;" text="Exit" textFill="WHITE">

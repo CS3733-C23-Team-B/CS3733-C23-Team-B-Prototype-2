@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.NodeInfo;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,10 +19,11 @@ public class NodeEditorController {
   public void initialize() {
     ObservableList<String> floors = FXCollections.observableArrayList();
     for (String s : new String[] {"L1", "L2"}) floors.add(s);
-    floorBox.setItems(floors);
     xField.setPromptText("" + node.getXCoord());
     yField.setPromptText("" + node.getYCoord());
     origFloor = node.getFloor();
+    floorBox.setItems(floors);
+    floorBox.setValue(origFloor);
   }
 
   public void submitClicked() {
@@ -44,7 +46,11 @@ public class NodeEditorController {
       changed = true;
     }
 
-    if (changed) node.update();
+    if (changed) {
+      node.update();
+      Pathfinding.refreshData();
+    }
+    cancelClicked();
   }
 
   public void cancelClicked() {

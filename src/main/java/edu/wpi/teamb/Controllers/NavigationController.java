@@ -13,15 +13,14 @@ public class NavigationController {
   @FXML private Button homeButton;
   @FXML private BorderPane border;
 
-  public void featureOneButtonClicked() throws IOException {
-    Navigation.navigate(Screen.PATIENT_TRANSPORTATION);
+  // need landing page to be done for this
+  /*
+  public void serviceRequestFormsButtonClicked() throws IOException {
+    Navigation.navigate(Screen.SERVICE_REQUEST_FORMS);
   }
+  */
 
-  public void featureTwoButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SANITATION);
-  }
-
-  public void pathfindingClicked() throws IOException {
+  public void pathfindingButtonClicked() throws IOException {
     Navigation.navigate(Screen.PATHFINDING);
   }
 
@@ -37,7 +36,7 @@ public class NavigationController {
     Navigation.navigate(Screen.MAP_DATA_EDITOR);
   }
 
-  public void requestsButtonClicked() throws IOException {
+  public void submittedRequestsButtonClicked() throws IOException {
     Navigation.navigate(Screen.REQUESTS);
   }
 

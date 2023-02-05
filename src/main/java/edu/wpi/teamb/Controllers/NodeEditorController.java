@@ -17,7 +17,7 @@ public class NodeEditorController {
 
   public void initialize() {
     ObservableList<String> floors = FXCollections.observableArrayList();
-    for (String s : new String[] {"L1, L2"}) floors.add(s);
+    for (String s : new String[] {"L1", "L2"}) floors.add(s);
     floorBox.setItems(floors);
     xField.setPromptText("" + node.getXCoord());
     yField.setPromptText("" + node.getYCoord());

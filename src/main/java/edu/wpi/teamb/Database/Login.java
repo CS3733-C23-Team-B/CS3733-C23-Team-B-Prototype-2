@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 @Entity
 @Table(name = "login")
-public class Login {
+public class Login implements IORM {
   private static final String tableName = "login";
 
   @Id
@@ -49,5 +50,10 @@ public class Login {
 
   public static String getTableName() {
     return tableName.toLowerCase();
+  }
+
+  @Override
+  public String getSearchStr() {
+    return "FROM login WHERE username = '" + username + "'";
   }
 }

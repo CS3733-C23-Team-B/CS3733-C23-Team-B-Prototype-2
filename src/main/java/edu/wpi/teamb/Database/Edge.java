@@ -1,6 +1,8 @@
 package edu.wpi.teamb.Database;
 
+
 import jakarta.persistence.*;
+import edu.wpi.teamb.Entities.IORM;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List; // import java.util.stream.Stream;
@@ -13,7 +15,8 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "edge")
-public class Edge {
+
+public class Edge implements IORM {
 
   public static final String tableName = "edge";
 
@@ -156,5 +159,10 @@ public class Edge {
 
     String str = "Node 1: " + node1 + ", " + "Node 2: " + node2;
     return str;
+  }
+
+  @Override
+  public String getSearchStr() {
+    return "FROM edge WHERE node1 = '" + node1 + "' and node2 = '" + node2 + "'";
   }
 }

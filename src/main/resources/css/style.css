@@ -34,8 +34,9 @@
 #menuIcon{
     -fx-background-radius: 30px;
     -fx-background-image: url("/media/profile-icon.png");
+    -fx-background-image-size: 30px;
     -fx-background-repeat: stretch;
-    -fx-background-size: 48 48;
+    -fx-background-size: 35 35;
     -fx-background-position: top center;
     -fx-background-color: black;
 }
@@ -56,7 +57,7 @@
     -fx-background-color: rgba(0, 61, 166, 1);;
 }
 
-#serviceRequestFormsButton{
-    -fx-font: Nunito, regular;
-    -fx-font-size: 26px;
+#navBarButton{
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 24px;
 }

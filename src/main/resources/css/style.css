@@ -1,3 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+
 #pane{
     -fx-background-image: url("/media/medical_background.jpg");
     -fx-background-repeat: stretch;
@@ -16,6 +21,8 @@
 
 #toolbar{
     -fx-background-color: rgba(0, 61, 166, 1);
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 25px;
 }
 
 
@@ -41,17 +48,15 @@
     -fx-padding: 0;
 }
 
-@font-face {
-    font-family: "Nunito";
-    src: url("media/Nunito-Regular.ttf");
-}
-
 #homeButton{
-    -fx-background-image: url("media/brigham.png");
-    -fx-background-position: top left;
+    -fx-background-image: url("https://www.photowork.com/wp-content/uploads/2017/12/Brigham_and_Womens_Hospital_logo.svg_-768x896.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 80 93;
+    -fx-background-position: top center;
+    -fx-background-color: rgba(0, 61, 166, 1);;
 }
 
-.root {
-    -fx-font-family: "Nunito";
-    -fx-font-size: 14px;
+#serviceRequestFormsButton{
+    -fx-font: Nunito, regular;
+    -fx-font-size: 26px;
 }

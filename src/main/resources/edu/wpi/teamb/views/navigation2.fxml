@@ -14,46 +14,49 @@
    <items>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <MFXButton id="homeButton" fx:id="homeButton" minWidth="-Infinity" onAction="#homeButtonClicked" prefHeight="60.0" prefWidth="50.0" text="Home">
+            <MFXButton id="homeButton" fx:id="homeButton" minWidth="-Infinity" onAction="#homeButtonClicked" prefHeight="100.0" prefWidth="90.0" text="." textFill="WHITE">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets />
                </HBox.margin>
+               <font>
+                  <Font size="1.0" />
+               </font>
             </MFXButton>
             <MFXButton id="serviceRequestFormsButton" minWidth="-Infinity" style="-fx-background-color: #003DA6;" styleClass="root" text="Service Request Forms" textFill="WHITE">
                <HBox.margin>
-                  <Insets left="25.0" />
+                  <Insets left="25.0" top="20.0" />
                </HBox.margin>
                <font>
-                  <Font size="24.0" />
+                  <Font name="SansSerif Regular" size="24.0" />
                </font>
             </MFXButton>
             <MFXButton layoutX="10.0" layoutY="10.0" minWidth="-Infinity" style="-fx-background-color: #003DA6;" text="Submitted Requests" textFill="WHITE">
                <HBox.margin>
-                  <Insets left="25.0" />
+                  <Insets left="25.0" top="20.0" />
                </HBox.margin>
                <font>
                   <Font size="24.0" />
                </font>
             </MFXButton>
-            <MFXButton id="homeButton" fx:id="homeButton1" layoutX="64.0" layoutY="10.0" minWidth="-Infinity" onAction="#homeButtonClicked" style="-fx-background-color: #003DA6;" text="Map Editor" textFill="WHITE">
+            <MFXButton fx:id="homeButton1" layoutX="64.0" layoutY="10.0" minWidth="-Infinity" onAction="#homeButtonClicked" style="-fx-background-color: #003DA6;" text="Map Editor" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
                <HBox.margin>
-                  <Insets left="25.0" />
+                  <Insets left="25.0" top="20.0" />
                </HBox.margin>
             </MFXButton>
-            <MFXButton id="homeButton" fx:id="homeButton2" layoutX="62.0" layoutY="10.0" minWidth="-Infinity" onAction="#homeButtonClicked" style="-fx-background-color: #003DA6;" text="Location/Node Editor" textFill="WHITE">
+            <MFXButton fx:id="homeButton2" layoutX="62.0" layoutY="10.0" minWidth="-Infinity" onAction="#homeButtonClicked" style="-fx-background-color: #003DA6;" text="Location/Node Editor" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
                <HBox.margin>
-                  <Insets left="25.0" />
+                  <Insets left="25.0" top="20.0" />
                </HBox.margin>
             </MFXButton>
-            <MFXButton id="homeButton" fx:id="homeButton3" layoutX="52.0" layoutY="10.0" minWidth="-Infinity" onAction="#homeButtonClicked" style="-fx-background-color: #003DA6;" text="Pathfinding" textFill="WHITE">
+            <MFXButton fx:id="homeButton3" layoutX="52.0" layoutY="10.0" minWidth="-Infinity" onAction="#homeButtonClicked" style="-fx-background-color: #003DA6;" text="Pathfinding" textFill="WHITE">
                <HBox.margin>
-                  <Insets left="25.0" />
+                  <Insets left="25.0" top="20.0" />
                </HBox.margin>
                <font>
                   <Font size="24.0" />
@@ -61,21 +64,18 @@
             </MFXButton>
             <MFXButton layoutX="78.0" layoutY="10.0" minWidth="-Infinity" style="-fx-background-color: #003DA6;" text="About" textFill="WHITE">
                <HBox.margin>
-                  <Insets left="25.0" />
+                  <Insets left="25.0" top="20.0" />
                </HBox.margin>
                <font>
                   <Font size="24.0" />
                </font>
             </MFXButton>
-            <MFXComboBox minWidth="-Infinity" prefWidth="50.0">
+            <MFXComboBox id="menuButton" minWidth="-Infinity" prefWidth="50.0">
                <HBox.margin>
-                  <Insets left="25.0" />
+                  <Insets left="25.0" top="20.0" />
                </HBox.margin>
             </MFXComboBox>
          </children>
-         <padding>
-            <Insets top="20.0" />
-         </padding>
       </HBox>
    </items>
 </ToolBar>

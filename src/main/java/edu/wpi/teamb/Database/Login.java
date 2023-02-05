@@ -1,6 +1,8 @@
 package edu.wpi.teamb.Database;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,10 +10,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity
 @Table(name = "login")
 public class Login {
   private static final String tableName = "login";
 
+  @Id
   @Column(name = "username", length = 70)
   private String username;
 
@@ -22,6 +26,8 @@ public class Login {
     this.username = username;
     this.password = password;
   }
+
+  public Login() {}
 
   public static void initTable() throws SQLException {
     String sql =

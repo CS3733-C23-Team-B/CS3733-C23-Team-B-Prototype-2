@@ -5,10 +5,10 @@
     <class name="edu.wpi.teamb.Database.LocationName" table="locationname">
         <id name="longname" type="String" column="longname">
         </id>
-        <property name = "shortName" type = "String">
+        <property name = "shortname" type = "String">
             <column name="shortName"/>
         </property>
-        <property name = "locationType" type = "String">
+        <property name = "locationtype" type = "String">
             <column name="locationType"/>
         </property>
     </class>

@@ -9,7 +9,7 @@ import lombok.Setter;
 @PrimaryKeyJoinColumn(
     name = "PatientTransportationRequestID",
     foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey"))
-public class PatientTransportationRequest extends GeneralRequest implements IORM{
+public class PatientTransportationRequest extends GeneralRequest implements IORM {
   @Column(name = "equipmentNeeded", length = 20)
   @Getter
   @Setter
@@ -29,6 +29,11 @@ public class PatientTransportationRequest extends GeneralRequest implements IORM
   @Getter
   @Setter
   private String patientID;
+
+  @Override
+  public String getSearchStr() {
+    return "FROM patienttransportationrequest WHERE id = " + getId();
+  }
 
   public PatientTransportationRequest() {}
 }

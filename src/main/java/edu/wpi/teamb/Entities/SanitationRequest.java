@@ -9,7 +9,7 @@ import lombok.Setter;
 @PrimaryKeyJoinColumn(
     name = "sanitationRequestID",
     foreignKey = @ForeignKey(name = "SanitationRequestIDKey"))
-public class SanitationRequest extends GeneralRequest implements IORM{
+public class SanitationRequest extends GeneralRequest implements IORM {
   @Column(name = "cleanuplocation", length = 20)
   @Getter
   @Setter

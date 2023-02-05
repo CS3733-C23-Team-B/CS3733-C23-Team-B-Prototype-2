@@ -1,7 +1,6 @@
 package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.IORM;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List; // import java.util.stream.Stream;
@@ -10,7 +9,7 @@ import java.util.List; // import java.util.stream.Stream;
  * class that represents the edge table in the Database, allows updates, insertions, deletions, and
  * other interactions with the edge table in the database
  */
-public class Edge implements IORM{
+public class Edge implements IORM {
 
   public static final String tableName = "edge";
 

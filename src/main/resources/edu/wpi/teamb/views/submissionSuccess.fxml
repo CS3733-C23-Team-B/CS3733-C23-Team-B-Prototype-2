@@ -39,12 +39,12 @@
                   <Insets top="175.0" />
                </VBox.margin>
                <children>
-                  <MFXButton fx:id="returnButton" buttonType="RAISED" depthLevel="LEVEL4" onAction="#returnButtonClicked" prefHeight="40.0" prefWidth="100.0" text="Return Home">
+                  <MFXButton fx:id="returnButton" buttonType="RAISED" onAction="#returnButtonClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #cfcfcf;" text="Return Home">
                      <HBox.margin>
                         <Insets left="280.0" />
                      </HBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="requestsButton" buttonType="RAISED" depthLevel="LEVEL4" onAction="#requestsButtonClicked" prefHeight="40.0" prefWidth="100.0" text="View Requests">
+                  <MFXButton fx:id="requestsButton" buttonType="RAISED" onAction="#requestsButtonClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #cfcfcf;" text="View Requests">
                      <HBox.margin>
                         <Insets left="70.0" />
                      </HBox.margin>

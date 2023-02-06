@@ -21,7 +21,7 @@ public class BaseRequestController {
   @FXML protected MFXTextField lastNameField;
   @FXML protected MFXTextField employeeIDField;
   @FXML protected MFXTextField emailField;
-  @FXML protected MFXFilterComboBox urgencyBox;
+  @FXML protected MFXFilterComboBox<String> urgencyBox;
   @FXML protected MFXTextField assignedStaffField;
   @FXML protected MFXTextField additionalNotesField;
   private RequestStatus request;
@@ -38,7 +38,7 @@ public class BaseRequestController {
   // form, add to this list
   protected ArrayList<Control> components;
   protected ArrayList<MFXTextField> textFields;
-  protected ArrayList<MFXFilterComboBox> choiceBoxes;
+  protected ArrayList<MFXFilterComboBox<String>> choiceBoxes;
 
   protected Screen helpScreen;
   protected Screen submissionScreen;
@@ -99,7 +99,7 @@ public class BaseRequestController {
    */
   protected String getText(Control component) {
     if (component instanceof MFXTextField) return ((MFXTextField) component).getText();
-    else if (component instanceof MFXFilterComboBox<?>) {
+    else if (component instanceof MFXFilterComboBox) {
       String s = (String) ((MFXFilterComboBox) component).getValue();
       if (s == null) s = "";
       return s;

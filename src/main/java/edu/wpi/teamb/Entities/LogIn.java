@@ -7,6 +7,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "login")
+@PrimaryKeyJoinColumn(name = "login", foreignKey = @ForeignKey(name = "loginIDKey"))
 public class LogIn implements IORM {
   @Id private String username;
 
@@ -26,7 +27,7 @@ public class LogIn implements IORM {
 
   @Override
   public String getSearchStr() {
-    return "FROM login WHERE id = " + getUsername();
+    return "FROM LogIn WHERE username=" + getUsername();
   }
 
   public void setUsername(String username) {

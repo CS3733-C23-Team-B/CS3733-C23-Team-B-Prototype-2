@@ -50,7 +50,7 @@ public class ComputerServiceController extends BaseRequestController {
       if (c instanceof ChoiceBox) choiceBoxes.add((MFXComboBox) c);
     }
     typeOfRepairBox.setItems(typeOfRepairList);
-    typeOfRepairBox.setItems(typeOfDeviceList);
+    deviceBox.setItems(typeOfDeviceList);
 
     helpScreen = Screen.COMPUTER_SERVICES_HELP;
     super.initialize();

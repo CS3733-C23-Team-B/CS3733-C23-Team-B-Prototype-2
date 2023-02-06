@@ -3,13 +3,14 @@ package edu.wpi.teamb.Controllers;
 import edu.wpi.teamb.Entities.SanitationRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 
@@ -17,8 +18,8 @@ public class sanitationServiceController extends BaseRequestController {
   // Lists for checkboxes
   ObservableList<String> typeOfCleanUpList =
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
-  @FXML private TextField cleanUpLocationField;
-  @FXML private ChoiceBox typeOfCleanUpBox;
+  @FXML private MFXFilterComboBox cleanUpLocationBox;
+  @FXML private MFXComboBox typeOfCleanUpBox;
 
   @FXML
   @Override
@@ -30,7 +31,7 @@ public class sanitationServiceController extends BaseRequestController {
       lastNameField,
       employeeIDField,
       emailField,
-      cleanUpLocationField,
+      cleanUpLocationBox,
       urgencyBox,
       typeOfCleanUpBox,
       assignedStaffField,
@@ -39,11 +40,14 @@ public class sanitationServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
+    filterChoiceBoxes = new ArrayList<>();
+    cleanUpLocationBox.setItems(PathfindingController.getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof TextField) textFields.add((TextField) c);
-      if (c instanceof ChoiceBox) choiceBoxes.add((ChoiceBox) c);
+      if (c instanceof MFXComboBox) choiceBoxes.add((MFXComboBox) c);
+      if (c instanceof MFXFilterComboBox) filterChoiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
 
@@ -70,7 +74,11 @@ public class sanitationServiceController extends BaseRequestController {
     }
     request.setUrgency(urgency.toString());
 
-    request.setCleanUpLocation(cleanUpLocationField.getText());
+    var cleanUpLocation = cleanUpLocationBox.getValue();
+    if (cleanUpLocation == null) {
+      cleanUpLocation = "";
+    }
+    request.setTypeOfCleanUp(cleanUpLocation.toString());
 
     var typeOfcleanUp = typeOfCleanUpBox.getValue();
     if (typeOfcleanUp == null) {

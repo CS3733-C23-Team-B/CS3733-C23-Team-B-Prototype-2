@@ -3,14 +3,15 @@ package edu.wpi.teamb.Controllers;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 
@@ -20,14 +21,14 @@ public class BaseRequestController {
   @FXML protected TextField lastNameField;
   @FXML protected TextField employeeIDField;
   @FXML protected TextField emailField;
-  @FXML protected ChoiceBox urgencyBox;
+  @FXML protected MFXComboBox urgencyBox;
   @FXML protected TextField assignedStaffField;
   @FXML protected TextField additionalNotesField;
   private RequestStatus request;
-  @FXML protected Button cancelButton;
-  @FXML protected Button helpButton;
-  @FXML protected Button clearButton;
-  @FXML protected Button submitButton;
+  @FXML protected MFXButton cancelButton;
+  @FXML protected MFXButton helpButton;
+  @FXML protected MFXButton clearButton;
+  @FXML protected MFXButton submitButton;
 
   // Choice-box options
   protected ObservableList<String> urgencyOptions =
@@ -37,7 +38,8 @@ public class BaseRequestController {
   // form, add to this list
   protected ArrayList<Control> components;
   protected ArrayList<TextField> textFields;
-  protected ArrayList<ChoiceBox> choiceBoxes;
+  protected ArrayList<MFXComboBox> choiceBoxes;
+  protected ArrayList<MFXFilterComboBox> filterChoiceBoxes;
 
   protected Screen helpScreen;
   protected Screen submissionScreen;
@@ -78,7 +80,7 @@ public class BaseRequestController {
   public void clearButtonClicked() throws IOException {
     for (TextField t : textFields) t.clear();
 
-    for (ChoiceBox c : choiceBoxes) c.getSelectionModel().clearSelection();
+    for (MFXComboBox c : choiceBoxes) c.getSelectionModel().clearSelection();
   }
 
   /**
@@ -98,8 +100,8 @@ public class BaseRequestController {
    */
   protected String getText(Control component) {
     if (component instanceof TextField) return ((TextField) component).getText();
-    else if (component instanceof ChoiceBox) {
-      String s = (String) ((ChoiceBox) component).getValue();
+    else if (component instanceof MFXComboBox<?>) {
+      String s = (String) ((MFXComboBox) component).getValue();
       if (s == null) s = "";
       return s;
     } else {

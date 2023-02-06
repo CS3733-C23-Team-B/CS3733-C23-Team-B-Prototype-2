@@ -7,7 +7,7 @@ public enum Screen {
   MAP_EDITOR("views/MapEditor.fxml"),
   NODE_EDITOR("views/EditNodePopup.fxml"),
   LOCATION_EDITOR("views/LocationEditor.fxml"),
-  DATABASE_UI("views/DatabaseUI.fxml"),
+  DATABASE_UI("views/LocationEditor.fxml"),
   NAVIGATION("views/navigation2.fxml"),
   PATHFINDING("views/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/PatientTransportation.fxml"),

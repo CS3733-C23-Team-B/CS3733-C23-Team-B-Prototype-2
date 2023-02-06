@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class DatabaseController {
+public class LocationEditorController {
   @FXML ChoiceBox nodeChange;
   @FXML Button submitChange;
   @FXML TextField xCoord;

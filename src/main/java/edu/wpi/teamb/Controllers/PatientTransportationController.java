@@ -5,6 +5,7 @@ import edu.wpi.teamb.Entities.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class PatientTransportationController extends BaseRequestController {
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof TextField) textFields.add((TextField) c);
-      if (c instanceof ChoiceBox) choiceBoxes.add((ChoiceBox) c);
+      if (c instanceof ChoiceBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
 
     // Initialize the choice boxes with their options

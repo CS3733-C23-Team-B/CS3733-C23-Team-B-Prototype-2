@@ -63,8 +63,8 @@ public class ComputerServiceController extends BaseRequestController {
 
     ComputerRequest request = new ComputerRequest();
 
-    request.setFirstName(firstNameField.getText());
-    request.setLastName(lastNameField.getText());
+    request.setFirstname(firstNameField.getText());
+    request.setLastname(lastNameField.getText());
     request.setEmployeeID(employeeIDField.getText());
     request.setEmail(emailField.getText());
     request.setNotes(additionalNotesField.getText());

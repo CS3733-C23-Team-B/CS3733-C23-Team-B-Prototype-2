@@ -79,6 +79,7 @@ public class sanitationServiceController extends BaseRequestController {
       typeOfcleanUp = "";
     }
     request.setTypeOfCleanUp(typeOfcleanUp.toString());
+    request.setAssignedEmployee(assignedStaffField.getText());
     request.setStatus(RequestStatus.PROCESSING);
     DBSession.addORM(request);
     // may need to clear fields can be done with functions made for clear

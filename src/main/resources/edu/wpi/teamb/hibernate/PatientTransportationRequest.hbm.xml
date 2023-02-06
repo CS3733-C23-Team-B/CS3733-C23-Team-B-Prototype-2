@@ -3,10 +3,10 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="edu.wpi.teamb.Entities.PatientTransportationRequest" table="patienttransportationrequest">
-        <property name = "equipmentNeeded" type = "String">
+        <property name = "equipment" type = "String">
             <column name="equipmentNeeded"/>
         </property>
-        <property name = "patientLocation" type = "String">
+        <property name = "location" type = "String">
             <column name="patientLocation"/>
         </property>
         <property name = "patientDestination" type = "String">

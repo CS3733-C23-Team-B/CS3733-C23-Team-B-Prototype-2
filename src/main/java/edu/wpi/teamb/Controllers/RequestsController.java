@@ -54,7 +54,6 @@ public class RequestsController {
         (value) -> {
           requestsTable.getItems().add(value);
         });
-
     SanitationRequestList = DBSession.getAll(ORMType.SREQUEST);
     SanitationRequestList.forEach(
         (value) -> {

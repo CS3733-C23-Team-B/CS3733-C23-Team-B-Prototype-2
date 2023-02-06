@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.LocationEditorController">
-   <top>
+   <center>
       <AnchorPane prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
@@ -119,5 +119,8 @@
             </VBox>
          </children>
       </AnchorPane>
-   </top>
+   </center>
+   <padding>
+      <Insets top="74.0" />
+   </padding>
 </BorderPane>

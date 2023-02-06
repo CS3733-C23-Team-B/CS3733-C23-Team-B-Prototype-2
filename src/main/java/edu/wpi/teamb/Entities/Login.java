@@ -8,7 +8,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "login")
 @PrimaryKeyJoinColumn(name = "login", foreignKey = @ForeignKey(name = "loginIDKey"))
-public class LogIn implements IORM {
+public class Login implements IORM {
   @Id private String username;
 
   @Column(name = "password", length = 20)
@@ -16,18 +16,18 @@ public class LogIn implements IORM {
   @Setter
   private String password;
 
-  public LogIn(String scol, String sc) {
+  public Login(String scol, String sc) {
     this.username = scol;
     this.password = sc;
   }
 
-  public LogIn() {}
+  public Login() {}
 
   public void delete() throws SQLException {}
 
   @Override
   public String getSearchStr() {
-    return "FROM LogIn WHERE username=" + getUsername();
+    return "FROM Login WHERE username = '" + getUsername() + "'";
   }
 
   public void setUsername(String username) {

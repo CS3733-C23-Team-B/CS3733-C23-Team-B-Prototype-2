@@ -7,7 +7,7 @@ public enum ORMType {
   NODE("Node"),
   EDGE("Edge"),
   LOCATIONNAME("LocationName"),
-  LOGIN("LogIn"),
+  LOGIN("Login"),
   MOVE("Move");
 
   private String str;

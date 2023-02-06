@@ -51,6 +51,6 @@ public class LocationName implements IORM {
 
   @Override
   public String getSearchStr() {
-    return "FROM locationname WHERE longname = '" + longName + "'";
+    return "FROM LocationName WHERE longName = '" + longName + "'";
   }
 }

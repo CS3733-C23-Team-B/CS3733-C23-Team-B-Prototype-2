@@ -33,6 +33,6 @@ public class SanitationRequest extends GeneralRequest implements IORM {
 
   @Override
   public String getSearchStr() {
-    return "FROM sanitationrequest WHERE id = " + getId();
+    return "FROM SanitationRequest WHERE id = " + getId();
   }
 }

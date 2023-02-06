@@ -126,6 +126,6 @@ public class Move implements IORM {
 
   @Override
   public String getSearchStr() {
-    return "FROM move WHERE nodeid = '" + nodeID + "' and longname = '" + longName + "'";
+    return "FROM Move WHERE nodeID = '" + nodeID + "' and longName = '" + longName + "'";
   }
 }

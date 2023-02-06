@@ -67,6 +67,6 @@ public class Node implements IORM {
 
   @Override
   public String getSearchStr() {
-    return "FROM node WHERE nodeid = '" + nodeID + "'";
+    return "FROM Node WHERE nodeID = '" + nodeID + "'";
   }
 }

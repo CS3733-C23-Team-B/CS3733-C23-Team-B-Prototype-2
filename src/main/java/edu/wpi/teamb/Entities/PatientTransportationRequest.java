@@ -40,7 +40,7 @@ public class PatientTransportationRequest extends GeneralRequest implements IORM
 
   @Override
   public String getSearchStr() {
-    return "FROM patienttransportationrequest WHERE id = " + getId();
+    return "FROM PatientTransportationRequest WHERE id = " + getId();
   }
 
   public PatientTransportationRequest() {}

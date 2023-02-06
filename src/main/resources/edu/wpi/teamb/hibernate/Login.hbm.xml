@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="edu.wpi.teamb.Entities.LogIn" table="login">
+    <class name="edu.wpi.teamb.Entities.Login" table="login">
         <id name="username" type="String" column="username">
         </id>
         <property name = "password" type = "String">

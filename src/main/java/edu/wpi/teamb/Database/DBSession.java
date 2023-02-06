@@ -112,7 +112,8 @@ public class DBSession {
     Transaction tx = null;
     try {
       tx = session.beginTransaction();
-      session.createQuery("DELETE " + iorm.getSearchStr());
+      String str = "DELETE " + iorm.getSearchStr();
+      session.createQuery(str).executeUpdate();
       session.close();
     } catch (Exception e) {
       e.printStackTrace();
@@ -182,6 +183,6 @@ public class DBSession {
     n.setYcoord(5);
     n.setBuilding("testingbuilding");
     n.setFloor("testfloor");
-    addORM(n);
+    delete(n);
   }
 }

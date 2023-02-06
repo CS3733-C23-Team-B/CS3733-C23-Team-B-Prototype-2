@@ -2,7 +2,7 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Entities.LogIn;
+import edu.wpi.teamb.Entities.Login;
 import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -26,7 +26,7 @@ public class SigninController {
   @FXML private CheckBox newAccount;
   @FXML private Label prompt;
   @FXML private Button exitButton;
-  public static LogIn currentUser;
+  public static Login currentUser;
   private List<Object> users;
 
   public void initialize() {
@@ -53,7 +53,7 @@ public class SigninController {
   public boolean validateLogin() throws SQLException {
     boolean found = false;
     for (Object user : users) {
-      LogIn u = (LogIn) user;
+      Login u = (Login) user;
       if (u.getUsername().equals(usernameField.getText())
           && u.getPassword().equals(passwordField.getText())) {
         found = true;
@@ -64,14 +64,14 @@ public class SigninController {
       return true;
     } else if (newAccount.isSelected()) {
       for (Object user : users) {
-        LogIn u = (LogIn) user;
+        Login u = (Login) user;
         if (u.getUsername().equals(usernameField.getText())) {
           found = true;
           break;
         }
       }
       if (!found) {
-        LogIn newLogin = new LogIn(usernameField.getText(), passwordField.getText());
+        Login newLogin = new Login(usernameField.getText(), passwordField.getText());
         users.add(newLogin);
         DBSession.addORM(newLogin);
         return true;
@@ -110,7 +110,7 @@ public class SigninController {
     Navigation.navigate(Screen.HOME);
 
     for (Object user : users) {
-      LogIn u = (LogIn) user;
+      Login u = (Login) user;
       if (u.getUsername().equals(usernameField.getText())) {
         currentUser = u;
         break;

@@ -161,6 +161,6 @@ public class Edge implements IORM {
 
   @Override
   public String getSearchStr() {
-    return "FROM edge WHERE node1 = '" + node1 + "' and node2 = '" + node2 + "'";
+    return "FROM Edge WHERE node1 = '" + node1 + "' and node2 = '" + node2 + "'";
   }
 }

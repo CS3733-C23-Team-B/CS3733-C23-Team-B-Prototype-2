@@ -176,14 +176,7 @@ public class DBSession {
   }
 
   public static void main(String[] args) {
-
-    Node n = new Node("test", 5, 5, "testfloor", "building");
-    PatientTransportationRequest ptr = new PatientTransportationRequest();
-    ptr.setLocation("Test");
-    ptr.setDestination("test");
-    ptr.setEquipment("test");
-    LogIn l = new LogIn("tester", "tester");
-    LocationName ln = new LocationName("Testerrrrr", "tested", "test");
-    addORM(ln);
+    Node n = new Node();
+    addORM(n);
   }
 }

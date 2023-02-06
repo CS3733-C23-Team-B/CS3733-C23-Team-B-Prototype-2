@@ -70,14 +70,6 @@ public class Move implements IORM {
     return sql;
   }
 
-  public String getLongName() {
-    return longName;
-  }
-
-  public Date getMoveDate() {
-    return moveDate;
-  }
-
   /**
    * Given a longName of a department, determines node that the department occupies
    *

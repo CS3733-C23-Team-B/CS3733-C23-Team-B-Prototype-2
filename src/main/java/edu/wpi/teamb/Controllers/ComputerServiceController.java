@@ -3,6 +3,8 @@ package edu.wpi.teamb.Controllers;
 import edu.wpi.teamb.Entities.ComputerRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,9 +19,11 @@ public class ComputerServiceController extends BaseRequestController {
   // Lists for checkboxes
   ObservableList<String> typeOfRepairList =
       FXCollections.observableArrayList("New Hardware", "Broken Hardware", "Technical Issues");
-  ObservableList<String> typeOfDevice = FXCollections.observableArrayList("Computer", "Phone", "");
+  ObservableList<String> typeOfDeviceList =
+      FXCollections.observableArrayList("Computer", "Phone", "");
   @FXML private TextField repairLocationField;
-  @FXML private ChoiceBox typeOfRepairBox;
+  @FXML private MFXFilterComboBox typeOfRepairBox;
+  @FXML private MFXFilterComboBox deviceBox;
 
   @FXML
   @Override
@@ -43,9 +47,10 @@ public class ComputerServiceController extends BaseRequestController {
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof TextField) textFields.add((TextField) c);
-      if (c instanceof ChoiceBox) choiceBoxes.add((ChoiceBox) c);
+      if (c instanceof ChoiceBox) choiceBoxes.add((MFXComboBox) c);
     }
     typeOfRepairBox.setItems(typeOfRepairList);
+    typeOfRepairBox.setItems(typeOfDeviceList);
 
     helpScreen = Screen.COMPUTER_SERVICES_HELP;
     super.initialize();

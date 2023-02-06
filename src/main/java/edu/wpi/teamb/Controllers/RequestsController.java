@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RequestsController {
   @FXML TableView requestsTable;
+  @FXML TableView serviceTable;
   @FXML TableColumn nameColumn;
   @FXML TableColumn equipmentColumn;
   @FXML TableColumn urgencyColumn;
@@ -21,8 +22,17 @@ public class RequestsController {
   @FXML TableColumn notesColumn;
   @FXML TableColumn statusColumn;
 
+  @FXML TableColumn saniUrgencyColumn;
+  @FXML TableColumn saniTypeColumn;
+  @FXML TableColumn saniNameColumn;
+  @FXML TableColumn saniLocationColumn;
+  @FXML TableColumn saniAssignmentColumn;
+  @FXML TableColumn saniStatusColumn;
+  @FXML TableColumn saniNotesColumn;
+
   public void initialize() {
-    List<Object> requestList;
+    List<Object> TransportRequestList;
+    List<Object> SanitationRequestList;
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
     equipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipment"));
     urgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
@@ -31,10 +41,24 @@ public class RequestsController {
     notesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
     statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-    requestList = DBSession.getAll(ORMType.PTREQUEST);
-    requestList.forEach(
+    saniUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
+    saniTypeColumn.setCellValueFactory(new PropertyValueFactory<>("typeOfCleanUp"));
+    saniNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+    saniLocationColumn.setCellValueFactory(new PropertyValueFactory<>("cleanUpLocation"));
+    saniAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("assignedEmployee"));
+    saniStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+    saniNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
+
+    TransportRequestList = DBSession.getAll(ORMType.PTREQUEST);
+    TransportRequestList.forEach(
         (value) -> {
           requestsTable.getItems().add(value);
+        });
+
+    SanitationRequestList = DBSession.getAll(ORMType.SREQUEST);
+    SanitationRequestList.forEach(
+        (value) -> {
+          serviceTable.getItems().add(value);
         });
     Button b = new Button();
     b.setText("Back");

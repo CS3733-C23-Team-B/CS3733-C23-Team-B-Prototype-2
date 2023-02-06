@@ -36,6 +36,8 @@
         <mapping class="edu.wpi.teamb.Entities.SanitationRequest"/>
         <mapping class="edu.wpi.teamb.Database.LocationName"/>
         <mapping class="edu.wpi.teamb.Database.Login"/>
+        <mapping class="edu.wpi.teamb.Database.Move"/>
+        <mapping class="edu.wpi.teamb.Database.Edge"/>
 
 
         <!-- Names the annotated entity class -->

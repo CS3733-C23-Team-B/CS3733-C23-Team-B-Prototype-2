@@ -1,29 +1,45 @@
 package edu.wpi.teamb.Database;
 
+
+import jakarta.persistence.*;
 import edu.wpi.teamb.Entities.IORM;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List; // import java.util.stream.Stream;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * class that represents the edge table in the Database, allows updates, insertions, deletions, and
  * other interactions with the edge table in the database
  */
+@Entity
+@Table(name = "edge")
+
 public class Edge implements IORM {
 
   public static final String tableName = "edge";
 
   // Primary Key and Foreign Key
-  private String node1;
+  @Id
+  @Column(name = "node1", length = 20)
+  @Setter
+  @Getter
+  String node1;
 
   // Primary Key and Foreign Key
-  private String node2;
+  @Id
+  @Column(name = "node2", length = 20)
+  @Setter
+  @Getter
+  String node2;
 
   public Edge(String node1, String node2) {
-
     this.node1 = node1;
     this.node2 = node2;
   }
+
+  public Edge() {}
 
   /**
    * Method to initialize the edge table in the database
@@ -121,18 +137,18 @@ public class Edge implements IORM {
    *
    * @return String representing the nodeID of the start node
    */
-  public String getNode1() {
-    return node1;
-  }
+  //  public String getNode1() {
+  //    return node1;
+  //  }
 
   /**
    * method to get the end node of an instance of edge
    *
    * @return String representing the nodeID of the end node
    */
-  public String getNode2() {
-    return node2;
-  }
+  //  public String getNode2() {
+  //    return node2;
+  //  }
 
   /**
    * method to get the start and end node IDs of an edge

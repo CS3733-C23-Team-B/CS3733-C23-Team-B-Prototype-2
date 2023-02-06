@@ -20,7 +20,7 @@ public class DBSession {
     }
     return instance;
   }
-
+  
   public static void addORM(Object o) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

@@ -35,6 +35,18 @@ public class LocationName {
     return tableName.toLowerCase();
   }
 
+  public String getLongName() {
+    return longName;
+  }
+
+  public String getShortName() {
+    return shortName;
+  }
+
+  public String getLocationType() {
+    return locationType;
+  }
+
   public void insert() throws SQLException {
     String sql = "INSERT INTO locationname (longname, shortname, locationtype)" + "VALUES (?,?,?);";
     PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);

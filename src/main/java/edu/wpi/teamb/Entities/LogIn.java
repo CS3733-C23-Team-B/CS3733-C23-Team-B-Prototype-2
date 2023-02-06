@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "LogIn")
+@Table(name = "login")
 public class LogIn implements IORM {
   @Id private String username;
 
@@ -26,7 +26,7 @@ public class LogIn implements IORM {
 
   @Override
   public String getSearchStr() {
-    return "FROM sanitationrequest WHERE id = " + getUsername();
+    return "FROM login WHERE id = " + getUsername();
   }
 
   public void setUsername(String username) {

@@ -2,6 +2,7 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
 import edu.wpi.teamb.SessionGetter;
+import java.text.ParseException;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -59,7 +60,7 @@ public class DBSession {
     Session session = sf.openSession();
     try {
       Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM egde");
+      Query q = session.createQuery("FROM Edge");
       List<Edge> edges = q.list();
       session.close();
       return edges;
@@ -76,7 +77,7 @@ public class DBSession {
     Session session = sf.openSession();
     try {
       Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM move");
+      Query q = session.createQuery("FROM Move");
       List<Move> moves = q.list();
       session.close();
       return moves;
@@ -93,7 +94,7 @@ public class DBSession {
     Session session = sf.openSession();
     try {
       Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM node");
+      Query q = session.createQuery("FROM Node");
       List<Node> nodes = q.list();
       session.close();
       return nodes;
@@ -140,6 +141,7 @@ public class DBSession {
 
     Node ncopy = new Node("", n.getXcoord(), n.getYcoord(), n.getFloor(), n.getBuilding());
     ncopy.setNodeID(ncopy.buildID());
+    System.out.println(ncopy.getNodeID());
 
     List<Edge> edges = getAllEdges();
     for (Edge e : edges) {
@@ -176,13 +178,71 @@ public class DBSession {
     }
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws ParseException {
+
     Node n = new Node();
-    n.setNodeID("Testing");
-    n.setXcoord(5);
+    n.setNodeID("test");
     n.setYcoord(5);
-    n.setBuilding("testingbuilding");
-    n.setFloor("testfloor");
-    delete(n);
+    n.setXcoord(5);
+    n.setFloor("L1");
+    n.setBuilding("testing");
+    Node n2 = new Node();
+    n2.setNodeID("test2");
+    n2.setXcoord(20);
+    n2.setYcoord(20);
+    n2.setFloor("L1");
+    n2.setBuilding("testing");
+    Node n3 = new Node();
+    n3.setNodeID("test3");
+    n3.setXcoord(25);
+    n3.setYcoord(25);
+    n3.setFloor("L1");
+    n3.setBuilding("testing");
+    //    addORM(n);
+    //    addORM(n2);
+    //    addORM(n3);
+    //
+    //    Edge e = new Edge();
+    //    e.setNode1(n.getNodeID());
+    //    e.setNode2(n2.getNodeID());
+    //    Edge e2 = new Edge();
+    //    e2.setNode1(n3.getNodeID());
+    //    e2.setNode2(n.getNodeID());
+    //    addORM(e);
+    //    addORM(e2);
+    //
+    //    LocationName ln = new LocationName();
+    //    ln.setLongName("test ln");
+    //    ln.setShortName("test sn");
+    //    ln.setLocationType("test lt");
+    //    LocationName ln2 = new LocationName();
+    //    ln2.setLongName("test ln2");
+    //    ln2.setShortName("test sn2");
+    //    ln2.setLocationType("test lt2");
+    //    LocationName ln3 = new LocationName();
+    //    ln3.setLongName("test ln3");
+    //    ln3.setShortName("test sn3");
+    //    ln3.setLocationType("test lt3");
+    //    addORM(ln);
+    //    addORM(ln2);
+    //    addORM(ln3);
+    //
+    //    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+    //    Move m = new Move();
+    //    m.setNodeID(n.getNodeID());
+    //    m.setLongName(ln.getLongName());
+    //    m.setMoveDate(dateFormat.parse("01-01-2023"));
+    //    Move m2 = new Move();
+    //    m2.setNodeID(n2.getNodeID());
+    //    m2.setLongName(ln2.getLongName());
+    //    m2.setMoveDate(dateFormat.parse("01-01-2023"));
+    //    Move m3 = new Move();
+    //    m3.setNodeID(n3.getNodeID());
+    //    m3.setLongName(ln3.getLongName());
+    //    m3.setMoveDate(dateFormat.parse("01-01-2023"));
+    //    addORM(m);
+    //    addORM(m2);
+    //    addORM(m3);
+    updateNode(n);
   }
 }

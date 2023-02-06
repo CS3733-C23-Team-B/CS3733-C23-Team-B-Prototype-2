@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
@@ -8,7 +7,6 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,8 +21,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class DatabaseController {
-  @FXML Button nodeSearchButton;
-  @FXML Button edgeQuery;
   @FXML ChoiceBox nodeChange;
   @FXML Button submitChange;
   @FXML TextField xCoord;
@@ -98,7 +94,7 @@ public class DatabaseController {
 
   /** Queries data from database, displays in list */
   private void getNodeData() {
-    BorderPane bor = (BorderPane) nodeSearchButton.getScene().getRoot();
+    BorderPane bor = (BorderPane) nodeChange.getScene().getRoot();
     VBox nodeBox = new VBox();
     Map<String, Node> nodes;
     try {
@@ -132,28 +128,5 @@ public class DatabaseController {
     nodes.forEach((key, value) -> list.add(key));
 
     return list;
-  }
-
-  private void getEdgeData() {
-    BorderPane bor = (BorderPane) edgeQuery.getScene().getRoot();
-    VBox edgeBox = new VBox();
-    List<Edge> edges;
-    try {
-      edges = Edge.getAll();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-    edgeBox.getChildren().clear();
-    edgeBox.getChildren().add(new Label("Current Nodes:"));
-    for (Edge e : edges) {
-      Label label = new Label(e.getInfo());
-      edgeBox.getChildren().add(label);
-      label.setFont(new Font("Arial", 7));
-    }
-    bor.setCenter(edgeBox);
-    Button b = new Button();
-    b.setText("Back");
-    b.setOnAction(e -> Navigation.navigate(Screen.MAP_DATA_EDITOR));
-    edgeBox.getChildren().add(b);
   }
 }

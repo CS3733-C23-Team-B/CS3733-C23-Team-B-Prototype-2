@@ -51,7 +51,7 @@ public class PatientTransportationController extends BaseRequestController {
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof TextField) textFields.add((TextField) c);
-      if (c instanceof ChoiceBox) choiceBoxes.add((MFXFilterComboBox) c);
+      if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
 
     // Initialize the choice boxes with their options

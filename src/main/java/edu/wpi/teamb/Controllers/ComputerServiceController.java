@@ -1,8 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Entities.RequestStatus;
-import edu.wpi.teamb.Entities.SanitationRequest;
+import edu.wpi.teamb.Entities.ComputerRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -13,15 +11,19 @@ import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 
-public class sanitationServiceController extends BaseRequestController {
+public class ComputerServiceController extends BaseRequestController {
   // Lists for checkboxes
-  ObservableList<String> typeOfCleanUpList =
-      FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
-  @FXML private MFXFilterComboBox cleanUpLocationBox;
-  @FXML private MFXComboBox typeOfCleanUpBox;
+  ObservableList<String> typeOfRepairList =
+      FXCollections.observableArrayList("New Hardware", "Broken Hardware", "Technical Issues");
+  ObservableList<String> typeOfDeviceList =
+      FXCollections.observableArrayList("Computer", "Phone", "");
+  @FXML private TextField repairLocationField;
+  @FXML private MFXFilterComboBox typeOfRepairBox;
+  @FXML private MFXFilterComboBox deviceBox;
 
   @FXML
   @Override
@@ -33,27 +35,24 @@ public class sanitationServiceController extends BaseRequestController {
       lastNameField,
       employeeIDField,
       emailField,
-      cleanUpLocationBox,
+      repairLocationField,
       urgencyBox,
-      typeOfCleanUpBox,
-      assignedStaffField,
+      typeOfRepairBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    filterChoiceBoxes = new ArrayList<>();
-    cleanUpLocationBox.setItems(PathfindingController.getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof TextField) textFields.add((TextField) c);
-      if (c instanceof MFXComboBox) choiceBoxes.add((MFXComboBox) c);
-      if (c instanceof MFXFilterComboBox) filterChoiceBoxes.add((MFXFilterComboBox) c);
+      if (c instanceof ChoiceBox) choiceBoxes.add((MFXComboBox) c);
     }
-    typeOfCleanUpBox.setItems(typeOfCleanUpList);
+    typeOfRepairBox.setItems(typeOfRepairList);
+    deviceBox.setItems(typeOfDeviceList);
 
-    helpScreen = Screen.SANITATION_HELP;
+    helpScreen = Screen.COMPUTER_SERVICES_HELP;
     super.initialize();
   }
 
@@ -62,7 +61,7 @@ public class sanitationServiceController extends BaseRequestController {
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
-    SanitationRequest request = SanitationRequest.getInstance();
+    ComputerRequest request = new ComputerRequest();
 
     request.setFirstname(firstNameField.getText());
     request.setLastname(lastNameField.getText());
@@ -76,20 +75,14 @@ public class sanitationServiceController extends BaseRequestController {
     }
     request.setUrgency(urgency.toString());
 
-    var cleanUpLocation = cleanUpLocationBox.getValue();
-    if (cleanUpLocation == null) {
-      cleanUpLocation = "";
-    }
-    request.setTypeOfCleanUp(cleanUpLocation.toString());
+    request.setRepairLocation(repairLocationField.getText());
 
-    var typeOfcleanUp = typeOfCleanUpBox.getValue();
-    if (typeOfcleanUp == null) {
-      typeOfcleanUp = "";
+    var typeOfrepair = typeOfRepairBox.getValue();
+    if (typeOfrepair == null) {
+      typeOfrepair = "";
     }
-    request.setTypeOfCleanUp(typeOfcleanUp.toString());
-    request.setAssignedEmployee(assignedStaffField.getText());
-    request.setStatus(RequestStatus.PROCESSING);
-    DBSession.addORM(request);
+    request.setTypeOfRepair(typeOfrepair.toString());
+
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
 

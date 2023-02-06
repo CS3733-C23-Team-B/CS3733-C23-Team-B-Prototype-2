@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -52,6 +53,7 @@ public class PathfindingController {
     anchor.getChildren().add(pane);
     aPane.getChildren().add(linesPlane);
 
+    pane.zoomTo(-5000, -3000, Point2D.ZERO);
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
     pathfind.setOnAction(
@@ -122,7 +124,7 @@ public class PathfindingController {
    * @param node
    */
   private void placeNode(Node node) {
-    Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 6, Color.RED);
+    Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Color.RED);
     dot.getStyleClass().add("intersection");
     dot.addEventHandler(
         MouseEvent.MOUSE_CLICKED,
@@ -133,20 +135,8 @@ public class PathfindingController {
   }
 
   private void placeLine(Node start, Node end) {
-    Line l = new Line(scaleX(start) + 75, scaleY(start) - 50, scaleX(end) + 75, scaleY(end) - 50);
+    Line l = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
     l.setFill(Color.BLACK);
     linesPlane.getChildren().add(l);
-  }
-
-  private double scaleX(Node n) {
-    double padding = 2000;
-    double xScalar = (2770 - 1630) / (5000 - padding);
-    return ((n.getXCoord() - 1637) / xScalar) + (padding / 2);
-  }
-
-  private double scaleY(Node n) {
-    double padding = 1000;
-    double yScalar = (2260 - 799) / (3400 - padding);
-    return (((n.getYCoord() - 799) / yScalar) + (padding / 2));
   }
 }

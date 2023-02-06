@@ -17,6 +17,7 @@ import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -58,6 +59,7 @@ public class MapEditorController {
     anchor.getChildren().add(pane);
     i.setOnMouseClicked(e -> handleClick());
 
+    pane.zoomTo(-5000, -3000, new Point2D(2215, 1045));
     try {
       nodes = Node.getAll();
     } catch (SQLException e) {

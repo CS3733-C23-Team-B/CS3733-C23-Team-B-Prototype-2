@@ -3,19 +3,15 @@ package edu.wpi.teamb.Controllers;
 import edu.wpi.teamb.Entities.ComputerRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
 
 public class ComputerServiceController extends BaseRequestController {
   // Lists for checkboxes
@@ -50,7 +46,7 @@ public class ComputerServiceController extends BaseRequestController {
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
-      if (c instanceof MFXTextField) textFields.add((MFXTextField)  c);
+      if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfRepairBox.setItems(typeOfRepairList);

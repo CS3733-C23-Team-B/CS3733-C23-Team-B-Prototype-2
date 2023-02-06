@@ -4,18 +4,15 @@ import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
 
 public class BaseRequestController {
   // JavaFX components
@@ -34,7 +31,7 @@ public class BaseRequestController {
 
   // Choice-box options
   protected ObservableList<String> urgencyOptions =
-          FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
+      FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
 
   // List of all text fields and choice boxes for flexibility; when adding new input components to
   // form, add to this list

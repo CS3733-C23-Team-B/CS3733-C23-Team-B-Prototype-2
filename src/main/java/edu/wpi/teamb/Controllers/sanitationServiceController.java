@@ -5,6 +5,7 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +45,7 @@ public class sanitationServiceController extends BaseRequestController {
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
-      if (c instanceof TextField) textFields.add((TextField) c);
+      if (c instanceof TextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfCleanUpBox.setItems(typeOfCleanUpList);

@@ -35,7 +35,7 @@
         <mapping class="edu.wpi.teamb.Entities.PatientTransportationRequest"/>
         <mapping class="edu.wpi.teamb.Entities.SanitationRequest"/>
         <mapping class="edu.wpi.teamb.Database.LocationName"/>
-        <mapping class="edu.wpi.teamb.Database.Login"/>
+        <mapping class="edu.wpi.teamb.Entities.LogIn"/>
         <mapping class="edu.wpi.teamb.Database.Move"/>
         <mapping class="edu.wpi.teamb.Database.Edge"/>
 

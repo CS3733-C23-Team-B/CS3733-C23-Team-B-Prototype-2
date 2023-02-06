@@ -1,8 +1,7 @@
 package edu.wpi.teamb.Database;
 
-
-import jakarta.persistence.*;
 import edu.wpi.teamb.Entities.IORM;
+import jakarta.persistence.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List; // import java.util.stream.Stream;
@@ -15,7 +14,6 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "edge")
-
 public class Edge implements IORM {
 
   public static final String tableName = "edge";

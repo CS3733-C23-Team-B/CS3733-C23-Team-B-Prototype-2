@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "move")
@@ -18,12 +20,18 @@ public class Move implements IORM {
 
   @Id
   @Column(name = "nodeID", length = 20)
+  @Getter
+  @Setter
   private String nodeID;
 
   @Column(name = "longname", length = 70)
+  @Getter
+  @Setter
   private String longName;
 
   @Column(name = "movedate", length = 20)
+  @Getter
+  @Setter
   private Date moveDate;
 
   public Move(String nodeID, String longName, Date moveDate) {

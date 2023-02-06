@@ -5,18 +5,26 @@ import jakarta.persistence.*;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "locationname")
 public class LocationName implements IORM {
   @Id
   @Column(name = "longname", length = 70)
+  @Getter
+  @Setter
   private String longName;
 
   @Column(name = "shortname", length = 20)
+  @Getter
+  @Setter
   private String shortName;
 
   @Column(name = "locationtype", length = 20)
+  @Getter
+  @Setter
   private String locationType;
 
   public LocationName() {}

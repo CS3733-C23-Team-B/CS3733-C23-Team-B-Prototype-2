@@ -20,7 +20,7 @@ public class DBSession {
     }
     return instance;
   }
-  
+
   public static void addORM(Object o) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
@@ -54,6 +54,57 @@ public class DBSession {
     }
   }
 
+  public static List<Edge> getAllEdges() {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM egde");
+      List<Edge> edges = q.list();
+      session.close();
+      return edges;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
+
+  public static List<Move> getAllMoves() {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM move");
+      List<Move> moves = q.list();
+      session.close();
+      return moves;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
+
+  public static List<Node> getAllNodes() {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM node");
+      List<Node> nodes = q.list();
+      session.close();
+      return nodes;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
+
   public static void delete(IORM iorm) {
 
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
@@ -68,5 +119,71 @@ public class DBSession {
     }
   }
 
+  public static void updateLocationName(LocationName newLN, LocationName oldLN) {
+    if (newLN.getLongName() == oldLN.getLongName()) {
+      delete(oldLN);
+      addORM(newLN);
+    } else {
+      List<Move> moves = getAllMoves();
+      for (Move m : moves) {
+        if (m.getLongName() == oldLN.getLongName()) {
+          Move newm = new Move(m.getNodeID(), newLN.getLongName(), m.getMoveDate());
+          addORM(newm);
+          delete(m);
+        }
+      }
+    }
+  }
 
+  public static void updateNode(Node n) {
+
+    Node ncopy = new Node("", n.getXcoord(), n.getYcoord(), n.getFloor(), n.getBuilding());
+    ncopy.setNodeID(ncopy.buildID());
+
+    List<Edge> edges = getAllEdges();
+    for (Edge e : edges) {
+      if (e.getNode1() == n.getNodeID()) {
+        Edge newe = new Edge(ncopy.getNodeID(), e.getNode2());
+        addORM(newe);
+        delete(e);
+      } else if (e.getNode2() == n.getNodeID()) {
+        Edge newe = new Edge(e.getNode1(), ncopy.getNodeID());
+        addORM(newe);
+        delete(e);
+      }
+    }
+
+    List<Move> moves = getAllMoves();
+    for (Move m : moves) {
+      if (m.getNodeID() == n.getNodeID()) {
+        Move newm = new Move(ncopy.getNodeID(), m.getLongName(), m.getMoveDate());
+        addORM(newm);
+        delete(m);
+      }
+    }
+
+    addORM(ncopy);
+    delete(n);
+  }
+
+  public static void updateAllNodes() {
+
+    List<Node> nodes = getAllNodes();
+
+    for (Node n : nodes) {
+      updateNode(n);
+    }
+  }
+
+  public static void main(String[] args) {
+
+    Node n = new Node("test", 5, 5, "testfloor", "building");
+    PatientTransportationRequest ptr = new PatientTransportationRequest();
+    ptr.setLocation("Test");
+    ptr.setDestination("test");
+    ptr.setEquipment("test");
+    LogIn l = new LogIn("tester", "tester");
+    LocationName ln = new LocationName("Testerrrrr", "tested", "test");
+    addORM(ln);
+  }
 }

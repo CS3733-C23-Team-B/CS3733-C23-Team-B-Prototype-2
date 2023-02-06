@@ -38,6 +38,7 @@ public class MapEditorController {
   Map<Circle, Node> nodeList;
   AnchorPane currentPopUp;
   private static Node currentNode;
+  private Circle currentDot;
   private final int popUpHeight = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
@@ -125,6 +126,7 @@ public class MapEditorController {
     aPane.getChildren().add(popPane);
     currentPopUp = popPane;
     currentNode = node;
+    currentDot = dot;
   }
 
   private void editClicked() throws IOException {
@@ -146,6 +148,7 @@ public class MapEditorController {
       aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
       currentNode = null;
+      currentDot = null;
     }
   }
 
@@ -198,6 +201,8 @@ public class MapEditorController {
     id.setText("NodeID:   " + currentNode.getID());
     pos.setText("(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
     loc.setText(Move.getMostRecentLocation(currentNode.getID()));
+    currentDot.setCenterX(currentNode.getXCoord());
+    currentDot.setCenterY(currentNode.getYCoord());
   }
 
   public static MapEditorController getInstance() {

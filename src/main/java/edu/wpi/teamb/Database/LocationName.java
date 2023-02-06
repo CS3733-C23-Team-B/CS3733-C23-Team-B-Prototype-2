@@ -47,6 +47,18 @@ public class LocationName {
     return locationType;
   }
 
+  public void setLongName(String longName) {
+    this.longName = longName;
+  }
+
+  public void setShortName(String shortName) {
+    this.shortName = shortName;
+  }
+
+  public void setLocationType(String locationType) {
+    this.locationType = locationType;
+  }
+
   public void insert() throws SQLException {
     String sql = "INSERT INTO locationname (longname, shortname, locationtype)" + "VALUES (?,?,?);";
     PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);

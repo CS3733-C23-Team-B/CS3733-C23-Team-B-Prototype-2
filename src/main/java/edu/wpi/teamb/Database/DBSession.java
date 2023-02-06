@@ -2,7 +2,6 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
 import edu.wpi.teamb.SessionGetter;
-import java.text.ParseException;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -148,13 +147,6 @@ public class DBSession {
 
     List<Edge> edges = getAllEdges();
     for (Edge e : edges) {
-      System.out.println(
-          "Edge node1: "
-              + e.getNode1()
-              + ", node2: "
-              + e.getNode2()
-              + ", Old NodeID: "
-              + n.getNodeID());
       if (e.getNode1().equals(n.getNodeID())) {
         Edge newe = new Edge();
         newe.setNode1(ncopy.getNodeID());
@@ -195,8 +187,8 @@ public class DBSession {
     }
   }
 
-  public static void main(String[] args)  {
+  public static void main(String[] args) {
 
-
+    updateAllNodes();
   }
 }

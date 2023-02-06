@@ -20,8 +20,8 @@ public class ComputerServiceController extends BaseRequestController {
   ObservableList<String> typeOfRepairList =
       FXCollections.observableArrayList("New Hardware", "Broken Hardware", "Technical Issues");
   ObservableList<String> typeOfDeviceList =
-      FXCollections.observableArrayList("Computer", "Phone", "");
-  @FXML private TextField repairLocationField;
+      FXCollections.observableArrayList("Computer", "Phone", "Monitor");
+  @FXML private MFXFilterComboBox repairLocationBox;
   @FXML private MFXFilterComboBox typeOfRepairBox;
   @FXML private MFXFilterComboBox deviceBox;
 
@@ -35,14 +35,16 @@ public class ComputerServiceController extends BaseRequestController {
       lastNameField,
       employeeIDField,
       emailField,
-      repairLocationField,
+      repairLocationBox,
       urgencyBox,
       typeOfRepairBox,
+      deviceBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
-    choiceBoxes = new ArrayList<>();
+    filterChoiceBoxes = new ArrayList<>();
+    repairLocationBox.setItems(PathfindingController.getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -75,7 +77,7 @@ public class ComputerServiceController extends BaseRequestController {
     }
     request.setUrgency(urgency.toString());
 
-    request.setRepairLocation(repairLocationField.getText());
+    request.setRepairLocation(repairLocationBox.getText());
 
     var typeOfrepair = typeOfRepairBox.getValue();
     if (typeOfrepair == null) {

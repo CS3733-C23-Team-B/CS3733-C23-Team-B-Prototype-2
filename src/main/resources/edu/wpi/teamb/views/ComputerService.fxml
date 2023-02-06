@@ -217,35 +217,22 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="338.0" />
-                                 </HBox.margin>
-                              </Text>
                            </children>
                            <VBox.margin>
                               <Insets top="15.0" />
                            </VBox.margin>
                         </HBox>
                         <HBox layoutX="10.0" layoutY="384.0" prefHeight="22.0" prefWidth="200.0">
-                           <children>
-                              <MFXTextField minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                              <MFXTextField layoutX="10.0" layoutY="10.0" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                           </children>
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
+                           <children>
+                              <MFXFilterComboBox fx:id="repairLocationBox" prefHeight="44.0" prefWidth="340.0">
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </MFXFilterComboBox>
+                           </children>
                         </HBox>
                         <HBox layoutX="10.0" layoutY="448.0">
                            <children>

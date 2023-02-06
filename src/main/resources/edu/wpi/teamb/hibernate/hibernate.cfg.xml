@@ -31,13 +31,13 @@
 
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="edu.wpi.teamb.Database.Node"/>
         <mapping class="edu.wpi.teamb.Entities.PatientTransportationRequest"/>
         <mapping class="edu.wpi.teamb.Entities.SanitationRequest"/>
         <mapping class="edu.wpi.teamb.Database.LocationName"/>
         <mapping class="edu.wpi.teamb.Entities.LogIn"/>
         <mapping class="edu.wpi.teamb.Database.Move"/>
         <mapping class="edu.wpi.teamb.Database.Edge"/>
+        <mapping class="edu.wpi.teamb.Database.Node"/>
 
 
         <!-- Names the annotated entity class -->

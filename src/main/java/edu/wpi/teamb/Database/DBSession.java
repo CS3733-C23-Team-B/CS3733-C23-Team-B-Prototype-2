@@ -177,6 +177,11 @@ public class DBSession {
 
   public static void main(String[] args) {
     Node n = new Node();
+    n.setNodeID("Testing");
+    n.setXcoord(5);
+    n.setYcoord(5);
+    n.setBuilding("testingbuilding");
+    n.setFloor("testfloor");
     addORM(n);
   }
 }

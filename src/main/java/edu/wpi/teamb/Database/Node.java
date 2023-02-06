@@ -2,7 +2,9 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,9 +12,15 @@ import lombok.Setter;
  * class that represents the node table in the Database, allows, insertions, deletions, and other
  * interactions with the node table in the database
  */
+@Entity
+@Table(name = "node")
 public class Node implements IORM {
 
-  @Id @Getter @Setter private String nodeID;
+  @Id
+  @Column(name = "nodeid", length = 14)
+  @Getter
+  @Setter
+  private String nodeID;
 
   @Column(name = "xcoord", length = 4)
   @Getter

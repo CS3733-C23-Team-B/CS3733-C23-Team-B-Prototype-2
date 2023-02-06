@@ -3,18 +3,19 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="edu.wpi.teamb.Database.Node" table="node">
-        <id name="nodeID" type="String"></id>
+        <id name="nodeid" type="String" column = "nodeid">
+        </id>
         <property name = "xcoord" type = "int">
-            <column name="xcoord"/>
+            <column name="xCoord"/>
         </property>
         <property name = "ycoord" type = "int">
-            <column name="ycoord"/>
+            <column name="yCoord"/>
         </property>
         <property name = "floor" type = "String">
-            <column name="floor"/>
+            <column name="Floor"/>
         </property>
         <property name = "building" type = "String">
-            <column name="building"/>
+            <column name="Building"/>
         </property>
     </class>
 </hibernate-mapping>

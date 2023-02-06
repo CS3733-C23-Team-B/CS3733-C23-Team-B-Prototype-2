@@ -14,7 +14,7 @@ public class NavigationController {
   @FXML private BorderPane border;
 
   public void featureOneButtonClicked() throws IOException {
-    Navigation.navigate(Screen.PATIENT_TRANSPORTATION);
+    Navigation.navigate(Screen.COMPUTER_SERVICES);
   }
 
   public void featureTwoButtonClicked() throws IOException {

@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -52,6 +53,7 @@ public class PathfindingController {
     anchor.getChildren().add(pane);
     aPane.getChildren().add(linesPlane);
 
+    pane.zoomTo(-5000, -3000, Point2D.ZERO);
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
     pathfind.setOnAction(

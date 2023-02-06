@@ -6,7 +6,6 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
@@ -36,9 +35,9 @@ public class MapEditorController {
   @FXML AnchorPane anchor;
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
-  Map<Circle, NodeInfo> nodeList;
+  Map<Circle, Node> nodeList;
   AnchorPane currentPopUp;
-  private static NodeInfo currentNode;
+  private static Node currentNode;
   private final int popUpHeight = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
@@ -67,20 +66,8 @@ public class MapEditorController {
     }
 
     for (Node node : nodes.values()) {
-      String nodeID = node.getID();
-      int xCoord = node.getXCoord();
-      int yCoord = node.getYCoord();
-      Move move = Move.getMostRecentMove(nodeID);
-      Date moveDate = move.getMoveDate();
-      String location = move.getLongName();
-      String floor = node.getFloor();
-      String edges = "";
-      for (String edge : Pathfinding.getDirectPaths(nodeID)) edges += edge + ", ";
-      edges = edges.substring(0, edges.length() - 2);
-      NodeInfo nodeInfo =
-          new NodeInfo(nodeID, xCoord, yCoord, location, floor, moveDate, edges, node, move);
-      Circle dot = placeNode(nodeInfo);
-      nodeList.put(dot, nodeInfo);
+      Circle dot = placeNode(node);
+      nodeList.put(dot, node);
     }
 
     selectedCircle.addListener(
@@ -97,7 +84,7 @@ public class MapEditorController {
 
   public void displayPopUp(Circle dot) {
     clearPopUp();
-    NodeInfo node = nodeList.get(dot);
+    Node node = nodeList.get(dot);
 
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
@@ -107,9 +94,11 @@ public class MapEditorController {
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
 
-    Text id = new Text("NodeID:   " + node.getNodeID());
+    Text id = new Text("NodeID:   " + node.getID());
     Text pos = new Text("(x, y):  " + "(" + node.getXCoord() + ", " + node.getYCoord() + ")");
-    Text loc = new Text(node.getLocation());
+
+    Text loc = new Text(Move.getMostRecentLocation(node.getID()));
+
     Button editButton = new Button("Edit");
     editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
     editButton.setOnAction(
@@ -160,8 +149,8 @@ public class MapEditorController {
     }
   }
 
-  private Circle placeNode(NodeInfo nodeInfo) {
-    Circle dot = new Circle(nodeInfo.getXCoord(), nodeInfo.getYCoord(), 6, Color.RED);
+  private Circle placeNode(Node node) {
+    Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 6, Color.RED);
     aPane.getChildren().add(dot);
     dot.getStyleClass().add("intersection");
     dot.addEventHandler(
@@ -197,7 +186,7 @@ public class MapEditorController {
     //    Navigation.navigate(Screen.HOME);
   }
 
-  static NodeInfo getCurrentNode() {
+  static Node getCurrentNode() {
     return currentNode;
   }
 
@@ -206,9 +195,9 @@ public class MapEditorController {
     Text id = (Text) vboxChildren.get(0);
     Text pos = (Text) vboxChildren.get(1);
     Text loc = (Text) vboxChildren.get(2);
-    id.setText("NodeID:   " + currentNode.getNodeID());
+    id.setText("NodeID:   " + currentNode.getID());
     pos.setText("(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
-    loc.setText(currentNode.getLocation());
+    loc.setText(Move.getMostRecentLocation(currentNode.getID()));
   }
 
   public static MapEditorController getInstance() {

@@ -36,8 +36,8 @@ public class NodeInfo {
   }
 
   public void update() {
-    node.setXcoord(xCoord);
-    node.setYcoord(yCoord);
+    node.setXCoord(xCoord);
+    node.setYCoord(yCoord);
     node.setFloor(floor);
     nodeID = node.buildID();
     node.setNodeID(nodeID);

@@ -264,11 +264,11 @@ public class Node {
     this.nodeID = nodeID;
   }
 
-  public void setXcoord(int xcoord) {
+  public void setXCoord(int xcoord) {
     this.xcoord = xcoord;
   }
 
-  public void setYcoord(int ycoord) {
+  public void setYCoord(int ycoord) {
     this.ycoord = ycoord;
   }
 

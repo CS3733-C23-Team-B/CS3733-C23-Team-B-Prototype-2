@@ -1,19 +1,22 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Database.NodeInfo;
+import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
+import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class NodeEditorController {
+  @FXML Text nodeIDText;
   @FXML TextField xField;
   @FXML TextField yField;
   @FXML ChoiceBox<String> floorBox;
-  NodeInfo node = MapEditorController.getCurrentNode();
+  Node node = MapEditorController.getCurrentNode();
   String origFloor;
 
   public void initialize() {
@@ -24,6 +27,7 @@ public class NodeEditorController {
     origFloor = node.getFloor();
     floorBox.setItems(floors);
     floorBox.setValue(origFloor);
+    nodeIDText.setText(node.getID());
   }
 
   public void submitClicked() {
@@ -47,7 +51,11 @@ public class NodeEditorController {
     }
 
     if (changed) {
-      node.update();
+      try {
+        node.update();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
       Pathfinding.refreshData();
     }
     cancelClicked();

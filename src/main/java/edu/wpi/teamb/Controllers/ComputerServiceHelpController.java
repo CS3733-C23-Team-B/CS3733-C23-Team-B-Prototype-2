@@ -11,6 +11,6 @@ public class ComputerServiceHelpController {
     @FXML private Button backButton;
 
     public void backButtonClicked() throws IOException {
-        Navigation.navigate(Screen.COMPUTER_SERVICE_HELP);
+        Navigation.navigate(Screen.COMPUTER_SERVICES);
     }
 }

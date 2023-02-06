@@ -49,7 +49,7 @@ public class ComputerServiceController extends BaseRequestController {
         }
         typeOfRepairBox.setItems(typeOfRepairList);
 
-        helpScreen = Screen.COMPUTER_SERVICE_HELP;
+        helpScreen = Screen.COMPUTER_SERVICES_HELP;
         super.initialize();
     }
 

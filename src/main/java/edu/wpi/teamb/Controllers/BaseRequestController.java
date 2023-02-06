@@ -4,6 +4,7 @@ import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
+import javafx.scene.control.TextField;
 
 public class BaseRequestController {
   // JavaFX components
@@ -114,7 +116,6 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void buttonControl() throws IOException {
-
     boolean submitEnable = isFormFull();
     submitButton.setDisable(!submitEnable);
   }

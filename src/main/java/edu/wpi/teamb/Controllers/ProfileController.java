@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Bapp;
-import edu.wpi.teamb.Database.Login;
+import edu.wpi.teamb.Entities.LogIn;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ public class ProfileController {
   @FXML private ToggleButton showPasswordButton;
   @FXML private Button deleteAccountButton;
   private String passwordDisplay;
-  private Login user;
+  private LogIn user;
 
   /** Initializes the page by populating the login fields */
   public void initialize() {

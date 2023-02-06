@@ -34,11 +34,11 @@ public class NodeEditorController {
     String newFloor = floorBox.getValue();
 
     if (!newX.isEmpty()) {
-      node.setxCoord(Integer.parseInt(newX));
+      node.setXCoord(Integer.parseInt(newX));
       changed = true;
     }
     if (!newY.isEmpty()) {
-      node.setyCoord(Integer.parseInt(newY));
+      node.setYCoord(Integer.parseInt(newY));
       changed = true;
     }
     if (!newFloor.equals(origFloor)) {

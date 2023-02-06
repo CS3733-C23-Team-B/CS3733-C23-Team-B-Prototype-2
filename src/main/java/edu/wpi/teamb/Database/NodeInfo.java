@@ -77,11 +77,11 @@ public class NodeInfo {
     return edges;
   }
 
-  public void setxCoord(int xCoord) {
+  public void setXCoord(int xCoord) {
     this.xCoord = xCoord;
   }
 
-  public void setyCoord(int yCoord) {
+  public void setYCoord(int yCoord) {
     this.yCoord = yCoord;
   }
 

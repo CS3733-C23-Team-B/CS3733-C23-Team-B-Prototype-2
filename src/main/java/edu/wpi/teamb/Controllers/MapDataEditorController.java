@@ -92,7 +92,7 @@ public class MapDataEditorController {
     xColumn.setOnEditCommit(
         e -> {
           NodeInfo node = e.getTableView().getItems().get(e.getTablePosition().getRow());
-          node.setxCoord(e.getNewValue());
+          node.setXCoord(e.getNewValue());
           node.update();
           Pathfinding.refreshData();
         });
@@ -101,7 +101,7 @@ public class MapDataEditorController {
     yColumn.setOnEditCommit(
         e -> {
           NodeInfo node = e.getTableView().getItems().get(e.getTablePosition().getRow());
-          node.setyCoord(e.getNewValue());
+          node.setYCoord(e.getNewValue());
           node.update();
           Pathfinding.refreshData();
         });

@@ -1,9 +1,12 @@
 package edu.wpi.teamb.Controllers;
 
+import static edu.wpi.teamb.Controllers.PathfindingController.getLocations;
+
 import edu.wpi.teamb.Database.Transportation;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ public class PatientTransportationController extends BaseRequestController {
   @FXML private TextField patientLocationField;
   @FXML private TextField patientDestinationField;
   @FXML private TextField patientIDField;
+  @FXML MFXFilterComboBox locationBox;
 
   private ObservableList<String> equipmentOptions =
       FXCollections.observableArrayList("Stretcher", "Wheelchair", "Restraints", "Stair Chair");
@@ -28,6 +32,7 @@ public class PatientTransportationController extends BaseRequestController {
   /** Initialize the page by declaring choice-box options */
   @Override
   public void initialize() {
+    locationBox.setItems(getLocations());
     // Create list of components; additionalNotesField MUST be last
     Control[] cl = {
       firstNameField,

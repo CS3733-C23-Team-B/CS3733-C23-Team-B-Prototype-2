@@ -3,6 +3,7 @@ package edu.wpi.teamb.Controllers;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class BaseRequestController {
   @FXML protected TextField lastNameField;
   @FXML protected TextField employeeIDField;
   @FXML protected TextField emailField;
-  @FXML protected ChoiceBox urgencyBox;
+  @FXML protected MFXFilterComboBox urgencyBox;
   @FXML protected TextField assignedStaffField;
   @FXML protected TextField additionalNotesField;
   private RequestStatus request;

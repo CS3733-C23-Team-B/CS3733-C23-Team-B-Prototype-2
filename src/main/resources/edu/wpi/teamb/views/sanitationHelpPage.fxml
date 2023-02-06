@@ -17,7 +17,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <MFXButton buttonType="RAISED" layoutX="518.0" layoutY="393.0" prefWidth="55.0" style="-fx-background-color: #cfcfcf;" />
+            <MFXButton fx:id="backButton" buttonType="RAISED" layoutX="518.0" layoutY="393.0" onAction="#backButtonClicked" prefWidth="55.0" style="-fx-background-color: #cfcfcf;" />
          </children>
       </AnchorPane>
    </center>

@@ -4,7 +4,6 @@ import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,7 +20,7 @@ public class BaseRequestController {
   @FXML protected TextField lastNameField;
   @FXML protected TextField employeeIDField;
   @FXML protected TextField emailField;
-  @FXML protected MFXComboBox urgencyBox;
+  @FXML protected MFXFilterComboBox urgencyBox;
   @FXML protected TextField assignedStaffField;
   @FXML protected TextField additionalNotesField;
   private RequestStatus request;
@@ -38,8 +37,7 @@ public class BaseRequestController {
   // form, add to this list
   protected ArrayList<Control> components;
   protected ArrayList<TextField> textFields;
-  protected ArrayList<MFXComboBox> choiceBoxes;
-  protected ArrayList<MFXFilterComboBox> filterChoiceBoxes;
+  protected ArrayList<MFXFilterComboBox> choiceBoxes;
 
   protected Screen helpScreen;
   protected Screen submissionScreen;
@@ -80,7 +78,7 @@ public class BaseRequestController {
   public void clearButtonClicked() throws IOException {
     for (TextField t : textFields) t.clear();
 
-    for (MFXComboBox c : choiceBoxes) c.getSelectionModel().clearSelection();
+    for (MFXFilterComboBox c : choiceBoxes) c.getSelectionModel().clearSelection();
   }
 
   /**
@@ -100,8 +98,9 @@ public class BaseRequestController {
    */
   protected String getText(Control component) {
     if (component instanceof TextField) return ((TextField) component).getText();
-    else if (component instanceof MFXComboBox<?>) {
-      String s = (String) ((MFXComboBox) component).getValue();
+    else if (component instanceof MFXFilterComboBox<?>) {
+      String s = (String) ((MFXFilterComboBox) component).getValue();
+      System.out.println("eeeeeeeeeeeeeeeee");
       if (s == null) s = "";
       return s;
     } else {
@@ -115,6 +114,7 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void buttonControl() throws IOException {
+    
     boolean submitEnable = isFormFull();
     submitButton.setDisable(!submitEnable);
   }

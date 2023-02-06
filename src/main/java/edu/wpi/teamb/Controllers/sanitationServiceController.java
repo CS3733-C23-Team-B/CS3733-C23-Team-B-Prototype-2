@@ -40,14 +40,12 @@ public class sanitationServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    filterChoiceBoxes = new ArrayList<>();
     cleanUpLocationBox.setItems(PathfindingController.getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof TextField) textFields.add((TextField) c);
-      if (c instanceof MFXComboBox) choiceBoxes.add((MFXComboBox) c);
-      if (c instanceof MFXFilterComboBox) filterChoiceBoxes.add((MFXFilterComboBox) c);
+      if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
 

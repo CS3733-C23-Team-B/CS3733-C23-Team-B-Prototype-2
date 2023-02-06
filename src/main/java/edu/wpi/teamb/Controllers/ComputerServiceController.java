@@ -8,6 +8,8 @@ import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,13 +45,13 @@ public class ComputerServiceController extends BaseRequestController {
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
-    filterChoiceBoxes = new ArrayList<>();
+    choiceBoxes = new ArrayList<>();
     repairLocationBox.setItems(PathfindingController.getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
-      if (c instanceof TextField) textFields.add((TextField) c);
-      if (c instanceof ChoiceBox) choiceBoxes.add((MFXComboBox) c);
+      if (c instanceof MFXTextField) textFields.add((MFXTextField)  c);
+      if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfRepairBox.setItems(typeOfRepairList);
     deviceBox.setItems(typeOfDeviceList);
@@ -84,6 +86,12 @@ public class ComputerServiceController extends BaseRequestController {
       typeOfrepair = "";
     }
     request.setTypeOfRepair(typeOfrepair.toString());
+
+    var device = deviceBox.getValue();
+    if (device == null) {
+      device = "";
+    }
+    request.setDevice(device.toString());
 
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();

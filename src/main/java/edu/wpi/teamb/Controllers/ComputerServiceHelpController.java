@@ -8,9 +8,9 @@ import javafx.scene.control.Button;
 
 public class ComputerServiceHelpController {
 
-    @FXML private Button backButton;
+  @FXML private Button backButton;
 
-    public void backButtonClicked() throws IOException {
-        Navigation.navigate(Screen.COMPUTER_SERVICES);
-    }
+  public void backButtonClicked() throws IOException {
+    Navigation.navigate(Screen.COMPUTER_SERVICES);
+  }
 }

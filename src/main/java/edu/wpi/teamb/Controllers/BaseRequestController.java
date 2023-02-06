@@ -4,26 +4,26 @@ import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
 
 public class BaseRequestController {
   // JavaFX components
-  @FXML protected TextField firstNameField;
-  @FXML protected TextField lastNameField;
-  @FXML protected TextField employeeIDField;
-  @FXML protected TextField emailField;
-  @FXML protected MFXComboBox urgencyBox;
-  @FXML protected TextField assignedStaffField;
-  @FXML protected TextField additionalNotesField;
+  @FXML protected MFXTextField firstNameField;
+  @FXML protected MFXTextField lastNameField;
+  @FXML protected MFXTextField employeeIDField;
+  @FXML protected MFXTextField emailField;
+  @FXML protected MFXFilterComboBox urgencyBox;
+  @FXML protected MFXTextField assignedStaffField;
+  @FXML protected MFXTextField additionalNotesField;
   private RequestStatus request;
   @FXML protected MFXButton cancelButton;
   @FXML protected MFXButton helpButton;
@@ -32,14 +32,13 @@ public class BaseRequestController {
 
   // Choice-box options
   protected ObservableList<String> urgencyOptions =
-      FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
+          FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
 
   // List of all text fields and choice boxes for flexibility; when adding new input components to
   // form, add to this list
   protected ArrayList<Control> components;
-  protected ArrayList<TextField> textFields;
-  protected ArrayList<MFXComboBox> choiceBoxes;
-  protected ArrayList<MFXFilterComboBox> filterChoiceBoxes;
+  protected ArrayList<MFXTextField> textFields;
+  protected ArrayList<MFXFilterComboBox> choiceBoxes;
 
   protected Screen helpScreen;
   protected Screen submissionScreen;
@@ -78,9 +77,9 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void clearButtonClicked() throws IOException {
-    for (TextField t : textFields) t.clear();
+    for (MFXTextField t : textFields) t.clear();
 
-    for (MFXComboBox c : choiceBoxes) c.getSelectionModel().clearSelection();
+    for (MFXFilterComboBox c : choiceBoxes) c.getSelectionModel().clearSelection();
   }
 
   /**
@@ -93,15 +92,15 @@ public class BaseRequestController {
   }
 
   /**
-   * Returns the text in the given component, whether it's a TextField or ChoiceBox
+   * Returns the text in the given component, whether it's a MFXTextField or ChoiceBox
    *
-   * @param component the TextField or ChoiceBox
+   * @param component the MFXTextField or ChoiceBox
    * @return a String containing the inputted text
    */
   protected String getText(Control component) {
-    if (component instanceof TextField) return ((TextField) component).getText();
-    else if (component instanceof MFXComboBox<?>) {
-      String s = (String) ((MFXComboBox) component).getValue();
+    if (component instanceof MFXTextField) return ((MFXTextField) component).getText();
+    else if (component instanceof MFXFilterComboBox<?>) {
+      String s = (String) ((MFXFilterComboBox) component).getValue();
       if (s == null) s = "";
       return s;
     } else {
@@ -115,6 +114,7 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void buttonControl() throws IOException {
+
     boolean submitEnable = isFormFull();
     submitButton.setDisable(!submitEnable);
   }

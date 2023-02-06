@@ -52,6 +52,7 @@ public class Login implements IORM {
     return tableName.toLowerCase();
   }
 
+
   @Override
   public String getSearchStr() {
     return "FROM login WHERE username = '" + username + "'";

@@ -65,8 +65,10 @@ public class DBSession {
       return objects;
     } catch (Exception e) {
       e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
     }
-    return null;
   }
 
   public static void delete(IORM iorm) {

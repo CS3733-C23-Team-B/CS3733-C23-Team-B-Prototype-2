@@ -19,7 +19,7 @@ public class ComputerServiceController extends BaseRequestController {
     ObservableList<String> typeOfRepairList =
             FXCollections.observableArrayList("New Hardware", "Broken Hardware", "Technical Issues");
     ObservableList<String> typeOfDevice =
-            FXCollections.observableArrayList("Computer", "Phone", "")
+            FXCollections.observableArrayList("Computer", "Phone", "");
     @FXML private TextField repairLocationField;
     @FXML private ChoiceBox typeOfRepairBox;
 
@@ -49,7 +49,7 @@ public class ComputerServiceController extends BaseRequestController {
         }
         typeOfRepairBox.setItems(typeOfRepairList);
 
-        helpScreen = Screen.COMPUTER_HELP;
+        helpScreen = Screen.COMPUTER_SERVICE_HELP;
         super.initialize();
     }
 
@@ -78,7 +78,7 @@ public class ComputerServiceController extends BaseRequestController {
         if (typeOfrepair == null) {
             typeOfrepair = "";
         }
-        request.setTypeOfrepair(typeOfrepair.toString());
+        request.setTypeOfRepair(typeOfRepair.toString());
 
         // may need to clear fields can be done with functions made for clear
         clearButtonClicked();

@@ -31,7 +31,7 @@
             <AnchorPane fx:id="anchor" layoutY="122.0" prefHeight="397.0" prefWidth="800.0" />
             <VBox prefHeight="155.0" prefWidth="800.0">
                <children>
-                  <HBox prefHeight="29.0" prefWidth="525.0" spacing="30.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="525.0" spacing="30.0">
                      <children>
                         <Label text="Starting Node:" />
                         <MFXComboBox fx:id="startLoc" prefHeight="25.0" prefWidth="150.0" />
@@ -40,7 +40,7 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="30.0" prefWidth="525.0" spacing="36.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="525.0" spacing="36.0">
                      <children>
                         <Label text="Ending Node:" />
                         <MFXComboBox fx:id="endLoc" prefHeight="25.0" prefWidth="150.0" />

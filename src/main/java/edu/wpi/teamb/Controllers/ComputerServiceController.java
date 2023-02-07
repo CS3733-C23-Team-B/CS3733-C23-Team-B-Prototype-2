@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
+import edu.wpi.teamb.Database.ComputerRequest;
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Entities.ComputerRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;

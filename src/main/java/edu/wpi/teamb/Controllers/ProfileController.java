@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Entities.Login;
+import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import javafx.fxml.FXML;

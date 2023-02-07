@@ -1,5 +1,6 @@
-package edu.wpi.teamb.Entities;
+package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.RequestStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

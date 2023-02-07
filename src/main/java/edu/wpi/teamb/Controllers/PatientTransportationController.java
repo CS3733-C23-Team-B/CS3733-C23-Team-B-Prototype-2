@@ -2,7 +2,7 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.LocationName;
-import edu.wpi.teamb.Entities.PatientTransportationRequest;
+import edu.wpi.teamb.Database.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;

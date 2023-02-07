@@ -17,7 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 
-public class sanitationServiceController extends BaseRequestController {
+public class SanitationServiceController extends BaseRequestController {
   // Lists for checkboxes
   ObservableList<String> typeOfCleanUpList =
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");

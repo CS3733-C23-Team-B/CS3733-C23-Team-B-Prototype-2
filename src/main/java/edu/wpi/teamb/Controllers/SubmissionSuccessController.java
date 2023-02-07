@@ -6,7 +6,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class submissionSuccessController {
+public class SubmissionSuccessController {
 
   @FXML private Button returnButton;
 

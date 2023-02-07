@@ -2,7 +2,6 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
 import edu.wpi.teamb.SessionGetter;
-import java.text.ParseException;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -93,6 +92,23 @@ public class DBSession {
     }
   }
 
+  public static List<Move> getAllMovesWithLN(String ln) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM Move WHERE longName = '" + ln + "'");
+      List<Move> moves = q.list();
+      session.close();
+      return moves;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
+
   public static List<Node> getAllNodes() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
@@ -102,6 +118,23 @@ public class DBSession {
       List<Node> nodes = q.list();
       session.close();
       return nodes;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
+
+  public static List<LocationName> getAllLN() {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM LocationName");
+      List<LocationName> lns = q.list();
+      session.close();
+      return lns;
     } catch (Exception e) {
       e.printStackTrace();
       return null;
@@ -126,13 +159,13 @@ public class DBSession {
   }
 
   public static void updateLocationName(LocationName newLN, LocationName oldLN) {
-    if (newLN.getLongName() == oldLN.getLongName()) {
+    if (newLN.getLongName().equals(oldLN.getLongName())) {
       delete(oldLN);
       addORM(newLN);
     } else {
       List<Move> moves = getAllMoves();
       for (Move m : moves) {
-        if (m.getLongName() == oldLN.getLongName()) {
+        if (m.getLongName().equals(oldLN.getLongName())) {
           Move newm = new Move(m.getNodeID(), newLN.getLongName(), m.getMoveDate());
           addORM(newm);
           delete(m);
@@ -143,18 +176,25 @@ public class DBSession {
 
   public static void updateNode(Node n) {
 
-    Node ncopy = new Node("", n.getXCoord(), n.getYCoord(), n.getFloor(), n.getBuilding());
-    ncopy.setNodeID(ncopy.buildID());
-    System.out.println(ncopy.getNodeID());
+    Node ncopy = new Node();
+    ncopy.setNodeID(n.buildID());
+    ncopy.setXcoord(n.getXcoord());
+    ncopy.setYcoord(n.getYcoord());
+    ncopy.setFloor(n.getFloor());
+    ncopy.setBuilding(n.getBuilding());
 
     List<Edge> edges = getAllEdges();
     for (Edge e : edges) {
-      if (e.getNode1() == n.getNodeID()) {
-        Edge newe = new Edge(ncopy.getNodeID(), e.getNode2());
+      if (e.getNode1().equals(n.getNodeID())) {
+        Edge newe = new Edge();
+        newe.setNode1(ncopy.getNodeID());
+        newe.setNode2(e.getNode2());
         addORM(newe);
         delete(e);
-      } else if (e.getNode2() == n.getNodeID()) {
-        Edge newe = new Edge(e.getNode1(), ncopy.getNodeID());
+      } else if (e.getNode2().equals(n.getNodeID())) {
+        Edge newe = new Edge();
+        newe.setNode1(e.getNode1());
+        newe.setNode2(ncopy.getNodeID());
         addORM(newe);
         delete(e);
       }
@@ -162,8 +202,11 @@ public class DBSession {
 
     List<Move> moves = getAllMoves();
     for (Move m : moves) {
-      if (m.getNodeID() == n.getNodeID()) {
-        Move newm = new Move(ncopy.getNodeID(), m.getLongName(), m.getMoveDate());
+      if (m.getNodeID().equals(n.getNodeID())) {
+        Move newm = new Move();
+        newm.setNodeID(ncopy.getNodeID());
+        newm.setLongName(m.getLongName());
+        newm.setMoveDate(m.getMoveDate());
         addORM(newm);
         delete(m);
       }
@@ -182,71 +225,47 @@ public class DBSession {
     }
   }
 
-  public static void main(String[] args) throws ParseException {
+   public static String getMostRecentLocation(String NodeID) {
+      return getMostRecentMove(NodeID).getLongName();
+    }
 
-    Node n = new Node();
-    n.setNodeID("test");
-    n.setYCoord(5);
-    n.setXCoord(5);
-    n.setFloor("L1");
-    n.setBuilding("testing");
-    Node n2 = new Node();
-    n2.setNodeID("test2");
-    n2.setXCoord(20);
-    n2.setYCoord(20);
-    n2.setFloor("L1");
-    n2.setBuilding("testing");
-    Node n3 = new Node();
-    n3.setNodeID("test3");
-    n3.setXCoord(25);
-    n3.setYCoord(25);
-    n3.setFloor("L1");
-    n3.setBuilding("testing");
-    //    addORM(n);
-    //    addORM(n2);
-    //    addORM(n3);
-    //
-    //    Edge e = new Edge();
-    //    e.setNode1(n.getNodeID());
-    //    e.setNode2(n2.getNodeID());
-    //    Edge e2 = new Edge();
-    //    e2.setNode1(n3.getNodeID());
-    //    e2.setNode2(n.getNodeID());
-    //    addORM(e);
-    //    addORM(e2);
-    //
-    //    LocationName ln = new LocationName();
-    //    ln.setLongName("test ln");
-    //    ln.setShortName("test sn");
-    //    ln.setLocationType("test lt");
-    //    LocationName ln2 = new LocationName();
-    //    ln2.setLongName("test ln2");
-    //    ln2.setShortName("test sn2");
-    //    ln2.setLocationType("test lt2");
-    //    LocationName ln3 = new LocationName();
-    //    ln3.setLongName("test ln3");
-    //    ln3.setShortName("test sn3");
-    //    ln3.setLocationType("test lt3");
-    //    addORM(ln);
-    //    addORM(ln2);
-    //    addORM(ln3);
-    //
-    //    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-    //    Move m = new Move();
-    //    m.setNodeID(n.getNodeID());
-    //    m.setLongName(ln.getLongName());
-    //    m.setMoveDate(dateFormat.parse("01-01-2023"));
-    //    Move m2 = new Move();
-    //    m2.setNodeID(n2.getNodeID());
-    //    m2.setLongName(ln2.getLongName());
-    //    m2.setMoveDate(dateFormat.parse("01-01-2023"));
-    //    Move m3 = new Move();
-    //    m3.setNodeID(n3.getNodeID());
-    //    m3.setLongName(ln3.getLongName());
-    //    m3.setMoveDate(dateFormat.parse("01-01-2023"));
-    //    addORM(m);
-    //    addORM(m2);
-    //    addORM(m3);
-    updateNode(n);
+   public static String getMostRecentNode(String longName) {
+      List<Move> moves = getAllMovesWithLN(longName);
+
+      if (moves == null) return "NO MOVES";
+
+      Move mostRecent = moves.get(0);
+      for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+
+      return mostRecent.getNodeID();
+    }
+
+  public static Move getMostRecentMove(String nodeID) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    List<Move> moves = null;
+    try {
+      Transaction tx = session.beginTransaction();
+      String str = "FROM Move WHERE nodeID = '" + nodeID + "'";
+      Query q = session.createQuery(str);
+      moves = q.list();
+      session.close();
+      if(moves.isEmpty()) {
+        return null;
+      } else {
+        Move mostRecent = moves.get(0);
+            for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+            return mostRecent;
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
+
+  private static boolean moreRecentThan(Move move1, Move move2) {
+    return move1.getMoveDate().after(move2.getMoveDate());
   }
 }

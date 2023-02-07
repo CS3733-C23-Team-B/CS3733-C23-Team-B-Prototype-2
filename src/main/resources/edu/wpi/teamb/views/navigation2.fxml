@@ -21,10 +21,6 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
-        <Button fx:id="databaseButton" mnemonicParsing="false" onAction="#databaseButtonClicked" style="-fx-background-color: #003DA6;" text="Database" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font></Button>
       <Button mnemonicParsing="false" onAction="#mapEditorButtonClicked" style="-fx-background-color: #003DA6;" text="Map Editor" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />

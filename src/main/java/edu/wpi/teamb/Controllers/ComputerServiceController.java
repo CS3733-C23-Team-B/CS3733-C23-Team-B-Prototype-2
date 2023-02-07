@@ -24,7 +24,7 @@ public class ComputerServiceController extends BaseRequestController {
       FXCollections.observableArrayList("Computer", "Phone", "");
   @FXML private TextField repairLocationField;
   @FXML private MFXFilterComboBox typeOfRepairBox;
-  @FXML private MFXFilterComboBox deviceBox;
+  @FXML private MFXFilterComboBox<String> deviceBox;
 
   @FXML
   @Override
@@ -82,6 +82,8 @@ public class ComputerServiceController extends BaseRequestController {
     if (typeOfrepair == null) {
       typeOfrepair = "";
     }
+    request.setDevice(deviceBox.getValue());
+    request.setAssignedEmployee(assignedStaffField.getText());
     request.setTypeOfRepair(typeOfrepair.toString());
 
     DBSession.addORM(request);

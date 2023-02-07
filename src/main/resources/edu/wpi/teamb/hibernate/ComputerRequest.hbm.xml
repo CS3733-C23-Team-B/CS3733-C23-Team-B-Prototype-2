@@ -6,6 +6,9 @@
         <property name = "typeOfRepair" type = "String">
             <column name="typeofrepair"/>
         </property>
+        <property name = "device" type = "String">
+            <column name="device"/>
+        </property>
         <property name = "repairLocation" type = "String">
             <column name="repairlocation"/>
         </property>

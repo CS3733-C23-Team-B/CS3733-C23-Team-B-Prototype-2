@@ -19,7 +19,7 @@
         <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-                <Text id="titleRoboto" fill="WHITE" layoutX="57.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computer Service Request" textAlignment="CENTER">
+                <Text id="titleRoboto" fill="WHITE" layoutX="110.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computer Service Request" textAlignment="CENTER">
                     <font>
                         <Font size="50.0" />
                     </font>

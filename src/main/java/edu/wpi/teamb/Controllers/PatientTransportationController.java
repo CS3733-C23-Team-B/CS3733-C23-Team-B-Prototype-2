@@ -24,6 +24,7 @@ public class PatientTransportationController extends BaseRequestController {
   @FXML private MFXFilterComboBox urgencyBox;
   @FXML private MFXComboBox equipmentNeededBox;
   @FXML private TextField patientIDField;
+  @FXML private TextField additionalNotesField;
 
   @FXML
   @Override

@@ -43,12 +43,12 @@ public class GeneralRequest {
   @Setter
   private String assignedEmployee;
 
-  @Column(name = "notes", length = 20)
+  @Column(name = "notes", length = 60)
   @Getter
   @Setter
   private String notes;
 
-  @Column(name = "status", length = 20)
+  @Column(name = "status", length = 60)
   @Getter
   @Setter
   private RequestStatus status;

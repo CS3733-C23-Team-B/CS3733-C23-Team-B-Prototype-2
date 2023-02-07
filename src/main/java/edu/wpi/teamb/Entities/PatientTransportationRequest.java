@@ -15,17 +15,17 @@ public class PatientTransportationRequest extends GeneralRequest implements IORM
   @Setter
   private String equipment;
 
-  @Column(name = "patientLocation", length = 20)
+  @Column(name = "patientLocation", length = 60)
   @Getter
   @Setter
   private String location;
 
-  @Column(name = "patientDestination", length = 20)
+  @Column(name = "patientDestination", length = 60)
   @Getter
   @Setter
   private String destination;
 
-  @Column(name = "patientID", length = 20)
+  @Column(name = "patientID", length = 60)
   @Getter
   @Setter
   private String patientID;

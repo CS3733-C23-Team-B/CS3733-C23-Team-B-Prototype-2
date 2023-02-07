@@ -10,12 +10,12 @@ import lombok.Setter;
     name = "computerRequestID",
     foreignKey = @ForeignKey(name = "computerRequestIDKey"))
 public class ComputerRequest extends GeneralRequest {
-  @Column(name = "typeofrepair", length = 20)
+  @Column(name = "typeofrepair", length = 60)
   @Getter
   @Setter
   private String typeOfRepair;
 
-  @Column(name = "repairlocation", length = 20)
+  @Column(name = "repairlocation", length = 60)
   @Getter
   @Setter
   private String repairLocation;

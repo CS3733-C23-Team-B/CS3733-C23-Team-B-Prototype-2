@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Sorting {
 
-  public static void sort(List<String> list) {
+  public static void quickSort(List<String> list) {
     sortHelper(list, 0, list.size() - 1);
   }
 

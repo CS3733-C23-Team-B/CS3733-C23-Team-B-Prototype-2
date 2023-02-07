@@ -203,20 +203,19 @@ public class DBSession {
   }
 
   public static void updateLocationName(LocationName newLN, LocationName oldLN) {
-    if (newLN.getLongName().equals(oldLN.getLongName())) {
-      delete(oldLN);
-      addORM(newLN);
-    } else {
-      List<Move> moves = getAllMoves();
-      for (Move m : moves) {
-        if (m.getLongName().equals(oldLN.getLongName())) {
-          Move newm = new Move(m.getNodeID(), newLN.getLongName(), m.getMoveDate());
-          addORM(newm);
-          delete(m);
-        }
+
+    addORM(newLN);
+    List<Move> moves = getAllMoves();
+    for (Move m : moves) {
+      if (m.getLongName().equals(oldLN.getLongName())) {
+        Move newm = new Move(m.getNodeID(), newLN.getLongName(), m.getMoveDate());
+        addORM(newm);
+        delete(m);
       }
     }
+    delete(oldLN);
   }
+
 
   public static void updateNode(Node n) {
 

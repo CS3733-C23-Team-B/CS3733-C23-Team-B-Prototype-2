@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -53,7 +54,6 @@ public class PathfindingController {
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
     aPane.getChildren().add(linesPlane);
-
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
@@ -80,6 +80,7 @@ public class PathfindingController {
             newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
           }
         });
+    Platform.runLater(() -> pane.centreOn(new javafx.geometry.Point2D(2220, 974)));
   }
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */

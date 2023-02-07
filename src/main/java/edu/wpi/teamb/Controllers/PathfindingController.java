@@ -137,6 +137,7 @@ public class PathfindingController {
   private void placeLine(Node start, Node end) {
     Line l = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
     l.setFill(Color.BLACK);
+    l.setStrokeWidth(5);
     linesPlane.getChildren().add(l);
   }
 }

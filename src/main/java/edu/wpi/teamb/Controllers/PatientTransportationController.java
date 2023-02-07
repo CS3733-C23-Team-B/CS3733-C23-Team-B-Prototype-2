@@ -5,6 +5,7 @@ import edu.wpi.teamb.Entities.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,13 +14,12 @@ import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 
 public class PatientTransportationController extends BaseRequestController {
   // TODO: rename remaining vars with Field or Box appending them
-  @FXML private ChoiceBox equipmentNeededBox;
+  @FXML private MFXComboBox equipmentNeededBox;
   @FXML private TextField patientLocationField;
   @FXML private TextField patientDestinationField;
   @FXML private TextField patientIDField;

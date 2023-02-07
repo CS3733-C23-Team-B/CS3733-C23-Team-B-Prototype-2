@@ -29,9 +29,7 @@ import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
-
   private GesturePane pane;
-
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private List<Line> lines;
   private AnchorPane aPane = new AnchorPane();

@@ -21,7 +21,6 @@ public class SanitationRequest extends GeneralRequest implements IORM {
   @Setter
   private String typeOfCleanUp;
 
-
   @Override
   public String getSearchStr() {
     return "FROM SanitationRequest WHERE id = " + getId();

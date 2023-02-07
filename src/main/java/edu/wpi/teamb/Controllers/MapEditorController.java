@@ -2,7 +2,6 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Navigation.Navigation;
@@ -65,6 +64,7 @@ public class MapEditorController {
     nodeDBList.forEach(node -> nodes.put(node.getNodeID(), node));
 
     for (Node node : nodes.values()) {
+      if (!node.getFloor().equals("L1")) continue;
       Circle dot = placeNode(node);
       nodeList.put(dot, node);
     }
@@ -96,7 +96,7 @@ public class MapEditorController {
     Text id = new Text("NodeID:   " + node.getNodeID());
     Text pos = new Text("(x, y):  " + "(" + node.getXCoord() + ", " + node.getYCoord() + ")");
 
-    Text loc = new Text(Move.getMostRecentLocation(node.getNodeID()));
+    Text loc = new Text(DBSession.getMostRecentLocation(node.getNodeID()));
 
     Button editButton = new Button("Edit");
     editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
@@ -199,7 +199,7 @@ public class MapEditorController {
     Text loc = (Text) vboxChildren.get(2);
     id.setText("NodeID:   " + currentNode.getNodeID());
     pos.setText("(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
-    loc.setText(Move.getMostRecentLocation(currentNode.getNodeID()));
+    loc.setText(DBSession.getMostRecentLocation(currentNode.getNodeID()));
     currentDot.setCenterX(currentNode.getXCoord());
     currentDot.setCenterY(currentNode.getYCoord());
   }

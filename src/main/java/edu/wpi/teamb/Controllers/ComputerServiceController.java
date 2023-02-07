@@ -37,6 +37,7 @@ public class ComputerServiceController extends BaseRequestController {
       urgencyBox,
       typeOfRepairBox,
       deviceBox,
+      assignedStaffField,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));

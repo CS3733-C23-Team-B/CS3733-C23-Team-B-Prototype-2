@@ -18,7 +18,8 @@ public enum Screen {
   SUBMISSION_SUCCESS("views/submissionSuccess.fxml"),
   ABOUT("views/About.fxml"),
   SERVICE_REQUEST_FORMS("views/serviceRequestForms.fxml"),
-  LOCATION_NODE_EDITOR("views/LocationNodeEditor.fxml");
+  LOCATION_NODE_EDITOR("views/LocationNodeEditor.fxml"),
+  MAP_EDITOR("views/MapEditor.fxml");
 
   private final String filename;
 

@@ -42,7 +42,7 @@ public class NavigationController {
   }
 
   public void databaseButtonClicked() throws IOException {
-    Navigation.navigate(Screen.MAP_DATA_EDITOR);
+    Navigation.navigate(Screen.MAP_EDITOR);
   }
 
   public void submittedRequestsButtonClicked() throws IOException {

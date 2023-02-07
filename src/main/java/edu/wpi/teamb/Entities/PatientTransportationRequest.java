@@ -13,22 +13,22 @@ public class PatientTransportationRequest extends GeneralRequest implements IORM
   @Column(name = "equipmentNeeded", length = 20)
   @Getter
   @Setter
-  private String equipment;
+  private String equipmentNeeded;
 
   @Column(name = "patientLocation", length = 60)
   @Getter
   @Setter
-  private String location;
+  private String patientCurrentLocation;
 
   @Column(name = "patientDestination", length = 60)
   @Getter
   @Setter
-  private String destination;
+  private String patientDestinationLocation;
 
   @Column(name = "patientID", length = 60)
   @Getter
   @Setter
-  private String patientID;
+  private String patientIDField;
 
   public String getPatientDestination() {
     return destination;

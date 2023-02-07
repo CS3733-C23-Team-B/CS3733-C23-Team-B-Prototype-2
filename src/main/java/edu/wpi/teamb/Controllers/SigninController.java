@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -92,20 +91,6 @@ public class SigninController {
    */
   public void signInButtonClicked() throws IOException, SQLException {
     if (!validateLogin()) return;
-    final String filename = Screen.NAVIGATION.getFilename();
-    final String footer = Screen.FOOTER.getFilename();
-
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final var res = Bapp.class.getResource(footer);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      final FXMLLoader loader2 = new FXMLLoader(res);
-
-      Bapp.getRootPane().setTop(loader.load());
-      Bapp.getRootPane().setBottom(loader2.load());
-    } catch (IOException | NullPointerException e) {
-      e.printStackTrace();
-    }
 
     Navigation.navigate(Screen.HOME);
 

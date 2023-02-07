@@ -59,6 +59,5 @@ public class ProfileController {
   public void deleteAccount() {
     DBSession.delete(user);
     Navigation.navigate(Screen.SIGN_IN);
-    Bapp.getRootPane().setTop(null);
   }
 }

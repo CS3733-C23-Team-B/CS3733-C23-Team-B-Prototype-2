@@ -25,5 +25,7 @@ public class ComputerRequest extends GeneralRequest {
   @Setter
   private String repairLocation;
 
+  @Getter @Setter private String device;
+
   public void ComputerRequest() {}
 }

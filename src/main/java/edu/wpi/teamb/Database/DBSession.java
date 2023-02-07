@@ -216,7 +216,6 @@ public class DBSession {
     delete(oldLN);
   }
 
-
   public static void updateNode(Node n) {
 
     Node ncopy = new Node();

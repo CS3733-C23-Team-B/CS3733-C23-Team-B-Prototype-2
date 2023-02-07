@@ -24,19 +24,27 @@
    <center>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="790.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="530.0" prefWidth="800.0">
+            <VBox layoutY="-64.0" prefHeight="686.0" prefWidth="800.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Database: Scroll through the list of requests made." wrappingWidth="658.9366302490234">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Map Editor: Click on a node to select it and view it. When you have a node selected you can choose the to edit the node. You can also create, delete, and modify locations by clicking on the locations button on the bottom of the page" wrappingWidth="515.9366302490234">
                      <font>
                         <Font size="24.0" />
                      </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding: Select two nodes to find the fastest path between them" wrappingWidth="524.9366302490234">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Service Requests: Fill out the required form. Take note that all of the fields need to be filled out before the form can be submitted. You can also view your previously submitted requests via the labeled button." wrappingWidth="542.9366302490234">
                      <font>
                         <Font size="24.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="50.0" />
+                        <Insets top="25.0" />
                      </VBox.margin>
                   </Text>
                </children>

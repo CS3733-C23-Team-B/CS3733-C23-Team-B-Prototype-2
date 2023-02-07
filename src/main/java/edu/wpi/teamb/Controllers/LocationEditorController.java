@@ -3,6 +3,7 @@ package edu.wpi.teamb.Controllers;
 import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.LocationName;
+import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
@@ -13,6 +14,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class LocationEditorController {
   @FXML MFXFilterComboBox<String> locationBox;
@@ -20,30 +23,39 @@ public class LocationEditorController {
   @FXML TextField longNameField;
   @FXML TextField shortNameField;
   @FXML MFXFilterComboBox<String> locationTypeBox;
-  @FXML Button exit;
+  @FXML MFXFilterComboBox<String> nodeBox;
+  @FXML Text bigText;
   Map<String, LocationName> locations = new HashMap<>();
   private String origType;
+  private String origNode;
   private LocationName location;
   ObservableList<String> types = FXCollections.observableArrayList();
+  ObservableList<String> nodes = FXCollections.observableArrayList();
 
   /** Method run when controller is initialized */
   public void initialize() {
     locationBox.setItems(getLocations());
     Collections.addAll(
         types, "CONF", "DEPT", "HALL", "LABS", "REST", "SERV", "EXIT", "STAI", "ELEV");
+    nodes = getNodes();
   }
 
   public void setFields() {
     if (!locationBox.getValue().isEmpty()) {
       location = locations.get(locationBox.getValue());
+      origNode = DBSession.getMostRecentNodeID(location.getLongName());
+
       String longName = location.getLongName();
       String shortName = location.getShortName();
       String locationType = location.getLocationType();
 
       locationTypeBox.setItems(types);
+      nodeBox.setItems(nodes);
       longNameField.setPromptText(longName);
       shortNameField.setPromptText(shortName);
       locationTypeBox.setValue(locationType);
+      nodeBox.setValue(origNode);
+
       origType = locationType;
     }
   }
@@ -70,22 +82,49 @@ public class LocationEditorController {
     return list;
   }
 
+  private ObservableList<String> getNodes() {
+    ObservableList<String> list = FXCollections.observableArrayList();
+    Map<String, Node> nodeDBMap = DBSession.getAllNodes();
+
+    nodeDBMap.forEach((key, value) -> list.add(value.getNodeID()));
+
+    Sorting.sort(list);
+    return list;
+  }
+
   public void submitClicked() {
+    if (!nodeBox.getValue().equals(origNode))
+      //      jackFunction()
+      ;
+
     boolean changed = false;
 
-    String newLongName = longNameField.getText();
-    String newShortName = shortNameField.getText();
-    String newLocationType = locationTypeBox.getValue();
+    String newLongName = location.getLongName();
+    String newShortName = location.getShortName();
+    String newLocationType = location.getLocationType();
 
-    if (!newLongName.isEmpty()) changed = true;
-    if (!newShortName.isEmpty()) changed = true;
-    if (!newLocationType.equals(origType)) changed = true;
+    if (!longNameField.getText().isEmpty()) {
+      changed = true;
+      newLongName = longNameField.getText();
+    }
+    if (!newShortName.isEmpty()) {
+      changed = true;
+      newShortName = shortNameField.getText();
+    }
+    if (!newLocationType.equals(origType)) {
+      changed = true;
+      newLocationType = locationTypeBox.getValue();
+    }
 
     if (changed) {
       LocationName newLN = new LocationName(newLongName, newShortName, newLocationType);
       DBSession.updateLocationName(newLN, location);
       Pathfinding.refreshData();
       location = newLN;
+    } else {
+      bigText.setText("No Change");
+      bigText.setFill(Color.RED);
+      return;
     }
     cancelClicked();
   }

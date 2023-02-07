@@ -259,7 +259,7 @@ public class DBSession {
 
   public static Node getMostRecentNode(String longName) {
     String id = getMostRecentNodeID(longName);
-    return nodeMap.get(id);
+    return getAllNodes().get(id);
   }
 
   public static Move getMostRecentMove(String nodeID) {

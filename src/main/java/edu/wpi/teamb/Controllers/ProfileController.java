@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -64,6 +63,7 @@ public class ProfileController {
     }
 
     Navigation.navigate(Screen.SIGN_IN);
-    Bapp.getRootPane().setTop(null);
+    // Bapp.getRootPane().add(null, 0, 0);
+    Navigation.removeChild(0, 0);
   }
 }

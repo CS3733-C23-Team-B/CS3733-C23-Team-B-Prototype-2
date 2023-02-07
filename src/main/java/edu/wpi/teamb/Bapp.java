@@ -7,7 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Bapp extends Application {
 
   @Setter @Getter private static Stage primaryStage;
-  @Setter @Getter private static BorderPane rootPane;
+  @Setter @Getter private static GridPane rootPane;
 
   @Override
   public void init() {
@@ -32,7 +32,7 @@ public class Bapp extends Application {
     scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
 
     Bapp.primaryStage = primaryStage;
-    Bapp.rootPane = (BorderPane) root;
+    Bapp.rootPane = (GridPane) root;
 
     primaryStage.setScene(scene);
     primaryStage.setTitle("Brigham and Women's Hospital");

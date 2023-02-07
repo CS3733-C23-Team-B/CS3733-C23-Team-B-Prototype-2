@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
@@ -56,6 +55,6 @@ public class NavigationController {
 
   public void signOutClicked() {
     Navigation.navigate(Screen.SIGN_IN);
-    Bapp.getRootPane().setTop(null);
+    Navigation.removeChild(0, 0);
   }
 }

@@ -30,13 +30,16 @@ public class requestsController2 {
   @FXML TableColumn tranNotesColumn;
   @FXML TableColumn tranStatusColumn;
 
-  @FXML TableColumn saniNameColumn;
-  @FXML TableColumn saniTypeColumn;
+  @FXML TableColumn saniLastNameColumn;
+  @FXML TableColumn saniFirstNameColumn;
+  @FXML TableColumn saniEmployeeIDColumn;
+  @FXML TableColumn saniEmailColumn;
   @FXML TableColumn saniUrgencyColumn;
+  @FXML TableColumn saniAssignedStaffColumn;
+  @FXML TableColumn saniTypeOfCleanupColumn;
   @FXML TableColumn saniLocationColumn;
-  @FXML TableColumn saniAssignmentColumn;
-  @FXML TableColumn saniStatusColumn;
   @FXML TableColumn saniNotesColumn;
+  @FXML TableColumn saniStatusColumn;
 
   @FXML TableColumn comLastNameColumn;
   @FXML TableColumn comFirstNameColumn;
@@ -57,33 +60,36 @@ public class requestsController2 {
 
     tranLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
     tranFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-    tranEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
+    tranEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeid"));
     tranEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     tranUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
-    tranAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedEmployee"));
+    tranAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedto"));
     tranPatientIDColumn.setCellValueFactory(new PropertyValueFactory<>("patientID"));
-    tranCurrentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
-    tranDestinationColumn.setCellValueFactory(new PropertyValueFactory<>("destination"));
-    tranEquipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipment"));
+    tranCurrentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("patientLocation"));
+    tranDestinationColumn.setCellValueFactory(new PropertyValueFactory<>("patientDestination"));
+    tranEquipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipmentNeeded"));
     tranNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
     tranStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
+    saniLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+    saniFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+    saniEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeid"));
+    saniEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     saniUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
-    saniTypeColumn.setCellValueFactory(new PropertyValueFactory<>("typeOfCleanUp"));
-    saniNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-    saniLocationColumn.setCellValueFactory(new PropertyValueFactory<>("cleanUpLocation"));
-    saniAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("assignedEmployee"));
+    saniAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedto"));
+    saniTypeOfCleanupColumn.setCellValueFactory(new PropertyValueFactory<>("typeofcleanup"));
+    saniLocationColumn.setCellValueFactory(new PropertyValueFactory<>("cleanuplocation"));
     saniStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
     saniNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
 
     comLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
     comFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-    comEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
+    comEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeid"));
     comEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     comUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
-    comAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedstaff"));
+    comAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedto"));
     comTypeOfRepairColumn.setCellValueFactory(new PropertyValueFactory<>("typeofrepair"));
-    comLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+    comLocationColumn.setCellValueFactory(new PropertyValueFactory<>("repairlocation"));
     comNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
     comStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 

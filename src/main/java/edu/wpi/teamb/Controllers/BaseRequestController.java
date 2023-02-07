@@ -50,7 +50,7 @@ public class BaseRequestController {
    */
   @FXML
   public void initialize() {
-    submitButton.setDisable(true);
+    // submitButton.setDisable(true);
     urgencyBox.setItems(urgencyOptions);
   }
 

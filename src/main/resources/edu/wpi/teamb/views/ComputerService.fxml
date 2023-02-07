@@ -217,14 +217,6 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="338.0" />
-                                 </HBox.margin>
-                              </Text>
                            </children>
                            <VBox.margin>
                               <Insets top="15.0" />
@@ -232,12 +224,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="384.0" prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <MFXTextField minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                              <MFXTextField layoutX="10.0" layoutY="10.0" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
+                              <MFXTextField fx:id="repairLocationField" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -267,7 +254,7 @@
                               <Insets top="5.0" />
                            </VBox.margin>
                            <children>
-                              <MFXTextField fx:id="notesField" alignment="TOP_LEFT" floatMode="ABOVE" minHeight="-Infinity" prefHeight="100.0" prefWidth="720.0">
+                              <MFXTextField fx:id="additionalNotesField" alignment="TOP_LEFT" floatMode="ABOVE" minHeight="-Infinity" prefHeight="100.0" prefWidth="720.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>

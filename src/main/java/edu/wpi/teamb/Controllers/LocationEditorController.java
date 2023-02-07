@@ -5,10 +5,7 @@ import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +19,7 @@ public class LocationEditorController {
   @FXML TextField shortNameField;
   @FXML MFXFilterComboBox<String> locationTypeBox;
   @FXML Button exit;
-  Map<String, LocationName> locations;
+  Map<String, LocationName> locations = new HashMap<>();
   private String origType;
   private LocationName location;
   ObservableList<String> types = FXCollections.observableArrayList();
@@ -51,8 +48,7 @@ public class LocationEditorController {
 
   private ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    List<LocationName> locationsDBList = new ArrayList<>();
-    locationsDBList = DBSession.getAllLocationNames();
+    List<LocationName> locationsDBList = DBSession.getAllLocationNames();
 
     locationsDBList.forEach(
         i -> {

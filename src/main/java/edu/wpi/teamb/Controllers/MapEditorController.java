@@ -180,7 +180,6 @@ public class MapEditorController {
   }
 
   public void locations() {
-    System.out.println("got here");
     Navigation.navigate(Screen.LOCATION_EDITOR);
   }
 
@@ -199,9 +198,12 @@ public class MapEditorController {
     Text loc = (Text) vboxChildren.get(2);
     id.setText("NodeID:   " + currentNode.getNodeID());
     pos.setText("(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
+    currentNode.setNodeID(currentNode.buildID());
     loc.setText(DBSession.getMostRecentLocation(currentNode.getNodeID()));
     currentDot.setCenterX(currentNode.getXCoord());
     currentDot.setCenterY(currentNode.getYCoord());
+    currentPopUp.setTranslateX(currentDot.getCenterX() + currentDot.getRadius() * 2);
+    currentPopUp.setTranslateY(currentDot.getCenterY() - currentDot.getRadius() * 2 - popUpHeight);
   }
 
   public static MapEditorController getInstance() {

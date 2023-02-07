@@ -72,7 +72,20 @@ public class DBSession {
   }
 
   public static List<LocationName> getAllLocationNames() {
-    return null;
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM LocationName");
+      List<LocationName> locationNames = q.list();
+      session.close();
+      return locationNames;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
   }
 
   public static List<Move> getAllMoves() {
@@ -243,7 +256,7 @@ public class DBSession {
   public static Move getMostRecentMove(String nodeID) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
-    List<Move> moves = null;
+    List<Move> moves;
     try {
       Transaction tx = session.beginTransaction();
       String str = "FROM Move WHERE nodeID = '" + nodeID + "'";

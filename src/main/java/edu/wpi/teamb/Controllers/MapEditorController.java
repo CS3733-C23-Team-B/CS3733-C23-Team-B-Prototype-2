@@ -61,8 +61,7 @@ public class MapEditorController {
     i.setOnMouseClicked(e -> handleClick());
 
     pane.zoomTo(-5000, -3000, new Point2D(2215, 1045));
-    nodeDBList = DBSession.getAllNodes();
-    nodeDBList.forEach(node -> nodes.put(node.getNodeID(), node));
+    nodes = DBSession.getAllNodes();
 
     for (Node node : nodes.values()) {
       if (!node.getFloor().equals("L1")) continue;
@@ -194,13 +193,13 @@ public class MapEditorController {
   }
 
   public void refreshPopUp() {
+    currentNode.setNodeID(currentNode.buildID());
     ObservableList vboxChildren = ((VBox) (currentPopUp.getChildren().get(0))).getChildren();
     Text id = (Text) vboxChildren.get(0);
     Text pos = (Text) vboxChildren.get(1);
     Text loc = (Text) vboxChildren.get(2);
     id.setText("NodeID:   " + currentNode.getNodeID());
     pos.setText("(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
-    currentNode.setNodeID(currentNode.buildID());
     loc.setText(DBSession.getMostRecentLocation(currentNode.getNodeID()));
     currentDot.setCenterX(currentNode.getXCoord());
     currentDot.setCenterY(currentNode.getYCoord());

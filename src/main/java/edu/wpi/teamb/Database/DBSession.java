@@ -2,7 +2,9 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
 import edu.wpi.teamb.SessionGetter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,6 +22,8 @@ public class DBSession {
     }
     return instance;
   }
+
+  private static Map<String, Node> nodeMap = new HashMap<>();
 
   public static void addORM(Object o) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
@@ -122,7 +126,7 @@ public class DBSession {
     }
   }
 
-  public static List<Node> getAllNodes() {
+  public static Map<String, Node> getAllNodes() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     try {
@@ -130,7 +134,8 @@ public class DBSession {
       Query q = session.createQuery("FROM Node");
       List<Node> nodes = q.list();
       session.close();
-      return nodes;
+      for (Node node : nodes) nodeMap.put(node.getNodeID(), node);
+      return nodeMap;
     } catch (Exception e) {
       e.printStackTrace();
       return null;
@@ -230,10 +235,9 @@ public class DBSession {
   }
 
   public static void updateAllNodes() {
+    Map<String, Node> nodes = getAllNodes();
 
-    List<Node> nodes = getAllNodes();
-
-    for (Node n : nodes) {
+    for (Node n : nodes.values()) {
       updateNode(n);
     }
   }
@@ -255,9 +259,7 @@ public class DBSession {
 
   public static Node getMostRecentNode(String longName) {
     String id = getMostRecentNodeID(longName);
-    List<Node> nodes = DBSession.getAllNodes();
-    for (Node node : nodes) if (node.getNodeID().equals(id)) return node;
-    return null;
+    return nodeMap.get(id);
   }
 
   public static Move getMostRecentMove(String nodeID) {

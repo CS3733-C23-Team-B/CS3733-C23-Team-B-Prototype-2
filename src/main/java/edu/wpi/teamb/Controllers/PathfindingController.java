@@ -1,12 +1,11 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.LocationName;
+import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.application.Platform;
@@ -66,9 +65,9 @@ public class PathfindingController {
             throw new RuntimeException(e);
           }
         });
-    List<Node> nodes = DBSession.getAllNodes();
+    Map<String, Node> nodes = DBSession.getAllNodes();
     nodes.forEach(
-        value -> {
+        (key, value) -> {
           if (value.getFloor().equals("L1")) placeNode(value);
         });
 
@@ -91,10 +90,7 @@ public class PathfindingController {
     String end = (String) endLoc.getValue();
     ArrayList<String> path = Pathfinding.getShortestPath(start, end);
 
-    List<Node> nodeDBList = DBSession.getAllNodes();
-    Map<String, Node> nodes = new HashMap<>();
-
-    nodeDBList.forEach(node -> nodes.put(node.getNodeID(), node));
+    Map<String, Node> nodes = DBSession.getAllNodes();
 
     for (int i = 0; i < path.size() - 1; i++) {
       String s = path.get(i);
@@ -112,11 +108,13 @@ public class PathfindingController {
   static ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    List<LocationName> locationNames = DBSession.getAllLocationNames();
-    for (LocationName locationName : locationNames)
-      if (DBSession.getMostRecentNode(locationName.getLongName()).getFloor().equals("L1")) {
-        list.add(locationName.getLongName());
-      }
+    Map<String, Node> nodes = DBSession.getAllNodes();
+    List<Move> moves = DBSession.getAllMoves();
+
+    for (Move move : moves)
+      if (!list.contains(move.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals("L1"))
+        list.add(move.getLongName());
+
     return list;
   }
 

@@ -63,9 +63,12 @@ public class LocationEditorController {
   public void resetFields() {
     locationBox.clear();
     longNameField.clear();
+    longNameField.setPromptText("");
     shortNameField.clear();
+    shortNameField.setPromptText("");
     locationTypeBox.clear();
     locationBox.setItems(getLocations());
+    nodeBox.clear();
   }
 
   private ObservableList<String> getLocations() {

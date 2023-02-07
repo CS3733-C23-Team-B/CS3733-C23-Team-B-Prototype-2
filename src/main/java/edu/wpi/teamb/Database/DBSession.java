@@ -176,6 +176,32 @@ public class DBSession {
     }
   }
 
+  public static void deleteNode(Node n) {
+    List<Edge> es = getAllEdges();
+    for (Edge e : es) {
+      if (e.getNode1().equals(n.getNodeID()) || e.getNode2().equals(n.getNodeID())) {
+        delete(e);
+      }
+    }
+    List<Move> ms = getAllMoves();
+    for (Move m : ms) {
+      if (m.getNodeID().equals(n.getNodeID())) {
+        delete(m);
+      }
+    }
+    delete(n);
+  }
+
+  public static void deleteLN(LocationName ln) {
+    List<Move> ms = getAllMoves();
+    for (Move m : ms) {
+      if (m.getLongName().equals(ln.getLongName())) {
+        delete(m);
+      }
+    }
+    delete(ln);
+  }
+
   public static void updateLocationName(LocationName newLN, LocationName oldLN) {
     if (newLN.getLongName().equals(oldLN.getLongName())) {
       delete(oldLN);
@@ -200,6 +226,7 @@ public class DBSession {
     ncopy.setYCoord(n.getYCoord());
     ncopy.setFloor(n.getFloor());
     ncopy.setBuilding(n.getBuilding());
+    addORM(ncopy);
 
     List<Edge> edges = getAllEdges();
     for (Edge e : edges) {
@@ -230,7 +257,6 @@ public class DBSession {
       }
     }
 
-    addORM(ncopy);
     delete(n);
   }
 
@@ -287,7 +313,17 @@ public class DBSession {
     }
   }
 
-  private static boolean moreRecentThan(Move move1, Move move2) {
+  public static boolean moreRecentThan(Move move1, Move move2) {
     return move1.getMoveDate().after(move2.getMoveDate());
+  }
+
+  public static void switchMoveLN(Node n, LocationName ln) {
+    Move m = getMostRecentMove(n.getNodeID());
+    Move mnew = new Move();
+    mnew.setNodeID(n.getNodeID());
+    mnew.setLongName(ln.getLongName());
+    mnew.setMoveDate(m.getMoveDate());
+    delete(m);
+    addORM(mnew);
   }
 }

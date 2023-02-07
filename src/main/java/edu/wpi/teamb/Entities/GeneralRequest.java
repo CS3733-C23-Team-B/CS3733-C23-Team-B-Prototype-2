@@ -13,17 +13,17 @@ public class GeneralRequest {
   @Id
   private int id;
 
-  @Column(name = "firstname", length = 20)
+  @Column(name = "firstname", length = 60)
   @Getter
   @Setter
   private String firstname;
 
-  @Column(name = "lastname", length = 20)
+  @Column(name = "lastname", length = 60)
   @Getter
   @Setter
   private String lastname;
 
-  @Column(name = "email", length = 20)
+  @Column(name = "email", length = 60)
   @Getter
   @Setter
   private String email;

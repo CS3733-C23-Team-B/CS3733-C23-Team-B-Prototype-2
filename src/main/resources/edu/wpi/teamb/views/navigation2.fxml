@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<ToolBar id="toolbar" fx:id="toolbar" minHeight="-Infinity" prefHeight="80.0" prefWidth="1574.0" style="-fx-background-color: #00077A;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
+<ToolBar id="toolbar" fx:id="toolbar" minHeight="-Infinity" prefHeight="80.0" prefWidth="1574.0" style="-fx-background-color: #00077A;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
     <opaqueInsets>
         <Insets />
     </opaqueInsets>
@@ -39,7 +37,7 @@
                   <Font size="24.0" />
                </font>
             </MFXButton>
-            <MFXButton id="navBarButton" fx:id="mapEditorButton" layoutX="64.0" layoutY="10.0" minWidth="-Infinity" onAction="#databaseButtonClicked" prefHeight="70.0" prefWidth="155.0" style="-fx-background-color: #00077A;" text="Map Editor" textFill="WHITE">
+            <MFXButton id="navBarButton" fx:id="mapEditorButton" layoutX="64.0" layoutY="10.0" minWidth="-Infinity" onAction="#mapEditorButtonClicked" prefHeight="70.0" prefWidth="155.0" style="-fx-background-color: #00077A;" text="Map Editor" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>

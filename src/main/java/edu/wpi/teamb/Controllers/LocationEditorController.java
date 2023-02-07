@@ -93,10 +93,6 @@ public class LocationEditorController {
   }
 
   public void submitClicked() {
-    if (!nodeBox.getValue().equals(origNode))
-      //      jackFunction()
-      ;
-
     boolean changed = false;
 
     String newLongName = location.getLongName();
@@ -107,7 +103,7 @@ public class LocationEditorController {
       changed = true;
       newLongName = longNameField.getText();
     }
-    if (!newShortName.isEmpty()) {
+    if (!shortNameField.getText().isEmpty()) {
       changed = true;
       newShortName = shortNameField.getText();
     }
@@ -118,10 +114,13 @@ public class LocationEditorController {
 
     if (changed) {
       LocationName newLN = new LocationName(newLongName, newShortName, newLocationType);
-      DBSession.updateLocationName(newLN, location);
+      if (nodeBox.getValue().equals(origNode)) DBSession.updateLocationName(newLN, location);
+      else DBSession.switchMoveLN(nodeBox.getValue(), origNode, newLN);
       Pathfinding.refreshData();
       location = newLN;
-    } else {
+    } else if (!nodeBox.getValue().equals(origNode))
+      DBSession.switchMoveLN(nodeBox.getValue(), origNode, location);
+    else {
       bigText.setText("No Change");
       bigText.setFill(Color.RED);
       return;

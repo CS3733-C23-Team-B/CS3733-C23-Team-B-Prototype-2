@@ -290,4 +290,17 @@ public class DBSession {
   private static boolean moreRecentThan(Move move1, Move move2) {
     return move1.getMoveDate().after(move2.getMoveDate());
   }
+
+  public static void switchMoveLN(String newN, String oldN, LocationName ln) {
+    Move oldM = getMostRecentMove(oldN);
+    delete(oldM);
+
+    Move m = getMostRecentMove(newN);
+    Move mnew = new Move();
+    mnew.setNodeID(newN);
+    mnew.setLongName(ln.getLongName());
+    mnew.setMoveDate(m.getMoveDate());
+    delete(m);
+    addORM(mnew);
+  }
 }

@@ -34,7 +34,7 @@
                         <Insets left="200.0" />
                      </HBox.margin>
                   </Button>
-                  <Button layoutX="10.0" layoutY="10.0" maxWidth="500.0" minHeight="200.0" minWidth="500.0" mnemonicParsing="false" onAction="#databaseButtonClicked" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Database" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                  <Button layoutX="10.0" layoutY="10.0" maxWidth="500.0" minHeight="200.0" minWidth="500.0" mnemonicParsing="false" onAction="#mapEditorButtonClicked" style="-fx-background-color: #003DA6; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Database" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="System Bold" size="50.0" />
                      </font>

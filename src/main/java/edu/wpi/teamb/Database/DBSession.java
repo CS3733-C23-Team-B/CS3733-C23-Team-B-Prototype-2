@@ -313,7 +313,19 @@ public class DBSession {
     }
   }
 
-  private static boolean moreRecentThan(Move move1, Move move2) {
+  public static boolean moreRecentThan(Move move1, Move move2) {
     return move1.getMoveDate().after(move2.getMoveDate());
   }
+
+  public static void switchMoveLN(Node n, LocationName ln) {
+    Move m = getMostRecentMove(n.getNodeID());
+    Move mnew = new Move();
+    mnew.setNodeID(n.getNodeID());
+    mnew.setLongName(ln.getLongName());
+    mnew.setMoveDate(m.getMoveDate());
+    delete(m);
+    addORM(mnew);
+  }
+
+
 }

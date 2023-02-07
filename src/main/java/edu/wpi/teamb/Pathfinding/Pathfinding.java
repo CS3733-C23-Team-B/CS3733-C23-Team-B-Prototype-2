@@ -8,7 +8,12 @@ import java.util.stream.Collectors;
 
 public class Pathfinding {
   private static List<Edge> edges = DBSession.getAllEdges();
-  private static Map<String, Node> nodes;
+  private static Map<String, Node> nodes = new HashMap<>();
+
+  static {
+    List<Node> nodeDBList = DBSession.getAllNodes();
+    for (Node node : nodeDBList) nodes.put(node.getNodeID(), node);
+  }
 
   /**
    * Given an edge, evaluates the weight of the edge

@@ -23,10 +23,11 @@
    <right>
       <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane onMouseClicked="#handleClick" prefHeight="530.0" prefWidth="800.0">
+            <AnchorPane layoutX="-14.0" onMouseClicked="#handleClick" prefHeight="530.0" prefWidth="800.0">
                <children>
                   <Button layoutX="172.0" layoutY="465.0" mnemonicParsing="false" onAction="#home" prefHeight="35.0" prefWidth="93.0" text="Home" />
                   <Button layoutX="518.0" layoutY="465.0" mnemonicParsing="false" onAction="#locations" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #003AD6;" text="Locations" textFill="WHITE" />
+                  <Button layoutX="354.0" layoutY="465.0" mnemonicParsing="false" onAction="#newNode" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: Green;" text="New Node" textFill="WHITE" />
                </children></AnchorPane>
          </children>
       </AnchorPane>

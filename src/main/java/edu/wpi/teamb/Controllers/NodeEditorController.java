@@ -62,4 +62,11 @@ public class NodeEditorController {
     s.close();
     MapEditorController.getInstance().refreshPopUp();
   }
+
+  public void deleteClicked() {
+    DBSession.delete(node);
+    Stage s = (Stage) yField.getScene().getWindow();
+    s.close();
+    MapEditorController.getInstance().removeNode();
+  }
 }

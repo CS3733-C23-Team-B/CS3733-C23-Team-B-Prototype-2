@@ -185,7 +185,11 @@ public class MapEditorController {
   }
 
   public void home() {
-    //    Navigation.navigate(Screen.HOME);
+    Navigation.navigate(Screen.HOME);
+  }
+
+  public void newNode() {
+    Navigation.navigate(Screen.NODE_CREATOR);
   }
 
   static Node getCurrentNode() {
@@ -205,6 +209,11 @@ public class MapEditorController {
     currentDot.setCenterY(currentNode.getYCoord());
     currentPopUp.setTranslateX(currentDot.getCenterX() + currentDot.getRadius() * 2);
     currentPopUp.setTranslateY(currentDot.getCenterY() - currentDot.getRadius() * 2 - popUpHeight);
+  }
+
+  public void removeNode() {
+    aPane.getChildren().remove(currentDot);
+    clearPopUp();
   }
 
   public static MapEditorController getInstance() {

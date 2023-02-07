@@ -12,19 +12,6 @@
     <top>
         <Pane prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
             <children>
-                <MFXButton layoutX="1520.0" layoutY="150.0" maxWidth="200.0" prefHeight="60.0" prefWidth="200.0" rippleColor="#808b9d" style="-fx-background-color: #808B9D; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="View Credits" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="25.0" />
-                    </font>
-                </MFXButton>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="1920.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="96.0" />
-                    </font>
-                    <padding>
-                        <Insets top="220.0" />
-                    </padding>
-                </Label>
                 <HBox layoutY="416.0" prefHeight="200.0" prefWidth="1920.0">
                     <children>
                         <MFXButton fx:id="patientTransportationButton" onMouseClicked="#patientTransportationButtonClicked" prefHeight="200.0" prefWidth="470.0" style="-fx-background-color: #003DA6;" text="Internal Patient Transportation" textAlignment="CENTER" textFill="WHITE" wrapText="true">
@@ -53,6 +40,19 @@
                         </MFXButton>
                     </children>
                 </HBox>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="1920.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="96.0" />
+                    </font>
+                    <padding>
+                        <Insets top="220.0" />
+                    </padding>
+                </Label>
+                <MFXButton fx:id="creditsButton" layoutX="1520.0" layoutY="150.0" maxWidth="200.0" onMouseClicked="#creditsButtonClicked" prefHeight="60.0" prefWidth="200.0" rippleColor="#808b9d" style="-fx-background-color: #808B9D; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" text="View Credits" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="25.0" />
+                    </font>
+                </MFXButton>
             </children>
          <BorderPane.margin>
             <Insets top="86.0" />

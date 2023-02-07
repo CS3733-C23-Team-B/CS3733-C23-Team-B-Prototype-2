@@ -1,5 +1,6 @@
-package edu.wpi.teamb.Entities;
+package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.RequestStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,22 +14,22 @@ public class GeneralRequest {
   @Id
   private int id;
 
-  @Column(name = "firstname", length = 20)
+  @Column(name = "firstname", length = 60)
   @Getter
   @Setter
   private String firstname;
 
-  @Column(name = "lastname", length = 20)
+  @Column(name = "lastname", length = 60)
   @Getter
   @Setter
   private String lastname;
 
-  @Column(name = "email", length = 20)
+  @Column(name = "email", length = 60)
   @Getter
   @Setter
   private String email;
 
-  @Column(name = "employeeid", length = 20)
+  @Column(name = "employeeid", length = 60)
   @Getter
   @Setter
   private String employeeID;
@@ -38,17 +39,17 @@ public class GeneralRequest {
   @Setter
   private String urgency;
 
-  @Column(name = "assignedto", length = 20)
+  @Column(name = "assignedto", length = 60)
   @Getter
   @Setter
   private String assignedEmployee;
 
-  @Column(name = "notes", length = 20)
+  @Column(name = "notes", length = 60)
   @Getter
   @Setter
   private String notes;
 
-  @Column(name = "status", length = 20)
+  @Column(name = "status", length = 60)
   @Getter
   @Setter
   private RequestStatus status;

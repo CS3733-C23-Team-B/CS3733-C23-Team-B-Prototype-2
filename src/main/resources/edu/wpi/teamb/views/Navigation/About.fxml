@@ -17,7 +17,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="About">
+                  <Text id="titleRoboto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="About">
                      <font>
                         <Font size="50.0" />
                      </font>
@@ -43,7 +43,7 @@
                         <Insets left="170.0" top="50.0" />
                      </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Developers" textAlignment="CENTER" wrappingWidth="431.8360595703125">
+                  <Text id="subTitleNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Developers" textAlignment="CENTER" wrappingWidth="431.8360595703125">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -51,7 +51,7 @@
                         <Insets left="175.0" top="25.0" />
                      </VBox.margin>
                   </Text>
-                  <TextArea editable="false" maxWidth="-Infinity" prefHeight="200.0" prefWidth="510.0" text="                                  Home Page: Sam Colebourn&#10;   Patient Transportation Service: Christina Aube &amp; Cierra O'Grady&#10;                  Sanitation Services: Luke Grady &amp; Jolie Walts&#10;                     Edit Nodes: Sean Lendrum &amp; Jack Lafond&#10;                                Pathfinding: Sean Lendrum&#10;                                 About Page: Michael Gatti&#10;                                  Help Page: Michael Gatti">
+                  <TextArea editable="false" maxWidth="-Infinity" prefHeight="200.0" prefWidth="510.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF;" text="                                  Home Page: Sam Colebourn&#10;   Patient Transportation Service: Christina Aube &amp; Cierra O'Grady&#10;                  Sanitation Services: Luke Grady &amp; Jolie Walts&#10;                     Edit Nodes: Sean Lendrum &amp; Jack Lafond&#10;                                Pathfinding: Sean Lendrum&#10;                                 About Page: Michael Gatti&#10;                                  Help Page: Michael Gatti">
                      <VBox.margin>
                         <Insets left="150.0" top="15.0" />
                      </VBox.margin>

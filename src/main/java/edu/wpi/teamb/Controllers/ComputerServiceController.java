@@ -1,29 +1,29 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Entities.ComputerRequest;
+import edu.wpi.teamb.Database.ComputerRequest;
+import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
 
 public class ComputerServiceController extends BaseRequestController {
   // Lists for checkboxes
   ObservableList<String> typeOfRepairList =
       FXCollections.observableArrayList("New Hardware", "Broken Hardware", "Technical Issues");
   ObservableList<String> typeOfDeviceList =
-      FXCollections.observableArrayList("Computer", "Phone", "");
-  @FXML private TextField repairLocationField;
+      FXCollections.observableArrayList("Computer", "Phone", "Monitor");
+  @FXML private MFXFilterComboBox repairLocationBox;
   @FXML private MFXFilterComboBox typeOfRepairBox;
-  @FXML private MFXFilterComboBox deviceBox;
+  @FXML private MFXFilterComboBox<String> deviceBox;
 
   @FXML
   @Override
@@ -35,19 +35,22 @@ public class ComputerServiceController extends BaseRequestController {
       lastNameField,
       employeeIDField,
       emailField,
-      repairLocationField,
+      repairLocationBox,
       urgencyBox,
       typeOfRepairBox,
+      deviceBox,
+      assignedStaffField,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
+    repairLocationBox.setItems(PathfindingController.getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
-      if (c instanceof TextField) textFields.add((TextField) c);
-      if (c instanceof ChoiceBox) choiceBoxes.add((MFXComboBox) c);
+      if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
+      if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfRepairBox.setItems(typeOfRepairList);
     deviceBox.setItems(typeOfDeviceList);
@@ -68,6 +71,7 @@ public class ComputerServiceController extends BaseRequestController {
     request.setEmployeeID(employeeIDField.getText());
     request.setEmail(emailField.getText());
     request.setNotes(additionalNotesField.getText());
+    request.setAssignedEmployee(assignedStaffField.getText());
 
     var urgency = urgencyBox.getValue();
     if (urgency == null) {
@@ -75,13 +79,22 @@ public class ComputerServiceController extends BaseRequestController {
     }
     request.setUrgency(urgency.toString());
 
-    request.setRepairLocation(repairLocationField.getText());
+    request.setRepairLocation(repairLocationBox.getText());
 
     var typeOfrepair = typeOfRepairBox.getValue();
     if (typeOfrepair == null) {
       typeOfrepair = "";
     }
+    var device = deviceBox.getValue();
+    if (device == null) {
+      device = "";
+    }
+    request.setDevice(device.toString());
+
+    request.setAssignedEmployee(assignedStaffField.getText());
     request.setTypeOfRepair(typeOfrepair.toString());
+    request.setStatus(RequestStatus.PROCESSING);
+    DBSession.addORM(request);
 
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();

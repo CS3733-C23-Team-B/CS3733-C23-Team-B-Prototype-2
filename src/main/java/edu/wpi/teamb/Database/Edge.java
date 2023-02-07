@@ -13,18 +13,16 @@ import lombok.Setter;
 @Table(name = "edge")
 public class Edge implements IORM {
 
-  public static final String tableName = "edge";
-
   // Primary Key and Foreign Key
   @Id
-  @Column(name = "node1", length = 20)
+  @Column(name = "node1", length = 14)
   @Setter
   @Getter
   String node1;
 
   // Primary Key and Foreign Key
   @Id
-  @Column(name = "node2", length = 20)
+  @Column(name = "node2", length = 14)
   @Setter
   @Getter
   String node2;

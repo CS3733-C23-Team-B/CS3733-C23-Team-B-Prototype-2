@@ -14,20 +14,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.sanitationServiceController">
-    <top>
-        <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-                <Text fill="WHITE" layoutX="29.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sanitation Services Request Form" textAlignment="CENTER" wrappingWidth="742.5367126464844">
-                    <font>
-                        <Font size="50.0" />
-                    </font>
-                </Text>
-            </children>
-        </AnchorPane>
-    </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SanitationServiceController">
+   <top>
+      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+            <Text id="titleRoboto" fill="WHITE" layoutX="29.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sanitation Services Request" textAlignment="CENTER" wrappingWidth="742.5367126464844">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
    <center>
       <MFXScrollPane minHeight="500.0" minWidth="-Infinity" prefWidth="798.0">
          <content>
@@ -35,7 +34,7 @@
                <children>
                   <VBox prefHeight="800.0" prefWidth="800.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Information">
+                        <Text id="subTitleNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Information">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -43,17 +42,32 @@
                               <Insets left="40.0" top="10.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
+                        <HBox prefHeight="3.0" prefWidth="800.0">
                            <VBox.margin>
-                              <Insets left="40.0" top="10.0" />
+                              <Insets top="15.0" />
                            </VBox.margin>
-                        </Text>
+                           <children>
+                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text id="categoriesNunito" layoutX="50.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="275.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
                         <HBox prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0" promptText="First Name">
+                              <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -61,7 +75,7 @@
                                     <Font size="17.0" />
                                  </font>
                               </MFXTextField>
-                              <MFXTextField fx:id="lastNameField" layoutX="50.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0" promptText="Last Name">
+                              <MFXTextField fx:id="lastNameField" layoutX="50.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -79,12 +93,12 @@
                               <Insets left="40.0" top="15.0" />
                            </VBox.margin>
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
+                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -117,7 +131,7 @@
                               </MFXTextField>
                            </children>
                         </HBox>
-                        <Text layoutX="50.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Request Information">
+                        <Text id="subTitleNunito" layoutX="50.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Request Information">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -127,7 +141,7 @@
                         </Text>
                         <HBox layoutX="50.0" layoutY="170.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Urgency">
+                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Urgency">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -135,7 +149,7 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assigned Staff Member">
+                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assigned Staff Member">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -170,7 +184,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="341.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type of Cleanup">
+                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of Cleanup">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -178,7 +192,7 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cleanup Location">
+                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cleanup Location">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -210,7 +224,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="448.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
+                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
                                  <font>
                                     <Font size="22.0" />
                                  </font>

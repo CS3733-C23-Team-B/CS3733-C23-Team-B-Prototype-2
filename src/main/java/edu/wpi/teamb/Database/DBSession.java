@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
-import edu.wpi.teamb.SessionGetter;
+import edu.wpi.teamb.Entities.SessionGetter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -176,21 +176,46 @@ public class DBSession {
     }
   }
 
-  public static void updateLocationName(LocationName newLN, LocationName oldLN) {
-    if (newLN.getLongName().equals(oldLN.getLongName())) {
-      delete(oldLN);
-      addORM(newLN);
-    } else {
-      List<Move> moves = getAllMoves();
-      for (Move m : moves) {
-        if (m.getLongName().equals(oldLN.getLongName())) {
-          Move newm = new Move(m.getNodeID(), newLN.getLongName(), m.getMoveDate());
-          addORM(newm);
-          delete(m);
-        }
+  public static void deleteNode(Node n) {
+    List<Edge> es = getAllEdges();
+    for (Edge e : es) {
+      if (e.getNode1().equals(n.getNodeID()) || e.getNode2().equals(n.getNodeID())) {
+        delete(e);
       }
     }
+    List<Move> ms = getAllMoves();
+    for (Move m : ms) {
+      if (m.getNodeID().equals(n.getNodeID())) {
+        delete(m);
+      }
+    }
+    delete(n);
   }
+
+  public static void deleteLN(LocationName ln) {
+    List<Move> ms = getAllMoves();
+    for (Move m : ms) {
+      if (m.getLongName().equals(ln.getLongName())) {
+        delete(m);
+      }
+    }
+    delete(ln);
+  }
+
+  public static void updateLocationName(LocationName newLN, LocationName oldLN) {
+
+    addORM(newLN);
+    List<Move> moves = getAllMoves();
+    for (Move m : moves) {
+      if (m.getLongName().equals(oldLN.getLongName())) {
+        Move newm = new Move(m.getNodeID(), newLN.getLongName(), m.getMoveDate());
+        addORM(newm);
+        delete(m);
+      }
+    }
+    delete(oldLN);
+  }
+
 
   public static void updateNode(Node n) {
 
@@ -200,6 +225,7 @@ public class DBSession {
     ncopy.setYCoord(n.getYCoord());
     ncopy.setFloor(n.getFloor());
     ncopy.setBuilding(n.getBuilding());
+    addORM(ncopy);
 
     List<Edge> edges = getAllEdges();
     for (Edge e : edges) {
@@ -230,7 +256,6 @@ public class DBSession {
       }
     }
 
-    addORM(ncopy);
     delete(n);
   }
 
@@ -287,7 +312,7 @@ public class DBSession {
     }
   }
 
-  private static boolean moreRecentThan(Move move1, Move move2) {
+  public static boolean moreRecentThan(Move move1, Move move2) {
     return move1.getMoveDate().after(move2.getMoveDate());
   }
 

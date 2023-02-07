@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.requestsController2">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.RequestsController">
    <top>
 
 
@@ -65,13 +65,16 @@
                         </Text>
                         <TableView fx:id="SanitationTable" prefHeight="188.0" prefWidth="800.0">
                            <columns>
-                              <TableColumn fx:id="saniNameColumn" prefWidth="110.00000011920929" text="Last Name" />
-                              <TableColumn fx:id="saniTypeColumn" prefWidth="92.66665649414062" text="First Name" />
-                              <TableColumn fx:id="saniUrgencyColumn" prefWidth="76.66667175292969" text="Urgency" />
-                              <TableColumn fx:id="saniLocationColumn" prefWidth="92.66667175292969" text="Location" />
-                              <TableColumn fx:id="saniAssignmentColumn" prefWidth="104.0" text="Assigned To" />
-                              <TableColumn fx:id="saniStatusColumn" prefWidth="107.33331298828125" text="Status" />
-                              <TableColumn fx:id="saniNotesColumn" prefWidth="201.3333740234375" text="Notes" />
+                              <TableColumn fx:id="saniLastNameColumn" prefWidth="102.39999157190323" text="Last Name" />
+                              <TableColumn fx:id="saniFirstNameColumn" prefWidth="87.1999740600586" text="First Name" />
+                              <TableColumn fx:id="saniEmployeeIDColumn" prefWidth="140.8000030517578" text="Employee ID" />
+                              <TableColumn fx:id="saniEmailColumn" prefWidth="76.0" text="Email" />
+                              <TableColumn fx:id="saniUrgencyColumn" prefWidth="98.4000244140625" text="Urgency" />
+                              <TableColumn fx:id="saniAssignedStaffColumn" prefWidth="122.39996337890625" text="Assigned Staff" />
+                              <TableColumn fx:id="saniTypeOfCleanupColumn" prefWidth="148.79995727539062" text="Type of Cleanup" />
+                              <TableColumn fx:id="saniLocationColumn" prefWidth="201.5999755859375" text="Location" />
+                              <TableColumn fx:id="saniNotesColumn" prefWidth="283.20001220703125" text="Notes" />
+                              <TableColumn fx:id="saniStatusColumn" prefWidth="128.800048828125" text="Status" />
                            </columns>
                         </TableView>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Computer Requests">

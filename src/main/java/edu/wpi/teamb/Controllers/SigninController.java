@@ -1,8 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Entities.Login;
+import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -43,14 +41,12 @@ public class SigninController {
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
   }
-
   /**
    * Compares the provided login against the database of logins
    *
    * @return true if the login is valid according to the database, false otherwise
-   * @throws SQLException
    */
-  public boolean validateLogin() throws SQLException {
+  public boolean validateLogin() {
     boolean found = false;
     for (Object user : users) {
       Login u = (Login) user;
@@ -90,22 +86,8 @@ public class SigninController {
    * @throws IOException
    * @throws SQLException
    */
-  public void signInButtonClicked() throws IOException, SQLException {
+  public void signInButtonClicked() throws SQLException {
     if (!validateLogin()) return;
-    final String filename = Screen.NAVIGATION.getFilename();
-    final String footer = Screen.FOOTER.getFilename();
-
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final var res = Bapp.class.getResource(footer);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      final FXMLLoader loader2 = new FXMLLoader(res);
-
-      Bapp.getRootPane().setTop(loader.load());
-      Bapp.getRootPane().setBottom(loader2.load());
-    } catch (IOException | NullPointerException e) {
-      e.printStackTrace();
-    }
 
     Navigation.navigate(Screen.HOME);
 

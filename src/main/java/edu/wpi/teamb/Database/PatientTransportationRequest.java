@@ -1,5 +1,6 @@
-package edu.wpi.teamb.Entities;
+package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,32 +11,32 @@ import lombok.Setter;
     name = "PatientTransportationRequestID",
     foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey"))
 public class PatientTransportationRequest extends GeneralRequest implements IORM {
-  @Column(name = "equipmentNeeded", length = 20)
+  @Column(name = "equipmentNeeded", length = 60)
   @Getter
   @Setter
-  private String equipment;
+  private String equipmentNeeded;
 
-  @Column(name = "patientLocation", length = 20)
+  @Column(name = "patientLocation", length = 60)
   @Getter
   @Setter
-  private String location;
+  private String patientCurrentLocation;
 
-  @Column(name = "patientDestination", length = 20)
+  @Column(name = "patientDestination", length = 60)
   @Getter
   @Setter
-  private String destination;
+  private String patientDestinationLocation;
 
-  @Column(name = "patientID", length = 20)
+  @Column(name = "patientID", length = 60)
   @Getter
   @Setter
   private String patientID;
 
   public String getPatientDestination() {
-    return destination;
+    return patientDestinationLocation;
   }
 
   public void setPatientDestination(String patientDestination) {
-    this.destination = patientDestination;
+    this.patientDestinationLocation = patientDestination;
   }
 
   @Override

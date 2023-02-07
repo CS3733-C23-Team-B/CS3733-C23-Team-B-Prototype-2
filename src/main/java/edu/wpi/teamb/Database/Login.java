@@ -1,5 +1,6 @@
-package edu.wpi.teamb.Entities;
+package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import java.sql.SQLException;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import lombok.Setter;
 public class Login implements IORM {
   @Id private String username;
 
-  @Column(name = "password", length = 20)
+  @Column(name = "password", length = 60)
   @Getter
   @Setter
   private String password;

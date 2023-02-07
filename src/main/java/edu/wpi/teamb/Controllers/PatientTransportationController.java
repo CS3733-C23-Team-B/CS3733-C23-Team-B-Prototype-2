@@ -2,7 +2,7 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.LocationName;
-import edu.wpi.teamb.Entities.PatientTransportationRequest;
+import edu.wpi.teamb.Database.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -10,7 +10,6 @@ import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +31,7 @@ public class PatientTransportationController extends BaseRequestController {
   @FXML private TextField additionalNotesField;
 
   /** Initialize the page by declaring choice-box options */
+  @FXML
   @Override
   public void initialize() {
     // initialization goes here
@@ -77,51 +77,51 @@ public class PatientTransportationController extends BaseRequestController {
 
     return list;
   }
-
   /**
    * Store the data from the form in a csv file and return to home screen
    *
    * @throws IOException
    */
+  @FXML
   @Override
-  public void submitButtonClicked() throws IOException, SQLException {
-    String[] saveInfo = new String[components.size()];
-
-    // Add all input components to the list of data
-    for (int i = 0; i < components.size(); i++) {
-      Control c = components.get(i);
-      saveInfo[i] = getText(c);
-    }
-
-    // CSVWriter.writeCsv("patientTransportationRequests", saveInfo);
+  public void submitButtonClicked() throws IOException {
+    // handle retrieving values and saving
 
     PatientTransportationRequest request = new PatientTransportationRequest();
     request.setFirstname(firstNameField.getText());
     request.setLastname(lastNameField.getText());
     request.setEmployeeID(employeeIDField.getText());
     request.setEmail(emailField.getText());
-    //    add status
-    request.setAssignedEmployee(this.assignedStaffField.getText());
+    request.setStatus(RequestStatus.PROCESSING);
+    request.setAssignedEmployee(assignedStaffField.getText());
     request.setNotes(additionalNotesField.getText());
 
     var urgency = urgencyBox.getValue();
     if (urgency == null) {
       urgency = "";
     }
-    request.setUrgency(urgency.toString());
 
     var equipment = equipmentNeededBox.getValue();
     if (equipment == null) {
       equipment = "";
     }
-    request.setEquipment(equipment.toString());
-    request.setLocation(this.patientCurrentLocationBox.getText());
-    request.setDestination(this.patientDestinationLocationBox.getText());
+    var destination = patientDestinationLocationBox.getValue();
+    if (destination == null) {
+      destination = "";
+    }
+    var curLocation = patientCurrentLocationBox.getValue();
+    if (curLocation == null) {
+      curLocation = "";
+    }
+    request.setUrgency(urgency.toString());
+    request.setEquipmentNeeded(equipment.toString());
+    request.setPatientCurrentLocation(curLocation.toString());
+    request.setPatientDestination(destination.toString());
     request.setPatientID(this.patientIDField.getText());
-    request.setStatus(RequestStatus.PROCESSING);
     DBSession.addORM(request);
 
+    // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
-    Navigation.navigate(Screen.SUBMISSION_SUCCESS);
+    Navigation.navigate((Screen.SUBMISSION_SUCCESS));
   }
 }

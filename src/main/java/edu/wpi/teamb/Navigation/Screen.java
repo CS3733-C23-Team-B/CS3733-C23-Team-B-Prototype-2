@@ -5,7 +5,7 @@ public enum Screen {
   DATABASE_HELP("views/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/MapDataEditor.fxml"),
   MAP_EDITOR("views/MapEditor.fxml"),
-  NODE_EDITOR("views/NodeEditor.fxml"),
+  NODE_EDITOR("views/EditNodePopup.fxml"),
   NODE_CREATOR("views/NodeCreator.fxml"),
   LOCATION_EDITOR("views/LocationEditor.fxml"),
   LOCATION_CREATOR("views/LocationCreator.fxml"),
@@ -23,7 +23,9 @@ public enum Screen {
   MAINHELP("views/MainHelpPage.fxml"),
   FOOTER("views/Footer.fxml"),
   SUBMISSION_SUCCESS("views/submissionSuccess.fxml"),
-  ABOUT("views/About.fxml");
+  ABOUT("views/About.fxml"),
+  LANDING_PAGE("views/Navigation/LandingPage.fxml"),
+  LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml");
 
   private final String filename;
 

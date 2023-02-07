@@ -1,8 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Entities.Login;
+import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import javafx.fxml.FXML;
@@ -59,6 +58,5 @@ public class ProfileController {
   public void deleteAccount() {
     DBSession.delete(user);
     Navigation.navigate(Screen.SIGN_IN);
-    Bapp.getRootPane().setTop(null);
   }
 }

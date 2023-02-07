@@ -1,4 +1,4 @@
-package edu.wpi.teamb;
+package edu.wpi.teamb.Entities;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

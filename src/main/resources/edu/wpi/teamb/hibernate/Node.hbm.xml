@@ -14,7 +14,7 @@
         <property name = "floor" type = "String">
             <column name="Floor"/>
         </property>
-        <property name = "building" type = "String">
+        <property name = "Building" type = "String">
             <column name="Building"/>
         </property>
     </class>

@@ -2,9 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="edu.wpi.teamb.Entities.ComputerRequest" table="computerrequest">
+    <class name="edu.wpi.teamb.Database.ComputerRequest" table="computerrequest">
         <property name = "typeOfRepair" type = "String">
             <column name="typeofrepair"/>
+        </property>
+        <property name = "device" type = "String">
+            <column name="device"/>
         </property>
         <property name = "repairLocation" type = "String">
             <column name="repairlocation"/>

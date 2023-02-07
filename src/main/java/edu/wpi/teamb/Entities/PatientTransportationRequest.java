@@ -28,14 +28,14 @@ public class PatientTransportationRequest extends GeneralRequest implements IORM
   @Column(name = "patientID", length = 60)
   @Getter
   @Setter
-  private String patientIDField;
+  private String patientID;
 
   public String getPatientDestination() {
-    return destination;
+    return patientDestinationLocation;
   }
 
   public void setPatientDestination(String patientDestination) {
-    this.destination = patientDestination;
+    this.patientDestinationLocation = patientDestination;
   }
 
   @Override

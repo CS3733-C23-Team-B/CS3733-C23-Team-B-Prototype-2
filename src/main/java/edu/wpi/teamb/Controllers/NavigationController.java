@@ -20,10 +20,11 @@ public class NavigationController {
   public void featureTwoButtonClicked() throws IOException {
     Navigation.navigate(Screen.SANITATION);
   }
-// may not need this but i cant tell - Jolie While merging
+  // may not need this but i cant tell - Jolie While merging
   public void computerButtonClicked() {
     Navigation.navigate(Screen.COMPUTER_SERVICES);
   }
+
   public void serviceRequestFormsButtonClicked() throws IOException {
     Navigation.navigate(Screen.LANDING_PAGE);
   }
@@ -51,6 +52,7 @@ public class NavigationController {
   public void submittedRequestsButtonClicked() throws IOException {
     Navigation.navigate(Screen.REQUESTS);
   }
+
   public void mapEditorButtonClicked() throws IOException {
     Navigation.navigate(Screen.MAP_EDITOR);
   }

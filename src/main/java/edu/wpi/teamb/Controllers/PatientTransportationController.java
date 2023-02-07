@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,7 +30,7 @@ public class PatientTransportationController extends BaseRequestController {
   @FXML private TextField patientIDField;
   @FXML private TextField additionalNotesField;
 
- /** Initialize the page by declaring choice-box options */
+  /** Initialize the page by declaring choice-box options */
   @FXML
   @Override
   public void initialize() {
@@ -54,11 +53,10 @@ public class PatientTransportationController extends BaseRequestController {
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
 
-      ObservableList<String> locations = getLocations();
+    ObservableList<String> locations = getLocations();
 
-      patientCurrentLocationBox.setItems(locations);
-      patientDestinationLocationBox.setItems(locations);
-
+    patientCurrentLocationBox.setItems(locations);
+    patientDestinationLocationBox.setItems(locations);
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -72,18 +70,18 @@ public class PatientTransportationController extends BaseRequestController {
   }
 
   private ObservableList<String> getLocations() {
-      ObservableList<String> list = FXCollections.observableArrayList();
+    ObservableList<String> list = FXCollections.observableArrayList();
 
-        List<LocationName> locationNames = DBSession.getAllLocationNames();
-        locationNames.forEach(l -> list.add(l.getLongName()));
+    List<LocationName> locationNames = DBSession.getAllLocationNames();
+    locationNames.forEach(l -> list.add(l.getLongName()));
 
-        return list;
-    }
-    /**
-     * Store the data from the form in a csv file and return to home screen
-     *
-     * @throws IOException
-     */
+    return list;
+  }
+  /**
+   * Store the data from the form in a csv file and return to home screen
+   *
+   * @throws IOException
+   */
   @FXML
   @Override
   public void submitButtonClicked() throws IOException {
@@ -98,21 +96,29 @@ public class PatientTransportationController extends BaseRequestController {
     request.setAssignedEmployee(assignedStaffField.getText());
     request.setNotes(additionalNotesField.getText());
 
-      var urgency = urgencyBox.getValue();
-      if (urgency == null) {
-          urgency = "";
-      }
-      request.setUrgency(urgency.toString());
+    var urgency = urgencyBox.getValue();
+    if (urgency == null) {
+      urgency = "";
+    }
 
-      var equipment = equipmentNeededBox.getValue();
-      if (equipment == null) {
-          equipment = "";
-      }
-      request.setEquipment(equipment.toString());
-      request.setLocation(this.patientCurrentLocationBox.getText());
-      request.setDestination(this.patientDestinationLocationBox.getText());
-      request.setPatientID(this.patientIDField.getText());
-      DBSession.addORM(request);
+    var equipment = equipmentNeededBox.getValue();
+    if (equipment == null) {
+      equipment = "";
+    }
+    var destination = patientDestinationLocationBox.getValue();
+    if (destination == null) {
+      destination = "";
+    }
+    var curLocation = patientCurrentLocationBox.getValue();
+    if (curLocation == null) {
+      curLocation = "";
+    }
+    request.setUrgency(urgency.toString());
+    request.setEquipmentNeeded(equipment.toString());
+    request.setPatientCurrentLocation(curLocation.toString());
+    request.setPatientDestination(destination.toString());
+    request.setPatientID(this.patientIDField.getText());
+    DBSession.addORM(request);
 
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();

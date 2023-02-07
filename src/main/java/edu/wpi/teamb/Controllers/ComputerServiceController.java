@@ -4,8 +4,8 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Entities.ComputerRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,7 +94,6 @@ public class ComputerServiceController extends BaseRequestController {
     request.setTypeOfRepair(typeOfrepair.toString());
 
     DBSession.addORM(request);
-
 
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();

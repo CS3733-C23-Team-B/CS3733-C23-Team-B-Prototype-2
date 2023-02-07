@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
    <center>
       <VBox prefHeight="539.0" prefWidth="1720.0" BorderPane.alignment="CENTER">
          <children>
@@ -34,7 +31,7 @@
                         <Insets left="200.0" />
                      </HBox.margin>
                   </MFXButton>
-                  <MFXButton id="homePageButtons" buttonType="RAISED" depthLevel="LEVEL5" minWidth="508.0" onAction="#databaseButtonClicked" prefHeight="90.0" style="-fx-background-color: #003DA6;" text="Database" textFill="WHITE">
+                  <MFXButton id="homePageButtons" buttonType="RAISED" depthLevel="LEVEL5" minWidth="508.0" onAction="#mapEditorButtonClicked" prefHeight="90.0" style="-fx-background-color: #003DA6;" text="Map Editor" textFill="WHITE">
                      <font>
                         <Font size="40.0" />
                      </font>

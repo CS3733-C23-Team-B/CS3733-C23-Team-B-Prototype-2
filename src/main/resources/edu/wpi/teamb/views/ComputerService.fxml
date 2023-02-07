@@ -42,17 +42,32 @@
                               <Insets left="40.0" top="10.0" />
                            </VBox.margin>
                         </Text>
-                        <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text id="categoriesNunito" layoutX="50.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="275.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
                            <VBox.margin>
-                              <Insets left="40.0" top="10.0" />
+                              <Insets top="15.0" />
                            </VBox.margin>
-                        </Text>
+                        </HBox>
                         <HBox prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0" promptText="First Name">
+                              <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -60,7 +75,7 @@
                                     <Font size="17.0" />
                                  </font>
                               </MFXTextField>
-                              <MFXTextField fx:id="lastNameField" layoutX="50.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0" promptText="Last Name">
+                              <MFXTextField fx:id="lastNameField" layoutX="50.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -88,7 +103,7 @@
                                     <Font size="22.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="257.0" />
+                                    <Insets left="258.0" />
                                  </HBox.margin>
                               </Text>
                            </children>
@@ -177,12 +192,12 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device(s)">
+                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="250.0" />
+                                    <Insets left="240.0" />
                                  </HBox.margin>
                               </Text>
                            </children>

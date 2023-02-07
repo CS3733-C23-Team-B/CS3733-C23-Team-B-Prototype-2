@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Collections;
+
 public class NodeEditorController {
   @FXML Text nodeIDText;
   @FXML TextField xField;
@@ -21,7 +23,7 @@ public class NodeEditorController {
 
   public void initialize() {
     ObservableList<String> floors = FXCollections.observableArrayList();
-    for (String s : new String[] {"L1", "L2"}) floors.add(s);
+    Collections.addAll(floors, "1", "2", "3", "L1", "L2");
     xField.setPromptText("" + node.getXCoord());
     yField.setPromptText("" + node.getYCoord());
     origFloor = node.getFloor();

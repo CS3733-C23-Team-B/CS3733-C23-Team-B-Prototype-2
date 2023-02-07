@@ -37,6 +37,7 @@ public class ComputerServiceController extends BaseRequestController {
       urgencyBox,
       typeOfRepairBox,
       deviceBox,
+      assignedStaffField,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
@@ -68,6 +69,7 @@ public class ComputerServiceController extends BaseRequestController {
     request.setEmployeeID(employeeIDField.getText());
     request.setEmail(emailField.getText());
     request.setNotes(additionalNotesField.getText());
+    request.setAssignedEmployee(assignedStaffField.getText());
 
     var urgency = urgencyBox.getValue();
     if (urgency == null) {

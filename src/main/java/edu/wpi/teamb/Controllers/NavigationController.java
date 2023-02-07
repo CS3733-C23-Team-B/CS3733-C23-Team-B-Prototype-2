@@ -21,8 +21,16 @@ public class NavigationController {
     Navigation.navigate(Screen.SANITATION);
   }
 
-  public void pathfindingClicked() throws IOException {
+  public void serviceRequestFormsButtonClicked() throws IOException {
+    Navigation.navigate(Screen.SERVICE_REQUEST_FORMS);
+  }
+
+  public void pathfindingButtonClicked() throws IOException {
     Navigation.navigate(Screen.PATHFINDING);
+  }
+
+  public void locationNodeEditorButtonClicked() throws IOException {
+    Navigation.navigate(Screen.LOCATION_NODE_EDITOR);
   }
 
   public void aboutButtonClicked() {
@@ -34,10 +42,10 @@ public class NavigationController {
   }
 
   public void databaseButtonClicked() throws IOException {
-    Navigation.navigate(Screen.MAP_DATA_EDITOR);
+    Navigation.navigate(Screen.MAP_EDITOR);
   }
 
-  public void requestsButtonClicked() throws IOException {
+  public void submittedRequestsButtonClicked() throws IOException {
     Navigation.navigate(Screen.REQUESTS);
   }
 

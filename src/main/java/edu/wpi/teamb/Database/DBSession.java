@@ -176,6 +176,32 @@ public class DBSession {
     }
   }
 
+  public static void deleteNode(Node n) {
+    delete(n);
+    List<Edge> es = getAllEdges();
+    for(Edge e : es) {
+      if(e.getNode1().equals(n.getNodeID()) || e.getNode2().equals(n.getNodeID())) {
+        delete(e);
+      }
+    }
+    List<Move> ms = getAllMoves();
+    for(Move m : ms) {
+      if(m.getNodeID().equals(n.getNodeID())) {
+        delete(m);
+      }
+    }
+  }
+
+  public static void deleteLN(LocationName ln) {
+    delete(ln);
+    List<Move> ms = getAllMoves();
+    for(Move m : ms) {
+      if(m.getLongName().equals(ln.getLongName())) {
+        delete(m);
+      }
+    }
+  }
+
   public static void updateLocationName(LocationName newLN, LocationName oldLN) {
     if (newLN.getLongName().equals(oldLN.getLongName())) {
       delete(oldLN);

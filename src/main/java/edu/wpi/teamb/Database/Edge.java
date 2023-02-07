@@ -2,7 +2,6 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
-import java.sql.SQLException;
 import lombok.Getter;
 import lombok.Setter;
 

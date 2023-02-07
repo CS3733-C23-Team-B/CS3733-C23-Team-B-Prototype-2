@@ -2,9 +2,7 @@ package edu.wpi.teamb.Pathfinding;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Edge;
-import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
-import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -96,7 +94,7 @@ public class Pathfinding {
    * @return the list of locationLongNames associated with each NodeID
    */
   private static List<String> nodesToLocations(List<String> path) {
-    return path.stream().map(Move::getMostRecentLocation).collect(Collectors.toList());
+    return path.stream().map(DBSession::getMostRecentLocation).collect(Collectors.toList());
   }
 
   /**
@@ -118,14 +116,8 @@ public class Pathfinding {
    * @return a String representation of the path taken
    */
   private static ArrayList<String> getPathAStar(String startLoc, String endLoc) {
-    String start;
-    String end;
-    try {
-      start = Move.getMostRecentNode(startLoc);
-      end = Move.getMostRecentNode(endLoc);
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+    String start = DBSession.getMostRecentNode(startLoc);
+    String end = DBSession.getMostRecentNode(endLoc);
 
     PriorityQueue<GraphNode> queue = new PriorityQueue<GraphNode>();
     queue.add(new GraphNode(start, 0));

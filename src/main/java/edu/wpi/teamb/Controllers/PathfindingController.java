@@ -67,7 +67,10 @@ public class PathfindingController {
           }
         });
     List<Node> nodes = DBSession.getAllNodes();
-    nodes.forEach(value -> placeNode(value));
+    nodes.forEach(
+        value -> {
+          if (value.getFloor().equals("L1")) placeNode(value);
+        });
 
     selectedCircle.addListener(
         (obs, oldSelection, newSelection) -> {

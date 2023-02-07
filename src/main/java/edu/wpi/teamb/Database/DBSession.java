@@ -178,8 +178,8 @@ public class DBSession {
 
     Node ncopy = new Node();
     ncopy.setNodeID(n.buildID());
-    ncopy.setXcoord(n.getXcoord());
-    ncopy.setYcoord(n.getYcoord());
+    ncopy.setXCoord(n.getXCoord());
+    ncopy.setYCoord(n.getYCoord());
     ncopy.setFloor(n.getFloor());
     ncopy.setBuilding(n.getBuilding());
 
@@ -225,20 +225,20 @@ public class DBSession {
     }
   }
 
-   public static String getMostRecentLocation(String NodeID) {
-      return getMostRecentMove(NodeID).getLongName();
-    }
+  public static String getMostRecentLocation(String NodeID) {
+    return getMostRecentMove(NodeID).getLongName();
+  }
 
-   public static String getMostRecentNode(String longName) {
-      List<Move> moves = getAllMovesWithLN(longName);
+  public static String getMostRecentNode(String longName) {
+    List<Move> moves = getAllMovesWithLN(longName);
 
-      if (moves == null) return "NO MOVES";
+    if (moves == null) return "NO MOVES";
 
-      Move mostRecent = moves.get(0);
-      for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+    Move mostRecent = moves.get(0);
+    for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
 
-      return mostRecent.getNodeID();
-    }
+    return mostRecent.getNodeID();
+  }
 
   public static Move getMostRecentMove(String nodeID) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
@@ -250,12 +250,12 @@ public class DBSession {
       Query q = session.createQuery(str);
       moves = q.list();
       session.close();
-      if(moves.isEmpty()) {
+      if (moves.isEmpty()) {
         return null;
       } else {
         Move mostRecent = moves.get(0);
-            for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
-            return mostRecent;
+        for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+        return mostRecent;
       }
     } catch (Exception e) {
       e.printStackTrace();

@@ -38,6 +38,7 @@
         <mapping class="edu.wpi.teamb.Database.Move"/>
         <mapping class="edu.wpi.teamb.Database.Edge"/>
         <mapping class="edu.wpi.teamb.Database.Node"/>
+        <mapping class="edu.wpi.teamb.Entities.ComputerRequest"/>
 
 
         <!-- Names the annotated entity class -->

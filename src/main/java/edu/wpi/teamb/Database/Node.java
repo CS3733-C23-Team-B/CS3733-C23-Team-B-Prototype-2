@@ -32,12 +32,12 @@ public class Node implements IORM {
   @Setter
   private int yCoord;
 
-  @Column(name = "floor", length = 25)
+  @Column(name = "floor", length = 4)
   @Getter
   @Setter
   private String floor;
 
-  @Column(name = "building", length = 20)
+  @Column(name = "building", length = 25)
   @Getter
   @Setter
   private String building;

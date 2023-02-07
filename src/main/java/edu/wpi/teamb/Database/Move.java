@@ -13,19 +13,19 @@ import lombok.Setter;
 @Table(name = "move")
 public class Move implements IORM {
 
-  public static final String tableName = "move";
-
   @Id
-  @Column(name = "nodeID", length = 20)
+  @Column(name = "nodeID", length = 14)
   @Getter
   @Setter
   private String nodeID;
 
+  @Id
   @Column(name = "longname", length = 70)
   @Getter
   @Setter
   private String longName;
 
+  @Id
   @Column(name = "movedate", length = 20)
   @Getter
   @Setter

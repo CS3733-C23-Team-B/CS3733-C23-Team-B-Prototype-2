@@ -177,29 +177,29 @@ public class DBSession {
   }
 
   public static void deleteNode(Node n) {
-    delete(n);
     List<Edge> es = getAllEdges();
-    for(Edge e : es) {
-      if(e.getNode1().equals(n.getNodeID()) || e.getNode2().equals(n.getNodeID())) {
+    for (Edge e : es) {
+      if (e.getNode1().equals(n.getNodeID()) || e.getNode2().equals(n.getNodeID())) {
         delete(e);
       }
     }
     List<Move> ms = getAllMoves();
-    for(Move m : ms) {
-      if(m.getNodeID().equals(n.getNodeID())) {
+    for (Move m : ms) {
+      if (m.getNodeID().equals(n.getNodeID())) {
         delete(m);
       }
     }
+    delete(n);
   }
 
   public static void deleteLN(LocationName ln) {
-    delete(ln);
     List<Move> ms = getAllMoves();
-    for(Move m : ms) {
-      if(m.getLongName().equals(ln.getLongName())) {
+    for (Move m : ms) {
+      if (m.getLongName().equals(ln.getLongName())) {
         delete(m);
       }
     }
+    delete(ln);
   }
 
   public static void updateLocationName(LocationName newLN, LocationName oldLN) {
@@ -226,6 +226,7 @@ public class DBSession {
     ncopy.setYCoord(n.getYCoord());
     ncopy.setFloor(n.getFloor());
     ncopy.setBuilding(n.getBuilding());
+    addORM(ncopy);
 
     List<Edge> edges = getAllEdges();
     for (Edge e : edges) {
@@ -256,7 +257,6 @@ public class DBSession {
       }
     }
 
-    addORM(ncopy);
     delete(n);
   }
 
@@ -326,6 +326,4 @@ public class DBSession {
     delete(m);
     addORM(mnew);
   }
-
-
 }

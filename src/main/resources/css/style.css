@@ -86,3 +86,13 @@
     -fx-font-family: Nunito, regular;
     -fx-font-size: 40px;
 }
+
+#landingPageTitle{
+    -fx-font-family: Roboto, bold;
+    -fx-font-size: 96px;
+}
+
+#landingPageButtons{
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 43px;
+}

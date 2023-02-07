@@ -10,7 +10,7 @@ import lombok.Setter;
     name = "PatientTransportationRequestID",
     foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey"))
 public class PatientTransportationRequest extends GeneralRequest implements IORM {
-  @Column(name = "equipmentNeeded", length = 20)
+  @Column(name = "equipmentNeeded", length = 60)
   @Getter
   @Setter
   private String equipmentNeeded;

@@ -28,7 +28,7 @@ public class GeneralRequest {
   @Setter
   private String email;
 
-  @Column(name = "employeeid", length = 20)
+  @Column(name = "employeeid", length = 60)
   @Getter
   @Setter
   private String employeeID;
@@ -38,7 +38,7 @@ public class GeneralRequest {
   @Setter
   private String urgency;
 
-  @Column(name = "assignedto", length = 20)
+  @Column(name = "assignedto", length = 60)
   @Getter
   @Setter
   private String assignedEmployee;

@@ -48,7 +48,7 @@ public class BaseRequestController {
    */
   @FXML
   public void initialize() {
-    // submitButton.setDisable(true);
+    submitButton.setDisable(true);
     urgencyBox.setItems(urgencyOptions);
   }
 
@@ -115,7 +115,7 @@ public class BaseRequestController {
   public void buttonControl() throws IOException {
 
     boolean submitEnable = isFormFull();
-    // submitButton.setDisable(!submitEnable);
+    submitButton.setDisable(!submitEnable);
   }
 
   /**

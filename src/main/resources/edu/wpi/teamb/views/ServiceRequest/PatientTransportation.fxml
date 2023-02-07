@@ -68,7 +68,7 @@
                         </HBox>
                         <HBox prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
+                              <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -76,7 +76,7 @@
                                     <Font size="17.0" />
                                  </font>
                               </MFXTextField>
-                              <MFXTextField fx:id="lastNameField" layoutX="50.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
+                              <MFXTextField fx:id="lastNameField" layoutX="50.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -114,7 +114,7 @@
                               <Insets top="5.0" />
                            </VBox.margin>
                            <children>
-                              <MFXTextField fx:id="employeeIDField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
+                              <MFXTextField fx:id="employeeIDField" maxHeight="-Infinity" minHeight="-Infinity" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -122,7 +122,7 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </MFXTextField>
-                              <MFXTextField fx:id="emailField" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
+                              <MFXTextField fx:id="emailField" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -165,12 +165,12 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="199.0" prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <MFXFilterComboBox fx:id="urgencyBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="340.0">
+                              <MFXFilterComboBox fx:id="urgencyBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </MFXFilterComboBox>
-                              <MFXTextField fx:id="assignedStaffField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
+                              <MFXTextField fx:id="assignedStaffField" maxHeight="-Infinity" minHeight="-Infinity" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -211,12 +211,12 @@
                               <Insets top="5.0" />
                            </VBox.margin>
                            <children>
-                              <MFXFilterComboBox fx:id="patientCurrentLocationBox" prefHeight="44.0" prefWidth="340.0">
+                              <MFXFilterComboBox fx:id="patientCurrentLocationBox" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </MFXFilterComboBox>
-                              <MFXFilterComboBox fx:id="patientDestinationLocationBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="340.0">
+                              <MFXFilterComboBox fx:id="patientDestinationLocationBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -240,7 +240,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <MFXComboBox fx:id="equipmentNeededBox" prefHeight="44.0" prefWidth="340.0">
+                              <MFXComboBox fx:id="equipmentNeededBox" onAction="#buttonControl" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -267,7 +267,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="384.0" prefHeight="22.0" prefWidth="200.0">
                            <children>
-                              <MFXTextField fx:id="patientIDField" minHeight="-Infinity" prefHeight="44.0" prefWidth="720.0">
+                              <MFXTextField fx:id="patientIDField" minHeight="-Infinity" onAction="#buttonControl" prefHeight="44.0" prefWidth="720.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>

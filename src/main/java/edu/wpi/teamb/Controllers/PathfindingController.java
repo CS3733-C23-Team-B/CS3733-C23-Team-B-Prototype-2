@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
@@ -109,6 +110,12 @@ public class PathfindingController {
    */
   static ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
+
+    List<LocationName> locationNames = DBSession.getAllLocationNames();
+    for (LocationName locationName : locationNames)
+      if (DBSession.getMostRecentNode(locationName.getLongName()).getFloor().equals("L1")) {
+        list.add(locationName.getLongName());
+      }
 
     List<Move> moves = DBSession.getAllMoves();
 

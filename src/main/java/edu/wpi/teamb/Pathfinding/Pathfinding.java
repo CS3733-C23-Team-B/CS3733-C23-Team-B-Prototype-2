@@ -116,8 +116,8 @@ public class Pathfinding {
    * @return a String representation of the path taken
    */
   private static ArrayList<String> getPathAStar(String startLoc, String endLoc) {
-    String start = DBSession.getMostRecentNode(startLoc);
-    String end = DBSession.getMostRecentNode(endLoc);
+    String start = DBSession.getMostRecentNodeID(startLoc);
+    String end = DBSession.getMostRecentNodeID(endLoc);
 
     PriorityQueue<GraphNode> queue = new PriorityQueue<GraphNode>();
     queue.add(new GraphNode(start, 0));

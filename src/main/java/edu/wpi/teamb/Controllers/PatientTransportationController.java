@@ -7,6 +7,7 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,43 +19,45 @@ import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 
 public class PatientTransportationController extends BaseRequestController {
-  // TODO: rename remaining vars with Field or Box appending them
-  @FXML private MFXComboBox equipmentNeededBox;
-  @FXML private TextField patientLocationField;
-  @FXML private TextField patientDestinationField;
-  @FXML private TextField patientIDField;
-
+  // Lists for checkboxes
   private ObservableList<String> equipmentOptions =
       FXCollections.observableArrayList("Stretcher", "Wheelchair", "Restraints", "Stair Chair");
+  @FXML private MFXFilterComboBox patientCurrentLocationBox;
+  @FXML private MFXFilterComboBox patientDestinationLocationBox;
+  @FXML private MFXFilterComboBox urgencyBox;
+  @FXML private MFXComboBox equipmentNeededBox;
+  @FXML private TextField patientIDField;
+  @FXML private TextField additionalNotesField;
 
   /** Initialize the page by declaring choice-box options */
   @Override
   public void initialize() {
+    // initialization goes here
     // Create list of components; additionalNotesField MUST be last
-    Control[] cl = {
+    Control[] ctrl = {
       firstNameField,
       lastNameField,
       employeeIDField,
       emailField,
-      equipmentNeededBox,
       urgencyBox,
-      patientLocationField,
-      patientDestinationField,
-      patientIDField,
       assignedStaffField,
+      patientCurrentLocationBox,
+      patientDestinationLocationBox,
+      equipmentNeededBox,
+      patientIDField,
       additionalNotesField
     };
-    components = new ArrayList<>(Arrays.asList(cl));
+    components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
+    patientCurrentLocationBox.setItems(PathfindingController.getLocations());
+    patientDestinationLocationBox.setItems(PathfindingController.getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
-      if (c instanceof TextField) textFields.add((TextField) c);
+      if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
-
-    // Initialize the choice boxes with their options
     equipmentNeededBox.setItems(equipmentOptions);
 
     helpScreen = Screen.PATIENT_TRANSPORTATION_HELP;
@@ -98,8 +101,8 @@ public class PatientTransportationController extends BaseRequestController {
       equipment = "";
     }
     request.setEquipment(equipment.toString());
-    request.setLocation(this.patientLocationField.getText());
-    request.setDestination(this.patientDestinationField.getText());
+    request.setLocation(this.patientCurrentLocationBox.getText());
+    request.setDestination(this.patientDestinationLocationBox.getText());
     request.setPatientID(this.patientIDField.getText());
     request.setStatus(RequestStatus.PROCESSING);
     DBSession.addORM(request);

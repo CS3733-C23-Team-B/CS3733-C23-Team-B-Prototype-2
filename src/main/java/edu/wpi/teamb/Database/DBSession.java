@@ -72,7 +72,20 @@ public class DBSession {
   }
 
   public static List<LocationName> getAllLocationNames() {
-    return null;
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM LocationName");
+      List<LocationName> locationNames = q.list();
+      session.close();
+      return locationNames;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
   }
 
   public static List<Move> getAllMoves() {
@@ -229,7 +242,7 @@ public class DBSession {
     return getMostRecentMove(NodeID).getLongName();
   }
 
-  public static String getMostRecentNode(String longName) {
+  public static String getMostRecentNodeID(String longName) {
     List<Move> moves = getAllMovesWithLN(longName);
 
     if (moves == null) return "NO MOVES";
@@ -238,6 +251,13 @@ public class DBSession {
     for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
 
     return mostRecent.getNodeID();
+  }
+
+  public static Node getMostRecentNode(String longName) {
+    String id = getMostRecentNodeID(longName);
+    List<Node> nodes = DBSession.getAllNodes();
+    for (Node node : nodes) if (node.getNodeID().equals(id)) return node;
+    return null;
   }
 
   public static Move getMostRecentMove(String nodeID) {

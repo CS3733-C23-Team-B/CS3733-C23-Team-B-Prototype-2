@@ -242,7 +242,7 @@ public class DBSession {
     return getMostRecentMove(NodeID).getLongName();
   }
 
-  public static String getMostRecentNode(String longName) {
+  public static String getMostRecentNodeID(String longName) {
     List<Move> moves = getAllMovesWithLN(longName);
 
     if (moves == null) return "NO MOVES";
@@ -251,6 +251,13 @@ public class DBSession {
     for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
 
     return mostRecent.getNodeID();
+  }
+
+  public static Node getMostRecentNode(String longName) {
+    String id = getMostRecentNodeID(longName);
+    List<Node> nodes = DBSession.getAllNodes();
+    for (Node node : nodes) if (node.getNodeID().equals(id)) return node;
+    return null;
   }
 
   public static Move getMostRecentMove(String nodeID) {

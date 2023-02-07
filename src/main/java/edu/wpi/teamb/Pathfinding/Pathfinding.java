@@ -8,7 +8,12 @@ import java.util.stream.Collectors;
 
 public class Pathfinding {
   private static List<Edge> edges = DBSession.getAllEdges();
-  private static Map<String, Node> nodes;
+  private static Map<String, Node> nodes = new HashMap<>();
+
+  static {
+    List<Node> nodeDBList = DBSession.getAllNodes();
+    for (Node node : nodeDBList) nodes.put(node.getNodeID(), node);
+  }
 
   /**
    * Given an edge, evaluates the weight of the edge
@@ -116,8 +121,8 @@ public class Pathfinding {
    * @return a String representation of the path taken
    */
   private static ArrayList<String> getPathAStar(String startLoc, String endLoc) {
-    String start = DBSession.getMostRecentNode(startLoc);
-    String end = DBSession.getMostRecentNode(endLoc);
+    String start = DBSession.getMostRecentNodeID(startLoc);
+    String end = DBSession.getMostRecentNodeID(endLoc);
 
     PriorityQueue<GraphNode> queue = new PriorityQueue<GraphNode>();
     queue.add(new GraphNode(start, 0));

@@ -16,6 +16,8 @@
 
 #toolbar{
     -fx-background-color: rgba(0, 61, 166, 1);
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 25px;
 }
 
 
@@ -30,7 +32,7 @@
     -fx-background-repeat: stretch;
     -fx-background-size: 48 48;
     -fx-background-position: top center;
-    -fx-background-color: black;
+    -fx-background-color: rgba(0,7,122, 0.8);
 }
 
 .menu-button > .arrow-button {
@@ -39,4 +41,59 @@
 
 .menu-button > .arrow-button > .arrow {
     -fx-padding: 0;
+}
+
+.intersection {
+    -fx-fill: blue ;
+}
+.intersection:selected {
+    -fx-fill: gold ;
+}
+
+#titleRoboto{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 50;
+}
+
+#subTitleNunito{
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 36;
+}
+
+#categoriesNunito{
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 22;
+}
+
+#homeButton{
+    -fx-background-image: url("https://www.photowork.com/wp-content/uploads/2017/12/Brigham_and_Womens_Hospital_logo.svg_-768x896.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 55 65;
+    -fx-background-position: top center;
+    -fx-background-color: rgba(0, 61, 166, 1);;
+}
+
+#navBarButton{
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 24px;
+}
+
+#homePageTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 96px;
+}
+
+#homePageButtons{
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 40px;
+}
+
+#landingPageTitle{
+    -fx-font-family: Roboto, bold;
+    -fx-font-size: 96px;
+}
+
+#landingPageButtons{
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 43px;
 }

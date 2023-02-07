@@ -1,67 +1,41 @@
 package edu.wpi.teamb.Database;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import edu.wpi.teamb.Entities.IORM;
+import jakarta.persistence.*;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 
-public class Login {
-  private static final String tableName = "login";
-  private String username, password;
+@Entity
+@Table(name = "login")
+@PrimaryKeyJoinColumn(name = "login", foreignKey = @ForeignKey(name = "loginIDKey"))
+public class Login implements IORM {
+  @Id private String username;
 
-  public Login(String username, String password) {
+  @Column(name = "password", length = 60)
+  @Getter
+  @Setter
+  private String password;
+
+  public Login(String scol, String sc) {
+    this.username = scol;
+    this.password = sc;
+  }
+
+  public Login() {}
+
+  public void delete() throws SQLException {}
+
+  @Override
+  public String getSearchStr() {
+    return "FROM Login WHERE username = '" + getUsername() + "'";
+  }
+
+  public void setUsername(String username) {
     this.username = username;
-    this.password = password;
-  }
-
-  public static void initTable() throws SQLException {
-    String sql =
-        String.join(
-            " ",
-            "CREATE TABLE login",
-            "(username VARCHAR(20),",
-            "password VARCHAR(20),",
-            "PRIMARY KEY (username) );");
-    Bdb.processUpdate(sql);
-  }
-
-  public void insert() throws SQLException {
-    String sql = "INSERT INTO login (username, password)" + "VALUES (?,?);";
-    PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
-    ps.setString(1, username);
-    ps.setString(2, password);
-
-    ps.executeUpdate();
-  }
-
-  public void delete() throws SQLException {
-    String sql = "DELETE FROM login WHERE username = ?";
-    PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, username);
-    ps.executeUpdate();
-  }
-
-  public static Map<String, Login> getAll() throws SQLException {
-    HashMap<String, Login> users = new HashMap<String, Login>();
-    String sql = "SELECT * FROM login;";
-    ResultSet rs = Bdb.processQuery(sql);
-    while (rs.next()) {
-      users.put(
-          rs.getString("username"), new Login(rs.getString("username"), rs.getString("password")));
-    }
-    return users;
   }
 
   public String getUsername() {
     return username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public static String getTableName() {
-    return tableName.toLowerCase();
   }
 }

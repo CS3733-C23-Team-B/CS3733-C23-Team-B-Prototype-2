@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.PathfindingController">
+   <top>
+      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+            <Text fill="WHITE" layoutX="275.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding" textAlignment="CENTER">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="anchor" layoutY="122.0" prefHeight="397.0" prefWidth="800.0" />
+            <VBox prefHeight="155.0" prefWidth="800.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="525.0" spacing="30.0">
+                     <children>
+                        <Label text="Starting Node:">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <MFXComboBox fx:id="startLoc" prefHeight="0.0" prefWidth="300.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="525.0" spacing="36.0">
+                     <children>
+                        <Label text="Ending Node:" />
+                        <MFXComboBox fx:id="endLoc" prefHeight="25.0" prefWidth="300.0" />
+                        <MFXButton fx:id="pathfind" prefHeight="35.0" style="-fx-background-color: #003DA6;" text="Find Fastest Path" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="148.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

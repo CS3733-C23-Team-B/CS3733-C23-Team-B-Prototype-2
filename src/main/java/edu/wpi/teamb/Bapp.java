@@ -26,7 +26,7 @@ public class Bapp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("views/root.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("views/Navigation/Root.fxml"));
     root.setId("home");
     Scene scene = new Scene(root, 1200, 650);
     scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
@@ -36,7 +36,6 @@ public class Bapp extends Application {
 
     primaryStage.setScene(scene);
     primaryStage.setTitle("Brigham and Women's Hospital");
-    primaryStage.setFullScreen(true);
     primaryStage.show();
     Navigation.navigate(Screen.SIGN_IN);
   }

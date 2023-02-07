@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.RequestsController">
+   <top>
+
+
+      <AnchorPane prefHeight="120.0" prefWidth="200.0" style="-fx-background-color: #003da6;" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="WHITE" layoutX="229.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Requests" textAlignment="CENTER" AnchorPane.leftAnchor="515.5" AnchorPane.rightAnchor="516.091796875" AnchorPane.topAnchor="26.044921875">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox prefHeight="750.0" prefWidth="1400.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transportation Requests">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TableView fx:id="TransportationTable" prefHeight="188.0" prefWidth="800.0">
+                            <columns>
+                                <TableColumn fx:id="tranLastNameColumn" prefWidth="91.99999767541885" text="Last Name" />
+                                <TableColumn fx:id="tranFirstNameColumn" prefWidth="86.39995574951172" text="First Name" />
+                                <TableColumn fx:id="tranEmployeeIDColumn" prefWidth="101.60005187988281" text="Employee ID" />
+                                <TableColumn fx:id="tranEmailColumn" prefWidth="71.20001220703125" text="Email" />
+                                <TableColumn fx:id="tranUrgencyColumn" prefWidth="84.79998779296875" text="Urgency" />
+                                <TableColumn fx:id="tranAssignedStaffColumn" prefWidth="112.00009155273438" text="Assigned Staff" />
+                                <TableColumn fx:id="tranPatientIDColumn" prefWidth="81.60003662109375" text="Patient ID" />
+                              <TableColumn fx:id="tranCurrentLocationColumn" prefWidth="138.39996337890625" text="Current Location" />
+                              <TableColumn fx:id="tranDestinationColumn" prefWidth="113.60009765625" text="Destination" />
+                              <TableColumn fx:id="tranEquipmentColumn" prefWidth="113.60009765625" text="Equipment" />
+                              <TableColumn fx:id="tranNotesColumn" prefWidth="265.5999755859375" text="Notes" />
+                              <TableColumn fx:id="tranStatusColumn" prefWidth="131.9998779296875" text="Status" />
+                            </columns>
+                        </TableView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sanitation Requests">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TableView fx:id="SanitationTable" prefHeight="188.0" prefWidth="800.0">
+                           <columns>
+                              <TableColumn fx:id="saniLastNameColumn" prefWidth="102.39999157190323" text="Last Name" />
+                              <TableColumn fx:id="saniFirstNameColumn" prefWidth="87.1999740600586" text="First Name" />
+                              <TableColumn fx:id="saniEmployeeIDColumn" prefWidth="140.8000030517578" text="Employee ID" />
+                              <TableColumn fx:id="saniEmailColumn" prefWidth="76.0" text="Email" />
+                              <TableColumn fx:id="saniUrgencyColumn" prefWidth="98.4000244140625" text="Urgency" />
+                              <TableColumn fx:id="saniAssignedStaffColumn" prefWidth="122.39996337890625" text="Assigned Staff" />
+                              <TableColumn fx:id="saniTypeOfCleanupColumn" prefWidth="148.79995727539062" text="Type of Cleanup" />
+                              <TableColumn fx:id="saniLocationColumn" prefWidth="201.5999755859375" text="Location" />
+                              <TableColumn fx:id="saniNotesColumn" prefWidth="283.20001220703125" text="Notes" />
+                              <TableColumn fx:id="saniStatusColumn" prefWidth="128.800048828125" text="Status" />
+                           </columns>
+                        </TableView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Computer Requests">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TableView fx:id="ComputerTable" layoutX="10.0" layoutY="68.0" prefHeight="188.0" prefWidth="800.0">
+                           <columns>
+                              <TableColumn fx:id="comLastNameColumn" prefWidth="91.99999767541885" text="Last Name" />
+                              <TableColumn fx:id="comFirstNameColumn" prefWidth="86.39995574951172" text="First Name" />
+                              <TableColumn fx:id="comEmployeeIDColumn" prefWidth="101.60005187988281" text="Employee ID" />
+                              <TableColumn fx:id="comEmailColumn" prefWidth="71.20001220703125" text="Email" />
+                              <TableColumn fx:id="comUrgencyColumn" prefWidth="84.79998779296875" text="Urgency" />
+                              <TableColumn fx:id="comAssignedStaffColumn" prefWidth="112.00009155273438" text="Assigned Staff" />
+                              <TableColumn fx:id="comTypeOfRepairColumn" prefWidth="116.0" text="Type of Repair" />
+                              <TableColumn fx:id="comDeviceColumn" prefWidth="104.79998779296875" text="Device" />
+                              <TableColumn fx:id="comLocationColumn" prefWidth="195.2000732421875" text="Location" />
+                              <TableColumn fx:id="comNotesColumn" prefWidth="306.3997802734375" text="Notes" />
+                              <TableColumn fx:id="comStatusColumn" prefWidth="125.60009765625" text="Status" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

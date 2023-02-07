@@ -1,10 +1,9 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
@@ -57,13 +56,7 @@ public class ProfileController {
 
   /** Deletes the login for the current user and returns to the sign-in page */
   public void deleteAccount() {
-    try {
-      user.delete();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
+    DBSession.delete(user);
     Navigation.navigate(Screen.SIGN_IN);
-    Bapp.getRootPane().setTop(null);
   }
 }

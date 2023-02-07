@@ -1,0 +1,8 @@
+.text-area *.content {
+    -fx-background-color:  #EAEFF7;
+}
+
+.text-area {
+    -fx-text-box-border: #EAEFF7;
+    -fx-focus-color: #EAEFF7;
+}

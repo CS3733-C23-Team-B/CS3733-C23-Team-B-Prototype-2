@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SigninController">
+   <center>
+      <AnchorPane prefHeight="236.0" prefWidth="279.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-opacity: 50;">
+         <children>
+            <MFXTextField fx:id="usernameField" layoutX="292.0" layoutY="146.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" promptText="Username" />
+            <MFXPasswordField fx:id="passwordField" layoutX="292.0" layoutY="184.0" maxHeight="25.0" minHeight="-Infinity" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Password" />
+            <MFXButton fx:id="signInButton" buttonType="RAISED" depthLevel="LEVEL1" layoutX="291.0" layoutY="225.0" onAction="#signInButtonClicked" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #2196F3;" text="Sign In" />
+            <MFXCheckbox fx:id="newAccount" layoutX="318.0" layoutY="260.0" minWidth="-Infinity" text="Create as New Account" />
+            <Label fx:id="prompt" layoutX="295.0" layoutY="100.0" prefHeight="32.0" prefWidth="206.0" text="Please sign In below.">
+               <font>
+                  <Font size="22.0" />
+               </font></Label>
+            <MFXButton fx:id="exitButton" buttonType="RAISED" depthLevel="LEVEL1" layoutX="672.0" layoutY="475.0" onAction="#exitApplication" text="Exit Application" />
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+            <Text fill="WHITE" layoutX="73.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Brigham and Women’s Hospital!">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

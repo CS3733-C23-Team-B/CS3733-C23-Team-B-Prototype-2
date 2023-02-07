@@ -14,15 +14,27 @@ public class NavigationController {
   @FXML private BorderPane border;
 
   public void featureOneButtonClicked() throws IOException {
-    Navigation.navigate(Screen.PATIENT_TRANSPORTATION);
+    Navigation.navigate(Screen.LANDING_PAGE);
   }
 
   public void featureTwoButtonClicked() throws IOException {
     Navigation.navigate(Screen.SANITATION);
   }
+  // may not need this but i cant tell - Jolie While merging
+  public void computerButtonClicked() {
+    Navigation.navigate(Screen.COMPUTER_SERVICES);
+  }
 
-  public void pathfindingClicked() throws IOException {
+  public void serviceRequestFormsButtonClicked() throws IOException {
+    Navigation.navigate(Screen.LANDING_PAGE);
+  }
+
+  public void pathfindingButtonClicked() throws IOException {
     Navigation.navigate(Screen.PATHFINDING);
+  }
+
+  public void locationNodeEditorButtonClicked() throws IOException {
+    Navigation.navigate(Screen.MAP_DATA_EDITOR);
   }
 
   public void aboutButtonClicked() {
@@ -33,12 +45,12 @@ public class NavigationController {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void databaseButtonClicked() throws IOException {
-    Navigation.navigate(Screen.MAP_DATA_EDITOR);
+  public void submittedRequestsButtonClicked() throws IOException {
+    Navigation.navigate(Screen.REQUESTS);
   }
 
-  public void requestsButtonClicked() throws IOException {
-    Navigation.navigate(Screen.REQUESTS);
+  public void mapEditorButtonClicked() throws IOException {
+    Navigation.navigate(Screen.MAP_EDITOR);
   }
 
   public void exitButtonClicked() {

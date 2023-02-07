@@ -1,14 +1,14 @@
 package edu.wpi.teamb.Controllers;
 
-import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
+import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Map;
+import java.util.List;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -24,18 +24,11 @@ public class SigninController {
   @FXML private CheckBox newAccount;
   @FXML private Label prompt;
   @FXML private Button exitButton;
-
-  private final String USER = "bodacious";
-  private final String PASS = "badgers";
   public static Login currentUser;
-  private Map<String, Login> users;
+  private List<Object> users;
 
-  {
-    try {
-      users = Login.getAll();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+  public void initialize() {
+    users = DBSession.getAll(ORMType.LOGIN);
   }
 
   /**
@@ -48,24 +41,37 @@ public class SigninController {
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
   }
-
   /**
    * Compares the provided login against the database of logins
    *
    * @return true if the login is valid according to the database, false otherwise
-   * @throws SQLException
    */
-  public boolean validateLogin() throws SQLException {
-    if (usernameField.getText().equals(USER) && passwordField.getText().equals(PASS)) return true;
-    else if (users.containsKey(usernameField.getText())
-        && users.get(usernameField.getText()).getPassword().equals(passwordField.getText()))
+  public boolean validateLogin() {
+    boolean found = false;
+    for (Object user : users) {
+      Login u = (Login) user;
+      if (u.getUsername().equals(usernameField.getText())
+          && u.getPassword().equals(passwordField.getText())) {
+        found = true;
+        break;
+      }
+    }
+    if (found) {
       return true;
-    else if (newAccount.isSelected()) {
-      if (users.containsKey(usernameField.getText())) return true;
-      Login newLogin = new Login(usernameField.getText(), passwordField.getText());
-      users.put(usernameField.getText(), newLogin);
-      newLogin.insert();
-      return true;
+    } else if (newAccount.isSelected()) {
+      for (Object user : users) {
+        Login u = (Login) user;
+        if (u.getUsername().equals(usernameField.getText())) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        Login newLogin = new Login(usernameField.getText(), passwordField.getText());
+        users.add(newLogin);
+        DBSession.addORM(newLogin);
+        return true;
+      }
     }
     prompt.setText("\tInvalid login");
     prompt.setTextFill(Color.RED);
@@ -80,25 +86,18 @@ public class SigninController {
    * @throws IOException
    * @throws SQLException
    */
-  public void signInButtonClicked() throws IOException, SQLException {
+  public void signInButtonClicked() throws SQLException {
     if (!validateLogin()) return;
-    final String filename = Screen.NAVIGATION.getFilename();
-    final String footer = Screen.FOOTER.getFilename();
-
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final var res = Bapp.class.getResource(footer);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      final FXMLLoader loader2 = new FXMLLoader(res);
-
-      Bapp.getRootPane().setTop(loader.load());
-      Bapp.getRootPane().setBottom(loader2.load());
-    } catch (IOException | NullPointerException e) {
-      e.printStackTrace();
-    }
 
     Navigation.navigate(Screen.HOME);
-    currentUser = users.get(usernameField.getText());
+
+    for (Object user : users) {
+      Login u = (Login) user;
+      if (u.getUsername().equals(usernameField.getText())) {
+        currentUser = u;
+        break;
+      }
+    }
   }
 
   /** Exits the application */

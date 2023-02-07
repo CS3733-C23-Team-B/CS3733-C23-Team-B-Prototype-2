@@ -3,8 +3,6 @@ package edu.wpi.teamb.Database;
 import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,20 +32,6 @@ public class LocationName implements IORM {
     this.shortName = shortName;
     this.locationType = locationType;
   }
-
-  public void insert() throws SQLException {}
-
-  public static Map<String, LocationName> getAll() throws SQLException {
-    HashMap<String, LocationName> locations = new HashMap<String, LocationName>();
-
-    return locations;
-  }
-
-  public void updateLN(String newName) throws SQLException {}
-
-  public void update() throws SQLException {}
-
-  public void delete() throws SQLException {}
 
   @Override
   public String getSearchStr() {

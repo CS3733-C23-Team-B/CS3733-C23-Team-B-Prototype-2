@@ -72,6 +72,10 @@ public class DBSession {
     }
   }
 
+  public static List<LocationName> getAllLocationNames() {
+    return null;
+  }
+
   public static List<Move> getAllMoves() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
@@ -139,7 +143,7 @@ public class DBSession {
 
   public static void updateNode(Node n) {
 
-    Node ncopy = new Node("", n.getXcoord(), n.getYcoord(), n.getFloor(), n.getBuilding());
+    Node ncopy = new Node("", n.getXCoord(), n.getYCoord(), n.getFloor(), n.getBuilding());
     ncopy.setNodeID(ncopy.buildID());
     System.out.println(ncopy.getNodeID());
 
@@ -182,20 +186,20 @@ public class DBSession {
 
     Node n = new Node();
     n.setNodeID("test");
-    n.setYcoord(5);
-    n.setXcoord(5);
+    n.setYCoord(5);
+    n.setXCoord(5);
     n.setFloor("L1");
     n.setBuilding("testing");
     Node n2 = new Node();
     n2.setNodeID("test2");
-    n2.setXcoord(20);
-    n2.setYcoord(20);
+    n2.setXCoord(20);
+    n2.setYCoord(20);
     n2.setFloor("L1");
     n2.setBuilding("testing");
     Node n3 = new Node();
     n3.setNodeID("test3");
-    n3.setXcoord(25);
-    n3.setYcoord(25);
+    n3.setXCoord(25);
+    n3.setYCoord(25);
     n3.setFloor("L1");
     n3.setBuilding("testing");
     //    addORM(n);

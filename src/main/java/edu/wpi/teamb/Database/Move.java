@@ -42,34 +42,6 @@ public class Move implements IORM {
 
   public Move() {}
 
-  public static void initTable() throws SQLException {}
-
-  public static ArrayList<Move> getAll() throws SQLException {
-    ArrayList<Move> moves = new ArrayList<Move>();
-    return moves;
-  }
-
-  public void insert() throws SQLException {}
-
-  public void update() throws SQLException {}
-
-  public void delete() throws SQLException {}
-
-  public static String getTableName() {
-    return tableName.toLowerCase();
-  }
-
-  public String getInfo() {
-    String str =
-        "NodeID: " + nodeID + ", " + "Long Name: " + longName + ", " + "Move Date: " + moveDate;
-    return str;
-  }
-
-  public static String getLocationName(String nodeID) throws SQLException {
-    String sql = "SELECT longName FROM move WHERE nodeID = " + nodeID;
-    return sql;
-  }
-
   /**
    * Given a longName of a department, determines node that the department occupies
    *

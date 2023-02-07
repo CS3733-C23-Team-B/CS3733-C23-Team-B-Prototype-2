@@ -7,9 +7,9 @@ public class NodeInfo {
   private int xCoord;
   private int yCoord;
   private String location;
+  private String floor;
   private Date moveDate;
   private String edges;
-
   private Node node;
   private Move move;
 
@@ -18,6 +18,7 @@ public class NodeInfo {
       int xCoord,
       int yCoord,
       String location,
+      String floor,
       Date moveDate,
       String edges,
       Node node,
@@ -26,24 +27,26 @@ public class NodeInfo {
     this.xCoord = xCoord;
     this.yCoord = yCoord;
     this.location = location;
+    this.floor = floor;
     this.moveDate = moveDate;
     this.edges = edges;
     this.node = node;
     this.move = move;
   }
 
-  public void update() {
-    //    nodeID = node.buildID();
-    //    node.setNodeID(nodeID);
-    //    node.setXcoord(xCoord);
-    //    node.setYcoord(yCoord);
-    //
-    //    try {
-    //      node.update();
-    //    } catch (SQLException e) {
-    //      throw new RuntimeException(e);
-    //    }
-  }
+  //  public void update() {
+  //    node.setXCoord(xCoord);
+  //    node.setYCoord(yCoord);
+  //    node.setFloor(floor);
+  //    nodeID = node.buildID();
+  //    node.setNodeID(nodeID);
+  //
+  //    try {
+  //      node.update();
+  //    } catch (SQLException e) {
+  //      throw new RuntimeException(e);
+  //    }
+  //  }
 
   public String getNodeID() {
     return nodeID;
@@ -61,6 +64,10 @@ public class NodeInfo {
     return location;
   }
 
+  public String getFloor() {
+    return floor;
+  }
+
   public Date getMoveDate() {
     return moveDate;
   }
@@ -69,16 +76,20 @@ public class NodeInfo {
     return edges;
   }
 
-  public void setxCoord(int xCoord) {
+  public void setXCoord(int xCoord) {
     this.xCoord = xCoord;
   }
 
-  public void setyCoord(int yCoord) {
+  public void setYCoord(int yCoord) {
     this.yCoord = yCoord;
   }
 
   public void setLocation(String location) {
     this.location = location;
+  }
+
+  public void setFloor(String floor) {
+    this.floor = floor;
   }
 
   public void setMoveDate(Date moveDate) {

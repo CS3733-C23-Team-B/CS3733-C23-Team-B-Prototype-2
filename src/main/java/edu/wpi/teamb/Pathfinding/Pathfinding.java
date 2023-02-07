@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Pathfinding;
 
+import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
@@ -8,17 +9,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Pathfinding {
-  private static List<Edge> edges;
+  private static List<Edge> edges = DBSession.getAllEdges();
   private static Map<String, Node> nodes;
-
-  static {
-    try {
-      edges = Edge.getAll();
-      //      nodes = Node.getAll();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
 
   /**
    * Given an edge, evaluates the weight of the edge
@@ -54,10 +46,10 @@ public class Pathfinding {
    * @param node2 end node
    */
   private static double getDist(Node node1, Node node2) {
-    double x1 = node1.getXcoord();
-    double x2 = node2.getXcoord();
-    double y1 = node1.getYcoord();
-    double y2 = node2.getYcoord();
+    double x1 = node1.getXCoord();
+    double x2 = node2.getXCoord();
+    double y1 = node1.getYCoord();
+    double y2 = node2.getYCoord();
     //    int f1 = Integer.parseInt(node1.getFloor().substring(1));
     //    int f2 = Integer.parseInt(node2.getFloor().substring(1));
 
@@ -114,7 +106,7 @@ public class Pathfinding {
    * @param end the longName of the location to end at
    * @return a String representation of the optimal path to take
    */
-  public static String getShortestPath(String start, String end) {
+  public static ArrayList<String> getShortestPath(String start, String end) {
     return getPathAStar(start, end);
   }
 
@@ -125,7 +117,7 @@ public class Pathfinding {
    * @param endLoc the longName of the location to end at
    * @return a String representation of the path taken
    */
-  private static String getPathAStar(String startLoc, String endLoc) {
+  private static ArrayList<String> getPathAStar(String startLoc, String endLoc) {
     String start;
     String end;
     try {
@@ -166,19 +158,14 @@ public class Pathfinding {
     while (!current.equals(start)) {
       path.add(1, current);
       current = cameFrom.get(current);
-      if (current == null) return "PATH NOT FOUND";
+      if (current == null) return null;
     }
 
-    return pathToString(path);
+    return path;
   }
 
   /** Refreshes the node and edge fields from the database */
   public static void refreshData() {
-    try {
-      edges = Edge.getAll();
-      //      nodes = Node.getAll();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+    edges = DBSession.getAllEdges();
   }
 }

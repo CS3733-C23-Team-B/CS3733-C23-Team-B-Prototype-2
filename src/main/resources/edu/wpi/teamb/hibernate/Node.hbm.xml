@@ -3,12 +3,12 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="edu.wpi.teamb.Database.Node" table="node">
-        <id name="nodeid" type="String" column = "nodeid">
+        <id name="NodeID" type="String" column = "nodeid">
         </id>
-        <property name = "xcoord" type = "int">
+        <property name = "XCoord" type = "int">
             <column name="xCoord"/>
         </property>
-        <property name = "ycoord" type = "int">
+        <property name = "YCoord" type = "int">
             <column name="yCoord"/>
         </property>
         <property name = "floor" type = "String">

@@ -8,6 +8,7 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.util.*;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -79,6 +80,7 @@ public class MapEditorController {
             displayPopUp(newSelection);
           }
         });
+    Platform.runLater(() -> pane.centreOn(new javafx.geometry.Point2D(2220, 974)));
   }
 
   public void displayPopUp(Circle dot) {

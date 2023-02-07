@@ -88,6 +88,23 @@ public class DBSession {
     }
   }
 
+  public static List<Move> getAllMovesWithLN(String ln) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM Move WHERE longName = '" + ln + "'");
+      List<Move> moves = q.list();
+      session.close();
+      return moves;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
+
   public static List<Node> getAllNodes() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
@@ -97,6 +114,23 @@ public class DBSession {
       List<Node> nodes = q.list();
       session.close();
       return nodes;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
+
+  public static List<LocationName> getAllLN() {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM LocationName");
+      List<LocationName> lns = q.list();
+      session.close();
+      return lns;
     } catch (Exception e) {
       e.printStackTrace();
       return null;
@@ -187,8 +221,47 @@ public class DBSession {
     }
   }
 
-  public static void main(String[] args) {
+   public static String getMostRecentLocation(String NodeID) {
+      return getMostRecentMove(NodeID).getLongName();
+    }
 
-    updateAllNodes();
+   public static String getMostRecentNode(String longName) {
+      List<Move> moves = getAllMovesWithLN(longName);
+
+      if (moves == null) return "NO MOVES";
+
+      Move mostRecent = moves.get(0);
+      for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+
+      return mostRecent.getNodeID();
+    }
+
+  public static Move getMostRecentMove(String nodeID) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    List<Move> moves = null;
+    try {
+      Transaction tx = session.beginTransaction();
+      String str = "FROM Move WHERE nodeID = '" + nodeID + "'";
+      Query q = session.createQuery(str);
+      moves = q.list();
+      session.close();
+      if(moves.isEmpty()) {
+        return null;
+      } else {
+        Move mostRecent = moves.get(0);
+            for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+            return mostRecent;
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
+
+  private static boolean moreRecentThan(Move move1, Move move2) {
+    return move1.getMoveDate().after(move2.getMoveDate());
   }
 }

@@ -31,14 +31,6 @@ public class PatientTransportationRequest extends GeneralRequest implements IORM
   @Setter
   private String patientID;
 
-  public String getPatientDestination() {
-    return patientDestinationLocation;
-  }
-
-  public void setPatientDestination(String patientDestination) {
-    this.patientDestinationLocation = patientDestination;
-  }
-
   @Override
   public String getSearchStr() {
     return "FROM PatientTransportationRequest WHERE id = " + getId();

@@ -41,14 +41,12 @@ public class SigninController {
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
   }
-
   /**
    * Compares the provided login against the database of logins
    *
    * @return true if the login is valid according to the database, false otherwise
-   * @throws SQLException
    */
-  public boolean validateLogin() throws SQLException {
+  public boolean validateLogin() {
     boolean found = false;
     for (Object user : users) {
       Login u = (Login) user;

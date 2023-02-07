@@ -22,7 +22,7 @@ public class Navigation {
       final String header = Screen.NAVIGATION.getFilename();
       final String footer = Screen.FOOTER.getFilename();
 
-      if (!filename.equals("views/SignIn.fxml")) {
+      if (!filename.equals("views/Profile/SignIn.fxml")) {
         final var resource = Bapp.class.getResource(header);
         final var res = Bapp.class.getResource(footer);
         final FXMLLoader loader2 = new FXMLLoader(resource);

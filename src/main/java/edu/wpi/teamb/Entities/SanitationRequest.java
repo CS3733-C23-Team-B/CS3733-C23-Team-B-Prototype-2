@@ -10,12 +10,12 @@ import lombok.Setter;
     name = "sanitationRequestID",
     foreignKey = @ForeignKey(name = "SanitationRequestIDKey"))
 public class SanitationRequest extends GeneralRequest implements IORM {
-  @Column(name = "cleanuplocation", length = 20)
+  @Column(name = "cleanuplocation", length = 80)
   @Getter
   @Setter
   private String cleanUpLocation;
 
-  @Column(name = "typeofcleanup", length = 20)
+  @Column(name = "typeofcleanup", length = 80)
   @Getter
   @Setter
   private String typeOfCleanUp;

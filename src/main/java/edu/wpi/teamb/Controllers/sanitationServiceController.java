@@ -7,6 +7,7 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +21,7 @@ public class sanitationServiceController extends BaseRequestController {
   // Lists for checkboxes
   ObservableList<String> typeOfCleanUpList =
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
-  @FXML private MFXFilterComboBox cleanUpLocationBox;
+  @FXML private MFXFilterComboBox<String> cleanUpLocationBox;
   @FXML private MFXComboBox typeOfCleanUpBox;
 
   @FXML
@@ -42,14 +43,12 @@ public class sanitationServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    filterChoiceBoxes = new ArrayList<>();
     cleanUpLocationBox.setItems(PathfindingController.getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
-      if (c instanceof TextField) textFields.add((TextField) c);
-      if (c instanceof MFXComboBox) choiceBoxes.add((MFXComboBox) c);
-      if (c instanceof MFXFilterComboBox) filterChoiceBoxes.add((MFXFilterComboBox) c);
+      if (c instanceof TextField) textFields.add((MFXTextField) c);
+      if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
 
@@ -89,6 +88,7 @@ public class sanitationServiceController extends BaseRequestController {
     request.setTypeOfCleanUp(typeOfcleanUp.toString());
     request.setAssignedEmployee(assignedStaffField.getText());
     request.setStatus(RequestStatus.PROCESSING);
+    request.setCleanUpLocation(cleanUpLocationBox.getValue());
     DBSession.addORM(request);
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();

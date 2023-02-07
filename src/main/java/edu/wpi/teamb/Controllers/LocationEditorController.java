@@ -78,7 +78,7 @@ public class LocationEditorController {
           locations.put(i.getLongName(), i);
         });
 
-    Sorting.sort(list);
+    Sorting.quickSort(list);
     return list;
   }
 
@@ -88,7 +88,7 @@ public class LocationEditorController {
 
     nodeDBMap.forEach((key, value) -> list.add(value.getNodeID()));
 
-    Sorting.sort(list);
+    Sorting.quickSort(list);
     return list;
   }
 
@@ -113,7 +113,11 @@ public class LocationEditorController {
     }
 
     if (changed) {
-      LocationName newLN = new LocationName(newLongName, newShortName, newLocationType);
+      LocationName newLN = new LocationName();
+      newLN.setLocationType(newLocationType);
+      newLN.setLongName(newLongName);
+      newLN.setShortName(newShortName);
+
       if (nodeBox.getValue().equals(origNode)) DBSession.updateLocationName(newLN, location);
       else DBSession.switchMoveLN(nodeBox.getValue(), origNode, newLN);
       Pathfinding.refreshData();

@@ -57,7 +57,10 @@ public class LocationCreatorController {
       return;
     }
 
-    LocationName newLN = new LocationName(newLongName, newShortName, newLocationType);
+    LocationName newLN = new LocationName();
+    newLN.setShortName(newShortName);
+    newLN.setLongName(newLongName);
+    newLN.setLocationType(newLocationType);
     DBSession.addORM(newLN);
 
     cancelClicked();

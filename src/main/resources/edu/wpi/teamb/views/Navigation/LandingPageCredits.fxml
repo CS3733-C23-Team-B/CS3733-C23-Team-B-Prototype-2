@@ -29,7 +29,7 @@
                         <Insets left="162.0" />
                      </VBox.margin>
                   </Line>
-                  <TextArea fx:id="textArea" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="290.0" prefWidth="492.0" stylesheets="@../../../../css/textArea.css" text="Internal Patient Transportation: Christina Aube and &#10;Cierra O'Grady&#10;&#10;Sanitation Services: Luke Grady and Jolie Walts&#10;&#10;Computer Services: Kavya Mani and Cierra O'Grady">
+                  <TextArea fx:id="textArea" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="290.0" prefWidth="492.0" stylesheets="@../../../../../css/textArea.css" text="Internal Patient Transportation: Christina Aube and &#10;Cierra O'Grady&#10;&#10;Sanitation Services: Luke Grady and Jolie Walts&#10;&#10;Computer Services: Kavya Mani and Cierra O'Grady">
                      <VBox.margin>
                         <Insets left="150.0" top="40.0" />
                      </VBox.margin>

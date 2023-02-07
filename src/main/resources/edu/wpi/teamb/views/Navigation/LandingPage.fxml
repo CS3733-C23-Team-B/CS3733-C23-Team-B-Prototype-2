@@ -14,7 +14,7 @@
             <children>
                 <HBox layoutY="416.0" prefHeight="200.0" prefWidth="1920.0">
                     <children>
-                        <MFXButton id="landingPageButtons" fx:id="patientTransportationButton" onMouseClicked="#patientTransportationButtonClicked" prefHeight="200.0" prefWidth="470.0" style="-fx-background-color: #003DA6;" stylesheets="@../../../../css/style.css" text="Internal Patient Transportation" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <MFXButton id="landingPageButtons" fx:id="patientTransportationButton" onMouseClicked="#patientTransportationButtonClicked" prefHeight="200.0" prefWidth="470.0" style="-fx-background-color: #003DA6;" stylesheets="@../../../../../css/style.css" text="Internal Patient Transportation" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                             <font>
                                 <Font name="System Bold" size="43.0" />
                             </font>
@@ -22,7 +22,7 @@
                                 <Insets left="200.0" />
                             </HBox.margin>
                         </MFXButton>
-                        <MFXButton id="landingPageButtons" fx:id="sanitationServiceButton" onMouseClicked="#sanitationServiceButtonClicked" prefHeight="200.0" prefWidth="470.0" style="-fx-background-color: #003DA6;" stylesheets="@../../../../css/style.css" text="Sanitation Services" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <MFXButton id="landingPageButtons" fx:id="sanitationServiceButton" onMouseClicked="#sanitationServiceButtonClicked" prefHeight="200.0" prefWidth="470.0" style="-fx-background-color: #003DA6;" stylesheets="@../../../../../css/style.css" text="Sanitation Services" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                             <font>
                                 <Font name="System Bold" size="43.0" />
                             </font>
@@ -30,7 +30,7 @@
                                 <Insets left="50.0" />
                             </HBox.margin>
                         </MFXButton>
-                        <MFXButton id="landingPageButtons" fx:id="computerServiceButton" onMouseClicked="#computerServiceButtonClicked" prefHeight="200.0" prefWidth="470.0" style="-fx-background-color: #003DA6;" stylesheets="@../../../../css/style.css" text="Computer Service" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <MFXButton id="landingPageButtons" fx:id="computerServiceButton" onMouseClicked="#computerServiceButtonClicked" prefHeight="200.0" prefWidth="470.0" style="-fx-background-color: #003DA6;" stylesheets="@../../../../../css/style.css" text="Computer Service" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                             <font>
                                 <Font name="System Bold" size="43.0" />
                             </font>
@@ -40,7 +40,7 @@
                         </MFXButton>
                     </children>
                 </HBox>
-                <Label id="landingPageTitle" alignment="CENTER" contentDisplay="CENTER" prefWidth="1920.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" stylesheets="@../../../../css/style.css" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE">
+                <Label id="landingPageTitle" alignment="CENTER" contentDisplay="CENTER" prefWidth="1920.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,2), 20, 0, 0, 0);" stylesheets="@../../../../../css/style.css" text="Service Request Forms" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="96.0" />
                     </font>

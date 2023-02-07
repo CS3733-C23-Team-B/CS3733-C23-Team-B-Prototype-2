@@ -57,17 +57,16 @@ public class requestsController2 {
 
     tranLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
     tranFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-    tranEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeIDname"));
-    tranEmailColumn.setCellValueFactory(new PropertyValueFactory<>("emailname"));
-    tranUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgencyname"));
-    tranAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedstaffname"));
-    tranPatientIDColumn.setCellValueFactory(new PropertyValueFactory<>("patientIDname"));
-    tranCurrentLocationColumn.setCellValueFactory(
-        new PropertyValueFactory<>("currentlocationname"));
-    tranDestinationColumn.setCellValueFactory(new PropertyValueFactory<>("destinationname"));
-    tranEquipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipmentname"));
-    tranNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notesname"));
-    tranStatusColumn.setCellValueFactory(new PropertyValueFactory<>("statusname"));
+    tranEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
+    tranEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+    tranUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
+    tranAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedEmployee"));
+    tranPatientIDColumn.setCellValueFactory(new PropertyValueFactory<>("patientID"));
+    tranCurrentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+    tranDestinationColumn.setCellValueFactory(new PropertyValueFactory<>("destination"));
+    tranEquipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipment"));
+    tranNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
+    tranStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
     saniUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
     saniTypeColumn.setCellValueFactory(new PropertyValueFactory<>("typeOfCleanUp"));
@@ -79,14 +78,14 @@ public class requestsController2 {
 
     comLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
     comFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-    comEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeIDname"));
-    comEmailColumn.setCellValueFactory(new PropertyValueFactory<>("emailname"));
-    comUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgencyname"));
-    comAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedstaffname"));
-    comTypeOfRepairColumn.setCellValueFactory(new PropertyValueFactory<>("typeofrepairname"));
-    comLocationColumn.setCellValueFactory(new PropertyValueFactory<>("locationname"));
-    comNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notesname"));
-    comStatusColumn.setCellValueFactory(new PropertyValueFactory<>("statusname"));
+    comEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
+    comEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+    comUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
+    comAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedstaff"));
+    comTypeOfRepairColumn.setCellValueFactory(new PropertyValueFactory<>("typeofrepair"));
+    comLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+    comNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
+    comStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
     TransportRequestList = DBSession.getAll(ORMType.PTREQUEST);
     TransportRequestList.forEach(

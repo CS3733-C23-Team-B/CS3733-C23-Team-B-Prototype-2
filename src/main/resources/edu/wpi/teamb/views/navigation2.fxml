@@ -43,6 +43,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
+      <Button fx:id="computerButton" mnemonicParsing="false" onAction="#computerButtonClicked" text="Computer" />
         <MenuButton id="menuIcon" fx:id="menuButton" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#helpClicked" text="Help" />

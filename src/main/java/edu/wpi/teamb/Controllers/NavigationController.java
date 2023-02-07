@@ -21,6 +21,10 @@ public class NavigationController {
     Navigation.navigate(Screen.SANITATION);
   }
 
+  public void computerButtonClicked() {
+    Navigation.navigate(Screen.COMPUTER_SERVICES);
+  }
+
   public void pathfindingClicked() throws IOException {
     Navigation.navigate(Screen.PATHFINDING);
   }

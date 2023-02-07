@@ -1,5 +1,5 @@
 package edu.wpi.teamb.Controllers;
-
+/*
 import edu.wpi.teamb.Entities.SanitationRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -84,3 +84,4 @@ public class sanitationServiceController extends BaseRequestController {
     Navigation.navigate((Screen.SUBMISSION_SUCCESS));
   }
 }
+*/

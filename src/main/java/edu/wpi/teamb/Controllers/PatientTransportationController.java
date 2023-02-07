@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Entities.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -50,9 +52,11 @@ public class PatientTransportationController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    
-    patientCurrentLocationBox.setItems(PathfindingController.getLocations());
-    patientDestinationLocationBox.setItems(PathfindingController.getLocations());
+
+    ObservableList<String> locations = getLocations();
+
+    patientCurrentLocationBox.setItems(locations);
+    patientDestinationLocationBox.setItems(locations);
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -63,6 +67,15 @@ public class PatientTransportationController extends BaseRequestController {
 
     helpScreen = Screen.PATIENT_TRANSPORTATION_HELP;
     super.initialize();
+  }
+
+  private ObservableList<String> getLocations() {
+    ObservableList<String> list = FXCollections.observableArrayList();
+
+    List<LocationName> locationNames = DBSession.getAllLocationNames();
+    locationNames.forEach(l -> list.add(l.getLongName()));
+
+    return list;
   }
 
   /**

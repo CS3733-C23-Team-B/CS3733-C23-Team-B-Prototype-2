@@ -65,9 +65,9 @@ public class RequestsController {
     tranUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
     tranAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedEmployee"));
     tranPatientIDColumn.setCellValueFactory(new PropertyValueFactory<>("patientID"));
-    tranCurrentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+    tranCurrentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("patientCurrentLocation"));
     tranDestinationColumn.setCellValueFactory(new PropertyValueFactory<>("patientDestination"));
-    tranEquipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipment"));
+    tranEquipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipmentNeeded"));
     tranNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
     tranStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 

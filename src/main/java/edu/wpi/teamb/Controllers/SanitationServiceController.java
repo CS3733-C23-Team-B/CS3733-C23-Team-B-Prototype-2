@@ -61,7 +61,7 @@ public class SanitationServiceController extends BaseRequestController {
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
-    SanitationRequest request = SanitationRequest.getInstance();
+    SanitationRequest request = new SanitationRequest();
 
     request.setFirstname(firstNameField.getText());
     request.setLastname(lastNameField.getText());

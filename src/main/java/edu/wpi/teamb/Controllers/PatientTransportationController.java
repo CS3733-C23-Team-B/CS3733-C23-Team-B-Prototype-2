@@ -116,7 +116,7 @@ public class PatientTransportationController extends BaseRequestController {
     request.setUrgency(urgency.toString());
     request.setEquipmentNeeded(equipment.toString());
     request.setPatientCurrentLocation(curLocation.toString());
-    request.setPatientDestination(destination.toString());
+    request.setPatientDestinationLocation(destination.toString());
     request.setPatientID(this.patientIDField.getText());
     DBSession.addORM(request);
 

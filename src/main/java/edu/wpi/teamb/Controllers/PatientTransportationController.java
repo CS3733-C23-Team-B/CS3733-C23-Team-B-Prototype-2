@@ -50,6 +50,7 @@ public class PatientTransportationController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
+    
     patientCurrentLocationBox.setItems(PathfindingController.getLocations());
     patientDestinationLocationBox.setItems(PathfindingController.getLocations());
 

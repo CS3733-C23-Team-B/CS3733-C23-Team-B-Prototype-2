@@ -45,10 +45,6 @@ public class NavigationController {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void databaseButtonClicked() throws IOException {
-    Navigation.navigate(Screen.MAP_DATA_EDITOR);
-  }
-
   public void submittedRequestsButtonClicked() throws IOException {
     Navigation.navigate(Screen.REQUESTS);
   }

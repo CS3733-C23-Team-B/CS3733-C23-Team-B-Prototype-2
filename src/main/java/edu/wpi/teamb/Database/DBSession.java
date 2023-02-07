@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
-import edu.wpi.teamb.SessionGetter;
+import edu.wpi.teamb.Entities.SessionGetter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

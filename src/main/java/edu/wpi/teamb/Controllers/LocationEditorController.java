@@ -141,7 +141,7 @@ public class LocationEditorController {
   }
 
   public void deleteClicked() {
-    DBSession.delete(location);
+    DBSession.deleteLN(location);
     resetFields();
   }
 }

@@ -46,8 +46,12 @@ public class NodeCreatorController {
       return;
     }
 
-    Node newNode =
-        new Node("", Integer.parseInt(newX), Integer.parseInt(newY), newFloor, newBuilding);
+    Node newNode = new Node();
+    newNode.setXCoord(Integer.parseInt(newX));
+    newNode.setYCoord(Integer.parseInt(newY));
+    newNode.setFloor(newFloor);
+    newNode.setBuilding(newBuilding);
+    newNode.setNodeID(newNode.buildID());
     DBSession.addORM(newNode);
 
     cancelClicked();

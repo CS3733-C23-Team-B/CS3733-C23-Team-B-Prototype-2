@@ -2,6 +2,8 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
 import edu.wpi.teamb.Entities.SessionGetter;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,6 +136,7 @@ public class DBSession {
       Query q = session.createQuery("FROM Node");
       List<Node> nodes = q.list();
       session.close();
+      nodeMap.clear();
       for (Node node : nodes) nodeMap.put(node.getNodeID(), node);
       return nodeMap;
     } catch (Exception e) {
@@ -173,6 +176,8 @@ public class DBSession {
       session.close();
     } catch (Exception e) {
       e.printStackTrace();
+    } finally {
+      session.close();
     }
   }
 
@@ -216,7 +221,7 @@ public class DBSession {
     delete(oldLN);
   }
 
-  public static void updateNode(Node n) {
+  public static Node updateNode(Node n) {
 
     Node ncopy = new Node();
     ncopy.setNodeID(n.buildID());
@@ -256,6 +261,8 @@ public class DBSession {
     }
 
     delete(n);
+
+    return ncopy;
   }
 
   public static void updateAllNodes() {
@@ -267,13 +274,15 @@ public class DBSession {
   }
 
   public static String getMostRecentLocation(String NodeID) {
-    return getMostRecentMove(NodeID).getLongName();
+    Move move = getMostRecentMove(NodeID);
+    if (move == null) return "NO MOVES";
+    return move.getLongName();
   }
 
   public static String getMostRecentNodeID(String longName) {
     List<Move> moves = getAllMovesWithLN(longName);
 
-    if (moves == null) return "NO MOVES";
+    if (moves.isEmpty()) return "NO MOVES";
 
     Move mostRecent = moves.get(0);
     for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
@@ -323,8 +332,12 @@ public class DBSession {
     Move mnew = new Move();
     mnew.setNodeID(newN);
     mnew.setLongName(ln.getLongName());
-    mnew.setMoveDate(m.getMoveDate());
-    delete(m);
+    if (m != null) {
+      mnew.setMoveDate(m.getMoveDate());
+      delete(m);
+    } else {
+      mnew.setMoveDate(Date.valueOf(LocalDate.now()));
+    }
     addORM(mnew);
   }
 }

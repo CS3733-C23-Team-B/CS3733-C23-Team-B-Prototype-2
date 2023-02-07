@@ -44,13 +44,13 @@ public class Node implements IORM {
 
   public Node() {}
 
-  public Node(String nodeID, int xCoord, int yCoord, String floor, String building) {
-    this.nodeID = nodeID;
-    this.xCoord = xCoord;
-    this.yCoord = yCoord;
-    this.floor = floor;
-    this.building = building;
-  }
+  //  public Node(String nodeID, int xCoord, int yCoord, String floor, String building) {
+  //    this.nodeID = nodeID;
+  //    this.xCoord = xCoord;
+  //    this.yCoord = yCoord;
+  //    this.floor = floor;
+  //    this.building = building;
+  //  }
 
   public String buildID() {
     String x = Integer.toString(xCoord);

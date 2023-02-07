@@ -51,8 +51,9 @@ public class NodeEditorController {
     }
 
     if (changed) {
-      DBSession.updateNode(node);
+      Node newNode = DBSession.updateNode(node);
       Pathfinding.refreshData();
+      MapEditorController.setCurrentNode(newNode);
     }
     cancelClicked();
   }
@@ -64,7 +65,7 @@ public class NodeEditorController {
   }
 
   public void deleteClicked() {
-    DBSession.delete(node);
+    DBSession.deleteNode(node);
     Stage s = (Stage) yField.getScene().getWindow();
     s.close();
     MapEditorController.getInstance().removeNode();

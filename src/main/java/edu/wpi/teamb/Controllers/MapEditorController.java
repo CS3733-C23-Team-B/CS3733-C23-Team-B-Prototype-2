@@ -35,7 +35,7 @@ public class MapEditorController {
   @FXML AnchorPane anchor;
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
-  Map<Circle, Node> nodeList;
+  Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
   private static Node currentNode;
   private Circle currentDot;
@@ -46,9 +46,9 @@ public class MapEditorController {
 
   public void initialize() {
     instance = this;
-    nodeList = new HashMap<>();
+    nodeMap = new HashMap<>();
+    nodeMap.clear();
     Map<String, Node> nodes = new HashMap<>();
-    List<Node> nodeDBList;
 
     ImageView i =
         new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
@@ -61,12 +61,13 @@ public class MapEditorController {
     i.setOnMouseClicked(e -> handleClick());
 
     pane.zoomTo(-5000, -3000, new Point2D(2215, 1045));
+    nodes.clear();
     nodes = DBSession.getAllNodes();
 
     for (Node node : nodes.values()) {
       if (!node.getFloor().equals("L1")) continue;
       Circle dot = placeNode(node);
-      nodeList.put(dot, node);
+      nodeMap.put(dot, node);
     }
 
     selectedCircle.addListener(
@@ -84,7 +85,7 @@ public class MapEditorController {
 
   public void displayPopUp(Circle dot) {
     clearPopUp();
-    Node node = nodeList.get(dot);
+    Node node = nodeMap.get(dot);
 
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
@@ -197,7 +198,9 @@ public class MapEditorController {
   }
 
   public void refreshPopUp() {
-    currentNode.setNodeID(currentNode.buildID());
+
+    nodeMap.replace(currentDot, currentNode);
+
     ObservableList vboxChildren = ((VBox) (currentPopUp.getChildren().get(0))).getChildren();
     Text id = (Text) vboxChildren.get(0);
     Text pos = (Text) vboxChildren.get(1);
@@ -213,10 +216,15 @@ public class MapEditorController {
 
   public void removeNode() {
     aPane.getChildren().remove(currentDot);
+    nodeMap.remove(currentDot);
     clearPopUp();
   }
 
   public static MapEditorController getInstance() {
     return instance;
+  }
+
+  public static void setCurrentNode(Node currentNode) {
+    MapEditorController.currentNode = currentNode;
   }
 }

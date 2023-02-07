@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -39,16 +39,16 @@
                   <Insets top="175.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnButtonClicked" prefHeight="40.0" prefWidth="100.0" text="Return Home">
+                  <MFXButton fx:id="returnButton" buttonType="RAISED" onAction="#returnButtonClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #cfcfcf;" text="Return Home">
                      <HBox.margin>
                         <Insets left="280.0" />
                      </HBox.margin>
-                  </Button>
-                  <Button fx:id="requestsButton" mnemonicParsing="false" onAction="#requestsButtonClicked" prefHeight="40.0" prefWidth="100.0" text="View Requests">
+                  </MFXButton>
+                  <MFXButton fx:id="requestsButton" buttonType="RAISED" onAction="#requestsButtonClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #cfcfcf;" text="View Requests">
                      <HBox.margin>
                         <Insets left="70.0" />
                      </HBox.margin>
-                  </Button>
+                  </MFXButton>
                </children>
             </HBox>
          </children>

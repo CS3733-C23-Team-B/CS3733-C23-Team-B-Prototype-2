@@ -67,7 +67,7 @@
 #homeButton{
     -fx-background-image: url("https://www.photowork.com/wp-content/uploads/2017/12/Brigham_and_Womens_Hospital_logo.svg_-768x896.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 80 93;
+    -fx-background-size: 55 65;
     -fx-background-position: top center;
     -fx-background-color: rgba(0, 61, 166, 1);;
 }

@@ -14,7 +14,7 @@ public class NavigationController {
   @FXML private BorderPane border;
 
   public void featureOneButtonClicked() throws IOException {
-    Navigation.navigate(Screen.PATIENT_TRANSPORTATION);
+    Navigation.navigate(Screen.LANDING_PAGE);
   }
 
   public void featureTwoButtonClicked() throws IOException {
@@ -22,7 +22,7 @@ public class NavigationController {
   }
 
   public void serviceRequestFormsButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SERVICE_REQUEST_FORMS);
+    Navigation.navigate(Screen.LANDING_PAGE);
   }
 
   public void pathfindingButtonClicked() throws IOException {
@@ -30,7 +30,7 @@ public class NavigationController {
   }
 
   public void locationNodeEditorButtonClicked() throws IOException {
-    Navigation.navigate(Screen.LOCATION_NODE_EDITOR);
+    Navigation.navigate(Screen.MAP_DATA_EDITOR);
   }
 
   public void aboutButtonClicked() {
@@ -42,7 +42,7 @@ public class NavigationController {
   }
 
   public void databaseButtonClicked() throws IOException {
-    Navigation.navigate(Screen.MAP_EDITOR);
+    Navigation.navigate(Screen.MAP_DATA_EDITOR);
   }
 
   public void submittedRequestsButtonClicked() throws IOException {

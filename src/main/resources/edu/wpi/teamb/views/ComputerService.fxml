@@ -269,7 +269,7 @@
                               <Insets top="5.0" />
                            </VBox.margin>
                            <children>
-                              <MFXTextField fx:id="notesField" alignment="TOP_LEFT" floatMode="ABOVE" minHeight="-Infinity" prefHeight="100.0" prefWidth="720.0">
+                              <MFXTextField fx:id="additionalNotesField" alignment="TOP_LEFT" floatMode="ABOVE" minHeight="-Infinity" prefHeight="100.0" prefWidth="720.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>

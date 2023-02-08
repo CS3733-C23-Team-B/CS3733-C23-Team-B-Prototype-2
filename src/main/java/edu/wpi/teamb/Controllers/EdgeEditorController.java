@@ -33,14 +33,17 @@ public class EdgeEditorController {
     return list;
   }
 
-  private void resetFields() {}
+  private void resetFields() {
+    edgesBox.setItems(getEdges());
+    edgesBox.setValue("");
+  }
 
   public void cancelClicked() {
     Navigation.navigate(Screen.MAP_EDITOR);
   }
 
   public void newEdgeClicked() {
-    Navigation.navigate(Screen.LOCATION_CREATOR);
+    Navigation.navigate(Screen.EDGE_CREATOR);
   }
 
   public void deleteClicked() {
@@ -50,5 +53,7 @@ public class EdgeEditorController {
       return;
     }
     DBSession.deleteEdge(node.getNodeID(), edgesBox.getValue());
+    Pathfinding.refreshData();
+    resetFields();
   }
 }

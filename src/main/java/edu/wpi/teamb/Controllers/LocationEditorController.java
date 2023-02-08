@@ -41,7 +41,7 @@ public class LocationEditorController {
   }
 
   public void setFields() {
-    if (!locationBox.getValue().isEmpty()) {
+    if (!locationBox.getText().isEmpty()) {
       location = locations.get(locationBox.getValue());
       origNode = DBSession.getMostRecentNodeID(location.getLongName());
 
@@ -69,6 +69,7 @@ public class LocationEditorController {
     locationTypeBox.clear();
     locationBox.setItems(getLocations());
     nodeBox.clear();
+    location = null;
   }
 
   private ObservableList<String> getLocations() {
@@ -145,6 +146,7 @@ public class LocationEditorController {
 
   public void deleteClicked() {
     DBSession.deleteLN(location);
+    locations.remove(location.getLongName());
     resetFields();
   }
 }

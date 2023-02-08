@@ -27,7 +27,7 @@ public class NodeCreatorController {
 
   public void initialize() {
     Collections.addAll(floors, "1", "2", "3", "L1", "L2");
-    Collections.addAll(buildings, "SHAPIRO", "TOWER", "45 Francis", "BTM", "15 Francis");
+    Collections.addAll(buildings, "Shapiro", "Tower", "45 Francis", "BTM", "15 Francis");
     Sorting.quickSort(buildings);
     floorBox.setItems(floors);
     buildingBox.setItems(buildings);

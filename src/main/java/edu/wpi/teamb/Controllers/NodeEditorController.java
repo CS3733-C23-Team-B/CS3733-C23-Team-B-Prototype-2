@@ -2,6 +2,8 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Node;
+import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.util.Collections;
 import javafx.collections.FXCollections;
@@ -63,6 +65,12 @@ public class NodeEditorController {
     Stage s = (Stage) yField.getScene().getWindow();
     s.close();
     MapEditorController.getInstance().refreshPopUp();
+  }
+
+  public void edgesClicked() {
+    Navigation.navigate(Screen.EDGE_EDITOR);
+    Stage s = (Stage) yField.getScene().getWindow();
+    s.close();
   }
 
   public void deleteClicked() {

@@ -42,7 +42,7 @@ public class SanitationServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    cleanUpLocationBox.setItems(PathfindingController.getLocations());
+    cleanUpLocationBox.setItems(getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {

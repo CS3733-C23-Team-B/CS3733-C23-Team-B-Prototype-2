@@ -1,7 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Database.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
@@ -12,7 +11,6 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -69,14 +67,6 @@ public class PatientTransportationController extends BaseRequestController {
     super.initialize();
   }
 
-  private ObservableList<String> getLocations() {
-    ObservableList<String> list = FXCollections.observableArrayList();
-
-    List<LocationName> locationNames = DBSession.getAllLocationNames();
-    locationNames.forEach(l -> list.add(l.getLongName()));
-
-    return list;
-  }
   /**
    * Store the data from the form in a csv file and return to home screen
    *

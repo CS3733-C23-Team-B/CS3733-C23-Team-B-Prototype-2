@@ -198,9 +198,11 @@ public class MapEditorController {
   }
 
   public void refreshPopUp() {
-
+    if (!currentNode.getFloor().equals("L1")) {
+      removeNode();
+      return;
+    }
     nodeMap.replace(currentDot, currentNode);
-
     ObservableList vboxChildren = ((VBox) (currentPopUp.getChildren().get(0))).getChildren();
     Text id = (Text) vboxChildren.get(0);
     Text pos = (Text) vboxChildren.get(1);

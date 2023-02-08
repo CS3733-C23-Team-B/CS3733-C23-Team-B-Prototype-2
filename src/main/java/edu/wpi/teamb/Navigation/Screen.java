@@ -9,6 +9,7 @@ public enum Screen {
   NODE_CREATOR("views/Database/NodeCreator.fxml"),
   LOCATION_EDITOR("views/Database/LocationEditor.fxml"),
   LOCATION_CREATOR("views/Database/LocationCreator.fxml"),
+  EDGE_EDITOR("views/Database/EdgeEditor.fxml"),
   NAVIGATION("views/Navigation/Navigation.fxml"),
   PATHFINDING("views/Database/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/ServiceRequest/PatientTransportation.fxml"),

@@ -1,5 +1,8 @@
 package edu.wpi.teamb.Controllers;
 
+import edu.wpi.teamb.Algorithms.Sorting;
+import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -9,6 +12,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -88,6 +92,21 @@ public class BaseRequestController {
    */
   public void submitButtonClicked() throws IOException, SQLException {
     Navigation.navigate(submissionScreen);
+  }
+
+  /**
+   * Get the locations in the hospital
+   *
+   * @return an alphabetized list of Strings
+   */
+  protected ObservableList<String> getLocations() {
+    ObservableList<String> list = FXCollections.observableArrayList();
+
+    List<LocationName> locationNames = DBSession.getAllLocationNames();
+    locationNames.forEach(l -> list.add(l.getLongName()));
+
+    Sorting.quickSort(list);
+    return list;
   }
 
   /**

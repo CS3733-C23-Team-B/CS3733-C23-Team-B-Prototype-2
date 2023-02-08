@@ -115,6 +115,7 @@ public class BaseRequestController {
   public void buttonControl() throws IOException {
     boolean submitEnable = isFormFull();
     submitButton.setDisable(!submitEnable);
+    System.out.println();
   }
 
   /**
@@ -134,6 +135,8 @@ public class BaseRequestController {
    */
   private boolean isFormFull(int i) {
     // Skip final item, which should be the notes field
+    System.out.print(components.get(i).getId() + ": ");
+    System.out.println(!getText(components.get(i)).equals(""));
     if (i == components.size() - 2) return !getText(components.get(i)).equals("");
     return !getText(components.get(i)).equals("") && isFormFull(i + 1);
   }

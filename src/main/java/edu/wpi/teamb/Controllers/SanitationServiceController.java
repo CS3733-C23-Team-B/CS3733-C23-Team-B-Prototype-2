@@ -47,7 +47,7 @@ public class SanitationServiceController extends BaseRequestController {
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
-      if (c instanceof TextField) textFields.add((MFXTextField) c);
+      if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfCleanUpBox.setItems(typeOfCleanUpList);

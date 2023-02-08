@@ -153,7 +153,7 @@ public class MapEditorController {
   }
 
   private Circle placeNode(Node node) {
-    Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 6, Color.RED);
+    Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Color.RED);
     aPane.getChildren().add(dot);
     dot.getStyleClass().add("intersection");
     dot.addEventHandler(

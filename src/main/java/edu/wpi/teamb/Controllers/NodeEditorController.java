@@ -3,6 +3,7 @@ package edu.wpi.teamb.Controllers;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
+import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,8 +11,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.util.Collections;
 
 public class NodeEditorController {
   @FXML Text nodeIDText;

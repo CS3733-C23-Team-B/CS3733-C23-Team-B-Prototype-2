@@ -21,6 +21,7 @@ public class EdgeEditorController {
 
   /** Method run when controller is initialized */
   public void initialize() {
+    Pathfinding.refreshData();
     node = MapEditorController.getCurrentNode();
     nodeIDText.setText(node.getNodeID());
     edgesBox.setItems(getEdges());

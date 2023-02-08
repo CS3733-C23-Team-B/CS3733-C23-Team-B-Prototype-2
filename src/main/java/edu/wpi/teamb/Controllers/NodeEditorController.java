@@ -69,6 +69,8 @@ public class NodeEditorController {
 
   public void edgesClicked() {
     Navigation.navigate(Screen.EDGE_EDITOR);
+    Stage s = (Stage) yField.getScene().getWindow();
+    s.close();
   }
 
   public void deleteClicked() {

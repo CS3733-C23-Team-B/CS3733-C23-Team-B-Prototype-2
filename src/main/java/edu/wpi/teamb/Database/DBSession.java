@@ -182,7 +182,14 @@ public class DBSession {
   }
 
   public static void deleteEdge(String node1, String node2) {
-    return;
+    List<Edge> es = getAllEdges();
+    for(Edge e : es) {
+      if(e.getNode1().equals(node1) && e.getNode2().equals(node2)) {
+        delete(e);
+      } else if(e.getNode1().equals(node2) && e.getNode2().equals(node1)) {
+        delete(e);
+      }
+    }
   }
 
   public static void deleteNode(Node n) {

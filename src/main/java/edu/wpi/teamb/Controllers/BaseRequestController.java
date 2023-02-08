@@ -27,6 +27,7 @@ public class BaseRequestController {
   @FXML protected MFXButton cancelButton;
   @FXML protected MFXButton helpButton;
   @FXML protected MFXButton clearButton;
+
   @FXML protected MFXButton submitButton;
 
   // Choice-box options

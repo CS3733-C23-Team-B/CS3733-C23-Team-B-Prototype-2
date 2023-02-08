@@ -9,22 +9,20 @@ import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class LocationCreatorController {
-  @FXML Button submitButton;
   @FXML TextField longNameField;
   @FXML TextField shortNameField;
   @FXML MFXFilterComboBox<String> locationTypeBox;
   @FXML Text bigText;
   Map<String, LocationName> locations = new HashMap<>();
-  ObservableList<String> types = FXCollections.observableArrayList();
 
   /** Method run when controller is initialized */
   public void initialize() {
+    ObservableList<String> types = FXCollections.observableArrayList();
     List<LocationName> locationList = DBSession.getAllLocationNames();
     locationList.forEach(l -> locations.put(l.getLongName(), l));
     Collections.addAll(
@@ -39,7 +37,6 @@ public class LocationCreatorController {
   }
 
   public void submitClicked() {
-
     String newLongName = longNameField.getText();
     String newShortName = shortNameField.getText();
     String newLocationType = locationTypeBox.getText();

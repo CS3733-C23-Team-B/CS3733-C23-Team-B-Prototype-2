@@ -10,22 +10,20 @@ import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class NodeCreatorController {
-  @FXML Button submitButton;
   @FXML TextField xField;
   @FXML TextField yField;
   @FXML Text bigText;
   @FXML MFXFilterComboBox<String> floorBox;
   @FXML MFXFilterComboBox<String> buildingBox;
-  ObservableList<String> floors = FXCollections.observableArrayList();
-  ObservableList<String> buildings = FXCollections.observableArrayList();
 
   public void initialize() {
+    ObservableList<String> floors = FXCollections.observableArrayList();
+    ObservableList<String> buildings = FXCollections.observableArrayList();
     Collections.addAll(floors, "1", "2", "3", "L1", "L2");
     Collections.addAll(buildings, "Shapiro", "Tower", "45 Francis", "BTM", "15 Francis");
     Sorting.quickSort(buildings);

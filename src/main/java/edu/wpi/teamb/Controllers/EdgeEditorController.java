@@ -48,7 +48,8 @@ public class EdgeEditorController {
   }
 
   public void deleteClicked() {
-    if (edgesBox.getValue().isEmpty()) {
+    String s = edgesBox.getValue();
+    if (edgesBox.getText().isEmpty()) {
       bigText.setText("No selection");
       bigText.setFill(Color.RED);
       return;

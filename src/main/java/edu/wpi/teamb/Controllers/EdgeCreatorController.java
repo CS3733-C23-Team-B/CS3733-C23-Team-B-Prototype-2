@@ -23,7 +23,7 @@ public class EdgeCreatorController {
   }
 
   public void submitClicked() {
-    if (edgeBox.getValue().isEmpty()) {
+    if (edgeBox.getText().isEmpty()) {
       bigText.setText("No selection");
       bigText.setFill(Color.RED);
       return;

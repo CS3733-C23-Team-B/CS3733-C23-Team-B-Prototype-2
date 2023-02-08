@@ -41,7 +41,7 @@ public class LocationEditorController {
   }
 
   public void setFields() {
-    if (!locationBox.getValue().isEmpty()) {
+    if (!locationBox.getText().isEmpty()) {
       location = locations.get(locationBox.getValue());
       origNode = DBSession.getMostRecentNodeID(location.getLongName());
 

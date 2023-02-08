@@ -42,7 +42,7 @@ public class LocationCreatorController {
 
     String newLongName = longNameField.getText();
     String newShortName = shortNameField.getText();
-    String newLocationType = locationTypeBox.getValue();
+    String newLocationType = locationTypeBox.getText();
 
     if (newLongName.isEmpty() || newShortName.isEmpty() || newLocationType.isEmpty()) {
       bigText.setText("Missing fields");

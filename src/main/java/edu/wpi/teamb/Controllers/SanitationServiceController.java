@@ -15,7 +15,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
 
 public class SanitationServiceController extends BaseRequestController {
   // Lists for checkboxes
@@ -47,7 +46,7 @@ public class SanitationServiceController extends BaseRequestController {
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
-      if (c instanceof TextField) textFields.add((MFXTextField) c);
+      if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfCleanUpBox.setItems(typeOfCleanUpList);

@@ -31,6 +31,7 @@ public class BaseRequestController {
   @FXML protected MFXButton cancelButton;
   @FXML protected MFXButton helpButton;
   @FXML protected MFXButton clearButton;
+
   @FXML protected MFXButton submitButton;
 
   // Choice-box options
@@ -52,7 +53,7 @@ public class BaseRequestController {
    */
   @FXML
   public void initialize() {
-    // submitButton.setDisable(true);
+    submitButton.setDisable(true);
     urgencyBox.setItems(urgencyOptions);
   }
 
@@ -132,9 +133,8 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void buttonControl() throws IOException {
-
     boolean submitEnable = isFormFull();
-    // submitButton.setDisable(!submitEnable);
+    submitButton.setDisable(!submitEnable);
   }
 
   /**

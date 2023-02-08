@@ -113,7 +113,6 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void buttonControl() throws IOException {
-    System.out.println("I AM RUNNING");
     boolean submitEnable = isFormFull();
     submitButton.setDisable(!submitEnable);
   }

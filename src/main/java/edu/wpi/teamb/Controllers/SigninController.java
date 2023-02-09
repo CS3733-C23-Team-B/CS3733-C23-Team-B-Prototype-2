@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Controllers;
 
+import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.ORMType;
@@ -9,8 +10,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -21,7 +23,6 @@ import javafx.stage.Stage;
 public class SigninController {
   @FXML private TextField usernameField;
   @FXML private TextField passwordField;
-  @FXML private CheckBox newAccount;
   @FXML private Label prompt;
   @FXML private Button exitButton;
   public static Login currentUser;
@@ -58,21 +59,22 @@ public class SigninController {
     }
     if (found) {
       return true;
-    } else if (newAccount.isSelected()) {
-      for (Object user : users) {
-        Login u = (Login) user;
-        if (u.getUsername().equals(usernameField.getText())) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        Login newLogin = new Login(usernameField.getText(), passwordField.getText());
-        users.add(newLogin);
-        DBSession.addORM(newLogin);
-        return true;
-      }
     }
+    //    else if (newAccount.isSelected()) {
+    //      for (Object user : users) {
+    //        Login u = (Login) user;
+    //        if (u.getUsername().equals(usernameField.getText())) {
+    //          found = true;
+    //          break;
+    //        }
+    //      }
+    //      if (!found) {
+    //        // Login newLogin = new Login(usernameField.getText(), passwordField.getText());
+    //        // users.add(newLogin);
+    //        // DBSession.addORM(newLogin);
+    //        return true;
+    //      }
+    //    }
     prompt.setText("\tInvalid login");
     prompt.setTextFill(Color.RED);
     usernameField.clear();
@@ -104,5 +106,20 @@ public class SigninController {
   public void exitApplication() {
     Stage stage = (Stage) exitButton.getScene().getWindow();
     stage.close();
+  }
+
+  @FXML
+  private void newAccount() throws IOException {
+    Stage newWindow = new Stage();
+    final String filename = Screen.CREATE_ACCOUNT.getFilename();
+    try {
+      final var resource = Bapp.class.getResource(filename);
+      final FXMLLoader loader = new FXMLLoader(resource);
+      Scene scene = new Scene(loader.load(), 800, 487);
+      newWindow.setScene(scene);
+      newWindow.show();
+    } catch (NullPointerException e) {
+      e.printStackTrace();
+    }
   }
 }

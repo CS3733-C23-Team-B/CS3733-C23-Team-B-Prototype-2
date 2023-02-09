@@ -351,4 +351,9 @@ public class DBSession {
     }
     addORM(mnew);
   }
+
+  public static void main(String[] args) {
+    Login n = new Login("samc", "samc", "email.com", "Sam", "Colebourn");
+    DBSession.addORM(n);
+  }
 }

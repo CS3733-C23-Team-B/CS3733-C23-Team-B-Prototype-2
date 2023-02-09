@@ -3,10 +3,20 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="edu.wpi.teamb.Database.Login" table="login">
-        <id name="username" type="String" column="username">
-        </id>
+        <property name = "username" type = "String">
+            <column name="username"/>
+        </property>
         <property name = "password" type = "String">
             <column name="password"/>
+        </property>
+        <property name = "email" type = "String">
+            <column name="email"/>
+        </property>
+        <property name = "firstname" type = "String">
+            <column name="firstname"/>
+        </property>
+        <property name = "lastname" type = "String">
+            <column name="lastname"/>
         </property>
     </class>
 </hibernate-mapping>

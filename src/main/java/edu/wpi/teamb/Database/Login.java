@@ -10,16 +10,43 @@ import lombok.Setter;
 @Table(name = "login")
 @PrimaryKeyJoinColumn(name = "login", foreignKey = @ForeignKey(name = "loginIDKey"))
 public class Login implements IORM {
-  @Id private String username;
+
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Getter
+  @Id
+  private int id;
+
+  @Column(name = "username", length = 60)
+  @Getter
+  @Setter
+  private String username;
 
   @Column(name = "password", length = 60)
   @Getter
   @Setter
   private String password;
 
-  public Login(String scol, String sc) {
-    this.username = scol;
-    this.password = sc;
+  @Column(name = "email", length = 60)
+  @Getter
+  @Setter
+  private String email;
+
+  @Column(name = "firstname", length = 60)
+  @Getter
+  @Setter
+  private String firstname;
+
+  @Column(name = "lastname", length = 60)
+  @Getter
+  @Setter
+  private String lastname;
+
+  public Login(String user, String pass, String email, String firstname, String lastname) {
+    this.username = user;
+    this.password = pass;
+    this.email = email;
+    this.firstname = firstname;
+    this.lastname = lastname;
   }
 
   public Login() {}
@@ -29,13 +56,5 @@ public class Login implements IORM {
   @Override
   public String getSearchStr() {
     return "FROM Login WHERE username = '" + getUsername() + "'";
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getUsername() {
-    return username;
   }
 }

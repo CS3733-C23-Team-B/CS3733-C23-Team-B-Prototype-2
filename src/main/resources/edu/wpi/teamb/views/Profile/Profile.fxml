@@ -28,7 +28,7 @@
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="806.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="806.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
             <Text fx:id="usernameText" layoutX="150.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="250.17774963378906">
                <font>

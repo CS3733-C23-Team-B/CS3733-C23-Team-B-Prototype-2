@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
@@ -24,6 +25,7 @@ public class ProfileController {
   @FXML private MFXTextField email;
   @FXML MFXButton save;
   @FXML Label messege;
+  @FXML AnchorPane anchor;
   private String passwordDisplay;
   private Login user;
 
@@ -37,7 +39,18 @@ public class ProfileController {
     usernameText.setText("Username: " + user.getUsername());
     hidePassword();
     if (user.getUsername().equals("")) deleteAccountButton.setDisable(true);
+    if (user.getAdmin() == true) {
+      MFXButton adminButton = new MFXButton();
+      adminButton.setText("View All Users");
+      adminButton.setLayoutX(25);
+      adminButton.setLayoutY(490);
+      adminButton.setTextFill(Paint.valueOf("BLUE"));
+      adminButton.setOnAction(e -> viewAllUsers());
+      anchor.getChildren().add(adminButton);
+    }
   }
+
+  private void viewAllUsers() {}
 
   private void saveClicked() {
     user.setFirstname(firstName.getText());

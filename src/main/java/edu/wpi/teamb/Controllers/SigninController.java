@@ -28,10 +28,6 @@ public class SigninController {
   public static Login currentUser;
   private List<Object> users;
 
-  public void initialize() {
-    users = DBSession.getAll(ORMType.LOGIN);
-  }
-
   /**
    * Handles a keypress in one of the two text fields. If it was the enter key, login is attempted
    *
@@ -48,6 +44,7 @@ public class SigninController {
    * @return true if the login is valid according to the database, false otherwise
    */
   public boolean validateLogin() {
+    users = DBSession.getAll(ORMType.LOGIN);
     boolean found = false;
     for (Object user : users) {
       Login u = (Login) user;
@@ -60,21 +57,6 @@ public class SigninController {
     if (found) {
       return true;
     }
-    //    else if (newAccount.isSelected()) {
-    //      for (Object user : users) {
-    //        Login u = (Login) user;
-    //        if (u.getUsername().equals(usernameField.getText())) {
-    //          found = true;
-    //          break;
-    //        }
-    //      }
-    //      if (!found) {
-    //        // Login newLogin = new Login(usernameField.getText(), passwordField.getText());
-    //        // users.add(newLogin);
-    //        // DBSession.addORM(newLogin);
-    //        return true;
-    //      }
-    //    }
     prompt.setText("\tInvalid login");
     prompt.setTextFill(Color.RED);
     usernameField.clear();

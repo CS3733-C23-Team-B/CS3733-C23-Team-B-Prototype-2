@@ -4,6 +4,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -69,17 +70,12 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Text>
                         <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                            <font>
                               <Font size="22.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="257.0" />
+                              <Insets />
                            </HBox.margin>
                         </Text>
                      </children>
@@ -89,14 +85,6 @@
                   </HBox>
                   <HBox prefHeight="22.0" prefWidth="200.0">
                      <children>
-                        <MFXTextField fx:id="employeeIDField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="40.0" />
-                           </HBox.margin>
-                        </MFXTextField>
                         <MFXTextField fx:id="emailField" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
                            <font>
                               <Font size="17.0" />
@@ -144,14 +132,19 @@
                         </MFXPasswordField>
                      </children>
                   </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="157.0" prefWidth="800.0" spacing="50.0">
+                  <HBox alignment="CENTER" prefHeight="37.0" prefWidth="800.0" spacing="50.0">
+                     <children>
+                        <Label fx:id="notificationText" />
+                     </children>
+                  </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="70.0" prefWidth="800.0" spacing="50.0">
                             <children>
                                 <MFXButton minHeight="46.0" minWidth="100.0" onAction="#submitClicked" style="-fx-background-color: green;" text="Create Account" textFill="WHITE">
                                     <font>
                                         <Font size="22.0" />
                                     </font>
                                 </MFXButton>
-                                <MFXButton minHeight="46.0" minWidth="100.0" onAction="#cancelClicked" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
+                                <MFXButton fx:id="cancelButton" minHeight="46.0" minWidth="100.0" onAction="#cancelClicked" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
                                     <font>
                                         <Font size="22.0" />
                                     </font>

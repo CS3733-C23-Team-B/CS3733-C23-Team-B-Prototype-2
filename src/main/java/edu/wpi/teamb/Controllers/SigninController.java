@@ -35,6 +35,15 @@ public class SigninController {
    * @throws IOException
    * @throws SQLException
    */
+  public void initialize() {
+    Thread newThread =
+        new Thread(
+            () -> {
+              users = DBSession.getAll(ORMType.LOGIN);
+            });
+    newThread.start();
+  }
+
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
   }
@@ -44,7 +53,6 @@ public class SigninController {
    * @return true if the login is valid according to the database, false otherwise
    */
   public boolean validateLogin() {
-    users = DBSession.getAll(ORMType.LOGIN);
     boolean found = false;
     for (Object user : users) {
       Login u = (Login) user;

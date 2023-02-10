@@ -111,6 +111,35 @@ public class DBSession {
     }
   }
 
+  public static void updateUser(String user, String first, String last, String email) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q =
+          session.createQuery(
+              "UPDATE Login SET "
+                  + "email = '"
+                  + email
+                  + "'"
+                  + ", firstname = '"
+                  + first
+                  + "'"
+                  + ", lastname = '"
+                  + last
+                  + "'"
+                  + " WHERE username = '"
+                  + user
+                  + "'");
+      q.executeUpdate();
+      session.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
+
   public static List<Move> getAllMovesWithLN(String ln) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
@@ -350,10 +379,5 @@ public class DBSession {
       mnew.setMoveDate(Date.valueOf(LocalDate.now()));
     }
     addORM(mnew);
-  }
-
-  public static void main(String[] args) {
-    Login n = new Login("samc", "samc", "email.com", "Sam", "Colebourn");
-    DBSession.addORM(n);
   }
 }

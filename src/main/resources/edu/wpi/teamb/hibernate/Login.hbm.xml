@@ -18,5 +18,8 @@
         <property name = "lastname" type = "String">
             <column name="lastname"/>
         </property>
+        <property name = "admin" type = "Boolean">
+            <column name="admin"/>
+        </property>
     </class>
 </hibernate-mapping>

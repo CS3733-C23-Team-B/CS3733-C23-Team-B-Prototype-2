@@ -41,12 +41,18 @@ public class Login implements IORM {
   @Setter
   private String lastname;
 
+  @Column(name = "admin")
+  @Getter
+  @Setter
+  private Boolean admin;
+
   public Login(String user, String pass, String email, String firstname, String lastname) {
     this.username = user;
     this.password = pass;
     this.email = email;
     this.firstname = firstname;
     this.lastname = lastname;
+    this.admin = false;
   }
 
   public Login() {}

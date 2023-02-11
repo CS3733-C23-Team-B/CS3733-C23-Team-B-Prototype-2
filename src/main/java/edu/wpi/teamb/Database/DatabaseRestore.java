@@ -61,8 +61,8 @@ public class DatabaseRestore {
         s.persist(ln);
 
         Move m = new Move();
-        m.setNodeID(n.getNodeID());
-        m.setLongName(ln.getLongName());
+        m.setNode(n);
+        m.setLocationName(ln);
         m.setMoveDate(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01"));
         s.persist(m);
       }
@@ -90,8 +90,10 @@ public class DatabaseRestore {
     for (int i = 1; i < data.size(); i++) {
       String[] line = data.get(i);
       Edge e = new Edge();
-      e.setNode1(line[1]);
-      e.setNode2(line[2]);
+      Object n1 = s.get("Node", line[1]);
+      Object n2 = s.get("Node", line[2]);
+      e.setNode1((Node) n1);
+      e.setNode2((Node) n2);
       s.persist(e);
     }
 

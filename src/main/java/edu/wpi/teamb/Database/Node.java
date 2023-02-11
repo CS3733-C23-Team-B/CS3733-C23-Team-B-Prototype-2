@@ -1,10 +1,7 @@
 package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.IORM;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +14,7 @@ import lombok.Setter;
 public class Node implements IORM {
 
   @Id
-  @Column(name = "nodeid", length = 14)
+  @Column(name = "nodeID", length = 14)
   @Getter
   @Setter
   private String nodeID;
@@ -43,14 +40,6 @@ public class Node implements IORM {
   private String building;
 
   public Node() {}
-
-  //  public Node(String nodeID, int xCoord, int yCoord, String floor, String building) {
-  //    this.nodeID = nodeID;
-  //    this.xCoord = xCoord;
-  //    this.yCoord = yCoord;
-  //    this.floor = floor;
-  //    this.building = building;
-  //  }
 
   public String buildID() {
     String x = Integer.toString(xCoord);

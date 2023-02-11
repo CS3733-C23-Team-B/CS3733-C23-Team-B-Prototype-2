@@ -6,6 +6,7 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,25 +35,78 @@ public class PathfindingController {
   private List<Line> lines;
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
+  private ImageView lowerlevel =
+      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
+  private ImageView groundfloor =
+      new ImageView(getClass().getResource("/media/Maps/00_thegroundfloor.png").toExternalForm());
+  private ImageView lowerlevel2 =
+      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel2.png").toExternalForm());
+  private ImageView firstfloor =
+      new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
+  private ImageView seccondfloor =
+      new ImageView(getClass().getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
+  private ImageView thirdfloor =
+      new ImageView(getClass().getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
   @FXML MFXComboBox<String> startLoc;
   @FXML MFXComboBox<String> endLoc;
   @FXML MFXButton pathfind;
   @FXML Label pathLabel;
   @FXML AnchorPane anchor;
   @FXML ImageView floor1;
+  @FXML MFXFilterComboBox<String> floorCombo;
 
   /** Initializes the dropdown menus */
   public void initialize() {
-    ImageView i =
-        new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
+    floorCombo.setItems(
+        FXCollections.observableArrayList(
+            "Lower Level 2",
+            "Lower Level 1",
+            "Ground Floor",
+            "First Floor",
+            "Second Floor",
+            "Third Floor"));
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
-    aPane.getChildren().add(i);
+    changeFloor("Lower Level 1");
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
-    aPane.getChildren().add(linesPlane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
+    floorCombo.setOnAction(e -> changeFloor(floorCombo.getValue()));
+  }
+
+  private void changeFloor(String floor) {
+    ImageView image = new ImageView();
+    String f = null;
+    switch (floor) {
+      case "Lower Level 2":
+        f = "L2";
+        image = lowerlevel2;
+        break;
+      case "Lower Level 1":
+        f = "L1";
+        image = lowerlevel;
+        break;
+      case "Ground Floor":
+        f = "G";
+        image = groundfloor;
+        break;
+      case "First Floor":
+        f = "1";
+        image = firstfloor;
+        break;
+      case "Second Floor":
+        f = "2";
+        image = seccondfloor;
+        break;
+      case "Third Floor":
+        f = "3";
+        image = thirdfloor;
+        break;
+    }
+    aPane.getChildren().clear();
+    aPane.getChildren().add(image);
+    aPane.getChildren().add(linesPlane);
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
     pathfind.setOnAction(
@@ -64,11 +118,11 @@ public class PathfindingController {
           }
         });
     Map<String, Node> nodes = DBSession.getAllNodes();
+    String finalF = f;
     nodes.forEach(
         (key, value) -> {
-          if (value.getFloor().equals("L1")) placeNode(value);
+          if (value.getFloor().equals(finalF)) placeNode(value);
         });
-
     selectedCircle.addListener(
         (obs, oldSelection, newSelection) -> {
           if (oldSelection != null) {

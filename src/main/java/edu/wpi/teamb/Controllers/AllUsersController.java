@@ -1,21 +1,14 @@
 package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.util.List;
-
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lombok.extern.java.Log;
 
 public class AllUsersController {
 
@@ -46,8 +39,4 @@ public class AllUsersController {
   public void backButton() {
     Navigation.navigate(Screen.PROFILE);
   }
-
-  pubic void
 }
-
-

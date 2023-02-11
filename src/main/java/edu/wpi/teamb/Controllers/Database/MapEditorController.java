@@ -6,11 +6,13 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.*;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
@@ -43,22 +45,46 @@ public class MapEditorController {
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
   private static MapEditorController instance;
+  private ImageView lowerlevel =
+      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
+  private ImageView groundfloor =
+      new ImageView(getClass().getResource("/media/Maps/00_thegroundfloor.png").toExternalForm());
+  private ImageView lowerlevel2 =
+      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel2.png").toExternalForm());
+  private ImageView firstfloor =
+      new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
+  private ImageView secondfloor =
+      new ImageView(getClass().getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
+  private ImageView thirdfloor =
+      new ImageView(getClass().getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
+
+  @FXML MFXFilterComboBox<String> floorCombo;
 
   public void initialize() {
     instance = this;
+    floorCombo.setItems(
+        FXCollections.observableArrayList(
+            "Lower Level 2",
+            "Lower Level 1",
+            "Ground Floor",
+            "First Floor",
+            "Second Floor",
+            "Third Floor"));
     nodeMap = new HashMap<>();
     nodeMap.clear();
     Map<String, Node> nodes = new HashMap<>();
 
-    ImageView i =
-        new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
+    //    ImageView i =
+    //        new
+    // ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
-    aPane.getChildren().add(i);
+    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2220, 974));
+    //    aPane.getChildren().add(i);
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
-    i.setOnMouseClicked(e -> handleClick());
+    //    i.setOnMouseClicked(e -> handleClick());
 
     pane.zoomTo(-5000, -3000, new Point2D(2215, 1045));
     nodes.clear();
@@ -81,6 +107,39 @@ public class MapEditorController {
           }
         });
     Platform.runLater(() -> pane.centreOn(new javafx.geometry.Point2D(2220, 974)));
+  }
+
+  private void changeFloor(String floor, Point2D p) {
+    ImageView image = new ImageView();
+    String f = null;
+    switch (floor) {
+      case "Lower Level 2":
+        f = "L2";
+        image = lowerlevel2;
+        break;
+      case "Lower Level 1":
+        f = "L1";
+        image = lowerlevel;
+        break;
+      case "Ground Floor":
+        f = "G";
+        image = groundfloor;
+        break;
+      case "First Floor":
+        f = "1";
+        image = firstfloor;
+        break;
+      case "Second Floor":
+        f = "2";
+        image = secondfloor;
+        break;
+      case "Third Floor":
+        f = "3";
+        image = thirdfloor;
+        break;
+    }
+    aPane.getChildren().clear();
+    aPane.getChildren().add(image);
   }
 
   public void displayPopUp(Circle dot) {

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<ToolBar id="toolbar" fx:id="toolbar" minHeight="-Infinity" prefHeight="80.0" prefWidth="1574.0" style="-fx-background-color: #00077A;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.NavigationController">
+<ToolBar id="toolbar" fx:id="toolbar" minHeight="-Infinity" prefHeight="80.0" prefWidth="1574.0" style="-fx-background-color: #00077A;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.NavigationController">
     <opaqueInsets>
         <Insets />
     </opaqueInsets>

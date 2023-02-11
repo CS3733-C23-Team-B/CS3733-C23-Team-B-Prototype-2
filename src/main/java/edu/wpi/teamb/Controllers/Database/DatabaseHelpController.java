@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers;
+package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;

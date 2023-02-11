@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers;
+package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;

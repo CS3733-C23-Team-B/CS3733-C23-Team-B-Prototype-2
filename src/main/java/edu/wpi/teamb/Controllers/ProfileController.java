@@ -50,7 +50,9 @@ public class ProfileController {
     }
   }
 
-  private void viewAllUsers() {}
+  private void viewAllUsers() {
+    Navigation.navigate(Screen.ALL_USERS);
+  }
 
   private void saveClicked() {
     user.setFirstname(firstName.getText());

@@ -27,6 +27,8 @@ public enum Screen {
   SUBMISSION_SUCCESS("views/ServiceRequest/SubmissionSuccess.fxml"),
   ABOUT("views/Navigation/About.fxml"),
   LANDING_PAGE("views/Navigation/LandingPage.fxml"),
+  CREATE_ACCOUNT("views/Profile/CreateAccount.fxml"),
+  ALL_USERS("views/Profile/AllUsers.fxml"),
   LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml");
 
   private final String filename;

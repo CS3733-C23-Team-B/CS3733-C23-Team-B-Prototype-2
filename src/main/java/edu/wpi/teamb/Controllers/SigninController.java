@@ -9,14 +9,12 @@ import java.sql.SQLException;
 import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -97,7 +95,8 @@ public class SigninController {
 
       Bapp.getRootPane().add(loader.load(), 0, 0, 1, 1);
       Bapp.getRootPane().add(loader2.load(), 0, 2, 1, 1);
-      //GridPane.setHalignment(loader.load(), HPos.RIGHT); this line as well as line 96 make all other components afterwards not render
+      // GridPane.setHalignment(loader.load(), HPos.RIGHT); this line as well as line 96 make all
+      // other components afterwards not render
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

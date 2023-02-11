@@ -12,6 +12,8 @@ import lombok.Setter;
 public class GeneralRequest {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Id
+  @Setter
+  @Getter
   private int id;
 
   @Column(name = "firstname", length = 60)
@@ -55,12 +57,4 @@ public class GeneralRequest {
   private RequestStatus status;
 
   public void generalRequest() {}
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public int getId() {
-    return id;
-  }
 }

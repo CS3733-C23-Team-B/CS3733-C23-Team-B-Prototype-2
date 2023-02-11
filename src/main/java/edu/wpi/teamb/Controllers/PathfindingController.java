@@ -1,11 +1,12 @@
 package edu.wpi.teamb.Controllers;
 
+import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,8 @@ public class PathfindingController {
   private List<Line> lines;
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
-  @FXML MFXComboBox<String> startLoc;
-  @FXML MFXComboBox<String> endLoc;
+  @FXML MFXFilterComboBox<String> startLoc;
+  @FXML MFXFilterComboBox<String> endLoc;
   @FXML MFXButton pathfind;
   @FXML Label pathLabel;
   @FXML AnchorPane anchor;
@@ -113,6 +114,7 @@ public class PathfindingController {
       if (!list.contains(move.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals("L1"))
         list.add(move.getLongName());
 
+    Sorting.quickSort(list);
     return list;
   }
 

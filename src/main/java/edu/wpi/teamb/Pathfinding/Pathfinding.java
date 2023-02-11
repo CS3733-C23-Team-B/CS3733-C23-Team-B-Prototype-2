@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class Pathfinding {
   private static List<Edge> edges = DBSession.getAllEdges();
   private static Map<String, Node> nodes = DBSession.getAllNodes();
+  private static int totalDist = 0;
 
   /**
    * Given an edge, evaluates the weight of the edge
@@ -44,14 +45,19 @@ public class Pathfinding {
    * @param node2 end node
    */
   private static double getDist(Node node1, Node node2) {
+
+    ArrayList<String> floors = new ArrayList<>();
+    Collections.addAll(floors, "L2", "L1", "1", "2", "3");
+
     double x1 = node1.getXCoord();
     double x2 = node2.getXCoord();
     double y1 = node1.getYCoord();
     double y2 = node2.getYCoord();
-    //    int f1 = Integer.parseInt(node1.getFloor().substring(1));
-    //    int f2 = Integer.parseInt(node2.getFloor().substring(1));
+    String f1 = node1.getFloor();
+    String f2 = node2.getFloor();
+    int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * 150;
 
-    double dist = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    double dist = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) + floorDist;
     return dist;
   }
 
@@ -77,7 +83,10 @@ public class Pathfinding {
    * @return a String representation of the path taken
    */
   private static String pathToString(List<String> path) {
-    path = nodesToLocations(path);
+    //    path = nodesToLocations(path);
+    totalDist = 0;
+    for (int i = 0; i < path.size() - 1; i++) totalDist += getWeight(path.get(i), path.get(i + 1));
+    System.out.println("Total dist: " + totalDist);
 
     String retStr = "";
 
@@ -105,7 +114,9 @@ public class Pathfinding {
    * @return a String representation of the optimal path to take
    */
   public static ArrayList<String> getShortestPath(String start, String end) {
-    return getPathAStar(start, end);
+    ArrayList<String> p = getPathAStar(start, end);
+    System.out.println(pathToString(p));
+    return p;
   }
 
   /**

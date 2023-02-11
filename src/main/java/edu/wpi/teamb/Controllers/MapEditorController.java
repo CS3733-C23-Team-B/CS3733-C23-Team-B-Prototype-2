@@ -77,6 +77,7 @@ public class MapEditorController {
           }
           if (newSelection != null) {
             newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
+            //            showEdges();
             displayPopUp(newSelection);
           }
         });

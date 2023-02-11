@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers;
+package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -6,11 +6,11 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class PatientTransportationHelpController {
+public class SanitationHelpController {
 
   @FXML private Button backButton;
 
   public void backButtonClicked() throws IOException {
-    Navigation.navigate(Screen.PATIENT_TRANSPORTATION);
+    Navigation.navigate(Screen.SANITATION);
   }
 }

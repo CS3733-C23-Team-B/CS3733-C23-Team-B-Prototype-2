@@ -119,6 +119,61 @@ public class Pathfinding {
     return p;
   }
 
+  private static ArrayList<String> getPathBreadth(String startLoc, String endLoc) {
+    return getPathBreadthDepth(startLoc, endLoc, true);
+  }
+
+  private static ArrayList<String> getPathDepth(String startLoc, String endLoc) {
+    return getPathBreadthDepth(startLoc, endLoc, false);
+  }
+
+
+  private static ArrayList<String> getPathBreadthDepth(String startLoc, String endLoc, boolean breadth) {
+    String start = DBSession.getMostRecentNodeID(startLoc);
+    String end = DBSession.getMostRecentNodeID(startLoc);
+
+    boolean done = false;
+    HashMap<String, String> cameFrom = new HashMap<String, String>();
+
+    ArrayList<String> toExpand = new ArrayList<String>();
+    toExpand.add(start);
+
+    while (toExpand.size() > 0) {
+
+      // BREADTH is field that tells program to use breadth-first instead of depth-first
+      int index = breadth ? 0 : toExpand.size() - 1;
+      String current = toExpand.remove(index);
+
+      ArrayList<String> directPaths = getDirectPaths(current);
+      for (String path : directPaths) {
+        if (path.equals(end)) {
+          cameFrom.put(path, current);
+          done = true;
+          break;
+        }
+        if (!cameFrom.containsKey(path)) {
+          cameFrom.put(path, current);
+          toExpand.add(path);
+        }
+      }
+
+      if (done) break;
+    }
+
+    if (!done) return null;
+
+    ArrayList<String> path = new ArrayList<>();
+    path.add(start);
+
+    String current = end;
+    while (!current.equals(start)) {
+      path.add(1, current);
+      current = cameFrom.get(current);
+    }
+
+    return path;
+  }
+
   /**
    * Finds an optimal path from start to end using A* search
    *

@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
@@ -49,7 +50,7 @@ public class CreateAccountController {
         }
       }
       if (!exists) {
-        notificationText.setTextFill(Paint.valueOf("GREEN"));
+        notificationText.setTextFill(Color.GREEN);
         notificationText.setText("creating new login");
         Login newLogin =
             new Login(
@@ -62,9 +63,10 @@ public class CreateAccountController {
         DBSession.addORM(newLogin);
         Stage s = (Stage) cancelButton.getScene().getWindow();
         s.close();
+        SigninController.getInstance().refresh();
       }
     } else {
-      notificationText.setTextFill(Paint.valueOf("RED"));
+      notificationText.setTextFill(Color.RED);
       notificationText.setText("Please fill in all fields");
     }
   }

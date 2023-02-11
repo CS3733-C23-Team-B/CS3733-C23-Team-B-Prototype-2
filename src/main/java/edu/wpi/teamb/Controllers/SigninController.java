@@ -27,15 +27,10 @@ public class SigninController {
   @FXML private Button exitButton;
   public static Login currentUser;
   private List<Object> users;
+  private static SigninController instance;
 
-  /**
-   * Handles a keypress in one of the two text fields. If it was the enter key, login is attempted
-   *
-   * @param event the keyEvent
-   * @throws IOException
-   * @throws SQLException
-   */
   public void initialize() {
+    instance = this;
     Thread newThread =
         new Thread(
             () -> {
@@ -111,5 +106,13 @@ public class SigninController {
     } catch (NullPointerException e) {
       e.printStackTrace();
     }
+  }
+
+  public void refresh() {
+    users = DBSession.getAll(ORMType.LOGIN);
+  }
+
+  public static SigninController getInstance() {
+    return instance;
   }
 }

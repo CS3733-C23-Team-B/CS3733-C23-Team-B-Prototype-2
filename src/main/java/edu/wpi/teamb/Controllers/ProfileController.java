@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
@@ -32,9 +33,9 @@ public class ProfileController {
   /** Initializes the page by populating the login fields */
   public void initialize() {
     user = SigninController.currentUser;
-    firstName.setText(user.getFirstname());
-    lastName.setText(user.getLastname());
-    email.setText(user.getEmail());
+    firstName.setPromptText(user.getFirstname());
+    lastName.setPromptText(user.getLastname());
+    email.setPromptText(user.getEmail());
     save.setOnAction(e -> saveClicked());
     usernameText.setText("Username: " + user.getUsername());
     hidePassword();
@@ -44,7 +45,7 @@ public class ProfileController {
       adminButton.setText("View All Users");
       adminButton.setLayoutX(25);
       adminButton.setLayoutY(490);
-      adminButton.setTextFill(Paint.valueOf("BLUE"));
+      adminButton.setTextFill(Color.BLUE);
       adminButton.setOnAction(e -> viewAllUsers());
       anchor.getChildren().add(adminButton);
     }
@@ -55,13 +56,29 @@ public class ProfileController {
   }
 
   private void saveClicked() {
-    user.setFirstname(firstName.getText());
-    user.setLastname(lastName.getText());
-    user.setEmail(email.getText());
+    String newFirstName = firstName.getText().isEmpty() ? user.getFirstname() : firstName.getText();
+    String newLastName = lastName.getText().isEmpty() ? user.getLastname() : lastName.getText();
+    String newEmail = email.getText().isEmpty() ? user.getEmail() : email.getText();
+
+    user.setFirstname(newFirstName);
+    user.setLastname(newLastName);
+    user.setEmail(newEmail);
+
     DBSession.updateUser(
-        user.getUsername(), firstName.getText(), lastName.getText(), email.getText());
+        user.getUsername(), user.getFirstname(), user.getLastname(), user.getEmail());
     messege.setText("Update Success!");
     messege.setTextFill(Paint.valueOf("GREEN"));
+
+    resetFields();
+  }
+
+  private void resetFields() {
+    firstName.setPromptText(user.getFirstname());
+    firstName.clear();
+    lastName.setPromptText(user.getLastname());
+    lastName.clear();
+    email.setPromptText(user.getEmail());
+    email.clear();
   }
 
   /** Handles a press of the show password button by toggling on/off password visibility */

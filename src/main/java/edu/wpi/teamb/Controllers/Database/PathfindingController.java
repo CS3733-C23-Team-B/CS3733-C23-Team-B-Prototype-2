@@ -119,8 +119,9 @@ public class PathfindingController {
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
     aPane.getChildren().add(linesPlane);
-    startLoc.setItems(getLocations());
-    endLoc.setItems(getLocations());
+    linesPlane.getChildren().clear();
+    startLoc.setItems(getLocations(f));
+    endLoc.setItems(getLocations(f));
     image.setOnMouseClicked(e -> handleClick());
     pathfind.setOnAction(
         (eventAction) -> {
@@ -229,14 +230,14 @@ public class PathfindingController {
    *
    * @return a list of the location longNames
    */
-  static ObservableList<String> getLocations() {
+  static ObservableList<String> getLocations(String s) {
     ObservableList<String> list = FXCollections.observableArrayList();
 
     Map<String, Node> nodes = DBSession.getAllNodes();
     List<Move> moves = DBSession.getAllMoves();
 
     for (Move move : moves)
-      if (!list.contains(move.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals("L1"))
+      if (!list.contains(move.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals(s))
         list.add(move.getLongName());
 
     Sorting.quickSort(list);

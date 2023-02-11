@@ -139,12 +139,12 @@
                   </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="70.0" prefWidth="800.0" spacing="50.0">
                             <children>
-                                <MFXButton minHeight="46.0" minWidth="100.0" onAction="#submitClicked" style="-fx-background-color: green;" text="Create Account" textFill="WHITE">
+                                <MFXButton fx:id="cancelButton" minHeight="46.0" minWidth="100.0" onAction="#cancelClicked" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
                                     <font>
                                         <Font size="22.0" />
                                     </font>
                                 </MFXButton>
-                                <MFXButton fx:id="cancelButton" minHeight="46.0" minWidth="100.0" onAction="#cancelClicked" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
+                                <MFXButton minHeight="46.0" minWidth="100.0" onAction="#submitClicked" style="-fx-background-color: green;" text="Create Account" textFill="WHITE">
                                     <font>
                                         <Font size="22.0" />
                                     </font>

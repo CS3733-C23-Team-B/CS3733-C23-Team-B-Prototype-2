@@ -48,6 +48,8 @@ public class PathfindingController {
   private Circle currentDot;
   @FXML MFXFilterComboBox<String> startLoc;
   @FXML MFXFilterComboBox<String> endLoc;
+  private Circle startDot = null;
+  private Circle endDot = null;
   private ImageView lowerlevel =
       new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
   private ImageView groundfloor =
@@ -210,10 +212,26 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
+    if (startDot != null) startDot.setFill(Color.BLUE);
+    if (endDot != null) endDot.setFill(Color.BLUE);
+
     linesPlane.getChildren().clear();
     String start = startLoc.getValue();
     String end = endLoc.getValue();
     ArrayList<String> path = Pathfinding.getShortestPath(start, end);
+
+    String startID = DBSession.getMostRecentNodeID(start);
+    String endID = DBSession.getMostRecentNodeID(end);
+
+    for (Map.Entry<Circle, Node> entry : nodeMap.entrySet()) {
+      Circle circle = entry.getKey();
+      Node node = entry.getValue();
+      if (node.getNodeID().equals(startID)) startDot = circle;
+      if (node.getNodeID().equals(endID)) endDot = circle;
+    }
+
+    if (startDot != null) startDot.setFill(Color.GREEN);
+    if (endDot != null) endDot.setFill(Color.RED);
 
     Map<String, Node> nodes = DBSession.getAllNodes();
 

@@ -115,4 +115,8 @@ public class SigninController {
   public static SigninController getInstance() {
     return instance;
   }
+
+  public static Login getCurrentUser() {
+    return currentUser;
+  }
 }

@@ -77,8 +77,6 @@ public class PathfindingController {
             "Third Floor"));
     nodeMap = new HashMap<>();
     nodeMap.clear();
-    ImageView i =
-        new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);

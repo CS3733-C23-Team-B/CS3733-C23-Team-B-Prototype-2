@@ -7,8 +7,6 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,8 +60,6 @@ public class PathfindingController {
       new ImageView(getClass().getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
   private ImageView thirdfloor =
       new ImageView(getClass().getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
-  @FXML MFXComboBox<String> startLoc;
-  @FXML MFXComboBox<String> endLoc;
   @FXML MFXButton pathfind;
   @FXML AnchorPane anchor;
   @FXML ImageView floor1;
@@ -127,7 +123,7 @@ public class PathfindingController {
     aPane.getChildren().add(linesPlane);
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
-    i.setOnMouseClicked(e -> handleClick());
+    image.setOnMouseClicked(e -> handleClick());
     pathfind.setOnAction(
         (eventAction) -> {
           try {

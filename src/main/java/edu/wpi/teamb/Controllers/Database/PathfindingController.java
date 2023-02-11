@@ -80,14 +80,15 @@ public class PathfindingController {
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
-    changeFloor("Lower Level 1");
+    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2220, 974));
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    floorCombo.setOnAction(e -> changeFloor(floorCombo.getValue()));
+    floorCombo.setOnAction(
+        e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
   }
 
-  private void changeFloor(String floor) {
+  private void changeFloor(String floor, Point2D p) {
     ImageView image = new ImageView();
     String f = null;
     switch (floor) {
@@ -147,7 +148,7 @@ public class PathfindingController {
             displayPopUp(newSelection);
           }
         });
-    Platform.runLater(() -> pane.centreOn(new javafx.geometry.Point2D(2220, 974)));
+    Platform.runLater(() -> pane.centreOn(p));
   }
 
   public void displayPopUp(Circle dot) {

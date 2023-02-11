@@ -237,7 +237,7 @@ public class MapEditorController {
 
   public void drawEdges() {
     List<String> edges = Pathfinding.getDirectPaths(currentNode.getNodeID());
-    Map<String, Node> map = DBSession.getNodeMap();
+    Map<String, Node> map = DBSession.getAllNodes();
     linesPlane.getChildren().clear();
     for (String id : edges) drawLineBetween(currentNode, map.get(id));
   }

@@ -397,8 +397,4 @@ public class DBSession {
     }
     addORM(mnew);
   }
-
-  public static Map<String, Node> getNodeMap() {
-    return nodeMap;
-  }
 }

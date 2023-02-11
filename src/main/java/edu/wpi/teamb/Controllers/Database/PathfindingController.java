@@ -67,6 +67,7 @@ public class PathfindingController {
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     startLoc.setItems(getLocations());
     endLoc.setItems(getLocations());
+    i.setOnMouseClicked(e -> handleClick());
     pathfind.setOnAction(
         (eventAction) -> {
           try {
@@ -143,6 +144,11 @@ public class PathfindingController {
       currentNode = null;
       currentDot = null;
     }
+  }
+
+  public void handleClick() {
+    selectedCircle.set(null);
+    clearPopUp();
   }
 
   public void createPathFromNode() {}

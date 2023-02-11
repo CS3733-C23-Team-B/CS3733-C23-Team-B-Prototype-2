@@ -6,6 +6,7 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.io.IOException;
 import java.util.*;
 import javafx.application.Platform;
@@ -27,6 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import net.kurobako.gesturefx.GesturePane;
@@ -43,6 +45,7 @@ public class MapEditorController {
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
   private static MapEditorController instance;
+  private AnchorPane linesPlane = new AnchorPane();
 
   public void initialize() {
     instance = this;
@@ -56,6 +59,7 @@ public class MapEditorController {
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
     aPane.getChildren().add(i);
+    aPane.getChildren().add(linesPlane);
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
     i.setOnMouseClicked(e -> handleClick());
@@ -78,6 +82,7 @@ public class MapEditorController {
           if (newSelection != null) {
             newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
             displayPopUp(newSelection);
+            drawEdges();
           }
         });
     Platform.runLater(() -> pane.centreOn(new javafx.geometry.Point2D(2220, 974)));
@@ -228,5 +233,20 @@ public class MapEditorController {
 
   public static void setCurrentNode(Node currentNode) {
     MapEditorController.currentNode = currentNode;
+  }
+
+  public void drawEdges() {
+    List<String> edges = Pathfinding.getDirectPaths(currentNode.getNodeID());
+    Map<String, Node> map = DBSession.getNodeMap();
+    linesPlane.getChildren().clear();
+    for (String id : edges) drawLineBetween(currentNode, map.get(id));
+  }
+
+  private void drawLineBetween(Node n1, Node n2) {
+    Line line = new Line(n1.getXCoord(), n1.getYCoord(), n2.getXCoord(), n2.getYCoord());
+    line.setFill(Color.BLACK);
+    line.setStrokeWidth(5);
+    linesPlane.getChildren().add(line);
+    System.out.println("PLACED lines: " + linesPlane);
   }
 }

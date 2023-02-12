@@ -10,7 +10,6 @@ import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,7 +46,7 @@ public class MoveCreatorController {
     }
 
     Move newMove = new Move();
-    Node node = DBSession.getNodes().get(nodeID);
+    Node node = DBSession.getAllNodes().get(nodeID);
     newMove.setNode(node);
     LocationName LN = DBSession.getLocationNames().get(location);
     newMove.setLocationName(LN);
@@ -80,7 +79,7 @@ public class MoveCreatorController {
 
   private ObservableList<String> getNodes() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    Map<String, Node> nodeDBMap = DBSession.getNodes();
+    Map<String, Node> nodeDBMap = DBSession.getAllNodes();
 
     nodeDBMap.forEach((key, value) -> {
       list.add(value.getNodeID());

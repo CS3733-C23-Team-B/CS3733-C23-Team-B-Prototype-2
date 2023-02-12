@@ -85,7 +85,7 @@ public class LocationEditorController {
 
   private ObservableList<String> getNodes() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    Map<String, Node> nodeDBMap = DBSession.getNodes();
+    Map<String, Node> nodeDBMap = DBSession.getAllNodes();
 
     nodeDBMap.forEach((key, value) -> list.add(value.getNodeID()));
 

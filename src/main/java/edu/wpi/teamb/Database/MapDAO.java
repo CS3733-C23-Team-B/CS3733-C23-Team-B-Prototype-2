@@ -23,6 +23,7 @@ public class MapDAO {
   }
 
   public static Map<String, LocationName> getAllLocationNames() {
+    refreshLocationNames();
     return locationNames;
   }
 

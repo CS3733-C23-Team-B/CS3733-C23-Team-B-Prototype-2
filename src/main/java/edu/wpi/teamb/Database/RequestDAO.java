@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.SessionGetter;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,10 +10,10 @@ import org.hibernate.query.Query;
 
 public class RequestDAO {
 
-  private static List<GeneralRequest> allRequests;
-  private static List<PatientTransportationRequest> PTRequests;
-  private static List<SanitationRequest> SRequests;
-  private static List<ComputerRequest> CRequests;
+  private static List<GeneralRequest> allRequests = new ArrayList<>();
+  private static List<PatientTransportationRequest> PTRequests = new ArrayList<>();
+  private static List<SanitationRequest> SRequests = new ArrayList<>();
+  private static List<ComputerRequest> CRequests = new ArrayList<>();
 
   public static List<GeneralRequest> getALLRequests() {
     return allRequests;

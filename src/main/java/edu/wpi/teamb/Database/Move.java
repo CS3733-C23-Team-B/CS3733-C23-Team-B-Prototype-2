@@ -1,20 +1,34 @@
 package edu.wpi.teamb.Database;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import edu.wpi.teamb.Entities.IORM;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
-public class Move {
+@Entity
+@Table(name = "move")
+public class Move implements IORM {
 
-  public static final String tableName = "move";
-
+  @Id
+  @Column(name = "nodeID", length = 14)
+  @Getter
+  @Setter
   private String nodeID;
 
+  @Id
+  @Column(name = "longname", length = 70)
+  @Getter
+  @Setter
   private String longName;
 
+  @Id
+  @Column(name = "movedate", length = 20)
+  @Getter
+  @Setter
   private Date moveDate;
 
   public Move(String nodeID, String longName, Date moveDate) {
@@ -23,151 +37,10 @@ public class Move {
     this.moveDate = moveDate;
   }
 
-  public static void initTable() throws SQLException {
-    String sql =
-        String.join(
-            " ",
-            "CREATE TABLE move",
-            "(nodeID CHAR(10),",
-            "longName VARCHAR(70),",
-            "moveDate DATE,",
-            "PRIMARY KEY (nodeID, longName, moveDate),",
-            "FOREIGN KEY (nodeID) REFERENCES Node(nodeID) ON UPDATE CASCADE,",
-            "FOREIGN KEY (longName) REFERENCES LocationName (longName) ON UPDATE CASCADE );");
-    Bdb.processUpdate(sql);
-  }
+  public Move() {}
 
-  public static ArrayList<Move> getAll() throws SQLException {
-    ArrayList<Move> moves = new ArrayList<Move>();
-    String sql = "SELECT * FROM move;";
-    ResultSet rs = Bdb.processQuery(sql);
-    while (rs.next()) {
-      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
-    }
-    return moves;
-  }
-
-  public void insert() throws SQLException {
-    String sql = "INSERT INTO move (nodeID, longName, moveDate) " + "VALUES (?,?,?);";
-    PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, nodeID);
-    ps.setString(2, longName);
-    ps.setDate(3, moveDate);
-  }
-
-  public void update() throws SQLException {
-    String sql =
-        "UPDATE move "
-            + "SET nodeID = ?, longName = ?, moveDate = ? "
-            + "WHERE nodeID = ?, longName = ?, moveDate = ?;";
-
-    PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, nodeID);
-    ps.setString(2, longName);
-    ps.setDate(3, moveDate);
-    ps.setString(4, nodeID);
-    ps.setString(5, longName);
-    ps.setDate(6, moveDate);
-    ps.executeUpdate();
-  }
-
-  public void delete() throws SQLException {
-    String sql = "DELETE FROM move WHERE nodeID = ?, longName = ?, moveDate = ?;";
-    PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, nodeID);
-    ps.setString(2, longName);
-    ps.setDate(3, moveDate);
-    ps.executeUpdate();
-  }
-
-  public static String getTableName() {
-    return tableName.toLowerCase();
-  }
-
-  public String getInfo() {
-    String str =
-        "NodeID: " + nodeID + ", " + "Long Name: " + longName + ", " + "Move Date: " + moveDate;
-    return str;
-  }
-
-  public static String getLocationName(String nodeID) throws SQLException {
-    String sql = "SELECT longName FROM move WHERE nodeID = " + nodeID;
-    ResultSet rs = Bdb.processQuery(sql);
-    rs.next();
-    if (rs.wasNull()) {
-      return "";
-    } else {
-      return rs.getString("longName");
-    }
-  }
-
-  public String getLongName() {
-    return longName;
-  }
-
-  public Date getMoveDate() {
-    return moveDate;
-  }
-
-  /**
-   * Given a longName of a department, determines node that the department occupies
-   *
-   * @param longName the long name of the department being located
-   * @return the NodeID of the node that the department currently occupies
-   * @throws SQLException
-   */
-  public static String getMostRecentNode(String longName) throws SQLException {
-    List<Move> moves = getAllLN(longName);
-
-    if (moves.isEmpty()) return "NO MOVES";
-
-    Move mostRecent = moves.get(0);
-    for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
-
-    return mostRecent.nodeID;
-  }
-
-  public static Move getMostRecentMove(String NodeID) {
-    List<Move> moves = null;
-    try {
-      moves = getAllNodeID(NodeID);
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-    if (moves.isEmpty()) return null;
-
-    Move mostRecent = moves.get(0);
-    for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
-
-    return mostRecent;
-  }
-
-  public static String getMostRecentLocation(String NodeID) {
-    return getMostRecentMove(NodeID).longName;
-  }
-
-  private static List<Move> getAllLN(String LNSearch) throws SQLException {
-    String sql = "SELECT * FROM move WHERE longName = '" + LNSearch + "';";
-    ArrayList<Move> moves = new ArrayList<Move>();
-    ResultSet rs = Bdb.processQuery(sql);
-    while (rs.next()) {
-      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
-    }
-    return moves;
-  }
-
-  private static List<Move> getAllNodeID(String IDSearch) throws SQLException {
-    String sql = "SELECT * FROM move WHERE nodeID = '" + IDSearch + "';";
-    ArrayList<Move> moves = new ArrayList<Move>();
-    ResultSet rs = Bdb.processQuery(sql);
-    while (rs.next()) {
-      moves.add(new Move(rs.getString("nodeID"), rs.getString("longName"), rs.getDate("moveDate")));
-    }
-    return moves;
-  }
-
-  private static boolean moreRecentThan(Move move1, Move move2) {
-    return move1.moveDate.after(move2.moveDate);
+  @Override
+  public String getSearchStr() {
+    return "FROM Move WHERE nodeID = '" + nodeID + "' and longName = '" + longName + "'";
   }
 }

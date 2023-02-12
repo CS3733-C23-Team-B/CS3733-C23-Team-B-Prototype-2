@@ -13,10 +13,26 @@ public class Navigation {
 
     removeChild(1, 0);
     try {
-      final var resource = Bapp.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
+      final var r = Bapp.class.getResource(filename);
+      final FXMLLoader loader = new FXMLLoader(r);
 
       Bapp.getRootPane().add(loader.load(), 0, 1);
+
+      final String header = Screen.NAVIGATION.getFilename();
+      final String footer = Screen.FOOTER.getFilename();
+
+      if (!filename.equals("views/Profile/SignIn.fxml")) {
+        final var resource = Bapp.class.getResource(header);
+        final var res = Bapp.class.getResource(footer);
+        final FXMLLoader loader2 = new FXMLLoader(resource);
+        final FXMLLoader loader3 = new FXMLLoader(res);
+
+        // Bapp.getRootPane().setConstraints(loader2.load(), 0, 0, 1, 1, HPos.CENTER, VPos.TOP);
+        Bapp.getRootPane().add(loader2.load(), 0, 0, 1, 1);
+        Bapp.getRootPane().add(loader3.load(), 0, 2,1 ,1);
+        // GridPane.setHalignment(loader.load(), HPos.RIGHT); this line as well as line 30 make all
+        // other components afterwards not render
+      }
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

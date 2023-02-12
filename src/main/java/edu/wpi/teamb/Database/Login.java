@@ -1,67 +1,66 @@
 package edu.wpi.teamb.Database;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import edu.wpi.teamb.Entities.IORM;
+import jakarta.persistence.*;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 
-public class Login {
-  private static final String tableName = "login";
-  private String username, password;
+@Entity
+@Table(name = "login")
+@PrimaryKeyJoinColumn(name = "login", foreignKey = @ForeignKey(name = "loginIDKey"))
+public class Login implements IORM {
 
-  public Login(String username, String password) {
-    this.username = username;
-    this.password = password;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Getter
+  @Id
+  private int id;
+
+  @Column(name = "username", length = 60)
+  @Getter
+  @Setter
+  private String username;
+
+  @Column(name = "password", length = 60)
+  @Getter
+  @Setter
+  private String password;
+
+  @Column(name = "email", length = 60)
+  @Getter
+  @Setter
+  private String email;
+
+  @Column(name = "firstname", length = 60)
+  @Getter
+  @Setter
+  private String firstname;
+
+  @Column(name = "lastname", length = 60)
+  @Getter
+  @Setter
+  private String lastname;
+
+  @Column(name = "admin")
+  @Getter
+  @Setter
+  private Boolean admin;
+
+  public Login(String user, String pass, String email, String firstname, String lastname) {
+    this.username = user;
+    this.password = pass;
+    this.email = email;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.admin = false;
   }
 
-  public static void initTable() throws SQLException {
-    String sql =
-        String.join(
-            " ",
-            "CREATE TABLE login",
-            "(username VARCHAR(20),",
-            "password VARCHAR(20),",
-            "PRIMARY KEY (username) );");
-    Bdb.processUpdate(sql);
-  }
+  public Login() {}
 
-  public void insert() throws SQLException {
-    String sql = "INSERT INTO login (username, password)" + "VALUES (?,?);";
-    PreparedStatement ps = Bdb.prepareKeyGeneratingStatement(sql);
-    ps.setString(1, username);
-    ps.setString(2, password);
+  public void delete() throws SQLException {}
 
-    ps.executeUpdate();
-  }
-
-  public void delete() throws SQLException {
-    String sql = "DELETE FROM login WHERE username = ?";
-    PreparedStatement ps = Bdb.prepareStatement(sql);
-    ps.setString(1, username);
-    ps.executeUpdate();
-  }
-
-  public static Map<String, Login> getAll() throws SQLException {
-    HashMap<String, Login> users = new HashMap<String, Login>();
-    String sql = "SELECT * FROM login;";
-    ResultSet rs = Bdb.processQuery(sql);
-    while (rs.next()) {
-      users.put(
-          rs.getString("username"), new Login(rs.getString("username"), rs.getString("password")));
-    }
-    return users;
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public static String getTableName() {
-    return tableName.toLowerCase();
+  @Override
+  public String getSearchStr() {
+    return "FROM Login WHERE username = '" + getUsername() + "'";
   }
 }

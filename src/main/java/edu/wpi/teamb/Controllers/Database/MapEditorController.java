@@ -72,44 +72,40 @@ public class MapEditorController {
             "Third Floor"));
     nodeMap = new HashMap<>();
     nodeMap.clear();
-    Map<String, Node> nodes = new HashMap<>();
-
-    ImageView i =
-        new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
+    //    Map<String, Node> nodes = new HashMap<>();
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
+    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     changeFloor("Lower Level 1", new javafx.geometry.Point2D(2220, 974));
-    aPane.getChildren().add(i);
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
-    i.setOnMouseClicked(e -> handleClick());
-
+    pane.zoomTo(-5000, -3000, Point2D.ZERO);
     // Changes floor when selecting a new floor
     floorCombo.setOnAction(
         e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
 
     pane.zoomTo(-5000, -3000, new Point2D(2215, 1045));
-    nodes.clear();
-    nodes = DBSession.getAllNodes();
+    //    nodes.clear();
+    //    nodes = DBSession.getAllNodes();
+    //
+    //    for (Node node : nodes.values()) {
+    //      if (!node.getFloor().equals("L1")) continue;
+    //      Circle dot = placeNode(node);
+    //      nodeMap.put(dot, node);
+    //    }
 
-    for (Node node : nodes.values()) {
-      if (!node.getFloor().equals("L1")) continue;
-      Circle dot = placeNode(node);
-      nodeMap.put(dot, node);
-    }
-
-    selectedCircle.addListener(
-        (obs, oldSelection, newSelection) -> {
-          if (oldSelection != null) {
-            oldSelection.pseudoClassStateChanged(SELECTED_P_C, false);
-          }
-          if (newSelection != null) {
-            newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
-            displayPopUp(newSelection);
-          }
-        });
-    Platform.runLater(() -> pane.centreOn(new javafx.geometry.Point2D(2220, 974)));
+    //    selectedCircle.addListener(
+    //        (obs, oldSelection, newSelection) -> {
+    //          if (oldSelection != null) {
+    //            oldSelection.pseudoClassStateChanged(SELECTED_P_C, false);
+    //          }
+    //          if (newSelection != null) {
+    //            newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
+    //            displayPopUp(newSelection);
+    //          }
+    //        });
+    //    Platform.runLater(() -> pane.centreOn(new javafx.geometry.Point2D(2220, 974)));
   }
 
   private void changeFloor(String floor, Point2D p) {
@@ -143,6 +139,54 @@ public class MapEditorController {
     }
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
+
+    Map<String, Node> nodes = new HashMap<>();
+    nodes.clear();
+    nodes = DBSession.getAllNodes();
+
+    for (Node node : nodes.values()) {
+      if (!node.getFloor().equals("L2")) {
+        Circle dot = placeNode(node);
+        nodeMap.put(dot, node);
+
+      } else if (!node.getFloor().equals("L1")) {
+        Circle dot = placeNode(node);
+        nodeMap.put(dot, node);
+
+      } else if (!node.getFloor().equals("G")) {
+        Circle dot = placeNode(node);
+        nodeMap.put(dot, node);
+
+      } else if (!node.getFloor().equals("1")) {
+        Circle dot = placeNode(node);
+        nodeMap.put(dot, node);
+      }
+
+      //      Circle dot = placeNode(node);
+      //      nodeMap.put(dot, node);
+
+      selectedCircle.addListener(
+          (obs, oldSelection, newSelection) -> {
+            if (oldSelection != null) {
+              oldSelection.pseudoClassStateChanged(SELECTED_P_C, false);
+            }
+            if (newSelection != null) {
+              newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
+              displayPopUp(newSelection);
+            }
+          });
+      Platform.runLater(() -> pane.centreOn(new javafx.geometry.Point2D(2220, 974)));
+    }
+    //    for (Node node : nodes.values()) {
+    //      if (!node.getFloor().equals("L1")) continue;
+    //      Circle dot = placeNode(node);
+    //      nodeMap.put(dot, node);
+    //    }
+    //    for (Node node : nodes.values()) {
+    //      if (!node.getFloor().equals("G")) continue;
+    //      Circle dot = placeNode(node);
+    //      nodeMap.put(dot, node);
+    //    }
   }
 
   public void displayPopUp(Circle dot) {

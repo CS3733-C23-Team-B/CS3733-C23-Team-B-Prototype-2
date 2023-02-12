@@ -127,8 +127,8 @@ public class Pathfinding {
     return getPathBreadthDepth(startLoc, endLoc, false);
   }
 
-
-  private static ArrayList<String> getPathBreadthDepth(String startLoc, String endLoc, boolean breadth) {
+  private static ArrayList<String> getPathBreadthDepth(
+      String startLoc, String endLoc, boolean breadth) {
     String start = DBSession.getMostRecentNodeID(startLoc);
     String end = DBSession.getMostRecentNodeID(startLoc);
 

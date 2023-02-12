@@ -10,6 +10,7 @@ import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +26,8 @@ public class MoveCreatorController {
 
   @FXML MFXDatePicker datePicker;
   @FXML Label lblDate;
+  Map<String,LocationName> LocationNamesByLongName = new HashMap<>();
+  Map<String,Node> NodesbyNodeNodeID = new HashMap<>();
 
   public void initialize() {
     nodeIdBox.setItems(getNodes());
@@ -45,10 +48,10 @@ public class MoveCreatorController {
     }
 
     Move newMove = new Move();
-    Node node = new Node();
-    node.setNodeID(nodeID);
+    Node node = NodesbyNodeNodeID.get(nodeID);
     newMove.setNode(node);
-//    newMove.setLocationName();
+    LocationName LN = LocationNamesByLongName.get(location);
+    newMove.setLocationName(LN);
     Date newDate = Date.valueOf(datePicker.getValue());
     newMove.setMoveDate(newDate);
     DBSession.addMove(newMove);
@@ -68,7 +71,10 @@ public class MoveCreatorController {
     ObservableList<String> list = FXCollections.observableArrayList();
     Map<String, LocationName> locationsDBList = DBSession.getLocationNames();
 
-    locationsDBList.forEach((key, value) -> list.add(value.getLongName()));
+    locationsDBList.forEach((key, value) ->
+        {list.add(value.getLongName());
+        LocationNamesByLongName.put(value.getLongName(),value);}
+    );
 
     Sorting.quickSort(list);
     return list;
@@ -78,7 +84,10 @@ public class MoveCreatorController {
     ObservableList<String> list = FXCollections.observableArrayList();
     Map<String, Node> nodeDBMap = DBSession.getNodes();
 
-    nodeDBMap.forEach((key, value) -> list.add(value.getNodeID()));
+    nodeDBMap.forEach((key, value) -> {
+      list.add(value.getNodeID());
+      NodesbyNodeNodeID.put(value.getNodeID(),value);
+    });
 
     Sorting.quickSort(list);
     return list;

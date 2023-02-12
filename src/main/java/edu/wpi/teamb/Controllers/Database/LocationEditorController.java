@@ -76,6 +76,7 @@ public class LocationEditorController {
     ObservableList<String> list = FXCollections.observableArrayList();
     Map<String, LocationName> locationsDBList = DBSession.getLocationNames();
 
+
     locationsDBList.forEach((key, value) -> list.add(value.getLongName()));
 
     Sorting.quickSort(list);

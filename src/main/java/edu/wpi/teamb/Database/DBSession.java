@@ -47,8 +47,8 @@ public class DBSession {
     MapDAO.addEdge(e);
   }
 
-  public static void deleteEdge(Edge e) {
-    MapDAO.deleteEdge(e);
+  public static void deleteEdge(Node n1, Node n2) {
+    MapDAO.deleteEdge(n1, n2);
   }
 
   public static void addLocationName(LocationName ln) {

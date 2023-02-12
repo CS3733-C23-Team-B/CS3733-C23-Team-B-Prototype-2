@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -109,56 +110,57 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <VBox prefHeight="646.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-         <children>
-            <MFXButton fx:id="transButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Internal Patient Transportation" textFill="#c5d3ea" wrapText="true">
-               <font>
-                  <Font size="26.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </MFXButton>
-            <MFXButton fx:id="saniButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Sanitation" textFill="#c5d3ea" wrapText="true">
-               <font>
-                  <Font size="26.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </MFXButton>
-            <MFXButton fx:id="secButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Security" textFill="#c5d3ea" wrapText="true">
-               <font>
-                  <Font size="26.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </MFXButton>
-            <MFXButton fx:id="comButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Computer" textFill="#c5d3ea" wrapText="true">
-               <font>
-                  <Font size="26.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </MFXButton>
-            <MFXButton fx:id="audioButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Audio/Video" textFill="#c5d3ea" wrapText="true">
-               <font>
-                  <Font size="26.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </MFXButton>
-         </children>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets left="40.0" />
-         </padding>
-      </VBox>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="343.0" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <VBox layoutY="-64.0" prefHeight="600.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
+               <children>
+                  <MFXButton fx:id="transButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Internal Patient Transportation" textFill="#c5d3ea" wrapText="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="saniButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Sanitation" textFill="#c5d3ea" wrapText="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="secButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Security" textFill="#c5d3ea" wrapText="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="comButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Computer" textFill="#c5d3ea" wrapText="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="audioButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Audio/Video" textFill="#c5d3ea" wrapText="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </MFXButton>
+               </children>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
    </children>
 </GridPane>

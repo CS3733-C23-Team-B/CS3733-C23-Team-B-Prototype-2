@@ -29,7 +29,7 @@ public class Navigation {
 
         // Bapp.getRootPane().setConstraints(loader2.load(), 0, 0, 1, 1, HPos.CENTER, VPos.TOP);
         Bapp.getRootPane().add(loader2.load(), 0, 0, 1, 1);
-        Bapp.getRootPane().add(loader3.load(), 0, 2,1 ,1);
+        Bapp.getRootPane().add(loader3.load(), 0, 2, 1, 1);
         // GridPane.setHalignment(loader.load(), HPos.RIGHT); this line as well as line 30 make all
         // other components afterwards not render
       }

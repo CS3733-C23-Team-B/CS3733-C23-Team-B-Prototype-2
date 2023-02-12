@@ -40,7 +40,7 @@ public class DBSession {
   }
 
   public static Map<String, Login> getAllLogins() {
-    LoginDAO.getAllLogins();
+    return LoginDAO.getAllLogins();
   }
 
   public static void addEdge(Edge e) {
@@ -197,58 +197,55 @@ public class DBSession {
     }
   }
 
-     public static Node getMostRecentNode(String longName) {
-       String id = getMostRecentNodeID(longName);
-       return getAllNodes().get(id);
-     }
+  public static Node getMostRecentNode(String longName) {
+    String id = getMostRecentNodeID(longName);
+    return getAllNodes().get(id);
+  }
 
-    public static Move getMostRecentMove(String nodeID) {
-      SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-      Session session = sf.openSession();
-      List<Move> moves;
-      try {
-        Transaction tx = session.beginTransaction();
-        String str = "FROM Move WHERE nodeID = '" + nodeID + "'";
-        Query q = session.createQuery(str);
-        moves = q.list();
-        session.close();
-        if (moves.isEmpty()) {
-          return null;
-        } else {
-          Move mostRecent = moves.get(0);
-          for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
-          return mostRecent;
-        }
-      } catch (Exception e) {
-        e.printStackTrace();
+  public static Move getMostRecentMove(String nodeID) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    List<Move> moves;
+    try {
+      Transaction tx = session.beginTransaction();
+      String str = "FROM Move WHERE nodeID = '" + nodeID + "'";
+      Query q = session.createQuery(str);
+      moves = q.list();
+      session.close();
+      if (moves.isEmpty()) {
         return null;
-      } finally {
-        session.close();
+      } else {
+        Move mostRecent = moves.get(0);
+        for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+        return mostRecent;
       }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
     }
+  }
 
-
-    public static boolean moreRecentThan(Move move1, Move move2) {
-      return move1.getMoveDate().after(move2.getMoveDate());
-    }
-
+  public static boolean moreRecentThan(Move move1, Move move2) {
+    return move1.getMoveDate().after(move2.getMoveDate());
+  }
 
   public static void switchMoveLN(String newN, String oldN, LocationName ln) {
 
-    Move oldM = getMostRecentMove(oldN);
-    delete(oldM);
-
-    Move m = getMostRecentMove(newN);
-    Move mnew = new Move();
-    mnew.setNodeID(newN);
-    mnew.setLongName(ln.getLongName());
-    if (m != null) {
-      mnew.setMoveDate(m.getMoveDate());
-      delete(m);
-    } else {
-      mnew.setMoveDate(Date.valueOf(LocalDate.now()));
-    }
-    addORM(mnew);
+    //    Move oldM = getMostRecentMove(oldN);
+    //    delete(oldM);
+    //
+    //    Move m = getMostRecentMove(newN);
+    //    Move mnew = new Move();
+    //    mnew.setNodeID(newN);
+    //    mnew.setLongName(ln.getLongName());
+    //    if (m != null) {
+    //      mnew.setMoveDate(m.getMoveDate());
+    //      delete(m);
+    //    } else {
+    //      mnew.setMoveDate(Date.valueOf(LocalDate.now()));
+    //    }
+    //    addORM(mnew);
   }
-
 }

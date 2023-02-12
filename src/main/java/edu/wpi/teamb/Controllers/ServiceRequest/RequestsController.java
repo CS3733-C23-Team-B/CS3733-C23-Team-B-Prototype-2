@@ -1,7 +1,9 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
+import edu.wpi.teamb.Database.ComputerRequest;
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Entities.ORMType;
+import edu.wpi.teamb.Database.PatientTransportationRequest;
+import edu.wpi.teamb.Database.SanitationRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.util.List;
@@ -54,9 +56,9 @@ public class RequestsController {
   @FXML TableColumn comStatusColumn;
 
   public void initialize() {
-    List<Object> TransportRequestList;
-    List<Object> SanitationRequestList;
-    List<Object> ComputerRequestList;
+    List<PatientTransportationRequest> TransportRequestList;
+    List<SanitationRequest> SanitationRequestList;
+    List<ComputerRequest> ComputerRequestList;
 
     tranLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
     tranFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
@@ -96,17 +98,17 @@ public class RequestsController {
     comStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
     comDeviceColumn.setCellValueFactory(new PropertyValueFactory<>("device"));
 
-    TransportRequestList = DBSession.getAll(ORMType.PTREQUEST);
+    TransportRequestList = DBSession.getAllPTRequests();
     TransportRequestList.forEach(
         (value) -> {
           TransportationTable.getItems().add(value);
         });
-    SanitationRequestList = DBSession.getAll(ORMType.SREQUEST);
+    SanitationRequestList = DBSession.getAllSRequests();
     SanitationRequestList.forEach(
         (value) -> {
           SanitationTable.getItems().add(value);
         });
-    ComputerRequestList = DBSession.getAll(ORMType.CREQUEST);
+    ComputerRequestList = DBSession.getAllCRequests();
     ComputerRequestList.forEach(
         (value) -> {
           ComputerTable.getItems().add(value);

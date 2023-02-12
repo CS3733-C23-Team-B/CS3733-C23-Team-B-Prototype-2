@@ -63,6 +63,10 @@ public class DBSession {
     MapDAO.deleteMove(m);
   }
 
+  public static void addRequest(GeneralRequest r) {
+    RequestDAO.addRequest(r);
+  }
+
   public static Map<String, Node> getAllNodes() {
     return MapDAO.getAllNodes();
   }

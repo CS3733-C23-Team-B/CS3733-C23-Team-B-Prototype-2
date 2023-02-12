@@ -23,6 +23,7 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +31,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import net.kurobako.gesturefx.GesturePane;
@@ -126,6 +128,8 @@ public class MapEditorController {
       if (node.getFloor().equals(f)) {
         Circle dot = placeNode(node);
         nodeMap.put(dot, node);
+        List<Move> locations = DBSession.getLocationfromNodeID(node.getNodeID());
+        if (locations != null) for (Move move : locations) displayLoc(dot);
       }
     }
 
@@ -188,6 +192,24 @@ public class MapEditorController {
     currentDot = dot;
   }
 
+  public void displayLoc(Circle dot) {
+    Node node = nodeMap.get(dot);
+    AnchorPane popPane = new AnchorPane();
+    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 25);
+    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 35);
+
+    VBox vbox = new VBox();
+    popPane.getChildren().add(vbox);
+    Label loc = new Label(DBSession.getMostRecentLocation(node.getNodeID()));
+    loc.setFont(new Font("Arial", 4));
+    vbox.getChildren().add(loc);
+
+    HBox hbox = new HBox();
+    hbox.setAlignment(Pos.CENTER);
+    vbox.getChildren().add(hbox);
+    aPane.getChildren().add(popPane);
+  }
+
   private void editClicked() throws IOException {
     Stage newWindow = new Stage();
     final String filename = Screen.NODE_EDITOR.getFilename();
@@ -220,8 +242,6 @@ public class MapEditorController {
         e -> {
           selectedCircle.set(dot);
         });
-    List<Move> locations = DBSession.getLocationfromNodeID(node.getNodeID());
-    if (locations != null) for (Move move : locations) System.out.println(move.getLocationName());
     return dot;
   }
 

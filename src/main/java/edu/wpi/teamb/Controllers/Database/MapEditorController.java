@@ -185,6 +185,10 @@ public class MapEditorController {
     Navigation.navigate(Screen.LOCATION_EDITOR);
   }
 
+  public void newMove() {
+    Navigation.navigate(Screen.MOVE_CREATOR);
+  }
+
   public void home() {
     Navigation.navigate(Screen.HOME);
   }

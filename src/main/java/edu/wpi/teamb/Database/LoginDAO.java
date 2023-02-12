@@ -11,11 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 public class LoginDAO {
-    private static Map<String, Node> logins = new HashMap<String, Node>();
-    public static Map<String, Node> getAllLogins() {
+    private static Map<String, Login> logins = new HashMap<String, Login>();
+    public static Map<String, Login> getAllLogins() {
         refreshLogins();
         return logins;
     }
+
 
     public static void refreshLogins() {
         SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
@@ -23,10 +24,10 @@ public class LoginDAO {
         try {
             Transaction tx = session.beginTransaction();
             Query q = session.createQuery("FROM Login ", Login.class);
-            List<Node> ns = q.list();
+            List<Login> ns = q.list();
             tx.commit();
             logins.clear();
-            for (Node node : ns) logins.put(node.getNodeID(), node);
+            for (Login login : ns) logins.put(login.getUsername(), login);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

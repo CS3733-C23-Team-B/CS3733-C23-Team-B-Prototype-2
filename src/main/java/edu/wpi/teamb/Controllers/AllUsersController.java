@@ -5,13 +5,19 @@ import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
+
+import static edu.wpi.teamb.Database.LoginDAO.getAllLogins;
 
 public class AllUsersController {
 
@@ -37,7 +43,7 @@ public class AllUsersController {
       };
 
   public void initialize() {
-    List<Object> userList;
+    Map<String, Login> userMap = new HashMap<String, Login>();
     id.setCellValueFactory(new PropertyValueFactory<>("id"));
     first.setCellValueFactory(new PropertyValueFactory<>("firstname"));
     last.setCellValueFactory(new PropertyValueFactory<>("lastname"));
@@ -45,9 +51,9 @@ public class AllUsersController {
     email.setCellValueFactory(new PropertyValueFactory<>("email"));
     admin.setCellValueFactory(new PropertyValueFactory<>("admin"));
 
-    userList = DBSession.getAll(ORMType.LOGIN);
-    userList.forEach(
-        (value) -> {
+    userMap = getAllLogins();
+    userMap.forEach(
+        (key,value) -> {
           table.getItems().add(value);
         });
 

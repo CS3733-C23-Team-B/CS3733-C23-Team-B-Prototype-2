@@ -16,22 +16,22 @@ public class MapDAO {
     private static List<Edge> edges;
     private static Map<String, LocationName> locationNames = new HashMap<String, LocationName>();
 
-    public static Map<String, Node> getNodes() {
+    public static Map<String, Node> getAllNodes() {
         return nodes;
     }
 
-    public static List<Edge> getEdges() {
+    public static List<Edge> getAllEdges() {
         return edges;
     }
 
-    public static Map<String, LocationName> getLocationNames() {return locationNames; }
+    public static Map<String, LocationName> getAllLocationNames() {return locationNames; }
 
     public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
         HashMap<String, ArrayList<Move>> moves = new HashMap<String, ArrayList<Move>>();
         SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
         Session session = sf.openSession();
-        String hql = "FROM Move WHERE moveDate <= '" + d.toString() + "' ORDER BY moveDate";
+        String hql = "SELECT DISTINCT locationName, node, moveDate FROM Move WHERE moveDate <= '" + d.toString() + "' ORDER BY moveDate DESC";
         try {
             Transaction tx = session.beginTransaction();
             Query q = session.createQuery(hql, Move.class);

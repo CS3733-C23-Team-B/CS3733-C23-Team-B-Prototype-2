@@ -15,6 +15,7 @@ public class MapDAO {
   private static Map<String, LocationName> locationNames = new HashMap<String, LocationName>();
 
   public static Map<String, Node> getAllNodes() {
+    refreshNodes();
     return nodes;
   }
 

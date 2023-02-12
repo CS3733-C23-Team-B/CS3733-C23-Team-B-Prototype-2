@@ -36,7 +36,6 @@ public class MoveCreatorController {
     String nodeID = nodeIdBox.getText();
     String location = locationsBox.getText();
     String date = datePicker.getValue().toString();
-    System.out.println("date" + date);
 
     if (nodeID.isEmpty() || location.isEmpty() || date == null) {
       bigText.setText("Missing fields");
@@ -60,9 +59,7 @@ public class MoveCreatorController {
     Navigation.navigate(Screen.MAP_EDITOR);
   }
 
-  public void selectDate() {
-    lblDate.setText(datePicker.getValue().toString());
-  }
+  public void selectDate() {}
 
   private ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();

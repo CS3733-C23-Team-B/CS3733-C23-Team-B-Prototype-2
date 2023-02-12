@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD:src/main/resources/edu/wpi/teamb/views/root.fxml
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.NavigationController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="599.199951171875" minWidth="5.5999755859375" prefWidth="296.79998779296875" />
   </columnConstraints>
@@ -14,8 +18,47 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" percentHeight="4.814814814" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
+   <children>
+      <HBox GridPane.halignment="CENTER" GridPane.valignment="TOP">
+         <children>
+            <MFXButton id="homeButton" fx:id="homeButton" minWidth="-Infinity" onAction="#homeButtonClicked" prefHeight="70.0" prefWidth="60.0" style="-fx-background-color: #00077A;" text="." textFill="WHITE">
+               <font>
+                  <Font size="1.0" />
+               </font>
+            </MFXButton>
+            <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#serviceRequestFormsButtonClicked" style="-fx-background-color: #00077A;" text="Service Request Forms" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </MFXButton>
+            <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#submittedRequestsButtonClicked" style="-fx-background-color: #00077A;" text="Submitted Requests" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </MFXButton>
+            <MFXButton id="navBarButton" fx:id="mapEditorButton" minWidth="-Infinity" onAction="#mapEditorButtonClicked" style="-fx-background-color: #00077A;" text="Map Editor" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </MFXButton>
+            <MFXButton id="navBarButton" fx:id="homeButton3" minWidth="-Infinity" onAction="#pathfindingButtonClicked" style="-fx-background-color: #00077A;" text="Pathfinding" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </MFXButton>
+            <MenuButton id="menuIcon" minWidth="-Infinity" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-border-color: #00077A;" text="MenuButton">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#helpClicked" text="Help" />
+                  <MenuItem mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
+                  <MenuItem mnemonicParsing="false" onAction="#signOutClicked" text="Sign Out" />
+               </items>
+            </MenuButton>
+            <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#exitButtonClicked" style="-fx-background-color: #00077A;" text="Exit" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </HBox>
+   </children>
 </GridPane>
-=======
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.NavigationController"/>
->>>>>>> main:src/main/resources/edu/wpi/teamb/views/Navigation/Root.fxml

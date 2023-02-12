@@ -64,15 +64,15 @@ public class DBSession {
   }
 
   public static Map<String, Node> getNodes() {
-    return MapDAO.getNodes();
+    return MapDAO.getAllNodes();
   }
 
   public static List<Edge> getEdges() {
-    return MapDAO.getEdges();
+    return MapDAO.getAllEdges();
   }
 
   public static Map<String, LocationName> getLocationNames() {
-    return MapDAO.getLocationNames();
+    return MapDAO.getAllLocationNames();
   }
 
   public static Map<String, ArrayList<Move>> getIDMoves(Date d) {

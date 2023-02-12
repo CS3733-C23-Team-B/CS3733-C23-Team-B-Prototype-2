@@ -14,19 +14,19 @@ public class RequestDAO {
   private static List<SanitationRequest> SRequests;
   private static List<ComputerRequest> CRequests;
 
-  public static List<GeneralRequest> getRequests() {
+  public static List<GeneralRequest> getALLRequests() {
     return allRequests;
   }
 
-  public static List<PatientTransportationRequest> getPTRequests() {
+  public static List<PatientTransportationRequest> getALLPTRequests() {
     return PTRequests;
   }
 
-  public static List<SanitationRequest> getSRequests() {
+  public static List<SanitationRequest> getALLSRequests() {
     return SRequests;
   }
 
-  public static List<ComputerRequest> getCRequests() {
+  public static List<ComputerRequest> getALLCRequests() {
     return CRequests;
   }
 

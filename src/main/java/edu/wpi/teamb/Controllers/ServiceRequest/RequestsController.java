@@ -5,6 +5,7 @@ import edu.wpi.teamb.Entities.ORMType;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.List;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -102,6 +103,7 @@ public class RequestsController {
     saniButton.setOnAction(e -> makeTable(saniColumns, ORMType.SREQUEST));
     transButton.setOnAction(e -> makeTable(transColumns, ORMType.PTREQUEST));
     comButton.setOnAction(e -> makeTable(comColumns, ORMType.CREQUEST));
+    mainVbox.setPadding(new Insets(50, 20, 0, 20));
   }
 
   private void makeTable(List<String> columns, ORMType type) {

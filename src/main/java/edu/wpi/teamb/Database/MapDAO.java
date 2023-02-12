@@ -199,12 +199,22 @@ public class MapDAO {
         }
     }
 
-    public static void deleteEdge(Edge ed) {
+    public static void deleteEdge(Node n1, Node n2) {
         SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
         Session session = sf.openSession();
+        Edge e1 = new Edge();
+        Edge e2 = new Edge();
+        e1.setNode1(n1);
+        e1.setNode2(n2);
+        e2.setNode1(n2);
+        e2.setNode2(n1);
         try {
             Transaction tx = session.beginTransaction();
-            session.remove(ed);
+            if(session.contains(e1)) {
+                session.remove(e1);
+            } else if (session.contains(e2)) {
+                session.remove(e2);
+            }
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();

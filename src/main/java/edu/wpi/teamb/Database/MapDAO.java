@@ -6,14 +6,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MapDAO {
 
-    static Map<String, Node> nodes;
-    static List<Edge> edges;
+    private static Map<String, Node> nodes = new HashMap<String, Node>();
+    private static List<Edge> edges;
 
     public static Map<String, Node> getNodes() {
         return nodes;
@@ -74,6 +75,52 @@ public class MapDAO {
         try {
             tx = session.beginTransaction();
             session.remove(n);
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void updateNode(Node n) {
+        SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+        Session session = sf.openSession();
+        String oldID = n.getNodeID();
+        String newID = n.buildID();
+        String hql = "UPDATE FROM Node SET nodeID = '" + newID + "' WHERE nodeID = '" + oldID + "'";
+        try {
+            Transaction tx = session.beginTransaction();
+            session.merge(n);
+            session.createQuery(hql, Node.class);
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void addEdge(Edge ed) {
+        SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+        Session session = sf.openSession();
+        try {
+            Transaction tx = session.beginTransaction();
+            session.persist(ed);
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void deleteEdge(Edge ed) {
+        SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+        Session session = sf.openSession();
+        try {
+            Transaction tx = session.beginTransaction();
+            session.remove(ed);
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();

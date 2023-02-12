@@ -71,6 +71,10 @@ public class DBSession {
     MapDAO.deleteMove(m);
   }
 
+  public static void addRequest(GeneralRequest r) {
+    RequestDAO.addRequest(r);
+  }
+
   public static Map<String, Node> getAllNodes() {
     return MapDAO.getAllNodes();
   }
@@ -167,14 +171,11 @@ public class DBSession {
   }
 
   public static String getMostRecentNodeID(String longName) {
-    List<Move> moves = getAllMovesWithLN(longName);
-
-    if (moves.isEmpty()) return "NO MOVES";
-
-    Move mostRecent = moves.get(0);
-    for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
-
-    return mostRecent.getNode().getNodeID();
+    try {
+      return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01")).get(longName).getNode().getNodeID();
+    } catch (ParseException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   //   public static Node getMostRecentNode(String longName) {

@@ -2,8 +2,6 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
 import edu.wpi.teamb.Entities.SessionGetter;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,17 +59,20 @@ public class DBSession {
   }
 
   public static List<Edge> getAllEdges() {
+    return edgeList;
+  }
+
+  public void refreshEdges() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     try {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery("FROM Edge");
-      List<Edge> edges = q.list();
+      edges = q.list();
       session.close();
-      return edges;
     } catch (Exception e) {
       e.printStackTrace();
-      return null;
+      return;
     } finally {
       session.close();
     }
@@ -192,6 +193,7 @@ public class DBSession {
     }
   }
 
+  /*
   public static void deleteNode(Node n) {
     List<Edge> es = getAllEdges();
     for (Edge e : es) {
@@ -232,6 +234,9 @@ public class DBSession {
     delete(oldLN);
   }
 
+   */
+
+  /*
   public static Node updateNode(Node n) {
 
     Node ncopy = new Node();
@@ -276,20 +281,28 @@ public class DBSession {
     return ncopy;
   }
 
-  public static void updateAllNodes() {
-    Map<String, Node> nodes = getAllNodes();
+   */
+  /*
+   public static void updateAllNodes() {
+     Map<String, Node> nodes = getAllNodes();
 
-    for (Node n : nodes.values()) {
-      updateNode(n);
-    }
-  }
+     for (Node n : nodes.values()) {
+       updateNode(n);
+     }
+   }
 
+  */
+
+  /*
   public static String getMostRecentLocation(String NodeID) {
     Move move = getMostRecentMove(NodeID);
     if (move == null) return "NO MOVES";
     return move.getLongName();
   }
 
+   */
+
+  /*
   public static String getMostRecentNodeID(String longName) {
     List<Move> moves = getAllMovesWithLN(longName);
 
@@ -301,11 +314,16 @@ public class DBSession {
     return mostRecent.getNodeID();
   }
 
-  public static Node getMostRecentNode(String longName) {
-    String id = getMostRecentNodeID(longName);
-    return getAllNodes().get(id);
-  }
+   */
+  /*
+   public static Node getMostRecentNode(String longName) {
+     String id = getMostRecentNodeID(longName);
+     return getAllNodes().get(id);
+   }
 
+  */
+
+  /*
   public static Move getMostRecentMove(String nodeID) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
@@ -330,12 +348,15 @@ public class DBSession {
       session.close();
     }
   }
+   */
 
   public static boolean moreRecentThan(Move move1, Move move2) {
     return move1.getMoveDate().after(move2.getMoveDate());
   }
 
+  /*
   public static void switchMoveLN(String newN, String oldN, LocationName ln) {
+
     Move oldM = getMostRecentMove(oldN);
     delete(oldM);
 
@@ -351,4 +372,5 @@ public class DBSession {
     }
     addORM(mnew);
   }
+  */
 }

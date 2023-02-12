@@ -35,7 +35,7 @@ public class Move implements IORM {
           @ForeignKey(
               name = "move_locationName_fk",
               foreignKeyDefinition =
-                  "FOREIGN KEY (locationName) REFERENCES iter2.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (locationName) REFERENCES iter2.LocationName(longName) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter

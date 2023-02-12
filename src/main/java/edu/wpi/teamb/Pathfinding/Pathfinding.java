@@ -55,7 +55,9 @@ public class Pathfinding {
     double y2 = node2.getYCoord();
     String f1 = node1.getFloor();
     String f2 = node2.getFloor();
-    int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * 150;
+
+    int kFloor = 150;
+    int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * kFloor;
 
     double dist = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) + floorDist;
     return dist;

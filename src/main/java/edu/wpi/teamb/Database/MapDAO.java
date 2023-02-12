@@ -5,6 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class MapDAO {
@@ -23,17 +26,34 @@ public class MapDAO {
 
     public static Map<String, LocationName> getLocationNames() {return locationNames; }
 
-    public static Map<String, Move> getIDMoves(Date d) {
-        HashMap<String, Move> moves = new HashMap<String, Move>();
+    public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+        HashMap<String, ArrayList<Move>> moves = new HashMap<String, ArrayList<Move>>();
         SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
         Session session = sf.openSession();
-        String hql = "FROM Move WHERE moveDate <= '" + d.toString() + "'";
+        String hql = "FROM Move WHERE moveDate <= '" + d.toString() + "' ORDER BY moveDate";
         try {
             Transaction tx = session.beginTransaction();
             Query q = session.createQuery(hql, Move.class);
             List<Move> ms = q.list();
             tx.commit();
-            for (Move m : ms) { moves.put(m.getNode().getNodeID(), m);}
+            for (Move m : ms) {
+                if(moves.containsKey(m.getNode().getNodeID())) {
+                    String d1 = fmt.format(m.getMoveDate());
+                    String d2 = fmt.format(moves.get(m.getNode().getNodeID()).get(0).getMoveDate());
+                    if(d1 == d2) {
+                        moves.get(m.getNode().getNodeID()).add(m);
+                    } else {
+                        ArrayList<Move> newM = new ArrayList<Move>();
+                        newM.add(m);
+                        moves.put(m.getNode().getNodeID(), newM);
+                    }
+                } else {
+                    ArrayList<Move> newM = new ArrayList<Move>();
+                    newM.add(m);
+                    moves.put(m.getNode().getNodeID(), newM);
+                }
+            }
             return moves;
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,17 +63,34 @@ public class MapDAO {
         }
     }
 
-    public static Map<String, Move> getLNMoves(Date d) {
-        HashMap<String, Move> moves = new HashMap<String, Move>();
+    public static Map<String, ArrayList<Move>> getLNMoves(Date d) {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+        HashMap<String, ArrayList<Move>> moves = new HashMap<String, ArrayList<Move>>();
         SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
         Session session = sf.openSession();
-        String hql = "FROM Move WHERE moveDate <= '" + d.toString() + "'";
+        String hql = "FROM Move WHERE moveDate <= '" + d.toString() + "' ORDER BY moveDate";
         try {
             Transaction tx = session.beginTransaction();
             Query q = session.createQuery(hql, Move.class);
             List<Move> ms = q.list();
             tx.commit();
-            for (Move m : ms) { moves.put(m.getLocationName().getLongName(), m);}
+            for (Move m : ms) {
+                if(moves.containsKey(m.getLocationName().getLongName())) {
+                    String d1 = fmt.format(m.getMoveDate());
+                    String d2 = fmt.format(moves.get(m.getLocationName().getLongName()).get(0).getMoveDate());
+                    if(d1 == d2) {
+                        moves.get(m.getLocationName().getLongName()).add(m);
+                    } else {
+                        ArrayList<Move> newM = new ArrayList<Move>();
+                        newM.add(m);
+                        moves.put(m.getLocationName().getLongName(), newM);
+                    }
+                } else {
+                    ArrayList<Move> newM = new ArrayList<Move>();
+                    newM.add(m);
+                    moves.put(m.getLocationName().getLongName(), newM);
+                }
+            }
             return moves;
         } catch (Exception e) {
             e.printStackTrace();

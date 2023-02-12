@@ -3,10 +3,8 @@ package edu.wpi.teamb.Database;
 import edu.wpi.teamb.Entities.*;
 import edu.wpi.teamb.Entities.SessionGetter;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -77,11 +75,11 @@ public class DBSession {
     return MapDAO.getLocationNames();
   }
 
-  public static Map<String, Move> getIDMoves(Date d) {
+  public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
     return MapDAO.getIDMoves(d);
   }
 
-  public static Map<String, Move> getLNMoves(Date d) {
+  public static Map<String, ArrayList<Move>> getLNMoves(Date d) {
     return MapDAO.getLNMoves(d);
   }
 

@@ -110,7 +110,7 @@ public class PathfindingController {
     List<Move> moves = DBSession.getAllMoves();
 
     for (Move move : moves)
-      if (!list.contains(move.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals("L1"))
+      if (!list.contains(move.getLocationName.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals("L1"))
         list.add(move.getLongName());
 
     return list;

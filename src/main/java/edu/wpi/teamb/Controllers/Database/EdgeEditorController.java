@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -54,7 +55,9 @@ public class EdgeEditorController {
       bigText.setFill(Color.RED);
       return;
     }
-    DBSession.deleteEdge(node.getNodeID(), edgesBox.getValue());
+    Node n1 = node;
+    Node n2 = DBSession.getAllNodes().get(edgesBox.getValue());
+    DBSession.deleteEdge(n1, n2);
     Pathfinding.refreshData();
     resetFields();
   }

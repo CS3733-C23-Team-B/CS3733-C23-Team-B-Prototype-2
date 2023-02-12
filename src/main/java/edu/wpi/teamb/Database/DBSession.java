@@ -82,7 +82,7 @@ public class DBSession {
     return MapDAO.getIDMoves(d);
   }
 
-  public static Map<String, ArrayList<Move>> getLNMoves(Date d) {
+  public static Map<String, Move> getLNMoves(Date d) {
     return MapDAO.getLNMoves(d);
   }
 
@@ -160,14 +160,11 @@ public class DBSession {
   }
 
   public static String getMostRecentNodeID(String longName) {
-    List<Move> moves = getAllMovesWithLN(longName);
-
-    if (moves.isEmpty()) return "NO MOVES";
-
-    Move mostRecent = moves.get(0);
-    for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
-
-    return mostRecent.getNode().getNodeID();
+    try {
+      return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01")).get(longName).getNode().getNodeID();
+    } catch (ParseException e) {
+      throw new RuntimeException(e);
+    }
   }
 
 

@@ -62,7 +62,7 @@ public class MapDAO {
         }
     }
 
-    public static Map<String, ArrayList<Move>> getLNMoves(Date d) {
+    public static Map<String, Move> getLNMoves(Date d) {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
         HashMap<String, ArrayList<Move>> moves = new HashMap<String, ArrayList<Move>>();
         SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();

@@ -174,6 +174,22 @@ public class DBSession {
     }
   }
 
+  public static List<Move> getLocationfromNodeID(String id) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM Move WHERE nodeID = '" + id + "'");
+      List<Move> moves = q.list();
+      session.close();
+      return moves;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
+  }
   public static Map<String, Node> getAllNodes() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

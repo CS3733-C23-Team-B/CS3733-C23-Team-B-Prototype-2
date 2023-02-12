@@ -111,7 +111,8 @@ public class PathfindingController {
 
     for (Move move : moves)
       if (!list.contains(move.getLocationName().getLongName())
-          && nodes.get(move.getNode()).getFloor().equals("L1")) list.add(move.getLocationName().getLongName());
+          && nodes.get(move.getNode()).getFloor().equals("L1"))
+        list.add(move.getLocationName().getLongName());
 
     return list;
   }

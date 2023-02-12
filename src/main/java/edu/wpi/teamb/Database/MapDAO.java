@@ -66,28 +66,31 @@ public class MapDAO {
     }
   }
 
-    public static Map<String, Move> getLNMoves(Date d) {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
-        HashMap<String, Move> moves = new HashMap<String, Move>();
-        SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-        Session session = sf.openSession();
-        String hql = "SELECT DISTINCT locationName, node, moveDate FROM Move WHERE moveDate <= '" + d.toString() + "' ORDER BY moveDate DESC";
-        try {
-            Transaction tx = session.beginTransaction();
-            Query q = session.createQuery(hql, Move.class);
-            List<Move> ms = q.list();
-            tx.commit();
-            for (Move m : ms) {
-                moves.put(m.getLocationName().getLongName(), m);
-            }
-            return moves;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-            return moves;
-        }
+  public static Map<String, Move> getLNMoves(Date d) {
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+    HashMap<String, Move> moves = new HashMap<String, Move>();
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    String hql =
+        "SELECT DISTINCT locationName, node, moveDate FROM Move WHERE moveDate <= '"
+            + d.toString()
+            + "' ORDER BY moveDate DESC";
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery(hql, Move.class);
+      List<Move> ms = q.list();
+      tx.commit();
+      for (Move m : ms) {
+        moves.put(m.getLocationName().getLongName(), m);
+      }
+      return moves;
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+      return moves;
     }
+  }
 
   public static void refreshNodes() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();

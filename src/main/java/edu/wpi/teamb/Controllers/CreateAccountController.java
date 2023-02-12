@@ -3,10 +3,11 @@ package edu.wpi.teamb.Controllers;
 import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
-import edu.wpi.teamb.Entities.ORMType;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -24,7 +25,8 @@ public class CreateAccountController {
   @FXML MFXButton cancelButton;
   @FXML Label notificationText;
 
-  private List<Object> users;
+  private Map<String, Login> usersMap = new HashMap<>();
+  private List<Login> users;
 
   public void cancelClicked(ActionEvent actionEvent) {
     Stage s = (Stage) cancelButton.getScene().getWindow();
@@ -37,8 +39,11 @@ public class CreateAccountController {
         && !emailField.getText().equals("")
         && !usernameField.getText().equals("")
         && !passwordField.getText().equals("")) {
-
-      users = DBSession.getAll(ORMType.LOGIN);
+      usersMap = DBSession.getLogins();
+      usersMap.forEach(
+          (key, value) -> {
+            users.add(value);
+          });
       boolean exists = false;
       // check if username already exists
       for (Object user : users) {

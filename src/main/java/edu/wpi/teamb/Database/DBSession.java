@@ -35,6 +35,14 @@ public class DBSession {
     MapDAO.updateNode(n);
   }
 
+  public static void addLogin(Login l) {
+    LoginDAO.addLogin(l);
+  }
+
+  public static Map<String, Login> getAllLogins() {
+    LoginDAO.getAllLogins();
+  }
+
   public static void addEdge(Edge e) {
     MapDAO.addEdge(e);
   }
@@ -66,6 +74,7 @@ public class DBSession {
   public static Map<String, Node> getNodes() {
     return MapDAO.getAllNodes();
   }
+
   public static Map<String, Login> getLogins() {
     return LoginDAO.getAllLogins();
   }

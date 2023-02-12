@@ -2,22 +2,16 @@ package edu.wpi.teamb.Controllers;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
-import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
-
-import static edu.wpi.teamb.Database.LoginDAO.getAllLogins;
 
 public class AllUsersController {
 
@@ -51,9 +45,9 @@ public class AllUsersController {
     email.setCellValueFactory(new PropertyValueFactory<>("email"));
     admin.setCellValueFactory(new PropertyValueFactory<>("admin"));
 
-    userMap = getAllLogins();
+    userMap = DBSession.getAllLogins();
     userMap.forEach(
-        (key,value) -> {
+        (key, value) -> {
           table.getItems().add(value);
         });
 

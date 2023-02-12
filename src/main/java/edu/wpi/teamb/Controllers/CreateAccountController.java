@@ -61,7 +61,7 @@ public class CreateAccountController {
                 firstNameField.getText(),
                 lastNameField.getText());
         users.add(newLogin);
-        DBSession.addORM(newLogin);
+        DBSession.addLogin(newLogin);
         Stage s = (Stage) cancelButton.getScene().getWindow();
         s.close();
         SigninController.getInstance().refresh();

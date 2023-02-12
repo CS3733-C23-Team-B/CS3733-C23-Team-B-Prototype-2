@@ -15,9 +15,7 @@ public class RequestDAO {
     private static List<SanitationRequest> SRequests;
     private static List<ComputerRequest> CRequests;
 
-    public static List<GeneralRequest> getRequests() {
-        return allRequests;
-    }
+    public static List<GeneralRequest> getRequests() { return allRequests; }
 
     public static List<PatientTransportationRequest> getPTRequests() {
         return PTRequests;

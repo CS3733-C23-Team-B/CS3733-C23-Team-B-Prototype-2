@@ -64,31 +64,17 @@ public class MapDAO {
 
     public static Map<String, Move> getLNMoves(Date d) {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
-        HashMap<String, ArrayList<Move>> moves = new HashMap<String, ArrayList<Move>>();
+        HashMap<String, Move> moves = new HashMap<String, Move>();
         SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
         Session session = sf.openSession();
-        String hql = "FROM Move WHERE moveDate <= '" + d.toString() + "' ORDER BY moveDate";
+        String hql = "SELECT DISTINCT locationName, node, moveDate FROM Move WHERE moveDate <= '" + d.toString() + "' ORDER BY moveDate DESC";
         try {
             Transaction tx = session.beginTransaction();
             Query q = session.createQuery(hql, Move.class);
             List<Move> ms = q.list();
             tx.commit();
             for (Move m : ms) {
-                if(moves.containsKey(m.getLocationName().getLongName())) {
-                    String d1 = fmt.format(m.getMoveDate());
-                    String d2 = fmt.format(moves.get(m.getLocationName().getLongName()).get(0).getMoveDate());
-                    if(d1.equals(d2)) {
-                        moves.get(m.getLocationName().getLongName()).add(m);
-                    } else {
-                        ArrayList<Move> newM = new ArrayList<Move>();
-                        newM.add(m);
-                        moves.put(m.getLocationName().getLongName(), newM);
-                    }
-                } else {
-                    ArrayList<Move> newM = new ArrayList<Move>();
-                    newM.add(m);
-                    moves.put(m.getLocationName().getLongName(), newM);
-                }
+                moves.put(m.getLocationName().getLongName(), m);
             }
             return moves;
         } catch (Exception e) {
@@ -213,12 +199,22 @@ public class MapDAO {
         }
     }
 
-    public static void deleteEdge(Edge ed) {
+    public static void deleteEdge(Node n1, Node n2) {
         SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
         Session session = sf.openSession();
+        Edge e1 = new Edge();
+        Edge e2 = new Edge();
+        e1.setNode1(n1);
+        e1.setNode2(n2);
+        e2.setNode1(n2);
+        e2.setNode2(n1);
         try {
             Transaction tx = session.beginTransaction();
-            session.remove(ed);
+            if(session.contains(e1)) {
+                session.remove(e1);
+            } else if (session.contains(e2)) {
+                session.remove(e2);
+            }
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();

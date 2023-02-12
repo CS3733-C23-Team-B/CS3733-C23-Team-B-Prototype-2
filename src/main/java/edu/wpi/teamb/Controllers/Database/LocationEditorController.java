@@ -74,7 +74,7 @@ public class LocationEditorController {
 
   private ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    Map<String, LocationName> locationsDBList = DBSession.getLocationNames();
+    Map<String, LocationName> locationsDBList = DBSession.getAllLocationNames();
 
     locationsDBList.forEach((key, value) -> list.add(value.getLongName()));
 

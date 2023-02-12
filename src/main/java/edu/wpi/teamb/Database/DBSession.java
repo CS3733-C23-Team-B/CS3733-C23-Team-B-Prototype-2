@@ -87,7 +87,7 @@ public class DBSession {
     return MapDAO.getAllEdges();
   }
 
-  public static Map<String, LocationName> getLocationNames() {
+  public static Map<String, LocationName> getAllLocationNames() {
     return MapDAO.getAllLocationNames();
   }
 
@@ -172,7 +172,10 @@ public class DBSession {
 
   public static String getMostRecentNodeID(String longName) {
     try {
-      return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01")).get(longName).getNode().getNodeID();
+      return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01"))
+          .get(longName)
+          .getNode()
+          .getNodeID();
     } catch (ParseException e) {
       throw new RuntimeException(e);
     }

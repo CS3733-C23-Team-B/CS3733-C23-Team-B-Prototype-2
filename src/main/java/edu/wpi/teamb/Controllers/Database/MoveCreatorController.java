@@ -47,7 +47,7 @@ public class MoveCreatorController {
     Move newMove = new Move();
     Node node = DBSession.getAllNodes().get(nodeID);
     newMove.setNode(node);
-    LocationName LN = DBSession.getLocationNames().get(location);
+    LocationName LN = DBSession.getAllLocationNames().get(location);
     newMove.setLocationName(LN);
     Date newDate = Date.valueOf(datePicker.getValue());
     newMove.setMoveDate(newDate);
@@ -66,7 +66,7 @@ public class MoveCreatorController {
 
   private ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    Map<String, LocationName> locationsDBList = DBSession.getLocationNames();
+    Map<String, LocationName> locationsDBList = DBSession.getAllLocationNames();
 
     locationsDBList.forEach(
         (key, value) -> {

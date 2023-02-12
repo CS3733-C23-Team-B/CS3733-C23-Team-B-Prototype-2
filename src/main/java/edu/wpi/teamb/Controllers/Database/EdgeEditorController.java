@@ -1,7 +1,6 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;

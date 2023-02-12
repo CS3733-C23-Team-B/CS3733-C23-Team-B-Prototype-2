@@ -2,6 +2,8 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
 import edu.wpi.teamb.Entities.SessionGetter;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,93 +25,64 @@ public class DBSession {
     return instance;
   }
 
-  private static Map<String, Node> nodeMap = new HashMap<>();
-
-  public static void addORM(Object o) {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    Transaction tx = null;
-    try {
-      tx = session.beginTransaction();
-      session.persist(o);
-      tx.commit();
-    } catch (Exception e) {
-      if (tx != null) tx.rollback();
-      e.printStackTrace();
-    } finally {
-      session.close();
-    }
+  public static void addNode(Node n) {
+    MapDAO.addNode(n);
   }
 
-  public static List<Object> getAll(ORMType ot) {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM " + ot.toString());
-      List<Object> objects = q.list();
-      session.close();
-      return objects;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    } finally {
-      session.close();
-    }
+  public static void deleteNode(Node n) {
+    MapDAO.deleteNode(n);
   }
 
-  public static List<Edge> getAllEdges() {
-    return edgeList;
+  public static void updateNode(Node n) {
+    MapDAO.updateNode(n);
   }
 
-  public void refreshEdges() {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM Edge");
-      edges = q.list();
-      session.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-      return;
-    } finally {
-      session.close();
-    }
+  public static void addEdge(Edge e) {
+    MapDAO.addEdge(e);
   }
 
-  public static List<LocationName> getAllLocationNames() {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM LocationName");
-      List<LocationName> locationNames = q.list();
-      session.close();
-      return locationNames;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    } finally {
-      session.close();
-    }
+  public static void deleteEdge(Edge e) {
+    MapDAO.deleteEdge(e);
   }
 
-  public static List<Move> getAllMoves() {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM Move");
-      List<Move> moves = q.list();
-      session.close();
-      return moves;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    } finally {
-      session.close();
-    }
+  public static void addLocationName(LocationName ln) {
+    MapDAO.addLocationName(ln);
+  }
+
+  public static void deleteLocationName(LocationName ln) {
+    MapDAO.deleteLocationName(ln);
+  }
+
+  public static void updateLocationName(LocationName newLN, LocationName oldLN) {
+    MapDAO.updateLocationName(newLN, oldLN);
+  }
+
+  public static void addMove(Move m) {
+    MapDAO.addMove(m);
+  }
+
+  public static void deleteMove(Move m) {
+    MapDAO.deleteMove(m);
+  }
+
+  public static Map<String, Node> getNodes() {
+    return MapDAO.getNodes();
+  }
+
+  public static List<Edge> getEdges() {
+    return MapDAO.getEdges();
+  }
+
+  public static Map<String, LocationName> getLocationNames() {
+    return MapDAO.getLocationNames();
+  }
+
+  public static Map<String, Move> getIDMoves(Date d) {
+    return MapDAO.getIDMoves(d);
+  }
+
+  public static Map<String, Move> getLNMoves(Date d) {
+    return MapDAO.getLNMoves(d);
   }
 
   public static void updateUser(String user, String first, String last, String email) {
@@ -158,59 +131,6 @@ public class DBSession {
     }
   }
 
-  public static List<Move> getAllMovesWithLN(String ln) {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM Move WHERE longName = '" + ln + "'");
-      List<Move> moves = q.list();
-      session.close();
-      return moves;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    } finally {
-      session.close();
-    }
-  }
-
-  public static Map<String, Node> getAllNodes() {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM Node");
-      List<Node> nodes = q.list();
-      session.close();
-      nodeMap.clear();
-      for (Node node : nodes) nodeMap.put(node.getNodeID(), node);
-      return nodeMap;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    } finally {
-      session.close();
-    }
-  }
-
-  public static List<LocationName> getAllLN() {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM LocationName");
-      List<LocationName> lns = q.list();
-      session.close();
-      return lns;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    } finally {
-      session.close();
-    }
-  }
-
   public static void delete(IORM iorm) {
 
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
@@ -228,116 +148,6 @@ public class DBSession {
     }
   }
 
-  public static void deleteEdge(String node1, String node2) {
-    List<Edge> es = getAllEdges();
-    for (Edge e : es) {
-      if (e.getNode1().equals(node1) && e.getNode2().equals(node2)) {
-        delete(e);
-      } else if (e.getNode1().equals(node2) && e.getNode2().equals(node1)) {
-        delete(e);
-      }
-    }
-  }
-
-  /*
-  public static void deleteNode(Node n) {
-    List<Edge> es = getAllEdges();
-    for (Edge e : es) {
-      if (e.getNode1().equals(n.getNodeID()) || e.getNode2().equals(n.getNodeID())) {
-        delete(e);
-      }
-    }
-    List<Move> ms = getAllMoves();
-    for (Move m : ms) {
-      if (m.getNodeID().equals(n.getNodeID())) {
-        delete(m);
-      }
-    }
-    delete(n);
-  }
-
-  public static void deleteLN(LocationName ln) {
-    List<Move> ms = getAllMoves();
-    for (Move m : ms) {
-      if (m.getLongName().equals(ln.getLongName())) {
-        delete(m);
-      }
-    }
-    delete(ln);
-  }
-
-  public static void updateLocationName(LocationName newLN, LocationName oldLN) {
-
-    addORM(newLN);
-    List<Move> moves = getAllMoves();
-    for (Move m : moves) {
-      if (m.getLongName().equals(oldLN.getLongName())) {
-        Move newm = new Move(m.getNodeID(), newLN.getLongName(), m.getMoveDate());
-        addORM(newm);
-        delete(m);
-      }
-    }
-    delete(oldLN);
-  }
-
-   */
-
-  /*
-  public static Node updateNode(Node n) {
-
-    Node ncopy = new Node();
-    ncopy.setNodeID(n.buildID());
-    ncopy.setXCoord(n.getXCoord());
-    ncopy.setYCoord(n.getYCoord());
-    ncopy.setFloor(n.getFloor());
-    ncopy.setBuilding(n.getBuilding());
-    addORM(ncopy);
-
-    List<Edge> edges = getAllEdges();
-    for (Edge e : edges) {
-      if (e.getNode1().equals(n.getNodeID())) {
-        Edge newe = new Edge();
-        newe.setNode1(ncopy.getNodeID());
-        newe.setNode2(e.getNode2());
-        addORM(newe);
-        delete(e);
-      } else if (e.getNode2().equals(n.getNodeID())) {
-        Edge newe = new Edge();
-        newe.setNode1(e.getNode1());
-        newe.setNode2(ncopy.getNodeID());
-        addORM(newe);
-        delete(e);
-      }
-    }
-
-    List<Move> moves = getAllMoves();
-    for (Move m : moves) {
-      if (m.getNodeID().equals(n.getNodeID())) {
-        Move newm = new Move();
-        newm.setNodeID(ncopy.getNodeID());
-        newm.setLongName(m.getLongName());
-        newm.setMoveDate(m.getMoveDate());
-        addORM(newm);
-        delete(m);
-      }
-    }
-
-    delete(n);
-
-    return ncopy;
-  }
-
-   */
-  /*
-   public static void updateAllNodes() {
-     Map<String, Node> nodes = getAllNodes();
-
-     for (Node n : nodes.values()) {
-       updateNode(n);
-     }
-   }
-
-  */
 
   /*
   public static String getMostRecentLocation(String NodeID) {

@@ -66,7 +66,7 @@ public class DBSession {
   public static Map<String, Node> getAllNodes() {
     return MapDAO.getAllNodes();
   }
-  public static Map<String, Node> getLogins() {
+  public static Map<String, Login> getLogins() {
     return LoginDAO.getAllLogins();
   }
 

@@ -6,6 +6,7 @@ import edu.wpi.teamb.Database.PatientTransportationRequest;
 import edu.wpi.teamb.Database.SanitationRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -55,10 +56,11 @@ public class RequestsController {
   @FXML TableColumn comNotesColumn;
   @FXML TableColumn comStatusColumn;
 
+  List<PatientTransportationRequest> TransportRequestList = new ArrayList<>();
+  List<SanitationRequest> SanitationRequestList = new ArrayList<>();
+  List<ComputerRequest> ComputerRequestList = new ArrayList<>();
+
   public void initialize() {
-    List<PatientTransportationRequest> TransportRequestList;
-    List<SanitationRequest> SanitationRequestList;
-    List<ComputerRequest> ComputerRequestList;
 
     tranLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
     tranFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));

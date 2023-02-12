@@ -41,7 +41,7 @@ public class MapDAO {
                 if(moves.containsKey(m.getNode().getNodeID())) {
                     String d1 = fmt.format(m.getMoveDate());
                     String d2 = fmt.format(moves.get(m.getNode().getNodeID()).get(0).getMoveDate());
-                    if(d1 == d2) {
+                    if(d1.equals(d2)) {
                         moves.get(m.getNode().getNodeID()).add(m);
                     } else {
                         ArrayList<Move> newM = new ArrayList<Move>();
@@ -78,7 +78,7 @@ public class MapDAO {
                 if(moves.containsKey(m.getLocationName().getLongName())) {
                     String d1 = fmt.format(m.getMoveDate());
                     String d2 = fmt.format(moves.get(m.getLocationName().getLongName()).get(0).getMoveDate());
-                    if(d1 == d2) {
+                    if(d1.equals(d2)) {
                         moves.get(m.getLocationName().getLongName()).add(m);
                     } else {
                         ArrayList<Move> newM = new ArrayList<Move>();

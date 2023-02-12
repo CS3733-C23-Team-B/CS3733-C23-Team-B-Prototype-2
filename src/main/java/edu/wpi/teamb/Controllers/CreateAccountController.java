@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class CreateAccountController {
   @FXML Label notificationText;
 
   private Map<String, Login> usersMap = new HashMap<>();
-  private List<Login> users;
+  private List<Login> users = new ArrayList<Login>();
 
   public void cancelClicked(ActionEvent actionEvent) {
     Stage s = (Stage) cancelButton.getScene().getWindow();

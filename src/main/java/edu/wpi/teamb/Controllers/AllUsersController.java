@@ -37,7 +37,7 @@ public class AllUsersController {
       };
 
   public void initialize() {
-    Map<String, Login> userMap = new HashMap<String, Login>();
+    Map<String, Login> usersMap = new HashMap<String, Login>();
     id.setCellValueFactory(new PropertyValueFactory<>("id"));
     first.setCellValueFactory(new PropertyValueFactory<>("firstname"));
     last.setCellValueFactory(new PropertyValueFactory<>("lastname"));
@@ -45,8 +45,8 @@ public class AllUsersController {
     email.setCellValueFactory(new PropertyValueFactory<>("email"));
     admin.setCellValueFactory(new PropertyValueFactory<>("admin"));
 
-    userMap = DBSession.getAllLogins();
-    userMap.forEach(
+    usersMap = DBSession.getAllLogins();
+    usersMap.forEach(
         (key, value) -> {
           table.getItems().add(value);
         });

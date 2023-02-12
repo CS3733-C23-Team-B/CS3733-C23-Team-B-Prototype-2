@@ -13,6 +13,7 @@ public class LoginDAO {
   private static Map<String, Login> logins = new HashMap<String, Login>();
 
   public static Map<String, Login> getAllLogins() {
+    refreshLogins();
     return logins;
   }
 

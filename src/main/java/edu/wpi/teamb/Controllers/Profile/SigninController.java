@@ -7,6 +7,7 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class SigninController {
   public static Login currentUser;
 
   private Map<String, Login> usersMap = new HashMap<>();
-  private List<Object> users;
+  private List<Login> users = new ArrayList<>();
   private static SigninController instance;
 
   public void initialize() {
@@ -38,9 +39,9 @@ public class SigninController {
         new Thread(
             () -> {
               usersMap = DBSession.getAllLogins();
+              usersMap.forEach((key, value) -> users.add(value));
             });
     newThread.start();
-    usersMap.forEach((key, value) -> users.add(value));
   }
 
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {

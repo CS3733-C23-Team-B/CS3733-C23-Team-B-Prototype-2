@@ -20,14 +20,17 @@ public class RequestDAO {
   }
 
   public static List<PatientTransportationRequest> getALLPTRequests() {
+    refreshRequests();
     return PTRequests;
   }
 
   public static List<SanitationRequest> getALLSRequests() {
+    refreshRequests();
     return SRequests;
   }
 
   public static List<ComputerRequest> getALLCRequests() {
+    refreshRequests();
     return CRequests;
   }
 
@@ -37,15 +40,15 @@ public class RequestDAO {
     try {
       Transaction tx = session.beginTransaction();
       Query q1 = session.createQuery("FROM GeneralRequest", GeneralRequest.class);
-      List<GeneralRequest> allRequests = q1.list();
+      allRequests = q1.list();
       Query q2 =
           session.createQuery(
               "FROM PatientTransportationRequest", PatientTransportationRequest.class);
-      List<PatientTransportationRequest> PTRequests = q2.list();
+      PTRequests = q2.list();
       Query q3 = session.createQuery("FROM SanitationRequest", SanitationRequest.class);
-      List<SanitationRequest> SRequests = q3.list();
+      SRequests = q3.list();
       Query q4 = session.createQuery("FROM ComputerRequest", ComputerRequest.class);
-      List<ComputerRequest> CRequests = q4.list();
+      CRequests = q4.list();
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();

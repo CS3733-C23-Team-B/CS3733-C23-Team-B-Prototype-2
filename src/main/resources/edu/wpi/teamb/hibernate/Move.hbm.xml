@@ -3,12 +3,12 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="edu.wpi.teamb.Database.Move" table="move">
-        <id name="nodeID" type="String" column="nodeID">
+        <id name="nodeID" type="String" column="node">
         </id>
-        <property name = "longname" type = "String">
+        <property name = "locationName" type = "String">
             <column name="longname"/>
         </property>
-        <property name = "movedate" type = "java.sql.Date">
+        <property name = "moveDate" type = "java.sql.Date">
             <column name="movedate"/>
         </property>
     </class>

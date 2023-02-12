@@ -14,16 +14,16 @@ import lombok.Setter;
 public class Move implements IORM {
 
   @Id
-  @Column(name = "nodeID", length = 14)
+  @Column(name = "node", length = 14)
   @Getter
   @Setter
   private String nodeID;
 
   @Id
-  @Column(name = "longname", length = 70)
+  @Column(name = "locationname", length = 70)
   @Getter
   @Setter
-  private String longName;
+  private String locationName;
 
   @Id
   @Column(name = "movedate", length = 20)
@@ -33,7 +33,7 @@ public class Move implements IORM {
 
   public Move(String nodeID, String longName, Date moveDate) {
     this.nodeID = nodeID;
-    this.longName = longName;
+    this.locationName = longName;
     this.moveDate = moveDate;
   }
 
@@ -41,6 +41,6 @@ public class Move implements IORM {
 
   @Override
   public String getSearchStr() {
-    return "FROM Move WHERE nodeID = '" + nodeID + "' and longName = '" + longName + "'";
+    return "FROM Move WHERE nodeID = '" + nodeID + "' and locationName = '" + locationName + "'";
   }
 }

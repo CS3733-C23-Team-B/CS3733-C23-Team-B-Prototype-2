@@ -162,7 +162,7 @@ public class DBSession {
     Session session = sf.openSession();
     try {
       Transaction tx = session.beginTransaction();
-      Query q = session.createQuery("FROM Move WHERE longName = '" + ln + "'");
+      Query q = session.createQuery("FROM Move WHERE locationName = '" + ln + "'");
       List<Move> moves = q.list();
       session.close();
       return moves;
@@ -190,6 +190,7 @@ public class DBSession {
       session.close();
     }
   }
+
   public static Map<String, Node> getAllNodes() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
@@ -273,7 +274,7 @@ public class DBSession {
   public static void deleteLN(LocationName ln) {
     List<Move> ms = getAllMoves();
     for (Move m : ms) {
-      if (m.getLongName().equals(ln.getLongName())) {
+      if (m.getLocationName().equals(ln.getLongName())) {
         delete(m);
       }
     }
@@ -285,7 +286,7 @@ public class DBSession {
     addORM(newLN);
     List<Move> moves = getAllMoves();
     for (Move m : moves) {
-      if (m.getLongName().equals(oldLN.getLongName())) {
+      if (m.getLocationName().equals(oldLN.getLongName())) {
         Move newm = new Move(m.getNodeID(), newLN.getLongName(), m.getMoveDate());
         addORM(newm);
         delete(m);
@@ -326,7 +327,7 @@ public class DBSession {
       if (m.getNodeID().equals(n.getNodeID())) {
         Move newm = new Move();
         newm.setNodeID(ncopy.getNodeID());
-        newm.setLongName(m.getLongName());
+        newm.setLocationName(m.getLocationName());
         newm.setMoveDate(m.getMoveDate());
         addORM(newm);
         delete(m);
@@ -349,7 +350,7 @@ public class DBSession {
   public static String getMostRecentLocation(String NodeID) {
     Move move = getMostRecentMove(NodeID);
     if (move == null) return "NO MOVES";
-    return move.getLongName();
+    return move.getLocationName();
   }
 
   public static String getMostRecentNodeID(String longName) {
@@ -404,7 +405,7 @@ public class DBSession {
     Move m = getMostRecentMove(newN);
     Move mnew = new Move();
     mnew.setNodeID(newN);
-    mnew.setLongName(ln.getLongName());
+    mnew.setLocationName(ln.getLongName());
     if (m != null) {
       mnew.setMoveDate(m.getMoveDate());
       delete(m);

@@ -3,7 +3,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="edu.wpi.teamb.Database.Node" table="node">
-        <id name="NodeID" type="String" column = "nodeid">
+        <id name="NodeID" type="String" column = "node">
         </id>
         <property name = "XCoord" type = "int">
             <column name="xCoord"/>

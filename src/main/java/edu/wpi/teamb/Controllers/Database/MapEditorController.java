@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Navigation.Navigation;
@@ -219,6 +220,8 @@ public class MapEditorController {
         e -> {
           selectedCircle.set(dot);
         });
+    List<Move> locations = DBSession.getLocationfromNodeID(node.getNodeID());
+    if (locations != null) for (Move move : locations) System.out.println(move.getLocationName());
     return dot;
   }
 

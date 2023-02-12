@@ -3,12 +3,13 @@ package edu.wpi.teamb.Controllers.Profile;
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
-import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,6 +27,8 @@ public class SigninController {
   @FXML private Label prompt;
   @FXML private Button exitButton;
   public static Login currentUser;
+
+  private Map<String, Login> usersMap = new HashMap<>();
   private List<Object> users;
   private static SigninController instance;
 
@@ -34,9 +37,10 @@ public class SigninController {
     Thread newThread =
         new Thread(
             () -> {
-              users = DBSession.getAll(ORMType.LOGIN);
+              usersMap = DBSession.getAllLogins();
             });
     newThread.start();
+    usersMap.forEach((key, value) -> users.add(value));
   }
 
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
@@ -109,7 +113,7 @@ public class SigninController {
   }
 
   public void refresh() {
-    users = DBSession.getAll(ORMType.LOGIN);
+    usersMap = DBSession.getLogins();
   }
 
   public static SigninController getInstance() {

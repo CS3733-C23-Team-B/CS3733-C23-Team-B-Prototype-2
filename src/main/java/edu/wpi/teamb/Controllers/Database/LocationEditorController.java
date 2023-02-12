@@ -14,7 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class LocationEditorController {
@@ -119,17 +118,17 @@ public class LocationEditorController {
       newLN.setShortName(newShortName);
 
       if (nodeBox.getValue().equals(origNode)) DBSession.updateLocationName(newLN, location);
-      else DBSession.switchMoveLN(nodeBox.getValue(), origNode, newLN);
+      //      else DBSession.switchMoveLN(nodeBox.getValue(), origNode, newLN);
       Pathfinding.refreshData();
       location = newLN;
     } else if (!nodeBox.getValue().equals(origNode))
-      DBSession.switchMoveLN(nodeBox.getValue(), origNode, location);
-    else {
-      bigText.setText("No Change");
-      bigText.setFill(Color.RED);
-      return;
-    }
-    cancelClicked();
+      //      DBSession.switchMoveLN(nodeBox.getValue(), origNode, location);
+      //    else {
+      //      bigText.setText("No Change");
+      //      bigText.setFill(Color.RED);
+      //      return;
+      //    }
+      cancelClicked();
   }
 
   public void cancelClicked() {

@@ -82,7 +82,7 @@ public class DBSession {
     return MapDAO.getIDMoves(d);
   }
 
-  public static Map<String, ArrayList<Move>> getLNMoves(Date d) {
+  public static Map<String, Move> getLNMoves(Date d) {
     return MapDAO.getLNMoves(d);
   }
 

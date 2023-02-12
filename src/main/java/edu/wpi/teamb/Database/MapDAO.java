@@ -62,33 +62,19 @@ public class MapDAO {
         }
     }
 
-    public static Map<String, ArrayList<Move>> getLNMoves(Date d) {
+    public static Map<String, Move> getLNMoves(Date d) {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
-        HashMap<String, ArrayList<Move>> moves = new HashMap<String, ArrayList<Move>>();
+        HashMap<String, Move> moves = new HashMap<String, Move>();
         SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
         Session session = sf.openSession();
-        String hql = "FROM Move WHERE moveDate <= '" + d.toString() + "' ORDER BY moveDate";
+        String hql = "SELECT DISTINCT locationName, node, moveDate FROM Move WHERE moveDate <= '" + d.toString() + "' ORDER BY moveDate DESC";
         try {
             Transaction tx = session.beginTransaction();
             Query q = session.createQuery(hql, Move.class);
             List<Move> ms = q.list();
             tx.commit();
             for (Move m : ms) {
-                if(moves.containsKey(m.getLocationName().getLongName())) {
-                    String d1 = fmt.format(m.getMoveDate());
-                    String d2 = fmt.format(moves.get(m.getLocationName().getLongName()).get(0).getMoveDate());
-                    if(d1.equals(d2)) {
-                        moves.get(m.getLocationName().getLongName()).add(m);
-                    } else {
-                        ArrayList<Move> newM = new ArrayList<Move>();
-                        newM.add(m);
-                        moves.put(m.getLocationName().getLongName(), newM);
-                    }
-                } else {
-                    ArrayList<Move> newM = new ArrayList<Move>();
-                    newM.add(m);
-                    moves.put(m.getLocationName().getLongName(), newM);
-                }
+                moves.put(m.getLocationName().getLongName(), m);
             }
             return moves;
         } catch (Exception e) {

@@ -74,17 +74,20 @@ public class MapEditorController {
     nodeMap.clear();
     Map<String, Node> nodes = new HashMap<>();
 
-    //    ImageView i =
-    //        new
-    // ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
+    ImageView i =
+        new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
     changeFloor("Lower Level 1", new javafx.geometry.Point2D(2220, 974));
-    //    aPane.getChildren().add(i);
+    aPane.getChildren().add(i);
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
-    //    i.setOnMouseClicked(e -> handleClick());
+    i.setOnMouseClicked(e -> handleClick());
+
+    // Changes floor when selecting a new floor
+    floorCombo.setOnAction(
+        e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
 
     pane.zoomTo(-5000, -3000, new Point2D(2215, 1045));
     nodes.clear();

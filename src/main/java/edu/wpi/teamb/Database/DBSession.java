@@ -66,6 +66,9 @@ public class DBSession {
   public static Map<String, Node> getNodes() {
     return MapDAO.getAllNodes();
   }
+  public static Map<String, Node> getLogin() {
+    return LoginDAO.getAllLogins();
+  }
 
   public static List<Edge> getEdges() {
     return MapDAO.getAllEdges();

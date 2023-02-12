@@ -26,8 +26,7 @@ public class MoveCreatorController {
 
   @FXML MFXDatePicker datePicker;
   @FXML Label lblDate;
-  Map<String,LocationName> LocationNamesByLongName = new HashMap<>();
-  Map<String,Node> NodesbyNodeNodeID = new HashMap<>();
+
 
   public void initialize() {
     nodeIdBox.setItems(getNodes());
@@ -48,9 +47,9 @@ public class MoveCreatorController {
     }
 
     Move newMove = new Move();
-    Node node = NodesbyNodeNodeID.get(nodeID);
+    Node node = DBSession.getNodes().get(nodeID);
     newMove.setNode(node);
-    LocationName LN = LocationNamesByLongName.get(location);
+    LocationName LN = DBSession.getLocationNames().get(location);
     newMove.setLocationName(LN);
     Date newDate = Date.valueOf(datePicker.getValue());
     newMove.setMoveDate(newDate);
@@ -72,8 +71,7 @@ public class MoveCreatorController {
     Map<String, LocationName> locationsDBList = DBSession.getLocationNames();
 
     locationsDBList.forEach((key, value) ->
-        {list.add(value.getLongName());
-        LocationNamesByLongName.put(value.getLongName(),value);}
+        {list.add(value.getLongName());}
     );
 
     Sorting.quickSort(list);
@@ -86,7 +84,6 @@ public class MoveCreatorController {
 
     nodeDBMap.forEach((key, value) -> {
       list.add(value.getNodeID());
-      NodesbyNodeNodeID.put(value.getNodeID(),value);
     });
 
     Sorting.quickSort(list);

@@ -14,7 +14,7 @@ public class LocationName implements IORM {
   @Setter
   private String longName;
 
-  @Column(name = "shortname", length = 35)
+  @Column(name = "shortname", length = 50)
   @Getter
   @Setter
   private String shortName;

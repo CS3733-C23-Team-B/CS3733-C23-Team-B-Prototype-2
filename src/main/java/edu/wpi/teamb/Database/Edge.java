@@ -4,6 +4,7 @@ import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 /**
  * class that represents the edge table in the Database, allows updates, insertions, deletions, and
@@ -15,19 +16,37 @@ public class Edge implements IORM {
 
   // Primary Key and Foreign Key
   @Id
-  @Column(name = "node1", length = 14)
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+  @JoinColumn(
+      name = "node1",
+      nullable = false,
+      foreignKey =
+          @ForeignKey(
+              name = "edge_node1_fk",
+              foreignKeyDefinition =
+                  "FOREIGN KEY (node1) REFERENCES iter2.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+  @ManyToOne
   @Setter
   @Getter
-  String node1;
+  Node node1;
 
   // Primary Key and Foreign Key
   @Id
-  @Column(name = "node2", length = 14)
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+  @JoinColumn(
+      name = "node2",
+      nullable = false,
+      foreignKey =
+          @ForeignKey(
+              name = "edge_node2_fk",
+              foreignKeyDefinition =
+                  "FOREIGN KEY (node2) REFERENCES iter2.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+  @ManyToOne
   @Setter
   @Getter
-  String node2;
+  Node node2;
 
-  public Edge(String node1, String node2) {
+  public Edge(Node node1, Node node2) {
     this.node1 = node1;
     this.node2 = node2;
   }

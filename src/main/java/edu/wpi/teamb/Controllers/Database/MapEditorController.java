@@ -62,7 +62,7 @@ public class MapEditorController {
 
     pane.zoomTo(-5000, -3000, new Point2D(2215, 1045));
     nodes.clear();
-    nodes = DBSession.getAllNodes();
+    nodes = DBSession.getNodes();
 
     for (Node node : nodes.values()) {
       if (!node.getFloor().equals("L1")) continue;

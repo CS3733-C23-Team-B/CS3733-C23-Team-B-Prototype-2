@@ -63,7 +63,7 @@ public class PathfindingController {
             throw new RuntimeException(e);
           }
         });
-    Map<String, Node> nodes = DBSession.getAllNodes();
+    Map<String, Node> nodes = DBSession.getNodes();
     nodes.forEach(
         (key, value) -> {
           if (value.getFloor().equals("L1")) placeNode(value);
@@ -88,7 +88,7 @@ public class PathfindingController {
     String end = (String) endLoc.getValue();
     ArrayList<String> path = Pathfinding.getShortestPath(start, end);
 
-    Map<String, Node> nodes = DBSession.getAllNodes();
+    Map<String, Node> nodes = DBSession.getNodes();
 
     for (int i = 0; i < path.size() - 1; i++) {
       String s = path.get(i);
@@ -110,7 +110,7 @@ public class PathfindingController {
     List<Move> moves = DBSession.getAllMoves();
 
     for (Move move : moves)
-      if (!list.contains(move.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals("L1"))
+      if (!list.contains(move.getLocationName.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals("L1"))
         list.add(move.getLongName());
 
     return list;

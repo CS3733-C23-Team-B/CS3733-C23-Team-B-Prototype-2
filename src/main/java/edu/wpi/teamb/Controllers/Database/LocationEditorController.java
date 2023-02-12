@@ -74,13 +74,9 @@ public class LocationEditorController {
 
   private ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    List<LocationName> locationsDBList = DBSession.getAllLocationNames();
+    Map<String, LocationName> locationsDBList = DBSession.getLocationNames();
 
-    locationsDBList.forEach(
-        i -> {
-          list.add(i.getLongName());
-          locations.put(i.getLongName(), i);
-        });
+    locationsDBList.forEach((key, value) -> list.add(value.getLongName()));
 
     Sorting.quickSort(list);
     return list;
@@ -88,7 +84,7 @@ public class LocationEditorController {
 
   private ObservableList<String> getNodes() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    Map<String, Node> nodeDBMap = DBSession.getAllNodes();
+    Map<String, Node> nodeDBMap = DBSession.getNodes();
 
     nodeDBMap.forEach((key, value) -> list.add(value.getNodeID()));
 

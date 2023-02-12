@@ -10,7 +10,6 @@ import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.Date;
-import java.util.List;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,11 +45,13 @@ public class MoveCreatorController {
     }
 
     Move newMove = new Move();
-    newMove.setNodeID(nodeID);
-    newMove.setLongName(location);
+    Node node = new Node();
+    node.setNodeID(nodeID);
+    newMove.setNode(node);
+//    newMove.setLocationName();
     Date newDate = Date.valueOf(datePicker.getValue());
     newMove.setMoveDate(newDate);
-    DBSession.addORM(newMove);
+    DBSession.addMove(newMove);
 
     cancelClicked();
   }
@@ -65,12 +66,9 @@ public class MoveCreatorController {
 
   private ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    List<LocationName> locationsDBList = DBSession.getAllLocationNames();
+    Map<String, LocationName> locationsDBList = DBSession.getLocationNames();
 
-    locationsDBList.forEach(
-        i -> {
-          list.add(i.getLongName());
-        });
+    locationsDBList.forEach((key, value) -> list.add(value.getLongName()));
 
     Sorting.quickSort(list);
     return list;
@@ -78,7 +76,7 @@ public class MoveCreatorController {
 
   private ObservableList<String> getNodes() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    Map<String, Node> nodeDBMap = DBSession.getAllNodes();
+    Map<String, Node> nodeDBMap = DBSession.getNodes();
 
     nodeDBMap.forEach((key, value) -> list.add(value.getNodeID()));
 

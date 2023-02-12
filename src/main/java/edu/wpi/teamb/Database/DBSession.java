@@ -2,11 +2,9 @@ package edu.wpi.teamb.Database;
 
 import edu.wpi.teamb.Entities.*;
 import edu.wpi.teamb.Entities.SessionGetter;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -148,13 +146,9 @@ public class DBSession {
     }
   }
 
-
-
   public static List<Move> getMostRecentLocation(String NodeID) throws ParseException {
     return MapDAO.getIDMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01")).get(NodeID);
   }
-
-
 
   public static String getMostRecentNodeID(String longName) {
     List<Move> moves = getAllMovesWithLN(longName);
@@ -167,42 +161,40 @@ public class DBSession {
     return mostRecent.getNode().getNodeID();
   }
 
+  //   public static Node getMostRecentNode(String longName) {
+  //     String id = getMostRecentNodeID(longName);
+  //     return getAllNodes().get(id);
+  //   }
 
-//   public static Node getMostRecentNode(String longName) {
-//     String id = getMostRecentNodeID(longName);
-//     return getAllNodes().get(id);
-//   }
-
-
-//  public static Move getMostRecentMove(String nodeID) {
-//    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-//    Session session = sf.openSession();
-//    List<Move> moves;
-//    try {
-//      Transaction tx = session.beginTransaction();
-//      String str = "FROM Move WHERE nodeID = '" + nodeID + "'";
-//      Query q = session.createQuery(str);
-//      moves = q.list();
-//      session.close();
-//      if (moves.isEmpty()) {
-//        return null;
-//      } else {
-//        Move mostRecent = moves.get(0);
-//        for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
-//        return mostRecent;
-//      }
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      return null;
-//    } finally {
-//      session.close();
-//    }
-//  }
-//
-//
-//  public static boolean moreRecentThan(Move move1, Move move2) {
-//    return move1.getMoveDate().after(move2.getMoveDate());
-//  }
+  //  public static Move getMostRecentMove(String nodeID) {
+  //    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+  //    Session session = sf.openSession();
+  //    List<Move> moves;
+  //    try {
+  //      Transaction tx = session.beginTransaction();
+  //      String str = "FROM Move WHERE nodeID = '" + nodeID + "'";
+  //      Query q = session.createQuery(str);
+  //      moves = q.list();
+  //      session.close();
+  //      if (moves.isEmpty()) {
+  //        return null;
+  //      } else {
+  //        Move mostRecent = moves.get(0);
+  //        for (Move move : moves) if (moreRecentThan(move, mostRecent)) mostRecent = move;
+  //        return mostRecent;
+  //      }
+  //    } catch (Exception e) {
+  //      e.printStackTrace();
+  //      return null;
+  //    } finally {
+  //      session.close();
+  //    }
+  //  }
+  //
+  //
+  //  public static boolean moreRecentThan(Move move1, Move move2) {
+  //    return move1.getMoveDate().after(move2.getMoveDate());
+  //  }
 
   /*
   public static void switchMoveLN(String newN, String oldN, LocationName ln) {

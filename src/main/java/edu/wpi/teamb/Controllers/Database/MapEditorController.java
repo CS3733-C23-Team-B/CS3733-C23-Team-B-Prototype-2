@@ -274,11 +274,11 @@ public class MapEditorController {
     clearPopUp();
   }
 
-  public void locations() {
+  public void editLocationClicked() {
     Navigation.navigate(Screen.LOCATION_EDITOR);
   }
 
-  public void newMove() {
+  public void addMoveClicked() {
     Navigation.navigate(Screen.MOVE_CREATOR);
   }
 
@@ -286,8 +286,12 @@ public class MapEditorController {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void newNode() {
+  public void newNodeClicked() {
     Navigation.navigate(Screen.NODE_CREATOR);
+  }
+
+  public void editNodeClicked() {
+    Navigation.navigate(Screen.NODE_EDITOR);
   }
 
   static Node getCurrentNode() {

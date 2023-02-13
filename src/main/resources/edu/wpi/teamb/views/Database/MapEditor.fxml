@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.RequestsController">
+<GridPane fx:id="mapEditor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.MapEditorController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="340.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="1088.0" />
@@ -36,7 +36,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newNodeClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>
@@ -44,7 +44,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="editNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit   Node" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="editNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editNodeClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit   Node" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>
@@ -56,7 +56,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="editLocationButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="editLocationButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editLocationClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>
@@ -64,7 +64,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="addMovesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Add Moves" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="addMovesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#addMoveClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Add Move" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>

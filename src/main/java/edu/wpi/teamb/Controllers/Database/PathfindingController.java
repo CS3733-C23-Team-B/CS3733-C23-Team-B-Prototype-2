@@ -8,6 +8,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javafx.application.Platform;
@@ -106,12 +107,11 @@ public class PathfindingController {
   static ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    Map<String, Node> nodes = DBSession.getAllNodes();
-    List<Move> moves = DBSession.getAllMoves();
+    Map<String, Move> moves = DBSession.getLNMoves(new Date(2023, 1, 1));
 
-    for (Move move : moves)
-      if (!list.contains(move.getLocationName())
-          && nodes.get(move.getNodeID()).getFloor().equals("L1")) list.add(move.getLocationName());
+    for (Move move : moves.values())
+      if (!list.contains(move.getLocationName().getLongName())
+          && move.getNode().getFloor().equals("L1")) list.add(move.getLocationName().getLongName());
 
     return list;
   }

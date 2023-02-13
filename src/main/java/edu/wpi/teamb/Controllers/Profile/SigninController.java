@@ -3,12 +3,12 @@ package edu.wpi.teamb.Controllers.Profile;
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
-import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,7 +26,8 @@ public class SigninController {
   @FXML private Label prompt;
   @FXML private Button exitButton;
   public static Login currentUser;
-  private List<Object> users;
+
+  private Map<String, Login> usersMap = new HashMap<>();
   private static SigninController instance;
 
   public void initialize() {
@@ -34,7 +35,7 @@ public class SigninController {
     Thread newThread =
         new Thread(
             () -> {
-              users = DBSession.getAll(ORMType.LOGIN);
+              usersMap = DBSession.getAllLogins();
             });
     newThread.start();
   }
@@ -49,10 +50,9 @@ public class SigninController {
    */
   public boolean validateLogin() {
     boolean found = false;
-    for (Object user : users) {
-      Login u = (Login) user;
-      if (u.getUsername().equals(usernameField.getText())
-          && u.getPassword().equals(passwordField.getText())) {
+    for (Login user : usersMap.values()) {
+      if (user.getUsername().equals(usernameField.getText())
+          && user.getPassword().equals(passwordField.getText())) {
         found = true;
         break;
       }
@@ -73,18 +73,11 @@ public class SigninController {
    * @throws IOException
    * @throws SQLException
    */
-  public void signInButtonClicked() throws SQLException {
+  public void signInButtonClicked() {
     if (!validateLogin()) return;
-
     Navigation.navigate(Screen.HOME);
 
-    for (Object user : users) {
-      Login u = (Login) user;
-      if (u.getUsername().equals(usernameField.getText())) {
-        currentUser = u;
-        break;
-      }
-    }
+    currentUser = usersMap.get(usernameField.getText());
   }
 
   /** Exits the application */
@@ -109,7 +102,7 @@ public class SigninController {
   }
 
   public void refresh() {
-    users = DBSession.getAll(ORMType.LOGIN);
+    usersMap = DBSession.getAllLogins();
   }
 
   public static SigninController getInstance() {

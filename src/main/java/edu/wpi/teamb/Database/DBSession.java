@@ -31,9 +31,11 @@ public class DBSession {
   public static void addLogin(Login l) {
     LoginDAO.addLogin(l);
   }
+
   public static void deleteLogin(Login l) {
     LoginDAO.deleteLogin(l);
   }
+
   public static void addEdge(Edge e) {
     MapDAO.addEdge(e);
   }
@@ -98,7 +100,6 @@ public class DBSession {
     return RequestDAO.getALLCRequests();
   }
 
-
   public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
     return MapDAO.getIDMoves(d);
   }
@@ -106,12 +107,13 @@ public class DBSession {
   public static Map<String, Move> getLNMoves(Date d) {
     return MapDAO.getLNMoves(d);
   }
+
   public static void updateUser(String user, String first, String last, String email) {
-    LoginDAO.updateUser(user,first,last,email);
+    LoginDAO.updateUser(user, first, last, email);
   }
 
   public static void updateAdmin(String user, Boolean b) {
-    LoginDAO.updateAdmin(user,b);
+    LoginDAO.updateAdmin(user, b);
   }
 
   public static List<Move> getMostRecentMoves(String NodeID) {
@@ -138,7 +140,7 @@ public class DBSession {
     return getAllNodes().get(id);
   }
 
-//this stuff should be in a DAO if its gonna be reused
+  // this stuff should be in a DAO if its gonna be reused
   public static Move getMostRecentMove(String nodeID) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

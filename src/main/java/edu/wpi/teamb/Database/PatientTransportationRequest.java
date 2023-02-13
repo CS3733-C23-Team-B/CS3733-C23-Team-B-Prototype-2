@@ -30,6 +30,5 @@ public class PatientTransportationRequest extends GeneralRequest {
   @Setter
   private String patientID;
 
-
   public PatientTransportationRequest() {}
 }

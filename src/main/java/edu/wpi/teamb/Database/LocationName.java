@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "locationname")
-public class LocationName{
+public class LocationName {
   @Id
   @Column(name = "longname", length = 70)
   @Getter
@@ -30,5 +30,4 @@ public class LocationName{
     this.shortName = shortName;
     this.locationType = locationType;
   }
-
 }

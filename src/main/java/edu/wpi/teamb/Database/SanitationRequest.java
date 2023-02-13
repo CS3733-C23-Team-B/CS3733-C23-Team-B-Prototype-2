@@ -22,4 +22,3 @@ public class SanitationRequest extends GeneralRequest {
 
   public SanitationRequest() {}
 }
-

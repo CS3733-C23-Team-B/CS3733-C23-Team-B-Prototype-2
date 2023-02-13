@@ -52,5 +52,4 @@ public class Node {
     String id = floor + "X" + x + "Y" + y;
     return id;
   }
-
 }

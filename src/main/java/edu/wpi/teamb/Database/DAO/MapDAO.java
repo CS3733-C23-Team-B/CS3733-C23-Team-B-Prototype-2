@@ -39,14 +39,18 @@ public class MapDAO {
     Session session = sf.openSession();
     String hql =
         "SELECT DISTINCT locationName, node, moveDate FROM Move WHERE moveDate <= '"
-            + d.toString()
+            + d
             + "' ORDER BY moveDate DESC";
     try {
       Transaction tx = session.beginTransaction();
-      Query q = session.createQuery(hql, Move.class);
-      List<Move> ms = q.list();
+      Query q = session.createQuery(hql);
+      List<Object[]> ms = q.list();
       tx.commit();
-      for (Move m : ms) {
+      for (Object[] moveInfo : ms) {
+        Move m = new Move();
+        m.setLocationName((LocationName) moveInfo[0]);
+        m.setNode((Node) moveInfo[1]);
+        m.setMoveDate((Date) moveInfo[2]);
         if (moves.containsKey(m.getNode().getNodeID())) {
           String d1 = fmt.format(m.getMoveDate());
           String d2 = fmt.format(moves.get(m.getNode().getNodeID()).get(0).getMoveDate());

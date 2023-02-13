@@ -40,7 +40,7 @@ public class CreateAccountController {
         && !emailField.getText().equals("")
         && !usernameField.getText().equals("")
         && !passwordField.getText().equals("")) {
-      usersMap = DBSession.getLogins();
+      usersMap = DBSession.getAllLogins();
       usersMap.forEach(
           (key, value) -> {
             users.add(value);

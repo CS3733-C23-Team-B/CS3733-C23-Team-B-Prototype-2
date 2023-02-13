@@ -25,4 +25,7 @@ public class SanitationRequest extends GeneralRequest implements IORM {
   public String getSearchStr() {
     return "FROM SanitationRequest WHERE id = " + getId();
   }
+
+  public SanitationRequest() {}
 }
+

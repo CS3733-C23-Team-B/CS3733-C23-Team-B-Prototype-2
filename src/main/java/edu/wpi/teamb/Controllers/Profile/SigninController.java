@@ -114,7 +114,7 @@ public class SigninController {
   }
 
   public void refresh() {
-    usersMap = DBSession.getLogins();
+    usersMap = DBSession.getAllLogins();
   }
 
   public static SigninController getInstance() {

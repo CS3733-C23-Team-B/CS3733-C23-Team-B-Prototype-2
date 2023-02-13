@@ -72,8 +72,8 @@ public class Pathfinding {
   public static ArrayList<String> getDirectPaths(String node) {
     ArrayList<String> retList = new ArrayList<String>();
     for (Edge edge : edges) {
-      if (edge.getNode1().equals(node)) retList.add(edge.getNode2().getNodeID());
-      else if (edge.getNode2().equals(node)) retList.add(edge.getNode1().getNodeID());
+      if (edge.getNode1().getNodeID().equals(node)) retList.add(edge.getNode2().getNodeID());
+      if (edge.getNode2().getNodeID().equals(node)) retList.add(edge.getNode1().getNodeID());
     }
     return retList;
   }
@@ -118,7 +118,6 @@ public class Pathfinding {
    * @return a String representation of the optimal path to take
    */
   public static ArrayList<String> getShortestPath(String start, String end) {
-    refreshData();
     ArrayList<String> p = getPathAStar(start, end);
     System.out.println(pathToString(p));
     return p;

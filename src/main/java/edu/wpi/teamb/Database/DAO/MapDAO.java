@@ -337,11 +337,20 @@ public class MapDAO {
   public static void updateMove(Move oldM, Move newM) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
-    String hql = "UPDATE Move m SET m.locationName = '" + newM.getLocationName().getLongName()
-            + "', m.node = '" + newM.getNode().getNodeID()
-            + "', m.moveDate = '" + newM.getMoveDate() + "' WHERE m.node = '" + oldM.getNode().getNodeID()
-            + "'AND m.locationName = '" + oldM.getLocationName().getLongName()
-            + "'AND m.moveDate = '" + oldM.getMoveDate() + "'";
+    String hql =
+        "UPDATE Move m SET m.locationName = '"
+            + newM.getLocationName().getLongName()
+            + "', m.node = '"
+            + newM.getNode().getNodeID()
+            + "', m.moveDate = '"
+            + newM.getMoveDate()
+            + "' WHERE m.node = '"
+            + oldM.getNode().getNodeID()
+            + "'AND m.locationName = '"
+            + oldM.getLocationName().getLongName()
+            + "'AND m.moveDate = '"
+            + oldM.getMoveDate()
+            + "'";
     try {
       Transaction tx = session.beginTransaction();
       session.createQuery(hql).executeUpdate();
@@ -350,27 +359,6 @@ public class MapDAO {
       e.printStackTrace();
     } finally {
       session.close();
-    }
-  }
-
-  public static Move getMostRecentMoveWithNode(Node n) {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    String hql = "FROM Move WHERE node = '" + n.getNodeID() + "' ORDER BY moveDate DESC";
-    Move m = new Move();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q = session.createQuery(hql, Move.class);
-      tx.commit();
-      List<Move> ms = q.list();
-      if (!ms.isEmpty()) {
-        m = ms.get(0);
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      session.close();
-      return m;
     }
   }
 

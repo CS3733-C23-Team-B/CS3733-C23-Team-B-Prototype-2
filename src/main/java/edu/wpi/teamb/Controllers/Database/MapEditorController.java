@@ -100,8 +100,12 @@ public class MapEditorController {
     Text pos = new Text("(x, y):  " + "(" + node.getXCoord() + ", " + node.getYCoord() + ")");
 
     List<Move> moves = DBSession.getMostRecentMoves(node.getNodeID());
-    String t = moves.get(0).getLocationName().getLongName();
-    if (moves.size() > 1) t += "\n" + moves.get(1).getLocationName().getLongName();
+    String t;
+    if (moves == null) t = "NO MOVES";
+    else {
+      t = moves.get(0).getLocationName().getLongName();
+      if (moves.size() > 1) t += "\n" + moves.get(1).getLocationName().getLongName();
+    }
     Text loc = new Text(t);
 
     Button editButton = new Button("Edit");

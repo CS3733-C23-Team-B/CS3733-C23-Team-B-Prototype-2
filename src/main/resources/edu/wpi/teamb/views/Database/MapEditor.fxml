@@ -1,36 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.MapEditorController">
-   <top>
-      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.RequestsController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="340.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="1088.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="371.0000366210937" minHeight="10.0" prefHeight="113.40002059936523" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="991.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="115.0" stroke="BLACK" strokeType="INSIDE" width="1088.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE" />
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Map Editor" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="343.0" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <Text fill="WHITE" layoutX="275.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Editor" textAlignment="CENTER">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
+            <VBox layoutY="-64.0" prefHeight="600.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0">
+                     <children>
+                        <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea" wrapText="true">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="editNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit   Node" textFill="#c5d3ea" wrapText="true">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <MFXButton fx:id="editLocationButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea" wrapText="true">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="addMovesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Add Moves" textFill="#c5d3ea" wrapText="true">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
-   </top>
-   <right>
-      <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane layoutX="-14.0" onMouseClicked="#handleClick" prefHeight="530.0" prefWidth="800.0">
-               <children> <MFXFilterComboBox fx:id="floorCombo" layoutX="100.0" layoutY="465.0" promptText="Select Floor" />
-                  <Button layoutX="260.0" layoutY="465.0" mnemonicParsing="false" onAction="#home" prefHeight="35.0" prefWidth="93.0" text="Home" />
-                  <Button layoutX="600.0" layoutY="465.0" mnemonicParsing="false" onAction="#locations" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #003AD6;" text="Locations" textFill="WHITE" />
-                  <Button layoutX="450.0" layoutY="465.0" mnemonicParsing="false" onAction="#newNode" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: Green;" text="New Node" textFill="WHITE" />
-               </children></AnchorPane>
-         </children>
-      </AnchorPane>
-   </right>
-</BorderPane>
+   </children>
+</GridPane>

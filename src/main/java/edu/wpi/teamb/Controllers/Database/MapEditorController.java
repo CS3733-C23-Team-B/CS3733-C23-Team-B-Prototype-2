@@ -44,7 +44,7 @@ public class MapEditorController {
   AnchorPane currentPopUp;
   private static Node currentNode;
   private Circle currentDot;
-  private final int popUpHeight = 110;
+  private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
   private static MapEditorController instance;
@@ -154,7 +154,7 @@ public class MapEditorController {
 
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
-    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 - popUpHeight);
+    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 - POP_UP_HEIGHT);
     popPane.setStyle("-fx-background-color: FFFFFF; -fx-border-color: black;");
 
     VBox vbox = new VBox();
@@ -315,7 +315,8 @@ public class MapEditorController {
     currentDot.setCenterX(currentNode.getXCoord());
     currentDot.setCenterY(currentNode.getYCoord());
     currentPopUp.setTranslateX(currentDot.getCenterX() + currentDot.getRadius() * 2);
-    currentPopUp.setTranslateY(currentDot.getCenterY() - currentDot.getRadius() * 2 - popUpHeight);
+    currentPopUp.setTranslateY(
+        currentDot.getCenterY() - currentDot.getRadius() * 2 - POP_UP_HEIGHT);
   }
 
   public void removeNode() {

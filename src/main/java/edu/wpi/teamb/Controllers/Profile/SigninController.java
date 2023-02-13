@@ -30,16 +30,6 @@ public class SigninController {
   private Map<String, Login> usersMap = new HashMap<>();
   private static SigninController instance;
 
-  public void initialize() {
-    instance = this;
-    Thread newThread =
-        new Thread(
-            () -> {
-              usersMap = DBSession.getAllLogins();
-            });
-    newThread.start();
-  }
-
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
   }
@@ -49,6 +39,7 @@ public class SigninController {
    * @return true if the login is valid according to the database, false otherwise
    */
   public boolean validateLogin() {
+    usersMap = DBSession.getAllLogins();
     boolean found = false;
     for (Login user : usersMap.values()) {
       if (user.getUsername().equals(usernameField.getText())

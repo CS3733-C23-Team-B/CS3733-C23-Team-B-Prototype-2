@@ -55,9 +55,7 @@ public class Pathfinding {
     double y2 = node2.getYCoord();
     String f1 = node1.getFloor();
     String f2 = node2.getFloor();
-
-    int kFloor = 150;
-    int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * kFloor;
+    int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * 150;
 
     double dist = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) + floorDist;
     return dist;
@@ -85,7 +83,7 @@ public class Pathfinding {
    * @return a String representation of the path taken
    */
   private static String pathToString(List<String> path) {
-    //        path = nodesToLocations(path);
+    //    path = nodesToLocations(path);
     totalDist = 0;
     for (int i = 0; i < path.size() - 1; i++) totalDist += getWeight(path.get(i), path.get(i + 1));
     System.out.println("Total dist: " + totalDist);
@@ -121,61 +119,6 @@ public class Pathfinding {
     ArrayList<String> p = getPathAStar(start, end);
     System.out.println(pathToString(p));
     return p;
-  }
-
-  private static ArrayList<String> getPathBreadth(String startLoc, String endLoc) {
-    return getPathBreadthDepth(startLoc, endLoc, true);
-  }
-
-  private static ArrayList<String> getPathDepth(String startLoc, String endLoc) {
-    return getPathBreadthDepth(startLoc, endLoc, false);
-  }
-
-  private static ArrayList<String> getPathBreadthDepth(
-      String startLoc, String endLoc, boolean breadth) {
-    String start = DBSession.getMostRecentNodeID(startLoc);
-    String end = DBSession.getMostRecentNodeID(startLoc);
-
-    boolean done = false;
-    HashMap<String, String> cameFrom = new HashMap<String, String>();
-
-    ArrayList<String> toExpand = new ArrayList<String>();
-    toExpand.add(start);
-
-    while (toExpand.size() > 0) {
-
-      // BREADTH is field that tells program to use breadth-first instead of depth-first
-      int index = breadth ? 0 : toExpand.size() - 1;
-      String current = toExpand.remove(index);
-
-      ArrayList<String> directPaths = getDirectPaths(current);
-      for (String path : directPaths) {
-        if (path.equals(end)) {
-          cameFrom.put(path, current);
-          done = true;
-          break;
-        }
-        if (!cameFrom.containsKey(path)) {
-          cameFrom.put(path, current);
-          toExpand.add(path);
-        }
-      }
-
-      if (done) break;
-    }
-
-    if (!done) return null;
-
-    ArrayList<String> path = new ArrayList<>();
-    path.add(start);
-
-    String current = end;
-    while (!current.equals(start)) {
-      path.add(1, current);
-      current = cameFrom.get(current);
-    }
-
-    return path;
   }
 
   /**
@@ -228,7 +171,6 @@ public class Pathfinding {
 
   /** Refreshes the node and edge fields from the database */
   public static void refreshData() {
-    nodes = DBSession.getAllNodes();
     edges = DBSession.getAllEdges();
   }
 }

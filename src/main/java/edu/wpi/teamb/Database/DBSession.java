@@ -117,6 +117,12 @@ public class DBSession {
     return MapDAO.getLNMoves(d);
   }
 
+  public static void updateMove(Move oldM, Move newM) { MapDAO.updateMove(oldM, newM);}
+
+  public static Move getMostRecentMoveWithNode(Node n) { return MapDAO.getMostRecentMoveWithNode(n);}
+
+  public static Move getMostRecentMoveWithLocationName(LocationName ln){ return MapDAO.getMostRecentMoveWithLocationName(ln);}
+
   public static void updateUser(String user, String first, String last, String email) {
     LoginDAO.updateUser(user, first, last, email);
   }

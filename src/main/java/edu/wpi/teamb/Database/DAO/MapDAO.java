@@ -353,7 +353,7 @@ public class MapDAO {
     }
   }
 
-  public static Move getMostRecentWithNode(Node n) {
+  public static Move getMostRecentMoveWithNode(Node n) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     String hql = "FROM Move WHERE node = '" + n.getNodeID() + "' ORDER BY moveDate DESC";
@@ -374,7 +374,7 @@ public class MapDAO {
     }
   }
 
-  public static Move getMostRecentWithLocationName(LocationName ln) {
+  public static Move getMostRecentMoveWithLocationName(LocationName ln) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     String hql = "FROM Move WHERE locationName = '" + ln.getLongName() + "' ORDER BY moveDate DESC";

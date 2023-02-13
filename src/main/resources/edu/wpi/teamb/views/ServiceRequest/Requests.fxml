@@ -3,6 +3,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -117,43 +119,78 @@
                <children>
                   <MFXButton fx:id="transButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Internal Patient Transportation" textFill="#c5d3ea" wrapText="true">
                      <font>
-                        <Font size="26.0" />
+                        <Font size="23.0" />
                      </font>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../media/RequestIcons/stretcher.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="saniButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Sanitation" textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="saniButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Sanitation       " textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../media/RequestIcons/spray.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="secButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Security" textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="secButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Security           " textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../media/RequestIcons/policeman.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="comButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Computer" textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="comButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Computer       " textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../media/RequestIcons/laptop.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="audioButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Audio/Video" textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="audioButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Audio/Video   " textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../media/RequestIcons/video-and-audio.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </MFXButton>
                </children>
                <padding>

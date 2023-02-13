@@ -107,13 +107,11 @@ public class PathfindingController {
   static ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    Map<String, Node> nodes = DBSession.getAllNodes();
-    Map<String, Move> moves = DBSession.getLNMoves(new Date(1, 1, 2023));
+    Map<String, Move> moves = DBSession.getLNMoves(new Date(2023, 1, 1));
 
     for (Move move : moves.values())
       if (!list.contains(move.getLocationName().getLongName())
-          && nodes.get(move.getNode()).getFloor().equals("L1"))
-        list.add(move.getLocationName().getLongName());
+          && move.getNode().getFloor().equals("L1")) list.add(move.getLocationName().getLongName());
 
     return list;
   }

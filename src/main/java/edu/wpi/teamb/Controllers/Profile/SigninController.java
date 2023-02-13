@@ -7,9 +7,7 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +28,6 @@ public class SigninController {
   public static Login currentUser;
 
   private Map<String, Login> usersMap = new HashMap<>();
-  private List<Login> users = new ArrayList<>();
   private static SigninController instance;
 
   public void initialize() {
@@ -39,7 +36,6 @@ public class SigninController {
         new Thread(
             () -> {
               usersMap = DBSession.getAllLogins();
-              usersMap.forEach((key, value) -> users.add(value));
             });
     newThread.start();
   }
@@ -54,10 +50,9 @@ public class SigninController {
    */
   public boolean validateLogin() {
     boolean found = false;
-    for (Object user : users) {
-      Login u = (Login) user;
-      if (u.getUsername().equals(usernameField.getText())
-          && u.getPassword().equals(passwordField.getText())) {
+    for (Login user : usersMap.values()) {
+      if (user.getUsername().equals(usernameField.getText())
+          && user.getPassword().equals(passwordField.getText())) {
         found = true;
         break;
       }
@@ -78,18 +73,11 @@ public class SigninController {
    * @throws IOException
    * @throws SQLException
    */
-  public void signInButtonClicked() throws SQLException {
+  public void signInButtonClicked() {
     if (!validateLogin()) return;
-
     Navigation.navigate(Screen.HOME);
 
-    for (Object user : users) {
-      Login u = (Login) user;
-      if (u.getUsername().equals(usernameField.getText())) {
-        currentUser = u;
-        break;
-      }
-    }
+    currentUser = usersMap.get(usernameField.getText());
   }
 
   /** Exits the application */

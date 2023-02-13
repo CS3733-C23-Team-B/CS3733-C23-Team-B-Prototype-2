@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class RequestsController {
   @FXML VBox mainVbox;
@@ -61,9 +62,10 @@ public class RequestsController {
             "notes",
             "status",
             "device");
-    saniButton.setOnAction(e -> makeTable(saniColumns, ORMType.SREQUEST));
-    transButton.setOnAction(e -> makeTable(transColumns, ORMType.PTREQUEST));
-    comButton.setOnAction(e -> makeTable(comColumns, ORMType.CREQUEST));
+    saniButton.setOnAction(e -> makeTable(saniColumns, ORMType.SREQUEST, "Sanitation"));
+    transButton.setOnAction(
+        e -> makeTable(transColumns, ORMType.PTREQUEST, "Internal Patient Transportation"));
+    comButton.setOnAction(e -> makeTable(comColumns, ORMType.CREQUEST, "Computer"));
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
   }
 
@@ -83,6 +85,8 @@ public class RequestsController {
         });
     Label l = new Label();
     l.setText(name);
+    l.setFont(new Font("Ariel", 25));
+    mainVbox.getChildren().add(l);
     mainVbox.getChildren().add(t);
   }
 }

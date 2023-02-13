@@ -24,6 +24,7 @@ public class MapDAO {
   }
 
   public static List<Edge> getAllEdges() {
+    refreshEdges();
     return edges;
   }
 
@@ -191,11 +192,11 @@ public class MapDAO {
     Session session = sf.openSession();
     String oldID = n.getNodeID();
     String newID = n.buildID();
-    String hql = "UPDATE FROM Node SET nodeID = '" + newID + "' WHERE nodeID = '" + oldID + "'";
+    String hql = "UPDATE Node n SET n.nodeID = '" + newID + "' WHERE n.nodeID = '" + oldID + "'";
     try {
       Transaction tx = session.beginTransaction();
       session.merge(n);
-      session.createQuery(hql, Node.class).executeUpdate();
+      session.createQuery(hql).executeUpdate();
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();

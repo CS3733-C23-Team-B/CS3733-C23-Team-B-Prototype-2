@@ -72,8 +72,8 @@ public class Pathfinding {
   public static ArrayList<String> getDirectPaths(String node) {
     ArrayList<String> retList = new ArrayList<String>();
     for (Edge edge : edges) {
-      if (edge.getNode1().equals(node)) retList.add(edge.getNode2().getNodeID());
-      else if (edge.getNode2().equals(node)) retList.add(edge.getNode1().getNodeID());
+      if (edge.getNode1().getNodeID().equals(node)) retList.add(edge.getNode2().getNodeID());
+      if (edge.getNode2().getNodeID().equals(node)) retList.add(edge.getNode1().getNodeID());
     }
     return retList;
   }
@@ -85,7 +85,7 @@ public class Pathfinding {
    * @return a String representation of the path taken
    */
   private static String pathToString(List<String> path) {
-    //    path = nodesToLocations(path);
+    //        path = nodesToLocations(path);
     totalDist = 0;
     for (int i = 0; i < path.size() - 1; i++) totalDist += getWeight(path.get(i), path.get(i + 1));
     System.out.println("Total dist: " + totalDist);
@@ -228,6 +228,7 @@ public class Pathfinding {
 
   /** Refreshes the node and edge fields from the database */
   public static void refreshData() {
+    nodes = DBSession.getAllNodes();
     edges = DBSession.getAllEdges();
   }
 }

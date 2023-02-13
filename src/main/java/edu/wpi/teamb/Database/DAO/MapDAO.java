@@ -302,7 +302,7 @@ public class MapDAO {
       e.printStackTrace();
     } finally {
       session.close();
-      refreshNodes();
+      refreshLocationNames();
     }
   }
 

@@ -3,14 +3,10 @@ package edu.wpi.teamb.Database;
 import edu.wpi.teamb.Database.DAO.LoginDAO;
 import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Database.DAO.RequestDAO;
-import edu.wpi.teamb.Entities.SessionGetter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+
 
 public class DBSession {
 
@@ -21,6 +17,7 @@ public class DBSession {
   public static void refreshAll() {
     MapDAO.refreshNodes();
     MapDAO.refreshEdges();
+    MapDAO.refreshLocationNames();
     RequestDAO.refreshRequests();
     LoginDAO.refreshLogins();
   }

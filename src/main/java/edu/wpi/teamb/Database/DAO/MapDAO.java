@@ -87,10 +87,14 @@ public class MapDAO {
             + "' ORDER BY moveDate DESC";
     try {
       Transaction tx = session.beginTransaction();
-      Query q = session.createQuery(hql, Move.class);
-      List<Move> ms = q.list();
+      Query q = session.createQuery(hql);
+      List<Object[]> ms = q.list();
       tx.commit();
-      for (Move m : ms) {
+      for (Object[] moveInfo : ms) {
+        Move m = new Move();
+        m.setLocationName((LocationName) moveInfo[0]);
+        m.setNode((Node) moveInfo[1]);
+        m.setMoveDate((Date) moveInfo[2]);
         moves.put(m.getLocationName().getLongName(), m);
       }
       return moves;

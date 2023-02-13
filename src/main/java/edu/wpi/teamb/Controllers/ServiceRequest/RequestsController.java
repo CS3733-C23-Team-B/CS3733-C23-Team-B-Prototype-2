@@ -1,122 +1,162 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
-import edu.wpi.teamb.Database.ComputerRequest;
-import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.PatientTransportationRequest;
-import edu.wpi.teamb.Database.SanitationRequest;
-import edu.wpi.teamb.Navigation.Navigation;
-import edu.wpi.teamb.Navigation.Screen;
-import java.util.ArrayList;
+import edu.wpi.teamb.Database.*;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.List;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.util.StringConverter;
 
 public class RequestsController {
-
-  // Transportation Columns
-  @FXML TableView TransportationTable;
-  @FXML TableView SanitationTable;
-  @FXML TableView ComputerTable;
-  @FXML TableColumn tranLastNameColumn;
-  @FXML TableColumn tranFirstNameColumn;
-  @FXML TableColumn tranEmployeeIDColumn;
-  @FXML TableColumn tranEmailColumn;
-  @FXML TableColumn tranUrgencyColumn;
-  @FXML TableColumn tranAssignedStaffColumn;
-  @FXML TableColumn tranPatientIDColumn;
-  @FXML TableColumn tranCurrentLocationColumn;
-  @FXML TableColumn tranDestinationColumn;
-  @FXML TableColumn tranEquipmentColumn;
-  @FXML TableColumn tranNotesColumn;
-  @FXML TableColumn tranStatusColumn;
-
-  @FXML TableColumn saniLastNameColumn;
-  @FXML TableColumn saniFirstNameColumn;
-  @FXML TableColumn saniEmployeeIDColumn;
-  @FXML TableColumn saniEmailColumn;
-  @FXML TableColumn saniUrgencyColumn;
-  @FXML TableColumn saniAssignedStaffColumn;
-  @FXML TableColumn saniTypeOfCleanupColumn;
-  @FXML TableColumn saniLocationColumn;
-  @FXML TableColumn saniNotesColumn;
-  @FXML TableColumn saniStatusColumn;
-
-  @FXML TableColumn comLastNameColumn;
-  @FXML TableColumn comFirstNameColumn;
-  @FXML TableColumn comEmployeeIDColumn;
-  @FXML TableColumn comEmailColumn;
-  @FXML TableColumn comUrgencyColumn;
-  @FXML TableColumn comAssignedStaffColumn;
-  @FXML TableColumn comTypeOfRepairColumn;
-  @FXML TableColumn comDeviceColumn;
-  @FXML TableColumn comLocationColumn;
-  @FXML TableColumn comNotesColumn;
-  @FXML TableColumn comStatusColumn;
-
-  List<PatientTransportationRequest> TransportRequestList = new ArrayList<>();
-  List<SanitationRequest> SanitationRequestList = new ArrayList<>();
-  List<ComputerRequest> ComputerRequestList = new ArrayList<>();
+  @FXML VBox mainVbox;
+  @FXML MFXButton saniButton;
+  @FXML MFXButton transButton;
+  @FXML MFXButton secButton;
+  @FXML MFXButton comButton;
+  @FXML MFXButton audioButton;
 
   public void initialize() {
+    List<String> saniColumns =
+        List.of(
+            new String[] {
+              "lastname",
+              "firstname",
+              "employeeID",
+              "email",
+              "urgency",
+              "assignedEmployee",
+              "typeOfCleanUp",
+              "cleanUpLocation",
+              "status",
+              "notes"
+            });
+    List<String> transColumns =
+        List.of(
+            "lastname",
+            "firstname",
+            "employeeID",
+            "email",
+            "urgency",
+            "patientID",
+            "patientCurrentLocation",
+            "patientDestinationLocation",
+            "equipmentNeeded",
+            "status",
+            "notes");
+    List<String> comColumns =
+        List.of(
+            "lastname",
+            "firstname",
+            "employeeID",
+            "email",
+            "urgency",
+            "assignedEmployee",
+            "typeOfRepair",
+            "repairLocation",
+            "notes",
+            "status",
+            "device");
+    saniButton.setOnAction(e -> makeTableSani(saniColumns, "Sanitation"));
+    transButton.setOnAction(e -> makeTableTrans(transColumns, "Internal Patient Transportation"));
+    comButton.setOnAction(e -> makeTableCom(comColumns, "Computer"));
+    mainVbox.setPadding(new Insets(50, 20, 0, 20));
+  }
 
-    tranLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
-    tranFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-    tranEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
-    tranEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-    tranUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
-    tranAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedEmployee"));
-    tranPatientIDColumn.setCellValueFactory(new PropertyValueFactory<>("patientID"));
-    tranCurrentLocationColumn.setCellValueFactory(
-        new PropertyValueFactory<>("patientCurrentLocation"));
-    tranDestinationColumn.setCellValueFactory(
-        new PropertyValueFactory<>("patientDestinationLocation"));
-    tranEquipmentColumn.setCellValueFactory(new PropertyValueFactory<>("equipmentNeeded"));
-    tranNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
-    tranStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-    saniLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
-    saniFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-    saniEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
-    saniEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-    saniUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
-    saniAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedEmployee"));
-    saniTypeOfCleanupColumn.setCellValueFactory(new PropertyValueFactory<>("typeOfCleanUp"));
-    saniLocationColumn.setCellValueFactory(new PropertyValueFactory<>("cleanUpLocation"));
-    saniStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-    saniNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
-
-    comLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
-    comFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-    comEmployeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
-    comEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-    comUrgencyColumn.setCellValueFactory(new PropertyValueFactory<>("urgency"));
-    comAssignedStaffColumn.setCellValueFactory(new PropertyValueFactory<>("assignedEmployee"));
-    comTypeOfRepairColumn.setCellValueFactory(new PropertyValueFactory<>("typeOfRepair"));
-    comLocationColumn.setCellValueFactory(new PropertyValueFactory<>("repairLocation"));
-    comNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
-    comStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-    comDeviceColumn.setCellValueFactory(new PropertyValueFactory<>("device"));
-
-    TransportRequestList = DBSession.getAllPTRequests();
-    TransportRequestList.forEach(
+  private void makeTableSani(List<String> columns, String name) {
+    mainVbox.getChildren().clear();
+    TableView t = new TableView();
+    for (String colName : columns) {
+      TableColumn col = new TableColumn();
+      t.getColumns().add(col);
+      col.setText(colName);
+      col.setCellValueFactory(new PropertyValueFactory<>(colName));
+    }
+    List<SanitationRequest> objectList = DBSession.getAllSRequests();
+    objectList.forEach(
         (value) -> {
-          TransportationTable.getItems().add(value);
+          t.getItems().add(value);
         });
-    SanitationRequestList = DBSession.getAllSRequests();
-    SanitationRequestList.forEach(
+    Label l = new Label();
+    l.setText(name);
+    l.setFont(new Font("Ariel", 25));
+    mainVbox.getChildren().add(l);
+    mainVbox.getChildren().add(t);
+  }
+
+  private void makeTableTrans(List<String> columns, String name) {
+    mainVbox.getChildren().clear();
+    TableView t = new TableView();
+    for (String colName : columns) {
+      TableColumn col = new TableColumn();
+      t.getColumns().add(col);
+      col.setText(colName);
+      if (colName.equals("urgency")) {
+        editableCols(col, t);
+      }
+      col.setCellValueFactory(new PropertyValueFactory<>(colName));
+    }
+
+    List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
+    objectList.forEach(
         (value) -> {
-          SanitationTable.getItems().add(value);
+          t.getItems().add(value);
         });
-    ComputerRequestList = DBSession.getAllCRequests();
-    ComputerRequestList.forEach(
+    Label l = new Label();
+    l.setText(name);
+    l.setFont(new Font("Ariel", 25));
+    mainVbox.getChildren().add(l);
+    mainVbox.getChildren().add(t);
+  }
+
+  public void editableCols(TableColumn col, TableView table) {
+    //    col.setCellFactory(TextFieldTableCell.forTableColumn(converter));
+    //    col.setOnEditCommit(
+    //        e -> {
+    //          Login login = e.getTableView().getItems().get(e.getTablePosition().getRow());
+    //          login.setAdmin(e.getNewValue());
+    //          DBSession.updateAdmin(login.getUsername(), login.getAdmin());
+    //        });
+    //
+    //    table.setEditable(true);
+  }
+
+  StringConverter<Boolean> converter =
+      new StringConverter<Boolean>() {
+        @Override
+        public String toString(Boolean object) {
+          return object.toString();
+        }
+
+        @Override
+        public Boolean fromString(String string) {
+          return (string.equals("true"));
+        }
+      };
+
+  private void makeTableCom(List<String> columns, String name) {
+    mainVbox.getChildren().clear();
+    TableView t = new TableView();
+    for (String colName : columns) {
+      TableColumn col = new TableColumn();
+      t.getColumns().add(col);
+      col.setText(colName);
+      col.setCellValueFactory(new PropertyValueFactory<>(colName));
+    }
+    List<ComputerRequest> objectList = DBSession.getAllCRequests();
+    objectList.forEach(
         (value) -> {
-          ComputerTable.getItems().add(value);
+          t.getItems().add(value);
         });
-    Button b = new Button();
-    b.setText("Back");
-    b.setOnAction(e -> Navigation.navigate(Screen.REQUESTS));
+    Label l = new Label();
+    l.setText(name);
+    l.setFont(new Font("Ariel", 25));
+    mainVbox.getChildren().add(l);
+    mainVbox.getChildren().add(t);
   }
 }

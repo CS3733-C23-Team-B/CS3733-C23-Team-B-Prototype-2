@@ -106,7 +106,7 @@ public class ProfileController {
   }
   /** Deletes the login for the current user and returns to the sign-in page */
   public void deleteAccount() {
-    DBSession.delete(user);
+    DBSession.deleteLogin(user);
     Navigation.navigate(Screen.SIGN_IN);
   }
 }

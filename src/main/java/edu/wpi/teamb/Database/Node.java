@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Database;
 
-import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +10,7 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "node")
-public class Node implements IORM {
+public class Node {
 
   @Id
   @Column(name = "nodeID", length = 14)
@@ -54,8 +53,4 @@ public class Node implements IORM {
     return id;
   }
 
-  @Override
-  public String getSearchStr() {
-    return "FROM Node WHERE nodeID = '" + nodeID + "'";
-  }
 }

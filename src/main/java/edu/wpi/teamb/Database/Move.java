@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Database;
 
-import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import java.util.Date;
 import lombok.Getter;
@@ -9,7 +8,7 @@ import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "move")
-public class Move implements IORM {
+public class Move {
 
   @Id
   @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
@@ -55,8 +54,4 @@ public class Move implements IORM {
 
   public Move() {}
 
-  @Override
-  public String getSearchStr() {
-    return "FROM Move WHERE node = '" + node + "' and locationName = '" + locationName + "'";
-  }
 }

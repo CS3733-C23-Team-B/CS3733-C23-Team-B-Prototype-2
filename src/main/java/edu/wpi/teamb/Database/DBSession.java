@@ -16,13 +16,6 @@ public class DBSession {
 
   private DBSession() {};
 
-  public static DBSession getInstance() {
-    if (instance == null) {
-      instance = new DBSession();
-    }
-    return instance;
-  }
-
   public static void addNode(Node n) {
     MapDAO.addNode(n);
   }
@@ -37,6 +30,9 @@ public class DBSession {
 
   public static void addLogin(Login l) {
     LoginDAO.addLogin(l);
+  }
+  public static void deleteLogin(Login l) {
+    LoginDAO.deleteLogin(l);
   }
   public static void addEdge(Edge e) {
     MapDAO.addEdge(e);
@@ -116,24 +112,6 @@ public class DBSession {
 
   public static void updateAdmin(String user, Boolean b) {
     LoginDAO.updateAdmin(user,b);
-  }
-
-  @Deprecated
-  public static void delete(IORM iorm) {
-
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    Transaction tx = null;
-    try {
-      tx = session.beginTransaction();
-      String str = "DELETE " + iorm.getSearchStr();
-      session.createQuery(str).executeUpdate();
-      session.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      session.close();
-    }
   }
 
   public static List<Move> getMostRecentMoves(String NodeID) {

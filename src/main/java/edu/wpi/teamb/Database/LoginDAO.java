@@ -31,6 +31,22 @@ public class LoginDAO {
       refreshLogins();
     }
   }
+
+  public static void deleteLogin(Login l) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    Transaction tx = null;
+    try {
+      tx = session.beginTransaction();
+      session.remove(l);
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+      refreshLogins();
+    }
+  }
   public static void updateUser(String user, String first, String last, String email) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

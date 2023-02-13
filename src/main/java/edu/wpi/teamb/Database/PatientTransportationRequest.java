@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Database;
 
-import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +9,7 @@ import lombok.Setter;
 @PrimaryKeyJoinColumn(
     name = "PatientTransportationRequestID",
     foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey"))
-public class PatientTransportationRequest extends GeneralRequest implements IORM {
+public class PatientTransportationRequest extends GeneralRequest {
   @Column(name = "equipmentNeeded", length = 60)
   @Getter
   @Setter
@@ -31,10 +30,6 @@ public class PatientTransportationRequest extends GeneralRequest implements IORM
   @Setter
   private String patientID;
 
-  @Override
-  public String getSearchStr() {
-    return "FROM PatientTransportationRequest WHERE id = " + getId();
-  }
 
   public PatientTransportationRequest() {}
 }

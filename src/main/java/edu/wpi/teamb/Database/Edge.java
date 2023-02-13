@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Database;
 
-import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +11,7 @@ import org.hibernate.annotations.Cascade;
  */
 @Entity
 @Table(name = "edge")
-public class Edge implements IORM {
+public class Edge {
 
   // Primary Key and Foreign Key
   @Id
@@ -53,8 +52,4 @@ public class Edge implements IORM {
 
   public Edge() {}
 
-  @Override
-  public String getSearchStr() {
-    return "FROM Edge WHERE node1 = '" + node1 + "' and node2 = '" + node2 + "'";
-  }
 }

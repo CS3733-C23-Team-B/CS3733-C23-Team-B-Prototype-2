@@ -18,6 +18,13 @@ public class DBSession {
 
   private DBSession() {};
 
+  public static void refreshAll() {
+    MapDAO.refreshNodes();
+    MapDAO.refreshEdges();
+    RequestDAO.refreshRequests();
+    LoginDAO.refreshLogins();
+  }
+
   public static void addNode(Node n) {
     MapDAO.addNode(n);
   }

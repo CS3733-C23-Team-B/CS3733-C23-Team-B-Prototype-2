@@ -70,11 +70,12 @@ public class LoginDAO {
                   + user
                   + "'");
       q.executeUpdate();
-      session.close();
+      tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       session.close();
+      refreshLogins();
     }
   }
 
@@ -87,11 +88,12 @@ public class LoginDAO {
           session.createQuery(
               "UPDATE Login SET " + "admin = " + b + "" + " WHERE username = '" + user + "'");
       q.executeUpdate();
-      session.close();
+      tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       session.close();
+      refreshLogins();
     }
   }
 

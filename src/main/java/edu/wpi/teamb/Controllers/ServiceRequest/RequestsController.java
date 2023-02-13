@@ -1,9 +1,6 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
-import edu.wpi.teamb.Database.ComputerRequest;
-import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.PatientTransportationRequest;
-import edu.wpi.teamb.Database.SanitationRequest;
+import edu.wpi.teamb.Database.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -12,8 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.util.StringConverter;
 
 public class RequestsController {
   @FXML VBox mainVbox;
@@ -98,8 +97,12 @@ public class RequestsController {
       TableColumn col = new TableColumn();
       t.getColumns().add(col);
       col.setText(colName);
+      if (colName.equals("urgency")) {
+        editableCols(col, t);
+      }
       col.setCellValueFactory(new PropertyValueFactory<>(colName));
     }
+
     List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
     objectList.forEach(
         (value) -> {
@@ -111,6 +114,31 @@ public class RequestsController {
     mainVbox.getChildren().add(l);
     mainVbox.getChildren().add(t);
   }
+
+  public void editableCols(TableColumn col, TableView table) {
+//    col.setCellFactory(TextFieldTableCell.forTableColumn(converter));
+//    col.setOnEditCommit(
+//        e -> {
+//          Login login = e.getTableView().getItems().get(e.getTablePosition().getRow());
+//          login.setAdmin(e.getNewValue());
+//          DBSession.updateAdmin(login.getUsername(), login.getAdmin());
+//        });
+//
+//    table.setEditable(true);
+  }
+
+  StringConverter<Boolean> converter =
+      new StringConverter<Boolean>() {
+        @Override
+        public String toString(Boolean object) {
+          return object.toString();
+        }
+
+        @Override
+        public Boolean fromString(String string) {
+          return (string.equals("true"));
+        }
+      };
 
   private void makeTableCom(List<String> columns, String name) {
     mainVbox.getChildren().clear();

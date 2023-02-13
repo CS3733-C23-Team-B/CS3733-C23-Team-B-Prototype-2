@@ -48,6 +48,7 @@ public class MapEditorController {
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
   private static MapEditorController instance;
+  private Map<String, List<Move>> moveMap;
   private ImageView lowerlevel =
       new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
   private ImageView groundfloor =
@@ -64,6 +65,7 @@ public class MapEditorController {
   @FXML MFXFilterComboBox<String> floorCombo;
 
   public void initialize() {
+    moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
     instance = this;
     floorCombo.setItems(
         FXCollections.observableArrayList(
@@ -128,7 +130,7 @@ public class MapEditorController {
       if (node.getFloor().equals(f)) {
         Circle dot = placeNode(node);
         nodeMap.put(dot, node);
-        List<Move> locations = DBSession.getLocationfromNodeID(node.getNodeID());
+        List<Move> locations = DBSession.getMostRecentMoves(node.getNodeID());
         if (locations != null) for (Move move : locations) displayLoc(dot);
       }
     }
@@ -207,9 +209,12 @@ public class MapEditorController {
 
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
-    Label loc = new Label(DBSession.getMostRecentLocation(node.getNodeID()));
-    loc.setFont(new Font("Arial", 4));
-    vbox.getChildren().add(loc);
+    List<Move> l = moveMap.get(node.getNodeID());
+    for (Move move : l) {
+      Label loc = new Label(move.getLocationName().getLongName());
+      loc.setFont(new Font("Arial", 4));
+      vbox.getChildren().add(loc);
+    }
 
     HBox hbox = new HBox();
     hbox.setAlignment(Pos.CENTER);

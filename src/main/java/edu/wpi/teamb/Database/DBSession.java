@@ -118,6 +118,7 @@ public class DBSession {
     LoginDAO.updateAdmin(user,b);
   }
 
+  @Deprecated
   public static void delete(IORM iorm) {
 
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
@@ -159,6 +160,7 @@ public class DBSession {
     return getAllNodes().get(id);
   }
 
+//this stuff should be in a DAO if its gonna be reused
   public static Move getMostRecentMove(String nodeID) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

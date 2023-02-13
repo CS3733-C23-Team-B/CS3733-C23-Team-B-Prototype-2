@@ -168,6 +168,7 @@ public class MapDAO {
     } finally {
       session.close();
       refreshNodes();
+      refreshEdges();
     }
   }
 
@@ -184,6 +185,7 @@ public class MapDAO {
     } finally {
       session.close();
       refreshNodes();
+      refreshEdges();
     }
   }
 
@@ -203,6 +205,7 @@ public class MapDAO {
     } finally {
       session.close();
       refreshNodes();
+      refreshEdges();
     }
   }
 

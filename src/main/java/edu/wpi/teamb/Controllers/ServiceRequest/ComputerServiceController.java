@@ -95,7 +95,7 @@ public class ComputerServiceController extends BaseRequestController {
     request.setAssignedEmployee(assignedStaffField.getText());
     request.setTypeOfRepair(typeOfrepair.toString());
     request.setStatus(RequestStatus.PROCESSING);
-    DBSession.addORM(request);
+    DBSession.addRequest(request);
 
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();

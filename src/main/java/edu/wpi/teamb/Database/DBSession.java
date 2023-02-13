@@ -38,11 +38,6 @@ public class DBSession {
   public static void addLogin(Login l) {
     LoginDAO.addLogin(l);
   }
-
-  public static Map<String, Login> getAllLogins() {
-    return LoginDAO.getAllLogins();
-  }
-
   public static void addEdge(Edge e) {
     MapDAO.addEdge(e);
   }
@@ -75,6 +70,10 @@ public class DBSession {
     RequestDAO.addRequest(r);
   }
 
+  public static Map<String, Login> getAllLogins() {
+    return LoginDAO.getAllLogins();
+  }
+
   public static Map<String, Node> getAllNodes() {
     return MapDAO.getAllNodes();
   }
@@ -85,14 +84,6 @@ public class DBSession {
 
   public static Map<String, LocationName> getAllLocationNames() {
     return MapDAO.getAllLocationNames();
-  }
-
-  public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
-    return MapDAO.getIDMoves(d);
-  }
-
-  public static Map<String, Move> getLNMoves(Date d) {
-    return MapDAO.getLNMoves(d);
   }
 
   public static List<GeneralRequest> getAllRequests() {
@@ -111,50 +102,20 @@ public class DBSession {
     return RequestDAO.getALLCRequests();
   }
 
+
+  public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
+    return MapDAO.getIDMoves(d);
+  }
+
+  public static Map<String, Move> getLNMoves(Date d) {
+    return MapDAO.getLNMoves(d);
+  }
   public static void updateUser(String user, String first, String last, String email) {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q =
-          session.createQuery(
-              "UPDATE Login SET "
-                  + "email = '"
-                  + email
-                  + "'"
-                  + ", firstname = '"
-                  + first
-                  + "'"
-                  + ", lastname = '"
-                  + last
-                  + "'"
-                  + " WHERE username = '"
-                  + user
-                  + "'");
-      q.executeUpdate();
-      session.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      session.close();
-    }
+    LoginDAO.updateUser(user,first,last,email);
   }
 
   public static void updateAdmin(String user, Boolean b) {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    try {
-      Transaction tx = session.beginTransaction();
-      Query q =
-          session.createQuery(
-              "UPDATE Login SET " + "admin = " + b + "" + " WHERE username = '" + user + "'");
-      q.executeUpdate();
-      session.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      session.close();
-    }
+    LoginDAO.updateAdmin(user,b);
   }
 
   public static void delete(IORM iorm) {

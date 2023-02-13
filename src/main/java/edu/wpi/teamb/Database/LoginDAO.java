@@ -31,7 +31,51 @@ public class LoginDAO {
       refreshLogins();
     }
   }
+  public static void updateUser(String user, String first, String last, String email) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q =
+              session.createQuery(
+                      "UPDATE Login SET "
+                              + "email = '"
+                              + email
+                              + "'"
+                              + ", firstname = '"
+                              + first
+                              + "'"
+                              + ", lastname = '"
+                              + last
+                              + "'"
+                              + " WHERE username = '"
+                              + user
+                              + "'");
+      q.executeUpdate();
+      session.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
 
+  public static void updateAdmin(String user, Boolean b) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q =
+              session.createQuery(
+                      "UPDATE Login SET " + "admin = " + b + "" + " WHERE username = '" + user + "'");
+      q.executeUpdate();
+      session.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
   public static void refreshLogins() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

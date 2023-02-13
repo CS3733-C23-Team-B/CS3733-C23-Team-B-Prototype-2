@@ -187,7 +187,7 @@ public class MapDAO {
     try {
       Transaction tx = session.beginTransaction();
       session.merge(n);
-      session.createQuery(hql, Node.class);
+      session.createQuery(hql, Node.class).executeUpdate();
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
@@ -284,7 +284,7 @@ public class MapDAO {
             + "'";
     try {
       Transaction tx = session.beginTransaction();
-      session.createQuery(hql, LocationName.class);
+      session.createQuery(hql, LocationName.class).executeUpdate();
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
@@ -319,6 +319,48 @@ public class MapDAO {
       e.printStackTrace();
     } finally {
       session.close();
+    }
+  }
+
+  public static Move getMostRecentWithNode(Node n) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    String hql = "FROM Move WHERE node = '" + n.getNodeID() + "' ORDER BY moveDate DESC";
+    Move m = new Move();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery(hql, Move.class);
+      tx.commit();
+      List<Move> ms = q.list();
+      if (!ms.isEmpty()) {
+        m = ms.get(0);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+      return m;
+    }
+  }
+
+  public static Move getMostRecentWithLocationName(LocationName ln) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    String hql = "FROM Move WHERE locationName = '" + ln.getLongName() + "' ORDER BY moveDate DESC";
+    Move m = new Move();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery(hql, Move.class);
+      tx.commit();
+      List<Move> ms = q.list();
+      if (!ms.isEmpty()) {
+        m = ms.get(0);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+      return m;
     }
   }
 }

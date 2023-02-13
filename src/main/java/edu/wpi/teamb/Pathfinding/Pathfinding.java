@@ -85,7 +85,7 @@ public class Pathfinding {
    * @return a String representation of the path taken
    */
   private static String pathToString(List<String> path) {
-    //    path = nodesToLocations(path);
+    //        path = nodesToLocations(path);
     totalDist = 0;
     for (int i = 0; i < path.size() - 1; i++) totalDist += getWeight(path.get(i), path.get(i + 1));
     System.out.println("Total dist: " + totalDist);
@@ -118,6 +118,7 @@ public class Pathfinding {
    * @return a String representation of the optimal path to take
    */
   public static ArrayList<String> getShortestPath(String start, String end) {
+    refreshData();
     ArrayList<String> p = getPathAStar(start, end);
     System.out.println(pathToString(p));
     return p;
@@ -228,6 +229,7 @@ public class Pathfinding {
 
   /** Refreshes the node and edge fields from the database */
   public static void refreshData() {
+    nodes = DBSession.getAllNodes();
     edges = DBSession.getAllEdges();
   }
 }

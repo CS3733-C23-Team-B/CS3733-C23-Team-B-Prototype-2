@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.StringConverter;
@@ -116,15 +115,15 @@ public class RequestsController {
   }
 
   public void editableCols(TableColumn col, TableView table) {
-//    col.setCellFactory(TextFieldTableCell.forTableColumn(converter));
-//    col.setOnEditCommit(
-//        e -> {
-//          Login login = e.getTableView().getItems().get(e.getTablePosition().getRow());
-//          login.setAdmin(e.getNewValue());
-//          DBSession.updateAdmin(login.getUsername(), login.getAdmin());
-//        });
-//
-//    table.setEditable(true);
+    //    col.setCellFactory(TextFieldTableCell.forTableColumn(converter));
+    //    col.setOnEditCommit(
+    //        e -> {
+    //          Login login = e.getTableView().getItems().get(e.getTablePosition().getRow());
+    //          login.setAdmin(e.getNewValue());
+    //          DBSession.updateAdmin(login.getUsername(), login.getAdmin());
+    //        });
+    //
+    //    table.setEditable(true);
   }
 
   StringConverter<Boolean> converter =

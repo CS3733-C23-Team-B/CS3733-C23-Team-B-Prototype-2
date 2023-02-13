@@ -103,7 +103,9 @@ public class Pathfinding {
    * @return the list of locationLongNames associated with each NodeID
    */
   private static List<String> nodesToLocations(List<String> path) {
-    return path.stream().map(DBSession::getMostRecentLocation).collect(Collectors.toList());
+    return path.stream()
+        .map(nodeID -> DBSession.getMostRecentMoves(nodeID).get(0).getLocationName().getLongName())
+        .collect(Collectors.toList());
   }
 
   /**

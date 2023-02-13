@@ -78,9 +78,8 @@ public class SigninController {
    * @throws IOException
    * @throws SQLException
    */
-  public void signInButtonClicked() throws SQLException {
+  public void signInButtonClicked() {
     if (!validateLogin()) return;
-
     Navigation.navigate(Screen.HOME);
 
     for (Object user : users) {

@@ -8,7 +8,6 @@ import lombok.Setter;
 @Table(name = "login")
 @PrimaryKeyJoinColumn(name = "login", foreignKey = @ForeignKey(name = "loginIDKey"))
 public class Login {
-
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Getter
   @Id

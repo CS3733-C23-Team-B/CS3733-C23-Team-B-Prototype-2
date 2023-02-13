@@ -1,12 +1,9 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
+import edu.wpi.teamb.Database.ComputerRequest;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.PatientTransportationRequest;
 import edu.wpi.teamb.Database.SanitationRequest;
-import edu.wpi.teamb.Navigation.Navigation;
-import edu.wpi.teamb.Navigation.Screen;
-import java.util.ArrayList;
-import edu.wpi.teamb.Entities.ORMType;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -67,14 +64,13 @@ public class RequestsController {
             "notes",
             "status",
             "device");
-    saniButton.setOnAction(e -> makeTable(saniColumns, ORMType.SREQUEST, "Sanitation"));
-    transButton.setOnAction(
-        e -> makeTable(transColumns, ORMType.PTREQUEST, "Internal Patient Transportation"));
-    comButton.setOnAction(e -> makeTable(comColumns, ORMType.CREQUEST, "Computer"));
+    saniButton.setOnAction(e -> makeTableSani(saniColumns, "Sanitation"));
+    transButton.setOnAction(e -> makeTableTrans(transColumns, "Internal Patient Transportation"));
+    comButton.setOnAction(e -> makeTableCom(comColumns, "Computer"));
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
   }
 
-  private void makeTable(List<String> columns, ORMType type, String name) {
+  private void makeTableSani(List<String> columns, String name) {
     mainVbox.getChildren().clear();
     TableView t = new TableView();
     for (String colName : columns) {
@@ -83,7 +79,49 @@ public class RequestsController {
       col.setText(colName);
       col.setCellValueFactory(new PropertyValueFactory<>(colName));
     }
-    List<Object> objectList = DBSession.getAll(type);
+    List<SanitationRequest> objectList = DBSession.getAllSRequests();
+    objectList.forEach(
+        (value) -> {
+          t.getItems().add(value);
+        });
+    Label l = new Label();
+    l.setText(name);
+    l.setFont(new Font("Ariel", 25));
+    mainVbox.getChildren().add(l);
+    mainVbox.getChildren().add(t);
+  }
+
+  private void makeTableTrans(List<String> columns, String name) {
+    mainVbox.getChildren().clear();
+    TableView t = new TableView();
+    for (String colName : columns) {
+      TableColumn col = new TableColumn();
+      t.getColumns().add(col);
+      col.setText(colName);
+      col.setCellValueFactory(new PropertyValueFactory<>(colName));
+    }
+    List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
+    objectList.forEach(
+        (value) -> {
+          t.getItems().add(value);
+        });
+    Label l = new Label();
+    l.setText(name);
+    l.setFont(new Font("Ariel", 25));
+    mainVbox.getChildren().add(l);
+    mainVbox.getChildren().add(t);
+  }
+
+  private void makeTableCom(List<String> columns, String name) {
+    mainVbox.getChildren().clear();
+    TableView t = new TableView();
+    for (String colName : columns) {
+      TableColumn col = new TableColumn();
+      t.getColumns().add(col);
+      col.setText(colName);
+      col.setCellValueFactory(new PropertyValueFactory<>(colName));
+    }
+    List<ComputerRequest> objectList = DBSession.getAllCRequests();
     objectList.forEach(
         (value) -> {
           t.getItems().add(value);

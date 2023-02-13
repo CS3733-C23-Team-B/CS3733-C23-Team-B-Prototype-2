@@ -285,13 +285,13 @@ public class MapDAO {
     Session session = sf.openSession();
     String oldLNName = oldLN.getLongName();
     String hql =
-        "UPDATE FROM LocationName SET longName = '"
+        "UPDATE LocationName ln SET ln.longName = '"
             + newLN.getLongName()
-            + "', shortName = '"
+            + "', ln.shortName = '"
             + newLN.getShortName()
-            + "', locationType = '"
+            + "', ln.locationType = '"
             + newLN.getLocationType()
-            + "' WHERE longName = '"
+            + "' WHERE ln.longName = '"
             + oldLNName
             + "'";
     try {
@@ -326,6 +326,25 @@ public class MapDAO {
     try {
       Transaction tx = session.beginTransaction();
       session.remove(m);
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
+
+  public static void updateMove(Move oldM, Move newM) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    String hql = "UPDATE Move m SET m.locationName = '" + newM.getLocationName().getLongName()
+            + "', m.node = '" + newM.getNode().getNodeID()
+            + "', m.moveDate = '" + newM.getMoveDate() + "' WHERE m.node = '" + oldM.getNode().getNodeID()
+            + "'AND m.locationName = '" + oldM.getLocationName().getLongName()
+            + "'AND m.moveDate = '" + oldM.getMoveDate() + "'";
+    try {
+      Transaction tx = session.beginTransaction();
+      session.createQuery(hql).executeUpdate();
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();

@@ -1,5 +1,6 @@
-package edu.wpi.teamb.Database;
+package edu.wpi.teamb.Database.DAO;
 
+import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.SessionGetter;
 import java.util.HashMap;
 import java.util.List;

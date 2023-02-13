@@ -1,5 +1,9 @@
-package edu.wpi.teamb.Database;
+package edu.wpi.teamb.Database.DAO;
 
+import edu.wpi.teamb.Database.ComputerRequest;
+import edu.wpi.teamb.Database.GeneralRequest;
+import edu.wpi.teamb.Database.PatientTransportationRequest;
+import edu.wpi.teamb.Database.SanitationRequest;
 import edu.wpi.teamb.Entities.SessionGetter;
 import java.util.ArrayList;
 import java.util.List;

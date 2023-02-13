@@ -9,8 +9,8 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.application.Platform;
@@ -167,7 +167,11 @@ public class PathfindingController {
     Text id = new Text("NodeID:   " + node.getNodeID());
     Text pos = new Text("(x, y):  " + "(" + node.getXCoord() + ", " + node.getYCoord() + ")");
 
-    Text loc = new Text(DBSession.getMostRecentLocation(node.getNodeID()));
+    List<Move> m = DBSession.getMostRecentMoves(node.getNodeID());
+    Text loc = new Text();
+    for (Move move : m) {
+      loc.setText(move.getLocationName().getLongName());
+    }
 
     Button editButton = new Button("Create Path from Here");
     editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
@@ -235,11 +239,15 @@ public class PathfindingController {
   static ObservableList<String> getLocations(String s) {
     ObservableList<String> list = FXCollections.observableArrayList();
 
+    Map<String, Node> nodes = DBSession.getAllNodes();
     Map<String, Move> moves = DBSession.getLNMoves(new Date(2023, 1, 1));
 
-    for (Move move : moves)
-      if (!list.contains(move.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals(s))
-        list.add(move.getLongName());
+    moves.forEach(
+        (key, value) -> {
+          if (!list.contains(value.getLocationName().getLongName())
+              && nodes.get(value.getNode()).getFloor().equals(s))
+            list.add(value.getLocationName().getLongName());
+        });
 
     Sorting.quickSort(list);
     return list;

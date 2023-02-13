@@ -1,5 +1,6 @@
 package edu.wpi.teamb;
 
+import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
@@ -38,6 +39,7 @@ public class Bapp extends Application {
     primaryStage.setTitle("Brigham and Women's Hospital");
     primaryStage.show();
     Navigation.navigate(Screen.SIGN_IN);
+    DBSession.refreshAll();
   }
 
   @Override

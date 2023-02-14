@@ -2,6 +2,7 @@ package edu.wpi.teamb.Pathfinding;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Edge;
+import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,7 +10,9 @@ import java.util.stream.Collectors;
 public class Pathfinding {
   private static List<Edge> edges = DBSession.getAllEdges();
   private static Map<String, Node> nodes = DBSession.getAllNodes();
+  private static Map<String, List<Move>> moves = DBSession.getIDMoves(new Date(2023, 1, 1));
   private static int totalDist = 0;
+  public static boolean avoid_stairs = false;
 
   /**
    * Given an edge, evaluates the weight of the edge
@@ -56,7 +59,18 @@ public class Pathfinding {
     String f1 = node1.getFloor();
     String f2 = node2.getFloor();
 
-    int kFloor = 150;
+    int kFloor;
+    if (avoid_stairs)
+      kFloor =
+          moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
+              ? 150
+              : 999999;
+    else
+      kFloor =
+          moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
+              ? 150
+              : 250;
+
     int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * kFloor;
 
     double dist = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) + floorDist;
@@ -87,6 +101,7 @@ public class Pathfinding {
   private static String pathToString(List<String> path) {
     //    path = nodesToLocations(path);
     totalDist = 0;
+    if (path == null) return "PATH NOT FOUND";
     for (int i = 0; i < path.size() - 1; i++) totalDist += getWeight(path.get(i), path.get(i + 1));
     System.out.println("Total dist: " + totalDist);
 

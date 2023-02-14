@@ -105,7 +105,7 @@ public class DBSession {
     return RequestDAO.getALLCRequests();
   }
 
-  public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
+  public static Map<String, List<Move>> getIDMoves(Date d) {
     return MapDAO.getIDMoves(d);
   }
 

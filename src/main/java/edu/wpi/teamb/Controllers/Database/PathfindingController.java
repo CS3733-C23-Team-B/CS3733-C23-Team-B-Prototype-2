@@ -44,8 +44,6 @@ public class PathfindingController {
   private Circle currentDot;
   @FXML MFXFilterComboBox<String> startLoc;
   @FXML MFXFilterComboBox<String> endLoc;
-  private Circle startDot = null;
-  private Circle endDot = null;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
   private ImageView lowerlevel =
       new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
@@ -66,9 +64,27 @@ public class PathfindingController {
   private String currentFloor;
   private String startID;
   private String endID;
+  private Map<String, String> floorMap = new HashMap<>();
+  private Map<String, ImageView> imageMap = new HashMap<>();
+  Circle startDot;
+  Circle endDot;
 
   /** Initializes the dropdown menus */
   public void initialize() {
+    floorMap.put("Lower Level 2", "L2");
+    floorMap.put("Lower Level 1", "L1");
+    floorMap.put("Ground Floor", "G");
+    floorMap.put("First Floor", "1");
+    floorMap.put("Second Floor", "2");
+    floorMap.put("Third Floor", "3");
+
+    imageMap.put("L2", lowerlevel2);
+    imageMap.put("L1", lowerlevel);
+    imageMap.put("G", groundfloor);
+    imageMap.put("1", firstfloor);
+    imageMap.put("2", seccondfloor);
+    imageMap.put("3", thirdfloor);
+
     floorCombo.setItems(
         FXCollections.observableArrayList(
             "Lower Level 2",
@@ -82,42 +98,21 @@ public class PathfindingController {
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
-    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2220, 974));
+    changeFloor("L1", new javafx.geometry.Point2D(2220, 974));
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     floorCombo.setOnAction(
-        e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
+        e -> changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre()));
   }
 
   private void changeFloor(String floor, Point2D p) {
-    ImageView image = new ImageView();
-    switch (floor) {
-      case "Lower Level 2":
-        currentFloor = "L2";
-        image = lowerlevel2;
-        break;
-      case "Lower Level 1":
-        currentFloor = "L1";
-        image = lowerlevel;
-        break;
-      case "Ground Floor":
-        currentFloor = "G";
-        image = groundfloor;
-        break;
-      case "First Floor":
-        currentFloor = "1";
-        image = firstfloor;
-        break;
-      case "Second Floor":
-        currentFloor = "2";
-        image = seccondfloor;
-        break;
-      case "Third Floor":
-        currentFloor = "3";
-        image = thirdfloor;
-        break;
-    }
+    ImageView image;
+    nodeMap.clear();
+
+    currentFloor = floor;
+    image = imageMap.get(floor);
+
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
     aPane.getChildren().add(linesPlane);
@@ -139,13 +134,6 @@ public class PathfindingController {
       if (value.getFloor().equals(currentFloor)) {
         Circle dot = placeNode(value);
         nodeMap.put(dot, value);
-        if (value.getNodeID().equals(startID)) {
-          startDot = dot;
-          startDot.setFill(Color.GREEN);
-        } else if (value.getNodeID().equals(endID)) {
-          endDot = dot;
-          endDot.setFill(Color.RED);
-        }
       }
 
     selectedCircle.addListener(
@@ -160,6 +148,31 @@ public class PathfindingController {
         });
     drawLines();
     Platform.runLater(() -> pane.centreOn(p));
+
+    if (startDot != null) {
+      startDot.setFill(Color.BLUE);
+      startDot = null;
+    }
+    if (endDot != null) {
+      endDot.setFill(Color.BLUE);
+      endDot = null;
+    }
+
+    for (javafx.scene.Node n : aPane.getChildren()) {
+      if (n instanceof Circle) {
+        Circle c = (Circle) n;
+        Node node = nodeMap.get(c);
+        if (node.getNodeID().equals(startID)) {
+          startDot = c;
+          startDot.setFill(Color.GREEN);
+        } else if (node.getNodeID().equals(endID)) {
+          endDot = c;
+          endDot.setFill(Color.RED);
+        }
+      }
+    }
+
+    System.out.println("We he");
   }
 
   private void drawLines() {
@@ -232,8 +245,6 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
-    if (startDot != null) startDot.setFill(Color.BLUE);
-    if (endDot != null) endDot.setFill(Color.BLUE);
 
     linesPlane.getChildren().clear();
     String start = startLoc.getValue();
@@ -243,16 +254,6 @@ public class PathfindingController {
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);
 
-    for (Map.Entry<Circle, Node> entry : nodeMap.entrySet()) {
-      Circle circle = entry.getKey();
-      Node node = entry.getValue();
-      if (node.getNodeID().equals(startID)) startDot = circle;
-      if (node.getNodeID().equals(endID)) endDot = circle;
-    }
-
-    if (startDot != null) startDot.setFill(Color.GREEN);
-    if (endDot != null) endDot.setFill(Color.RED);
-
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
@@ -261,9 +262,33 @@ public class PathfindingController {
       Node s = nodes.get(path.get(i));
       Node e = nodes.get(path.get(i + 1));
       pathNodePairs.add(Arrays.asList(s, e));
+
       if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) placeLine(s, e);
     }
     pane.toFront();
+
+    if (startDot != null) {
+      startDot.setFill(Color.BLUE);
+      startDot = null;
+    }
+    if (endDot != null) {
+      endDot.setFill(Color.BLUE);
+      endDot = null;
+    }
+
+    for (javafx.scene.Node n : aPane.getChildren()) {
+      if (n instanceof Circle) {
+        Circle c = (Circle) n;
+        Node node = nodeMap.get(c);
+        if (node.getNodeID().equals(startID)) {
+          startDot = c;
+          startDot.setFill(Color.GREEN);
+        } else if (node.getNodeID().equals(endID)) {
+          endDot = c;
+          endDot.setFill(Color.RED);
+        }
+      }
+    }
   }
 
   /**

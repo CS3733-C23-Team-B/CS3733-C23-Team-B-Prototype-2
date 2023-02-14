@@ -98,7 +98,25 @@ public class MapDAO {
         m.setMoveDate((Date) moveInfo[2]);
         moves.put(m.getLocationName().getLongName(), m);
       }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
       return moves;
+    }
+  }
+
+  public static List<Move> getFutureMoves(Date d) {
+    List<Move> moves = new ArrayList<Move>();
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    String hql =
+            "FROM Move WHERE moveDate >= '" + d + "'";
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery(hql, Move.class);
+      moves = q.list();
+      tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
     } finally {

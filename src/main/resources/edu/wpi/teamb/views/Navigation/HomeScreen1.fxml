@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -31,7 +33,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="283.0" layoutX="12.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="OUTSIDE" width="380.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="10.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="283.0" layoutX="14.0" layoutY="15.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="OUTSIDE" width="380.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="14.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="46.0" layoutX="12.0" layoutY="8.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="382.0" />
             <Label layoutX="19.0" layoutY="16.0" text="Your Requests" textAlignment="CENTER" textFill="#c5d3ea">
                <font>
@@ -55,7 +57,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="290.0" layoutY="128.0" text="Done">
+            <Label layoutX="324.0" layoutY="126.0" text="Done">
                <font>
                   <Font size="15.0" />
                </font>
@@ -81,6 +83,26 @@
                   <Font size="15.0" />
                </font>
             </Label>
+            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="363.0" layoutY="76.0">
+               <image>
+                  <Image url="@../../../../../../../../../../Downloads/clock.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="364.0" layoutY="184.0">
+               <image>
+                  <Image url="@../../../../../../../../../../Downloads/clock.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="364.0" layoutY="236.0">
+               <image>
+                  <Image url="@../../../../../../../../../../Downloads/clock.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="363.0" layoutY="126.0">
+               <image>
+                  <Image url="@../../../../../../../../../../Downloads/check.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">

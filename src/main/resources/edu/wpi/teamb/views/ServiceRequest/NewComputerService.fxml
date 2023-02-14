@@ -96,7 +96,7 @@
             </HBox>
             <HBox prefHeight="0.0" prefWidth="678.0">
                <children>
-                  <Label text="Patient's Current Location">
+                  <Label text="Type of Repair">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -106,12 +106,12 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text="Patient's Destination Location">
+                  <Label layoutX="10.0" layoutY="10.0" text="Type of Device">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="193.0" />
+                        <Insets left="275.0" />
                      </HBox.margin>
                   </Label>
                   <Label layoutX="69.0" layoutY="10.0" text=" *" textFill="RED">
@@ -138,7 +138,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="162.0" prefHeight="0.0" prefWidth="678.0">
                <children>
-                  <Label text="Equipment Needed">
+                  <Label text="Location">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -148,31 +148,11 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text="Patient's Destination Location">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="238.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="69.0" layoutY="10.0" text=" *" textFill="RED">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="144.0" prefHeight="52.0" prefWidth="200.0">
                <children>
                   <MFXFilterComboBox minWidth="313.0" />
-                  <MFXTextField minHeight="40.0" minWidth="313.0">
-                     <HBox.margin>
-                        <Insets left="70.0" />
-                     </HBox.margin></MFXTextField>
                </children>
                <VBox.margin>
                   <Insets />

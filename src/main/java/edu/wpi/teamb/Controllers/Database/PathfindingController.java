@@ -285,6 +285,15 @@ public class PathfindingController {
 
     pathNodePairs.clear();
 
+    Node startNode = nodes.get(path.get(0));
+    if (!currentFloor.equals(startNode.getFloor())) {
+      changeFloor(startNode.getFloor(), new Point2D(startNode.getXCoord(), startNode.getYCoord()));
+      floorMap.forEach(
+          (key, value) -> {
+            if (value.equals(startNode.getFloor())) floorCombo.setText(key);
+          });
+    }
+
     for (int i = 0; i < path.size() - 1; i++) {
       Node s = nodes.get(path.get(i));
       Node e = nodes.get(path.get(i + 1));
@@ -319,11 +328,6 @@ public class PathfindingController {
     for (Move move : moves.values())
       if (!list.contains(move.getLocationName().getLongName()))
         list.add(move.getLocationName().getLongName());
-
-    //    for (Move move : moves.values())
-    //      if (!list.contains(move.getLocationName().getLongName())
-    //          && move.getNode().getFloor().equals(s))
-    // list.add(move.getLocationName().getLongName());
 
     Sorting.quickSort(list);
     return list;

@@ -1,125 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.HomeController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="402.0" minWidth="10.0" prefWidth="396.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="204.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1197.5999755859375" minWidth="10.0" prefWidth="952.7999267578125" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="697.4000244140625" minWidth="10.0" prefWidth="478.2000732421875" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints percentHeight="20.0" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="301.0" minHeight="10.0" prefHeight="284.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="314.1999877929687" minHeight="10.0" prefHeight="139.1999755859375" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="559.8000122070313" minHeight="10.0" prefHeight="510.4000244140625" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <AnchorPane style="-fx-background-color: #21357e;" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS">
+      <AnchorPane prefHeight="534.0" prefWidth="283.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label layoutX="27.0" layoutY="29.0" text="Welcome, " textFill="#c5d3ea">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
+            <VBox prefHeight="560.0" prefWidth="476.0" spacing="20.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #FCFCFC;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Label prefHeight="77.0" prefWidth="438.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="News" textAlignment="CENTER" textFill="#c5d3ea">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="38.0" prefWidth="388.0" text="It's Big Joe's Birthday!" underline="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="38.0" prefWidth="426.0" text="BWH President Adopts 500 Children" underline="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="38.0" prefWidth="398.0" text="Live Death Count In The Works!" underline="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="38.0" prefWidth="414.0" text="New Game Room For Employees" underline="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="83.0" prefWidth="427.0" text="Meet The New Head of Anesthesiology" underline="true" wrapText="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="38.0" prefWidth="328.0" text="Service Dogs In Training" underline="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+      <AnchorPane prefHeight="538.0" prefWidth="953.0" GridPane.rowIndex="1">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="283.0" layoutX="14.0" layoutY="15.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="OUTSIDE" width="380.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="14.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="46.0" layoutX="12.0" layoutY="8.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="382.0" />
-            <Label layoutX="19.0" layoutY="16.0" text="Your Requests" textAlignment="CENTER" textFill="#c5d3ea">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Line endX="244.0" layoutX="133.0" layoutY="114.0" opacity="0.35" startX="-100.0" strokeLineCap="ROUND" strokeWidth="2.0" />
-            <Label layoutX="33.0" layoutY="76.0" text="Sanitation Service Request #S104">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="289.0" layoutY="75.0" text="Processing">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Line endX="244.0" layoutX="131.0" layoutY="166.0" opacity="0.35" startX="-100.0" strokeLineCap="ROUND" strokeWidth="2.0" />
-            <Label layoutX="31.0" layoutY="128.0" text="Sanitation Service Request #S103">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="324.0" layoutY="126.0" text="Done">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Line endX="244.0" layoutX="131.0" layoutY="221.0" opacity="0.35" startX="-100.0" strokeLineCap="ROUND" strokeWidth="2.0" />
-            <Label layoutX="31.0" layoutY="183.0" text="Patient Transportation Request #T327">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="289.0" layoutY="183.0" text="Processing">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="29.0" layoutY="235.0" text="Security Service Request #S254">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="290.0" layoutY="235.0" text="Processing">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="363.0" layoutY="76.0">
-               <image>
-                  <Image url="@../../../../../../../../../../Downloads/clock.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="364.0" layoutY="184.0">
-               <image>
-                  <Image url="@../../../../../../../../../../Downloads/clock.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="364.0" layoutY="236.0">
-               <image>
-                  <Image url="@../../../../../../../../../../Downloads/clock.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="363.0" layoutY="126.0">
-               <image>
-                  <Image url="@../../../../../../../../../../Downloads/check.png" />
-               </image>
-            </ImageView>
+            <VBox fx:id="homeRequests" prefHeight="560.0" prefWidth="476.0" spacing="20.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #FCFCFC;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Label prefHeight="76.0" prefWidth="913.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Requests" textAlignment="CENTER" textFill="#c5d3ea">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <AnchorPane prefHeight="109.0" prefWidth="953.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="281.0" layoutX="5.0" layoutY="13.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="OUTSIDE" width="193.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="12.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="45.0" layoutX="4.0" layoutY="8.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="195.0" />
-            <Label layoutX="8.0" layoutY="18.0" prefHeight="28.0" prefWidth="64.0" text="News" textAlignment="CENTER" textFill="#c5d3ea">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="11.0" layoutY="64.0" text="It's Big Joe's Birthday!" underline="true" />
-            <Label layoutX="10.0" layoutY="96.0" prefHeight="17.0" prefWidth="176.0" text="BWH President Adopts 500 Children" underline="true" />
-            <Label layoutX="11.0" layoutY="128.0" prefHeight="17.0" prefWidth="176.0" text="Live Death Count In The Works!" underline="true" />
-            <Label layoutX="10.0" layoutY="163.0" prefHeight="17.0" prefWidth="176.0" text="New Game Room For Employees" underline="true" />
-            <Label layoutX="11.0" layoutY="200.0" prefHeight="17.0" prefWidth="176.0" text="Meet The New Head of Anesthesiology" underline="true" />
-            <Label layoutX="11.0" layoutY="243.0" prefHeight="17.0" prefWidth="176.0" text="Service Dogs In Training" underline="true" />
+            <HBox prefHeight="76.0" prefWidth="1390.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="-457.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Label fx:id="homeWelcome" prefHeight="106.0" prefWidth="632.0" text="Welcome, " textAlignment="CENTER" textFill="#c5d3ea">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="99.0" prefWidth="160.0" text="Date" textAlignment="RIGHT" textFill="#c5d3ea">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="500.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>

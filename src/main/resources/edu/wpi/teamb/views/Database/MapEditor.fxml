@@ -36,7 +36,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="343.0" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <VBox layoutY="-64.0" prefHeight="600.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
+            <VBox layoutY="-93.0" prefHeight="629.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
                <children>
                   <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0">
                      <children>

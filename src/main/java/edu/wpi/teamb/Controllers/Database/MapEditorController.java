@@ -215,7 +215,7 @@ public class MapEditorController {
     List<Move> l = moveMap.get(node.getNodeID());
     for (Move move : l) {
       Label loc = new Label(move.getLocationName().getLongName());
-      loc.setFont(new Font("Arial", 4));
+      loc.setFont(new Font("Arial", 6));
       vbox.getChildren().add(loc);
     }
 

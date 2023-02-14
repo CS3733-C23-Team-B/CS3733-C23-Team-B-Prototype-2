@@ -87,6 +87,7 @@ public class RequestsController {
               SanitationRequest SRequest =
                   e.getTableView().getItems().get(e.getTablePosition().getRow());
               SRequest.setStatus(e.getNewValue());
+              DBSession.updateRequest(SRequest);
             });
         status.setEditable(true);
       } else {
@@ -126,6 +127,7 @@ public class RequestsController {
               PatientTransportationRequest PTRequest =
                   e.getTableView().getItems().get(e.getTablePosition().getRow());
               PTRequest.setStatus(e.getNewValue());
+              DBSession.updateRequest(PTRequest);
             });
         status.setEditable(true);
       } else {
@@ -138,6 +140,45 @@ public class RequestsController {
     }
 
     List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
+    objectList.forEach(
+        (value) -> {
+          t.getItems().add(value);
+        });
+    Label la = new Label();
+    la.setText(name);
+    la.setFont(new Font("Ariel", 25));
+    mainVbox.getChildren().add(la);
+    mainVbox.getChildren().add(t);
+  }
+
+  private void makeTableCom(List<String> columns, String name) {
+    Login l = SigninController.getCurrentUser();
+    mainVbox.getChildren().clear();
+    TableView t = new TableView();
+    for (String colName : columns) {
+      if ((colName.equals("status") && DBSession.isAdmin(l))) {
+        TableColumn<ComputerRequest, RequestStatus> status = new TableColumn<>();
+        t.getColumns().add(status);
+        status.setText("status");
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        status.setCellFactory(TextFieldTableCell.forTableColumn(converter));
+        status.setOnEditCommit(
+            e -> {
+              ComputerRequest CRequest =
+                  e.getTableView().getItems().get(e.getTablePosition().getRow());
+              CRequest.setStatus(e.getNewValue());
+              DBSession.addRequest(CRequest);
+            });
+        status.setEditable(true);
+      } else {
+        TableColumn col = new TableColumn();
+        t.getColumns().add(col);
+        col.setText(colName);
+        col.setCellValueFactory(new PropertyValueFactory<>(colName));
+      }
+      t.setEditable(true);
+    }
+    List<ComputerRequest> objectList = DBSession.getAllCRequests();
     objectList.forEach(
         (value) -> {
           t.getItems().add(value);
@@ -171,42 +212,4 @@ public class RequestsController {
           }
         }
       };
-
-  private void makeTableCom(List<String> columns, String name) {
-    Login l = SigninController.getCurrentUser();
-    mainVbox.getChildren().clear();
-    TableView t = new TableView();
-    for (String colName : columns) {
-      if ((colName.equals("status") && DBSession.isAdmin(l))) {
-        TableColumn<ComputerRequest, RequestStatus> status = new TableColumn<>();
-        t.getColumns().add(status);
-        status.setText("status");
-        status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        status.setCellFactory(TextFieldTableCell.forTableColumn(converter));
-        status.setOnEditCommit(
-            e -> {
-              ComputerRequest SRequest =
-                  e.getTableView().getItems().get(e.getTablePosition().getRow());
-              SRequest.setStatus(e.getNewValue());
-            });
-        status.setEditable(true);
-      } else {
-        TableColumn col = new TableColumn();
-        t.getColumns().add(col);
-        col.setText(colName);
-        col.setCellValueFactory(new PropertyValueFactory<>(colName));
-      }
-      t.setEditable(true);
-    }
-    List<ComputerRequest> objectList = DBSession.getAllCRequests();
-    objectList.forEach(
-        (value) -> {
-          t.getItems().add(value);
-        });
-    Label la = new Label();
-    la.setText(name);
-    la.setFont(new Font("Ariel", 25));
-    mainVbox.getChildren().add(la);
-    mainVbox.getChildren().add(t);
-  }
 }

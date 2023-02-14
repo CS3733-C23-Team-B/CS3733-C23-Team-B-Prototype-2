@@ -151,4 +151,8 @@ public class DBSession {
       throw new RuntimeException(e);
     }
   }
+
+  public static void updateRequest(GeneralRequest r) {
+    RequestDAO.updateRequest(r);
+  }
 }

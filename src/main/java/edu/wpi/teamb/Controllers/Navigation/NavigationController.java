@@ -7,7 +7,6 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 public class NavigationController {
   @FXML private Button homeButton;
@@ -54,8 +53,7 @@ public class NavigationController {
   }
 
   public void exitButtonClicked() {
-    Stage stage = (Stage) homeButton.getScene().getWindow();
-    stage.close();
+    Navigation.navigate(Screen.EXIT_CONFIRMATION);
   }
 
   public void profileButtonClicked() {

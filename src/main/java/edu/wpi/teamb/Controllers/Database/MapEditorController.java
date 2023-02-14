@@ -193,8 +193,8 @@ public class MapEditorController {
     Navigation.navigate(Screen.LOCATION_EDITOR);
   }
 
-  public void newMove() {
-    Navigation.navigate(Screen.MOVE_CREATOR);
+  public void futureMoves() {
+    Navigation.navigate(Screen.FUTURE_MOVES);
   }
 
   public void home() {

@@ -10,6 +10,7 @@ public enum Screen {
   LOCATION_EDITOR("views/Database/LocationEditor.fxml"),
   LOCATION_CREATOR("views/Database/LocationCreator.fxml"),
   MOVE_CREATOR("views/Database/MoveCreator.fxml"),
+  FUTURE_MOVES("views/Database/FutureMoves.fxml"),
   EDGE_EDITOR("views/Database/EdgeEditor.fxml"),
   EDGE_CREATOR("views/Database/EdgeCreator.fxml"),
   NAVIGATION("views/Navigation/Navigation.fxml"),

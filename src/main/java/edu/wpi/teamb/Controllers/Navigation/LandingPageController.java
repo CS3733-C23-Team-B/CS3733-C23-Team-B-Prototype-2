@@ -1,5 +1,7 @@
 package edu.wpi.teamb.Controllers.Navigation;
 
+import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -22,16 +24,19 @@ public class LandingPageController {
 
   private void makeSani() {
     mainVbox.getChildren().clear();
+    Navigation.navigate(Screen.SANITATION);
     // mainVbox.getChildren().add(t);
   }
 
   private void makeTrans() {
     mainVbox.getChildren().clear();
+    Navigation.navigate(Screen.PATIENT_TRANSPORTATION);
     // mainVbox.getChildren().add(t);
   }
 
   private void makeCom() {
     mainVbox.getChildren().clear();
+    Navigation.navigate(Screen.COMPUTER_SERVICES);
     // mainVbox.getChildren().add(t);
   }
 }

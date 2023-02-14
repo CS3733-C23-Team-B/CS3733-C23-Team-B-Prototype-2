@@ -3,6 +3,7 @@ package edu.wpi.teamb.Controllers.ServiceRequest;
 import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.LocationName;
+import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -25,6 +26,7 @@ public class BaseRequestController {
   @FXML protected MFXTextField employeeIDField;
   @FXML protected MFXTextField emailField;
   @FXML protected MFXFilterComboBox<String> urgencyBox;
+  @FXML protected MFXFilterComboBox<String> assignedStaffBox;
   @FXML protected MFXTextField assignedStaffField;
   @FXML protected MFXTextField additionalNotesField;
   private RequestStatus request;
@@ -37,7 +39,7 @@ public class BaseRequestController {
   // Choice-box options
   protected ObservableList<String> urgencyOptions =
       FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
-
+  protected ObservableList<String> staffMembers = getStaff();
   // List of all text fields and choice boxes for flexibility; when adding new input components to
   // form, add to this list
   protected ArrayList<Control> components;
@@ -55,6 +57,7 @@ public class BaseRequestController {
   public void initialize() {
     submitButton.setDisable(true);
     urgencyBox.setItems(urgencyOptions);
+    assignedStaffBox.setItems(staffMembers);
   }
 
   /**
@@ -107,6 +110,17 @@ public class BaseRequestController {
     locationNames.forEach((key, value) -> list.add(value.getLongName()));
 
     Sorting.quickSort(list);
+    return list;
+  }
+  protected ObservableList<String> getStaff() {
+    ObservableList<String> list = FXCollections.observableArrayList();
+
+    Map<String, Login> locationNames = DBSession.getAllLogins();
+    locationNames.forEach((key, value) ->{
+      String name = value.getFirstname() + value.getLastname();
+      list.add(name);
+    });
+
     return list;
   }
 

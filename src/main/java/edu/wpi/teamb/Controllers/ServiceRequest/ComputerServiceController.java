@@ -41,6 +41,7 @@ public class ComputerServiceController extends BaseRequestController {
       typeOfRepairBox,
       deviceBox,
       assignedStaffField,
+//      assignedStaffBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
@@ -73,6 +74,12 @@ public class ComputerServiceController extends BaseRequestController {
     request.setEmail(emailField.getText());
     request.setNotes(additionalNotesField.getText());
     request.setAssignedEmployee(assignedStaffField.getText());
+
+//    var staff = assignedStaffBox.getValue();
+//    if (staff == null) {
+//      staff = "";
+//    }
+//    request.setUrgency(staff.toString());
 
     var urgency = urgencyBox.getValue();
     if (urgency == null) {

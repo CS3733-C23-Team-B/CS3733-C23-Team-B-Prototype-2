@@ -41,6 +41,7 @@ public class PatientTransportationController extends BaseRequestController {
       emailField,
       urgencyBox,
       assignedStaffField,
+//      assignedStaffBox,
       patientCurrentLocationBox,
       patientDestinationLocationBox,
       equipmentNeededBox,
@@ -84,8 +85,11 @@ public class PatientTransportationController extends BaseRequestController {
     request.setEmail(emailField.getText());
     request.setStatus(RequestStatus.PROCESSING);
     request.setAssignedEmployee(assignedStaffField.getText());
-    request.setNotes(additionalNotesField.getText());
 
+//    var staff = assignedStaffBox.getValue();
+//    if (staff == null) {
+//      staff = "";
+//    }
     var urgency = urgencyBox.getValue();
     if (urgency == null) {
       urgency = "";

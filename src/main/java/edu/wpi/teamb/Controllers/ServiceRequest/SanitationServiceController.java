@@ -37,6 +37,7 @@ public class SanitationServiceController extends BaseRequestController {
       urgencyBox,
       typeOfCleanUpBox,
       assignedStaffField,
+//      assignedStaffBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
@@ -68,6 +69,11 @@ public class SanitationServiceController extends BaseRequestController {
     request.setEmail(emailField.getText());
     request.setNotes(additionalNotesField.getText());
     request.setAssignedEmployee(assignedStaffField.getText());
+
+//    var staff = assignedStaffBox.getValue();
+//    if (staff == null) {
+//      staff = "";
+//    }
 
     var urgency = urgencyBox.getValue();
     if (urgency == null) {

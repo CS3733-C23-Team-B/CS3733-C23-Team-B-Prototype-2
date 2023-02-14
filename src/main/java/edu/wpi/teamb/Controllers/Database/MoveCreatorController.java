@@ -59,8 +59,6 @@ public class MoveCreatorController {
     Navigation.navigate(Screen.FUTURE_MOVES);
   }
 
-  public void selectDate() {}
-
   private ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
     Map<String, LocationName> locationsDBList = DBSession.getAllLocationNames();

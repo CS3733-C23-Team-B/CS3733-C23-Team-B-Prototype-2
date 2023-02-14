@@ -1,42 +1,65 @@
 package edu.wpi.teamb.Controllers.Navigation;
 
-import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class LandingPageController {
   @FXML VBox mainVbox;
-  @FXML MFXButton saniButton;
+  @FXML Label pageTitle;
   @FXML MFXButton transButton;
+  @FXML MFXButton saniButton;
   @FXML MFXButton secButton;
   @FXML MFXButton comButton;
-  @FXML MFXButton audioButton;
+  @FXML MFXButton AVButton;
 
   public void initialize() {
-    saniButton.setOnAction(e -> makeSani());
-    transButton.setOnAction(e -> makeTrans());
-    comButton.setOnAction(e -> makeCom());
-    mainVbox.setPadding(new Insets(50, 20, 0, 20));
+    mainVbox.setPadding(new Insets(20, 20, 0, 20));
   }
 
-  private void makeSani() {
+  public void makeTrans() throws IOException {
     mainVbox.getChildren().clear();
-    Navigation.navigate(Screen.SANITATION);
-    // mainVbox.getChildren().add(t);
+    final var r = Bapp.class.getResource(Screen.PATIENT_TRANSPORTATION.getFilename());
+    final FXMLLoader loader = new FXMLLoader(r);
+    mainVbox.getChildren().add(loader.load());
+    pageTitle.setText("Internal Patient Transportation");
   }
 
-  private void makeTrans() {
+  public void makeSani() throws IOException {
     mainVbox.getChildren().clear();
-    Navigation.navigate(Screen.PATIENT_TRANSPORTATION);
-    // mainVbox.getChildren().add(t);
+    final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
+    final FXMLLoader loader = new FXMLLoader(r);
+    mainVbox.getChildren().add(loader.load());
+    pageTitle.setText("Sanitation Service");
   }
 
-  private void makeCom() {
+  public void makeSec() throws IOException {
     mainVbox.getChildren().clear();
-    Navigation.navigate(Screen.COMPUTER_SERVICES);
-    // mainVbox.getChildren().add(t);
+    final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
+    final FXMLLoader loader = new FXMLLoader(r);
+    mainVbox.getChildren().add(loader.load());
+    pageTitle.setText("Security Service");
+  }
+
+  public void makeCom() throws IOException {
+    mainVbox.getChildren().clear();
+    final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
+    final FXMLLoader loader = new FXMLLoader(r);
+    mainVbox.getChildren().add(loader.load());
+    pageTitle.setText("Computer Service");
+  }
+
+  public void makeAV() throws IOException {
+    mainVbox.getChildren().clear();
+    final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
+    final FXMLLoader loader = new FXMLLoader(r);
+    mainVbox.getChildren().add(loader.load());
+    pageTitle.setText("Audio/Video Service");
   }
 }

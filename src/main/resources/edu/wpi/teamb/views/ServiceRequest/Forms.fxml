@@ -107,7 +107,7 @@
             </Label>
          </children></VBox>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="115.0" stroke="BLACK" strokeType="INSIDE" width="1088.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE" />
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Service Request Forms" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+      <Label fx:id="pageTitle" alignment="CENTER" contentDisplay="CENTER" text="Service Request Systems" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
          <font>
             <Font size="48.0" />
          </font>
@@ -117,7 +117,7 @@
          <children>
             <VBox layoutY="-64.0" prefHeight="600.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
                <children>
-                  <MFXButton fx:id="transButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Internal Patient Transportation" textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="transButton" onAction="#makeTrans" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Internal Patient Transportation" textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -132,7 +132,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="saniButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Sanitation       " textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="saniButton" onAction="#makeSani" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Sanitation       " textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>
@@ -147,7 +147,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="secButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Security           " textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="secButton" onAction="#makeSec" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Security           " textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>
@@ -162,7 +162,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="comButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Computer       " textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="comButton" onAction="#makeCom" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Computer       " textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>
@@ -177,7 +177,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="audioButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Audio/Video   " textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="AVButton" onAction="#makeAV" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Audio/Video   " textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>

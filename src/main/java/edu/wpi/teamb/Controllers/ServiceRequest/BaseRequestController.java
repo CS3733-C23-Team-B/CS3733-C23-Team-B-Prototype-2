@@ -70,7 +70,7 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void cancelButtonClicked() throws IOException {
-    Navigation.navigate(Screen.HOME);
+    Navigation.navigate(Screen.LANDING_PAGE);
   }
 
   /**

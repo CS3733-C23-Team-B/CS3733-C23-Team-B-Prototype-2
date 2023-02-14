@@ -32,8 +32,8 @@
             <MFXButton layoutX="58.0" layoutY="472.0" onAction="#backButton" text="Back" />
             <TableView fx:id="table1" layoutX="58.0" layoutY="60.0" prefHeight="313.0" prefWidth="687.0">
               <columns>
-                <TableColumn fx:id="movedate" prefWidth="75.0" text="Move Date" />
-                <TableColumn fx:id="locationname" prefWidth="116.22219848632812" text="Location Name" />
+                <TableColumn fx:id="moveDate" prefWidth="75.0" text="Move Date" />
+                <TableColumn fx:id="locationName" prefWidth="116.22219848632812" text="Location Name" />
                   <TableColumn fx:id="node" prefWidth="133.77783203125" text="Node Id" />
               </columns>
             </TableView>

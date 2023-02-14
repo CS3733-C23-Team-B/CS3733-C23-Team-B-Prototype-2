@@ -40,7 +40,6 @@ public class Navigation {
     ObservableList<Node> children = Bapp.getRootPane().getChildren();
     for (Node node : children) {
       if (Bapp.getRootPane().getCenter() == node) {
-        System.out.println("IT IS WORKING ALMOST");
         Bapp.getRootPane().getChildren().remove(node);
       }
     }

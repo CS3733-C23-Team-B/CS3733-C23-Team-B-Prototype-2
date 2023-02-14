@@ -2,6 +2,7 @@ package edu.wpi.teamb.Pathfinding;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Edge;
+import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,7 +10,9 @@ import java.util.stream.Collectors;
 public class Pathfinding {
   private static List<Edge> edges = DBSession.getAllEdges();
   private static Map<String, Node> nodes = DBSession.getAllNodes();
+  private static Map<String, List<Move>> moves = DBSession.getIDMoves(new Date(2023, 1, 1));
   private static int totalDist = 0;
+  public static boolean avoidStairs = false;
 
   /**
    * Given an edge, evaluates the weight of the edge
@@ -55,7 +58,24 @@ public class Pathfinding {
     double y2 = node2.getYCoord();
     String f1 = node1.getFloor();
     String f2 = node2.getFloor();
-    int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * 150;
+
+    int kFloor;
+
+    if (!moves.containsKey(node1.getNodeID())) kFloor = 0;
+    else {
+      if (avoidStairs)
+        kFloor =
+            moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
+                ? 150
+                : 999999;
+      else
+        kFloor =
+            moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
+                ? 150
+                : 250;
+    }
+
+    int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * kFloor;
 
     double dist = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) + floorDist;
     return dist;
@@ -85,6 +105,7 @@ public class Pathfinding {
   private static String pathToString(List<String> path) {
     //    path = nodesToLocations(path);
     totalDist = 0;
+    if (path == null) return "PATH NOT FOUND";
     for (int i = 0; i < path.size() - 1; i++) totalDist += getWeight(path.get(i), path.get(i + 1));
     System.out.println("Total dist: " + totalDist);
 
@@ -115,10 +136,70 @@ public class Pathfinding {
    * @param end the longName of the location to end at
    * @return a String representation of the optimal path to take
    */
-  public static ArrayList<String> getShortestPath(String start, String end) {
-    ArrayList<String> p = getPathAStar(start, end);
+  public static ArrayList<String> getShortestPath(String start, String end, SearchType type) {
+    ArrayList<String> p;
+
+    if (type == SearchType.A_STAR) p = getPathAStar(start, end);
+    else if (type == SearchType.BREADTH_FIRST) p = getPathBreadth(start, end);
+    else p = getPathDepth(start, end);
+
     System.out.println(pathToString(p));
     return p;
+  }
+
+  private static ArrayList<String> getPathBreadth(String startLoc, String endLoc) {
+    return getPathBreadthDepth(startLoc, endLoc, true);
+  }
+
+  private static ArrayList<String> getPathDepth(String startLoc, String endLoc) {
+    return getPathBreadthDepth(startLoc, endLoc, false);
+  }
+
+  private static ArrayList<String> getPathBreadthDepth(
+      String startLoc, String endLoc, boolean breadth) {
+    String start = DBSession.getMostRecentNodeID(startLoc);
+    String end = DBSession.getMostRecentNodeID(endLoc);
+
+    boolean done = false;
+    HashMap<String, String> cameFrom = new HashMap<String, String>();
+
+    ArrayList<String> toExpand = new ArrayList<String>();
+    toExpand.add(start);
+
+    while (toExpand.size() > 0) {
+
+      // BREADTH is field that tells program to use breadth-first instead of depth-first
+      int index = breadth ? 0 : toExpand.size() - 1;
+      String current = toExpand.remove(index);
+
+      ArrayList<String> directPaths = getDirectPaths(current);
+      for (String path : directPaths) {
+        if (path.equals(end)) {
+          cameFrom.put(path, current);
+          done = true;
+          break;
+        }
+        if (!cameFrom.containsKey(path)) {
+          cameFrom.put(path, current);
+          toExpand.add(path);
+        }
+      }
+
+      if (done) break;
+    }
+
+    if (!done) return null;
+
+    ArrayList<String> path = new ArrayList<>();
+    path.add(start);
+
+    String current = end;
+    while (!current.equals(start)) {
+      path.add(1, current);
+      current = cameFrom.get(current);
+    }
+
+    return path;
   }
 
   /**

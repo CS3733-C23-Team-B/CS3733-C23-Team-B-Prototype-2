@@ -4,7 +4,6 @@ public enum RequestStatus {
   BLANK("blank"),
   PROCESSING("processing"),
   DONE("done");
-
   private String str;
 
   RequestStatus(String str) {

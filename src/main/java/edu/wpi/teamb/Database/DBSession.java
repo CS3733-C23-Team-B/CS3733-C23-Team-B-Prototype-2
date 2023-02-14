@@ -113,6 +113,10 @@ public class DBSession {
     return MapDAO.getLNMoves(d);
   }
 
+  public static List<GeneralRequest> getAllRequestsWithEmpID(String id) {
+    return RequestDAO.getAllRequestsWithEmpID(id);
+  }
+
   public static void updateMove(Move oldM, Move newM) {
     MapDAO.updateMove(oldM, newM);
   }

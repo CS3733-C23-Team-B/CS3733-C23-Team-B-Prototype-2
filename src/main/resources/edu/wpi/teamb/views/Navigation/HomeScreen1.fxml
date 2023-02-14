@@ -43,18 +43,7 @@
                         <Insets left="15.0" />
                      </padding>
                   </Label>
-                  <Label prefHeight="38.0" prefWidth="426.0" text="BWH President Adopts 500 Children" underline="true">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="15.0" />
-                     </padding>
-                  </Label>
-                  <Label prefHeight="38.0" prefWidth="398.0" text="Live Death Count In The Works!" underline="true">
+                  <Label prefHeight="78.0" prefWidth="426.0" text="BWH President Adopts 500 Children" underline="true" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>
@@ -106,7 +95,7 @@
          <children>
             <VBox fx:id="homeRequests" prefHeight="560.0" prefWidth="476.0" spacing="20.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #FCFCFC;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Label prefHeight="76.0" prefWidth="913.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Requests" textAlignment="CENTER" textFill="#c5d3ea">
+                  <Label prefHeight="76.0" prefWidth="913.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Your Requests" textAlignment="CENTER" textFill="#c5d3ea">
                      <font>
                         <Font size="35.0" />
                      </font>

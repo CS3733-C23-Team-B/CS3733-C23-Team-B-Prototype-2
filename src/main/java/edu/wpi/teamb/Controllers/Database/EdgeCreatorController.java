@@ -30,9 +30,9 @@ public class EdgeCreatorController {
     }
 
     Edge newEdge = new Edge();
-    newEdge.setNode1(node.getNodeID());
-    newEdge.setNode2(edgeBox.getValue());
-    DBSession.addORM(newEdge);
+    newEdge.setNode1(node);
+    newEdge.setNode2(DBSession.getAllNodes().get(edgeBox.getValue()));
+    DBSession.addEdge(newEdge);
     cancelClicked();
   }
 

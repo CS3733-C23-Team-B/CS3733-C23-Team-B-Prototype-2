@@ -23,8 +23,7 @@ public class LocationCreatorController {
   /** Method run when controller is initialized */
   public void initialize() {
     ObservableList<String> types = FXCollections.observableArrayList();
-    List<LocationName> locationList = DBSession.getAllLocationNames();
-    locationList.forEach(l -> locations.put(l.getLongName(), l));
+    locations = DBSession.getAllLocationNames();
     Collections.addAll(
         types, "CONF", "DEPT", "HALL", "LABS", "REST", "SERV", "EXIT", "STAI", "ELEV");
     locationTypeBox.setItems(types);
@@ -58,8 +57,7 @@ public class LocationCreatorController {
     newLN.setShortName(newShortName);
     newLN.setLongName(newLongName);
     newLN.setLocationType(newLocationType);
-    DBSession.addORM(newLN);
-
+    DBSession.addLocationName(newLN);
     cancelClicked();
   }
 

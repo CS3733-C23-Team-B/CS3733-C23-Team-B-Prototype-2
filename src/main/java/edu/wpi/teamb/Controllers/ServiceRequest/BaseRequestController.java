@@ -12,7 +12,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -103,8 +103,8 @@ public class BaseRequestController {
   protected ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    List<LocationName> locationNames = DBSession.getAllLocationNames();
-    locationNames.forEach(l -> list.add(l.getLongName()));
+    Map<String, LocationName> locationNames = DBSession.getAllLocationNames();
+    locationNames.forEach((key, value) -> list.add(value.getLongName()));
 
     Sorting.quickSort(list);
     return list;

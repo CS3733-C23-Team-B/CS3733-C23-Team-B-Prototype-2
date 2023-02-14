@@ -108,7 +108,7 @@ public class PatientTransportationController extends BaseRequestController {
     request.setPatientCurrentLocation(curLocation.toString());
     request.setPatientDestinationLocation(destination.toString());
     request.setPatientID(this.patientIDField.getText());
-    DBSession.addORM(request);
+    DBSession.addRequest(request);
 
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();

@@ -54,7 +54,9 @@ public class NodeEditorController {
     }
 
     if (changed) {
-      Node newNode = DBSession.updateNode(node);
+      DBSession.updateNode(node);
+      Node newNode = node;
+      newNode.setNodeID(newNode.buildID());
       Pathfinding.refreshData();
       MapEditorController.setCurrentNode(newNode);
     }

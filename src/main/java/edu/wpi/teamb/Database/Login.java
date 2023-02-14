@@ -1,16 +1,13 @@
 package edu.wpi.teamb.Database;
 
-import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
-import java.sql.SQLException;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(name = "login")
 @PrimaryKeyJoinColumn(name = "login", foreignKey = @ForeignKey(name = "loginIDKey"))
-public class Login implements IORM {
-
+public class Login {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Getter
   @Id
@@ -56,11 +53,4 @@ public class Login implements IORM {
   }
 
   public Login() {}
-
-  public void delete() throws SQLException {}
-
-  @Override
-  public String getSearchStr() {
-    return "FROM Login WHERE username = '" + getUsername() + "'";
-  }
 }

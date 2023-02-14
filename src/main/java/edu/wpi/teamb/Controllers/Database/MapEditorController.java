@@ -297,8 +297,12 @@ public class MapEditorController {
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
   }
-  public void futureMoves() {
-    Navigation.navigate(Screen.FUTURE_MOVES);
+
+  public void futureMoves() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   public void home() {

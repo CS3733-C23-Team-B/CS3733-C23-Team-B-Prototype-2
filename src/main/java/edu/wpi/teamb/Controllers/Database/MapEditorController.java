@@ -10,6 +10,8 @@ import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.*;
+
+import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -24,6 +26,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -50,6 +53,7 @@ public class MapEditorController {
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
+  private MFXScrollPane forms = new MFXScrollPane();
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
   private ImageView lowerlevel =
@@ -278,6 +282,7 @@ public class MapEditorController {
   }
 
   public void editLocationClicked() {
+    
     Navigation.navigate(Screen.LOCATION_EDITOR);
   }
 

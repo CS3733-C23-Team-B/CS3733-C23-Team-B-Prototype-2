@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -78,6 +79,11 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
+                  <MFXScrollPane fx:id="forms" prefHeight="332.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </MFXScrollPane>
                   <HBox prefHeight="25.0" prefWidth="340.0">
                      <children>
                         <MFXFilterComboBox fx:id="floorCombo">
@@ -87,7 +93,7 @@
                         </MFXFilterComboBox>
                      </children>
                      <VBox.margin>
-                        <Insets top="325.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
                </children>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -105,6 +106,7 @@
                   </Label>
                </children>
             </VBox>
+            <MFXButton layoutX="800.0" layoutY="450.0" onAction="#allRequests" text="See all Requests" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="109.0" prefWidth="953.0">

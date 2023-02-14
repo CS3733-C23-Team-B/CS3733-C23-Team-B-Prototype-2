@@ -66,9 +66,8 @@ public class SigninController {
    */
   public void signInButtonClicked() {
     if (!validateLogin()) return;
-    Navigation.navigate(Screen.HOME);
-
     currentUser = usersMap.get(usernameField.getText());
+    Navigation.navigate(Screen.HOME);
   }
 
   /** Exits the application */

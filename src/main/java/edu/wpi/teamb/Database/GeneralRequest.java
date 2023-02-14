@@ -56,5 +56,10 @@ public class GeneralRequest {
   @Setter
   private RequestStatus status;
 
+  @Column(name = "date", length = 60)
+  @Getter
+  @Setter
+  private String date;
+
   public void generalRequest() {}
 }

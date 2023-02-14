@@ -107,7 +107,7 @@
             </Label>
          </children></VBox>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="115.0" stroke="BLACK" strokeType="INSIDE" width="1088.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE" />
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Service Request Systems" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+      <Label fx:id="pageTitle" alignment="CENTER" contentDisplay="CENTER" text="Service Request Systems" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
          <font>
             <Font size="48.0" />
          </font>

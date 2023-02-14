@@ -10,8 +10,6 @@ import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.*;
-
-import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -26,7 +24,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -44,6 +41,8 @@ public class MapEditorController {
   @FXML GridPane gridPane;
   @FXML AnchorPane map;
   @FXML AnchorPane anchor;
+
+  @FXML private AnchorPane forms;
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, Node> nodeMap;
@@ -53,7 +52,7 @@ public class MapEditorController {
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
-  private MFXScrollPane forms = new MFXScrollPane();
+
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
   private ImageView lowerlevel =
@@ -282,7 +281,7 @@ public class MapEditorController {
   }
 
   public void editLocationClicked() {
-    
+
     Navigation.navigate(Screen.LOCATION_EDITOR);
   }
 
@@ -294,8 +293,11 @@ public class MapEditorController {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void newNodeClicked() {
-    Navigation.navigate(Screen.NODE_CREATOR);
+  public void newNodeClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.NODE_CREATOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   public void editNodeClicked() {

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<ToolBar id="toolbar" fx:id="toolbar" minHeight="-Infinity" prefHeight="80.0" prefWidth="1574.0" style="-fx-background-color: #00077A;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.NavigationController">
+<ToolBar id="toolbar" fx:id="toolbar" minHeight="-Infinity" prefHeight="80.0" prefWidth="1574.0" style="-fx-background-color: #21357E;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.NavigationController">
     <opaqueInsets>
         <Insets />
     </opaqueInsets>
    <items>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <MFXButton id="homeButton" fx:id="homeButton" minWidth="-Infinity" onAction="#homeButtonClicked" prefHeight="70.0" prefWidth="60.0" style="-fx-background-color: #00077A;" text="." textFill="WHITE">
+            <MFXButton id="homeButton" fx:id="homeButton" minWidth="-Infinity" onAction="#homeButtonClicked" prefHeight="70.0" prefWidth="60.0" style="-fx-background-color: transparent;" text="." textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -21,7 +23,7 @@
                   <Font size="1.0" />
                </font>
             </MFXButton>
-            <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#serviceRequestFormsButtonClicked" prefHeight="70.0" prefWidth="286.0" style="-fx-background-color: #00077A;" text="Service Request Forms" textFill="WHITE">
+            <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#serviceRequestFormsButtonClicked" prefHeight="70.0" prefWidth="286.0" style="-fx-background-color: transparent;" text="Service Request Forms" textFill="WHITE">
                <HBox.margin>
                   <Insets left="145.0" />
                </HBox.margin>
@@ -29,7 +31,7 @@
                   <Font size="24.0" />
                </font>
             </MFXButton>
-            <MFXButton id="navBarButton" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" onAction="#submittedRequestsButtonClicked" prefHeight="70.0" prefWidth="258.0" style="-fx-background-color: #00077A;" text="Submitted Requests" textFill="WHITE">
+            <MFXButton id="navBarButton" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" onAction="#submittedRequestsButtonClicked" prefHeight="70.0" prefWidth="258.0" style="-fx-background-color: transparent;" text="Submitted Requests" textFill="WHITE">
                <HBox.margin>
                   <Insets left="45.0" />
                </HBox.margin>
@@ -37,7 +39,7 @@
                   <Font size="24.0" />
                </font>
             </MFXButton>
-            <MFXButton id="navBarButton" fx:id="mapEditorButton" layoutX="64.0" layoutY="10.0" minWidth="-Infinity" onAction="#mapEditorButtonClicked" prefHeight="70.0" prefWidth="155.0" style="-fx-background-color: #00077A;" text="Map Editor" textFill="WHITE">
+            <MFXButton id="navBarButton" fx:id="mapEditorButton" layoutX="64.0" layoutY="10.0" minWidth="-Infinity" onAction="#mapEditorButtonClicked" prefHeight="70.0" prefWidth="155.0" style="-fx-background-color: transparent;" text="Map Editor" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -45,7 +47,7 @@
                   <Insets left="45.0" />
                </HBox.margin>
             </MFXButton>
-            <MFXButton id="navBarButton" fx:id="homeButton3" layoutX="52.0" layoutY="10.0" minWidth="-Infinity" onAction="#pathfindingButtonClicked" prefHeight="70.0" prefWidth="161.0" style="-fx-background-color: #00077A;" text="Pathfinding" textFill="WHITE">
+            <MFXButton id="navBarButton" fx:id="homeButton3" layoutX="52.0" layoutY="10.0" minWidth="-Infinity" onAction="#pathfindingButtonClicked" prefHeight="70.0" prefWidth="161.0" style="-fx-background-color: transparent;" text="Pathfinding" textFill="WHITE">
                <HBox.margin>
                   <Insets left="45.0" />
                </HBox.margin>
@@ -53,7 +55,7 @@
                   <Font size="24.0" />
                </font>
             </MFXButton>
-            <MenuButton id="menuIcon" minWidth="-Infinity" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-border-color: #00077A;" text="MenuButton">
+            <MenuButton id="menuIcon" minWidth="-Infinity" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-border-color: transparent;" text="MenuButton">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#helpClicked" text="Help" />
                   <MenuItem mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
@@ -63,7 +65,7 @@
                   <Insets left="145.0" top="10.0" />
                </HBox.margin>
             </MenuButton>
-            <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#exitButtonClicked" prefHeight="70.0" prefWidth="80.0" style="-fx-background-color: #00077A;" text="Exit" textFill="WHITE">
+            <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#exitButtonClicked" prefHeight="70.0" prefWidth="80.0" style="-fx-background-color: transparent;" text="Exit" textFill="WHITE">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>

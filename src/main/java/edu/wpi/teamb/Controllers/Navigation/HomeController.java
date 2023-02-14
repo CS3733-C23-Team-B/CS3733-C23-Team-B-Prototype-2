@@ -53,6 +53,14 @@ public class HomeController {
         box.getChildren().add(im);
         homeRequests.getChildren().add(box);
       }
+    } else {
+      HBox box = new HBox();
+      Label label = new Label();
+      label.setText("You have no service requests");
+      label.setPadding(new Insets(15, 0, 15, 20));
+      label.setFont(new Font("Nunito", 20));
+      box.getChildren().add(label);
+      homeRequests.getChildren().add(box);
     }
   }
 

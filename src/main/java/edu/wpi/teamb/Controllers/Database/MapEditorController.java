@@ -7,6 +7,7 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.*;
@@ -41,7 +42,10 @@ public class MapEditorController {
   @FXML GridPane gridPane;
   @FXML AnchorPane map;
   @FXML AnchorPane anchor;
-
+  @FXML MFXButton editNodeButton;
+  @FXML MFXButton newNodeButton;
+  @FXML MFXButton addMovesButton;
+  @FXML MFXButton editLocationButton;
   @FXML private AnchorPane forms;
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
@@ -280,13 +284,18 @@ public class MapEditorController {
     clearPopUp();
   }
 
-  public void editLocationClicked() {
-
-    Navigation.navigate(Screen.LOCATION_EDITOR);
+  public void editLocationClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.LOCATION_EDITOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
-  public void addMoveClicked() {
-    Navigation.navigate(Screen.MOVE_CREATOR);
+  public void addMoveClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   public void home() {
@@ -300,8 +309,11 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void editNodeClicked() {
-    Navigation.navigate(Screen.NODE_EDITOR);
+  public void editNodeClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.SIDE_NODE_EDITOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   static Node getCurrentNode() {

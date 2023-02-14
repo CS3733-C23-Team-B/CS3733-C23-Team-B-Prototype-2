@@ -79,17 +79,17 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <MFXScrollPane fx:id="" prefHeight="340.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
+                  <MFXScrollPane fx:id="" prefHeight="332.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                      <content>
-                        <AnchorPane fx:id="forms" prefHeight="500.0" prefWidth="340.0" />
+                        <AnchorPane fx:id="forms" prefHeight="500.0" prefWidth="325.0" />
                      </content>
                   </MFXScrollPane>
                   <HBox prefHeight="25.0" prefWidth="340.0">
                      <children>
-                        <MFXFilterComboBox fx:id="floorCombo">
+                        <MFXFilterComboBox fx:id="floorCombo" promptText="Select Floor">
                            <HBox.margin>
                               <Insets left="200.0" />
                            </HBox.margin>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -16,15 +16,15 @@
    <left>
       <VBox prefHeight="256.0" prefWidth="326.0" BorderPane.alignment="CENTER">
          <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Node">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="General Node Editor">
                     <font>
                         <Font size="31.0" />
                     </font>
                <VBox.margin>
-                  <Insets left="95.0" top="20.0" />
+                  <Insets left="20.0" top="20.0" />
                </VBox.margin>
                 </Text>
-            <HBox layoutX="10.0" layoutY="110.0" prefHeight="0.0" prefWidth="326.0" spacing="20.0">
+            <HBox layoutX="10.0" layoutY="110.0" prefHeight="0.0" prefWidth="326.0" spacing="14.0">
                <children>
                   <Label text="Node ID: ">
                      <font>
@@ -34,11 +34,7 @@
                         <Insets left="45.0" />
                      </HBox.margin>
                   </Label>
-                  <Text fx:id="nodeIDText1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.21630859375">
-                     <HBox.margin>
-                        <Insets top="9.0" />
-                     </HBox.margin>
-                  </Text>
+                  <MFXFilterComboBox fx:id="selectNodeID" minHeight="-Infinity" prefHeight="25.0" prefWidth="149.0" />
                </children>
                <VBox.margin>
                   <Insets top="40.0" />
@@ -86,7 +82,7 @@
                         <Insets left="78.0" />
                      </HBox.margin>
                       </Label>
-                      <ChoiceBox fx:id="floorBox" prefWidth="149.6" />
+                  <MFXFilterComboBox fx:id="floorBox" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="149.0" />
                </children>
                <VBox.margin>
                   <Insets top="25.0" />
@@ -94,16 +90,19 @@
             </HBox>
             <HBox prefHeight="56.0" prefWidth="326.0" spacing="20.0">
                <children>
-                      <Button mnemonicParsing="false" onAction="#edgesClicked" text="Edges">
+                      <Button fx:id="edgesButton" mnemonicParsing="false" text="Edges">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Button>
                       <MFXButton buttonType="RAISED" onAction="#deleteClicked" style="-fx-background-color: Crimson;" text="Delete Node" textFill="WHITE" />
-                      <MFXButton buttonType="RAISED" onAction="#submitClicked" style="-fx-background-color: #003AD6;" text="Submit Changes" textFill="WHITE">
+                      <MFXButton buttonType="RAISED" onAction="#submitClicked" prefHeight="40.0" style="-fx-background-color: #003AD6;" text="Submit Changes" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </MFXButton>
                </children>
                <VBox.margin>

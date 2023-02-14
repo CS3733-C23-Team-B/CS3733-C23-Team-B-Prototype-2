@@ -18,15 +18,15 @@ public class LandingPageController {
   @FXML MFXButton AVButton;
 
   public void initialize() {
-    mainVbox.setPadding(new Insets(50, 20, 0, 20));
+    mainVbox.setPadding(new Insets(20, 20, 0, 20));
   }
 
   public void makeTrans() throws IOException {
     mainVbox.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
-    VBox vbox = (VBox) loader.load();
-    mainVbox.getChildren().setAll(vbox);
+    // VBox vbox = (VBox) loader.load();
+    mainVbox.getChildren().add(loader.load());
   }
 
   public void makeSani() throws IOException {
@@ -60,5 +60,4 @@ public class LandingPageController {
     VBox vbox = (VBox) loader.load();
     mainVbox.getChildren().setAll(vbox);
   }
-
 }

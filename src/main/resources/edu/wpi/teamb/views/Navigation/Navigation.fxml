@@ -25,7 +25,7 @@
             </MFXButton>
             <MFXButton id="navBarButton" minWidth="-Infinity" onAction="#serviceRequestFormsButtonClicked" prefHeight="70.0" prefWidth="286.0" style="-fx-background-color: transparent;" text="Service Request Forms" textFill="WHITE">
                <HBox.margin>
-                  <Insets left="145.0" />
+                  <Insets left="80.0" />
                </HBox.margin>
                <font>
                   <Font size="24.0" />

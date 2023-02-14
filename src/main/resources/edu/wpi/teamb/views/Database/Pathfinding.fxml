@@ -2,64 +2,77 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.PathfindingController">
-   <top>
-      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.PathfindingController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="340.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="1088.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="371.0000366210937" minHeight="10.0" prefHeight="113.40002059936523" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="991.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <Text fill="WHITE" layoutX="275.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pathfinding" textAlignment="CENTER">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
+            <AnchorPane fx:id="map" prefHeight="539.0" prefWidth="1090.0" />
          </children>
-      </AnchorPane>
-   </top>
-   <center>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+      </VBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="115.0" stroke="BLACK" strokeType="INSIDE" width="1088.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE" />
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Pathfinding" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="343.0" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <AnchorPane fx:id="anchor" layoutY="122.0" prefHeight="397.0" prefWidth="800.0" />
-            <VBox prefHeight="155.0" prefWidth="800.0">
+            <VBox prefHeight="536.0" prefWidth="343.0" style="-fx-background-color: #e0e0e0;">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="525.0" spacing="30.0">
-                     <children>
-                        <MFXFilterComboBox fx:id="floorCombo" />
-                        <Label text="Starting Node:">
-                           <HBox.margin>
-                              <Insets left="50.0" />
-                           </HBox.margin>
-                        </Label>
-                        <MFXFilterComboBox fx:id="startLoc" prefHeight="42.0" prefWidth="300.0" />
-                     </children>
+                  <CheckBox fx:id="avoidStairsCheckBox" mnemonicParsing="false" text="Avoid Stairs">
                      <VBox.margin>
-                        <Insets top="30.0" />
+                        <Insets top="15.0" />
                      </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="525.0" spacing="36.0">
-                     <children>
-                        <Label text="Ending Node:" />
-                        <MFXFilterComboBox fx:id="endLoc" prefHeight="42.0" prefWidth="300.0" />
-                        <MFXButton fx:id="pathfind" prefHeight="35.0" style="-fx-background-color: #003DA6;" text="Find Fastest Path" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets top="2.0" />
-                           </HBox.margin>
-                        </MFXButton>
-                     </children>
+                  </CheckBox>
+                  <Label text="Floor">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Label>
+                  <MFXFilterComboBox fx:id="floorCombo" prefHeight="42.0" prefWidth="153.0" text="Lower Level 1" />
+                  <Label text="Search Type">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Label>
+                  <MFXFilterComboBox fx:id="searchCombo" prefHeight="42.0" prefWidth="298.0" text="A* Search" />
+                  <Label text="Starting Node:">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Label>
+                  <MFXFilterComboBox fx:id="startLoc" prefHeight="42.0" prefWidth="300.0" />
+                  <Label text="Ending Node:">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Label>
+                  <MFXFilterComboBox fx:id="endLoc" prefHeight="42.0" prefWidth="300.0" />
+                  <MFXButton fx:id="pathfind" prefHeight="35.0" style="-fx-background-color: #003DA6;" text="Find Fastest Path" textFill="WHITE">
                      <VBox.margin>
-                        <Insets left="200.0" top="3.0" />
+                        <Insets left="185.0" top="20.0" />
                      </VBox.margin>
-                  </HBox>
+                  </MFXButton>
                </children>
                <padding>
                   <Insets left="10.0" />
@@ -67,5 +80,5 @@
             </VBox>
          </children>
       </AnchorPane>
-   </center>
-</BorderPane>
+   </children>
+</GridPane>

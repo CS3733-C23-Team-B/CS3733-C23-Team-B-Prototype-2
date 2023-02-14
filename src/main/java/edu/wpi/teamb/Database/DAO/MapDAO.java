@@ -110,8 +110,7 @@ public class MapDAO {
     List<Move> moves = new ArrayList<Move>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
-    String hql =
-            "FROM Move WHERE moveDate >= '" + d + "'";
+    String hql = "FROM Move WHERE moveDate >= '" + d + "'";
     try {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery(hql, Move.class);

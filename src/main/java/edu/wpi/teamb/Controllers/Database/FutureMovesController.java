@@ -6,8 +6,8 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,7 +22,7 @@ public class FutureMovesController {
   @FXML TableColumn node;
 
   @FXML MFXDatePicker datePicker;
-  Map<String, Move> movesMap = new HashMap<>();
+  List<Move> movesList = new ArrayList<Move>();
 
   StringConverter<Boolean> converter =
       new StringConverter<Boolean>() {
@@ -57,14 +57,10 @@ public class FutureMovesController {
   }
 
   public void updateFutureMoves() {
-    Date date = new Date(123, 0, 1);
-    if (datePicker.getValue() != null) {
-      date = Date.valueOf(datePicker.getValue());
-    }
-    System.out.println(date);
-    movesMap = DBSession.getLNMoves(date);
-    movesMap.forEach(
-        (key, value) -> {
+    Date date = new Date(2023, 1, 1);
+    movesList = DBSession.getFutureMoves(date);
+    movesList.forEach(
+        (value) -> {
           table1.getItems().add(value);
         });
     table1.refresh();

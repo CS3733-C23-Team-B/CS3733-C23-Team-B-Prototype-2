@@ -17,7 +17,7 @@ public enum Screen {
   PATHFINDING("views/Database/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/ServiceRequest/PatientTransportation.fxml"),
   PATIENT_TRANSPORTATION_HELP("views/ServiceRequest/PatientTransportationHelpPage.fxml"),
-  SANITATION("views/ServiceRequest/SanitationService.fxml"),
+  SANITATION("views/ServiceRequest/NewSanitationService.fxml"),
   SANITATION_HELP("views/ServiceRequest/SanitationHelpPage.fxml"),
   COMPUTER_SERVICES("views/ServiceRequest/ComputerService.fxml"),
   COMPUTER_SERVICES_HELP("views/ServiceRequest/ComputerServiceHelpPage.fxml"),

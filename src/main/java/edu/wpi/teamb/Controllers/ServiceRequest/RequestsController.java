@@ -72,23 +72,40 @@ public class RequestsController {
   }
 
   private void makeTableSani(List<String> columns, String name) {
+    Login l = SigninController.getCurrentUser();
     mainVbox.getChildren().clear();
     TableView t = new TableView();
     for (String colName : columns) {
-      TableColumn col = new TableColumn();
-      t.getColumns().add(col);
-      col.setText(colName);
-      col.setCellValueFactory(new PropertyValueFactory<>(colName));
+      if ((colName.equals("status") && DBSession.isAdmin(l))) {
+        TableColumn<SanitationRequest, RequestStatus> status = new TableColumn<>();
+        t.getColumns().add(status);
+        status.setText("status");
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        status.setCellFactory(TextFieldTableCell.forTableColumn(converter));
+        status.setOnEditCommit(
+            e -> {
+              SanitationRequest SRequest =
+                  e.getTableView().getItems().get(e.getTablePosition().getRow());
+              SRequest.setStatus(e.getNewValue());
+            });
+        status.setEditable(true);
+      } else {
+        TableColumn col = new TableColumn();
+        t.getColumns().add(col);
+        col.setText(colName);
+        col.setCellValueFactory(new PropertyValueFactory<>(colName));
+      }
+      t.setEditable(true);
     }
     List<SanitationRequest> objectList = DBSession.getAllSRequests();
     objectList.forEach(
         (value) -> {
           t.getItems().add(value);
         });
-    Label l = new Label();
-    l.setText(name);
-    l.setFont(new Font("Ariel", 25));
-    mainVbox.getChildren().add(l);
+    Label la = new Label();
+    la.setText(name);
+    la.setFont(new Font("Ariel", 25));
+    mainVbox.getChildren().add(la);
     mainVbox.getChildren().add(t);
   }
 
@@ -101,6 +118,7 @@ public class RequestsController {
       if ((colName.equals("status") && DBSession.isAdmin(l))) {
         TableColumn<PatientTransportationRequest, RequestStatus> status = new TableColumn<>();
         t.getColumns().add(status);
+        status.setText("status");
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         status.setCellFactory(TextFieldTableCell.forTableColumn(converter));
         status.setOnEditCommit(
@@ -155,23 +173,40 @@ public class RequestsController {
       };
 
   private void makeTableCom(List<String> columns, String name) {
+    Login l = SigninController.getCurrentUser();
     mainVbox.getChildren().clear();
     TableView t = new TableView();
     for (String colName : columns) {
-      TableColumn col = new TableColumn();
-      t.getColumns().add(col);
-      col.setText(colName);
-      col.setCellValueFactory(new PropertyValueFactory<>(colName));
+      if ((colName.equals("status") && DBSession.isAdmin(l))) {
+        TableColumn<ComputerRequest, RequestStatus> status = new TableColumn<>();
+        t.getColumns().add(status);
+        status.setText("status");
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        status.setCellFactory(TextFieldTableCell.forTableColumn(converter));
+        status.setOnEditCommit(
+            e -> {
+              ComputerRequest SRequest =
+                  e.getTableView().getItems().get(e.getTablePosition().getRow());
+              SRequest.setStatus(e.getNewValue());
+            });
+        status.setEditable(true);
+      } else {
+        TableColumn col = new TableColumn();
+        t.getColumns().add(col);
+        col.setText(colName);
+        col.setCellValueFactory(new PropertyValueFactory<>(colName));
+      }
+      t.setEditable(true);
     }
     List<ComputerRequest> objectList = DBSession.getAllCRequests();
     objectList.forEach(
         (value) -> {
           t.getItems().add(value);
         });
-    Label l = new Label();
-    l.setText(name);
-    l.setFont(new Font("Ariel", 25));
-    mainVbox.getChildren().add(l);
+    Label la = new Label();
+    la.setText(name);
+    la.setFont(new Font("Ariel", 25));
+    mainVbox.getChildren().add(la);
     mainVbox.getChildren().add(t);
   }
 }

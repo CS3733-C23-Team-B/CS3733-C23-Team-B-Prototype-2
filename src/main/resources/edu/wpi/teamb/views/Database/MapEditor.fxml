@@ -26,7 +26,12 @@
    <children>
       <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="991.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <AnchorPane fx:id="map" prefHeight="539.0" prefWidth="1090.0" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <MFXFilterComboBox fx:id="floorCombo" promptText="Select Floor" />
+                  <AnchorPane fx:id="map" prefHeight="539.0" prefWidth="1090.0" />
+               </children>
+            </AnchorPane>
          </children></VBox>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="115.0" stroke="BLACK" strokeType="INSIDE" width="1088.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE" />
       <Label alignment="CENTER" contentDisplay="CENTER" text="Map Editor" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
@@ -87,14 +92,7 @@
                         <AnchorPane fx:id="forms" prefHeight="500.0" prefWidth="325.0" />
                      </content>
                   </MFXScrollPane>
-                  <HBox prefHeight="25.0" prefWidth="340.0">
-                     <children>
-                        <MFXFilterComboBox fx:id="floorCombo" promptText="Select Floor">
-                           <HBox.margin>
-                              <Insets left="200.0" />
-                           </HBox.margin>
-                        </MFXFilterComboBox>
-                     </children>
+                  <HBox prefHeight="40.0" prefWidth="809.0">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>

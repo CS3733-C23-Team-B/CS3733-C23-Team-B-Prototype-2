@@ -72,8 +72,8 @@ public class Pathfinding {
   public static ArrayList<String> getDirectPaths(String node) {
     ArrayList<String> retList = new ArrayList<String>();
     for (Edge edge : edges) {
-      if (edge.getNode1().equals(node)) retList.add(edge.getNode2());
-      else if (edge.getNode2().equals(node)) retList.add(edge.getNode1());
+      if (edge.getNode1().getNodeID().equals(node)) retList.add(edge.getNode2().getNodeID());
+      if (edge.getNode2().getNodeID().equals(node)) retList.add(edge.getNode1().getNodeID());
     }
     return retList;
   }
@@ -105,7 +105,9 @@ public class Pathfinding {
    * @return the list of locationLongNames associated with each NodeID
    */
   private static List<String> nodesToLocations(List<String> path) {
-    return path.stream().map(DBSession::getMostRecentLocation).collect(Collectors.toList());
+    return path.stream()
+        .map(nodeID -> DBSession.getMostRecentMoves(nodeID).get(0).getLocationName().getLongName())
+        .collect(Collectors.toList());
   }
 
   /**

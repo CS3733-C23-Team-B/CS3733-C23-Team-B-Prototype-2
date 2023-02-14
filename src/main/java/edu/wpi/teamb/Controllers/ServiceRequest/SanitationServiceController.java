@@ -89,7 +89,7 @@ public class SanitationServiceController extends BaseRequestController {
     request.setAssignedEmployee(assignedStaffField.getText());
     request.setStatus(RequestStatus.PROCESSING);
     request.setCleanUpLocation(cleanUpLocationBox.getValue());
-    DBSession.addORM(request);
+    DBSession.addRequest(request);
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
 

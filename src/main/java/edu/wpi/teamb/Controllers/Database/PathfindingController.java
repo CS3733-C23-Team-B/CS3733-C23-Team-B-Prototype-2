@@ -9,6 +9,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,14 +83,15 @@ public class PathfindingController {
     pane = new GesturePane();
     pane.setPrefHeight(433);
     pane.setPrefWidth(800);
-    changeFloor("Lower Level 1");
+    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2220, 974));
     pane.setContent(aPane);
     anchor.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    floorCombo.setOnAction(e -> changeFloor(floorCombo.getValue()));
+    floorCombo.setOnAction(
+        e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
   }
 
-  private void changeFloor(String floor) {
+  private void changeFloor(String floor, Point2D p) {
     ImageView image = new ImageView();
     String f = null;
     switch (floor) {
@@ -149,7 +151,7 @@ public class PathfindingController {
             displayPopUp(newSelection);
           }
         });
-    Platform.runLater(() -> pane.centreOn(new javafx.geometry.Point2D(2220, 974)));
+    Platform.runLater(() -> pane.centreOn(p));
   }
 
   public void displayPopUp(Circle dot) {
@@ -167,7 +169,11 @@ public class PathfindingController {
     Text id = new Text("NodeID:   " + node.getNodeID());
     Text pos = new Text("(x, y):  " + "(" + node.getXCoord() + ", " + node.getYCoord() + ")");
 
-    Text loc = new Text(DBSession.getMostRecentLocation(node.getNodeID()));
+    List<Move> m = DBSession.getMostRecentMoves(node.getNodeID());
+    Text loc = new Text();
+    for (Move move : m) {
+      loc.setText(move.getLocationName().getLongName());
+    }
 
     Button editButton = new Button("Create Path from Here");
     editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
@@ -251,12 +257,11 @@ public class PathfindingController {
   static ObservableList<String> getLocations(String s) {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    Map<String, Node> nodes = DBSession.getAllNodes();
-    List<Move> moves = DBSession.getAllMoves();
+    Map<String, Move> moves = DBSession.getLNMoves(new Date(2023, 1, 1));
 
-    for (Move move : moves)
-      if (!list.contains(move.getLongName()) && nodes.get(move.getNodeID()).getFloor().equals(s))
-        list.add(move.getLongName());
+    for (Move move : moves.values())
+      if (!list.contains(move.getLocationName().getLongName())
+          && move.getNode().getFloor().equals(s)) list.add(move.getLocationName().getLongName());
 
     Sorting.quickSort(list);
     return list;

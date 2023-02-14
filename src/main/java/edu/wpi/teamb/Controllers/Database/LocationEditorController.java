@@ -3,11 +3,13 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.LocationName;
+import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import java.sql.Date;
 import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,13 +76,9 @@ public class LocationEditorController {
 
   private ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
-    List<LocationName> locationsDBList = DBSession.getAllLocationNames();
+    Map<String, LocationName> locationsDBList = DBSession.getAllLocationNames();
 
-    locationsDBList.forEach(
-        i -> {
-          list.add(i.getLongName());
-          locations.put(i.getLongName(), i);
-        });
+    locationsDBList.forEach((key, value) -> list.add(value.getLongName()));
 
     Sorting.quickSort(list);
     return list;
@@ -123,12 +121,33 @@ public class LocationEditorController {
       newLN.setShortName(newShortName);
 
       if (nodeBox.getValue().equals(origNode)) DBSession.updateLocationName(newLN, location);
-      else DBSession.switchMoveLN(nodeBox.getValue(), origNode, newLN);
+      else {
+        DBSession.updateLocationName(newLN, location);
+
+        Move oldMove =
+            DBSession.getLNMoves(new Date(System.currentTimeMillis())).get(newLN.getLongName());
+        Move newMove = new Move();
+        Node newNode = DBSession.getAllNodes().get(nodeBox.getValue());
+        newMove.setMoveDate(oldMove.getMoveDate());
+        newMove.setNode(newNode);
+        newMove.setLocationName(newLN);
+
+        DBSession.updateMove(oldMove, newMove);
+      }
+
       Pathfinding.refreshData();
       location = newLN;
-    } else if (!nodeBox.getValue().equals(origNode))
-      DBSession.switchMoveLN(nodeBox.getValue(), origNode, location);
-    else {
+    } else if (!nodeBox.getValue().equals(origNode)) {
+      Move oldMove =
+          DBSession.getLNMoves(new Date(System.currentTimeMillis())).get(location.getLongName());
+      Move newMove = new Move();
+      Node newNode = DBSession.getAllNodes().get(nodeBox.getValue());
+      newMove.setMoveDate(oldMove.getMoveDate());
+      newMove.setNode(newNode);
+      newMove.setLocationName(location);
+
+      DBSession.updateMove(oldMove, newMove);
+    } else {
       bigText.setText("No Change");
       bigText.setFill(Color.RED);
       return;
@@ -145,7 +164,7 @@ public class LocationEditorController {
   }
 
   public void deleteClicked() {
-    DBSession.deleteLN(location);
+    DBSession.deleteLocationName(location);
     locations.remove(location.getLongName());
     resetFields();
   }

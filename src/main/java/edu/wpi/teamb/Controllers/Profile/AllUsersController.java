@@ -1,11 +1,11 @@
-package edu.wpi.teamb.Controllers;
+package edu.wpi.teamb.Controllers.Profile;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
-import edu.wpi.teamb.Entities.ORMType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -37,7 +37,7 @@ public class AllUsersController {
       };
 
   public void initialize() {
-    List<Object> userList;
+    Map<String, Login> usersMap = new HashMap<String, Login>();
     id.setCellValueFactory(new PropertyValueFactory<>("id"));
     first.setCellValueFactory(new PropertyValueFactory<>("firstname"));
     last.setCellValueFactory(new PropertyValueFactory<>("lastname"));
@@ -45,9 +45,9 @@ public class AllUsersController {
     email.setCellValueFactory(new PropertyValueFactory<>("email"));
     admin.setCellValueFactory(new PropertyValueFactory<>("admin"));
 
-    userList = DBSession.getAll(ORMType.LOGIN);
-    userList.forEach(
-        (value) -> {
+    usersMap = DBSession.getAllLogins();
+    usersMap.forEach(
+        (key, value) -> {
           table.getItems().add(value);
         });
 

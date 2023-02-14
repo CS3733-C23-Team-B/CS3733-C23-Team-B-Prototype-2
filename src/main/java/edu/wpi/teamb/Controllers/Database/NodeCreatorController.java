@@ -50,7 +50,7 @@ public class NodeCreatorController {
     newNode.setFloor(newFloor);
     newNode.setBuilding(newBuilding);
     newNode.setNodeID(newNode.buildID());
-    DBSession.addORM(newNode);
+    DBSession.addNode(newNode);
 
     cancelClicked();
   }

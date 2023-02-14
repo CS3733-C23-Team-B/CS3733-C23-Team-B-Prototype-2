@@ -1,8 +1,11 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Algorithms.Sorting;
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.GeneralRequest;
 import edu.wpi.teamb.Database.LocationName;
+import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -12,7 +15,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,12 +23,9 @@ import javafx.scene.control.Control;
 
 public class BaseRequestController {
   // JavaFX components
-  @FXML protected MFXTextField firstNameField;
-  @FXML protected MFXTextField lastNameField;
-  @FXML protected MFXTextField employeeIDField;
-  @FXML protected MFXTextField emailField;
+
   @FXML protected MFXFilterComboBox<String> urgencyBox;
-  @FXML protected MFXTextField assignedStaffField;
+  @FXML protected MFXFilterComboBox<String> assignedStaffBox;
   @FXML protected MFXTextField additionalNotesField;
   private RequestStatus request;
   @FXML protected MFXButton cancelButton;
@@ -37,6 +37,7 @@ public class BaseRequestController {
   // Choice-box options
   protected ObservableList<String> urgencyOptions =
       FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
+  protected ObservableList<String> staffMembers = getStaff();
 
   // List of all text fields and choice boxes for flexibility; when adding new input components to
   // form, add to this list
@@ -47,6 +48,8 @@ public class BaseRequestController {
   protected Screen helpScreen;
   protected Screen submissionScreen;
 
+  protected Login currUser;
+
   /**
    * Initialize the page by instantiating 3 arrays of all components, text field components, and
    * choice-box components, as well as declaring choice-box options
@@ -55,6 +58,8 @@ public class BaseRequestController {
   public void initialize() {
     submitButton.setDisable(true);
     urgencyBox.setItems(urgencyOptions);
+    assignedStaffBox.setItems(staffMembers);
+    currUser = SigninController.getCurrentUser();
   }
 
   /**
@@ -103,10 +108,23 @@ public class BaseRequestController {
   protected ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    List<LocationName> locationNames = DBSession.getAllLocationNames();
-    locationNames.forEach(l -> list.add(l.getLongName()));
+    Map<String, LocationName> locationNames = DBSession.getAllLocationNames();
+    locationNames.forEach((key, value) -> list.add(value.getLongName()));
 
     Sorting.quickSort(list);
+    return list;
+  }
+
+  protected ObservableList<String> getStaff() {
+    ObservableList<String> list = FXCollections.observableArrayList();
+
+    Map<String, Login> locationNames = DBSession.getAllLogins();
+    locationNames.forEach(
+        (key, value) -> {
+          String name = value.getFirstname() + " " + value.getLastname();
+          list.add(name);
+        });
+
     return list;
   }
 
@@ -156,5 +174,26 @@ public class BaseRequestController {
     // Skip final item, which should be the notes field
     if (i == components.size() - 2) return !getText(components.get(i)).equals("");
     return !getText(components.get(i)).equals("") && isFormFull(i + 1);
+  }
+
+  protected void submit(GeneralRequest request) {
+    request.setFirstname(currUser.getFirstname());
+    request.setLastname(currUser.getLastname());
+    request.setEmployeeID(String.valueOf(currUser.getId()));
+    request.setEmail(currUser.getEmail());
+    request.setNotes(additionalNotesField.getText());
+
+    var staff = assignedStaffBox.getValue();
+    if (staff == null) {
+      staff = "";
+    }
+    request.setAssignedEmployee(staff.toString());
+
+    var urgency = urgencyBox.getValue();
+    if (urgency == null) {
+      urgency = "";
+    }
+    request.setUrgency(urgency.toString());
+    request.setStatus(RequestStatus.PROCESSING);
   }
 }

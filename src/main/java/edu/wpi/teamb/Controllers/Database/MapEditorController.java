@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Navigation.Navigation;
@@ -39,7 +40,7 @@ public class MapEditorController {
   AnchorPane currentPopUp;
   private static Node currentNode;
   private Circle currentDot;
-  private final int popUpHeight = 110;
+  private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
   private static MapEditorController instance;
@@ -89,7 +90,7 @@ public class MapEditorController {
 
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
-    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 - popUpHeight);
+    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 - POP_UP_HEIGHT);
     popPane.setStyle("-fx-background-color: FFFFFF; -fx-border-color: black;");
 
     VBox vbox = new VBox();
@@ -98,7 +99,14 @@ public class MapEditorController {
     Text id = new Text("NodeID:   " + node.getNodeID());
     Text pos = new Text("(x, y):  " + "(" + node.getXCoord() + ", " + node.getYCoord() + ")");
 
-    Text loc = new Text(DBSession.getMostRecentLocation(node.getNodeID()));
+    List<Move> moves = DBSession.getMostRecentMoves(node.getNodeID());
+    String t;
+    if (moves == null) t = "NO MOVES";
+    else {
+      t = moves.get(0).getLocationName().getLongName();
+      if (moves.size() > 1) t += "\n" + moves.get(1).getLocationName().getLongName();
+    }
+    Text loc = new Text(t);
 
     Button editButton = new Button("Edit");
     editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
@@ -185,6 +193,10 @@ public class MapEditorController {
     Navigation.navigate(Screen.LOCATION_EDITOR);
   }
 
+  public void newMove() {
+    Navigation.navigate(Screen.MOVE_CREATOR);
+  }
+
   public void home() {
     Navigation.navigate(Screen.HOME);
   }
@@ -209,11 +221,17 @@ public class MapEditorController {
     Text loc = (Text) vboxChildren.get(2);
     id.setText("NodeID:   " + currentNode.getNodeID());
     pos.setText("(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
-    loc.setText(DBSession.getMostRecentLocation(currentNode.getNodeID()));
+
+    List<Move> moves = DBSession.getMostRecentMoves(currentNode.getNodeID());
+    String t = moves.get(0).getLocationName().getLongName();
+    if (moves.size() > 1) t += "\n" + moves.get(1).getLocationName().getLongName();
+    loc.setText(t);
+
     currentDot.setCenterX(currentNode.getXCoord());
     currentDot.setCenterY(currentNode.getYCoord());
     currentPopUp.setTranslateX(currentDot.getCenterX() + currentDot.getRadius() * 2);
-    currentPopUp.setTranslateY(currentDot.getCenterY() - currentDot.getRadius() * 2 - popUpHeight);
+    currentPopUp.setTranslateY(
+        currentDot.getCenterY() - currentDot.getRadius() * 2 - POP_UP_HEIGHT);
   }
 
   public void removeNode() {

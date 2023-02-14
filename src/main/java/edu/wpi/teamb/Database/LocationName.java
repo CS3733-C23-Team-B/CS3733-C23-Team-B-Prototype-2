@@ -1,20 +1,19 @@
 package edu.wpi.teamb.Database;
 
-import edu.wpi.teamb.Entities.IORM;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(name = "locationname")
-public class LocationName implements IORM {
+public class LocationName {
   @Id
   @Column(name = "longname", length = 70)
   @Getter
   @Setter
   private String longName;
 
-  @Column(name = "shortname", length = 35)
+  @Column(name = "shortname", length = 50)
   @Getter
   @Setter
   private String shortName;
@@ -30,10 +29,5 @@ public class LocationName implements IORM {
     this.longName = longName;
     this.shortName = shortName;
     this.locationType = locationType;
-  }
-
-  @Override
-  public String getSearchStr() {
-    return "FROM LocationName WHERE longName = '" + longName + "'";
   }
 }

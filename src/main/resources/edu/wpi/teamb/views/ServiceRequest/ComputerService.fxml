@@ -34,103 +34,6 @@
                <children>
                   <VBox prefHeight="800.0" prefWidth="800.0">
                      <children>
-                        <Text id="subTitleNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Information">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="40.0" top="10.0" />
-                           </VBox.margin>
-                        </Text>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Text id="categoriesNunito" layoutX="50.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="275.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="22.0" prefWidth="200.0">
-                           <children>
-                              <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </MFXTextField>
-                              <MFXTextField fx:id="lastNameField" layoutX="50.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox>
-                           <VBox.margin>
-                              <Insets left="40.0" top="15.0" />
-                           </VBox.margin>
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="257.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="105.0" prefHeight="22.0" prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                           <children>
-                              <MFXTextField fx:id="employeeIDField" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                              <MFXTextField fx:id="emailField" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                           </children>
-                        </HBox>
                         <Text id="subTitleNunito" layoutX="50.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Request Information">
                            <font>
                               <Font size="36.0" />
@@ -169,14 +72,11 @@
                                     <Insets left="40.0" />
                                  </HBox.margin>
                               </MFXFilterComboBox>
-                              <MFXTextField fx:id="assignedStaffField" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
+                              <MFXFilterComboBox fx:id="assignedStaffBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="340.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
-                              </MFXTextField>
+                              </MFXFilterComboBox>
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />

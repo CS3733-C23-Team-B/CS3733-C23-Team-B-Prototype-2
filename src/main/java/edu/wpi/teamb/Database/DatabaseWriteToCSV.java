@@ -251,29 +251,7 @@ public class DatabaseWriteToCSV {
     }
   }
 
-  public static void main(String[] args) throws IOException, ParseException {
-    SecurityRequest sr = new SecurityRequest();
-    sr.setEmail("me@me.com");
-    sr.setFirstname("me");
-    sr.setLastname("melastname");
-    sr.setNotes("me notes are notey");
-    sr.setEquipmentNeeded("me equip");
-    sr.setIssueType("its me, hi, im the problem its me");
-    sr.setEmployeeID("me123");
-    sr.setNumberRequired(1);
-    sr.setUrgency("Unbelievably Massive");
-    sr.setStatus(RequestStatus.DONE);
-    DBSession.addRequest(sr);
-    AudioVideoRequest av = new AudioVideoRequest();
-    av.setEmail("me@me.com");
-    av.setFirstname("me");
-    av.setLastname("melastname");
-    av.setNotes("me notes are notey");
-    av.setEmployeeID("me123");
-    av.setUrgency("Believably Massive");
-    av.setAVType("Interstellar Movie");
-    av.setStatus(RequestStatus.PROCESSING);
-    DBSession.addRequest(av);
+  public static void runWrites() throws IOException, ParseException {
     writeEdges();
     writeNodes();
     writeMoves();

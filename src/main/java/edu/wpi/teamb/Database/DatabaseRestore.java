@@ -121,7 +121,7 @@ public class DatabaseRestore {
     s.close();
   }
 
-  public static void main(String[] args)
+  public static void runRestore()
       throws FileNotFoundException, URISyntaxException, ParseException {
 
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();

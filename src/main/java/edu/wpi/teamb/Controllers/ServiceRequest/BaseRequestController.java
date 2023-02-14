@@ -14,6 +14,8 @@ import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 import javafx.collections.FXCollections;
@@ -182,7 +184,9 @@ public class BaseRequestController {
     request.setEmployeeID(String.valueOf(currUser.getId()));
     request.setEmail(currUser.getEmail());
     request.setNotes(additionalNotesField.getText());
-
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    request.setDate(dtf.format(now));
     var staff = assignedStaffBox.getValue();
     if (staff == null) {
       staff = "";

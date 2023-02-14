@@ -129,6 +129,10 @@ public class DBSession {
     LoginDAO.updateAdmin(user, b);
   }
 
+  public static Boolean isAdmin(Login l) {
+    return LoginDAO.isAdmin(l);
+  }
+
   public static List<Move> getMostRecentMoves(String NodeID) {
     try {
       return MapDAO.getIDMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01")).get(NodeID);

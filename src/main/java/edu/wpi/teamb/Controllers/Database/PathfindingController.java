@@ -120,12 +120,36 @@ public class PathfindingController {
         e -> changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre()));
   }
 
+  public void setNodeColors() {
+    List<javafx.scene.Node> nodeTest = aPane.getChildren();
+    for (javafx.scene.Node n : nodeTest) {
+      if (n instanceof Circle) {
+        Circle c = (Circle) n;
+        Node node = nodeMap.get(c);
+        if (node.getNodeID().equals(startID)) {
+          startDot = c;
+          startDot.setFill(Color.GREEN);
+        } else if (node.getNodeID().equals(endID)) {
+          endDot = c;
+          endDot.setFill(Color.RED);
+        }
+      }
+    }
+  }
+
   private void changeFloor(String floor, Point2D p) {
     ImageView image;
     nodeMap.clear();
 
     currentFloor = floor;
     image = imageMap.get(floor);
+    image.toFront();
+    image.setOnMouseClicked(
+        e -> {
+          handleClick();
+          setNodeColors();
+        });
+    image.setOnMouseMoved(e -> setNodeColors());
 
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
@@ -134,6 +158,8 @@ public class PathfindingController {
     startLoc.setItems(getLocations(currentFloor));
     endLoc.setItems(getLocations(currentFloor));
     image.setOnMouseClicked(e -> handleClick());
+    linesPlane.setOnMouseMoved(e -> setNodeColors());
+    linesPlane.setOnMouseClicked(e -> handleClick());
     pathfind.setOnAction(
         (eventAction) -> {
           try {
@@ -154,6 +180,7 @@ public class PathfindingController {
         (obs, oldSelection, newSelection) -> {
           if (oldSelection != null) {
             oldSelection.pseudoClassStateChanged(SELECTED_P_C, false);
+            setNodeColors();
           }
           if (newSelection != null) {
             newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
@@ -171,22 +198,6 @@ public class PathfindingController {
       endDot.setFill(Color.BLUE);
       endDot = null;
     }
-
-    for (javafx.scene.Node n : aPane.getChildren()) {
-      if (n instanceof Circle) {
-        Circle c = (Circle) n;
-        Node node = nodeMap.get(c);
-        if (node.getNodeID().equals(startID)) {
-          startDot = c;
-          startDot.setFill(Color.GREEN);
-        } else if (node.getNodeID().equals(endID)) {
-          endDot = c;
-          endDot.setFill(Color.RED);
-        }
-      }
-    }
-
-    System.out.println("We he");
   }
 
   private void drawLines() {
@@ -292,19 +303,7 @@ public class PathfindingController {
       endDot = null;
     }
 
-    for (javafx.scene.Node n : aPane.getChildren()) {
-      if (n instanceof Circle) {
-        Circle c = (Circle) n;
-        Node node = nodeMap.get(c);
-        if (node.getNodeID().equals(startID)) {
-          startDot = c;
-          startDot.setFill(Color.GREEN);
-        } else if (node.getNodeID().equals(endID)) {
-          endDot = c;
-          endDot.setFill(Color.RED);
-        }
-      }
-    }
+    setNodeColors();
   }
 
   /**

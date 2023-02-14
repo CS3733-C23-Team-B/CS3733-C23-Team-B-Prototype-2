@@ -43,10 +43,27 @@ public class RequestDAO {
     refreshRequests();
     return CRequests;
   }
-
   public static List<AudioVideoRequest> getAllAVRequests() {
     refreshRequests();
     return AVRequests;
+  }
+
+  public static List<GeneralRequest> getAllRequestsWithEmpID(String id) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    String hql = "FROM GeneralRequest WHERE employeeID = '" + id + "'";
+    List<GeneralRequest> rs = new ArrayList<GeneralRequest>();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery(hql, GeneralRequest.class);
+      rs = q.list();
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+      return rs;
+    }
   }
 
   public static void refreshRequests() {

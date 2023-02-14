@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Navigation;
 
 public enum Screen {
-  HOME("views/Navigation/HomeScreen.fxml"),
+  HOME("views/Navigation/HomeScreen1.fxml"),
   DATABASE_HELP("views/Database/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
   MAP_EDITOR("views/Database/MapEditor.fxml"),

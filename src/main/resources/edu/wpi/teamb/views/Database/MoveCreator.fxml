@@ -87,7 +87,7 @@
                               <Insets left="240.0" top="10.0" />
                            </HBox.margin>
                         </Text>
-                        <MFXDatePicker fx:id="datePicker" onAction="#selectDate" prefHeight="42.0" prefWidth="210.0" promptText="Select Date">
+                        <MFXDatePicker fx:id="datePicker" prefHeight="42.0" prefWidth="210.0" promptText="Select Date">
                            <HBox.margin>
                               <Insets left="75.0" />
                            </HBox.margin>

@@ -22,6 +22,7 @@ public class FutureMovesController {
   @FXML TableColumn node;
 
   @FXML MFXDatePicker datePicker;
+  Map<String, Move> movesMap = new HashMap<>();
 
   StringConverter<Boolean> converter =
       new StringConverter<Boolean>() {
@@ -37,21 +38,10 @@ public class FutureMovesController {
       };
 
   public void initialize() {
-    Map<String, Move> movesMap = new HashMap<>();
     moveDate.setCellValueFactory(new PropertyValueFactory<>("moveDate"));
     locationName.setCellValueFactory(new PropertyValueFactory<>("locationName"));
     node.setCellValueFactory(new PropertyValueFactory<>("node"));
-
-    Date date = new Date(2023, 01, 01);
-    if (datePicker.getValue() != null) {
-      date = Date.valueOf(datePicker.getValue());
-    }
-
-    movesMap = DBSession.getLNMoves(date);
-    movesMap.forEach(
-        (key, value) -> {
-          table1.getItems().add(value);
-        });
+    updateFutureMoves();
   }
 
   public void newMove() {
@@ -62,5 +52,21 @@ public class FutureMovesController {
     Navigation.navigate(Screen.MAP_EDITOR);
   }
 
-  public void selectDate() {}
+  public void selectDate() {
+    updateFutureMoves();
+  }
+
+  public void updateFutureMoves() {
+    Date date = new Date(2023, 01, 01);
+    if (datePicker.getValue() != null) {
+      date = Date.valueOf(datePicker.getValue());
+    }
+
+    movesMap = DBSession.getLNMoves(date);
+    movesMap.forEach(
+        (key, value) -> {
+          table1.getItems().add(value);
+        });
+    table1.refresh();
+  }
 }

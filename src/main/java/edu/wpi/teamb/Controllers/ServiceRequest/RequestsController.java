@@ -46,6 +46,7 @@ public class RequestsController {
             "employeeID",
             "email",
             "urgency",
+            "assignedEmployee",
             "patientID",
             "patientCurrentLocation",
             "patientDestinationLocation",

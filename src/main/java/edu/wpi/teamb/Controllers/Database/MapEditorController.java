@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -37,6 +38,8 @@ import javafx.stage.Stage;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
+  @FXML GridPane gridPane;
+  @FXML AnchorPane map;
   @FXML AnchorPane anchor;
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
@@ -78,12 +81,12 @@ public class MapEditorController {
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
-    pane.setPrefHeight(433);
-    pane.setPrefWidth(800);
+    pane.setPrefHeight(536);
+    pane.setPrefWidth(1089.6);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     changeFloor("Lower Level 1", new javafx.geometry.Point2D(2220, 974));
     pane.setContent(aPane);
-    anchor.getChildren().add(pane);
+    map.getChildren().add(pane);
     // Changes floor when selecting a new floor
     floorCombo.setOnAction(
         e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));

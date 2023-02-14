@@ -1,9 +1,6 @@
 package edu.wpi.teamb.Database.DAO;
 
-import edu.wpi.teamb.Database.ComputerRequest;
-import edu.wpi.teamb.Database.GeneralRequest;
-import edu.wpi.teamb.Database.PatientTransportationRequest;
-import edu.wpi.teamb.Database.SanitationRequest;
+import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Entities.SessionGetter;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +13,12 @@ public class RequestDAO {
 
   private static List<GeneralRequest> allRequests = new ArrayList<>();
   private static List<PatientTransportationRequest> PTRequests = new ArrayList<>();
-  private static List<SanitationRequest> SRequests = new ArrayList<>();
+  private static List<SanitationRequest> SanRequests = new ArrayList<>();
   private static List<ComputerRequest> CRequests = new ArrayList<>();
+
+  private static List<SecurityRequest> SecRequests = new ArrayList<>();
+
+  private static List<AudioVisualRequest> AVRequests = new ArrayList<>();
 
   public static List<GeneralRequest> getALLRequests() {
     return allRequests;
@@ -28,14 +29,24 @@ public class RequestDAO {
     return PTRequests;
   }
 
-  public static List<SanitationRequest> getALLSRequests() {
+  public static List<SanitationRequest> getALLSanRequests() {
     refreshRequests();
-    return SRequests;
+    return SanRequests;
+  }
+
+  public static List<SecurityRequest> getALLSecRequests() {
+    refreshRequests();
+    return SecRequests;
   }
 
   public static List<ComputerRequest> getALLCRequests() {
     refreshRequests();
     return CRequests;
+  }
+
+  public static List<AudioVisualRequest> getAllAVRequests() {
+    refreshRequests();
+    return AVRequests;
   }
 
   public static void refreshRequests() {
@@ -50,9 +61,13 @@ public class RequestDAO {
               "FROM PatientTransportationRequest", PatientTransportationRequest.class);
       PTRequests = q2.list();
       Query q3 = session.createQuery("FROM SanitationRequest", SanitationRequest.class);
-      SRequests = q3.list();
+      SanRequests = q3.list();
       Query q4 = session.createQuery("FROM ComputerRequest", ComputerRequest.class);
       CRequests = q4.list();
+      Query q5 = session.createQuery("FROM SecurityRequest", SecurityRequest.class);
+      SecRequests = q5.list();
+      Query q6 = session.createQuery("FROM AudioVisualRequest", AudioVisualRequest.class);
+      AVRequests = q5.list();
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();

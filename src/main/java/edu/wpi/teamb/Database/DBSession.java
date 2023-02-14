@@ -97,8 +97,16 @@ public class DBSession {
     return RequestDAO.getALLPTRequests();
   }
 
-  public static List<SanitationRequest> getAllSRequests() {
-    return RequestDAO.getALLSRequests();
+  public static List<SanitationRequest> getAllSanRequests() {
+    return RequestDAO.getALLSanRequests();
+  }
+
+  public static List<SecurityRequest> getAllSecRequests() {
+    return RequestDAO.getALLSecRequests();
+  }
+
+  public static List<AudioVisualRequest> getAllAVRequests() {
+    return RequestDAO.getAllAVRequests();
   }
 
   public static List<ComputerRequest> getAllCRequests() {

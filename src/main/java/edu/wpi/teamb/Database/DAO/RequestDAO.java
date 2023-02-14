@@ -75,4 +75,19 @@ public class RequestDAO {
       refreshRequests();
     }
   }
+
+  public static void updateRequest(GeneralRequest r) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      session.merge(r);
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+      refreshRequests();
+    }
+  }
 }

@@ -2,7 +2,6 @@ package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.ComputerRequest;
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -32,16 +31,11 @@ public class ComputerServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      firstNameField,
-      lastNameField,
-      employeeIDField,
-      emailField,
       repairLocationBox,
       urgencyBox,
       typeOfRepairBox,
       deviceBox,
-      assignedStaffField,
-//      assignedStaffBox,
+      assignedStaffBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
@@ -68,24 +62,7 @@ public class ComputerServiceController extends BaseRequestController {
 
     ComputerRequest request = new ComputerRequest();
 
-    request.setFirstname(firstNameField.getText());
-    request.setLastname(lastNameField.getText());
-    request.setEmployeeID(employeeIDField.getText());
-    request.setEmail(emailField.getText());
-    request.setNotes(additionalNotesField.getText());
-    request.setAssignedEmployee(assignedStaffField.getText());
-
-//    var staff = assignedStaffBox.getValue();
-//    if (staff == null) {
-//      staff = "";
-//    }
-//    request.setUrgency(staff.toString());
-
-    var urgency = urgencyBox.getValue();
-    if (urgency == null) {
-      urgency = "";
-    }
-    request.setUrgency(urgency.toString());
+    super.submit(request);
 
     request.setRepairLocation(repairLocationBox.getText());
 
@@ -99,9 +76,7 @@ public class ComputerServiceController extends BaseRequestController {
     }
     request.setDevice(device.toString());
 
-    request.setAssignedEmployee(assignedStaffField.getText());
     request.setTypeOfRepair(typeOfrepair.toString());
-    request.setStatus(RequestStatus.PROCESSING);
     DBSession.addRequest(request);
 
     // may need to clear fields can be done with functions made for clear

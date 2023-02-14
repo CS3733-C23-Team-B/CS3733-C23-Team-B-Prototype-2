@@ -2,7 +2,6 @@ package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.PatientTransportationRequest;
-import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -35,13 +34,8 @@ public class PatientTransportationController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      firstNameField,
-      lastNameField,
-      employeeIDField,
-      emailField,
       urgencyBox,
-      assignedStaffField,
-//      assignedStaffBox,
+      assignedStaffBox,
       patientCurrentLocationBox,
       patientDestinationLocationBox,
       equipmentNeededBox,
@@ -79,38 +73,26 @@ public class PatientTransportationController extends BaseRequestController {
     // handle retrieving values and saving
 
     PatientTransportationRequest request = new PatientTransportationRequest();
-    request.setFirstname(firstNameField.getText());
-    request.setLastname(lastNameField.getText());
-    request.setEmployeeID(employeeIDField.getText());
-    request.setEmail(emailField.getText());
-    request.setStatus(RequestStatus.PROCESSING);
-    request.setAssignedEmployee(assignedStaffField.getText());
-
-//    var staff = assignedStaffBox.getValue();
-//    if (staff == null) {
-//      staff = "";
-//    }
-    var urgency = urgencyBox.getValue();
-    if (urgency == null) {
-      urgency = "";
-    }
+    super.submit(request);
 
     var equipment = equipmentNeededBox.getValue();
     if (equipment == null) {
       equipment = "";
     }
+    request.setEquipmentNeeded(equipment.toString());
+
     var destination = patientDestinationLocationBox.getValue();
     if (destination == null) {
       destination = "";
     }
+    request.setPatientDestinationLocation(destination.toString());
+
     var curLocation = patientCurrentLocationBox.getValue();
     if (curLocation == null) {
       curLocation = "";
     }
-    request.setUrgency(urgency.toString());
-    request.setEquipmentNeeded(equipment.toString());
     request.setPatientCurrentLocation(curLocation.toString());
-    request.setPatientDestinationLocation(destination.toString());
+
     request.setPatientID(this.patientIDField.getText());
     DBSession.addRequest(request);
 

@@ -12,7 +12,7 @@ public class Pathfinding {
   private static Map<String, Node> nodes = DBSession.getAllNodes();
   private static Map<String, List<Move>> moves = DBSession.getIDMoves(new Date(2023, 1, 1));
   private static int totalDist = 0;
-  public static boolean avoid_stairs = false;
+  public static boolean avoidStairs = false;
 
   /**
    * Given an edge, evaluates the weight of the edge
@@ -60,16 +60,10 @@ public class Pathfinding {
     String f2 = node2.getFloor();
 
     int kFloor;
-    if (avoid_stairs)
-      kFloor =
-          moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
-              ? 150
-              : 999999;
+    if (avoidStairs)
+      kFloor = moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV") ? 150 : 999999;
     else
-      kFloor =
-          moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
-              ? 150
-              : 250;
+      kFloor = moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV") ? 150 : 250;
 
     int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * kFloor;
 
@@ -132,8 +126,13 @@ public class Pathfinding {
    * @param end the longName of the location to end at
    * @return a String representation of the optimal path to take
    */
-  public static ArrayList<String> getShortestPath(String start, String end) {
-    ArrayList<String> p = getPathAStar(start, end);
+  public static ArrayList<String> getShortestPath(String start, String end, SearchType type) {
+    ArrayList<String> p;
+
+    if (type == SearchType.A_STAR) p = getPathAStar(start, end);
+    else if (type == SearchType.BREADTH_FIRST) p = getPathBreadth(start, end);
+    else p = getPathDepth(start, end);
+
     System.out.println(pathToString(p));
     return p;
   }

@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
+import edu.wpi.teamb.Pathfinding.SearchType;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -61,11 +63,14 @@ public class PathfindingController {
   @FXML AnchorPane anchor;
   @FXML ImageView floor1;
   @FXML MFXFilterComboBox<String> floorCombo;
+  @FXML CheckBox avoidStairsCheckBox;
+  @FXML MFXFilterComboBox searchCombo;
   private String currentFloor;
   private String startID;
   private String endID;
   private Map<String, String> floorMap = new HashMap<>();
   private Map<String, ImageView> imageMap = new HashMap<>();
+  private Map<String, SearchType> searchTypeMap = new HashMap<>();
   Circle startDot;
   Circle endDot;
 
@@ -85,6 +90,10 @@ public class PathfindingController {
     imageMap.put("2", seccondfloor);
     imageMap.put("3", thirdfloor);
 
+    searchTypeMap.put("A* Search", SearchType.A_STAR);
+    searchTypeMap.put("Breadth-first Search", SearchType.BREADTH_FIRST);
+    searchTypeMap.put("Depth-first Search", SearchType.DEPTH_FIRST);
+
     floorCombo.setItems(
         FXCollections.observableArrayList(
             "Lower Level 2",
@@ -93,6 +102,11 @@ public class PathfindingController {
             "First Floor",
             "Second Floor",
             "Third Floor"));
+
+    searchCombo.setItems(
+        FXCollections.observableArrayList(
+            "A* Search", "Breadth-first Search", "Depth-first Search"));
+
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
@@ -245,11 +259,13 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
+    Pathfinding.avoidStairs = avoidStairsCheckBox.isSelected();
+    SearchType type = searchTypeMap.get(searchCombo.getText());
 
     linesPlane.getChildren().clear();
     String start = startLoc.getValue();
     String end = endLoc.getValue();
-    ArrayList<String> path = Pathfinding.getShortestPath(start, end);
+    ArrayList<String> path = Pathfinding.getShortestPath(start, end, type);
 
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);

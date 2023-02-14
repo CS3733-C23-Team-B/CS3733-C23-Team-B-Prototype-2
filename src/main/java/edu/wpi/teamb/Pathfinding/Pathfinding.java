@@ -60,10 +60,20 @@ public class Pathfinding {
     String f2 = node2.getFloor();
 
     int kFloor;
-    if (avoidStairs)
-      kFloor = moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV") ? 150 : 999999;
-    else
-      kFloor = moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV") ? 150 : 250;
+
+    if (!moves.containsKey(node1.getNodeID())) kFloor = 0;
+    else {
+      if (avoidStairs)
+        kFloor =
+            moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
+                ? 150
+                : 999999;
+      else
+        kFloor =
+            moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
+                ? 150
+                : 250;
+    }
 
     int floorDist = Math.abs((floors.indexOf(f2) - floors.indexOf(f1))) * kFloor;
 
@@ -148,7 +158,7 @@ public class Pathfinding {
   private static ArrayList<String> getPathBreadthDepth(
       String startLoc, String endLoc, boolean breadth) {
     String start = DBSession.getMostRecentNodeID(startLoc);
-    String end = DBSession.getMostRecentNodeID(startLoc);
+    String end = DBSession.getMostRecentNodeID(endLoc);
 
     boolean done = false;
     HashMap<String, String> cameFrom = new HashMap<String, String>();

@@ -3,7 +3,7 @@ package edu.wpi.teamb.Database;
 import edu.wpi.teamb.Database.DAO.LoginDAO;
 import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Database.DAO.RequestDAO;
-
+import edu.wpi.teamb.Entities.RequestStatus;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,9 +27,13 @@ public class DatabaseWriteToCSV {
 
   private static String convertToCSV(String[] data) {
     String csv = "";
-
+    String s;
     for (int i = 0; i < data.length; i++) {
-      String s = data[i];
+      if (data[i] != null) {
+        s = data[i];
+      } else {
+        s = "";
+      }
 
       // Remove special characters
       s = s.replaceAll("\\R", " ");
@@ -134,7 +138,7 @@ public class DatabaseWriteToCSV {
     RequestDAO.refreshRequests();
     List<PatientTransportationRequest> rs = RequestDAO.getAllPTRequests();
     boolean first = true;
-    for(PatientTransportationRequest r : rs) {
+    for (PatientTransportationRequest r : rs) {
       String[] data = new String[13];
       data[0] = Integer.toString(r.getId());
       data[1] = r.getFirstname();
@@ -159,7 +163,7 @@ public class DatabaseWriteToCSV {
     RequestDAO.refreshRequests();
     List<SanitationRequest> rs = RequestDAO.getAllSanRequests();
     boolean first = true;
-    for(SanitationRequest r : rs) {
+    for (SanitationRequest r : rs) {
       String[] data = new String[11];
       data[0] = Integer.toString(r.getId());
       data[1] = r.getFirstname();
@@ -177,7 +181,99 @@ public class DatabaseWriteToCSV {
     }
   }
 
+  public static void writeCRequests() throws IOException {
+    String fileName = "cRequests";
+    RequestDAO.refreshRequests();
+    List<ComputerRequest> rs = RequestDAO.getAllCRequests();
+    boolean first = true;
+    for (ComputerRequest r : rs) {
+      String[] data = new String[12];
+      data[0] = Integer.toString(r.getId());
+      data[1] = r.getFirstname();
+      data[2] = r.getLastname();
+      data[3] = r.getEmail();
+      data[4] = r.getEmployeeID();
+      data[5] = r.getUrgency();
+      data[6] = r.getAssignedEmployee();
+      data[7] = r.getNotes();
+      data[8] = r.getStatus().toString();
+      data[9] = r.getTypeOfRepair();
+      data[10] = r.getDevice();
+      data[11] = r.getRepairLocation();
+      writeCsv(fileName, data, first);
+      first = false;
+    }
+  }
+
+  public static void writeSecRequests() throws IOException {
+    String fileName = "secRequests";
+    RequestDAO.refreshRequests();
+    List<SecurityRequest> rs = RequestDAO.getAllSecRequests();
+    boolean first = true;
+    for (SecurityRequest r : rs) {
+      String[] data = new String[12];
+      data[0] = Integer.toString(r.getId());
+      data[1] = r.getFirstname();
+      data[2] = r.getLastname();
+      data[3] = r.getEmail();
+      data[4] = r.getEmployeeID();
+      data[5] = r.getUrgency();
+      data[6] = r.getAssignedEmployee();
+      data[7] = r.getNotes();
+      data[8] = r.getStatus().toString();
+      data[9] = r.getIssueType();
+      data[10] = r.getEquipmentNeeded();
+      data[11] = Integer.toString(r.getNumberRequired());
+      writeCsv(fileName, data, first);
+      first = false;
+    }
+  }
+
+  public static void writeAVRequests() throws IOException {
+    String fileName = "avRequests";
+    RequestDAO.refreshRequests();
+    List<AudioVideoRequest> rs = RequestDAO.getAllAVRequests();
+    boolean first = true;
+    for (AudioVideoRequest r : rs) {
+      String[] data = new String[10];
+      data[0] = Integer.toString(r.getId());
+      data[1] = r.getFirstname();
+      data[2] = r.getLastname();
+      data[3] = r.getEmail();
+      data[4] = r.getEmployeeID();
+      data[5] = r.getUrgency();
+      data[6] = r.getAssignedEmployee();
+      data[7] = r.getNotes();
+      data[8] = r.getStatus().toString();
+      data[9] = r.getAVType();
+      writeCsv(fileName, data, first);
+      first = false;
+    }
+  }
+
   public static void main(String[] args) throws IOException, ParseException {
+    SecurityRequest sr = new SecurityRequest();
+    sr.setEmail("me@me.com");
+    sr.setFirstname("me");
+    sr.setLastname("melastname");
+    sr.setNotes("me notes are notey");
+    sr.setEquipmentNeeded("me equip");
+    sr.setIssueType("its me, hi, im the problem its me");
+    sr.setEmployeeID("me123");
+    sr.setNumberRequired(1);
+    sr.setUrgency("Unbelievably Massive");
+    sr.setStatus(RequestStatus.DONE);
+    DBSession.addRequest(sr);
+    AudioVideoRequest av = new AudioVideoRequest();
+    av.setEmail("me@me.com");
+    av.setFirstname("me");
+    av.setLastname("melastname");
+    av.setNotes("me notes are notey");
+    av.setEmployeeID("me123");
+    av.setUrgency("Believably Massive");
+    av.setAVType("Interstellar Movie");
+    av.setStatus(RequestStatus.PROCESSING);
+    DBSession.addRequest(av);
     writeEdges();
     writeNodes();
     writeMoves();
@@ -185,5 +281,8 @@ public class DatabaseWriteToCSV {
     writeLogins();
     writePTRequests();
     writeSanRequests();
+    writeCRequests();
+    writeSecRequests();
+    writeAVRequests();
   }
 }

@@ -105,7 +105,7 @@ public class DBSession {
     return RequestDAO.getAllSecRequests();
   }
 
-  public static List<AudioVisualRequest> getAllAVRequests() {
+  public static List<AudioVideoRequest> getAllAVRequests() {
     return RequestDAO.getAllAVRequests();
   }
 

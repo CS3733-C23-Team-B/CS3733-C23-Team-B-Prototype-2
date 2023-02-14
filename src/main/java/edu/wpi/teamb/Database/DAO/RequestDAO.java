@@ -18,7 +18,7 @@ public class RequestDAO {
 
   private static List<SecurityRequest> SecRequests = new ArrayList<>();
 
-  private static List<AudioVisualRequest> AVRequests = new ArrayList<>();
+  private static List<AudioVideoRequest> AVRequests = new ArrayList<>();
 
   public static List<GeneralRequest> getAllRequests() {
     return allRequests;
@@ -44,7 +44,7 @@ public class RequestDAO {
     return CRequests;
   }
 
-  public static List<AudioVisualRequest> getAllAVRequests() {
+  public static List<AudioVideoRequest> getAllAVRequests() {
     refreshRequests();
     return AVRequests;
   }
@@ -66,8 +66,8 @@ public class RequestDAO {
       CRequests = q4.list();
       Query q5 = session.createQuery("FROM SecurityRequest", SecurityRequest.class);
       SecRequests = q5.list();
-      Query q6 = session.createQuery("FROM AudioVisualRequest", AudioVisualRequest.class);
-      AVRequests = q5.list();
+      Query q6 = session.createQuery("FROM AudioVideoRequest", AudioVideoRequest.class);
+      AVRequests = q6.list();
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();

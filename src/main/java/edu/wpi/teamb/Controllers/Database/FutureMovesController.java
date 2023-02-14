@@ -57,11 +57,15 @@ public class FutureMovesController {
   }
 
   public void updateFutureMoves() {
-    Date date = new Date(2023, 1, 1);
+    Date date = new Date(1, 1, 1);
     movesList = DBSession.getFutureMoves(date);
     movesList.forEach(
         (value) -> {
-          table1.getItems().add(value);
+          List<String> row = new ArrayList<String>();
+          row.add(value.getMoveDate().toString());
+          row.add(value.getLocationName().getLongName());
+          row.add(value.getNode().getNodeID());
+          table1.getItems().add(row);
         });
     table1.refresh();
   }

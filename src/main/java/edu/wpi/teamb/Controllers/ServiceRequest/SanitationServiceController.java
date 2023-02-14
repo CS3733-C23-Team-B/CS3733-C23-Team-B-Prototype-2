@@ -20,7 +20,7 @@ public class SanitationServiceController extends BaseRequestController {
   ObservableList<String> typeOfCleanUpList =
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
   @FXML private MFXFilterComboBox<String> cleanUpLocationBox;
-  @FXML private MFXComboBox typeOfCleanUpBox;
+  @FXML private MFXFilterComboBox<String> typeOfCleanUpBox;
 
   @FXML
   @Override

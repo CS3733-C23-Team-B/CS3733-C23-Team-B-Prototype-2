@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Bapp extends Application {
-
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
 

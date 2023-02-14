@@ -90,7 +90,6 @@ public class MapDAO {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery(hql);
       List<Object[]> ms = q.list();
-      System.out.println(ms.get(0));
       tx.commit();
       for (Object[] moveInfo : ms) {
         Move m = new Move();

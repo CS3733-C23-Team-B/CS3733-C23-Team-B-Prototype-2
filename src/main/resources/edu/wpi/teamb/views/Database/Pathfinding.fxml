@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -38,12 +39,23 @@
          <children>
             <VBox prefHeight="536.0" prefWidth="343.0" style="-fx-background-color: #e0e0e0;">
                <children>
+                  <CheckBox fx:id="avoidStairsCheckBox" mnemonicParsing="false" text="Avoid Stairs">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </CheckBox>
                   <Label text="Floor">
                      <padding>
                         <Insets top="20.0" />
                      </padding>
                   </Label>
-                  <MFXFilterComboBox fx:id="floorCombo" />
+                  <MFXFilterComboBox fx:id="floorCombo" prefHeight="42.0" prefWidth="153.0" text="Lower Level 1" />
+                  <Label text="Search Type">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Label>
+                  <MFXFilterComboBox fx:id="searchCombo" prefHeight="42.0" prefWidth="298.0" text="A* Search" />
                   <Label text="Starting Node:">
                      <padding>
                         <Insets top="20.0" />

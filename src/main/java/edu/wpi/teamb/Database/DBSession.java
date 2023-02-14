@@ -90,19 +90,27 @@ public class DBSession {
   }
 
   public static List<GeneralRequest> getAllRequests() {
-    return RequestDAO.getALLRequests();
+    return RequestDAO.getAllRequests();
   }
 
   public static List<PatientTransportationRequest> getAllPTRequests() {
-    return RequestDAO.getALLPTRequests();
+    return RequestDAO.getAllPTRequests();
   }
 
-  public static List<SanitationRequest> getAllSRequests() {
-    return RequestDAO.getALLSRequests();
+  public static List<SanitationRequest> getAllSanRequests() {
+    return RequestDAO.getAllSanRequests();
+  }
+
+  public static List<SecurityRequest> getAllSecRequests() {
+    return RequestDAO.getAllSecRequests();
+  }
+
+  public static List<AudioVideoRequest> getAllAVRequests() {
+    return RequestDAO.getAllAVRequests();
   }
 
   public static List<ComputerRequest> getAllCRequests() {
-    return RequestDAO.getALLCRequests();
+    return RequestDAO.getAllCRequests();
   }
 
   public static Map<String, List<Move>> getIDMoves(Date d) {

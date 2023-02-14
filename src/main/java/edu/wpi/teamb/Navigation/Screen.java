@@ -6,6 +6,7 @@ public enum Screen {
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
   MAP_EDITOR("views/Database/MapEditor.fxml"),
   NODE_EDITOR("views/Database/NodeEditor.fxml"),
+  SIDE_NODE_EDITOR("views/Database/SideNodeEditor.fxml"),
   NODE_CREATOR("views/Database/NodeCreator.fxml"),
   LOCATION_EDITOR("views/Database/LocationEditor.fxml"),
   LOCATION_CREATOR("views/Database/LocationCreator.fxml"),

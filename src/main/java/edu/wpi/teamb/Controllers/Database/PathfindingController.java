@@ -36,6 +36,9 @@ import net.kurobako.gesturefx.GesturePane;
 public class PathfindingController {
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private GesturePane pane;
+
+  @FXML AnchorPane map;
+
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
@@ -110,11 +113,12 @@ public class PathfindingController {
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
-    pane.setPrefHeight(433);
-    pane.setPrefWidth(800);
+    pane.setPrefHeight(536);
+    pane.setPrefWidth(1089.6);
     changeFloor("L1", new javafx.geometry.Point2D(2220, 974));
+    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     pane.setContent(aPane);
-    anchor.getChildren().add(pane);
+    map.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     floorCombo.setOnAction(
         e -> changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre()));

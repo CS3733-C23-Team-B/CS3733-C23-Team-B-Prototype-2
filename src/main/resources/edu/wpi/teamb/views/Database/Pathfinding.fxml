@@ -2,7 +2,6 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -34,10 +33,10 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="525.0" spacing="30.0">
                      <children>
-                        <MFXFilterComboBox fx:id="floorCombo" />
+                        <MFXFilterComboBox fx:id="floorCombo" prefHeight="42.0" prefWidth="162.0" text="Lower Level 1" />
                         <Label text="Starting Node:">
                            <HBox.margin>
-                              <Insets left="50.0" />
+                              <Insets left="9.0" />
                            </HBox.margin>
                         </Label>
                         <MFXFilterComboBox fx:id="startLoc" prefHeight="42.0" prefWidth="300.0" />

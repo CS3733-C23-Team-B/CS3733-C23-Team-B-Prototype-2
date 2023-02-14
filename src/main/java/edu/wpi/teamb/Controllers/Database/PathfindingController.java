@@ -8,11 +8,7 @@ import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -39,7 +35,6 @@ public class PathfindingController {
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private GesturePane pane;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
-  private List<Line> lines;
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
   private final int POP_UP_HEIGHT = 110;
@@ -51,6 +46,7 @@ public class PathfindingController {
   @FXML MFXFilterComboBox<String> endLoc;
   private Circle startDot = null;
   private Circle endDot = null;
+  private List<List<Node>> pathNodePairs = new ArrayList<>();
   private ImageView lowerlevel =
       new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
   private ImageView groundfloor =
@@ -67,6 +63,9 @@ public class PathfindingController {
   @FXML AnchorPane anchor;
   @FXML ImageView floor1;
   @FXML MFXFilterComboBox<String> floorCombo;
+  private String currentFloor;
+  private String startID;
+  private String endID;
 
   /** Initializes the dropdown menus */
   public void initialize() {
@@ -93,30 +92,29 @@ public class PathfindingController {
 
   private void changeFloor(String floor, Point2D p) {
     ImageView image = new ImageView();
-    String f = null;
     switch (floor) {
       case "Lower Level 2":
-        f = "L2";
+        currentFloor = "L2";
         image = lowerlevel2;
         break;
       case "Lower Level 1":
-        f = "L1";
+        currentFloor = "L1";
         image = lowerlevel;
         break;
       case "Ground Floor":
-        f = "G";
+        currentFloor = "G";
         image = groundfloor;
         break;
       case "First Floor":
-        f = "1";
+        currentFloor = "1";
         image = firstfloor;
         break;
       case "Second Floor":
-        f = "2";
+        currentFloor = "2";
         image = seccondfloor;
         break;
       case "Third Floor":
-        f = "3";
+        currentFloor = "3";
         image = thirdfloor;
         break;
     }
@@ -124,8 +122,8 @@ public class PathfindingController {
     aPane.getChildren().add(image);
     aPane.getChildren().add(linesPlane);
     linesPlane.getChildren().clear();
-    startLoc.setItems(getLocations(f));
-    endLoc.setItems(getLocations(f));
+    startLoc.setItems(getLocations(currentFloor));
+    endLoc.setItems(getLocations(currentFloor));
     image.setOnMouseClicked(e -> handleClick());
     pathfind.setOnAction(
         (eventAction) -> {
@@ -136,11 +134,20 @@ public class PathfindingController {
           }
         });
     Map<String, Node> nodes = DBSession.getAllNodes();
-    String finalF = f;
-    nodes.forEach(
-        (key, value) -> {
-          if (value.getFloor().equals(finalF)) nodeMap.put(placeNode(value), value);
-        });
+
+    for (Node value : nodes.values())
+      if (value.getFloor().equals(currentFloor)) {
+        Circle dot = placeNode(value);
+        nodeMap.put(dot, value);
+        if (value.getNodeID().equals(startID)) {
+          startDot = dot;
+          startDot.setFill(Color.GREEN);
+        } else if (value.getNodeID().equals(endID)) {
+          endDot = dot;
+          endDot.setFill(Color.RED);
+        }
+      }
+
     selectedCircle.addListener(
         (obs, oldSelection, newSelection) -> {
           if (oldSelection != null) {
@@ -151,7 +158,15 @@ public class PathfindingController {
             displayPopUp(newSelection);
           }
         });
+    drawLines();
     Platform.runLater(() -> pane.centreOn(p));
+  }
+
+  private void drawLines() {
+    for (List<Node> pair : pathNodePairs) {
+      if (pair.get(0).getFloor().equals(currentFloor)
+          && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
+    }
   }
 
   public void displayPopUp(Circle dot) {
@@ -171,9 +186,8 @@ public class PathfindingController {
 
     List<Move> m = DBSession.getMostRecentMoves(node.getNodeID());
     Text loc = new Text();
-    for (Move move : m) {
-      loc.setText(move.getLocationName().getLongName());
-    }
+    if (m == null) loc.setText("NO MOVES");
+    else for (Move move : m) loc.setText(move.getLocationName().getLongName());
 
     Button editButton = new Button("Create Path from Here");
     editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
@@ -226,8 +240,8 @@ public class PathfindingController {
     String end = endLoc.getValue();
     ArrayList<String> path = Pathfinding.getShortestPath(start, end);
 
-    String startID = DBSession.getMostRecentNodeID(start);
-    String endID = DBSession.getMostRecentNodeID(end);
+    startID = DBSession.getMostRecentNodeID(start);
+    endID = DBSession.getMostRecentNodeID(end);
 
     for (Map.Entry<Circle, Node> entry : nodeMap.entrySet()) {
       Circle circle = entry.getKey();
@@ -241,10 +255,13 @@ public class PathfindingController {
 
     Map<String, Node> nodes = DBSession.getAllNodes();
 
+    pathNodePairs.clear();
+
     for (int i = 0; i < path.size() - 1; i++) {
-      String s = path.get(i);
-      String e = path.get(i + 1);
-      placeLine(nodes.get(s), nodes.get(e));
+      Node s = nodes.get(path.get(i));
+      Node e = nodes.get(path.get(i + 1));
+      pathNodePairs.add(Arrays.asList(s, e));
+      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) placeLine(s, e);
     }
     pane.toFront();
   }
@@ -260,8 +277,13 @@ public class PathfindingController {
     Map<String, Move> moves = DBSession.getLNMoves(new Date(2023, 1, 1));
 
     for (Move move : moves.values())
-      if (!list.contains(move.getLocationName().getLongName())
-          && move.getNode().getFloor().equals(s)) list.add(move.getLocationName().getLongName());
+      if (!list.contains(move.getLocationName().getLongName()))
+        list.add(move.getLocationName().getLongName());
+
+    //    for (Move move : moves.values())
+    //      if (!list.contains(move.getLocationName().getLongName())
+    //          && move.getNode().getFloor().equals(s))
+    // list.add(move.getLocationName().getLongName());
 
     Sorting.quickSort(list);
     return list;

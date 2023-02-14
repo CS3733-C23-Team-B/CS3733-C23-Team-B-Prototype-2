@@ -7,14 +7,14 @@ import lombok.Setter;
 @Entity
 @Table(name = "audiovisualrequest")
 @PrimaryKeyJoinColumn(
-        name = "audiovisualRequestID",
-        foreignKey = @ForeignKey(name = "AudioVisualRequestIDKey"))
-public class AudioVisualRequest extends GeneralRequest{
+    name = "audiovisualRequestID",
+    foreignKey = @ForeignKey(name = "AudioVisualRequestIDKey"))
+public class AudioVisualRequest extends GeneralRequest {
 
-    @Column(name = "avtype", length = 40)
-    @Getter
-    @Setter
-    private String avType;
+  @Column(name = "avtype", length = 40)
+  @Getter
+  @Setter
+  private String avType;
 
-    public AudioVisualRequest(){};
+  public AudioVisualRequest() {};
 }

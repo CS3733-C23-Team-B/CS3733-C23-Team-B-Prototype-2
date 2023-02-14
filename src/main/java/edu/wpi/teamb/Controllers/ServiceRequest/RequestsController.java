@@ -77,7 +77,7 @@ public class RequestsController {
       col.setText(colName);
       col.setCellValueFactory(new PropertyValueFactory<>(colName));
     }
-    List<SanitationRequest> objectList = DBSession.getAllSRequests();
+    List<SanitationRequest> objectList = DBSession.getAllSanRequests();
     objectList.forEach(
         (value) -> {
           t.getItems().add(value);

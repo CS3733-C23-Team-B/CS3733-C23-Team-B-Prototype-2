@@ -20,26 +20,26 @@ public class RequestDAO {
 
   private static List<AudioVisualRequest> AVRequests = new ArrayList<>();
 
-  public static List<GeneralRequest> getALLRequests() {
+  public static List<GeneralRequest> getAllRequests() {
     return allRequests;
   }
 
-  public static List<PatientTransportationRequest> getALLPTRequests() {
+  public static List<PatientTransportationRequest> getAllPTRequests() {
     refreshRequests();
     return PTRequests;
   }
 
-  public static List<SanitationRequest> getALLSanRequests() {
+  public static List<SanitationRequest> getAllSanRequests() {
     refreshRequests();
     return SanRequests;
   }
 
-  public static List<SecurityRequest> getALLSecRequests() {
+  public static List<SecurityRequest> getAllSecRequests() {
     refreshRequests();
     return SecRequests;
   }
 
-  public static List<ComputerRequest> getALLCRequests() {
+  public static List<ComputerRequest> getAllCRequests() {
     refreshRequests();
     return CRequests;
   }

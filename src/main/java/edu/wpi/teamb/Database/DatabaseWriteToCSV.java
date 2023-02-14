@@ -1,6 +1,8 @@
 package edu.wpi.teamb.Database;
 
+import edu.wpi.teamb.Database.DAO.LoginDAO;
 import edu.wpi.teamb.Database.DAO.MapDAO;
+import edu.wpi.teamb.Database.DAO.RequestDAO;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,9 +26,13 @@ public class DatabaseWriteToCSV {
 
   private static String convertToCSV(String[] data) {
     String csv = "";
-
+    String s;
     for (int i = 0; i < data.length; i++) {
-      String s = data[i];
+      if (data[i] != null) {
+        s = data[i];
+      } else {
+        s = "";
+      }
 
       // Remove special characters
       s = s.replaceAll("\\R", " ");
@@ -106,10 +112,154 @@ public class DatabaseWriteToCSV {
     }
   }
 
-  public static void main(String[] args) throws IOException, ParseException {
+  public static void writeLogins() throws IOException {
+    String fileName = "logins";
+    LoginDAO.refreshLogins();
+    Map<String, Login> ls = LoginDAO.getAllLogins();
+    boolean first = true;
+    for (Map.Entry<String, Login> en : ls.entrySet()) {
+      Login l = en.getValue();
+      String[] data = new String[7];
+      data[0] = Integer.toString(l.getId());
+      data[1] = Boolean.toString(l.getAdmin());
+      data[2] = l.getEmail();
+      data[3] = l.getFirstname();
+      data[4] = l.getLastname();
+      data[5] = l.getPassword();
+      data[6] = l.getUsername();
+      writeCsv(fileName, data, first);
+      first = false;
+    }
+  }
+
+  public static void writePTRequests() throws IOException {
+    String fileName = "ptRequests";
+    RequestDAO.refreshRequests();
+    List<PatientTransportationRequest> rs = RequestDAO.getAllPTRequests();
+    boolean first = true;
+    for (PatientTransportationRequest r : rs) {
+      String[] data = new String[13];
+      data[0] = Integer.toString(r.getId());
+      data[1] = r.getFirstname();
+      data[2] = r.getLastname();
+      data[3] = r.getEmail();
+      data[4] = r.getEmployeeID();
+      data[5] = r.getUrgency();
+      data[6] = r.getAssignedEmployee();
+      data[7] = r.getNotes();
+      data[8] = r.getStatus().toString();
+      data[9] = r.getEquipmentNeeded();
+      data[10] = r.getPatientCurrentLocation();
+      data[11] = r.getPatientDestinationLocation();
+      data[12] = r.getPatientID();
+      writeCsv(fileName, data, first);
+      first = false;
+    }
+  }
+
+  public static void writeSanRequests() throws IOException {
+    String fileName = "sanRequests";
+    RequestDAO.refreshRequests();
+    List<SanitationRequest> rs = RequestDAO.getAllSanRequests();
+    boolean first = true;
+    for (SanitationRequest r : rs) {
+      String[] data = new String[11];
+      data[0] = Integer.toString(r.getId());
+      data[1] = r.getFirstname();
+      data[2] = r.getLastname();
+      data[3] = r.getEmail();
+      data[4] = r.getEmployeeID();
+      data[5] = r.getUrgency();
+      data[6] = r.getAssignedEmployee();
+      data[7] = r.getNotes();
+      data[8] = r.getStatus().toString();
+      data[9] = r.getCleanUpLocation();
+      data[10] = r.getTypeOfCleanUp();
+      writeCsv(fileName, data, first);
+      first = false;
+    }
+  }
+
+  public static void writeCRequests() throws IOException {
+    String fileName = "cRequests";
+    RequestDAO.refreshRequests();
+    List<ComputerRequest> rs = RequestDAO.getAllCRequests();
+    boolean first = true;
+    for (ComputerRequest r : rs) {
+      String[] data = new String[12];
+      data[0] = Integer.toString(r.getId());
+      data[1] = r.getFirstname();
+      data[2] = r.getLastname();
+      data[3] = r.getEmail();
+      data[4] = r.getEmployeeID();
+      data[5] = r.getUrgency();
+      data[6] = r.getAssignedEmployee();
+      data[7] = r.getNotes();
+      data[8] = r.getStatus().toString();
+      data[9] = r.getTypeOfRepair();
+      data[10] = r.getDevice();
+      data[11] = r.getRepairLocation();
+      writeCsv(fileName, data, first);
+      first = false;
+    }
+  }
+
+  public static void writeSecRequests() throws IOException {
+    String fileName = "secRequests";
+    RequestDAO.refreshRequests();
+    List<SecurityRequest> rs = RequestDAO.getAllSecRequests();
+    boolean first = true;
+    for (SecurityRequest r : rs) {
+      String[] data = new String[12];
+      data[0] = Integer.toString(r.getId());
+      data[1] = r.getFirstname();
+      data[2] = r.getLastname();
+      data[3] = r.getEmail();
+      data[4] = r.getEmployeeID();
+      data[5] = r.getUrgency();
+      data[6] = r.getAssignedEmployee();
+      data[7] = r.getNotes();
+      data[8] = r.getStatus().toString();
+      data[9] = r.getIssueType();
+      data[10] = r.getEquipmentNeeded();
+      data[11] = Integer.toString(r.getNumberRequired());
+      writeCsv(fileName, data, first);
+      first = false;
+    }
+  }
+
+  public static void writeAVRequests() throws IOException {
+    String fileName = "avRequests";
+    RequestDAO.refreshRequests();
+    List<AudioVideoRequest> rs = RequestDAO.getAllAVRequests();
+    boolean first = true;
+    for (AudioVideoRequest r : rs) {
+      String[] data = new String[10];
+      data[0] = Integer.toString(r.getId());
+      data[1] = r.getFirstname();
+      data[2] = r.getLastname();
+      data[3] = r.getEmail();
+      data[4] = r.getEmployeeID();
+      data[5] = r.getUrgency();
+      data[6] = r.getAssignedEmployee();
+      data[7] = r.getNotes();
+      data[8] = r.getStatus().toString();
+      data[9] = r.getAVType();
+      writeCsv(fileName, data, first);
+      first = false;
+    }
+  }
+
+  public static void runWrites() throws IOException, ParseException {
     writeEdges();
     writeNodes();
     writeMoves();
     writeLocationNames();
+    writeLogins();
+    writePTRequests();
+    writeSanRequests();
+    writeCRequests();
+    writeSecRequests();
+    writeAVRequests();
   }
 }

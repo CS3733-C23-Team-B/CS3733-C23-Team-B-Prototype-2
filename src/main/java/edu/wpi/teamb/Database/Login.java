@@ -10,6 +10,7 @@ import lombok.Setter;
 public class Login {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Getter
+  @Setter
   @Id
   private int id;
 

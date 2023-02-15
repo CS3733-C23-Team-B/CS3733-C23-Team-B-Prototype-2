@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.NodeEditorController">
    <top>
-      <AnchorPane prefHeight="93.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="93.0" prefWidth="400.0" style="-fx-background-color: #003DA6;" BorderPane.alignment="CENTER">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="93.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
             <Text fill="WHITE" layoutX="131.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Node">
@@ -48,7 +48,7 @@
                </font>
             </Label>
             <Button layoutX="24.0" layoutY="206.0" mnemonicParsing="false" onAction="#cancelClicked" text="Cancel" />
-            <MFXButton layoutX="270.0" layoutY="205.0" onAction="#submitClicked" style="-fx-background-color: #003AD6;" text="Submit Changes" textFill="WHITE" />
+            <MFXButton layoutX="270.0" layoutY="205.0" onAction="#submitClicked" style="-fx-background-color: #003DA6;" text="Submit Changes" textFill="WHITE" />
             <TextField layoutX="227.0" layoutY="81.0" fx:id="xField" />
             <TextField fx:id="yField" layoutX="227.0" layoutY="116.0" />
             <ChoiceBox fx:id="floorBox" layoutX="227.0" layoutY="156.0" prefWidth="150.0" />

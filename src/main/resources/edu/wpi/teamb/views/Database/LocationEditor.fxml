@@ -17,12 +17,12 @@
          <children>
             <VBox layoutY="-2.0" prefHeight="636.0" prefWidth="331.0">
                <children>
-                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="Location Editor" wrappingWidth="239.16796875">
+                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Location" wrappingWidth="239.16796875">
                      <font>
                         <Font size="36.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="40.0" top="20.0" />
+                        <Insets left="55.0" top="20.0" />
                      </VBox.margin>
                   </Text>
                   <HBox prefHeight="22.0" prefWidth="362.0">

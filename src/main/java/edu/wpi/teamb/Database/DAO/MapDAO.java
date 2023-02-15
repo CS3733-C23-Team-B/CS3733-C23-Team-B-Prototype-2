@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Entities.SessionGetter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.hibernate.Session;
@@ -335,31 +336,8 @@ public class MapDAO {
   }
 
   public static void updateMove(Move oldM, Move newM) {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    String hql =
-        "UPDATE Move m SET m.locationName = '"
-            + newM.getLocationName().getLongName()
-            + "', m.node = '"
-            + newM.getNode().getNodeID()
-            + "', m.moveDate = '"
-            + newM.getMoveDate()
-            + "' WHERE m.node = '"
-            + oldM.getNode().getNodeID()
-            + "' AND m.locationName = '"
-            + oldM.getLocationName().getLongName()
-            + "' AND m.moveDate = '"
-            + oldM.getMoveDate()
-            + "'";
-    try {
-      Transaction tx = session.beginTransaction();
-      session.createQuery(hql).executeUpdate();
-      tx.commit();
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      session.close();
-    }
+    deleteMove(oldM);
+    addMove(newM);
   }
 
   public static Move getMostRecentMoveWithLocationName(LocationName ln) {

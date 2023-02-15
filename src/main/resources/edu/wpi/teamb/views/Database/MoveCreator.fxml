@@ -99,7 +99,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXDatePicker fx:id="datePicker" maxHeight="-Infinity" minHeight="-Infinity" onAction="#selectDate" prefHeight="40.0" prefWidth="200.0" promptText="Select Date">
+                        <MFXDatePicker fx:id="datePicker" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Select Date">
                            <HBox.margin>
                               <Insets left="60.0" />
                            </HBox.margin>

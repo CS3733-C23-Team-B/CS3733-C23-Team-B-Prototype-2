@@ -133,6 +133,10 @@ public class DBSession {
     return MapDAO.getMostRecentMoveWithLocationName(ln);
   }
 
+  public static List<Move> getFutureMoves(Date d) {
+    return MapDAO.getFutureMoves(d);
+  }
+
   public static void updateUser(String user, String first, String last, String email) {
     LoginDAO.updateUser(user, first, last, email);
   }

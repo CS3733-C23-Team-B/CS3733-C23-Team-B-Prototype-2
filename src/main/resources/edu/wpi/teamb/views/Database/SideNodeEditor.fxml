@@ -3,7 +3,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="325.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.NodeEditorController">
+<BorderPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="325.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.SideNodeEditor">
    <left>
       <VBox prefHeight="256.0" prefWidth="326.0" BorderPane.alignment="CENTER">
          <children>
@@ -34,7 +33,7 @@
                         <Insets left="45.0" />
                      </HBox.margin>
                   </Label>
-                  <MFXFilterComboBox fx:id="selectNodeID" minHeight="-Infinity" prefHeight="25.0" prefWidth="149.0" />
+                  <MFXFilterComboBox fx:id="selectNodeID" minHeight="-Infinity" onAction="#setFields" onMouseMoved="#setFields" prefHeight="25.0" prefWidth="149.0" />
                </children>
                <VBox.margin>
                   <Insets top="40.0" />
@@ -50,7 +49,7 @@
                         <Insets left="13.0" />
                      </HBox.margin>
                       </Label>
-                      <TextField fx:id="xField" />
+                      <TextField onMouseMoved="#setFields" fx:id="xField" />
                </children>
                <VBox.margin>
                   <Insets top="25.0" />
@@ -66,7 +65,7 @@
                         <Insets left="13.0" />
                      </HBox.margin>
                       </Label>
-                      <TextField fx:id="yField" />
+                      <TextField fx:id="yField" onMouseMoved="#setFields" />
                </children>
                <VBox.margin>
                   <Insets top="25.0" />
@@ -90,11 +89,7 @@
             </HBox>
             <HBox prefHeight="56.0" prefWidth="326.0" spacing="20.0">
                <children>
-                      <Button fx:id="edgesButton" mnemonicParsing="false" text="Edges">
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </Button>
+                  <MFXButton fx:id="edgesButton" text="Edges" />
                       <MFXButton buttonType="RAISED" onAction="#deleteClicked" style="-fx-background-color: Crimson;" text="Delete Node" textFill="WHITE" />
                       <MFXButton buttonType="RAISED" onAction="#submitClicked" prefHeight="40.0" style="-fx-background-color: #003AD6;" text="Submit Changes" textFill="WHITE">
                      <HBox.margin>

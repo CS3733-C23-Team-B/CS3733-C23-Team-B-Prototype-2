@@ -72,8 +72,17 @@ public class SigninController {
 
   /** Exits the application */
   public void exitApplication() {
-    Stage stage = (Stage) exitButton.getScene().getWindow();
-    stage.close();
+    Stage newWindow = new Stage();
+    final String filename = Screen.EXIT_CONFIRMATION.getFilename();
+    try {
+      final var resource = Bapp.class.getResource(filename);
+      final FXMLLoader loader = new FXMLLoader(resource);
+      Scene scene = new Scene(loader.load(), 700, 300);
+      newWindow.setScene(scene);
+      newWindow.show();
+    } catch (NullPointerException | IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @FXML

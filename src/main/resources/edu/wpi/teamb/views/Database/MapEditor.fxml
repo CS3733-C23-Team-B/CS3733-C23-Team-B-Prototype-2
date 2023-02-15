@@ -50,18 +50,13 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newNodeClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newNodeClicked" prefHeight="96.0" prefWidth="322.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
-                        </MFXButton>
-                        <MFXButton fx:id="editNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editNodeClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit   Node" textFill="#c5d3ea" wrapText="true">
-                           <font>
-                              <Font size="26.0" />
-                           </font>
                         </MFXButton>
                      </children>
                      <VBox.margin>

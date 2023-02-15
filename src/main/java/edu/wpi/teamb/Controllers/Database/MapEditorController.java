@@ -130,6 +130,7 @@ public class MapEditorController {
         image = thirdfloor;
         break;
     }
+    image.setOnMouseClicked(e -> handleClick());
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 

@@ -1,7 +1,6 @@
 package edu.wpi.teamb.Controllers.Navigation;
 
-import edu.wpi.teamb.Navigation.Navigation;
-import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Bapp;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -12,10 +11,12 @@ public class ExitConfirmationController {
   @FXML MFXButton noButton;
 
   public void noButtonClicked() throws IOException {
-    Navigation.navigate(Screen.HOME);
+    Stage stage = (Stage) noButton.getScene().getWindow();
+    stage.close();
   }
 
   public void yesButtonClicked() throws IOException {
+    Bapp.getPrimaryStage().close();
     Stage stage = (Stage) yesButton.getScene().getWindow();
     stage.close();
   }

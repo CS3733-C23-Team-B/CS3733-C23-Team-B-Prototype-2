@@ -133,12 +133,20 @@ public class DBSession {
     return MapDAO.getMostRecentMoveWithLocationName(ln);
   }
 
+  public static List<Move> getFutureMoves(Date d) {
+    return MapDAO.getFutureMoves(d);
+  }
+
   public static void updateUser(String user, String first, String last, String email) {
     LoginDAO.updateUser(user, first, last, email);
   }
 
   public static void updateAdmin(String user, Boolean b) {
     LoginDAO.updateAdmin(user, b);
+  }
+
+  public static Boolean isAdmin(Login l) {
+    return LoginDAO.isAdmin(l);
   }
 
   public static List<Move> getMostRecentMoves(String NodeID) {
@@ -160,5 +168,9 @@ public class DBSession {
     } catch (NullPointerException e) {
       return null;
     }
+  }
+
+  public static void updateRequest(GeneralRequest r) {
+    RequestDAO.updateRequest(r);
   }
 }

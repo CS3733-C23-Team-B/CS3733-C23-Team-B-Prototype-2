@@ -292,13 +292,6 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void edgesClicked() throws IOException {
-    forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
-    final FXMLLoader loader = new FXMLLoader(res);
-    forms.getChildren().add(loader.load());
-  }
-
   public void home() {
     Navigation.navigate(Screen.HOME);
   }
@@ -324,11 +317,8 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void viewMovesClicked() throws IOException {
-    forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
-    final FXMLLoader loader = new FXMLLoader(res);
-    forms.getChildren().add(loader.load());
+  public void viewMovesClicked() {
+    Navigation.navigate((Screen.FUTURE_MOVES));
   }
 
   public void newLocationClicked() throws IOException {

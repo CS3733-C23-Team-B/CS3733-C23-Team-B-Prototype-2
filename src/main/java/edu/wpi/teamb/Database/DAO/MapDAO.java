@@ -33,9 +33,9 @@ public class MapDAO {
     return locationNames;
   }
 
-  public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
+  public static Map<String, List<Move>> getIDMoves(Date d) {
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
-    HashMap<String, ArrayList<Move>> moves = new HashMap<String, ArrayList<Move>>();
+    HashMap<String, List<Move>> moves = new HashMap<String, List<Move>>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     String hql =
@@ -90,7 +90,6 @@ public class MapDAO {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery(hql);
       List<Object[]> ms = q.list();
-      System.out.println(ms.get(0));
       tx.commit();
       for (Object[] moveInfo : ms) {
         Move m = new Move();

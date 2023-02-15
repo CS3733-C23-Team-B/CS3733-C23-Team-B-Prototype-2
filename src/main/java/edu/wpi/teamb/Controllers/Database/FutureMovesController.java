@@ -33,7 +33,7 @@ public class FutureMovesController {
     Navigation.navigate(Screen.MOVE_CREATOR);
   }
 
-  public void backButton() {
+  public void backButtonClicked() {
     Navigation.navigate(Screen.MAP_EDITOR);
   }
 

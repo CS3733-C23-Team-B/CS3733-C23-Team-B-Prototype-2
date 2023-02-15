@@ -45,7 +45,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXFilterComboBox fx:id="nodeIdBox" prefHeight="42.0" prefWidth="200.0" promptText="Select Node ID">
+                        <MFXFilterComboBox fx:id="nodeIdBox" prefHeight="42.0" prefWidth="200.0">
                            <HBox.margin>
                               <Insets left="60.0" />
                            </HBox.margin>
@@ -72,7 +72,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXFilterComboBox fx:id="locationsBox" prefHeight="42.0" prefWidth="200.0" promptText="Select Long Name">
+                        <MFXFilterComboBox fx:id="locationsBox" prefHeight="42.0" prefWidth="200.0">
                            <HBox.margin>
                               <Insets left="60.0" />
                            </HBox.margin>
@@ -99,7 +99,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXDatePicker fx:id="datePicker" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" promptText="Select Date">
+                        <MFXDatePicker fx:id="datePicker" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0">
                            <HBox.margin>
                               <Insets left="60.0" />
                            </HBox.margin>

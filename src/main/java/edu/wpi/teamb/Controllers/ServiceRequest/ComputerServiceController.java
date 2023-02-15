@@ -21,9 +21,9 @@ public class ComputerServiceController extends BaseRequestController {
   ObservableList<String> typeOfDeviceList =
       FXCollections.observableArrayList("Computer", "Phone", "Monitor");
 
-  @FXML private MFXFilterComboBox repairLocationBox;
+  @FXML private MFXFilterComboBox locationBox;
   @FXML private MFXFilterComboBox typeOfRepairBox;
-  @FXML private MFXFilterComboBox<String> deviceBox;
+  @FXML private MFXFilterComboBox<String> typeOfDeviceBox;
 
   @FXML
   @Override
@@ -31,17 +31,17 @@ public class ComputerServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      repairLocationBox,
+      locationBox,
       urgencyBox,
       typeOfRepairBox,
-      deviceBox,
+      typeOfDeviceBox,
       assignedStaffBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    repairLocationBox.setItems(getLocations());
+    locationBox.setItems(getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -49,7 +49,7 @@ public class ComputerServiceController extends BaseRequestController {
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfRepairBox.setItems(typeOfRepairList);
-    deviceBox.setItems(typeOfDeviceList);
+    typeOfDeviceBox.setItems(typeOfDeviceList);
 
     helpScreen = Screen.COMPUTER_SERVICES_HELP;
     super.initialize();
@@ -64,13 +64,13 @@ public class ComputerServiceController extends BaseRequestController {
 
     super.submit(request);
 
-    request.setRepairLocation(repairLocationBox.getText());
+    request.setRepairLocation(locationBox.getText());
 
     var typeOfrepair = typeOfRepairBox.getValue();
     if (typeOfrepair == null) {
       typeOfrepair = "";
     }
-    var device = deviceBox.getValue();
+    var device = typeOfDeviceBox.getValue();
     if (device == null) {
       device = "";
     }

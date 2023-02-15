@@ -49,7 +49,7 @@ public class LandingPageController {
 
   public void makeCom() throws IOException {
     mainVbox.getChildren().clear();
-    final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
+    final var r = Bapp.class.getResource(Screen.COMPUTER_SERVICES.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Computer Service");

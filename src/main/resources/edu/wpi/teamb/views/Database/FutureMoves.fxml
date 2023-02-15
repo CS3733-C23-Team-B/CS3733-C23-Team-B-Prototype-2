@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +15,7 @@
       <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <Text fill="WHITE" layoutX="250.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Future Moves">
+            <Text fill="WHITE" layoutX="275.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Moves">
                <font>
                   <Font size="50.0" />
                </font>
@@ -25,6 +26,11 @@
    <bottom>
       <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="806.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
+            <MFXButton fx:id="backButton" buttonType="RAISED" layoutX="58.0" layoutY="471.0" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="125.0" text="Back">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </MFXButton>
             <TableView fx:id="table1" layoutX="58.0" layoutY="60.0" prefHeight="313.0" prefWidth="687.0">
               <columns>
                 <TableColumn fx:id="moveDate" prefWidth="75.0" text="Move Date" />

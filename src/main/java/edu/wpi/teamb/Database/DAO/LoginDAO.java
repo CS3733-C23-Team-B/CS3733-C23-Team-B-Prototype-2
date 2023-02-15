@@ -97,6 +97,13 @@ public class LoginDAO {
     }
   }
 
+  public static boolean isAdmin(Login l) {
+    if (l.getAdmin()) {
+      return true;
+    }
+    return false;
+  }
+
   public static void refreshLogins() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

@@ -34,7 +34,7 @@ public class Pathfinding {
    * @param n2 end node
    * @return the Euclidean distance between the two nodes
    */
-  private static double getWeight(String n1, String n2) {
+  static double getWeight(String n1, String n2) {
     Node node1 = nodes.get(n1);
     Node node2 = nodes.get(n2);
 
@@ -129,24 +129,6 @@ public class Pathfinding {
         .collect(Collectors.toList());
   }
 
-  /**
-   * Finds a path from start to end, by stringing together nodes and edges
-   *
-   * @param start the longName of the location to start from
-   * @param end the longName of the location to end at
-   * @return a String representation of the optimal path to take
-   */
-  public static ArrayList<String> getShortestPath(String start, String end, SearchType type) {
-    ArrayList<String> p;
-
-    if (type == SearchType.A_STAR) p = getPathAStar(start, end);
-    else if (type == SearchType.BREADTH_FIRST) p = getPathBreadth(start, end);
-    else p = getPathDepth(start, end);
-
-    System.out.println(pathToString(p));
-    return p;
-  }
-
   private static ArrayList<String> getPathBreadth(String startLoc, String endLoc) {
     return getPathBreadthDepth(startLoc, endLoc, true);
   }
@@ -155,8 +137,7 @@ public class Pathfinding {
     return getPathBreadthDepth(startLoc, endLoc, false);
   }
 
-  private static ArrayList<String> getPathBreadthDepth(
-      String startLoc, String endLoc, boolean breadth) {
+  static ArrayList<String> getPathBreadthDepth(String startLoc, String endLoc, boolean breadth) {
     String start = DBSession.getMostRecentNodeID(startLoc);
     String end = DBSession.getMostRecentNodeID(endLoc);
 
@@ -197,54 +178,6 @@ public class Pathfinding {
     while (!current.equals(start)) {
       path.add(1, current);
       current = cameFrom.get(current);
-    }
-
-    return path;
-  }
-
-  /**
-   * Finds an optimal path from start to end using A* search
-   *
-   * @param startLoc the longName of the location to start from
-   * @param endLoc the longName of the location to end at
-   * @return a String representation of the path taken
-   */
-  private static ArrayList<String> getPathAStar(String startLoc, String endLoc) {
-    String start = DBSession.getMostRecentNodeID(startLoc);
-    String end = DBSession.getMostRecentNodeID(endLoc);
-
-    PriorityQueue<GraphNode> queue = new PriorityQueue<GraphNode>();
-    queue.add(new GraphNode(start, 0));
-
-    HashMap<String, String> cameFrom = new HashMap<String, String>();
-    HashMap<String, Double> costSoFar = new HashMap<String, Double>();
-    cameFrom.put(start, null);
-    costSoFar.put(start, 0.0);
-
-    while (!queue.isEmpty()) {
-      String current = queue.poll().getNodeID();
-
-      if (current.equals(end)) break;
-
-      for (String next : getDirectPaths(current)) {
-        double newCost = costSoFar.get(current) + getWeight(current, next);
-        if (!costSoFar.containsKey(next) || newCost < costSoFar.get(next)) {
-          costSoFar.put(next, newCost);
-          double priority = newCost + getWeight(end, next);
-          queue.add(new GraphNode(next, priority));
-          cameFrom.put(next, current);
-        }
-      }
-    }
-
-    ArrayList<String> path = new ArrayList<>();
-    path.add(start);
-
-    String current = end;
-    while (!current.equals(start)) {
-      path.add(1, current);
-      current = cameFrom.get(current);
-      if (current == null) return null;
     }
 
     return path;

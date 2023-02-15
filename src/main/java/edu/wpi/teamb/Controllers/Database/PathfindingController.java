@@ -4,8 +4,7 @@ import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
-import edu.wpi.teamb.Pathfinding.Pathfinding;
-import edu.wpi.teamb.Pathfinding.SearchType;
+import edu.wpi.teamb.Pathfinding.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
@@ -280,7 +279,14 @@ public class PathfindingController {
     linesPlane.getChildren().clear();
     String start = startLoc.getValue();
     String end = endLoc.getValue();
-    ArrayList<String> path = Pathfinding.getShortestPath(start, end, type);
+
+    Pathfindable pathfindable;
+    if (type == SearchType.BREADTH_FIRST) pathfindable = new BreadthFirstPathfinder();
+    else if (type == SearchType.DEPTH_FIRST) pathfindable = new DepthFirstPathfinder();
+    else pathfindable = new AStarPathfinder();
+
+    PathfindingContext pContext = new PathfindingContext(pathfindable);
+    ArrayList<String> path = pContext.getShortestPath(start, end);
 
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);

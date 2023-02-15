@@ -5,11 +5,11 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,7 +18,7 @@ public class NodeEditorController {
   @FXML Text nodeIDText;
   @FXML TextField xField;
   @FXML TextField yField;
-  @FXML MFXFilterComboBox<String> floorBox;
+  @FXML ChoiceBox<String> floorBox;
   Node node = MapEditorController.getCurrentNode();
   String origFloor;
 

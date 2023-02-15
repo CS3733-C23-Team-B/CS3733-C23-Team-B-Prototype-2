@@ -44,8 +44,9 @@ public class MapEditorController {
   @FXML AnchorPane anchor;
   @FXML MFXButton editNodeButton;
   @FXML MFXButton newNodeButton;
-  @FXML MFXButton addMovesButton;
+  @FXML MFXButton viewMovesButton;
   @FXML MFXButton editLocationButton;
+  @FXML MFXButton newMoveButton;
   @FXML private AnchorPane forms;
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
@@ -129,6 +130,7 @@ public class MapEditorController {
         image = thirdfloor;
         break;
     }
+    image.setOnMouseClicked(e -> handleClick());
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
@@ -330,6 +332,24 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
+  public void newMovesClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
+  }
+
+  public void viewMovesClicked() {
+    Navigation.navigate((Screen.FUTURE_MOVES));
+  }
+
+  public void newLocationClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.LOCATION_CREATOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
+  }
+
   static Node getCurrentNode() {
     return currentNode;
   }
@@ -339,24 +359,32 @@ public class MapEditorController {
       removeNode();
       return;
     }
-    nodeMap.replace(currentDot, currentNode);
-    ObservableList vboxChildren = ((VBox) (currentPopUp.getChildren().get(0))).getChildren();
-    Text id = (Text) vboxChildren.get(0);
-    Text pos = (Text) vboxChildren.get(1);
-    Text loc = (Text) vboxChildren.get(2);
-    id.setText("NodeID:   " + currentNode.getNodeID());
-    pos.setText("(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
-
-    List<Move> moves = DBSession.getMostRecentMoves(currentNode.getNodeID());
-    String t = moves.get(0).getLocationName().getLongName();
-    if (moves.size() > 1) t += "\n" + moves.get(1).getLocationName().getLongName();
-    loc.setText(t);
 
     currentDot.setCenterX(currentNode.getXCoord());
     currentDot.setCenterY(currentNode.getYCoord());
-    currentPopUp.setTranslateX(currentDot.getCenterX() + currentDot.getRadius() * 2);
-    currentPopUp.setTranslateY(
-        currentDot.getCenterY() - currentDot.getRadius() * 2 - POP_UP_HEIGHT);
+    nodeMap.replace(currentDot, currentNode);
+
+    if (currentPopUp != null) {
+      ObservableList vboxChildren = ((VBox) (currentPopUp.getChildren().get(0))).getChildren();
+      Text id = (Text) vboxChildren.get(0);
+      Text pos = (Text) vboxChildren.get(1);
+      Text loc = (Text) vboxChildren.get(2);
+      id.setText("NodeID:   " + currentNode.getNodeID());
+      pos.setText(
+          "(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
+
+      List<Move> moves = DBSession.getMostRecentMoves(currentNode.getNodeID());
+      String t;
+      if (moves != null) {
+        t = moves.get(0).getLocationName().getLongName();
+        if (moves.size() > 1) t += "\n" + moves.get(1).getLocationName().getLongName();
+      } else t = "NO MOVES";
+
+      loc.setText(t);
+      currentPopUp.setTranslateX(currentDot.getCenterX() + currentDot.getRadius() * 2);
+      currentPopUp.setTranslateY(
+          currentDot.getCenterY() - currentDot.getRadius() * 2 - POP_UP_HEIGHT);
+    }
   }
 
   public void removeNode() {
@@ -371,5 +399,18 @@ public class MapEditorController {
 
   public static void setCurrentNode(Node currentNode) {
     MapEditorController.currentNode = currentNode;
+  }
+
+  public Circle getDot(Node n) {
+    Circle c;
+    for (Map.Entry<Circle, Node> entry : nodeMap.entrySet()) {
+      Node value = entry.getValue();
+      if (value.equals(n)) return entry.getKey();
+    }
+    return null;
+  }
+
+  public void setCurrentDot(Circle dot) {
+    currentDot = dot;
   }
 }

@@ -161,6 +161,8 @@ public class DBSession {
           .getNodeID();
     } catch (ParseException e) {
       throw new RuntimeException(e);
+    } catch (NullPointerException e) {
+      return null;
     }
   }
 }

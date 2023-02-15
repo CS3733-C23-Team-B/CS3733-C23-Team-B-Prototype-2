@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.StringConverter;
 
-public class RequestsController {
+public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
   @FXML MFXButton saniButton;
   @FXML MFXButton transButton;

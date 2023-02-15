@@ -58,6 +58,7 @@
             <MenuButton id="menuIcon" minWidth="-Infinity" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-border-color: transparent;" text="MenuButton">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#helpClicked" text="Help" />
+                  <MenuItem mnemonicParsing="false" onAction="#aboutButtonClicked" text="About" />
                   <MenuItem mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
                   <MenuItem mnemonicParsing="false" onAction="#signOutClicked" text="Sign Out" />
               </items>

@@ -300,7 +300,7 @@ public class PathfindingController {
       changeFloor(startNode.getFloor(), new Point2D(startNode.getXCoord(), startNode.getYCoord()));
       floorMap.forEach(
           (key, value) -> {
-            if (value.equals(startNode.getFloor())) floorCombo.setText(key);
+            if (value.equals(startNode.getFloor())) floorCombo.setValue(key);
           });
     }
 

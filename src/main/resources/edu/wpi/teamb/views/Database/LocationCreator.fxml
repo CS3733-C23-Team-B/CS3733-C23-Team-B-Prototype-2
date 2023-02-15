@@ -30,7 +30,7 @@
                   </Text>
                   <HBox layoutX="10.0" layoutY="108.0" prefHeight="19.0" prefWidth="800.0" spacing="57.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -40,7 +40,7 @@
                         </Text>
                      </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="40.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="40.0" prefWidth="566.0">
@@ -53,17 +53,17 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="164.0" prefHeight="19.0" prefWidth="800.0" spacing="55.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Short Name:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Short Name">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="60.0" top="10.0" />
+                              <Insets left="60.0" />
                            </HBox.margin>
                         </Text>
                      </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="15.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox layoutX="10.0" layoutY="158.0" prefHeight="13.0" prefWidth="351.0">
@@ -76,17 +76,17 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="239.0" prefHeight="19.0" prefWidth="800.0" spacing="38.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Type:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Type">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="60.0" top="10.0" />
+                              <Insets left="60.0" />
                            </HBox.margin>
                         </Text>
                      </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="15.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox layoutX="10.0" layoutY="158.0" prefHeight="6.0" prefWidth="351.0">
@@ -109,7 +109,7 @@
                         </MFXButton>
                      </children>
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="50.0" />
                      </VBox.margin>
                   </HBox>
                </children>

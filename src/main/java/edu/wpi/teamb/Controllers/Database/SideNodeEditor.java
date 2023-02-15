@@ -8,7 +8,6 @@ import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
@@ -34,6 +33,7 @@ public class SideNodeEditor {
   @FXML MFXButton edgesButton;
   @FXML MFXFilterComboBox floorBox;
   Circle dot;
+  @FXML private AnchorPane forms;
 
   public void initialize() {
     moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
@@ -113,6 +113,7 @@ public class SideNodeEditor {
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
   }
+
   public void deleteClicked() {
     DBSession.deleteNode(currentNode);
     Stage s = (Stage) yField.getScene().getWindow();

@@ -11,13 +11,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.LocationEditorController">
+<BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.LocationEditorController">
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="326.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="326.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutY="-2.0" prefHeight="706.0" prefWidth="331.0">
+            <VBox layoutY="-2.0" prefHeight="636.0" prefWidth="331.0">
                <children>
-                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="Location Editor">
+                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="Location Editor" wrappingWidth="239.16796875">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -27,24 +27,24 @@
                   </Text>
                   <HBox prefHeight="22.0" prefWidth="362.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select Location:" textOrigin="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select Location" textOrigin="CENTER">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="20.0" top="10.0" />
+                              <Insets left="60.0" />
                            </HBox.margin>
                         </Text>
                      </children>
                      <VBox.margin>
-                        <Insets top="30.0" />
+                        <Insets top="40.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="40.0" prefWidth="302.0">
                      <children>
                         <MFXFilterComboBox fx:id="locationBox" onAction="#setFields" onMouseMoved="#setFields" prefHeight="42.0" prefWidth="200.0">
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="60.0" />
                            </HBox.margin></MFXFilterComboBox>
                      </children>
                      <VBox.margin>
@@ -53,12 +53,12 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="204.0" prefHeight="19.0" prefWidth="800.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="60.0" />
                            </HBox.margin>
                         </Text>
                      </children>
@@ -70,7 +70,7 @@
                      <children>
                         <MFXTextField fx:id="longNameField" minHeight="-Infinity" onMouseMoved="#setFields" prefHeight="40.0" prefWidth="200.0">
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="60.0" />
                            </HBox.margin></MFXTextField>
                      </children>
                      <VBox.margin>
@@ -79,12 +79,12 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="164.0" prefHeight="19.0" prefWidth="800.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Short Name:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Short Name">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="60.0" />
                            </HBox.margin>
                         </Text>
                      </children>
@@ -96,7 +96,7 @@
                      <children>
                         <MFXTextField fx:id="shortNameField" minHeight="-Infinity" onMouseMoved="#setFields" prefHeight="40.0" prefWidth="200.0">
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="60.0" />
                            </HBox.margin></MFXTextField>
                      </children>
                      <VBox.margin>
@@ -105,12 +105,12 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="239.0" prefHeight="19.0" prefWidth="800.0" spacing="38.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Type:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Type">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="60.0" />
                            </HBox.margin>
                         </Text>
                      </children>
@@ -122,7 +122,7 @@
                      <children>
                         <MFXFilterComboBox fx:id="locationTypeBox" onMouseMoved="#setFields" prefHeight="42.0" prefWidth="200.0">
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="60.0" />
                            </HBox.margin></MFXFilterComboBox>
                      </children>
                      <VBox.margin>
@@ -131,12 +131,12 @@
                   </HBox>
                   <HBox prefHeight="19.0" prefWidth="800.0" spacing="18.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Node Occupying:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Node Occupying">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="60.0" />
                            </HBox.margin>
                         </Text>
                      </children>
@@ -146,35 +146,23 @@
                   </HBox>
                   <HBox prefHeight="40.0" prefWidth="298.0">
                      <children>
-                        <MFXFilterComboBox fx:id="nodeBox" prefHeight="42.0" prefWidth="200.0" />
-                     </children>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="46.0" prefWidth="318.0" spacing="10.0">
-                     <children>
-                        <MFXButton buttonType="RAISED" maxWidth="150.0" minHeight="46.0" minWidth="150.0" onAction="#newLocationClicked" style="-fx-background-color: green;" text="New Location" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
+                        <MFXFilterComboBox fx:id="nodeBox" prefHeight="42.0" prefWidth="200.0">
                            <HBox.margin>
-                              <Insets left="7.0" />
-                           </HBox.margin>
-                        </MFXButton>
+                              <Insets left="60.0" />
+                           </HBox.margin></MFXFilterComboBox>
                      </children>
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="325.0" spacing="10.0">
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="325.0" spacing="30.0">
                      <children>
-                        <MFXButton buttonType="RAISED" minHeight="46.0" minWidth="150.0" onAction="#deleteClicked" style="-fx-background-color: crimson;" text="Delete" textFill="WHITE">
+                        <MFXButton buttonType="RAISED" minHeight="46.0" minWidth="125.0" onAction="#deleteClicked" style="-fx-background-color: crimson;" text="Delete" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton fx:id="submitButton" buttonType="RAISED" minHeight="46.0" minWidth="150.0" onAction="#submitClicked" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
+                        <MFXButton fx:id="submitButton" buttonType="RAISED" minHeight="46.0" minWidth="125.0" onAction="#submitClicked" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -184,7 +172,7 @@
                         </MFXButton>
                      </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="50.0" />
                      </VBox.margin>
                   </HBox>
                </children>

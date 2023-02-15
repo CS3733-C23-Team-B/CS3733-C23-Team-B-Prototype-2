@@ -20,7 +20,7 @@
          <children>
             <VBox layoutY="-74.0" prefHeight="446.0" prefWidth="325.0">
                <children>
-                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Move" wrappingWidth="176.9706587791443">
+                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="New Move" wrappingWidth="176.9706587791443">
                      <font>
                         <Font size="36.0" />
                      </font>

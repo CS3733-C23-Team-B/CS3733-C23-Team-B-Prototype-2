@@ -70,7 +70,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="160.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="addMovesButton1" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#addMoveClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="newLocationButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newLocationClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>
@@ -78,7 +78,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="editLocationButton1" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editLocationClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="editLocationButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editLocationClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>
@@ -93,7 +93,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="118.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="editEdgesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editEdgesClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Edges" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="newMoveButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newMovesClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Move" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>
@@ -101,7 +101,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="editMovesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editMovesClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Moves" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="viewMovesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#viewMovesClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="View Moves" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>

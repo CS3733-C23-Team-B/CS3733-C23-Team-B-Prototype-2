@@ -44,9 +44,9 @@ public class MapEditorController {
   @FXML AnchorPane anchor;
   @FXML MFXButton editNodeButton;
   @FXML MFXButton newNodeButton;
-  @FXML MFXButton addMovesButton;
+  @FXML MFXButton viewMovesButton;
   @FXML MFXButton editLocationButton;
-  @FXML MFXButton editEdgesButton;
+  @FXML MFXButton newMoveButton;
   @FXML private AnchorPane forms;
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
@@ -292,7 +292,7 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void addMoveClicked() throws IOException {
+  public void edgesClicked() throws IOException {
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
@@ -317,16 +317,23 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void editEdgesClicked() throws IOException {
+  public void newMovesClicked() throws IOException {
     forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.EDGE_EDITOR.getFilename());
+    final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
   }
 
-  public void editMovesClicked() throws IOException {
+  public void viewMovesClicked() throws IOException {
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
+  }
+
+  public void newLocationClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.LOCATION_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
   }

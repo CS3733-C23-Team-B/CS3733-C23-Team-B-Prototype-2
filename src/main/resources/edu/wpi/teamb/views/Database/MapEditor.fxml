@@ -26,7 +26,7 @@
    <children>
       <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="991.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane fx:id="linesPlane" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <AnchorPane fx:id="map" prefHeight="539.0" prefWidth="1090.0" />
                </children>

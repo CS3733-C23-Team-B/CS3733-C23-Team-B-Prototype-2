@@ -7,6 +7,7 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Database.NodeInfo;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
@@ -33,6 +34,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -74,6 +76,7 @@ public class MapEditorController {
       new ImageView(getClass().getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
 
   @FXML MFXFilterComboBox<String> floorCombo;
+  private AnchorPane linesPlane = new AnchorPane();
 
   public void initialize() {
     moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
@@ -155,6 +158,7 @@ public class MapEditorController {
           if (newSelection != null) {
             newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
             displayPopUp(newSelection);
+            drawEdges();
           }
         });
     Platform.runLater(() -> pane.centreOn(p));
@@ -412,5 +416,20 @@ public class MapEditorController {
 
   public void setCurrentDot(Circle dot) {
     currentDot = dot;
+  }
+
+  public void drawEdges() {
+    List<String> edges = Pathfinding.getDirectPaths(currentNode.getNodeID());
+    Map<String, Node> map = DBSession.getAllNodes();
+    linesPlane.getChildren().clear();
+    for (String id : edges) drawLineBetween(currentNode, map.get(id));
+  }
+
+  private void drawLineBetween(Node n1, Node n2) {
+    Line line = new Line(n1.getXCoord(), n1.getYCoord(), n2.getXCoord(), n2.getYCoord());
+    line.setFill(Color.BLACK);
+    line.setStrokeWidth(5);
+    linesPlane.getChildren().add(line);
+    System.out.println("PLACED lines: " + linesPlane);
   }
 }

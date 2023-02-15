@@ -70,7 +70,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="160.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="editLocationButton1" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editLocationClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="addMovesButton1" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#addMoveClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>
@@ -78,7 +78,30 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="addMovesButton1" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#addMoveClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Add Move" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="editLocationButton1" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editLocationClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea" wrapText="true">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </MFXButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="118.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <MFXButton fx:id="editEdgesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editEdgesClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Edges" textFill="#c5d3ea" wrapText="true">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="editMovesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editMovesClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Moves" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="26.0" />
                            </font>
@@ -88,12 +111,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <MFXScrollPane fx:id="" prefHeight="415.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
+                  <MFXScrollPane fx:id="" prefHeight="306.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                      <content>
-                        <AnchorPane fx:id="forms" prefHeight="500.0" prefWidth="325.0" />
+                        <AnchorPane fx:id="forms" prefHeight="502.0" prefWidth="326.0" />
                      </content>
                   </MFXScrollPane>
                </children>

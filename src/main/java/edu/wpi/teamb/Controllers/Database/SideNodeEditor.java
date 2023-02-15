@@ -73,6 +73,7 @@ public class SideNodeEditor {
 
     if (changed) {
       DBSession.updateNode(currentNode);
+      currentNode.setNodeID(currentNode.buildID());
       Pathfinding.refreshData();
     }
     MapEditorController.setCurrentNode(currentNode);

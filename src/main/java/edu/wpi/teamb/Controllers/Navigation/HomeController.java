@@ -34,10 +34,12 @@ public class HomeController {
         DBSession.getAllRequestsWithEmpID(Integer.toString(SigninController.currentUser.getId()));
     if (l.size() > 0) {
       for (int i = 0; i < l.size(); i++) {
+        if (i > 3) continue;
         HBox box = new HBox();
         GeneralRequest r = l.get(i);
         Label label = new Label();
-        label.setText("Request #" + r.getId() + ", Status: " + r.getStatus() + " ");
+        label.setText(
+            r.getDate() + ", Request: #" + +r.getId() + ", Status: " + r.getStatus() + " ");
         label.setPadding(new Insets(15, 0, 15, 20));
         label.setFont(new Font("Nunito", 20));
         box.getChildren().add(label);

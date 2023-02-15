@@ -129,7 +129,7 @@ public class LocationEditorController {
         DBSession.updateLocationName(newLN, location);
 
         Move oldMove =
-                DBSession.getLNMoves(new Date(System.currentTimeMillis())).get(location.getLongName());
+            DBSession.getLNMoves(new Date(System.currentTimeMillis())).get(location.getLongName());
         Move newMove = new Move();
         Node newNode = DBSession.getAllNodes().get(nodeBox.getValue());
         if (oldMove != null) newMove.setMoveDate(oldMove.getMoveDate());

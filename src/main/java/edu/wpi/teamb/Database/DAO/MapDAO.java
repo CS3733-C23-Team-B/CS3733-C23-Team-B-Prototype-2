@@ -5,7 +5,6 @@ import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Entities.SessionGetter;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.hibernate.Session;

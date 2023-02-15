@@ -99,7 +99,7 @@ public class RequestsController {
       }
       t.setEditable(true);
     }
-    List<SanitationRequest> objectList = DBSession.getAllSRequests();
+    List<SanitationRequest> objectList = DBSession.getAllSanRequests();
     objectList.forEach(
         (value) -> {
           t.getItems().add(value);

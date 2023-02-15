@@ -1,11 +1,12 @@
 package edu.wpi.teamb.Navigation;
 
 public enum Screen {
-  HOME("views/Navigation/HomeScreen.fxml"),
+  HOME("views/Navigation/HomeScreen1.fxml"),
   DATABASE_HELP("views/Database/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
   MAP_EDITOR("views/Database/MapEditor.fxml"),
   NODE_EDITOR("views/Database/NodeEditor.fxml"),
+  SIDE_NODE_EDITOR("views/Database/SideNodeEditor.fxml"),
   NODE_CREATOR("views/Database/NodeCreator.fxml"),
   LOCATION_EDITOR("views/Database/LocationEditor.fxml"),
   LOCATION_CREATOR("views/Database/LocationCreator.fxml"),
@@ -30,7 +31,8 @@ public enum Screen {
   LANDING_PAGE("views/ServiceRequest/Forms.fxml"),
   CREATE_ACCOUNT("views/Profile/CreateAccount.fxml"),
   ALL_USERS("views/Profile/AllUsers.fxml"),
-  LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml");
+  LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml"),
+  EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml");
 
   private final String filename;
 

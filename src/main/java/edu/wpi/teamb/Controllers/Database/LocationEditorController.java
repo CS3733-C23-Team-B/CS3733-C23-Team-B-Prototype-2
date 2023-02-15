@@ -129,14 +129,24 @@ public class LocationEditorController {
         DBSession.updateLocationName(newLN, location);
 
         Move oldMove =
-            DBSession.getLNMoves(new Date(System.currentTimeMillis())).get(newLN.getLongName());
+                DBSession.getLNMoves(new Date(System.currentTimeMillis())).get(location.getLongName());
         Move newMove = new Move();
         Node newNode = DBSession.getAllNodes().get(nodeBox.getValue());
-        newMove.setMoveDate(oldMove.getMoveDate());
+        if (oldMove != null) newMove.setMoveDate(oldMove.getMoveDate());
+        else {
+          java.util.Date d;
+          try {
+            d = new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01");
+          } catch (ParseException e) {
+            throw new RuntimeException(e);
+          }
+          newMove.setMoveDate(d);
+        }
         newMove.setNode(newNode);
-        newMove.setLocationName(newLN);
+        newMove.setLocationName(location);
 
-        DBSession.updateMove(oldMove, newMove);
+        if (oldMove != null) DBSession.updateMove(oldMove, newMove);
+        else DBSession.addMove(newMove);
       }
 
       Pathfinding.refreshData();

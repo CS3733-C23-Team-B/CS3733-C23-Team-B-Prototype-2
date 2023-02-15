@@ -121,7 +121,7 @@
                         <Insets left="15.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="date" prefHeight="77.0" prefWidth="255.0" text="Date" textAlignment="RIGHT" textFill="#c5d3ea">
+                  <Label fx:id="date" prefHeight="77.0" prefWidth="323.0" text="Date" textAlignment="RIGHT" textFill="#c5d3ea">
                      <font>
                         <Font size="20.0" />
                      </font>

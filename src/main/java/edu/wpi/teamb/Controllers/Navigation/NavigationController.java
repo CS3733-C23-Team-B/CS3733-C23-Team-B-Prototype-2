@@ -5,6 +5,8 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -36,8 +38,17 @@ public class NavigationController {
   }
 
   public void exitButtonClicked() {
-    Stage stage = (Stage) homeButton.getScene().getWindow();
-    stage.close();
+    Stage newWindow = new Stage();
+    final String filename = Screen.EXIT_CONFIRMATION.getFilename();
+    try {
+      final var resource = Bapp.class.getResource(filename);
+      final FXMLLoader loader = new FXMLLoader(resource);
+      Scene scene = new Scene(loader.load(), 700, 300);
+      newWindow.setScene(scene);
+      newWindow.show();
+    } catch (NullPointerException | IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public void profileButtonClicked() {

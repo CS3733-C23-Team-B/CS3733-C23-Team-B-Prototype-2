@@ -289,6 +289,8 @@ public class MapEditorController {
     final var res = Bapp.class.getResource(Screen.LOCATION_EDITOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
+
+    
   }
 
   public void addMoveClicked() throws IOException {

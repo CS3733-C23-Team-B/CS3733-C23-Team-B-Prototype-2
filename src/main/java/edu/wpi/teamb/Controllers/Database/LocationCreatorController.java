@@ -58,10 +58,10 @@ public class LocationCreatorController {
     newLN.setLongName(newLongName);
     newLN.setLocationType(newLocationType);
     DBSession.addLocationName(newLN);
-    cancelClicked();
+    backClicked();
   }
 
-  public void cancelClicked() {
+  public void backClicked() {
     Navigation.navigate(Screen.LOCATION_EDITOR);
   }
 }

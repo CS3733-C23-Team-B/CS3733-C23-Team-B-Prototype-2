@@ -346,9 +346,9 @@ public class MapDAO {
             + newM.getMoveDate()
             + "' WHERE m.node = '"
             + oldM.getNode().getNodeID()
-            + "'AND m.locationName = '"
+            + "' AND m.locationName = '"
             + oldM.getLocationName().getLongName()
-            + "'AND m.moveDate = '"
+            + "' AND m.moveDate = '"
             + oldM.getMoveDate()
             + "'";
     try {

@@ -299,10 +299,17 @@ public class MapEditorController {
   }
 
   public void futureMoves() throws IOException {
-    forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
-    final FXMLLoader loader = new FXMLLoader(res);
-    forms.getChildren().add(loader.load());
+    Stage newWindow = new Stage();
+    final String filename = Screen.FUTURE_MOVES.getFilename();
+    try {
+      final var resource = Bapp.class.getResource(filename);
+      final FXMLLoader loader = new FXMLLoader(resource);
+      Scene scene = new Scene(loader.load(), 800, 650);
+      newWindow.setScene(scene);
+      newWindow.show();
+    } catch (NullPointerException e) {
+      e.printStackTrace();
+    }
   }
 
   public void home() {

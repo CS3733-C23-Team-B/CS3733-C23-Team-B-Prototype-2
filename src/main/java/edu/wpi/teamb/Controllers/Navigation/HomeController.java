@@ -67,6 +67,6 @@ public class HomeController {
   }
 
   public void allRequests() {
-    Navigation.navigate(Screen.REQUESTS);
+    Navigation.navigate(Screen.SUBMITTED_SERVICE_REQUESTS);
   }
 }

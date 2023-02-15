@@ -14,7 +14,7 @@
 
 <HBox onMouseMoved="#buttonControl" prefHeight="536.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.PatientTransportationController">
    <children>
-      <MFXButton fx:id="cancelButton" onMouseReleased="#cancelButtonClicked" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #898989;" text="   Back" textFill="WHITE">
+      <MFXButton fx:id="backButton" onMouseReleased="#backButtonClicked" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #898989;" text="   Back" textFill="WHITE">
          <HBox.margin>
             <Insets top="20.0" />
          </HBox.margin>

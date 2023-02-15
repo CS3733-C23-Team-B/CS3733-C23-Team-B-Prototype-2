@@ -10,7 +10,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class LandingPageController {
+public class ServiceRequestSystemsController {
   @FXML VBox mainVbox;
   @FXML Label pageTitle;
   @FXML MFXButton transButton;

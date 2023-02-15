@@ -30,7 +30,7 @@ public class BaseRequestController {
   @FXML protected MFXFilterComboBox<String> assignedStaffBox;
   @FXML protected MFXTextField additionalNotesField;
   private RequestStatus request;
-  @FXML protected MFXButton cancelButton;
+  @FXML protected MFXButton backButton;
   @FXML protected MFXButton helpButton;
   @FXML protected MFXButton clearButton;
 
@@ -69,8 +69,8 @@ public class BaseRequestController {
    *
    * @throws IOException
    */
-  public void cancelButtonClicked() throws IOException {
-    Navigation.navigate(Screen.LANDING_PAGE);
+  public void backButtonClicked() throws IOException {
+    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
   }
 
   /**
@@ -117,11 +117,16 @@ public class BaseRequestController {
     return list;
   }
 
+  /**
+   * Get the names of staff members with logins
+   *
+   * @return a list of Strings
+   */
   protected ObservableList<String> getStaff() {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    Map<String, Login> locationNames = DBSession.getAllLogins();
-    locationNames.forEach(
+    Map<String, Login> logins = DBSession.getAllLogins();
+    logins.forEach(
         (key, value) -> {
           String name = value.getFirstname() + " " + value.getLastname();
           list.add(name);

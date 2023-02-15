@@ -20,22 +20,8 @@ public class FutureMovesController {
   @FXML TableColumn moveDate;
   @FXML TableColumn locationName;
   @FXML TableColumn node;
-
   @FXML MFXDatePicker datePicker;
   List<Move> movesList = new ArrayList<Move>();
-
-  StringConverter<Boolean> converter =
-      new StringConverter<Boolean>() {
-        @Override
-        public String toString(Boolean object) {
-          return object.toString();
-        }
-
-        @Override
-        public Boolean fromString(String string) {
-          return (string.equals("true"));
-        }
-      };
 
   public void initialize() {
     moveDate.setCellValueFactory(new PropertyValueFactory<>("moveDate"));

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -34,23 +32,7 @@
                   <TableColumn fx:id="node" prefWidth="133.77783203125" text="Node Id" />
               </columns>
             </TableView>
-            <HBox prefHeight="19.0" prefWidth="800.0" spacing="55.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Starting Date">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="200.0" top="10.0" />
-                     </HBox.margin>
-                  </Text>
-                  <MFXDatePicker fx:id="datePicker" onAction="#selectDate" prefHeight="42.0" prefWidth="210.0" promptText="Select Date">
-                     <HBox.margin>
-                        <Insets left="50.0" top="5.0" />
-                     </HBox.margin>
-                  </MFXDatePicker>
-               </children>
-            </HBox>
+            <HBox prefHeight="19.0" prefWidth="800.0" spacing="55.0" />
          </children>
       </AnchorPane>
    </bottom>

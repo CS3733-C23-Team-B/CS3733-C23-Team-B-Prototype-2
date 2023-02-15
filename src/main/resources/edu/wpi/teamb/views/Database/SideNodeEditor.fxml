@@ -89,14 +89,17 @@
             </HBox>
             <HBox prefHeight="56.0" prefWidth="326.0" spacing="20.0">
                <children>
-                  <MFXButton fx:id="edgesButton" text="Edges" />
-                      <MFXButton buttonType="RAISED" onAction="#deleteClicked" style="-fx-background-color: Crimson;" text="Delete Node" textFill="WHITE" />
-                      <MFXButton buttonType="RAISED" onAction="#submitClicked" prefHeight="40.0" style="-fx-background-color: #003AD6;" text="Submit Changes" textFill="WHITE">
+                  <MFXButton fx:id="edgesButton" buttonType="RAISED" text="Edges" />
+                      <MFXButton buttonType="RAISED" onAction="#deleteClicked" style="-fx-background-color: Crimson;" text="Delete" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font></MFXButton>
+                      <MFXButton buttonType="RAISED" onAction="#submitClicked" prefHeight="40.0" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font size="22.0" />
                      </font>
                   </MFXButton>
                </children>

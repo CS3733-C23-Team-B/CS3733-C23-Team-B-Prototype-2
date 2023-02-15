@@ -51,8 +51,6 @@ public class MoveCreatorController {
     Date newDate = Date.valueOf(datePicker.getValue());
     newMove.setMoveDate(newDate);
     DBSession.addMove(newMove);
-
-    cancelClicked();
   }
 
   public void cancelClicked() {

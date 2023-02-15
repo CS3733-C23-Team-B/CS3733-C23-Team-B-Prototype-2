@@ -14,7 +14,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
 
 public class PatientTransportationController extends BaseRequestController {
   // Lists for checkboxes
@@ -22,10 +21,8 @@ public class PatientTransportationController extends BaseRequestController {
       FXCollections.observableArrayList("Stretcher", "Wheelchair", "Restraints", "Stair Chair");
   @FXML private MFXFilterComboBox patientCurrentLocationBox;
   @FXML private MFXFilterComboBox patientDestinationLocationBox;
-  @FXML private MFXFilterComboBox urgencyBox;
   @FXML private MFXComboBox equipmentNeededBox;
-  @FXML private TextField patientIDField;
-  @FXML private TextField additionalNotesField;
+  @FXML private MFXTextField patientIDField;
 
   /** Initialize the page by declaring choice-box options */
   @FXML

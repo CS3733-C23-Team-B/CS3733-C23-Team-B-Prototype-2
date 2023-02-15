@@ -4,7 +4,6 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.SanitationRequest;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
@@ -20,7 +19,7 @@ public class SanitationServiceController extends BaseRequestController {
   ObservableList<String> typeOfCleanUpList =
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
   @FXML private MFXFilterComboBox<String> cleanUpLocationBox;
-  @FXML private MFXComboBox typeOfCleanUpBox;
+  @FXML private MFXFilterComboBox<String> typeOfCleanUpBox;
 
   @FXML
   @Override

@@ -33,7 +33,7 @@ public class LandingPageController {
 
   public void makeSani() throws IOException {
     mainVbox.getChildren().clear();
-    final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
+    final var r = Bapp.class.getResource(Screen.SANITATION.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Sanitation Service");

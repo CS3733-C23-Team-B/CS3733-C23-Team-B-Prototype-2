@@ -147,7 +147,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="secButton" onAction="#makeSec" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Security           " textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="secButton" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E;" text="Security           " textFill="#c5d3ea" wrapText="true">
                      <font>
                         <Font size="26.0" />
                      </font>

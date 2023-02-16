@@ -39,7 +39,7 @@ public class BaseRequestController {
   // Choice-box options
   protected ObservableList<String> urgencyOptions =
       FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
-  protected ObservableList<String> staffMembers = getStaff();
+  protected ObservableList<String> staffMembers = DBSession.getStaff();
 
   // List of all text fields and choice boxes for flexibility; when adding new input components to
   // form, add to this list
@@ -114,24 +114,6 @@ public class BaseRequestController {
     locationNames.forEach((key, value) -> list.add(value.getLongName()));
 
     Sorting.quickSort(list);
-    return list;
-  }
-
-  /**
-   * Get the names of staff members with logins
-   *
-   * @return a list of Strings
-   */
-  protected ObservableList<String> getStaff() {
-    ObservableList<String> list = FXCollections.observableArrayList();
-
-    Map<String, Login> logins = DBSession.getAllLogins();
-    logins.forEach(
-        (key, value) -> {
-          String name = value.getFirstname() + " " + value.getLastname();
-          list.add(name);
-        });
-
     return list;
   }
 

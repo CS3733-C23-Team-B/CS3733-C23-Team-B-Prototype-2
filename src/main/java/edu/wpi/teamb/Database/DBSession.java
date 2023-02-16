@@ -6,6 +6,7 @@ import edu.wpi.teamb.Database.DAO.RequestDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javafx.collections.ObservableList;
 
 public class DBSession {
 
@@ -35,6 +36,10 @@ public class DBSession {
 
   public static void addLogin(Login l) {
     LoginDAO.addLogin(l);
+  }
+
+  public static ObservableList<String> getStaff() {
+    return LoginDAO.getStaff();
   }
 
   public static void deleteLogin(Login l) {

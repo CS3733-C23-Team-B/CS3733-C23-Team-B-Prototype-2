@@ -23,24 +23,10 @@ public class SubmittedServiceRequestsController {
   @FXML MFXButton secButton;
   @FXML MFXButton comButton;
   @FXML MFXButton audioButton;
-
-  SubmittedGeneralRequestTable rt = new SubmittedGeneralRequestTable();
+  SubmittedSanitationRequestTable rt = new SubmittedSanitationRequestTable();
 
   public void initialize() {
-    List<String> saniColumns =
-        List.of(
-            new String[] {
-              "lastname",
-              "firstname",
-              "employeeID",
-              "email",
-              "urgency",
-              "assignedEmployee",
-              "typeOfCleanUp",
-              "cleanUpLocation",
-              "status",
-              "notes"
-            });
+    rt.initialize();
     List<String> transColumns =
         List.of(
             "lastname",
@@ -68,13 +54,13 @@ public class SubmittedServiceRequestsController {
             "notes",
             "status",
             "device");
-    saniButton.setOnAction(e -> makeTableSani(saniColumns, "Sanitation"));
+    saniButton.setOnAction(e -> makeTableSani("Sanitation"));
     transButton.setOnAction(e -> makeTableTrans(transColumns, "Internal Patient Transportation"));
     comButton.setOnAction(e -> makeTableCom(comColumns, "Computer"));
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
   }
 
-  private void makeTableSani(List<String> columns, String name) {
+  private void makeTableSani(String name) {
     Login l = SigninController.getCurrentUser();
     mainVbox.getChildren().clear();
 

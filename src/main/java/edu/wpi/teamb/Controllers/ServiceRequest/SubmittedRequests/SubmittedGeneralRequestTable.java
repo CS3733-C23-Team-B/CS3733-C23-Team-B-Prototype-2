@@ -5,7 +5,7 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.GeneralRequest;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.RequestStatus;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -28,34 +28,27 @@ public class SubmittedGeneralRequestTable {
 
   @FXML TableColumn date = new TableColumn();
   Login l;
-  List<TableColumn> cols =
-      Arrays.asList(
-          firstname, lastname,employeeID,  email, urgency, assignedEmployee, status, date, notes);
-  List<String> colNames =
-      Arrays.asList(
-          "firstname",
-          "lastname",
-          "employeeID",
-          "email",
-          "urgency",
-          "assignedEmployee",
-          "status",
-          "date",
-          "notes");
+  private List<TableColumn> cols = new ArrayList<>();
+
+  private List<String> colNames = new ArrayList<>();
 
   public void initialize() {
     l = SigninController.getCurrentUser();
-
+    addcol(date, "date");
+    addcol(firstname, "firstname");
+    addcol(lastname, "lastname");
+    addcol(employeeID, "employeeID");
+    addcol(email, "email");
+    addcol(urgency, "urgency");
+    addcol(assignedEmployee, "assignedEmployee");
+    addcol(status, "status");
+    addcol(notes, "notes");
 
     //        initialize the columns
     //        add columns to the table
     //        set col names
-    for (int i = 0; i < cols.size(); i++) {
-      cols.get(i).setCellValueFactory(new PropertyValueFactory<>(colNames.get(i)));
-      table.getColumns().add(cols.get(i));
-      cols.get(i).setText(colNames.get(i));
-    }
-    editableCols();
+
+    //    editableCols();
   }
 
   public TableView getTable() {
@@ -97,6 +90,25 @@ public class SubmittedGeneralRequestTable {
           }
         }
       };
+
+  private void addcol(TableColumn col, String colName) {
+    this.cols.add(col);
+    this.colNames.add(colName);
+  }
+
+  public void addCol(TableColumn col, String colName) {
+    this.cols.add(cols.size() - 3, col);
+    this.colNames.add(colNames.size() - 3, colName);
+  }
+
+  public void setTable() {
+    for (int i = 0; i < cols.size(); i++) {
+      cols.get(i).setCellValueFactory(new PropertyValueFactory<>(colNames.get(i)));
+      table.getColumns().add(cols.get(i));
+      cols.get(i).setText(colNames.get(i));
+    }
+    editableCols();
+  }
 
   public void SubmittedGeneralRequestTable() {}
 }

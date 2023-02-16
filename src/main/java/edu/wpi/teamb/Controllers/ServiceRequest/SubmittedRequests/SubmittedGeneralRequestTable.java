@@ -43,12 +43,6 @@ public class SubmittedGeneralRequestTable {
     addcol(assignedEmployee, "assignedEmployee");
     addcol(status, "status");
     addcol(notes, "notes");
-
-    //        initialize the columns
-    //        add columns to the table
-    //        set col names
-
-    //    editableCols();
   }
 
   public TableView getTable() {
@@ -97,7 +91,7 @@ public class SubmittedGeneralRequestTable {
   }
 
   public void addCol(TableColumn col, String colName) {
-    this.cols.add(cols.size() - 3, col);
+    this.cols.add(cols.size() - 2, col);
     this.colNames.add(colNames.size() - 3, colName);
   }
 

@@ -15,6 +15,4 @@ public class SubmittedSanitationRequestTable extends SubmittedGeneralRequestTabl
     addCol(cleanUpLocation, "cleanUpLocation");
     setTable();
   }
-
-  public void SubmittedSanitationRequestTable() {}
 }

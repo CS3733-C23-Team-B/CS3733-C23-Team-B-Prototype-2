@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
-import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Entities.RequestStatus;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -8,10 +7,7 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.StringConverter;
@@ -23,48 +19,24 @@ public class SubmittedServiceRequestsController {
   @FXML MFXButton secButton;
   @FXML MFXButton comButton;
   @FXML MFXButton audioButton;
-  SubmittedSanitationRequestTable rt = new SubmittedSanitationRequestTable();
+  SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
+  SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
+  SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
 
   public void initialize() {
-    rt.initialize();
-    List<String> transColumns =
-        List.of(
-            "lastname",
-            "firstname",
-            "employeeID",
-            "email",
-            "urgency",
-            "assignedEmployee",
-            "patientID",
-            "patientCurrentLocation",
-            "patientDestinationLocation",
-            "equipmentNeeded",
-            "status",
-            "notes");
-    List<String> comColumns =
-        List.of(
-            "lastname",
-            "firstname",
-            "employeeID",
-            "email",
-            "urgency",
-            "assignedEmployee",
-            "typeOfRepair",
-            "repairLocation",
-            "notes",
-            "status",
-            "device");
+    saniTable.initialize();
+    ptTable.initialize();
+    comTable.initialize();
     saniButton.setOnAction(e -> makeTableSani("Sanitation"));
-    transButton.setOnAction(e -> makeTableTrans(transColumns, "Internal Patient Transportation"));
-    comButton.setOnAction(e -> makeTableCom(comColumns, "Computer"));
+    transButton.setOnAction(e -> makeTableTrans("Internal Patient Transportation"));
+    comButton.setOnAction(e -> makeTableCom("Computer"));
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
   }
 
   private void makeTableSani(String name) {
-    Login l = SigninController.getCurrentUser();
     mainVbox.getChildren().clear();
 
-    TableView t = rt.getTable();
+    TableView t = saniTable.getTable();
 
     List<SanitationRequest> objectList = DBSession.getAllSanRequests();
     objectList.forEach(
@@ -78,34 +50,9 @@ public class SubmittedServiceRequestsController {
     mainVbox.getChildren().add(t);
   }
 
-  private void makeTableTrans(List<String> columns, String name) {
-    Login l = SigninController.getCurrentUser();
+  private void makeTableTrans(String name) {
     mainVbox.getChildren().clear();
-    TableView t = new TableView();
-    t.setEditable(true);
-    for (String colName : columns) {
-      if ((colName.equals("status") && DBSession.isAdmin(l))) {
-        TableColumn<PatientTransportationRequest, RequestStatus> status = new TableColumn<>();
-        t.getColumns().add(status);
-        status.setText("status");
-        status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        status.setCellFactory(TextFieldTableCell.forTableColumn(converter));
-        status.setOnEditCommit(
-            e -> {
-              PatientTransportationRequest PTRequest =
-                  e.getTableView().getItems().get(e.getTablePosition().getRow());
-              PTRequest.setStatus(e.getNewValue());
-              DBSession.updateRequest(PTRequest);
-            });
-        status.setEditable(true);
-      } else {
-        TableColumn col = new TableColumn();
-        t.getColumns().add(col);
-        col.setText(colName);
-        col.setCellValueFactory(new PropertyValueFactory<>(colName));
-      }
-      t.setEditable(true);
-    }
+    TableView t = ptTable.getTable();
 
     List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
     objectList.forEach(
@@ -119,33 +66,10 @@ public class SubmittedServiceRequestsController {
     mainVbox.getChildren().add(t);
   }
 
-  private void makeTableCom(List<String> columns, String name) {
-    Login l = SigninController.getCurrentUser();
+  private void makeTableCom(String name) {
     mainVbox.getChildren().clear();
-    TableView t = new TableView();
-    for (String colName : columns) {
-      if ((colName.equals("status") && DBSession.isAdmin(l))) {
-        TableColumn<ComputerRequest, RequestStatus> status = new TableColumn<>();
-        t.getColumns().add(status);
-        status.setText("status");
-        status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        status.setCellFactory(TextFieldTableCell.forTableColumn(converter));
-        status.setOnEditCommit(
-            e -> {
-              ComputerRequest CRequest =
-                  e.getTableView().getItems().get(e.getTablePosition().getRow());
-              CRequest.setStatus(e.getNewValue());
-              DBSession.updateRequest(CRequest);
-            });
-        status.setEditable(true);
-      } else {
-        TableColumn col = new TableColumn();
-        t.getColumns().add(col);
-        col.setText(colName);
-        col.setCellValueFactory(new PropertyValueFactory<>(colName));
-      }
-      t.setEditable(true);
-    }
+    TableView t = comTable.getTable();
+
     List<ComputerRequest> objectList = DBSession.getAllCRequests();
     objectList.forEach(
         (value) -> {
@@ -158,26 +82,4 @@ public class SubmittedServiceRequestsController {
     mainVbox.getChildren().add(t);
   }
 
-  StringConverter<RequestStatus> converter =
-      new StringConverter<>() {
-        @Override
-        public String toString(RequestStatus object) {
-          if (object == null) return "";
-          return object.toString();
-        }
-
-        @Override
-        public RequestStatus fromString(String string) {
-          switch (string) {
-            case ("blank"):
-              return RequestStatus.BLANK;
-            case ("processing"):
-              return RequestStatus.PROCESSING;
-            case ("done"):
-              return RequestStatus.DONE;
-            default:
-              return RequestStatus.PROCESSING;
-          }
-        }
-      };
 }

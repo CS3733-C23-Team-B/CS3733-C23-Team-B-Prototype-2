@@ -5,36 +5,20 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class NavigationController {
   @FXML private Button homeButton;
-  @FXML private BorderPane border;
-
-  public void featureOneButtonClicked() throws IOException {
-    Navigation.navigate(Screen.LANDING_PAGE);
-  }
-
-  public void featureTwoButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SANITATION);
-  }
-  // may not need this but i cant tell - Jolie While merging
-  public void computerButtonClicked() {
-    Navigation.navigate(Screen.COMPUTER_SERVICES);
-  }
 
   public void serviceRequestFormsButtonClicked() throws IOException {
-    Navigation.navigate(Screen.LANDING_PAGE);
+    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
   }
 
   public void pathfindingButtonClicked() throws IOException {
     Navigation.navigate(Screen.PATHFINDING);
-  }
-
-  public void locationNodeEditorButtonClicked() throws IOException {
-    Navigation.navigate(Screen.MAP_DATA_EDITOR);
   }
 
   public void aboutButtonClicked() {
@@ -46,7 +30,7 @@ public class NavigationController {
   }
 
   public void submittedRequestsButtonClicked() throws IOException {
-    Navigation.navigate(Screen.REQUESTS);
+    Navigation.navigate(Screen.SUBMITTED_SERVICE_REQUESTS);
   }
 
   public void mapEditorButtonClicked() throws IOException {
@@ -54,8 +38,17 @@ public class NavigationController {
   }
 
   public void exitButtonClicked() {
-    Stage stage = (Stage) homeButton.getScene().getWindow();
-    stage.close();
+    Stage newWindow = new Stage();
+    final String filename = Screen.EXIT_CONFIRMATION.getFilename();
+    try {
+      final var resource = Bapp.class.getResource(filename);
+      final FXMLLoader loader = new FXMLLoader(resource);
+      Scene scene = new Scene(loader.load(), 700, 300);
+      newWindow.setScene(scene);
+      newWindow.show();
+    } catch (NullPointerException | IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public void profileButtonClicked() {

@@ -2,10 +2,8 @@ package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.SanitationRequest;
-import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
@@ -21,7 +19,7 @@ public class SanitationServiceController extends BaseRequestController {
   ObservableList<String> typeOfCleanUpList =
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
   @FXML private MFXFilterComboBox<String> cleanUpLocationBox;
-  @FXML private MFXComboBox typeOfCleanUpBox;
+  @FXML private MFXFilterComboBox<String> typeOfCleanUpBox;
 
   @FXML
   @Override
@@ -29,15 +27,7 @@ public class SanitationServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      firstNameField,
-      lastNameField,
-      employeeIDField,
-      emailField,
-      cleanUpLocationBox,
-      urgencyBox,
-      typeOfCleanUpBox,
-      assignedStaffField,
-      additionalNotesField
+      cleanUpLocationBox, urgencyBox, typeOfCleanUpBox, assignedStaffBox, additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
@@ -62,33 +52,20 @@ public class SanitationServiceController extends BaseRequestController {
 
     SanitationRequest request = new SanitationRequest();
 
-    request.setFirstname(firstNameField.getText());
-    request.setLastname(lastNameField.getText());
-    request.setEmployeeID(employeeIDField.getText());
-    request.setEmail(emailField.getText());
-    request.setNotes(additionalNotesField.getText());
-    request.setAssignedEmployee(assignedStaffField.getText());
-
-    var urgency = urgencyBox.getValue();
-    if (urgency == null) {
-      urgency = "";
-    }
-    request.setUrgency(urgency.toString());
+    super.submit(request);
 
     var cleanUpLocation = cleanUpLocationBox.getValue();
     if (cleanUpLocation == null) {
       cleanUpLocation = "";
     }
-    request.setTypeOfCleanUp(cleanUpLocation.toString());
+    request.setCleanUpLocation(cleanUpLocation.toString());
 
     var typeOfcleanUp = typeOfCleanUpBox.getValue();
     if (typeOfcleanUp == null) {
       typeOfcleanUp = "";
     }
     request.setTypeOfCleanUp(typeOfcleanUp.toString());
-    request.setAssignedEmployee(assignedStaffField.getText());
-    request.setStatus(RequestStatus.PROCESSING);
-    request.setCleanUpLocation(cleanUpLocationBox.getValue());
+
     DBSession.addRequest(request);
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();

@@ -2,327 +2,206 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
-<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#buttonControl" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.ComputerServiceController">
-    <top>
-        <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-                <Text id="titleRoboto" fill="WHITE" layoutX="57.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computer Service Request Form" textAlignment="CENTER">
-                    <font>
-                        <Font size="50.0" />
-                    </font>
-                </Text>
-            </children>
-        </AnchorPane>
-    </top>
-   <left>
-      <MFXScrollPane minWidth="-Infinity" prefWidth="798.0" BorderPane.alignment="CENTER">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="780.0">
+<HBox onMouseMoved="#buttonControl" prefHeight="536.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.ComputerServiceController">
+   <children>
+      <MFXButton fx:id="backButton" onAction="#backButtonClicked" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #898989;" text="   Back" textFill="WHITE">
+         <HBox.margin>
+            <Insets top="20.0" />
+         </HBox.margin>
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../media/arrow.png" />
+               </image>
+            </ImageView>
+         </graphic></MFXButton>
+      <VBox onMouseMoved="#buttonControl" prefHeight="536.0" prefWidth="677.0">
+         <children>
+            <HBox prefHeight="67.0" prefWidth="738.0">
                <children>
-                  <VBox prefHeight="800.0" prefWidth="800.0">
-                     <children>
-                        <Text id="subTitleNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Information">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="40.0" top="10.0" />
-                           </VBox.margin>
-                        </Text>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Text id="categoriesNunito" layoutX="50.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="275.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="22.0" prefWidth="200.0">
-                           <children>
-                              <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </MFXTextField>
-                              <MFXTextField fx:id="lastNameField" layoutX="50.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox>
-                           <VBox.margin>
-                              <Insets left="40.0" top="15.0" />
-                           </VBox.margin>
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="257.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="105.0" prefHeight="22.0" prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                           <children>
-                              <MFXTextField fx:id="employeeIDField" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                              <MFXTextField fx:id="emailField" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                           </children>
-                        </HBox>
-                        <Text id="subTitleNunito" layoutX="50.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Request Information">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="40.0" top="40.0" />
-                           </VBox.margin>
-                        </Text>
-                        <HBox layoutX="50.0" layoutY="170.0">
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Urgency">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assigned Staff Member">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="299.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="199.0" prefHeight="22.0" prefWidth="200.0">
-                           <children>
-                              <MFXFilterComboBox fx:id="urgencyBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXFilterComboBox>
-                              <MFXTextField fx:id="assignedStaffField" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#buttonControl" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="341.0">
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of Repair">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="240.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="44.0" prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                           <children>
-                              <MFXFilterComboBox fx:id="typeOfRepairBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXFilterComboBox>
-                              <MFXFilterComboBox fx:id="deviceBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXFilterComboBox>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="443.0">
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Location">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="384.0" prefHeight="22.0" prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                           <children>
-                              <MFXFilterComboBox fx:id="repairLocationBox" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXFilterComboBox>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="448.0">
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="388.0" prefHeight="22.0" prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                           <children>
-                              <MFXTextField fx:id="additionalNotesField" alignment="TOP_LEFT" floatMode="ABOVE" minHeight="-Infinity" onAction="#buttonControl" prefHeight="100.0" prefWidth="720.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                                 <effect>
-                                    <Blend />
-                                 </effect>
-                              </MFXTextField>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="44.0" prefWidth="200.0">
-                           <children>
-                              <MFXButton fx:id="cancelButton" buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#cancelButtonClicked" prefHeight="44.0" prefWidth="101.0" style="-fx-background-color: #CC0202;" text="Cancel" textFill="WHITE">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </MFXButton>
-                              <MFXButton fx:id="clearButton" buttonType="RAISED" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#clearButtonClicked" prefHeight="44.0" prefWidth="101.0" style="-fx-background-color: #AAAAAA;" text="Clear" textFill="WHITE">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                              <MFXButton fx:id="helpButton" buttonType="RAISED" layoutX="142.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#helpButtonClicked" prefHeight="44.0" prefWidth="101.0" style="-fx-background-color: #AAAAAA;" text="Help" textFill="WHITE">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="240.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                              <MFXButton fx:id="submitButton" buttonType="RAISED" layoutX="494.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#submitButtonClicked" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="40.0" top="30.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
+                  <Label minHeight="45.0" minWidth="294.0" text="Request Information">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label minHeight="45.0" minWidth="123.0" text="*Required Field" textFill="RED">
+                     <HBox.margin>
+                        <Insets left="36.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="0.0" prefWidth="678.0">
+               <children>
+                  <Label text="Urgency">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" text=" *" textFill="RED">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" text="Assigned Staff Member">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="315.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="69.0" layoutY="10.0" text=" *" textFill="RED">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="52.0" prefWidth="738.0">
+               <children>
+                  <MFXFilterComboBox fx:id="urgencyBox" minWidth="313.0" />
+                  <MFXFilterComboBox fx:id="assignedStaffBox" minWidth="313.0">
+                     <HBox.margin>
+                        <Insets left="70.0" />
+                     </HBox.margin></MFXFilterComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="0.0" prefWidth="678.0">
+               <children>
+                  <Label text="Type of Repair">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" text=" *" textFill="RED">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" text="Type of Device">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="275.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="69.0" layoutY="10.0" text=" *" textFill="RED">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="110.0" prefHeight="52.0" prefWidth="200.0">
+               <children>
+                  <MFXFilterComboBox fx:id="typeOfRepairBox" minWidth="313.0" />
+                  <MFXFilterComboBox fx:id="typeOfDeviceBox" minWidth="313.0">
+                     <HBox.margin>
+                        <Insets left="70.0" />
+                     </HBox.margin></MFXFilterComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="162.0" prefHeight="0.0" prefWidth="678.0">
+               <children>
+                  <Label text="Location">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" text=" *" textFill="RED">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="144.0" prefHeight="52.0" prefWidth="200.0">
+               <children>
+                  <MFXFilterComboBox fx:id="locationBox" minWidth="313.0" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="247.0" prefHeight="0.0" prefWidth="678.0">
+               <children>
+                  <Label text="Notes">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <MFXTextField fx:id="additionalNotesField" minHeight="80.0" minWidth="313.0" onAction="#buttonControl">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></MFXTextField>
+            <AnchorPane minHeight="0.0" prefHeight="39.0" prefWidth="678.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0">
+                     <children>
+                        <MFXButton fx:id="clearButton" onAction="#clearButtonClicked" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: CECECE;" text="Clear" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font></MFXButton>
+                        <MFXButton fx:id="helpButton" onAction="#helpButtonClicked" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: F8C630;" text="Help" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="37.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+                  <MFXButton fx:id="submitButton" onAction="#submitButtonClicked" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #21357E;" text="Submit" textFill="WHITE" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font></MFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </AnchorPane>
-         </content>
-      </MFXScrollPane>
-   </left>
-</BorderPane>
+         </children>
+         <HBox.margin>
+            <Insets left="60.0" />
+         </HBox.margin>
+      </VBox>
+   </children>
+</HBox>

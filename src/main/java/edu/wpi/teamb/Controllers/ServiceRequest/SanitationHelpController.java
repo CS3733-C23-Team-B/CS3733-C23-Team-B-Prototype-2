@@ -11,6 +11,6 @@ public class SanitationHelpController {
   @FXML private Button backButton;
 
   public void backButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SANITATION);
+    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
   }
 }

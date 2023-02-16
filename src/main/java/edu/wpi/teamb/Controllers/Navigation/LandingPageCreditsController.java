@@ -10,6 +10,6 @@ public class LandingPageCreditsController {
   @FXML private MFXButton backButton;
 
   public void backButtonClicked() throws IOException {
-    Navigation.navigate(Screen.LANDING_PAGE);
+    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
   }
 }

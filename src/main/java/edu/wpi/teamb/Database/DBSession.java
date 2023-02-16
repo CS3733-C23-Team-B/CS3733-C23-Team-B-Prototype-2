@@ -90,27 +90,39 @@ public class DBSession {
   }
 
   public static List<GeneralRequest> getAllRequests() {
-    return RequestDAO.getALLRequests();
+    return RequestDAO.getAllRequests();
   }
 
   public static List<PatientTransportationRequest> getAllPTRequests() {
-    return RequestDAO.getALLPTRequests();
+    return RequestDAO.getAllPTRequests();
   }
 
-  public static List<SanitationRequest> getAllSRequests() {
-    return RequestDAO.getALLSRequests();
+  public static List<SanitationRequest> getAllSanRequests() {
+    return RequestDAO.getAllSanRequests();
+  }
+
+  public static List<SecurityRequest> getAllSecRequests() {
+    return RequestDAO.getAllSecRequests();
+  }
+
+  public static List<AudioVideoRequest> getAllAVRequests() {
+    return RequestDAO.getAllAVRequests();
   }
 
   public static List<ComputerRequest> getAllCRequests() {
-    return RequestDAO.getALLCRequests();
+    return RequestDAO.getAllCRequests();
   }
 
-  public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
+  public static Map<String, List<Move>> getIDMoves(Date d) {
     return MapDAO.getIDMoves(d);
   }
 
   public static Map<String, Move> getLNMoves(Date d) {
     return MapDAO.getLNMoves(d);
+  }
+
+  public static List<GeneralRequest> getAllRequestsWithEmpID(String id) {
+    return RequestDAO.getAllRequestsWithEmpID(id);
   }
 
   public static void updateMove(Move oldM, Move newM) {
@@ -121,12 +133,20 @@ public class DBSession {
     return MapDAO.getMostRecentMoveWithLocationName(ln);
   }
 
+  public static List<Move> getFutureMoves(Date d) {
+    return MapDAO.getFutureMoves(d);
+  }
+
   public static void updateUser(String user, String first, String last, String email) {
     LoginDAO.updateUser(user, first, last, email);
   }
 
   public static void updateAdmin(String user, Boolean b) {
     LoginDAO.updateAdmin(user, b);
+  }
+
+  public static Boolean isAdmin(Login l) {
+    return LoginDAO.isAdmin(l);
   }
 
   public static List<Move> getMostRecentMoves(String NodeID) {
@@ -145,6 +165,12 @@ public class DBSession {
           .getNodeID();
     } catch (ParseException e) {
       throw new RuntimeException(e);
+    } catch (NullPointerException e) {
+      return null;
     }
+  }
+
+  public static void updateRequest(GeneralRequest r) {
+    RequestDAO.updateRequest(r);
   }
 }

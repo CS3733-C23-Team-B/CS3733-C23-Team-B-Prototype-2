@@ -15,7 +15,6 @@ public class FooterController {
   }
 
   public void youtubeClick(MouseEvent mouseEvent) throws URISyntaxException, IOException {
-    System.out.println("youtube");
     Desktop.getDesktop().browse(new URI("https://youtu.be/3FbYcu5NhtQ?t=199"));
   }
 }

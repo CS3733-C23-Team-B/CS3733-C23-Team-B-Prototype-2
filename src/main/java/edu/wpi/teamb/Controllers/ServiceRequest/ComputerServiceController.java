@@ -2,7 +2,6 @@ package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.ComputerRequest;
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -22,9 +21,9 @@ public class ComputerServiceController extends BaseRequestController {
   ObservableList<String> typeOfDeviceList =
       FXCollections.observableArrayList("Computer", "Phone", "Monitor");
 
-  @FXML private MFXFilterComboBox repairLocationBox;
+  @FXML private MFXFilterComboBox locationBox;
   @FXML private MFXFilterComboBox typeOfRepairBox;
-  @FXML private MFXFilterComboBox<String> deviceBox;
+  @FXML private MFXFilterComboBox<String> typeOfDeviceBox;
 
   @FXML
   @Override
@@ -32,21 +31,17 @@ public class ComputerServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      firstNameField,
-      lastNameField,
-      employeeIDField,
-      emailField,
-      repairLocationBox,
+      locationBox,
       urgencyBox,
       typeOfRepairBox,
-      deviceBox,
-      assignedStaffField,
+      typeOfDeviceBox,
+      assignedStaffBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    repairLocationBox.setItems(getLocations());
+    locationBox.setItems(getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -54,7 +49,7 @@ public class ComputerServiceController extends BaseRequestController {
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
     typeOfRepairBox.setItems(typeOfRepairList);
-    deviceBox.setItems(typeOfDeviceList);
+    typeOfDeviceBox.setItems(typeOfDeviceList);
 
     helpScreen = Screen.COMPUTER_SERVICES_HELP;
     super.initialize();
@@ -67,34 +62,21 @@ public class ComputerServiceController extends BaseRequestController {
 
     ComputerRequest request = new ComputerRequest();
 
-    request.setFirstname(firstNameField.getText());
-    request.setLastname(lastNameField.getText());
-    request.setEmployeeID(employeeIDField.getText());
-    request.setEmail(emailField.getText());
-    request.setNotes(additionalNotesField.getText());
-    request.setAssignedEmployee(assignedStaffField.getText());
+    super.submit(request);
 
-    var urgency = urgencyBox.getValue();
-    if (urgency == null) {
-      urgency = "";
-    }
-    request.setUrgency(urgency.toString());
-
-    request.setRepairLocation(repairLocationBox.getText());
+    request.setRepairLocation(locationBox.getText());
 
     var typeOfrepair = typeOfRepairBox.getValue();
     if (typeOfrepair == null) {
       typeOfrepair = "";
     }
-    var device = deviceBox.getValue();
+    var device = typeOfDeviceBox.getValue();
     if (device == null) {
       device = "";
     }
     request.setDevice(device.toString());
 
-    request.setAssignedEmployee(assignedStaffField.getText());
     request.setTypeOfRepair(typeOfrepair.toString());
-    request.setStatus(RequestStatus.PROCESSING);
     DBSession.addRequest(request);
 
     // may need to clear fields can be done with functions made for clear

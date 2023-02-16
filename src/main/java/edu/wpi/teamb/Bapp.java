@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -16,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Bapp extends Application {
-
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
 
@@ -34,6 +34,9 @@ public class Bapp extends Application {
 
     Bapp.primaryStage = primaryStage;
     Bapp.rootPane = (BorderPane) root;
+
+    Image icon = new Image(this.getClass().getResource("/media/icon.png").toString());
+    primaryStage.getIcons().add(icon);
 
     primaryStage.setScene(scene);
     primaryStage.setTitle("Brigham and Women's Hospital");

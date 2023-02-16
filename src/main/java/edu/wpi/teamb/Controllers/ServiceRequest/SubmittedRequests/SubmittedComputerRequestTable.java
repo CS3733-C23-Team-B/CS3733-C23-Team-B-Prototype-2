@@ -5,9 +5,9 @@ import javafx.scene.control.TableColumn;
 
 public class SubmittedComputerRequestTable extends SubmittedGeneralRequestTable {
 
-  @FXML TableColumn device = new TableColumn<>();
-  @FXML TableColumn typeOfRepair = new TableColumn<>();
-  @FXML TableColumn repairLocation = new TableColumn();
+  @FXML private TableColumn device = new TableColumn<>();
+  @FXML private TableColumn typeOfRepair = new TableColumn<>();
+  @FXML private TableColumn repairLocation = new TableColumn();
 
   @Override
   public void initialize() {

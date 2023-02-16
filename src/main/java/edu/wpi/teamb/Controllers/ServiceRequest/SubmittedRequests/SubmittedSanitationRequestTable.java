@@ -5,8 +5,8 @@ import javafx.scene.control.TableColumn;
 
 public class SubmittedSanitationRequestTable extends SubmittedGeneralRequestTable {
 
-  @FXML TableColumn typeOfCleanUp = new TableColumn<>();
-  @FXML TableColumn cleanUpLocation = new TableColumn<>();
+  @FXML private TableColumn typeOfCleanUp = new TableColumn<>();
+  @FXML private TableColumn cleanUpLocation = new TableColumn<>();
 
   @Override
   public void initialize() {

@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers.ServiceRequest;
+package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
@@ -23,6 +23,8 @@ public class SubmittedServiceRequestsController {
   @FXML MFXButton secButton;
   @FXML MFXButton comButton;
   @FXML MFXButton audioButton;
+
+  SubmittedGeneralRequestTable rt = new SubmittedGeneralRequestTable();
 
   public void initialize() {
     List<String> saniColumns =
@@ -75,30 +77,9 @@ public class SubmittedServiceRequestsController {
   private void makeTableSani(List<String> columns, String name) {
     Login l = SigninController.getCurrentUser();
     mainVbox.getChildren().clear();
-    TableView t = new TableView();
-    for (String colName : columns) {
-      if ((colName.equals("status") && DBSession.isAdmin(l))) {
-        TableColumn<SanitationRequest, RequestStatus> status = new TableColumn<>();
-        t.getColumns().add(status);
-        status.setText("status");
-        status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        status.setCellFactory(TextFieldTableCell.forTableColumn(converter));
-        status.setOnEditCommit(
-            e -> {
-              SanitationRequest SRequest =
-                  e.getTableView().getItems().get(e.getTablePosition().getRow());
-              SRequest.setStatus(e.getNewValue());
-              DBSession.updateRequest(SRequest);
-            });
-        status.setEditable(true);
-      } else {
-        TableColumn col = new TableColumn();
-        t.getColumns().add(col);
-        col.setText(colName);
-        col.setCellValueFactory(new PropertyValueFactory<>(colName));
-      }
-      t.setEditable(true);
-    }
+
+    TableView t = rt.getTable();
+
     List<SanitationRequest> objectList = DBSession.getAllSanRequests();
     objectList.forEach(
         (value) -> {
@@ -168,7 +149,7 @@ public class SubmittedServiceRequestsController {
               ComputerRequest CRequest =
                   e.getTableView().getItems().get(e.getTablePosition().getRow());
               CRequest.setStatus(e.getNewValue());
-              DBSession.addRequest(CRequest);
+              DBSession.updateRequest(CRequest);
             });
         status.setEditable(true);
       } else {

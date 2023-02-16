@@ -7,11 +7,13 @@ import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.RequestStatus;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
 
 public class SubmittedGeneralRequestTable {
@@ -31,6 +33,9 @@ public class SubmittedGeneralRequestTable {
   private List<TableColumn> cols = new ArrayList<>();
 
   private List<String> colNames = new ArrayList<>();
+  protected ObservableList<RequestStatus> Status =
+      FXCollections.observableArrayList(
+          RequestStatus.BLANK, RequestStatus.PROCESSING, RequestStatus.DONE);
 
   public void initialize() {
     l = SigninController.getCurrentUser();
@@ -51,7 +56,9 @@ public class SubmittedGeneralRequestTable {
 
   public void editableCols() {
     if (DBSession.isAdmin(l)) {
-      status.setCellFactory(TextFieldTableCell.forTableColumn(converter));
+      //      ComboBoxTableCell<RequestStatus> cb = new ComboBoxTableCell();
+
+      status.setCellFactory(new ComboBoxTableCell().forTableColumn(Status));
       status.setOnEditCommit(
           e -> {
             GeneralRequest r = e.getTableView().getItems().get(e.getTablePosition().getRow());

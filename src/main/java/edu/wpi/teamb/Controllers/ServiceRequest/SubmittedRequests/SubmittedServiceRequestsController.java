@@ -1,7 +1,6 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.*;
-import edu.wpi.teamb.Entities.RequestStatus;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -10,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.util.StringConverter;
 
 public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
@@ -81,5 +79,4 @@ public class SubmittedServiceRequestsController {
     mainVbox.getChildren().add(la);
     mainVbox.getChildren().add(t);
   }
-
 }

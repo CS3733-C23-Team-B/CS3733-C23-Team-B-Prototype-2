@@ -33,7 +33,6 @@ public class SubmittedServiceRequestsController {
 
   private void makeTableSani(String name) {
     mainVbox.getChildren().clear();
-
     TableView t = saniTable.getTable();
 
     List<SanitationRequest> objectList = DBSession.getAllSanRequests();
@@ -41,10 +40,7 @@ public class SubmittedServiceRequestsController {
         (value) -> {
           t.getItems().add(value);
         });
-    Label la = new Label();
-    la.setText(name);
-    la.setFont(new Font("Ariel", 25));
-    mainVbox.getChildren().add(la);
+    setLabel(name);
     mainVbox.getChildren().add(t);
   }
 
@@ -57,10 +53,7 @@ public class SubmittedServiceRequestsController {
         (value) -> {
           t.getItems().add(value);
         });
-    Label la = new Label();
-    la.setText(name);
-    la.setFont(new Font("Ariel", 25));
-    mainVbox.getChildren().add(la);
+    setLabel(name);
     mainVbox.getChildren().add(t);
   }
 
@@ -73,10 +66,15 @@ public class SubmittedServiceRequestsController {
         (value) -> {
           t.getItems().add(value);
         });
+    setLabel(name);
+    mainVbox.getChildren().add(t);
+  }
+
+  private void setLabel(String name){
     Label la = new Label();
     la.setText(name);
     la.setFont(new Font("Ariel", 25));
     mainVbox.getChildren().add(la);
-    mainVbox.getChildren().add(t);
+
   }
 }

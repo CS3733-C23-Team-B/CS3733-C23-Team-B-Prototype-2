@@ -70,11 +70,10 @@ public class SubmittedServiceRequestsController {
     mainVbox.getChildren().add(t);
   }
 
-  private void setLabel(String name){
+  private void setLabel(String name) {
     Label la = new Label();
     la.setText(name);
     la.setFont(new Font("Ariel", 25));
     mainVbox.getChildren().add(la);
-
   }
 }

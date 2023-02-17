@@ -102,5 +102,4 @@ public abstract class SubmittedGeneralRequestTable {
     }
     editableCols();
   }
-
 }

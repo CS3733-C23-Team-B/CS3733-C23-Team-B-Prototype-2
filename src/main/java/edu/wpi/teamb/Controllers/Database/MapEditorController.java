@@ -142,7 +142,6 @@ public class MapEditorController {
       if (node.getFloor().equals(f)) {
         Circle dot = placeNode(node);
         nodeMap.put(dot, node);
-        List<Move> locations = DBSession.getMostRecentMoves(node.getNodeID());
         displayLoc(dot);
       }
     }
@@ -222,6 +221,7 @@ public class MapEditorController {
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
     List<Move> l = moveMap.get(node.getNodeID());
+    if (l == null) l = Arrays.asList();
     for (Move move : l) {
       Label loc = new Label(move.getLocationName().getLongName());
       loc.setFont(new Font("Arial", 6));

@@ -17,11 +17,13 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -57,6 +59,9 @@ public class MapEditorController {
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
+  private double origX, origY;
+  private double paneOrigX, paneOrigY;
+  private boolean MOVING = false;
 
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
@@ -87,7 +92,6 @@ public class MapEditorController {
             "Second Floor",
             "Third Floor"));
     nodeMap = new HashMap<>();
-    nodeMap.clear();
     pane = new GesturePane();
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
@@ -131,6 +135,7 @@ public class MapEditorController {
         break;
     }
     image.setOnMouseClicked(e -> handleClick());
+
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
@@ -266,6 +271,40 @@ public class MapEditorController {
         e -> {
           selectedCircle.set(dot);
         });
+    dot.setCursor(Cursor.HAND);
+
+    dot.setOnMousePressed(
+        (e) -> {
+          origX = e.getSceneX();
+          origY = e.getSceneY();
+
+          pane.addEventFilter(
+              EventType.ROOT,
+              ev -> {
+                if (ev.getEventType().toString().equals("MOUSE_DRAGGED")) {
+                  ev.consume();
+                  System.out.println("CONSUMED");
+                }
+              });
+
+          Circle c = (Circle) (e.getSource());
+          c.toFront();
+        });
+
+    dot.setOnMouseDragged(
+        (e) -> {
+          double offsetX = e.getSceneX() - origX;
+          double offsetY = e.getSceneY() - origY;
+
+          Circle c = (Circle) (e.getSource());
+
+          c.setCenterX(c.getCenterX() + offsetX);
+          c.setCenterY(c.getCenterY() + offsetY);
+
+          origX = e.getSceneX();
+          origY = e.getSceneY();
+        });
+
     return dot;
   }
 

@@ -143,7 +143,7 @@ public class MapEditorController {
         Circle dot = placeNode(node);
         nodeMap.put(dot, node);
         List<Move> locations = DBSession.getMostRecentMoves(node.getNodeID());
-        if (locations != null) for (Move move : locations) displayLoc(dot);
+        displayLoc(dot);
       }
     }
 

@@ -278,18 +278,13 @@ public class MapEditorController {
           origX = e.getSceneX();
           origY = e.getSceneY();
 
-          pane.addEventFilter(
-              EventType.ROOT,
-              ev -> {
-                if (ev.getEventType().toString().equals("MOUSE_DRAGGED")) {
-                  ev.consume();
-                  System.out.println("CONSUMED");
-                }
-              });
+          pane.setGestureEnabled(false);
 
           Circle c = (Circle) (e.getSource());
           c.toFront();
         });
+
+    dot.setOnMouseReleased(e -> pane.setGestureEnabled(true));
 
     dot.setOnMouseDragged(
         (e) -> {

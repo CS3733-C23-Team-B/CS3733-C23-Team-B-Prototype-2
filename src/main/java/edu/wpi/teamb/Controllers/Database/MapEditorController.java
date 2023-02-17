@@ -17,7 +17,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -288,14 +287,11 @@ public class MapEditorController {
 
     dot.setOnMouseDragged(
         (e) -> {
-          double offsetX = e.getSceneX() - origX;
-          double offsetY = e.getSceneY() - origY;
-
+          double offsetX = (e.getSceneX() - origX) / pane.getCurrentScaleX();
+          double offsetY = (e.getSceneY() - origY) / pane.getCurrentScaleY();
           Circle c = (Circle) (e.getSource());
-
           c.setCenterX(c.getCenterX() + offsetX);
           c.setCenterY(c.getCenterY() + offsetY);
-
           origX = e.getSceneX();
           origY = e.getSceneY();
         });

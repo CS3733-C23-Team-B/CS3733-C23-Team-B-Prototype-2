@@ -21,6 +21,7 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -29,6 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -49,6 +51,7 @@ public class PathfindingController {
   @FXML MFXFilterComboBox<String> startLoc;
   @FXML MFXFilterComboBox<String> endLoc;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
+  private Map<String, List<Move>> moveMap;
   private ImageView lowerlevel =
       new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
   private ImageView groundfloor =
@@ -78,6 +81,8 @@ public class PathfindingController {
 
   /** Initializes the dropdown menus */
   public void initialize() {
+    moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
+
     floorMap.put("Lower Level 2", "L2");
     floorMap.put("Lower Level 1", "L1");
     floorMap.put("Ground Floor", "G");
@@ -178,6 +183,7 @@ public class PathfindingController {
       if (value.getFloor().equals(currentFloor)) {
         Circle dot = placeNode(value);
         nodeMap.put(dot, value);
+        displayLoc(dot);
       }
 
     selectedCircle.addListener(
@@ -359,6 +365,28 @@ public class PathfindingController {
           selectedCircle.set(dot);
         });
     return dot;
+  }
+
+  public void displayLoc(Circle dot) {
+    Node node = nodeMap.get(dot);
+    AnchorPane popPane = new AnchorPane();
+    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 25);
+    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 35);
+
+    VBox vbox = new VBox();
+    popPane.getChildren().add(vbox);
+    List<Move> l = moveMap.get(node.getNodeID());
+    if (l == null) l = Arrays.asList();
+    for (Move move : l) {
+      Label loc = new Label(move.getLocationName().getLongName());
+      loc.setFont(new Font("Arial", 6));
+      vbox.getChildren().add(loc);
+    }
+
+    HBox hbox = new HBox();
+    hbox.setAlignment(Pos.CENTER);
+    vbox.getChildren().add(hbox);
+    aPane.getChildren().add(popPane);
   }
 
   private void placeLine(Node start, Node end) {

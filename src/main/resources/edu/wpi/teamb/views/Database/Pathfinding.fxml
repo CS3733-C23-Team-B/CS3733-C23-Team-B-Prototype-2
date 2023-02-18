@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.PathfindingController">
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.PathfindingController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="340.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="1088.0" />
@@ -59,7 +66,12 @@
                   <MFXFilterComboBox fx:id="endLoc" prefHeight="42.0" prefWidth="300.0" />
                   <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="48.0" prefWidth="272.0" spacing="57.0">
                      <children>
-                        <CheckBox fx:id="avoidStairsCheckBox" mnemonicParsing="false" text="Avoid Stairs" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                           <children>
+                              <MFXCheckbox fx:id="avoidStairsCheckBox" text="Avoid Stairs" />
+                              <MFXCheckbox fx:id="showLocationsCheckBox" text="Show Locations" />
+                           </children>
+                        </VBox>
                         <MFXButton fx:id="pathfind" prefHeight="35.0" style="-fx-background-color: #003DA6;" text="Find Fastest Path" textFill="WHITE">
                            <HBox.margin>
                               <Insets />

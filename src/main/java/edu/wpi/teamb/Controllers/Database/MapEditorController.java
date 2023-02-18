@@ -59,7 +59,7 @@ public class MapEditorController {
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
   private double origX, origY;
-  private double paneOrigX, paneOrigY;
+  private boolean dragged;
   private boolean MOVING = false;
 
   private static MapEditorController instance;
@@ -283,7 +283,12 @@ public class MapEditorController {
           c.toFront();
         });
 
-    dot.setOnMouseReleased(e -> pane.setGestureEnabled(true));
+    dot.setOnMouseReleased(
+        e -> {
+          pane.setGestureEnabled(true);
+          if (dragged) updateNode(dot);
+          dragged = false;
+        });
 
     dot.setOnMouseDragged(
         (e) -> {
@@ -294,9 +299,21 @@ public class MapEditorController {
           c.setCenterY(c.getCenterY() + offsetY);
           origX = e.getSceneX();
           origY = e.getSceneY();
+          dragged = true;
         });
 
     return dot;
+  }
+
+  public void updateNode(Circle dot) {
+    Node node = nodeMap.get(dot);
+    node.setXCoord((int) dot.getCenterX());
+    node.setYCoord((int) dot.getCenterY());
+    DBSession.updateNode(node);
+    node.setNodeID(node.buildID());
+    currentNode = node;
+    currentDot = dot;
+    refreshPopUp();
   }
 
   private double scaleX(NodeInfo n) {
@@ -399,7 +416,7 @@ public class MapEditorController {
       Text id = (Text) vboxChildren.get(0);
       Text pos = (Text) vboxChildren.get(1);
       Text loc = (Text) vboxChildren.get(2);
-      id.setText("NodeID:   " + currentNode.getNodeID());
+      id.setText("NodeID:   " + currentNode.buildID());
       pos.setText(
           "(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
 

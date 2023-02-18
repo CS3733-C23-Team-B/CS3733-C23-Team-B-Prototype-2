@@ -29,7 +29,7 @@ public class MapDAO {
   }
 
   public static Map<String, LocationName> getAllLocationNames() {
-    refreshLocationNames();
+    // refreshLocationNames();
     return locationNames;
   }
 

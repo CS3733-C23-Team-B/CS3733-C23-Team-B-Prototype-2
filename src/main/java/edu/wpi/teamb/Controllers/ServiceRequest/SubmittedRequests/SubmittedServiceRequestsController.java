@@ -3,6 +3,8 @@ package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 import edu.wpi.teamb.Database.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.List;
+
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -17,6 +19,8 @@ public class SubmittedServiceRequestsController {
   @FXML MFXButton secButton;
   @FXML MFXButton comButton;
   @FXML MFXButton audioButton;
+  @FXML MFXComboBox requestStatusFilter;
+  @FXML MFXComboBox assignedEmployeeFilter;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();

@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -57,6 +58,9 @@ public class MapEditorController {
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
+  private double origX, origY;
+  private boolean dragged;
+  private boolean MOVING = false;
 
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
@@ -87,7 +91,6 @@ public class MapEditorController {
             "Second Floor",
             "Third Floor"));
     nodeMap = new HashMap<>();
-    nodeMap.clear();
     pane = new GesturePane();
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
@@ -131,6 +134,7 @@ public class MapEditorController {
         break;
     }
     image.setOnMouseClicked(e -> handleClick());
+
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
@@ -266,7 +270,50 @@ public class MapEditorController {
         e -> {
           selectedCircle.set(dot);
         });
+    dot.setCursor(Cursor.HAND);
+
+    dot.setOnMousePressed(
+        (e) -> {
+          origX = e.getSceneX();
+          origY = e.getSceneY();
+
+          pane.setGestureEnabled(false);
+
+          Circle c = (Circle) (e.getSource());
+          c.toFront();
+        });
+
+    dot.setOnMouseReleased(
+        e -> {
+          pane.setGestureEnabled(true);
+          if (dragged) updateNode(dot);
+          dragged = false;
+        });
+
+    dot.setOnMouseDragged(
+        (e) -> {
+          double offsetX = (e.getSceneX() - origX) / pane.getCurrentScaleX();
+          double offsetY = (e.getSceneY() - origY) / pane.getCurrentScaleY();
+          Circle c = (Circle) (e.getSource());
+          c.setCenterX(c.getCenterX() + offsetX);
+          c.setCenterY(c.getCenterY() + offsetY);
+          origX = e.getSceneX();
+          origY = e.getSceneY();
+          dragged = true;
+        });
+
     return dot;
+  }
+
+  public void updateNode(Circle dot) {
+    Node node = nodeMap.get(dot);
+    node.setXCoord((int) dot.getCenterX());
+    node.setYCoord((int) dot.getCenterY());
+    DBSession.updateNode(node);
+    node.setNodeID(node.buildID());
+    currentNode = node;
+    currentDot = dot;
+    refreshPopUp();
   }
 
   private double scaleX(NodeInfo n) {
@@ -369,7 +416,7 @@ public class MapEditorController {
       Text id = (Text) vboxChildren.get(0);
       Text pos = (Text) vboxChildren.get(1);
       Text loc = (Text) vboxChildren.get(2);
-      id.setText("NodeID:   " + currentNode.getNodeID());
+      id.setText("NodeID:   " + currentNode.buildID());
       pos.setText(
           "(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
 

@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
 @Entity
-@Table(name = "move")
+@Table(name = "move", schema = "iter3")
 public class Move {
 
   @Id

@@ -57,7 +57,7 @@ public class PathfindingController {
       new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel2.png").toExternalForm());
   private ImageView firstfloor =
       new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
-  private ImageView seccondfloor =
+  private ImageView secondfloor =
       new ImageView(getClass().getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
   private ImageView thirdfloor =
       new ImageView(getClass().getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
@@ -89,7 +89,7 @@ public class PathfindingController {
     imageMap.put("L1", lowerlevel);
     imageMap.put("G", groundfloor);
     imageMap.put("1", firstfloor);
-    imageMap.put("2", seccondfloor);
+    imageMap.put("2", secondfloor);
     imageMap.put("3", thirdfloor);
 
     searchTypeMap.put("A* Search", SearchType.A_STAR);
@@ -146,6 +146,7 @@ public class PathfindingController {
 
     currentFloor = floor;
     image = imageMap.get(floor);
+
     image.toFront();
     image.setOnMouseClicked(
         e -> {
@@ -300,7 +301,7 @@ public class PathfindingController {
       changeFloor(startNode.getFloor(), new Point2D(startNode.getXCoord(), startNode.getYCoord()));
       floorMap.forEach(
           (key, value) -> {
-            if (value.equals(startNode.getFloor())) floorCombo.setText(key);
+            if (value.equals(startNode.getFloor())) floorCombo.setValue(key);
           });
     }
 

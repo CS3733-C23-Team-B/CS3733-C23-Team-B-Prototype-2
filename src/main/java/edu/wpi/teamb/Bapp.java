@@ -31,6 +31,9 @@ public class Bapp extends Application {
     root.setId("home");
     Scene scene = new Scene(root, 1200, 650);
     scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
+    scene
+        .getStylesheets()
+        .add("https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap");
 
     Bapp.primaryStage = primaryStage;
     Bapp.rootPane = (BorderPane) root;

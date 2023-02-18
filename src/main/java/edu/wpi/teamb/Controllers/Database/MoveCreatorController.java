@@ -51,6 +51,13 @@ public class MoveCreatorController {
     Date newDate = Date.valueOf(datePicker.getValue());
     newMove.setMoveDate(newDate);
     DBSession.addMove(newMove);
+
+    resetFields();
+  }
+
+  public void resetFields() {
+    nodeIdBox.setValue("");
+    locationsBox.setValue("");
   }
 
   public void cancelClicked() {

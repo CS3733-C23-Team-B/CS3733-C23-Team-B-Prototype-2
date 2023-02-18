@@ -30,6 +30,10 @@ public class SigninController {
   private Map<String, Login> usersMap = new HashMap<>();
   private static SigninController instance;
 
+  public void initialize() {
+    instance = this;
+  }
+
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
     if (event.getCode().equals(KeyCode.ENTER)) signInButtonClicked();
   }

@@ -22,12 +22,12 @@ public class Navigation {
 
       if (!filename.equals("views/Profile/SignIn.fxml")) {
         final var resource = Bapp.class.getResource(header);
-        final var res = Bapp.class.getResource(footer);
+        // final var res = Bapp.class.getResource(footer);
         final FXMLLoader loader2 = new FXMLLoader(resource);
-        final FXMLLoader loader3 = new FXMLLoader(res);
+        // final FXMLLoader loader3 = new FXMLLoader(res);
 
         Bapp.getRootPane().setTop(loader2.load());
-        Bapp.getRootPane().setBottom(loader3.load());
+        // Bapp.getRootPane().setBottom(loader3.load());
       }
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();

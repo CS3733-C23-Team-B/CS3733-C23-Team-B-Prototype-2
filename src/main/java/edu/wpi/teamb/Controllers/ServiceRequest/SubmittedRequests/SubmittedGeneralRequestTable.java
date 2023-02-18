@@ -95,6 +95,7 @@ public abstract class SubmittedGeneralRequestTable {
   }
 
   protected void setTable() {
+    table.getItems().clear();
     for (int i = 0; i < cols.size(); i++) {
       cols.get(i).setCellValueFactory(new PropertyValueFactory<>(colNames.get(i)));
       table.getColumns().add(cols.get(i));

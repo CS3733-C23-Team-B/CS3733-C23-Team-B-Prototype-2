@@ -28,9 +28,14 @@ public class SubmittedServiceRequestsController {
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
+  SubmittedAVRequestTable avTable = new SubmittedAVRequestTable();
+  SubmittedSecurityRequestTable securityTable = new SubmittedSecurityRequestTable();
+
   TableView saniTableView = new TableView<>();
   TableView ptTableView = new TableView<>();
   TableView comTableView = new TableView<>();
+  TableView avTableView = new TableView<>();
+  TableView securityTableView = new TableView<>();
 
   private ObservableList<RequestStatus> Status =
       FXCollections.observableArrayList(
@@ -42,9 +47,13 @@ public class SubmittedServiceRequestsController {
     saniTable.initialize();
     ptTable.initialize();
     comTable.initialize();
+    avTable.initialize();
+    securityTable.initialize();
     saniButton.setOnAction(e -> makeTableSani("Sanitation"));
     transButton.setOnAction(e -> makeTableTrans("Internal Patient Transportation"));
     comButton.setOnAction(e -> makeTableCom("Computer"));
+    audioButton.setOnAction(e -> makeTableAV("Audio and Visual"));
+    secButton.setOnAction(e -> makeTableSecurity("Security"));
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
     assignedEmployeeFilter.setOnAction(e -> filter());
@@ -178,6 +187,92 @@ public class SubmittedServiceRequestsController {
     mainVbox.getChildren().add(ptTableView);
   }
 
+  private void makeTableAV(String name) {
+    page = name;
+    mainVbox.getChildren().clear();
+    avTableView.getItems().clear();
+    avTableView = avTable.getTable();
+
+    //    change the datatype here to avRequests once it exists. Setting up controller for it to
+    // work.
+    List<GeneralRequest> objectList = DBSession.getAllRequests();
+    List<GeneralRequest> filtered = new ArrayList<>();
+    objectList.forEach(
+        (value) -> {
+          if (requestStatusFilter.getValue() != null) {
+            if (requestStatusFilter.getValue() == RequestStatus.DONE
+                && value.getStatus() == RequestStatus.DONE) {
+              filtered.add(value);
+            } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
+                && value.getStatus() == RequestStatus.PROCESSING) {
+              filtered.add(value);
+            } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
+                && value.getStatus() == RequestStatus.BLANK) {
+              filtered.add(value);
+            }
+          } else {
+            filtered.add(value);
+          }
+        });
+
+    filtered.forEach(
+        (value) -> {
+          if (assignedEmployeeFilter.getValue() != null) {
+            if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
+              avTableView.getItems().add(value);
+            }
+          } else {
+            avTableView.getItems().add(value);
+          }
+        });
+
+    setLabel(name);
+    mainVbox.getChildren().add(avTableView);
+  }
+
+  private void makeTableSecurity(String name) {
+    page = name;
+    mainVbox.getChildren().clear();
+    securityTableView.getItems().clear();
+    securityTableView = securityTable.getTable();
+
+    //    change the datatype here to avRequests once it exists. Setting up controller for it to
+    // work.
+    List<GeneralRequest> objectList = DBSession.getAllRequests();
+    List<GeneralRequest> filtered = new ArrayList<>();
+    objectList.forEach(
+        (value) -> {
+          if (requestStatusFilter.getValue() != null) {
+            if (requestStatusFilter.getValue() == RequestStatus.DONE
+                && value.getStatus() == RequestStatus.DONE) {
+              filtered.add(value);
+            } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
+                && value.getStatus() == RequestStatus.PROCESSING) {
+              filtered.add(value);
+            } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
+                && value.getStatus() == RequestStatus.BLANK) {
+              filtered.add(value);
+            }
+          } else {
+            filtered.add(value);
+          }
+        });
+
+    filtered.forEach(
+        (value) -> {
+          if (assignedEmployeeFilter.getValue() != null) {
+            if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
+              securityTableView.getItems().add(value);
+            }
+          } else {
+            securityTableView.getItems().add(value);
+          }
+        });
+
+    setLabel(name);
+    mainVbox.getChildren().add(securityTableView);
+  }
+
   private void setLabel(String name) {
     Label la = new Label();
     la.setText(name);
@@ -188,6 +283,8 @@ public class SubmittedServiceRequestsController {
   public void clearFilters() {
     assignedEmployeeFilter.setValue(null);
     requestStatusFilter.setValue(null);
+    requestStatusFilter.setText("--Select--");
+    assignedEmployeeFilter.setText("--Select--");
     filter();
   }
 
@@ -198,6 +295,10 @@ public class SubmittedServiceRequestsController {
       makeTableTrans(page);
     } else if (page.equals("Computer")) {
       makeTableCom(page);
+    } else if (page.equals("Audio and Visual")) {
+      makeTableAV(page);
+    } else if (page.equals("Security")) {
+      makeTableSecurity(page);
     }
   }
 }

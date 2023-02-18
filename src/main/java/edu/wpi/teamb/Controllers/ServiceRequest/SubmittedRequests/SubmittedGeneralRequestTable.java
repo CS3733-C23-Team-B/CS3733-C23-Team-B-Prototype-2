@@ -89,7 +89,7 @@ public abstract class SubmittedGeneralRequestTable {
   }
 
   protected void addCol(TableColumn col, String colName) {
-    int insert = 3;
+    int insert = 2;
     this.cols.add(cols.size() - insert, col);
     this.colNames.add(colNames.size() - insert, colName);
   }

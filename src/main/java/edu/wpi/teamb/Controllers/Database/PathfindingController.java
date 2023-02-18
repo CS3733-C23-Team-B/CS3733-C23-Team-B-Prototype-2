@@ -6,8 +6,13 @@ import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -69,6 +74,7 @@ public class PathfindingController {
   @FXML MFXFilterComboBox<String> floorCombo;
   @FXML CheckBox avoidStairsCheckBox;
   @FXML MFXFilterComboBox searchCombo;
+  @FXML MFXDatePicker datePicker;
   private String currentFloor;
   private String startID;
   private String endID;
@@ -267,6 +273,15 @@ public class PathfindingController {
     clearPopUp();
   }
 
+  public void dateEntered() {
+    LocalDate d = datePicker.getValue();
+    ZoneId z = ZoneId.of("-05:00");
+    ZonedDateTime zdt = d.atStartOfDay(z);
+    Instant instant = zdt.toInstant();
+    Date date = Date.from(instant);
+    Pathfinding.setDate(date);
+  }
+
   public void createPathFromNode() {}
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
@@ -285,6 +300,11 @@ public class PathfindingController {
 
     PathfindingContext pContext = new PathfindingContext(pathfindable);
     ArrayList<String> path = pContext.getShortestPath(start, end);
+
+    if (path == null) {
+      System.out.println("PATH NOT FOUND");
+      return;
+    }
 
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);

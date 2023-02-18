@@ -1,15 +1,26 @@
 package edu.wpi.teamb.Pathfinding;
 
-import edu.wpi.teamb.Database.DBSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.PriorityQueue;
+import edu.wpi.teamb.Database.Move;
+import java.util.*;
 
 public class AStarPathfinder implements Pathfindable {
   @Override
   public ArrayList<String> getShortestPath(String startLoc, String endLoc) {
-    String start = DBSession.getMostRecentNodeID(startLoc);
-    String end = DBSession.getMostRecentNodeID(endLoc);
+    //    String start = DBSession.getMostRecentNodeID(startLoc);
+    //    String end = DBSession.getMostRecentNodeID(endLoc);
+
+    Map<String, Move> moves = Pathfinding.getMovesLN();
+    Move startMove = moves.get(startLoc);
+    Move endMove = moves.get(endLoc);
+
+    if (startMove == null || endMove == null) {
+      return null;
+    }
+
+    String start = startMove.getNode().getNodeID();
+    String end = endMove.getNode().getNodeID();
+
+    // END HERE
 
     PriorityQueue<GraphNode> queue = new PriorityQueue<GraphNode>();
     queue.add(new GraphNode(start, 0));

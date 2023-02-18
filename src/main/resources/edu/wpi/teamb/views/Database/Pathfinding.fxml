@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -89,5 +90,10 @@
             </VBox>
          </children>
       </AnchorPane>
+      <MFXDatePicker fx:id="datePicker" onAction="#dateEntered">
+         <GridPane.margin>
+            <Insets left="70.0" />
+         </GridPane.margin>
+      </MFXDatePicker>
    </children>
 </GridPane>

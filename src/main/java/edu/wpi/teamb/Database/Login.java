@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "login")
-@PrimaryKeyJoinColumn(name = "login", foreignKey = @ForeignKey(name = "loginIDKey"))
+@Table(name = "login", schema = "iter3")
 public class Login {
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_seq_iter3")
+  @SequenceGenerator(name = "log_seq_iter3", sequenceName = "log_seq_iter3")
   @Getter
   @Setter
   @Id

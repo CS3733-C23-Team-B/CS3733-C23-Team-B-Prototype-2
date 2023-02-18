@@ -1,10 +1,7 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
-import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Move;
-import edu.wpi.teamb.Database.Node;
-import edu.wpi.teamb.Database.NodeInfo;
+import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -16,7 +13,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -49,7 +45,6 @@ public class MapEditorController {
   @FXML MFXButton editLocationButton;
   @FXML MFXButton newMoveButton;
   @FXML private AnchorPane forms;
-  private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
@@ -61,7 +56,8 @@ public class MapEditorController {
   private double origX, origY;
   private boolean dragged;
   private boolean MOVING = false;
-
+  private Circle edgeNode1, edgeNode2;
+  private boolean creatingEdge;
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
   private ImageView lowerlevel =
@@ -145,21 +141,25 @@ public class MapEditorController {
     for (Node node : nodes.values()) {
       if (node.getFloor().equals(f)) {
         Circle dot = placeNode(node);
+
+        dot.setOnMouseClicked(
+            e -> {
+              displayPopUp(dot);
+              dot.setFill(Color.GOLD);
+              if (creatingEdge) {
+                if (edgeNode1 == null) edgeNode1 = dot;
+                else if (edgeNode2 == null && dot != edgeNode1) {
+                  edgeNode2 = dot;
+                  createEdge();
+                }
+              }
+            });
+
         nodeMap.put(dot, node);
         displayLoc(dot);
       }
     }
 
-    selectedCircle.addListener(
-        (obs, oldSelection, newSelection) -> {
-          if (oldSelection != null) {
-            oldSelection.pseudoClassStateChanged(SELECTED_P_C, false);
-          }
-          if (newSelection != null) {
-            newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
-            displayPopUp(newSelection);
-          }
-        });
     Platform.runLater(() -> pane.centreOn(p));
   }
 
@@ -256,6 +256,7 @@ public class MapEditorController {
     if (currentPopUp != null) {
       aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
+      if (currentDot != null) currentDot.setFill(Color.BLUE);
       currentNode = null;
       currentDot = null;
     }
@@ -331,6 +332,10 @@ public class MapEditorController {
   public void handleClick() {
     selectedCircle.set(null);
     clearPopUp();
+    if (edgeNode1 != null) {
+      edgeNode1.setFill(Color.GOLD);
+      System.out.println("Coloring: " + edgeNode1.hashCode());
+    }
   }
 
   public void editLocationClicked() throws IOException {
@@ -370,6 +375,40 @@ public class MapEditorController {
     final var res = Bapp.class.getResource(Screen.NODE_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
+  }
+
+  public void newEdgeClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.EDGE_CLICK_CREATOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
+    creatingEdge = true;
+  }
+
+  public void cancelClickEdge() {
+    if (edgeNode1 != null) {
+      edgeNode1.setFill(Color.BLUE);
+      edgeNode1 = null;
+    }
+    if (edgeNode2 != null) {
+      edgeNode2.setFill(Color.BLUE);
+      edgeNode2 = null;
+    }
+    clearForm();
+  }
+
+  public void clearForm() {
+    forms.getChildren().clear();
+  }
+
+  public void createEdge() {
+    if (edgeNode1 == null || edgeNode2 == null) return;
+    Edge e = new Edge();
+    e.setNode1(nodeMap.get(edgeNode1));
+    e.setNode2(nodeMap.get(edgeNode2));
+    DBSession.addEdge(e);
+    cancelClickEdge();
+    creatingEdge = false;
   }
 
   public void editNodeClicked() throws IOException {

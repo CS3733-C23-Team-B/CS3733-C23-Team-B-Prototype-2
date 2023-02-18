@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="328.0" minHeight="10.0" prefHeight="325.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="328.0" minHeight="10.0" percentHeight="10.0" prefHeight="325.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox prefHeight="182.0" prefWidth="600.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" text="Credits">
+                     <font>
+                        <Font name="Raanana" size="40.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <GridPane alignment="CENTER" GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <TextArea prefHeight="324.0" prefWidth="600.0" text="APIs:&#10;List them here&#10;&#10;Images:&#10;Brigham and Women’s Hospital Background Image: &#10;https://www.massgeneralbrigham.org/en/patient-care/international/about/brigham-and-womens-hospital&#10;&#10;Brigham and Women’s Hospital Logo:&#10;https://innovation.massgeneralbrigham.org/about/about-mass-general-brigham&#10;&#10;Icons:&#10;Profile Icon:&#10;Created by Iamkikirizky - Flaticon&#10;https://www.flaticon.com/free-icons/ui&#10;&#10;Stretcher icon:&#10;Created by Freepik - Flaticon&#10;https://www.flaticon.com/free-icons/stretcher&#10;&#10;Cleaning icon: &#10;Created by monkik - Flaticon&#10;https://www.flaticon.com/free-icons/cleaning&#10; &#10;Security icon:&#10;Created by Freepik - Flaticon&#10;https://www.flaticon.com/free-icons/security&#10;&#10;Laptop icons:&#10;Created by Freepik - Flaticon&#10;https://www.flaticon.com/free-icons/laptop &#10;&#10;Video and audio icon: &#10;Created by berkahicon - Flaticon&#10;https://www.flaticon.com/free-icons/video-and-audio&#10;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextArea>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" GridPane.rowIndex="2">
+         <children>
+            <MFXButton />
+         </children>
+      </HBox>
+   </children>
+</GridPane>

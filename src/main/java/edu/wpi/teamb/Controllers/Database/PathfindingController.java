@@ -19,7 +19,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -236,13 +235,6 @@ public class PathfindingController {
     Text loc = new Text();
     if (m == null) loc.setText("NO MOVES");
     else for (Move move : m) loc.setText(move.getLocationName().getLongName());
-
-    Button editButton = new Button("Create Path from Here");
-    editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
-    editButton.setOnAction(
-        (eventAction) -> {
-          createPathFromNode();
-        });
     vbox.setSpacing(5);
     //    vbox.setAlignment(Pos.CENTER);
     vbox.setPadding(new Insets(10, 10, 10, 10));
@@ -252,7 +244,6 @@ public class PathfindingController {
     vbox.getChildren().add(loc);
 
     HBox hbox = new HBox();
-    hbox.getChildren().add(editButton);
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
 

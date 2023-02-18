@@ -113,6 +113,8 @@ public class LoginDAO {
     }
   }
 
+  public static void main(String[] args) {}
+
   public static boolean isAdmin(Login l) {
     if (l.getAdmin()) {
       return true;

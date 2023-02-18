@@ -4,140 +4,150 @@
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.NodeCreatorController">
-   <center>
-      <AnchorPane prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+<BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="325.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.NodeCreatorController">
+   <right>
+      <VBox prefHeight="446.0" prefWidth="326.0" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <Text fill="WHITE" layoutX="245.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Node Creator" textAlignment="CENTER">
+            <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="New Node">
                <font>
-                  <Font size="50.0" />
+                  <Font size="36.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="75.0" top="20.0" />
+               </VBox.margin>
             </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="530.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <VBox layoutY="113.0" prefHeight="531.0" prefWidth="800.0">
+            <HBox layoutX="10.0" layoutY="108.0" prefHeight="12.0" prefWidth="326.0" spacing="10.0">
                <children>
-                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="New Node">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X-Coordinate">
                      <font>
-                        <Font size="36.0" />
+                        <Font size="18.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="310.0" top="40.0" />
-                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets left="60.0" top="10.0" />
+                     </HBox.margin>
                   </Text>
-                  <HBox prefHeight="0.0" prefWidth="800.0" spacing="28.0">
-                     <VBox.margin>
-                        <Insets top="40.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="108.0" prefHeight="19.0" prefWidth="800.0" spacing="57.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X-Coordinate:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="240.0" top="10.0" />
-                           </HBox.margin>
-                        </Text>
-                        <MFXTextField minHeight="-Infinity" prefHeight="40.0" prefWidth="210.0" fx:id="xField" />
-                     </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="164.0" prefHeight="19.0" prefWidth="800.0" spacing="55.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y-Coordinate:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="240.0" top="10.0" />
-                           </HBox.margin>
-                        </Text>
-                        <MFXTextField fx:id="yField" minHeight="-Infinity" prefHeight="40.0" prefWidth="210.0">
-                           <HBox.margin>
-                              <Insets left="3.0" />
-                           </HBox.margin></MFXTextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="239.0" prefHeight="19.0" prefWidth="800.0" spacing="38.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Floor:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="240.0" top="10.0" />
-                           </HBox.margin>
-                        </Text>
-                        <MFXFilterComboBox fx:id="floorBox" prefHeight="42.0" prefWidth="210.0">
-                           <HBox.margin>
-                              <Insets left="85.0" />
-                           </HBox.margin></MFXFilterComboBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="19.0" prefWidth="800.0" spacing="38.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="240.0" top="10.0" />
-                           </HBox.margin>
-                        </Text>
-                        <MFXFilterComboBox fx:id="buildingBox" prefHeight="42.0" prefWidth="210.0">
-                           <HBox.margin>
-                              <Insets left="61.0" />
-                           </HBox.margin>
-                        </MFXFilterComboBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="19.0" prefWidth="800.0" spacing="50.0">
-                     <children>
-                        <MFXButton fx:id="submitButton" minHeight="46.0" minWidth="100.0" onAction="#submitClicked" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </MFXButton>
-                        <MFXButton minHeight="46.0" minWidth="100.0" onAction="#cancelClicked" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </MFXButton>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="40.0" />
-                     </VBox.margin>
-                  </HBox>
                </children>
-            </VBox>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="8.0" prefWidth="326.0">
+               <children>
+                  <MFXTextField minHeight="-Infinity" prefHeight="40.0" prefWidth="180.0" fx:id="xField">
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin></MFXTextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="164.0" prefHeight="19.0" prefWidth="800.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y-Coordinate">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="60.0" top="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="16.0" prefWidth="326.0">
+               <children>
+                  <MFXTextField fx:id="yField" minHeight="-Infinity" prefHeight="40.0" prefWidth="180.0">
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </MFXTextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="239.0" prefHeight="19.0" prefWidth="800.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Floor">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="60.0" top="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="35.0" prefWidth="326.0">
+               <children>
+                  <MFXFilterComboBox fx:id="floorBox" prefHeight="42.0" prefWidth="180.0">
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </MFXFilterComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="19.0" prefWidth="800.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="60.0" top="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="14.0" prefWidth="326.0">
+               <children>
+                  <MFXFilterComboBox fx:id="buildingBox" prefHeight="42.0" prefWidth="180.0">
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </MFXFilterComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="19.0" prefWidth="800.0" spacing="50.0">
+               <children>
+                  <MFXButton fx:id="submitButton" minHeight="46.0" minWidth="100.0" onAction="#submitClicked" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </MFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </HBox>
          </children>
-      </AnchorPane>
-   </center>
-   <padding>
-      <Insets top="74.0" />
-   </padding>
+      </VBox>
+   </right>
 </BorderPane>

@@ -11,6 +11,6 @@ public class PatientTransportationHelpController {
   @FXML private Button backButton;
 
   public void backButtonClicked() throws IOException {
-    Navigation.navigate(Screen.PATIENT_TRANSPORTATION);
+    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
   }
 }

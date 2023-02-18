@@ -1,10 +1,13 @@
 package edu.wpi.teamb.Database.DAO;
 
+import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.SessionGetter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,6 +19,19 @@ public class LoginDAO {
   public static Map<String, Login> getAllLogins() {
     refreshLogins();
     return logins;
+  }
+
+  public static ObservableList<String> getStaff() {
+    ObservableList<String> list = FXCollections.observableArrayList();
+
+    Map<String, Login> logins = DBSession.getAllLogins();
+    logins.forEach(
+        (key, value) -> {
+          String name = value.getFirstname() + " " + value.getLastname();
+          list.add(name);
+        });
+
+    return list;
   }
 
   public static void addLogin(Login l) {
@@ -95,6 +111,13 @@ public class LoginDAO {
       session.close();
       refreshLogins();
     }
+  }
+
+  public static boolean isAdmin(Login l) {
+    if (l.getAdmin()) {
+      return true;
+    }
+    return false;
   }
 
   public static void refreshLogins() {

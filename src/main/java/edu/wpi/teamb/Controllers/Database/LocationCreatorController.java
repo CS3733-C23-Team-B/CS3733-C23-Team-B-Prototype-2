@@ -2,8 +2,6 @@ package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.LocationName;
-import edu.wpi.teamb.Navigation.Navigation;
-import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.*;
 import javafx.collections.FXCollections;
@@ -58,10 +56,6 @@ public class LocationCreatorController {
     newLN.setLongName(newLongName);
     newLN.setLocationType(newLocationType);
     DBSession.addLocationName(newLN);
-    cancelClicked();
-  }
-
-  public void cancelClicked() {
-    Navigation.navigate(Screen.LOCATION_EDITOR);
+    resetFields();
   }
 }

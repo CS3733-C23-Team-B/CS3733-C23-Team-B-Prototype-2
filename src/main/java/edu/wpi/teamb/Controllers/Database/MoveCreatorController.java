@@ -52,14 +52,17 @@ public class MoveCreatorController {
     newMove.setMoveDate(newDate);
     DBSession.addMove(newMove);
 
-    cancelClicked();
+    resetFields();
+  }
+
+  public void resetFields() {
+    nodeIdBox.setValue("");
+    locationsBox.setValue("");
   }
 
   public void cancelClicked() {
-    Navigation.navigate(Screen.MAP_EDITOR);
+    Navigation.navigate(Screen.FUTURE_MOVES);
   }
-
-  public void selectDate() {}
 
   private ObservableList<String> getLocations() {
     ObservableList<String> list = FXCollections.observableArrayList();

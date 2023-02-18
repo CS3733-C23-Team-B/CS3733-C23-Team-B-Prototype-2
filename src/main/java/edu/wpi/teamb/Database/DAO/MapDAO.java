@@ -33,9 +33,9 @@ public class MapDAO {
     return locationNames;
   }
 
-  public static Map<String, ArrayList<Move>> getIDMoves(Date d) {
+  public static Map<String, List<Move>> getIDMoves(Date d) {
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
-    HashMap<String, ArrayList<Move>> moves = new HashMap<String, ArrayList<Move>>();
+    HashMap<String, List<Move>> moves = new HashMap<String, List<Move>>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     String hql =
@@ -90,7 +90,6 @@ public class MapDAO {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery(hql);
       List<Object[]> ms = q.list();
-      System.out.println(ms.get(0));
       tx.commit();
       for (Object[] moveInfo : ms) {
         Move m = new Move();
@@ -99,7 +98,24 @@ public class MapDAO {
         m.setMoveDate((Date) moveInfo[2]);
         moves.put(m.getLocationName().getLongName(), m);
       }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
       return moves;
+    }
+  }
+
+  public static List<Move> getFutureMoves(Date d) {
+    List<Move> moves = new ArrayList<Move>();
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    String hql = "FROM Move WHERE moveDate >= '" + d + "'";
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery(hql, Move.class);
+      moves = q.list();
+      tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
@@ -336,31 +352,8 @@ public class MapDAO {
   }
 
   public static void updateMove(Move oldM, Move newM) {
-    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
-    Session session = sf.openSession();
-    String hql =
-        "UPDATE Move m SET m.locationName = '"
-            + newM.getLocationName().getLongName()
-            + "', m.node = '"
-            + newM.getNode().getNodeID()
-            + "', m.moveDate = '"
-            + newM.getMoveDate()
-            + "' WHERE m.node = '"
-            + oldM.getNode().getNodeID()
-            + "'AND m.locationName = '"
-            + oldM.getLocationName().getLongName()
-            + "'AND m.moveDate = '"
-            + oldM.getMoveDate()
-            + "'";
-    try {
-      Transaction tx = session.beginTransaction();
-      session.createQuery(hql).executeUpdate();
-      tx.commit();
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      session.close();
-    }
+    deleteMove(oldM);
+    addMove(newM);
   }
 
   public static Move getMostRecentMoveWithLocationName(LocationName ln) {

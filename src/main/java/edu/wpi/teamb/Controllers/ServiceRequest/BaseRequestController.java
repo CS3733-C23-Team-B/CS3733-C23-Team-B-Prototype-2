@@ -14,6 +14,8 @@ import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 import javafx.collections.FXCollections;
@@ -28,7 +30,7 @@ public class BaseRequestController {
   @FXML protected MFXFilterComboBox<String> assignedStaffBox;
   @FXML protected MFXTextField additionalNotesField;
   private RequestStatus request;
-  @FXML protected MFXButton cancelButton;
+  @FXML protected MFXButton backButton;
   @FXML protected MFXButton helpButton;
   @FXML protected MFXButton clearButton;
 
@@ -37,7 +39,7 @@ public class BaseRequestController {
   // Choice-box options
   protected ObservableList<String> urgencyOptions =
       FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
-  protected ObservableList<String> staffMembers = getStaff();
+  protected ObservableList<String> staffMembers = DBSession.getStaff();
 
   // List of all text fields and choice boxes for flexibility; when adding new input components to
   // form, add to this list
@@ -67,8 +69,8 @@ public class BaseRequestController {
    *
    * @throws IOException
    */
-  public void cancelButtonClicked() throws IOException {
-    Navigation.navigate(Screen.HOME);
+  public void backButtonClicked() throws IOException {
+    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
   }
 
   /**
@@ -112,19 +114,6 @@ public class BaseRequestController {
     locationNames.forEach((key, value) -> list.add(value.getLongName()));
 
     Sorting.quickSort(list);
-    return list;
-  }
-
-  protected ObservableList<String> getStaff() {
-    ObservableList<String> list = FXCollections.observableArrayList();
-
-    Map<String, Login> locationNames = DBSession.getAllLogins();
-    locationNames.forEach(
-        (key, value) -> {
-          String name = value.getFirstname() + " " + value.getLastname();
-          list.add(name);
-        });
-
     return list;
   }
 
@@ -182,7 +171,9 @@ public class BaseRequestController {
     request.setEmployeeID(String.valueOf(currUser.getId()));
     request.setEmail(currUser.getEmail());
     request.setNotes(additionalNotesField.getText());
-
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    request.setDate(dtf.format(now));
     var staff = assignedStaffBox.getValue();
     if (staff == null) {
       staff = "";

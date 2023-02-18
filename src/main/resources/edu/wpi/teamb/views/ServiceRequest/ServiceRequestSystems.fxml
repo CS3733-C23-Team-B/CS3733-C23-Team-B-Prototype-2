@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.LandingPageController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.ServiceRequestSystemsController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="340.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="1088.0" />
@@ -33,7 +33,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request a patient to be moved to and from different locations within the hospital. ">
+            <Label text="Request a patient to be moved to and from different locations within the hospital. Developed by Christina Aube and Cierra O'Grady.">
                <font>
                   <Font size="14.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request that a room or public space be cleaned and sanitized. ">
+            <Label text="Request that a room or public space be cleaned and sanitized. Developed by Luke Grady and Jolie Walts.">
                <font>
                   <Font size="14.0" />
                </font>
@@ -65,7 +65,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request an officer/security staff ">
+            <Label text="Request an officer/security staff. Developed by Sam Colebourn and Jack Lafond.">
                <font>
                   <Font size="14.0" />
                </font>
@@ -81,7 +81,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request a repair on a hospital device">
+            <Label text="Request a repair on a hospital device. Developed by Kavya Mani and Adrian Johnson.">
                <font>
                   <Font size="14.0" />
                </font>
@@ -97,7 +97,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request an audio or video accommodation for a patient">
+            <Label text="Request audio or video entertainment for a patient. Developed by Michael Gatti and Sean Lendrum.">
                <font>
                   <Font size="14.0" />
                </font>
@@ -107,7 +107,7 @@
             </Label>
          </children></VBox>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="115.0" stroke="BLACK" strokeType="INSIDE" width="1088.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE" />
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Service Request Systems" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+      <Label fx:id="pageTitle" alignment="CENTER" contentDisplay="CENTER" text="Service Request Systems" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
          <font>
             <Font size="48.0" />
          </font>

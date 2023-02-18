@@ -25,6 +25,11 @@ public class LocationName {
 
   public LocationName() {}
 
+  @Override
+  public String toString() {
+    return longName;
+  }
+
   public LocationName(String longName, String shortName, String locationType) {
     this.longName = longName;
     this.shortName = shortName;

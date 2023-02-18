@@ -39,6 +39,9 @@
         <mapping class="edu.wpi.teamb.Database.Edge"/>
         <mapping class="edu.wpi.teamb.Database.Node"/>
         <mapping class="edu.wpi.teamb.Database.ComputerRequest"/>
+        <mapping class="edu.wpi.teamb.Database.AudioVideoRequest"/>
+        <mapping class="edu.wpi.teamb.Database.SecurityRequest"/>
+
 
 
         <!-- Names the annotated entity class -->

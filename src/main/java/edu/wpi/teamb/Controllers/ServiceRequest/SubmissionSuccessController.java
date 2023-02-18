@@ -17,6 +17,6 @@ public class SubmissionSuccessController {
   }
 
   public void requestsButtonClicked() throws IOException {
-    Navigation.navigate(Screen.REQUESTS);
+    Navigation.navigate(Screen.SUBMITTED_SERVICE_REQUESTS);
   }
 }

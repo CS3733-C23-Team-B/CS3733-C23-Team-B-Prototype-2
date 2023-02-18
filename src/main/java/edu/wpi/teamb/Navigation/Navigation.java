@@ -2,9 +2,7 @@ package edu.wpi.teamb.Navigation;
 
 import edu.wpi.teamb.Bapp;
 import java.io.IOException;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 
 public class Navigation {
 
@@ -33,16 +31,6 @@ public class Navigation {
       }
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
-    }
-  }
-
-  public static void removeCenter() {
-    ObservableList<Node> children = Bapp.getRootPane().getChildren();
-    for (Node node : children) {
-      if (Bapp.getRootPane().getCenter() == node) {
-        System.out.println("IT IS WORKING ALMOST");
-        Bapp.getRootPane().getChildren().remove(node);
-      }
     }
   }
 }

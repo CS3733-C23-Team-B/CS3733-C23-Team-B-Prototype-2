@@ -288,6 +288,7 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
+    pathNotFoundTextField.setVisible(false);
     Pathfinding.avoidStairs = avoidStairsCheckBox.isSelected();
     SearchType type = searchTypeMap.get(searchCombo.getText());
 

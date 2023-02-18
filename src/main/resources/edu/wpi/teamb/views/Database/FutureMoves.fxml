@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -31,6 +32,11 @@
                   <Font size="18.0" />
                </font>
             </MFXButton>
+            <HBox layoutX="134.0" layoutY="19.0" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <MFXDatePicker fx:id="datePicker" onAction="#dateEntered" prefHeight="38.0" prefWidth="260.0" text="Select Date" />
+               </children>
+            </HBox>
             <TableView fx:id="table1" layoutX="58.0" layoutY="60.0" prefHeight="313.0" prefWidth="687.0">
               <columns>
                 <TableColumn fx:id="moveDate" prefWidth="75.0" text="Move Date" />

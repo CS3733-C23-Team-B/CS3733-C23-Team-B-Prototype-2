@@ -252,11 +252,8 @@ public class MapDAO {
     e2.setNode2(n1);
     try {
       Transaction tx = session.beginTransaction();
-      if (session.contains(e1)) {
-        session.remove(e1);
-      } else if (session.contains(e2)) {
-        session.remove(e2);
-      }
+      session.remove(e1);
+      session.remove(e2);
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();

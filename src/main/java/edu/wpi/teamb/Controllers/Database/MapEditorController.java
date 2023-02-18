@@ -13,7 +13,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -46,7 +45,6 @@ public class MapEditorController {
   @FXML MFXButton editLocationButton;
   @FXML MFXButton newMoveButton;
   @FXML private AnchorPane forms;
-  private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
@@ -148,6 +146,13 @@ public class MapEditorController {
             e -> {
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
+              if (creatingEdge) {
+                if (edgeNode1 == null) edgeNode1 = dot;
+                else if (edgeNode2 == null && dot != edgeNode1) {
+                  edgeNode2 = dot;
+                  createEdge();
+                }
+              }
             });
 
         nodeMap.put(dot, node);
@@ -380,6 +385,18 @@ public class MapEditorController {
     creatingEdge = true;
   }
 
+  public void cancelClickEdge() {
+    if (edgeNode1 != null) {
+      edgeNode1.setFill(Color.BLUE);
+      edgeNode1 = null;
+    }
+    if (edgeNode2 != null) {
+      edgeNode2.setFill(Color.BLUE);
+      edgeNode2 = null;
+    }
+    clearForm();
+  }
+
   public void clearForm() {
     forms.getChildren().clear();
   }
@@ -390,11 +407,7 @@ public class MapEditorController {
     e.setNode1(nodeMap.get(edgeNode1));
     e.setNode2(nodeMap.get(edgeNode2));
     DBSession.addEdge(e);
-    edgeNode1.setFill(Color.BLUE);
-    edgeNode2.setFill(Color.BLUE);
-    edgeNode1 = null;
-    edgeNode2 = null;
-    clearForm();
+    cancelClickEdge();
     creatingEdge = false;
   }
 

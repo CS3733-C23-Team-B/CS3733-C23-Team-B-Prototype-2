@@ -53,29 +53,90 @@
                <content>
                   <VBox prefHeight="274.0" prefWidth="478.0">
                      <children>
-                        <Label text="APIs:" />
-                        <Label text="Images:" />
-                        <Label text="Brigham and Women’s Hospital Background Image: " />
-                        <Hyperlink text="https://www.massgeneralbrigham.org/en/patient-care/international/about/brigham-and-womens-hospital" />
-                        <Label text="Brigham and Women’s Hospital Logo:" />
+                        <Label text="APIs: ">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="News" />
+                        <Label text="Images:">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="Brigham and Women’s Hospital Background Image: ">
+                           <font>
+                              <Font name="Roboto Italic" size="13.0" />
+                           </font>
+                        </Label>
+                        <Hyperlink text="https://www.massgeneralbrigham.org/en/patient-care/international/about/brigham-and-womens-hospital" wrapText="true" />
+                        <Label text="Brigham and Women’s Hospital Logo:">
+                           <font>
+                              <Font name="Roboto Italic" size="13.0" />
+                           </font>
+                        </Label>
                         <Hyperlink text="https://innovation.massgeneralbrigham.org/about/about-mass-general-brigham" />
-                        <Label text="Icons:" />
-                        <Label text="Profile Icon:" />
-                        <Label text="Created by Iamkikirizky - Flaticon" />
+                        <Label text="Icons:">
+                           <font>
+                              <Font name="Roboto Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="Profile Icon:">
+                           <font>
+                              <Font name="Roboto Italic" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label text="Created by Iamkikirizky - Flaticon">
+                           <font>
+                              <Font name="Roboto" size="13.0" />
+                           </font>
+                        </Label>
                         <Hyperlink text="https://www.flaticon.com/free-icons/ui" />
-                        <Label text="Stretcher icon:" />
-                        <Label text="Created by Freepik - Flaticon" />
+                        <Label text="Stretcher icon:">
+                           <font>
+                              <Font name="Roboto Italic" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label text="Created by Freepik - Flaticon">
+                           <font>
+                              <Font name="Roboto" size="13.0" />
+                           </font>
+                        </Label>
                         <Hyperlink text="https://www.flaticon.com/free-icons/stretcher" />
-                        <Label text="Cleaning icon: " />
+                        <Label text="Cleaning icon: ">
+                           <font>
+                              <Font name="Roboto Italic" size="13.0" />
+                           </font>
+                        </Label>
                         <Label text="Created by monkik - Flaticon" />
                         <Hyperlink text="https://www.flaticon.com/free-icons/cleaning" />
-                        <Label text="Security icon:" />
-                        <Label text="Created by Freepik - Flaticon" />
+                        <Label text="Security icon:">
+                           <font>
+                              <Font name="Roboto Italic" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label text="Created by Freepik - Flaticon">
+                           <font>
+                              <Font name="Roboto" size="13.0" />
+                           </font>
+                        </Label>
                         <Hyperlink text="https://www.flaticon.com/free-icons/security" />
-                        <Label text="Laptop icons:" />
-                        <Label text="Created by Freepik - Flaticon" />
+                        <Label text="Laptop icons:">
+                           <font>
+                              <Font name="Roboto Italic" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label text="Created by Freepik - Flaticon">
+                           <font>
+                              <Font name="Roboto" size="13.0" />
+                           </font>
+                        </Label>
                         <Hyperlink text="https://www.flaticon.com/free-icons/laptop " />
-                        <Label text="Video and audio icon: " />
+                        <Label text="Video and audio icon: ">
+                           <font>
+                              <Font name="Roboto Italic" size="13.0" />
+                           </font>
+                        </Label>
                         <Label text="Created by berkahicon - Flaticon" />
                         <Hyperlink text="https://www.flaticon.com/free-icons/video-and-audio" />
                      </children>
@@ -86,7 +147,7 @@
       </GridPane>
       <HBox alignment="CENTER" GridPane.rowIndex="2">
          <children>
-            <MFXButton />
+            <MFXButton text="Back" />
          </children>
       </HBox>
    </children>

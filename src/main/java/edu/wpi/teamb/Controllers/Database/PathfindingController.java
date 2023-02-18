@@ -26,6 +26,7 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -78,6 +79,7 @@ public class PathfindingController {
   private String currentFloor;
   private String startID;
   private String endID;
+  @FXML TextField pathNotFoundTextField;
   private Map<String, String> floorMap = new HashMap<>();
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
@@ -286,6 +288,7 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
+    pathNotFoundTextField.setVisible(false);
     Pathfinding.avoidStairs = avoidStairsCheckBox.isSelected();
     SearchType type = searchTypeMap.get(searchCombo.getText());
 
@@ -303,7 +306,8 @@ public class PathfindingController {
 
     if (path == null) {
       System.out.println("PATH NOT FOUND");
-      return;
+      pathNotFoundTextField.setVisible(true);
+      pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #e0e0e0");
     }
 
     startID = DBSession.getMostRecentNodeID(start);

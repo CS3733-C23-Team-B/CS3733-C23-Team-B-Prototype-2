@@ -105,33 +105,33 @@ public class SubmittedServiceRequestsController {
     List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
     List<PatientTransportationRequest> filtered = new ArrayList<>();
     objectList.forEach(
-            (value) -> {
-              if (requestStatusFilter.getValue() != null) {
-                if (requestStatusFilter.getValue() == RequestStatus.DONE
-                        && value.getStatus() == RequestStatus.DONE) {
-                  filtered.add(value);
-                } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
-                        && value.getStatus() == RequestStatus.PROCESSING) {
-                  filtered.add(value);
-                } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
-                        && value.getStatus() == RequestStatus.BLANK) {
-                  filtered.add(value);
-                }
-              } else {
-                filtered.add(value);
-              }
-            });
+        (value) -> {
+          if (requestStatusFilter.getValue() != null) {
+            if (requestStatusFilter.getValue() == RequestStatus.DONE
+                && value.getStatus() == RequestStatus.DONE) {
+              filtered.add(value);
+            } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
+                && value.getStatus() == RequestStatus.PROCESSING) {
+              filtered.add(value);
+            } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
+                && value.getStatus() == RequestStatus.BLANK) {
+              filtered.add(value);
+            }
+          } else {
+            filtered.add(value);
+          }
+        });
 
     filtered.forEach(
-            (value) -> {
-              if (assignedEmployeeFilter.getValue() != null) {
-                if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
-                  ptTableView.getItems().add(value);
-                }
-              } else {
-                ptTableView.getItems().add(value);
-              }
-            });
+        (value) -> {
+          if (assignedEmployeeFilter.getValue() != null) {
+            if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
+              ptTableView.getItems().add(value);
+            }
+          } else {
+            ptTableView.getItems().add(value);
+          }
+        });
 
     setLabel(name);
     mainVbox.getChildren().add(ptTableView);
@@ -146,33 +146,33 @@ public class SubmittedServiceRequestsController {
     List<ComputerRequest> objectList = DBSession.getAllCRequests();
     List<ComputerRequest> filtered = new ArrayList<>();
     objectList.forEach(
-            (value) -> {
-              if (requestStatusFilter.getValue() != null) {
-                if (requestStatusFilter.getValue() == RequestStatus.DONE
-                        && value.getStatus() == RequestStatus.DONE) {
-                  filtered.add(value);
-                } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
-                        && value.getStatus() == RequestStatus.PROCESSING) {
-                  filtered.add(value);
-                } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
-                        && value.getStatus() == RequestStatus.BLANK) {
-                  filtered.add(value);
-                }
-              } else {
-                filtered.add(value);
-              }
-            });
+        (value) -> {
+          if (requestStatusFilter.getValue() != null) {
+            if (requestStatusFilter.getValue() == RequestStatus.DONE
+                && value.getStatus() == RequestStatus.DONE) {
+              filtered.add(value);
+            } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
+                && value.getStatus() == RequestStatus.PROCESSING) {
+              filtered.add(value);
+            } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
+                && value.getStatus() == RequestStatus.BLANK) {
+              filtered.add(value);
+            }
+          } else {
+            filtered.add(value);
+          }
+        });
 
     filtered.forEach(
-            (value) -> {
-              if (assignedEmployeeFilter.getValue() != null) {
-                if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
-                  comTableView.getItems().add(value);
-                }
-              } else {
-               comTableView.getItems().add(value);
-              }
-            });
+        (value) -> {
+          if (assignedEmployeeFilter.getValue() != null) {
+            if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
+              comTableView.getItems().add(value);
+            }
+          } else {
+            comTableView.getItems().add(value);
+          }
+        });
 
     setLabel(name);
     mainVbox.getChildren().add(ptTableView);
@@ -194,6 +194,10 @@ public class SubmittedServiceRequestsController {
   public void filter() {
     if (page.equals("Sanitation")) {
       makeTableSani(page);
+    } else if (page.equals("Internal Patient Transportation")) {
+      makeTableTrans(page);
+    } else if (page.equals("Computer")) {
+      makeTableCom(page);
     }
   }
 }

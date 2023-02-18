@@ -21,9 +21,9 @@ public class Edge {
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "edge_node1_fk",
+              name = "edge_node1_fk_iter3",
               foreignKeyDefinition =
-                  "FOREIGN KEY (node1) REFERENCES iter2.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (node1) REFERENCES iter3.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter
@@ -37,9 +37,9 @@ public class Edge {
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "edge_node2_fk",
+              name = "edge_node2_fk_iter3",
               foreignKeyDefinition =
-                  "FOREIGN KEY (node2) REFERENCES iter2.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (node2) REFERENCES iter3.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter

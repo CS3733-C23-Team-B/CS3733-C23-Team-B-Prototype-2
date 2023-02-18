@@ -45,50 +45,7 @@
                <children>
                   <MFXScrollPane fitToHeight="true" fitToWidth="true" prefHeight="430.0" prefWidth="758.0" style="-fx-background-color: #FCFCFC; -fx-background-radius: 0 0 15 15;" GridPane.rowIndex="1">
                      <content>
-                        <VBox prefHeight="520.0" prefWidth="757.0" spacing="15.0">
-                           <children>
-                              <Label id="homePageBody" stylesheets="@../../../../../css/style.css" text="It's Big Joe's Birthday!" underline="true" wrapText="true">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-                              <Label id="homePageBody" stylesheets="@../../../../../css/style.css" text="BWH President Adopts 500 Children" underline="true" wrapText="true">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-                              <Label id="homePageBody" prefWidth="290.0" stylesheets="@../../../../../css/style.css" text="New Game Room For Employees" underline="true" wrapText="true">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-                              <Label id="homePageBody" stylesheets="@../../../../../css/style.css" text="Meet The New Head of Anesthesiology" underline="true" wrapText="true">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-                              <Label id="homePageBody" stylesheets="@../../../../../css/style.css" text="Service Dogs In Training" underline="true" wrapText="true">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                        </VBox>
+                        <VBox fx:id="news" prefHeight="520.0" prefWidth="757.0" spacing="15.0" />
                      </content>
                      <padding>
                         <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />

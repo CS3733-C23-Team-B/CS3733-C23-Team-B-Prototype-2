@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "audiovideorequest", schema = "iter3")
+@Table(name = "audiovideorequest", schema = "iter3Testing")
 @PrimaryKeyJoinColumn(
     name = "audiovideoRequestID",
-    foreignKey = @ForeignKey(name = "AudioVideoRequestIDKey_iter3"))
+    foreignKey = @ForeignKey(name = "AudioVideoRequestIDKey_iter3Testing"))
 public class AudioVideoRequest extends GeneralRequest {
 
   @Column(name = "avtype", length = 40)

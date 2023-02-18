@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "sanitationrequest", schema = "iter3")
+@Table(name = "sanitationrequest", schema = "iter3Testing")
 @PrimaryKeyJoinColumn(
     name = "sanitationRequestID",
-    foreignKey = @ForeignKey(name = "SanitationRequestIDKey_iter3"))
+    foreignKey = @ForeignKey(name = "SanitationRequestIDKey_iter3Testing"))
 public class SanitationRequest extends GeneralRequest {
   @Column(name = "cleanuplocation", length = 80)
   @Getter

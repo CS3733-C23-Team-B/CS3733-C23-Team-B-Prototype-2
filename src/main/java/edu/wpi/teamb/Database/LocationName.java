@@ -3,9 +3,13 @@ package edu.wpi.teamb.Database;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
 
 @Entity
-@Table(name = "locationname", schema = "iter3")
+@Table(name = "locationname", schema = "iter3Testing")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class LocationName {
   @Id
   @Column(name = "longname", length = 70)

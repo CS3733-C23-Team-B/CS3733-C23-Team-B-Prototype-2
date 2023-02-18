@@ -3,6 +3,8 @@ package edu.wpi.teamb.Database;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cascade;
 
 /**
@@ -10,7 +12,9 @@ import org.hibernate.annotations.Cascade;
  * other interactions with the edge table in the database
  */
 @Entity
-@Table(name = "edge", schema = "iter3")
+@Table(name = "edge", schema = "iter3Testing")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Edge {
 
   // Primary Key and Foreign Key
@@ -21,9 +25,9 @@ public class Edge {
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "edge_node1_fk_iter3",
+              name = "edge_node1_fk_iter3Testing",
               foreignKeyDefinition =
-                  "FOREIGN KEY (node1) REFERENCES iter3.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (node1) REFERENCES iter3Testing.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter
@@ -37,9 +41,9 @@ public class Edge {
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "edge_node2_fk_iter3",
+              name = "edge_node2_fk_iter3Testing",
               foreignKeyDefinition =
-                  "FOREIGN KEY (node2) REFERENCES iter3.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (node2) REFERENCES iter3Testing.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter

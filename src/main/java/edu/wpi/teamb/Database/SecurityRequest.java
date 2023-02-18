@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "securityrequest", schema = "iter3")
+@Table(name = "securityrequest", schema = "iter3Testing")
 @PrimaryKeyJoinColumn(
     name = "securityRequestID",
-    foreignKey = @ForeignKey(name = "SecurityRequestIDKey_iter3"))
+    foreignKey = @ForeignKey(name = "SecurityRequestIDKey_iter3Testing"))
 public class SecurityRequest extends GeneralRequest {
   @Column(name = "issuetype", length = 40)
   @Getter

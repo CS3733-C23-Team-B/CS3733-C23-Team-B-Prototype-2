@@ -3,12 +3,16 @@ package edu.wpi.teamb.Database;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name = "login", schema = "iter3")
+@Table(name = "login", schema = "iter3Testing")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Login {
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_seq_iter3")
-  @SequenceGenerator(name = "log_seq_iter3", sequenceName = "log_seq_iter3")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_seq_iter3Testing")
+  @SequenceGenerator(name = "log_seq_iter3Testing", sequenceName = "log_seq_iter3Testing")
   @Getter
   @Setter
   @Id

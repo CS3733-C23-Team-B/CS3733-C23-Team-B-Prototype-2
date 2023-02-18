@@ -4,14 +4,18 @@ import edu.wpi.teamb.Entities.RequestStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 // this will need to be changed to have inheritance work
-@Table(name = "GeneralRequest", schema = "iter3")
+@Table(name = "GeneralRequest", schema = "iter3Testing")
 @Inheritance(strategy = InheritanceType.JOINED)
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class GeneralRequest {
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gr_seq_iter3")
-  @SequenceGenerator(name = "gr_seq_iter3", sequenceName = "gr_seq_iter3")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gr_seq_iter3Testing")
+  @SequenceGenerator(name = "gr_seq_iter3Testing", sequenceName = "gr_seq_iter3Testing")
   @Id
   @Setter
   @Getter

@@ -10,7 +10,7 @@ import org.hibernate.annotations.Cascade;
  * other interactions with the edge table in the database
  */
 @Entity
-@Table(name = "edge")
+@Table(name = "edge", schema = "iter3")
 public class Edge {
 
   // Primary Key and Foreign Key

@@ -3,9 +3,11 @@ package edu.wpi.teamb.Controllers.Navigation;
 import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.GeneralRequest;
+import edu.wpi.teamb.Database.apiConnection;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -23,8 +25,9 @@ public class HomeController {
   @FXML Label homeWelcome;
   @FXML VBox homeRequests;
   @FXML Label date;
+  @FXML VBox news;
 
-  public void initialize() {
+  public void initialize() throws IOException {
     homeWelcome.setText("Welcome, " + SigninController.currentUser.getFirstname());
     LocalDate currentDate = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
@@ -63,6 +66,14 @@ public class HomeController {
       label.setFont(new Font("Nunito", 20));
       box.getChildren().add(label);
       homeRequests.getChildren().add(box);
+    }
+    String[] newsList = apiConnection.getNewsList(apiConnection.sendGET());
+    for (String s : newsList) {
+      Label newsLabel = new Label();
+      newsLabel.setText(s);
+      newsLabel.setFont(new Font("Nunito", 20));
+      newsLabel.setUnderline(true);
+      news.getChildren().add(newsLabel);
     }
   }
 

@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "locationname")
+@Table(name = "locationname", schema = "iter3")
 public class LocationName {
   @Id
   @Column(name = "longname", length = 70)

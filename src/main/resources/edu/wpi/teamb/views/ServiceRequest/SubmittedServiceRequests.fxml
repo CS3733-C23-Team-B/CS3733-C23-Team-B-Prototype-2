@@ -125,6 +125,7 @@
                   </HBox>
                   <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
                   <MFXButton fx:id="clearFiltersButton" onAction="#clearFilters" text="Clear Filters" />
+                  <MFXComboBox fx:id="urgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0" />
                </children>
                <padding>
                   <Insets left="40.0" />

@@ -39,7 +39,8 @@ public class BaseRequestController {
 
   // Choice-box options
   protected ObservableList<Urgency> urgencyOptions =
-      FXCollections.observableArrayList(Urgency.LOW, Urgency.MODERATE, Urgency.HIGH, Urgency.REQUIRESIMMEADIATEATTENTION);
+      FXCollections.observableArrayList(
+          Urgency.LOW, Urgency.MODERATE, Urgency.HIGH, Urgency.REQUIRESIMMEADIATEATTENTION);
   protected ObservableList<String> staffMembers = DBSession.getStaff();
 
   // List of all text fields and choice boxes for flexibility; when adding new input components to

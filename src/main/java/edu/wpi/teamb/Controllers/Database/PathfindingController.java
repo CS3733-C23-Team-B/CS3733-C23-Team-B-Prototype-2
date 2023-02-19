@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
@@ -345,7 +346,11 @@ public class PathfindingController {
     }
     setNodeColors();
     // Update the text field position to be above the center of the path
-    updateTextFieldPosition();
+    if (SigninController.currentUser.getAdmin() == true) {
+      addedNodes.add(startNode);
+      addedNodes.add(endNode);
+      updateTextFieldPosition();
+    }
   }
 
   /**

@@ -32,11 +32,6 @@ public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
     return table;
   }
 
-  @Override
-  public TableView getTable(RequestStatus status, String employee, List<String> types) {
-    return null;
-  }
-
   private List<GeneralRequest> convertObj() {
     List<GeneralRequest> grList = new ArrayList<>();
     List<ComputerRequest> objectList = DBSession.getAllCRequests();

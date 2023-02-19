@@ -52,6 +52,10 @@ public abstract class SubmittedBaseRequestTable {
     return table;
   }
 
+  public TableView getTable(RequestStatus status, String employee) {
+    return table;
+  }
+
   public void editableCols() {
     notes.setCellFactory(TextFieldTableCell.forTableColumn());
     notes.setOnEditCommit(

@@ -4,18 +4,16 @@ import edu.wpi.teamb.Database.Requests.AudioVideoRequest;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
 
   //  add the right tablecols here for this request
-    @FXML private TableColumn requestType = new TableColumn<>();
-
+  @FXML private TableColumn requestType = new TableColumn<>();
 
   @Override
   public void initialize() {
@@ -26,11 +24,10 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
     setTable();
   }
 
-  @Override
   public TableView getTable(RequestStatus status, String employee, List<String> types) {
     table.getItems().clear();
     List<GeneralRequest> filtered = filterByRequest(types);
-    super.filterTable(status, employee,filtered );
+    super.filterTable(status, employee, filtered);
     return table;
   }
 
@@ -44,10 +41,9 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
     return grList;
   }
 
-  private List<GeneralRequest> filterByRequest(List<String> types){
+  private List<GeneralRequest> filterByRequest(List<String> types) {
     List<GeneralRequest> requests = new ArrayList<>();
-    List<GeneralRequest> objectList  = DBSession.getAllRequests();
+    List<GeneralRequest> objectList = DBSession.getAllRequests();
     return requests;
   }
-
 }

@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Database.Requests;
 
 import edu.wpi.teamb.Entities.RequestStatus;
+import edu.wpi.teamb.Entities.RequestType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -61,6 +62,11 @@ public class GeneralRequest {
   @Getter
   @Setter
   private String date;
+
+  @Column(name = "requesttype", length = 60)
+  @Getter
+  @Setter
+  private RequestType requestType;
 
   public void generalRequest() {}
 }

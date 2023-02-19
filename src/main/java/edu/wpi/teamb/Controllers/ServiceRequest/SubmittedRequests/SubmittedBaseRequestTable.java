@@ -113,7 +113,6 @@ public abstract class SubmittedBaseRequestTable {
     List<GeneralRequest> filtered = new ArrayList<>();
     objectList.forEach(
         (value) -> {
-          System.out.println(status);
           if (status != null) {
             if (status == RequestStatus.DONE && value.getStatus() == RequestStatus.DONE) {
               filtered.add(value);

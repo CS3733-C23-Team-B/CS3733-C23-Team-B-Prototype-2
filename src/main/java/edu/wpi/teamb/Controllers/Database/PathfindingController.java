@@ -136,7 +136,6 @@ public class PathfindingController {
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     floorCombo.setOnAction(
         e -> changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre()));
-    showLocationsCheckBox.setOnAction(e -> showLocationsClicked());
   }
 
   public void setNodeColors() {
@@ -420,7 +419,6 @@ public class PathfindingController {
             loc.setVisible(showLocations);
           }
         });
-    showLocationsCheckBox.setOnMouseMoved(e -> showLocationsClicked());
   }
 
   private void placeLine(Node start, Node end) {

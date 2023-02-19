@@ -1,9 +1,16 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
+import edu.wpi.teamb.Database.ComputerRequest;
+import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.GeneralRequest;
+import edu.wpi.teamb.Entities.RequestStatus;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
-public class SubmittedComputerRequestTable extends SubmittedGeneralRequestTable {
+public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
 
   @FXML private TableColumn device = new TableColumn<>();
   @FXML private TableColumn typeOfRepair = new TableColumn<>();
@@ -16,5 +23,31 @@ public class SubmittedComputerRequestTable extends SubmittedGeneralRequestTable 
     addCol(typeOfRepair, "typeOfRepair");
     addCol(repairLocation, "repairLocation");
     setTable();
+  }
+
+  @Override
+  public TableView getTable(RequestStatus status, String Employee) {
+    table.getItems().clear();
+    super.filterTable(status, Employee, convertObj());
+    return table;
+  }
+
+  @Override
+  public TableView getTable(RequestStatus status, String employee, List<String> types) {
+    return null;
+  }
+
+  private List<GeneralRequest> convertObj() {
+    List<GeneralRequest> grList = new ArrayList<>();
+    List<ComputerRequest> objectList = DBSession.getAllCRequests();
+    objectList.forEach(
+        (value) -> {
+          grList.add(value);
+        });
+    return grList;
+  }
+
+  protected List<GeneralRequest> getComRequests() {
+    return convertObj();
   }
 }

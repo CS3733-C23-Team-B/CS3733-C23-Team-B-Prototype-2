@@ -29,11 +29,6 @@ public class Bapp extends Application {
   @Setter @Getter private static BorderPane rootPane;
 
   @Override
-  public void init() {
-    log.info("Starting Up");
-  }
-
-  @Override
   public void start(Stage primaryStage) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("views/Navigation/Root.fxml"));
     root.setId("home");
@@ -81,10 +76,5 @@ public class Bapp extends Application {
           }
         };
     new Thread(l).start();
-  }
-
-  @Override
-  public void stop() {
-    log.info("Shutting Down");
   }
 }

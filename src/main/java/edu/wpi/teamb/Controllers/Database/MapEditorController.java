@@ -76,8 +76,12 @@ public class MapEditorController {
   @FXML MFXFilterComboBox<String> floorCombo;
 
   public void initialize() {
-    moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
-    instance = this;
+    if (instance == null) {
+      moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
+      instance = this;
+    } else {
+      moveMap = DBSession.getIDMoves();
+    }
     floorCombo.setItems(
         FXCollections.observableArrayList(
             "Lower Level 2",

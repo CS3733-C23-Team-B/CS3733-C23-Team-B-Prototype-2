@@ -109,39 +109,10 @@ public class SubmittedServiceRequestsController {
     page = name;
     mainVbox.getChildren().clear();
     ptTableView.getItems().clear();
-    ptTableView = ptTable.getTable();
-
-    List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
-    List<PatientTransportationRequest> filtered = new ArrayList<>();
-    objectList.forEach(
-        (value) -> {
-          if (requestStatusFilter.getValue() != null) {
-            if (requestStatusFilter.getValue() == RequestStatus.DONE
-                && value.getStatus() == RequestStatus.DONE) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
-                && value.getStatus() == RequestStatus.PROCESSING) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
-                && value.getStatus() == RequestStatus.BLANK) {
-              filtered.add(value);
-            }
-          } else {
-            filtered.add(value);
-          }
-        });
-
-    filtered.forEach(
-        (value) -> {
-          if (assignedEmployeeFilter.getValue() != null) {
-            if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
-              ptTableView.getItems().add(value);
-            }
-          } else {
-            ptTableView.getItems().add(value);
-          }
-        });
-
+    ptTableView =
+        ptTable.getTable(
+            (RequestStatus) requestStatusFilter.getValue(),
+            (String) assignedEmployeeFilter.getValue());
     setLabel(name);
     mainVbox.getChildren().add(ptTableView);
   }

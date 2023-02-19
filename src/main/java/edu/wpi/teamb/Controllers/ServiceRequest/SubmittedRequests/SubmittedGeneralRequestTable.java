@@ -52,6 +52,10 @@ public abstract class SubmittedGeneralRequestTable {
     return table;
   }
 
+  public TableView getTable(RequestStatus status, String employee) {
+    return table;
+  }
+
   public void editableCols() {
     notes.setCellFactory(TextFieldTableCell.forTableColumn());
     notes.setOnEditCommit(
@@ -102,5 +106,50 @@ public abstract class SubmittedGeneralRequestTable {
       cols.get(i).setText(colNames.get(i));
     }
     editableCols();
+  }
+
+  private List<GeneralRequest> filterTableStatus(
+      RequestStatus status, List<GeneralRequest> objectList) {
+    List<GeneralRequest> filtered = new ArrayList<>();
+    objectList.forEach(
+        (value) -> {
+          System.out.println(status);
+          if (status != null) {
+            if (status == RequestStatus.DONE && value.getStatus() == RequestStatus.DONE) {
+              filtered.add(value);
+            } else if (status == RequestStatus.PROCESSING
+                && value.getStatus() == RequestStatus.PROCESSING) {
+              filtered.add(value);
+            } else if (status == RequestStatus.BLANK && value.getStatus() == RequestStatus.BLANK) {
+              filtered.add(value);
+            }
+          } else {
+            filtered.add(value);
+          }
+        });
+    return filtered;
+  }
+
+//  this one needs to go last cause it does the dirty work
+  private void filterTableEmployee(String Employee, List<GeneralRequest> filtered) {
+    table.getItems().clear();
+    filtered.forEach(
+        (value) -> {
+          if (Employee != null) {
+            if (value.getAssignedEmployee().equals(Employee)) {
+              table.getItems().add(value);
+            }
+          } else {
+            table.getItems().add(value);
+          }
+        });
+  }
+
+  protected void filterTable(
+      RequestStatus status, String Employee, List<GeneralRequest> objectList) {
+    table.getItems().clear();
+    List<GeneralRequest> grList = objectList;
+    List<GeneralRequest> filtered = filterTableStatus(status, grList);
+    filterTableEmployee(Employee, filtered);
   }
 }

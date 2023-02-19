@@ -1,7 +1,14 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
+import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.GeneralRequest;
+import edu.wpi.teamb.Database.PatientTransportationRequest;
+import edu.wpi.teamb.Entities.RequestStatus;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class SubmittedTransportationRequestTable extends SubmittedGeneralRequestTable {
   @FXML private TableColumn patientID = new TableColumn<>();
@@ -16,6 +23,23 @@ public class SubmittedTransportationRequestTable extends SubmittedGeneralRequest
     addCol(patientCurrentLocation, "patientCurrentLocation");
     addCol(patientDestinationLocation, "patientDestinationLocation");
     addCol(equipmentNeeded, "equipmentNeeded");
-    setTable();
+    super.setTable();
+  }
+
+  @Override
+  public TableView getTable(RequestStatus status, String Employee) {
+    table.getItems().clear();
+    super.filterTable(status, Employee, convertObj());
+    return table;
+  }
+
+  private List<GeneralRequest> convertObj() {
+    List<GeneralRequest> grList = new ArrayList<>();
+    List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
+    objectList.forEach(
+        (value) -> {
+          grList.add(value);
+        });
+    return grList;
   }
 }

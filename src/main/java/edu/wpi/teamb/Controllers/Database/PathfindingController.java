@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
@@ -315,6 +316,15 @@ public class PathfindingController {
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
+    List<Node> nodePath = null;
+    for(String s: path){
+      nodePath.add(nodes.get(s));
+    }
+    for(int i = 0; i < nodePath.size() -1; i++){
+      if(nodePath.get(i).getFloor() != nodePath.get(i+1).getFloor()){
+        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i));
+      }
+    }
 
     Node startNode = nodes.get(path.get(0));
     Node endNode = nodes.get(path.get(path.size() - 1));
@@ -345,7 +355,16 @@ public class PathfindingController {
     }
     setNodeColors();
     // Update the text field position to be above the center of the path
-    updateTextFieldPosition();
+    if (SigninController.currentUser.getAdmin() == true) {
+      addedNodes.add(startNode);
+      addedNodes.add(endNode);
+      updateTextFieldPosition();
+    }
+  }
+
+  private void showFloorChangeOnNode(Node startNode, Node endNode) {
+    String floorChange = "Changed to Floor " + endNode.getFloor();
+
   }
 
   /**

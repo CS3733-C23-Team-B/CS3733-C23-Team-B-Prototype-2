@@ -6,14 +6,14 @@ import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
+public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
 
   //  add the right tablecols here for this request
-  @FXML private TableColumn requestType = new TableColumn<>();
+  //  @FXML private TableColumn device = new TableColumn<>();
+  //  @FXML private TableColumn typeOfRepair = new TableColumn<>();
+  //  @FXML private TableColumn repairLocation = new TableColumn();
 
   @Override
   public void initialize() {
@@ -24,10 +24,10 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
     setTable();
   }
 
-  public TableView getTable(RequestStatus status, String employee, List<String> types) {
+  @Override
+  public TableView getTable(RequestStatus status, String Employee) {
     table.getItems().clear();
-    List<GeneralRequest> filtered = filterByRequest(types);
-    super.filterTable(status, employee, filtered);
+    super.filterTable(status, Employee, convertObj());
     return table;
   }
 
@@ -41,9 +41,7 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
     return grList;
   }
 
-  private List<GeneralRequest> filterByRequest(List<String> types) {
-    List<GeneralRequest> requests = new ArrayList<>();
-    List<GeneralRequest> objectList = DBSession.getAllRequests();
-    return requests;
+  protected List<GeneralRequest> getAVRequests() {
+    return convertObj();
   }
 }

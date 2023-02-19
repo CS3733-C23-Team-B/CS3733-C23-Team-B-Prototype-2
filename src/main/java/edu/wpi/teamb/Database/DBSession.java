@@ -119,7 +119,12 @@ public class DBSession {
   }
 
   public static Map<String, List<Move>> getIDMoves(Date d) {
-    return MapDAO.getIDMoves(d);
+    MapDAO.refreshIDMoves(d);
+    return MapDAO.getIDMoves();
+  }
+
+  public static Map<String, List<Move>> getIDMoves() {
+    return MapDAO.getIDMoves();
   }
 
   public static Map<String, Move> getLNMoves(Date d) {
@@ -156,8 +161,8 @@ public class DBSession {
 
   public static List<Move> getMostRecentMoves(String NodeID) {
     try {
-      return MapDAO.getIDMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01")).get(NodeID);
-    } catch (ParseException e) {
+      return MapDAO.getIDMoves().get(NodeID);
+    } catch (Exception e) {
       throw new RuntimeException(e);
     }
   }

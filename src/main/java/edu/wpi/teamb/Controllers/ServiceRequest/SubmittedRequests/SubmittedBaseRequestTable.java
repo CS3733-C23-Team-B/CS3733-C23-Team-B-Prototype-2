@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
+import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -52,7 +53,7 @@ public abstract class SubmittedBaseRequestTable {
     return table;
   }
 
-  public TableView getTable(RequestStatus status, String employee) {
+  public TableView getTable(RequestStatus status, String employee, Urgency urgency) {
     return table;
   }
 
@@ -135,6 +136,29 @@ public abstract class SubmittedBaseRequestTable {
     return filtered;
   }
 
+  private List<GeneralRequest> filterTableUrgency(
+      Urgency urgency, List<GeneralRequest> objectList) {
+    List<GeneralRequest> filtered = new ArrayList<>();
+    objectList.forEach(
+        (value) -> {
+          if (urgency != null) {
+            if (urgency == Urgency.LOW && value.getUrgency() == Urgency.LOW) {
+              filtered.add(value);
+            } else if (urgency == Urgency.MODERATE && value.getUrgency() == Urgency.MODERATE) {
+              filtered.add(value);
+            } else if (urgency == Urgency.HIGH && value.getUrgency() == Urgency.HIGH) {
+              filtered.add(value);
+            } else if (urgency == Urgency.REQUIRESIMMEADIATEATTENTION
+                && value.getUrgency() == Urgency.REQUIRESIMMEADIATEATTENTION) {
+              filtered.add(value);
+            }
+          } else {
+            filtered.add(value);
+          }
+        });
+    return filtered;
+  }
+
   //  this one needs to go last cause it does the dirty work
   private void filterTableEmployee(String Employee, List<GeneralRequest> filtered) {
     table.getItems().clear();
@@ -151,10 +175,11 @@ public abstract class SubmittedBaseRequestTable {
   }
 
   protected void filterTable(
-      RequestStatus status, String Employee, List<GeneralRequest> objectList) {
+      RequestStatus status, String Employee, List<GeneralRequest> objectList, Urgency urgency) {
     table.getItems().clear();
     List<GeneralRequest> grList = objectList;
     List<GeneralRequest> filtered = filterTableStatus(status, grList);
+    filtered = filterTableUrgency(urgency, filtered);
     filterTableEmployee(Employee, filtered);
   }
 }

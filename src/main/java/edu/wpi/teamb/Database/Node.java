@@ -11,7 +11,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  * interactions with the node table in the database
  */
 @Entity
-@Table(name = "node", schema = "iter3Testing")
+@Table(name = "node", schema = "iter3")
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Node {

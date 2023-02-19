@@ -18,7 +18,7 @@
         <property name="connection.password">teamb20</property>
         <property name="connection.autocommit">false</property>
 
-        <property name="default_schema">iter3testing</property>
+        <property name="default_schema">iter3</property>
 
         <property name="hibernate.cache.region.factory_class">jcache</property>
         <property name="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</property>

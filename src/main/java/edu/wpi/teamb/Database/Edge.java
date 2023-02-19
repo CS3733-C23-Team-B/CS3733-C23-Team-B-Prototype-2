@@ -12,7 +12,7 @@ import org.hibernate.annotations.Cascade;
  * other interactions with the edge table in the database
  */
 @Entity
-@Table(name = "edge", schema = "iter3Testing")
+@Table(name = "edge", schema = "iter3")
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Edge {
@@ -25,9 +25,9 @@ public class Edge {
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "edge_node1_fk_iter3Testing",
+              name = "edge_node1_fk_iter3",
               foreignKeyDefinition =
-                  "FOREIGN KEY (node1) REFERENCES iter3Testing.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (node1) REFERENCES iter3.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter
@@ -41,9 +41,9 @@ public class Edge {
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "edge_node2_fk_iter3Testing",
+              name = "edge_node2_fk_iter3",
               foreignKeyDefinition =
-                  "FOREIGN KEY (node2) REFERENCES iter3Testing.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (node2) REFERENCES iter3.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter

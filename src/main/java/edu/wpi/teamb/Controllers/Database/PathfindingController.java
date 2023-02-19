@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Algorithms.Sorting;
+import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
@@ -58,18 +59,6 @@ public class PathfindingController {
   @FXML MFXFilterComboBox<String> endLoc;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
   private Map<String, List<Move>> moveMap;
-  private ImageView lowerlevel =
-      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
-  private ImageView groundfloor =
-      new ImageView(getClass().getResource("/media/Maps/00_thegroundfloor.png").toExternalForm());
-  private ImageView lowerlevel2 =
-      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel2.png").toExternalForm());
-  private ImageView firstfloor =
-      new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
-  private ImageView secondfloor =
-      new ImageView(getClass().getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
-  private ImageView thirdfloor =
-      new ImageView(getClass().getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
   @FXML MFXButton pathfind;
   @FXML AnchorPane anchor;
   @FXML ImageView floor1;
@@ -100,12 +89,12 @@ public class PathfindingController {
     floorMap.put("Second Floor", "2");
     floorMap.put("Third Floor", "3");
 
-    imageMap.put("L2", lowerlevel2);
-    imageMap.put("L1", lowerlevel);
-    imageMap.put("G", groundfloor);
-    imageMap.put("1", firstfloor);
-    imageMap.put("2", secondfloor);
-    imageMap.put("3", thirdfloor);
+    imageMap.put("L2", Bapp.lowerlevel2);
+    imageMap.put("L1", Bapp.lowerlevel);
+    imageMap.put("G", Bapp.groundfloor);
+    imageMap.put("1", Bapp.firstfloor);
+    imageMap.put("2", Bapp.secondfloor);
+    imageMap.put("3", Bapp.thirdfloor);
 
     searchTypeMap.put("A* Search", SearchType.A_STAR);
     searchTypeMap.put("Breadth-first Search", SearchType.BREADTH_FIRST);

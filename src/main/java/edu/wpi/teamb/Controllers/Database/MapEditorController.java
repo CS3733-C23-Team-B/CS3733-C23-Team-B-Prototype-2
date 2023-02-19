@@ -60,19 +60,6 @@ public class MapEditorController {
   private boolean creatingEdge;
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
-  private ImageView lowerlevel =
-      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
-  private ImageView groundfloor =
-      new ImageView(getClass().getResource("/media/Maps/00_thegroundfloor.png").toExternalForm());
-  private ImageView lowerlevel2 =
-      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel2.png").toExternalForm());
-  private ImageView firstfloor =
-      new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
-  private ImageView secondfloor =
-      new ImageView(getClass().getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
-  private ImageView thirdfloor =
-      new ImageView(getClass().getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
-
   @FXML MFXFilterComboBox<String> floorCombo;
 
   public void initialize() {
@@ -110,27 +97,27 @@ public class MapEditorController {
     switch (floor) {
       case "Lower Level 2":
         f = "L2";
-        image = lowerlevel2;
+        image = Bapp.lowerlevel2;
         break;
       case "Lower Level 1":
         f = "L1";
-        image = lowerlevel;
+        image = Bapp.lowerlevel;
         break;
       case "Ground Floor":
         f = "G";
-        image = groundfloor;
+        image = Bapp.groundfloor;
         break;
       case "First Floor":
         f = "1";
-        image = firstfloor;
+        image = Bapp.firstfloor;
         break;
       case "Second Floor":
         f = "2";
-        image = secondfloor;
+        image = Bapp.secondfloor;
         break;
       case "Third Floor":
         f = "3";
-        image = thirdfloor;
+        image = Bapp.thirdfloor;
         break;
     }
     image.setOnMouseClicked(e -> handleClick());

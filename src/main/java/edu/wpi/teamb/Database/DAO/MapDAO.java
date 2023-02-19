@@ -39,7 +39,7 @@ public class MapDAO {
     return IDMoves;
   }
 
-  public static Map<String, List<Move>> refreshIDMoves(Date d) {
+  public static void refreshIDMoves(Date d) {
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
     HashMap<String, List<Move>> moves = new HashMap<String, List<Move>>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
@@ -74,12 +74,11 @@ public class MapDAO {
           moves.put(m.getNode().getNodeID(), newM);
         }
       }
-      return moves;
+      IDMoves = moves;
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       session.close();
-      return moves;
     }
   }
 

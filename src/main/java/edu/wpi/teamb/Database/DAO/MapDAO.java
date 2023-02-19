@@ -21,17 +21,17 @@ public class MapDAO {
   private static Map<String, List<Move>> IDMoves = new HashMap<String, List<Move>>();
 
   public static Map<String, Node> getAllNodes() {
-    //        refreshNodes();
+    refreshNodes();
     return nodes;
   }
 
   public static List<Edge> getAllEdges() {
-    //    refreshEdges();
+    refreshEdges();
     return edges;
   }
 
   public static Map<String, LocationName> getAllLocationNames() {
-    // refreshLocationNames();
+    refreshLocationNames();
     return locationNames;
   }
 

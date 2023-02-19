@@ -138,14 +138,11 @@ public class MapEditorController {
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
-    Map<String, Node> nodes = new HashMap<>();
-    nodes.clear();
-    nodes = DBSession.getAllNodes();
+    Map<String, Node> nodes = DBSession.getAllNodes();
 
     for (Node node : nodes.values()) {
       if (node.getFloor().equals(f)) {
         Circle dot = placeNode(node);
-
         dot.setOnMouseClicked(
             e -> {
               displayPopUp(dot);
@@ -163,7 +160,6 @@ public class MapEditorController {
         displayLoc(dot);
       }
     }
-
     Platform.runLater(() -> pane.centreOn(p));
   }
 
@@ -225,7 +221,6 @@ public class MapEditorController {
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 25);
     popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 35);
-
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
     List<Move> l = moveMap.get(node.getNodeID());

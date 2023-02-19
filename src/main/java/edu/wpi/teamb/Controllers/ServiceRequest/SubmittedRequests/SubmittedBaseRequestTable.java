@@ -56,8 +56,6 @@ public abstract class SubmittedBaseRequestTable {
     return table;
   }
 
-
-
   public void editableCols() {
     notes.setCellFactory(TextFieldTableCell.forTableColumn());
     notes.setOnEditCommit(
@@ -154,6 +152,4 @@ public abstract class SubmittedBaseRequestTable {
     List<GeneralRequest> filtered = filterTableStatus(status, grList);
     filterTableEmployee(Employee, filtered);
   }
-
-  public abstract TableView getTable(RequestStatus status, String employee, List<String> types);
 }

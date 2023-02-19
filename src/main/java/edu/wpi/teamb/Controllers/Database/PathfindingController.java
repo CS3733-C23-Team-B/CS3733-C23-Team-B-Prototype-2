@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
@@ -35,8 +36,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
@@ -77,6 +77,8 @@ public class PathfindingController {
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
   Circle startDot;
   Circle endDot;
+  private List<Node> addedNodes = new ArrayList<>();
+  private TextField textField;
 
   /** Initializes the dropdown menus */
   public void initialize() {
@@ -118,8 +120,6 @@ public class PathfindingController {
     pane = new GesturePane();
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
-    changeFloor("L1", new javafx.geometry.Point2D(2220, 974));
-    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     pane.setContent(aPane);
     map.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
@@ -131,6 +131,8 @@ public class PathfindingController {
             loc.setVisible(showLocations);
           }
         });
+    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    changeFloor("L1", pane.viewportCentre());
   }
 
   public void setNodeColors() {
@@ -203,8 +205,6 @@ public class PathfindingController {
           }
         });
     drawLines();
-    Platform.runLater(() -> pane.centreOn(p));
-
     if (startDot != null) {
       startDot.setFill(Color.BLUE);
       startDot = null;
@@ -213,6 +213,7 @@ public class PathfindingController {
       endDot.setFill(Color.BLUE);
       endDot = null;
     }
+    Platform.runLater(() -> pane.centreOn(p));
   }
 
   private void drawLines() {
@@ -286,6 +287,7 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
+    textField = null;
     pathNotFoundTextField.setVisible(false);
     Pathfinding.avoidStairs = avoidStairsCheckBox.isSelected();
     SearchType type = searchTypeMap.get(searchCombo.getText());
@@ -316,6 +318,7 @@ public class PathfindingController {
     pathNodePairs.clear();
 
     Node startNode = nodes.get(path.get(0));
+    Node endNode = nodes.get(path.get(path.size() - 1));
     if (!currentFloor.equals(startNode.getFloor())) {
       changeFloor(startNode.getFloor(), new Point2D(startNode.getXCoord(), startNode.getYCoord()));
       floorMap.forEach(
@@ -341,8 +344,13 @@ public class PathfindingController {
       endDot.setFill(Color.BLUE);
       endDot = null;
     }
-
     setNodeColors();
+    // Update the text field position to be above the center of the path
+    if (SigninController.currentUser.getAdmin() == true) {
+      addedNodes.add(startNode);
+      addedNodes.add(endNode);
+      updateTextFieldPosition();
+    }
   }
 
   /**
@@ -417,9 +425,48 @@ public class PathfindingController {
   }
 
   private void placeLine(Node start, Node end) {
-    Line l = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
-    l.setFill(Color.BLACK);
-    l.setStrokeWidth(5);
-    linesPlane.getChildren().add(l);
+    Line line = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
+    line.setFill(Color.BLACK);
+    line.setStrokeWidth(5);
+
+    // Add the line to the scene graph and track the nodes that have been added
+    linesPlane.getChildren().add(line);
+  }
+
+  private void updateTextFieldPosition() {
+    // Find the bounds of the entire path
+    double minX = Double.POSITIVE_INFINITY;
+    double minY = Double.POSITIVE_INFINITY;
+    double maxX = Double.NEGATIVE_INFINITY;
+    double maxY = Double.NEGATIVE_INFINITY;
+    for (Node node : addedNodes) {
+      double x = node.getXCoord();
+      double y = node.getYCoord();
+      if (x < minX) {
+        minX = x;
+      }
+      if (y < minY) {
+        minY = y;
+      }
+      if (x > maxX) {
+        maxX = x;
+      }
+      if (y > maxY) {
+        maxY = y;
+      }
+    }
+
+    // Create or update the text field position to be above the center of the path
+    double textFieldWidth = 200;
+    double textFieldHeight = 80;
+    double textFieldPadding = 70;
+    double centerX = (minX + maxX) / 2;
+    double centerY = (minY + maxY) / 2;
+
+    textField = new TextField();
+    textField.setLayoutX(centerX - textFieldWidth / 2);
+    textField.setLayoutY(centerY - textFieldPadding - textFieldHeight);
+    textField.setPromptText("Click to add note");
+    linesPlane.getChildren().add(textField);
   }
 }

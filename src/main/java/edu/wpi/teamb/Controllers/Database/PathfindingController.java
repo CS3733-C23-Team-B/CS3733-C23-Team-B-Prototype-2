@@ -34,8 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
@@ -88,6 +87,8 @@ public class PathfindingController {
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
   Circle startDot;
   Circle endDot;
+  private List<Node> addedNodes = new ArrayList<>();
+  private TextField textField;
 
   /** Initializes the dropdown menus */
   public void initialize() {
@@ -428,9 +429,58 @@ public class PathfindingController {
   }
 
   private void placeLine(Node start, Node end) {
-    Line l = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
-    l.setFill(Color.BLACK);
-    l.setStrokeWidth(5);
-    linesPlane.getChildren().add(l);
+    Line line = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
+    line.setFill(Color.BLACK);
+    line.setStrokeWidth(5);
+
+    // Add the line to the scene graph and track the nodes that have been added
+    linesPlane.getChildren().add(line);
+    addedNodes.add(start);
+    addedNodes.add(end);
+
+    // Update the text field position to be above the center of the path
+    updateTextFieldPosition();
+  }
+
+  private void updateTextFieldPosition() {
+    // Find the bounds of the entire path
+    double minX = Double.POSITIVE_INFINITY;
+    double minY = Double.POSITIVE_INFINITY;
+    double maxX = Double.NEGATIVE_INFINITY;
+    double maxY = Double.NEGATIVE_INFINITY;
+    for (Node node : addedNodes) {
+      double x = node.getXCoord();
+      double y = node.getYCoord();
+      if (x < minX) {
+        minX = x;
+      }
+      if (y < minY) {
+        minY = y;
+      }
+      if (x > maxX) {
+        maxX = x;
+      }
+      if (y > maxY) {
+        maxY = y;
+      }
+    }
+
+    // Create or update the text field position to be above the center of the path
+    double textFieldWidth = 200;
+    double textFieldHeight = 80;
+    double textFieldPadding = 70;
+    double centerX = (minX + maxX) / 2;
+    double centerY = (minY + maxY) / 2;
+    if (textField == null) {
+      textField = new TextField();
+      textField.setLayoutX(centerX - textFieldWidth / 2);
+      textField.setLayoutY(centerY - textFieldPadding - textFieldHeight);
+      textField.setPromptText("Click to add note");
+      linesPlane.getChildren().add(textField);
+    } else {
+      textField.setLayoutX(centerX - textFieldWidth / 2);
+      textField.setLayoutY(centerY - textFieldPadding - textFieldHeight);
+      textField.setPromptText("Click to add note");
+    }
   }
 }

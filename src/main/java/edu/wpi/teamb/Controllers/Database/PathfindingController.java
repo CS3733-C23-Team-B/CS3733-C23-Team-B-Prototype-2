@@ -119,8 +119,6 @@ public class PathfindingController {
     pane = new GesturePane();
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
-    changeFloor("L1", new javafx.geometry.Point2D(2220, 974));
-    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     pane.setContent(aPane);
     map.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
@@ -132,6 +130,8 @@ public class PathfindingController {
             loc.setVisible(showLocations);
           }
         });
+    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    changeFloor("L1", pane.viewportCentre());
   }
 
   public void setNodeColors() {
@@ -204,8 +204,6 @@ public class PathfindingController {
           }
         });
     drawLines();
-    Platform.runLater(() -> pane.centreOn(p));
-
     if (startDot != null) {
       startDot.setFill(Color.BLUE);
       startDot = null;
@@ -214,6 +212,7 @@ public class PathfindingController {
       endDot.setFill(Color.BLUE);
       endDot = null;
     }
+    Platform.runLater(() -> pane.centreOn(p));
   }
 
   private void drawLines() {
@@ -287,6 +286,7 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
+    textField = null;
     pathNotFoundTextField.setVisible(false);
     Pathfinding.avoidStairs = avoidStairsCheckBox.isSelected();
     SearchType type = searchTypeMap.get(searchCombo.getText());
@@ -317,6 +317,7 @@ public class PathfindingController {
     pathNodePairs.clear();
 
     Node startNode = nodes.get(path.get(0));
+    Node endNode = nodes.get(path.get(path.size() - 1));
     if (!currentFloor.equals(startNode.getFloor())) {
       changeFloor(startNode.getFloor(), new Point2D(startNode.getXCoord(), startNode.getYCoord()));
       floorMap.forEach(
@@ -342,8 +343,9 @@ public class PathfindingController {
       endDot.setFill(Color.BLUE);
       endDot = null;
     }
-
     setNodeColors();
+    // Update the text field position to be above the center of the path
+    updateTextFieldPosition();
   }
 
   /**
@@ -424,11 +426,6 @@ public class PathfindingController {
 
     // Add the line to the scene graph and track the nodes that have been added
     linesPlane.getChildren().add(line);
-    addedNodes.add(start);
-    addedNodes.add(end);
-
-    // Update the text field position to be above the center of the path
-    updateTextFieldPosition();
   }
 
   private void updateTextFieldPosition() {
@@ -460,16 +457,11 @@ public class PathfindingController {
     double textFieldPadding = 70;
     double centerX = (minX + maxX) / 2;
     double centerY = (minY + maxY) / 2;
-    if (textField == null) {
-      textField = new TextField();
-      textField.setLayoutX(centerX - textFieldWidth / 2);
-      textField.setLayoutY(centerY - textFieldPadding - textFieldHeight);
-      textField.setPromptText("Click to add note");
-      linesPlane.getChildren().add(textField);
-    } else {
-      textField.setLayoutX(centerX - textFieldWidth / 2);
-      textField.setLayoutY(centerY - textFieldPadding - textFieldHeight);
-      textField.setPromptText("Click to add note");
-    }
+
+    textField = new TextField();
+    textField.setLayoutX(centerX - textFieldWidth / 2);
+    textField.setLayoutY(centerY - textFieldPadding - textFieldHeight);
+    textField.setPromptText("Click to add note");
+    linesPlane.getChildren().add(textField);
   }
 }

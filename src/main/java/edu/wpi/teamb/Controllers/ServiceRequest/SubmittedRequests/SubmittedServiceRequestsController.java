@@ -27,6 +27,7 @@ public class SubmittedServiceRequestsController {
   SubmittedGeneralRequestTable allTable = new SubmittedGeneralRequestTable();
 
   TableView table = new TableView<>();
+  String page = "none";
 
   private ObservableList<RequestStatus> Status =
       FXCollections.observableArrayList(
@@ -39,7 +40,6 @@ public class SubmittedServiceRequestsController {
           "Audio and Visual",
           "Security");
   private ObservableList<String> staff = DBSession.getStaff();
-  String page = "none";
 
   public void initialize() {
     saniTable.initialize();
@@ -68,7 +68,7 @@ public class SubmittedServiceRequestsController {
   private void makeTable(String name) {
     page = name;
     mainVbox.getChildren().clear();
-    table.getItems().clear();
+    //    table.getItems().clear();
     if (page.equals("Sanitation")) {
       table =
           saniTable.getTable(
@@ -115,11 +115,9 @@ public class SubmittedServiceRequestsController {
   public void clearFilters() {
     assignedEmployeeFilter.setValue(null);
     requestStatusFilter.setValue(null);
-    requestTypeFilter.setValue(null);
+    requestTypeFilter.setValue(page);
     requestStatusFilter.setText("--Select--");
     assignedEmployeeFilter.setText("--Select--");
-    requestTypeFilter.setText("--Select--");
-    filter();
   }
 
   public void filter() {

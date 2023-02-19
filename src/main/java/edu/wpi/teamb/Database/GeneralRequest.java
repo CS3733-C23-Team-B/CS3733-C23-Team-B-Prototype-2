@@ -7,10 +7,11 @@ import lombok.Setter;
 
 @Entity
 // this will need to be changed to have inheritance work
-@Table(name = "GeneralRequest")
+@Table(name = "GeneralRequest", schema = "iter3")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class GeneralRequest {
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gr_seq_iter3")
+  @SequenceGenerator(name = "gr_seq_iter3", sequenceName = "gr_seq_iter3")
   @Id
   @Setter
   @Getter

@@ -29,6 +29,7 @@ public class MoveCreatorController {
   public void initialize() {
     nodeIdBox.setItems(getNodes());
     locationsBox.setItems(getLocations());
+    datePicker.setText("Select Date");
   }
 
   public void submitClicked() {
@@ -56,8 +57,10 @@ public class MoveCreatorController {
   }
 
   public void resetFields() {
-    nodeIdBox.setValue("");
-    locationsBox.setValue("");
+    nodeIdBox.setValue(null);
+    locationsBox.setValue(null);
+    datePicker.setValue(null);
+    datePicker.setText("Select Date");
   }
 
   public void cancelClicked() {

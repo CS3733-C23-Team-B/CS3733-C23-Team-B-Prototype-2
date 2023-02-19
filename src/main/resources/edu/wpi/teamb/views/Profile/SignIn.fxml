@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.SigninController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.SigninController">
    <center>
       <AnchorPane prefHeight="236.0" prefWidth="279.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-opacity: 50;">
          <children>
@@ -18,6 +22,7 @@
                <font>
                   <Font size="22.0" />
                </font></Label>
+            <MFXButton fx:id="forgot" layoutX="342.0" layoutY="301.0" onAction="#forgotClicked" text="Forgot Password?" />
             <MFXButton fx:id="exitButton" buttonType="RAISED" depthLevel="LEVEL1" layoutX="672.0" layoutY="475.0" onAction="#exitApplication" text="Exit Application" />
          </children>
       </AnchorPane>

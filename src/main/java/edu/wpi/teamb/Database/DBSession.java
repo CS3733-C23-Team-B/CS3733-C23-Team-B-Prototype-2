@@ -12,7 +12,7 @@ public class DBSession {
 
   private static DBSession instance = null;
 
-  private DBSession() {};
+  private DBSession() {}
 
   public static void refreshAll() {
     MapDAO.refreshNodes();

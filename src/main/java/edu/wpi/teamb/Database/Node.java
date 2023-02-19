@@ -9,7 +9,7 @@ import lombok.Setter;
  * interactions with the node table in the database
  */
 @Entity
-@Table(name = "node")
+@Table(name = "node", schema = "iter3")
 public class Node {
 
   @Id

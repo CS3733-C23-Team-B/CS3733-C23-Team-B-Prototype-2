@@ -6,6 +6,8 @@ import edu.wpi.teamb.Database.DAO.RequestDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import edu.wpi.teamb.Database.Requests.*;
 import javafx.collections.ObservableList;
 
 public class DBSession {

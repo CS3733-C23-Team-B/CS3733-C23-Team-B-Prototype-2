@@ -1,6 +1,6 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
-import edu.wpi.teamb.Database.ComputerRequest;
+import edu.wpi.teamb.Database.Requests.ComputerRequest;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;

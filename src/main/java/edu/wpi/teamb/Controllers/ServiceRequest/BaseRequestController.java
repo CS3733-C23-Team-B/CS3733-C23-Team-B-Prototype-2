@@ -3,7 +3,7 @@ package edu.wpi.teamb.Controllers.ServiceRequest;
 import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.GeneralRequest;
+import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Entities.RequestStatus;

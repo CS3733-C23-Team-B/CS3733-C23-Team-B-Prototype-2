@@ -135,7 +135,13 @@ public class PathfindingController {
     map.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     floorCombo.setOnAction(
-        e -> changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre()));
+        e -> {
+          changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre());
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
   }
 
   public void setNodeColors() {
@@ -396,7 +402,7 @@ public class PathfindingController {
     List<Move> l = moveMap.get(node.getNodeID());
     if (l == null) l = Arrays.asList();
     for (Move move : l) {
-      Label loc = new Label(move.getLocationName().getLongName());
+      Label loc = new Label(move.getLocationName().getShortName());
       loc.setFont(new Font("Arial", 8));
       loc.setRotate(-45);
       vbox.getChildren().add(loc);

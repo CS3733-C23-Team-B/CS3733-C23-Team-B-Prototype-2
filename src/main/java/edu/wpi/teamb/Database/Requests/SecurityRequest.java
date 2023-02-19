@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Database;
+package edu.wpi.teamb.Database.Requests;
 
 import jakarta.persistence.*;
 import lombok.Getter;

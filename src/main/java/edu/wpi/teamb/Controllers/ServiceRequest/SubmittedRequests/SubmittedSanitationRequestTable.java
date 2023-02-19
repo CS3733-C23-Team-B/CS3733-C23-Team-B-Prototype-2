@@ -1,8 +1,8 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.GeneralRequest;
-import edu.wpi.teamb.Database.SanitationRequest;
+import edu.wpi.teamb.Database.Requests.GeneralRequest;
+import edu.wpi.teamb.Database.Requests.SanitationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +28,6 @@ public class SubmittedSanitationRequestTable extends SubmittedBaseRequestTable {
     table.getItems().clear();
     super.filterTable(status, Employee, convertObj());
     return table;
-  }
-
-  @Override
-  public TableView getTable(RequestStatus status, String employee, List<String> types) {
-    return null;
   }
 
   private List<GeneralRequest> convertObj() {

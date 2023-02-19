@@ -111,6 +111,43 @@ public class MapDAO {
     }
   }
 
+  public static void refreshIDMoves2(Date d) {
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+    HashMap<String, List<Move>> moves = new HashMap<String, List<Move>>();
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    String hql =
+        "SELECT DISTINCT m FROM Move m WHERE m.moveDate <= '" + d + "' ORDER BY m.moveDate DESC";
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery(hql, Move.class);
+      List<Move> ms = q.list();
+      tx.commit();
+      for (Move m : ms) {
+        if (moves.containsKey(m.getNode().getNodeID())) {
+          String d1 = fmt.format(m.getMoveDate());
+          String d2 = fmt.format(moves.get(m.getNode().getNodeID()).get(0).getMoveDate());
+          if (d1.equals(d2)) {
+            moves.get(m.getNode().getNodeID()).add(m);
+          } else {
+            ArrayList<Move> newM = new ArrayList<Move>();
+            newM.add(m);
+            moves.put(m.getNode().getNodeID(), newM);
+          }
+        } else {
+          ArrayList<Move> newM = new ArrayList<Move>();
+          newM.add(m);
+          moves.put(m.getNode().getNodeID(), newM);
+        }
+      }
+      IDMoves = moves;
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
+
   public static List<Move> getFutureMoves(Date d) {
     List<Move> moves = new ArrayList<Move>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();

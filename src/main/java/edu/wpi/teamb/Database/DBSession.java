@@ -119,7 +119,7 @@ public class DBSession {
   }
 
   public static synchronized Map<String, List<Move>> getIDMoves(Date d) {
-    MapDAO.refreshIDMoves(d);
+    MapDAO.refreshIDMoves2(d);
     return MapDAO.getIDMoves();
   }
 

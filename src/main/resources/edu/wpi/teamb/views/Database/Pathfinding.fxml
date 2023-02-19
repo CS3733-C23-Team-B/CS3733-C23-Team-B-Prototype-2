@@ -71,7 +71,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                            <children>
                               <MFXCheckbox fx:id="avoidStairsCheckBox" text="Avoid Stairs" />
-                              <MFXCheckbox fx:id="showLocationsCheckBox" text="Show Locations" />
+                              <MFXCheckbox fx:id="showLocationsCheckBox" onAction="#showLocationsClicked" onMouseMoved="#showLocationsClicked" text="Show Locations" />
                            </children>
                         </VBox>
                         <MFXButton fx:id="pathfind" prefHeight="35.0" style="-fx-background-color: #003DA6;" text="Find Fastest Path" textFill="WHITE">

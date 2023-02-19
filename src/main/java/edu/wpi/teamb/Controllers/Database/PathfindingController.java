@@ -6,6 +6,7 @@ import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
@@ -74,6 +75,8 @@ public class PathfindingController {
   @FXML ImageView floor1;
   @FXML MFXFilterComboBox<String> floorCombo;
   @FXML CheckBox avoidStairsCheckBox;
+  @FXML MFXCheckbox showLocationsCheckBox;
+  private List<Label> locLabels = new ArrayList<>();
   @FXML MFXFilterComboBox searchCombo;
   @FXML MFXDatePicker datePicker;
   private String currentFloor;
@@ -133,6 +136,7 @@ public class PathfindingController {
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     floorCombo.setOnAction(
         e -> changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre()));
+    showLocationsCheckBox.setOnAction(e -> showLocationsClicked());
   }
 
   public void setNodeColors() {
@@ -396,12 +400,26 @@ public class PathfindingController {
       Label loc = new Label(move.getLocationName().getLongName());
       loc.setFont(new Font("Arial", 6));
       vbox.getChildren().add(loc);
+      loc.setVisible(false);
+      locLabels.add(loc);
     }
 
     HBox hbox = new HBox();
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
     aPane.getChildren().add(popPane);
+  }
+
+  public void showLocationsClicked() {
+
+    showLocationsCheckBox.setOnAction(
+        e -> {
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
+    showLocationsCheckBox.setOnMouseMoved(e -> showLocationsClicked());
   }
 
   private void placeLine(Node start, Node end) {

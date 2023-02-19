@@ -7,6 +7,8 @@ import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.wpi.teamb.Entities.Urgency;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -132,6 +134,27 @@ public abstract class SubmittedBaseRequestTable {
             filtered.add(value);
           }
         });
+    return filtered;
+  }
+  private List<GeneralRequest> filterTableUrgency(
+          Urgency urgency, List<GeneralRequest> objectList) {
+    List<GeneralRequest> filtered = new ArrayList<>();
+    objectList.forEach(
+            (value) -> {
+              if (urgency != null) {
+                if (urgency == Urgency.LOW && value.getUrgency() == Urgency.LOW) {
+                  filtered.add(value);
+                } else if (urgency == Urgency.MODERATE && value.getUrgency() == Urgency.MODERATE) {
+                  filtered.add(value);
+                } else if (urgency == Urgency.HIGH && value.getUrgency() == Urgency.HIGH ) {
+                  filtered.add(value);
+                } else if (urgency == Urgency.REQUIRESIMMEADIATEATTENTION && value.getUrgency() == Urgency.REQUIRESIMMEADIATEATTENTION) {
+                  filtered.add(value);
+                }
+              } else {
+                filtered.add(value);
+              }
+            });
     return filtered;
   }
 

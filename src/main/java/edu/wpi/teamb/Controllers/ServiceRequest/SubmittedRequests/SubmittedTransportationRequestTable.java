@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class SubmittedTransportationRequestTable extends SubmittedGeneralRequestTable {
+public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTable {
   @FXML private TableColumn patientID = new TableColumn<>();
   @FXML private TableColumn patientCurrentLocation = new TableColumn<>();
   @FXML private TableColumn patientDestinationLocation = new TableColumn();

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.TableView;
 
-public class SubmittedSecurityRequestTable extends SubmittedGeneralRequestTable {
+public class SubmittedSecurityRequestTable extends SubmittedBaseRequestTable {
 
   //  add the right tablecols here for this request
   //  @FXML private TableColumn device = new TableColumn<>();

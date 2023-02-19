@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.TableView;
 
-public class SubmittedAVRequestTable extends SubmittedGeneralRequestTable {
+public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
 
   //  add the right tablecols here for this request
   //  @FXML private TableColumn device = new TableColumn<>();

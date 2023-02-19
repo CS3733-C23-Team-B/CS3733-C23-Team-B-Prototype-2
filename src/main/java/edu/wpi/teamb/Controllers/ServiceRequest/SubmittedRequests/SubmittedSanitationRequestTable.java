@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class SubmittedSanitationRequestTable extends SubmittedGeneralRequestTable {
+public class SubmittedSanitationRequestTable extends SubmittedBaseRequestTable {
 
   @FXML private TableColumn typeOfCleanUp = new TableColumn<>();
   @FXML private TableColumn cleanUpLocation = new TableColumn<>();

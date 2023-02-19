@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class SubmittedComputerRequestTable extends SubmittedGeneralRequestTable {
+public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
 
   @FXML private TableColumn device = new TableColumn<>();
   @FXML private TableColumn typeOfRepair = new TableColumn<>();

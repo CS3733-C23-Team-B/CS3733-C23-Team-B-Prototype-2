@@ -32,7 +32,7 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
     super.filterTable(status, Employee, convertObj());
     return table;
   }
-  
+
   public TableView getTable(RequestStatus status, String employee, List<String> types) {
     return null;
   }

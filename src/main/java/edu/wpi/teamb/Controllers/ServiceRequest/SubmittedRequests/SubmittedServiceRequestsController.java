@@ -4,8 +4,6 @@ import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Entities.RequestStatus;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,11 +29,7 @@ public class SubmittedServiceRequestsController {
   SubmittedAVRequestTable avTable = new SubmittedAVRequestTable();
   SubmittedSecurityRequestTable securityTable = new SubmittedSecurityRequestTable();
 
-  TableView saniTableView = new TableView<>();
-  TableView ptTableView = new TableView<>();
-  TableView comTableView = new TableView<>();
-  TableView avTableView = new TableView<>();
-  TableView securityTableView = new TableView<>();
+  TableView table = new TableView<>();
 
   private ObservableList<RequestStatus> Status =
       FXCollections.observableArrayList(
@@ -49,11 +43,11 @@ public class SubmittedServiceRequestsController {
     comTable.initialize();
     avTable.initialize();
     securityTable.initialize();
-    saniButton.setOnAction(e -> makeTableSani("Sanitation"));
-    transButton.setOnAction(e -> makeTableTrans("Internal Patient Transportation"));
-    comButton.setOnAction(e -> makeTableCom("Computer"));
-    audioButton.setOnAction(e -> makeTableAV("Audio and Visual"));
-    secButton.setOnAction(e -> makeTableSecurity("Security"));
+    saniButton.setOnAction(e -> makeTable("Sanitation"));
+    transButton.setOnAction(e -> makeTable("Internal Patient Transportation"));
+    comButton.setOnAction(e -> makeTable("Computer"));
+    audioButton.setOnAction(e -> makeTable("Audio and Visual"));
+    secButton.setOnAction(e -> makeTable("Security"));
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
     assignedEmployeeFilter.setOnAction(e -> filter());
@@ -65,183 +59,39 @@ public class SubmittedServiceRequestsController {
     assignedEmployeeFilter.setText("--Select--");
   }
 
-  private void makeTableSani(String name) {
+  private void makeTable(String name) {
     page = name;
     mainVbox.getChildren().clear();
-    saniTableView.getItems().clear();
-    saniTableView = saniTable.getTable();
-    List<SanitationRequest> objectList = DBSession.getAllSanRequests();
-    List<SanitationRequest> filtered = new ArrayList<>();
-    objectList.forEach(
-        (value) -> {
-          if (requestStatusFilter.getValue() != null) {
-            if (requestStatusFilter.getValue() == RequestStatus.DONE
-                && value.getStatus() == RequestStatus.DONE) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
-                && value.getStatus() == RequestStatus.PROCESSING) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
-                && value.getStatus() == RequestStatus.BLANK) {
-              filtered.add(value);
-            }
-          } else {
-            filtered.add(value);
-          }
-        });
-
-    filtered.forEach(
-        (value) -> {
-          if (assignedEmployeeFilter.getValue() != null) {
-            if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
-              saniTableView.getItems().add(value);
-            }
-          } else {
-            saniTableView.getItems().add(value);
-          }
-        });
+    table.getItems().clear();
+    if (page.equals("Sanitation")) {
+      table =
+          saniTable.getTable(
+              (RequestStatus) requestStatusFilter.getValue(),
+              (String) assignedEmployeeFilter.getValue());
+    } else if (page.equals("Internal Patient Transportation")) {
+      table =
+          ptTable.getTable(
+              (RequestStatus) requestStatusFilter.getValue(),
+              (String) assignedEmployeeFilter.getValue());
+    } else if (page.equals("Computer")) {
+      table =
+          comTable.getTable(
+              (RequestStatus) requestStatusFilter.getValue(),
+              (String) assignedEmployeeFilter.getValue());
+    } else if (page.equals("Audio and Visual")) {
+      table =
+          avTable.getTable(
+              (RequestStatus) requestStatusFilter.getValue(),
+              (String) assignedEmployeeFilter.getValue());
+    } else if (page.equals("Security")) {
+      table =
+          securityTable.getTable(
+              (RequestStatus) requestStatusFilter.getValue(),
+              (String) assignedEmployeeFilter.getValue());
+    }
 
     setLabel(name);
-    mainVbox.getChildren().add(saniTableView);
-  }
-
-  private void makeTableTrans(String name) {
-    page = name;
-    mainVbox.getChildren().clear();
-    ptTableView.getItems().clear();
-    ptTableView =
-        ptTable.getTable(
-            (RequestStatus) requestStatusFilter.getValue(),
-            (String) assignedEmployeeFilter.getValue());
-    setLabel(name);
-    mainVbox.getChildren().add(ptTableView);
-  }
-
-  private void makeTableCom(String name) {
-    page = name;
-    mainVbox.getChildren().clear();
-    comTableView.getItems().clear();
-    comTableView = comTable.getTable();
-
-    List<ComputerRequest> objectList = DBSession.getAllCRequests();
-    List<ComputerRequest> filtered = new ArrayList<>();
-    objectList.forEach(
-        (value) -> {
-          if (requestStatusFilter.getValue() != null) {
-            if (requestStatusFilter.getValue() == RequestStatus.DONE
-                && value.getStatus() == RequestStatus.DONE) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
-                && value.getStatus() == RequestStatus.PROCESSING) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
-                && value.getStatus() == RequestStatus.BLANK) {
-              filtered.add(value);
-            }
-          } else {
-            filtered.add(value);
-          }
-        });
-
-    filtered.forEach(
-        (value) -> {
-          if (assignedEmployeeFilter.getValue() != null) {
-            if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
-              comTableView.getItems().add(value);
-            }
-          } else {
-            comTableView.getItems().add(value);
-          }
-        });
-
-    setLabel(name);
-    mainVbox.getChildren().add(ptTableView);
-  }
-
-  private void makeTableAV(String name) {
-    page = name;
-    mainVbox.getChildren().clear();
-    avTableView.getItems().clear();
-    avTableView = avTable.getTable();
-
-    //    change the datatype here to avRequests once it exists. Setting up controller for it to
-    // work.
-    List<GeneralRequest> objectList = DBSession.getAllRequests();
-    List<GeneralRequest> filtered = new ArrayList<>();
-    objectList.forEach(
-        (value) -> {
-          if (requestStatusFilter.getValue() != null) {
-            if (requestStatusFilter.getValue() == RequestStatus.DONE
-                && value.getStatus() == RequestStatus.DONE) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
-                && value.getStatus() == RequestStatus.PROCESSING) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
-                && value.getStatus() == RequestStatus.BLANK) {
-              filtered.add(value);
-            }
-          } else {
-            filtered.add(value);
-          }
-        });
-
-    filtered.forEach(
-        (value) -> {
-          if (assignedEmployeeFilter.getValue() != null) {
-            if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
-              avTableView.getItems().add(value);
-            }
-          } else {
-            avTableView.getItems().add(value);
-          }
-        });
-
-    setLabel(name);
-    mainVbox.getChildren().add(avTableView);
-  }
-
-  private void makeTableSecurity(String name) {
-    page = name;
-    mainVbox.getChildren().clear();
-    securityTableView.getItems().clear();
-    securityTableView = securityTable.getTable();
-
-    //    change the datatype here to avRequests once it exists. Setting up controller for it to
-    // work.
-    List<GeneralRequest> objectList = DBSession.getAllRequests();
-    List<GeneralRequest> filtered = new ArrayList<>();
-    objectList.forEach(
-        (value) -> {
-          if (requestStatusFilter.getValue() != null) {
-            if (requestStatusFilter.getValue() == RequestStatus.DONE
-                && value.getStatus() == RequestStatus.DONE) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.PROCESSING
-                && value.getStatus() == RequestStatus.PROCESSING) {
-              filtered.add(value);
-            } else if (requestStatusFilter.getValue() == RequestStatus.BLANK
-                && value.getStatus() == RequestStatus.BLANK) {
-              filtered.add(value);
-            }
-          } else {
-            filtered.add(value);
-          }
-        });
-
-    filtered.forEach(
-        (value) -> {
-          if (assignedEmployeeFilter.getValue() != null) {
-            if (value.getAssignedEmployee().equals(assignedEmployeeFilter.getValue())) {
-              securityTableView.getItems().add(value);
-            }
-          } else {
-            securityTableView.getItems().add(value);
-          }
-        });
-
-    setLabel(name);
-    mainVbox.getChildren().add(securityTableView);
+    mainVbox.getChildren().add(table);
   }
 
   private void setLabel(String name) {
@@ -260,16 +110,6 @@ public class SubmittedServiceRequestsController {
   }
 
   public void filter() {
-    if (page.equals("Sanitation")) {
-      makeTableSani(page);
-    } else if (page.equals("Internal Patient Transportation")) {
-      makeTableTrans(page);
-    } else if (page.equals("Computer")) {
-      makeTableCom(page);
-    } else if (page.equals("Audio and Visual")) {
-      makeTableAV(page);
-    } else if (page.equals("Security")) {
-      makeTableSecurity(page);
-    }
+    makeTable(page);
   }
 }

@@ -2,13 +2,11 @@ package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.GeneralRequest;
-import edu.wpi.teamb.Database.PatientTransportationRequest;
 import edu.wpi.teamb.Database.SecurityRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
-import javafx.scene.control.TableView;
-
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.TableView;
 
 public class SubmittedSecurityRequestTable extends SubmittedGeneralRequestTable {
 
@@ -37,9 +35,13 @@ public class SubmittedSecurityRequestTable extends SubmittedGeneralRequestTable 
     List<GeneralRequest> grList = new ArrayList<>();
     List<SecurityRequest> objectList = DBSession.getAllSecRequests();
     objectList.forEach(
-            (value) -> {
-              grList.add(value);
-            });
+        (value) -> {
+          grList.add(value);
+        });
     return grList;
+  }
+
+  protected List<GeneralRequest> getSecRequests() {
+    return convertObj();
   }
 }

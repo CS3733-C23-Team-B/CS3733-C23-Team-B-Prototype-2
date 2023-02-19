@@ -42,4 +42,8 @@ public class SubmittedTransportationRequestTable extends SubmittedGeneralRequest
         });
     return grList;
   }
+
+  protected List<GeneralRequest> getPTRequests() {
+    return convertObj();
+  }
 }

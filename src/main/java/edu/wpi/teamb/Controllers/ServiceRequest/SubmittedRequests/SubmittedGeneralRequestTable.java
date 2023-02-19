@@ -130,7 +130,7 @@ public abstract class SubmittedGeneralRequestTable {
     return filtered;
   }
 
-//  this one needs to go last cause it does the dirty work
+  //  this one needs to go last cause it does the dirty work
   private void filterTableEmployee(String Employee, List<GeneralRequest> filtered) {
     table.getItems().clear();
     filtered.forEach(

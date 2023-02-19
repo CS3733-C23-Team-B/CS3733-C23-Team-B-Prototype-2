@@ -3,12 +3,10 @@ package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 import edu.wpi.teamb.Database.AudioVideoRequest;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.GeneralRequest;
-import edu.wpi.teamb.Database.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
-import javafx.scene.control.TableView;
-
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.TableView;
 
 public class SubmittedAVRequestTable extends SubmittedGeneralRequestTable {
 
@@ -37,9 +35,13 @@ public class SubmittedAVRequestTable extends SubmittedGeneralRequestTable {
     List<GeneralRequest> grList = new ArrayList<>();
     List<AudioVideoRequest> objectList = DBSession.getAllAVRequests();
     objectList.forEach(
-            (value) -> {
-              grList.add(value);
-            });
+        (value) -> {
+          grList.add(value);
+        });
     return grList;
+  }
+
+  protected List<GeneralRequest> getAVRequests() {
+    return convertObj();
   }
 }

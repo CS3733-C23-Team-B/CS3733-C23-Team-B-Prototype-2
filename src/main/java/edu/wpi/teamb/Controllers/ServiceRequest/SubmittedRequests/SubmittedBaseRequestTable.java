@@ -98,6 +98,12 @@ public abstract class SubmittedBaseRequestTable {
     this.colNames.add(colNames.size() - insert, colName);
   }
 
+  protected void addColGR(TableColumn col, String colName) {
+    int insert = cols.size() - 1;
+    this.cols.add(cols.size() - insert, col);
+    this.colNames.add(colNames.size() - insert, colName);
+  }
+
   protected void setTable() {
     table.getItems().clear();
     for (int i = 0; i < cols.size(); i++) {

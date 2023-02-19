@@ -1,7 +1,6 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Requests.AudioVideoRequest;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import java.util.ArrayList;
@@ -18,9 +17,8 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
   @Override
   public void initialize() {
     super.initialize();
-    //    addCol(device, "device");
-    //    addCol(typeOfRepair, "typeOfRepair");
-    //    addCol(repairLocation, "repairLocation");
+    addColGR(requestType, "requestType");
+
     setTable();
   }
 
@@ -31,14 +29,12 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
     return table;
   }
 
-  private List<GeneralRequest> convertObj() {
-    List<GeneralRequest> grList = new ArrayList<>();
-    List<AudioVideoRequest> objectList = DBSession.getAllAVRequests();
-    objectList.forEach(
-        (value) -> {
-          grList.add(value);
-        });
-    return grList;
+  @Override
+  public TableView getTable(RequestStatus status, String Employee) {
+    table.getItems().clear();
+    List<GeneralRequest> objectList = DBSession.getAllRequests();
+    super.filterTable(status, Employee, objectList);
+    return table;
   }
 
   private List<GeneralRequest> filterByRequest(List<String> types) {
@@ -46,4 +42,6 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
     List<GeneralRequest> objectList = DBSession.getAllRequests();
     return requests;
   }
+
+  private void addCol() {}
 }

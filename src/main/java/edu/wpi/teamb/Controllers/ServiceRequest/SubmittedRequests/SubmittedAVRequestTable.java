@@ -1,6 +1,14 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
-public class SubmittedAVRequestTable extends SubmittedGeneralRequestTable {
+import edu.wpi.teamb.Database.AudioVideoRequest;
+import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.GeneralRequest;
+import edu.wpi.teamb.Entities.RequestStatus;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.scene.control.TableView;
+
+public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
 
   //  add the right tablecols here for this request
   //  @FXML private TableColumn device = new TableColumn<>();
@@ -14,5 +22,31 @@ public class SubmittedAVRequestTable extends SubmittedGeneralRequestTable {
     //    addCol(typeOfRepair, "typeOfRepair");
     //    addCol(repairLocation, "repairLocation");
     setTable();
+  }
+
+  @Override
+  public TableView getTable(RequestStatus status, String Employee) {
+    table.getItems().clear();
+    super.filterTable(status, Employee, convertObj());
+    return table;
+  }
+
+  @Override
+  public TableView getTable(RequestStatus status, String employee, List<String> types) {
+    return null;
+  }
+
+  private List<GeneralRequest> convertObj() {
+    List<GeneralRequest> grList = new ArrayList<>();
+    List<AudioVideoRequest> objectList = DBSession.getAllAVRequests();
+    objectList.forEach(
+        (value) -> {
+          grList.add(value);
+        });
+    return grList;
+  }
+
+  protected List<GeneralRequest> getAVRequests() {
+    return convertObj();
   }
 }

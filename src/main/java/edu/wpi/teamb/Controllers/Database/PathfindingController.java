@@ -323,7 +323,7 @@ public class PathfindingController {
     }
     for (int i = 0; i < nodePath.size() - 1; i++) {
       if (!nodePath.get(i).getFloor().equals(nodePath.get(i + 1).getFloor())) {
-        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i));
+        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i + 1));
       }
     }
 
@@ -367,17 +367,17 @@ public class PathfindingController {
   private void showFloorChangeOnNode(Node startNode, Node endNode) {
 
     String floorChange = "Go to Floor " + endNode.getFloor();
-    String newFloor = "Came from floor" + startNode.getFloor();
+    // String newFloor = "Came from floor" + startNode.getFloor();
 
     Label label = new Label(floorChange);
     label.setLayoutX(startNode.getXCoord() + 20);
     label.setLayoutY(startNode.getYCoord() + 20);
     linesPlane.getChildren().add(label);
-//
-//    Label newLabel = new Label(newFloor);
-//    newLabel.setLayoutX(endNode.getXCoord() + 20);
-//    newLabel.setLayoutY(endNode.getYCoord() + 20);
-//    linesPlane.getChildren().add(newLabel);
+    //
+    //    Label newLabel = new Label(newFloor);
+    //    newLabel.setLayoutX(endNode.getXCoord() + 20);
+    //    newLabel.setLayoutY(endNode.getYCoord() + 20);
+    //    linesPlane.getChildren().add(newLabel);
   }
 
   /**

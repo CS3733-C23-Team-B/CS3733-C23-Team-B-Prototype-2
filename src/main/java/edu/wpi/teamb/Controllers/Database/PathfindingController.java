@@ -316,6 +316,15 @@ public class PathfindingController {
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
+    List<Node> nodePath = null;
+    for(String s: path){
+      nodePath.add(nodes.get(s));
+    }
+    for(int i = 0; i < nodePath.size() -1; i++){
+      if(nodePath.get(i).getFloor() != nodePath.get(i+1).getFloor()){
+        showFloorChangeOnNode(nodePath.get(i));
+      }
+    }
 
     Node startNode = nodes.get(path.get(0));
     Node endNode = nodes.get(path.get(path.size() - 1));
@@ -351,6 +360,10 @@ public class PathfindingController {
       addedNodes.add(endNode);
       updateTextFieldPosition();
     }
+  }
+
+  private void showFloorChangeOnNode(Node node) {
+    
   }
 
   /**

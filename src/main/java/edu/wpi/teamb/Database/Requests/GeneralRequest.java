@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Database;
+package edu.wpi.teamb.Database.Requests;
 
 import edu.wpi.teamb.Entities.RequestStatus;
 import jakarta.persistence.*;

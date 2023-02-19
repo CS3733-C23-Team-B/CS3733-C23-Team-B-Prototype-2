@@ -317,11 +317,11 @@ public class PathfindingController {
 
     pathNodePairs.clear();
     List<Node> nodePath = null;
-    for(String s: path){
+    for (String s : path) {
       nodePath.add(nodes.get(s));
     }
-    for(int i = 0; i < nodePath.size() -1; i++){
-      if(nodePath.get(i).getFloor() != nodePath.get(i+1).getFloor()){
+    for (int i = 0; i < nodePath.size() - 1; i++) {
+      if (nodePath.get(i).getFloor() != nodePath.get(i + 1).getFloor()) {
         showFloorChangeOnNode(nodePath.get(i), nodePath.get(i));
       }
     }
@@ -364,7 +364,6 @@ public class PathfindingController {
 
   private void showFloorChangeOnNode(Node startNode, Node endNode) {
     String floorChange = "Changed to Floor " + endNode.getFloor();
-
   }
 
   /**

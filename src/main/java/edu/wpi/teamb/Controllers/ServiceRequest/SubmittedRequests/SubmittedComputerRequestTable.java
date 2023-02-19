@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
-import edu.wpi.teamb.Database.Requests.ComputerRequest;
 import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.Requests.ComputerRequest;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import java.util.ArrayList;

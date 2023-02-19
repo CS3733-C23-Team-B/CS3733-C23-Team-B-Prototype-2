@@ -53,7 +53,7 @@ public abstract class SubmittedBaseRequestTable {
     return table;
   }
 
-  public TableView getTable(RequestStatus status, String employee) {
+  public TableView getTable(RequestStatus status, String employee, Urgency urgency) {
     return table;
   }
 
@@ -175,10 +175,11 @@ public abstract class SubmittedBaseRequestTable {
   }
 
   protected void filterTable(
-      RequestStatus status, String Employee, List<GeneralRequest> objectList) {
+      RequestStatus status, String Employee, List<GeneralRequest> objectList, Urgency urgency) {
     table.getItems().clear();
     List<GeneralRequest> grList = objectList;
     List<GeneralRequest> filtered = filterTableStatus(status, grList);
+    filtered = filterTableUrgency(urgency, filtered);
     filterTableEmployee(Employee, filtered);
   }
 }

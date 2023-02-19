@@ -16,7 +16,7 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
-public abstract class SubmittedGeneralRequestTable {
+public class SubmittedGeneralRequestTable {
   @FXML protected TableView table = new TableView<>();
   @FXML private TableColumn employeeID = new TableColumn();
   @FXML private TableColumn firstname = new TableColumn();
@@ -53,8 +53,16 @@ public abstract class SubmittedGeneralRequestTable {
   }
 
   public TableView getTable(RequestStatus status, String employee) {
+    table.getItems().clear();
+    filterTable(status, employee, DBSession.getAllRequests());
     return table;
   }
+
+  private List<GeneralRequest> filterByRequest(List<String> types){
+    List<GeneralRequest> requests = new ArrayList<>();
+    return requests;
+  }
+
 
   public void editableCols() {
     notes.setCellFactory(TextFieldTableCell.forTableColumn());

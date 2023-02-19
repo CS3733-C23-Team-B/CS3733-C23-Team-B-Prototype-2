@@ -1,11 +1,13 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Algorithms.Sorting;
+import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Pathfinding.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
@@ -57,23 +59,13 @@ public class PathfindingController {
   @FXML MFXFilterComboBox<String> endLoc;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
   private Map<String, List<Move>> moveMap;
-  private ImageView lowerlevel =
-      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
-  private ImageView groundfloor =
-      new ImageView(getClass().getResource("/media/Maps/00_thegroundfloor.png").toExternalForm());
-  private ImageView lowerlevel2 =
-      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel2.png").toExternalForm());
-  private ImageView firstfloor =
-      new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
-  private ImageView secondfloor =
-      new ImageView(getClass().getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
-  private ImageView thirdfloor =
-      new ImageView(getClass().getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
   @FXML MFXButton pathfind;
   @FXML AnchorPane anchor;
   @FXML ImageView floor1;
   @FXML MFXFilterComboBox<String> floorCombo;
   @FXML CheckBox avoidStairsCheckBox;
+  @FXML MFXCheckbox showLocationsCheckBox;
+  private List<Label> locLabels = new ArrayList<>();
   @FXML MFXFilterComboBox searchCombo;
   @FXML MFXDatePicker datePicker;
   private String currentFloor;
@@ -97,12 +89,12 @@ public class PathfindingController {
     floorMap.put("Second Floor", "2");
     floorMap.put("Third Floor", "3");
 
-    imageMap.put("L2", lowerlevel2);
-    imageMap.put("L1", lowerlevel);
-    imageMap.put("G", groundfloor);
-    imageMap.put("1", firstfloor);
-    imageMap.put("2", secondfloor);
-    imageMap.put("3", thirdfloor);
+    imageMap.put("L2", Bapp.lowerlevel2);
+    imageMap.put("L1", Bapp.lowerlevel);
+    imageMap.put("G", Bapp.groundfloor);
+    imageMap.put("1", Bapp.firstfloor);
+    imageMap.put("2", Bapp.secondfloor);
+    imageMap.put("3", Bapp.thirdfloor);
 
     searchTypeMap.put("A* Search", SearchType.A_STAR);
     searchTypeMap.put("Breadth-first Search", SearchType.BREADTH_FIRST);
@@ -132,7 +124,13 @@ public class PathfindingController {
     map.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     floorCombo.setOnAction(
-        e -> changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre()));
+        e -> {
+          changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre());
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
   }
 
   public void setNodeColors() {
@@ -385,23 +383,37 @@ public class PathfindingController {
   public void displayLoc(Circle dot) {
     Node node = nodeMap.get(dot);
     AnchorPane popPane = new AnchorPane();
-    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 25);
-    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 35);
+    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 50);
+    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 38);
 
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
     List<Move> l = moveMap.get(node.getNodeID());
     if (l == null) l = Arrays.asList();
     for (Move move : l) {
-      Label loc = new Label(move.getLocationName().getLongName());
-      loc.setFont(new Font("Arial", 6));
+      Label loc = new Label(move.getLocationName().getShortName());
+      loc.setFont(new Font("Arial", 8));
+      loc.setRotate(-45);
       vbox.getChildren().add(loc);
+      loc.setVisible(false);
+      locLabels.add(loc);
     }
 
     HBox hbox = new HBox();
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
     aPane.getChildren().add(popPane);
+  }
+
+  public void showLocationsClicked() {
+
+    showLocationsCheckBox.setOnAction(
+        e -> {
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
   }
 
   private void placeLine(Node start, Node end) {

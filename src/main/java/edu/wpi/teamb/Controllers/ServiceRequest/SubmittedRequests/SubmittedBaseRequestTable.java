@@ -56,8 +56,6 @@ public abstract class SubmittedBaseRequestTable {
     return table;
   }
 
-
-
   public void editableCols() {
     notes.setCellFactory(TextFieldTableCell.forTableColumn());
     notes.setOnEditCommit(

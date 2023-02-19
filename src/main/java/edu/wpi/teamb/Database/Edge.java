@@ -3,6 +3,8 @@ package edu.wpi.teamb.Database;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cascade;
 
 /**
@@ -11,6 +13,8 @@ import org.hibernate.annotations.Cascade;
  */
 @Entity
 @Table(name = "edge", schema = "iter3")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Edge {
 
   // Primary Key and Foreign Key

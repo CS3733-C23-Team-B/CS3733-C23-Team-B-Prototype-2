@@ -3,6 +3,8 @@ package edu.wpi.teamb.Database;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * class that represents the node table in the Database, allows, insertions, deletions, and other
@@ -10,6 +12,8 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "node", schema = "iter3")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Node {
 
   @Id

@@ -87,83 +87,88 @@ public class DBSession {
     return MapDAO.getAllNodes();
   }
 
-  public static List<Edge> getAllEdges() {
+  public static synchronized List<Edge> getAllEdges() {
     return MapDAO.getAllEdges();
   }
 
-  public static Map<String, LocationName> getAllLocationNames() {
+  public static synchronized Map<String, LocationName> getAllLocationNames() {
     return MapDAO.getAllLocationNames();
   }
 
-  public static List<GeneralRequest> getAllRequests() {
+  public static synchronized List<GeneralRequest> getAllRequests() {
     return RequestDAO.getAllRequests();
   }
 
-  public static List<PatientTransportationRequest> getAllPTRequests() {
+  public static synchronized List<PatientTransportationRequest> getAllPTRequests() {
     return RequestDAO.getAllPTRequests();
   }
 
-  public static List<SanitationRequest> getAllSanRequests() {
+  public static synchronized List<SanitationRequest> getAllSanRequests() {
     return RequestDAO.getAllSanRequests();
   }
 
-  public static List<SecurityRequest> getAllSecRequests() {
+  public static synchronized List<SecurityRequest> getAllSecRequests() {
     return RequestDAO.getAllSecRequests();
   }
 
-  public static List<AudioVideoRequest> getAllAVRequests() {
+  public static synchronized List<AudioVideoRequest> getAllAVRequests() {
     return RequestDAO.getAllAVRequests();
   }
 
-  public static List<ComputerRequest> getAllCRequests() {
+  public static synchronized List<ComputerRequest> getAllCRequests() {
     return RequestDAO.getAllCRequests();
   }
 
-  public static Map<String, List<Move>> getIDMoves(Date d) {
-    return MapDAO.getIDMoves(d);
+  public static synchronized Map<String, List<Move>> getIDMoves(Date d) {
+    MapDAO.refreshIDMoves(d);
+    return MapDAO.getIDMoves();
   }
 
-  public static Map<String, Move> getLNMoves(Date d) {
+  public static synchronized Map<String, List<Move>> getIDMoves() {
+    return MapDAO.getIDMoves();
+  }
+
+  public static synchronized Map<String, Move> getLNMoves(Date d) {
     return MapDAO.getLNMoves(d);
   }
 
-  public static List<GeneralRequest> getAllRequestsWithEmpID(String id) {
+  public static synchronized List<GeneralRequest> getAllRequestsWithEmpID(String id) {
     return RequestDAO.getAllRequestsWithEmpID(id);
   }
 
-  public static void updateMove(Move oldM, Move newM) {
+  public static synchronized void updateMove(Move oldM, Move newM) {
     MapDAO.updateMove(oldM, newM);
   }
 
-  public static Move getMostRecentMoveWithLocationName(LocationName ln) {
+  public static synchronized Move getMostRecentMoveWithLocationName(LocationName ln) {
     return MapDAO.getMostRecentMoveWithLocationName(ln);
   }
 
-  public static List<Move> getFutureMoves(Date d) {
+  public static synchronized List<Move> getFutureMoves(Date d) {
     return MapDAO.getFutureMoves(d);
   }
 
-  public static void updateUser(String user, String first, String last, String email) {
+  public static synchronized void updateUser(String user, String first, String last, String email) {
     LoginDAO.updateUser(user, first, last, email);
   }
 
-  public static void updateAdmin(String user, Boolean b) {
+  public static synchronized void updateAdmin(String user, Boolean b) {
     LoginDAO.updateAdmin(user, b);
   }
 
-  public static Boolean isAdmin(Login l) {
+  public static synchronized Boolean isAdmin(Login l) {
     return LoginDAO.isAdmin(l);
   }
 
-  public static List<Move> getMostRecentMoves(String NodeID) {
+  public static synchronized List<Move> getMostRecentMoves(String NodeID) {
     try {
-      return MapDAO.getIDMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01")).get(NodeID);
-    } catch (ParseException e) {
+      return MapDAO.getIDMoves().get(NodeID);
+    } catch (Exception e) {
       throw new RuntimeException(e);
     }
   }
 
-  public static String getMostRecentNodeID(String longName) {
+  public static synchronized String getMostRecentNodeID(String longName) {
     try {
       return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01"))
           .get(longName)
@@ -176,7 +181,7 @@ public class DBSession {
     }
   }
 
-  public static void updateRequest(GeneralRequest r) {
+  public static synchronized void updateRequest(GeneralRequest r) {
     RequestDAO.updateRequest(r);
   }
 }

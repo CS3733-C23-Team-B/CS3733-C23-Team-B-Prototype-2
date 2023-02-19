@@ -9,8 +9,11 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,11 +23,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 public class HomeController {
   @FXML Label homeWelcome;
   @FXML VBox homeRequests;
   @FXML Label date;
+  @FXML Label time;
   @FXML VBox news;
 
   public void initialize() throws IOException {
@@ -32,6 +37,20 @@ public class HomeController {
     LocalDate currentDate = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
     String formattedDate = currentDate.format(formatter);
+
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0),
+                event -> {
+                  LocalDateTime currentTime = LocalDateTime.now();
+                  DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm:ss a");
+                  time.setText(currentTime.format(timefmt));
+                }),
+            new KeyFrame(Duration.seconds(1)));
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
+
     date.setText(formattedDate);
     List<GeneralRequest> l =
         DBSession.getAllRequestsWithEmpID(Integer.toString(SigninController.currentUser.getId()));

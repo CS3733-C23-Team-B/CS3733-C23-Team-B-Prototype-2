@@ -1,10 +1,7 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
-import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Move;
-import edu.wpi.teamb.Database.Node;
-import edu.wpi.teamb.Database.NodeInfo;
+import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -16,12 +13,12 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -48,7 +45,6 @@ public class MapEditorController {
   @FXML MFXButton editLocationButton;
   @FXML MFXButton newMoveButton;
   @FXML private AnchorPane forms;
-  private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
@@ -57,7 +53,11 @@ public class MapEditorController {
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane = new AnchorPane();
-
+  private double origX, origY;
+  private boolean dragged;
+  private boolean MOVING = false;
+  private Circle edgeNode1, edgeNode2;
+  private boolean creatingEdge;
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
   private ImageView lowerlevel =
@@ -87,7 +87,6 @@ public class MapEditorController {
             "Second Floor",
             "Third Floor"));
     nodeMap = new HashMap<>();
-    nodeMap.clear();
     pane = new GesturePane();
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
@@ -131,6 +130,7 @@ public class MapEditorController {
         break;
     }
     image.setOnMouseClicked(e -> handleClick());
+
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
@@ -141,22 +141,25 @@ public class MapEditorController {
     for (Node node : nodes.values()) {
       if (node.getFloor().equals(f)) {
         Circle dot = placeNode(node);
+
+        dot.setOnMouseClicked(
+            e -> {
+              displayPopUp(dot);
+              dot.setFill(Color.GOLD);
+              if (creatingEdge) {
+                if (edgeNode1 == null) edgeNode1 = dot;
+                else if (edgeNode2 == null && dot != edgeNode1) {
+                  edgeNode2 = dot;
+                  createEdge();
+                }
+              }
+            });
+
         nodeMap.put(dot, node);
-        List<Move> locations = DBSession.getMostRecentMoves(node.getNodeID());
-        if (locations != null) for (Move move : locations) displayLoc(dot);
+        displayLoc(dot);
       }
     }
 
-    selectedCircle.addListener(
-        (obs, oldSelection, newSelection) -> {
-          if (oldSelection != null) {
-            oldSelection.pseudoClassStateChanged(SELECTED_P_C, false);
-          }
-          if (newSelection != null) {
-            newSelection.pseudoClassStateChanged(SELECTED_P_C, true);
-            displayPopUp(newSelection);
-          }
-        });
     Platform.runLater(() -> pane.centreOn(p));
   }
 
@@ -222,6 +225,7 @@ public class MapEditorController {
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
     List<Move> l = moveMap.get(node.getNodeID());
+    if (l == null) l = Arrays.asList();
     for (Move move : l) {
       Label loc = new Label(move.getLocationName().getLongName());
       loc.setFont(new Font("Arial", 6));
@@ -252,6 +256,7 @@ public class MapEditorController {
     if (currentPopUp != null) {
       aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
+      if (currentDot != null) currentDot.setFill(Color.BLUE);
       currentNode = null;
       currentDot = null;
     }
@@ -266,7 +271,50 @@ public class MapEditorController {
         e -> {
           selectedCircle.set(dot);
         });
+    dot.setCursor(Cursor.HAND);
+
+    dot.setOnMousePressed(
+        (e) -> {
+          origX = e.getSceneX();
+          origY = e.getSceneY();
+
+          pane.setGestureEnabled(false);
+
+          Circle c = (Circle) (e.getSource());
+          c.toFront();
+        });
+
+    dot.setOnMouseReleased(
+        e -> {
+          pane.setGestureEnabled(true);
+          if (dragged) updateNode(dot);
+          dragged = false;
+        });
+
+    dot.setOnMouseDragged(
+        (e) -> {
+          double offsetX = (e.getSceneX() - origX) / pane.getCurrentScaleX();
+          double offsetY = (e.getSceneY() - origY) / pane.getCurrentScaleY();
+          Circle c = (Circle) (e.getSource());
+          c.setCenterX(c.getCenterX() + offsetX);
+          c.setCenterY(c.getCenterY() + offsetY);
+          origX = e.getSceneX();
+          origY = e.getSceneY();
+          dragged = true;
+        });
+
     return dot;
+  }
+
+  public void updateNode(Circle dot) {
+    Node node = nodeMap.get(dot);
+    node.setXCoord((int) dot.getCenterX());
+    node.setYCoord((int) dot.getCenterY());
+    DBSession.updateNode(node);
+    node.setNodeID(node.buildID());
+    currentNode = node;
+    currentDot = dot;
+    refreshPopUp();
   }
 
   private double scaleX(NodeInfo n) {
@@ -284,6 +332,10 @@ public class MapEditorController {
   public void handleClick() {
     selectedCircle.set(null);
     clearPopUp();
+    if (edgeNode1 != null) {
+      edgeNode1.setFill(Color.GOLD);
+      System.out.println("Coloring: " + edgeNode1.hashCode());
+    }
   }
 
   public void editLocationClicked() throws IOException {
@@ -323,6 +375,40 @@ public class MapEditorController {
     final var res = Bapp.class.getResource(Screen.NODE_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
+  }
+
+  public void newEdgeClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.EDGE_CLICK_CREATOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
+    creatingEdge = true;
+  }
+
+  public void cancelClickEdge() {
+    if (edgeNode1 != null) {
+      edgeNode1.setFill(Color.BLUE);
+      edgeNode1 = null;
+    }
+    if (edgeNode2 != null) {
+      edgeNode2.setFill(Color.BLUE);
+      edgeNode2 = null;
+    }
+    clearForm();
+  }
+
+  public void clearForm() {
+    forms.getChildren().clear();
+  }
+
+  public void createEdge() {
+    if (edgeNode1 == null || edgeNode2 == null) return;
+    Edge e = new Edge();
+    e.setNode1(nodeMap.get(edgeNode1));
+    e.setNode2(nodeMap.get(edgeNode2));
+    DBSession.addEdge(e);
+    cancelClickEdge();
+    creatingEdge = false;
   }
 
   public void editNodeClicked() throws IOException {
@@ -369,7 +455,7 @@ public class MapEditorController {
       Text id = (Text) vboxChildren.get(0);
       Text pos = (Text) vboxChildren.get(1);
       Text loc = (Text) vboxChildren.get(2);
-      id.setText("NodeID:   " + currentNode.getNodeID());
+      id.setText("NodeID:   " + currentNode.buildID());
       pos.setText(
           "(x, y):  " + "(" + currentNode.getXCoord() + ", " + currentNode.getYCoord() + ")");
 

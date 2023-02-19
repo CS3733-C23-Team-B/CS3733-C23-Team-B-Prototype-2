@@ -16,7 +16,7 @@
 
 #toolbar{
     -fx-background-color: rgba(0, 61, 166, 1);
-    -fx-font-family: Nunito, regular;
+    -fx-font-family: Nunito, sans-serif;
     -fx-font-size: 25px;
 }
 
@@ -28,9 +28,9 @@
 
 #menuIcon{
     -fx-background-radius: 30px;
-    -fx-background-image: url("/media/profile-icon.png");
+    -fx-background-image: url("/media/profile_icon.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 48 48;
+    -fx-background-size: 28 28;
     -fx-background-position: top center;
     -fx-background-color: rgba(0,7,122, 0.8);
 }
@@ -52,48 +52,54 @@
 
 #titleRoboto{
     -fx-font-family: Roboto, regular;
-    -fx-font-size: 50;
+    -fx-font-size: 50px;
 }
 
 #subTitleNunito{
-    -fx-font-family: Nunito, regular;
-    -fx-font-size: 36;
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 36px;
 }
 
 #categoriesNunito{
-    -fx-font-family: Nunito, regular;
-    -fx-font-size: 22;
-}
-
-#homeButton{
-    -fx-background-image: url("/media/hospitalLogo.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 266 65;
-    -fx-background-position: top center;
-    -fx-background-color: rgba(0, 61, 166, 1);;
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 22px;
 }
 
 #navBarButton{
-    -fx-font-family: Nunito, regular;
-    -fx-font-size: 24px;
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
 }
 
 #homePageTitle{
     -fx-font-family: Roboto, regular;
-    -fx-font-size: 96px;
+    -fx-font-weight: bold;
+    -fx-font-size: 33px;
+}
+
+#homePageSubtitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 28px;
+}
+
+#homePageBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
 }
 
 #homePageButtons{
-    -fx-font-family: Nunito, regular;
-    -fx-font-size: 40px;
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
 }
 
 #landingPageTitle{
-    -fx-font-family: Roboto, bold;
+    -fx-font-family: Roboto, regular;
     -fx-font-size: 96px;
 }
 
 #landingPageButtons{
-    -fx-font-family: Nunito, regular;
+    -fx-font-family: Nunito, sans-serif;
     -fx-font-size: 43px;
 }

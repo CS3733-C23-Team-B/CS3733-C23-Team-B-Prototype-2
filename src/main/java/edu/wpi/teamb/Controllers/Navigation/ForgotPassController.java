@@ -19,8 +19,8 @@ public class ForgotPassController {
     Map<String, Login> loginMap = DBSession.getAllLogins();
     if (username.getText().length() > 0) {
       try {
-        String user = "sam.colebourn@gmail.com";
-        String password = "npnuertktnsvrqhh";
+        String user = "bodaciousbadger1@gmail.com";
+        String password = "ftannejwvxyokvet";
         String recipient = loginMap.get(username.getText()).getEmail();
         String subject = "Forgot Password";
         String message =

@@ -135,8 +135,13 @@ public class PathfindingController {
     map.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     floorCombo.setOnAction(
-        e -> changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre()));
-    showLocationsCheckBox.setOnAction(e -> showLocationsClicked());
+        e -> {
+          changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre());
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
   }
 
   public void setNodeColors() {
@@ -389,16 +394,17 @@ public class PathfindingController {
   public void displayLoc(Circle dot) {
     Node node = nodeMap.get(dot);
     AnchorPane popPane = new AnchorPane();
-    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 25);
-    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 35);
+    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 50);
+    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 38);
 
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
     List<Move> l = moveMap.get(node.getNodeID());
     if (l == null) l = Arrays.asList();
     for (Move move : l) {
-      Label loc = new Label(move.getLocationName().getLongName());
-      loc.setFont(new Font("Arial", 6));
+      Label loc = new Label(move.getLocationName().getShortName());
+      loc.setFont(new Font("Arial", 8));
+      loc.setRotate(-45);
       vbox.getChildren().add(loc);
       loc.setVisible(false);
       locLabels.add(loc);
@@ -419,7 +425,6 @@ public class PathfindingController {
             loc.setVisible(showLocations);
           }
         });
-    showLocationsCheckBox.setOnMouseMoved(e -> showLocationsClicked());
   }
 
   private void placeLine(Node start, Node end) {

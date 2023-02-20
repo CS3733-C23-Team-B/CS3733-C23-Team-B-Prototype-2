@@ -5,8 +5,12 @@ import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -21,6 +25,8 @@ public class FutureMovesController {
   @FXML TableColumn node;
   @FXML MFXDatePicker datePicker;
   List<Move> movesList = new ArrayList<Move>();
+  boolean first = true;
+  Date date;
 
   public void initialize() {
     moveDate.setCellValueFactory(new PropertyValueFactory<>("moveDate"));
@@ -37,21 +43,33 @@ public class FutureMovesController {
     Navigation.navigate(Screen.MAP_EDITOR);
   }
 
-  public void selectDate() {
+  public void dateEntered() {
+    LocalDate d = datePicker.getValue();
+    ZoneId z = ZoneId.of("-05:00");
+    ZonedDateTime zdt = d.atStartOfDay(z);
+    Instant instant = zdt.toInstant();
+    Date date = java.util.Date.from(instant);
+    setDate(date);
     updateFutureMoves();
   }
 
   public void updateFutureMoves() {
-    Date date = new Date(123, 0, 1);
-    movesList = DBSession.getFutureMoves(date);
+    table1.getItems().clear();
+    if (first) {
+      movesList = DBSession.getFutureMoves(new Date(123, 0, 1));
+      first = false;
+    } else {
+      movesList = DBSession.getFutureMoves(date);
+    }
+
     movesList.forEach(
         (value) -> {
-          //          List<String> row = new ArrayList<String>();
-          //          row.add(value.getMoveDate().toString());
-          //          row.add(value.getLocationName().getLongName());
-          //          row.add(value.getNode().getNodeID());
           table1.getItems().add(value);
         });
     table1.refresh();
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
   }
 }

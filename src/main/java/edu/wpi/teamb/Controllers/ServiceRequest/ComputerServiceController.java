@@ -1,7 +1,8 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
-import edu.wpi.teamb.Database.ComputerRequest;
 import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.Requests.ComputerRequest;
+import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -77,6 +78,7 @@ public class ComputerServiceController extends BaseRequestController {
     request.setDevice(device.toString());
 
     request.setTypeOfRepair(typeOfrepair.toString());
+    request.setRequestType(RequestType.COMPUTER);
     DBSession.addRequest(request);
 
     // may need to clear fields can be done with functions made for clear

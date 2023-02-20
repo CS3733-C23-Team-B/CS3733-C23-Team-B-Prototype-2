@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
@@ -50,6 +51,8 @@ public class SubmittedServiceRequestsController {
           "Audio and Visual",
           "Security");
   private ObservableList<String> staff = DBSession.getStaff();
+
+  private Login currUser = SigninController.getInstance().currentUser;
 
   public void initialize() {
     saniTable.initialize();
@@ -149,7 +152,12 @@ public class SubmittedServiceRequestsController {
   public void mouseClicked() {
     GeneralRequest r = (GeneralRequest) table.getSelectionModel().getSelectedItem();
     if (r != null) {
-      System.out.println("i worked");
+      if (currUser.getAdmin()){
+
+      }
+      else{
+        
+      }
     }
   }
 

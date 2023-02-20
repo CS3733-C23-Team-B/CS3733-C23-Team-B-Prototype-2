@@ -1,17 +1,16 @@
 package edu.wpi.teamb.Controllers.Navigation;
 
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
 
 public class NavigationController {
   @FXML private MFXButton homeButton;
@@ -23,6 +22,7 @@ public class NavigationController {
   public void initialize() {
     Platform.runLater(
         () -> {
+          if (SigninController.currentUser.getAdmin() == false) map.setVisible(false);
           resetButtons();
         });
   }
@@ -79,17 +79,7 @@ public class NavigationController {
 
   public void exitButtonClicked() {
     resetButtons();
-    Stage newWindow = new Stage();
-    final String filename = Screen.EXIT_CONFIRMATION.getFilename();
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      Scene scene = new Scene(loader.load(), 700, 300);
-      newWindow.setScene(scene);
-      newWindow.show();
-    } catch (NullPointerException | IOException e) {
-      e.printStackTrace();
-    }
+    Popup.displayPopup(Screen.EXIT_CONFIRMATION);
   }
 
   public void profileButtonClicked() {

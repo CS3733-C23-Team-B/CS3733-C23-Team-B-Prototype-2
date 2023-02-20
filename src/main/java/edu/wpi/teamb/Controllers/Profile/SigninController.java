@@ -1,9 +1,9 @@
 package edu.wpi.teamb.Controllers.Profile;
 
-import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
@@ -11,15 +11,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+import javafx.scene.shape.Rectangle;
 
 public class SigninController {
   @FXML private TextField usernameField;
@@ -27,6 +25,7 @@ public class SigninController {
   @FXML private Label prompt;
   @FXML private Button exitButton;
   @FXML private MFXButton forgot;
+  @FXML private Rectangle topRect;
   public static Login currentUser;
 
   private Map<String, Login> usersMap = new HashMap<>();
@@ -79,32 +78,12 @@ public class SigninController {
 
   /** Exits the application */
   public void exitApplication() {
-    Stage newWindow = new Stage();
-    final String filename = Screen.EXIT_CONFIRMATION.getFilename();
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      Scene scene = new Scene(loader.load(), 700, 300);
-      newWindow.setScene(scene);
-      newWindow.show();
-    } catch (NullPointerException | IOException e) {
-      e.printStackTrace();
-    }
+    Popup.displayPopup(Screen.EXIT_CONFIRMATION);
   }
 
   @FXML
   private void newAccount() throws IOException {
-    Stage newWindow = new Stage();
-    final String filename = Screen.CREATE_ACCOUNT.getFilename();
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      Scene scene = new Scene(loader.load(), 800, 487);
-      newWindow.setScene(scene);
-      newWindow.show();
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-    }
+    Popup.displayPopup(Screen.CREATE_ACCOUNT);
   }
 
   public void refresh() {
@@ -120,16 +99,6 @@ public class SigninController {
   }
 
   public void forgotClicked() {
-    Stage newWindow = new Stage();
-    final String filename = Screen.FORGOT_PASSWORD.getFilename();
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      Scene scene = new Scene(loader.load(), 700, 300);
-      newWindow.setScene(scene);
-      newWindow.show();
-    } catch (NullPointerException | IOException e) {
-      e.printStackTrace();
-    }
+    Popup.displayPopup(Screen.FORGOT_PASSWORD);
   }
 }

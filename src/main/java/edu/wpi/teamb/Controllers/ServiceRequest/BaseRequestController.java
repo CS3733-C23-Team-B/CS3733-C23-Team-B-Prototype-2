@@ -9,6 +9,7 @@ import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -49,7 +50,6 @@ public class BaseRequestController {
   protected ArrayList<MFXTextField> textFields;
   protected ArrayList<MFXFilterComboBox<String>> choiceBoxes;
 
-  protected Screen helpScreen;
   protected Screen submissionScreen;
 
   protected Login currUser;
@@ -81,7 +81,7 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void helpButtonClicked() throws IOException {
-    Navigation.navigate(helpScreen);
+    Popup.displayPopup(Screen.SERVICE_REQUEST_FORM_HELP);
   }
 
   /**

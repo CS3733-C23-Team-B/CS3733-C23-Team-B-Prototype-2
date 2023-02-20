@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class Bapp extends Application {
   public static ImageView secondfloor;
   public static ImageView thirdfloor;
   @Setter @Getter private static Stage primaryStage;
+  @Setter @Getter private static StackPane stackPane;
   @Setter @Getter private static BorderPane rootPane;
 
   @Override
@@ -39,7 +41,8 @@ public class Bapp extends Application {
         .add("https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap");
 
     Bapp.primaryStage = primaryStage;
-    Bapp.rootPane = (BorderPane) root;
+    Bapp.stackPane = (StackPane) root;
+    Bapp.rootPane = (BorderPane) stackPane.getChildren().get(0);
 
     Image icon = new Image(this.getClass().getResource("/media/icon.png").toString());
     primaryStage.getIcons().add(icon);

@@ -3,7 +3,7 @@ package edu.wpi.teamb.Controllers.ServiceRequest;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.ComputerRequest;
 import edu.wpi.teamb.Entities.RequestType;
-import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -52,7 +52,6 @@ public class ComputerServiceController extends BaseRequestController {
     typeOfRepairBox.setItems(typeOfRepairList);
     typeOfDeviceBox.setItems(typeOfDeviceList);
 
-    helpScreen = Screen.COMPUTER_SERVICES_HELP;
     super.initialize();
   }
 
@@ -84,6 +83,6 @@ public class ComputerServiceController extends BaseRequestController {
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
 
-    Navigation.navigate((Screen.SUBMISSION_SUCCESS));
+    Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }
 }

@@ -365,7 +365,6 @@ public class PathfindingController {
 
   // at start node make a print out that lets user know that floor went up
   private void showFloorChangeOnNode(Node startNode, Node endNode) {
-
     String floorChange = "Go to Floor " + endNode.getFloor();
     String newFloor = "Came from floor" + startNode.getFloor();
 

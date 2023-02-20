@@ -3,7 +3,7 @@ package edu.wpi.teamb.Controllers.ServiceRequest;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.SanitationRequest;
 import edu.wpi.teamb.Entities.RequestType;
-import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -42,7 +42,6 @@ public class SanitationServiceController extends BaseRequestController {
     }
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
 
-    helpScreen = Screen.SANITATION_HELP;
     super.initialize();
   }
 
@@ -72,6 +71,6 @@ public class SanitationServiceController extends BaseRequestController {
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
 
-    Navigation.navigate((Screen.SUBMISSION_SUCCESS));
+    Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }
 }

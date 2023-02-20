@@ -18,11 +18,8 @@ public enum Screen {
   NAVIGATION("views/Navigation/Navigation.fxml"),
   PATHFINDING("views/Database/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/ServiceRequest/PatientTransportation.fxml"),
-  PATIENT_TRANSPORTATION_HELP("views/ServiceRequest/PatientTransportationHelpPage.fxml"),
   SANITATION("views/ServiceRequest/SanitationService.fxml"),
-  SANITATION_HELP("views/ServiceRequest/SanitationHelpPage.fxml"),
   COMPUTER_SERVICES("views/ServiceRequest/ComputerService.fxml"),
-  COMPUTER_SERVICES_HELP("views/ServiceRequest/ComputerServiceHelpPage.fxml"),
   SIGN_IN("views/Profile/SignIn.fxml"),
   SUBMITTED_SERVICE_REQUESTS("views/ServiceRequest/SubmittedServiceRequests.fxml"),
   PROFILE("views/Profile/Profile.fxml"),
@@ -36,7 +33,8 @@ public enum Screen {
   LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml"),
   TEMPLATE("views/ServiceRequest/Template.fxml"),
   FORGOT_PASSWORD("views/Profile/ForgotPass.fxml"),
-  EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml");
+  EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml"),
+  SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml");
 
   private final String filename;
 

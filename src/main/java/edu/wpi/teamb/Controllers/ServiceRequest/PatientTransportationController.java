@@ -56,7 +56,6 @@ public class PatientTransportationController extends BaseRequestController {
     }
     equipmentNeededBox.setItems(equipmentOptions);
 
-    helpScreen = Screen.PATIENT_TRANSPORTATION_HELP;
     super.initialize();
   }
 

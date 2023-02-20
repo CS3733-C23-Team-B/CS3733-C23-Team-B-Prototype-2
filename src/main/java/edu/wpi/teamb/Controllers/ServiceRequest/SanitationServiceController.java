@@ -42,7 +42,6 @@ public class SanitationServiceController extends BaseRequestController {
     }
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
 
-    helpScreen = Screen.SANITATION_HELP;
     super.initialize();
   }
 

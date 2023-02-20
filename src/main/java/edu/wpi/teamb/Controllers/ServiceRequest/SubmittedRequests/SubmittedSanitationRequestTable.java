@@ -19,8 +19,8 @@ public class SubmittedSanitationRequestTable extends SubmittedBaseRequestTable {
   @Override
   public void initialize() {
     super.initialize();
-    addCol(typeOfCleanUp, "typeOfCleanUp");
-    addCol(cleanUpLocation, "cleanUpLocation");
+    //    addCol(typeOfCleanUp, "typeOfCleanUp");
+    //    addCol(cleanUpLocation, "cleanUpLocation");
     setTable();
   }
 

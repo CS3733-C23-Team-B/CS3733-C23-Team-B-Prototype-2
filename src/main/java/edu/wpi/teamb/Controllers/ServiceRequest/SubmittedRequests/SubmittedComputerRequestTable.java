@@ -20,9 +20,9 @@ public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
   @Override
   public void initialize() {
     super.initialize();
-    addCol(device, "device");
-    addCol(typeOfRepair, "typeOfRepair");
-    addCol(repairLocation, "repairLocation");
+    //    addCol(device, "device");
+    //    addCol(typeOfRepair, "typeOfRepair");
+    //    addCol(repairLocation, "repairLocation");
     setTable();
   }
 

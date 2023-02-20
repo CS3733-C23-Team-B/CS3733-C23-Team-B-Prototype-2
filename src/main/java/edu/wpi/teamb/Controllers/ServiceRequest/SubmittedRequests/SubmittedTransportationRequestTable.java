@@ -20,10 +20,10 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
   @Override
   public void initialize() {
     super.initialize();
-    addCol(patientID, "patientID");
-    addCol(patientCurrentLocation, "patientCurrentLocation");
-    addCol(patientDestinationLocation, "patientDestinationLocation");
-    addCol(equipmentNeeded, "equipmentNeeded");
+    //    addCol(patientID, "patientID");
+    //    addCol(patientCurrentLocation, "patientCurrentLocation");
+    //    addCol(patientDestinationLocation, "patientDestinationLocation");
+    //    addCol(equipmentNeeded, "equipmentNeeded");
     super.setTable();
   }
 

@@ -34,7 +34,7 @@ public class CreditsController {
   // Icons
 
   // Profile Icon
-  public void link3Clicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
+  public void profileClicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
     Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/ui"));
   }
 

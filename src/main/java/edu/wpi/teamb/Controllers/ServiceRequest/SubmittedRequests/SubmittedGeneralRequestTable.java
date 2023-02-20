@@ -3,6 +3,7 @@ package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
+import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -23,17 +24,17 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
   }
 
   public TableView getTable(RequestStatus status, String employee, List<String> types) {
-    table.getItems().clear();
-    List<GeneralRequest> filtered = filterByRequest(types);
-    super.filterTable(status, employee, filtered);
+    //    table.getItems().clear();
+    //    List<GeneralRequest> filtered = filterByRequest(types);
+    //    super.filterTable(status, employee, filtered);
     return table;
   }
 
   @Override
-  public TableView getTable(RequestStatus status, String Employee) {
+  public TableView getTable(RequestStatus status, String Employee, Urgency urgency) {
     table.getItems().clear();
     List<GeneralRequest> objectList = DBSession.getAllRequests();
-    super.filterTable(status, Employee, objectList);
+    super.filterTable(status, Employee, objectList, urgency);
     return table;
   }
 

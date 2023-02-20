@@ -7,6 +7,7 @@ import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
+import edu.wpi.teamb.Entities.Urgency;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
@@ -27,7 +28,7 @@ import javafx.scene.control.Control;
 public class BaseRequestController {
   // JavaFX components
 
-  @FXML protected MFXFilterComboBox<String> urgencyBox;
+  @FXML protected MFXFilterComboBox<Urgency> urgencyBox;
   @FXML protected MFXFilterComboBox<String> assignedStaffBox;
   @FXML protected MFXTextField additionalNotesField;
   private RequestStatus request;
@@ -38,8 +39,9 @@ public class BaseRequestController {
   @FXML protected MFXButton submitButton;
 
   // Choice-box options
-  protected ObservableList<String> urgencyOptions =
-      FXCollections.observableArrayList("Low", "Moderate", "High", "Requires Immediate Attention");
+  protected ObservableList<Urgency> urgencyOptions =
+      FXCollections.observableArrayList(
+          Urgency.LOW, Urgency.MODERATE, Urgency.HIGH, Urgency.REQUIRESIMMEADIATEATTENTION);
   protected ObservableList<String> staffMembers = DBSession.getStaff();
 
   // List of all text fields and choice boxes for flexibility; when adding new input components to
@@ -182,9 +184,9 @@ public class BaseRequestController {
 
     var urgency = urgencyBox.getValue();
     if (urgency == null) {
-      urgency = "";
+      urgency = Urgency.LOW;
     }
-    request.setUrgency(urgency.toString());
+    request.setUrgency(urgency);
     request.setStatus(RequestStatus.PROCESSING);
   }
 }

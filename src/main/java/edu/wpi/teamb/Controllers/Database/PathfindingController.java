@@ -79,6 +79,7 @@ public class PathfindingController {
   Circle endDot;
   private List<Node> addedNodes = new ArrayList<>();
   private TextField textField;
+  List<Node> nodePath;
 
   /** Initializes the dropdown menus */
   public void initialize() {
@@ -316,12 +317,12 @@ public class PathfindingController {
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
-    List<Node> nodePath = null;
+    List<Node> nodePath = new ArrayList<>();
     for (String s : path) {
       nodePath.add(nodes.get(s));
     }
     for (int i = 0; i < nodePath.size() - 1; i++) {
-      if (nodePath.get(i).getFloor() != nodePath.get(i + 1).getFloor()) {
+      if (!nodePath.get(i).getFloor().equals(nodePath.get(i + 1).getFloor())) {
         showFloorChangeOnNode(nodePath.get(i), nodePath.get(i));
       }
     }
@@ -362,8 +363,20 @@ public class PathfindingController {
     }
   }
 
+  // at start node make a print out that lets user know that floor went up
   private void showFloorChangeOnNode(Node startNode, Node endNode) {
-    String floorChange = "Changed to Floor " + endNode.getFloor();
+    String floorChange = "Go to Floor " + endNode.getFloor();
+    String newFloor = "Came from floor" + startNode.getFloor();
+
+    Label label = new Label(floorChange);
+    label.setLayoutX(startNode.getXCoord() + 20);
+    label.setLayoutY(startNode.getYCoord() + 20);
+    linesPlane.getChildren().add(label);
+    //
+    //    Label newLabel = new Label(newFloor);
+    //    newLabel.setLayoutX(endNode.getXCoord() + 20);
+    //    newLabel.setLayoutY(endNode.getYCoord() + 20);
+    //    linesPlane.getChildren().add(newLabel);
   }
 
   /**

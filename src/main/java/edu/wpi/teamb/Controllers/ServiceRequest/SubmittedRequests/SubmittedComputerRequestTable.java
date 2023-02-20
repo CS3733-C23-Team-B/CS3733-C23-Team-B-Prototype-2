@@ -4,6 +4,7 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.ComputerRequest;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
+import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -26,9 +27,9 @@ public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
   }
 
   @Override
-  public TableView getTable(RequestStatus status, String Employee) {
+  public TableView getTable(RequestStatus status, String Employee, Urgency urgency) {
     table.getItems().clear();
-    super.filterTable(status, Employee, convertObj());
+    super.filterTable(status, Employee, convertObj(), urgency);
     return table;
   }
 

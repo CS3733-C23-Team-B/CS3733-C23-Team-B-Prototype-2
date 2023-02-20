@@ -3,6 +3,8 @@ package edu.wpi.teamb.Controllers;
 import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
+import edu.wpi.teamb.Navigation.Popup;
+import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
@@ -29,9 +31,8 @@ public class CreateAccountController {
   private Map<String, Login> usersMap = new HashMap<>();
   private List<Login> users = new ArrayList<Login>();
 
-  public void cancelClicked(ActionEvent actionEvent) {
-    Stage s = (Stage) cancelButton.getScene().getWindow();
-    s.close();
+  public void cancelClicked() {
+    Popup.hidePopup(Screen.CREATE_ACCOUNT);
   }
 
   public void submitClicked(ActionEvent actionEvent) {

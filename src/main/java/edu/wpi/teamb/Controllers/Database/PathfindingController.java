@@ -122,8 +122,9 @@ public class PathfindingController {
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
     pane.setContent(aPane);
-    map.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
+    map.getChildren().add(pane);
+    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     floorCombo.setOnAction(
         e -> {
           changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre());
@@ -132,8 +133,10 @@ public class PathfindingController {
             loc.setVisible(showLocations);
           }
         });
-    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
-    changeFloor("L1", pane.viewportCentre());
+    Platform.runLater(
+        () -> {
+          changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
+        });
   }
 
   public void setNodeColors() {
@@ -365,7 +368,6 @@ public class PathfindingController {
 
   // at start node make a print out that lets user know that floor went up
   private void showFloorChangeOnNode(Node startNode, Node endNode) {
-
     String floorChange = "Go to Floor " + endNode.getFloor();
     String newFloor = "Came from floor" + startNode.getFloor();
 

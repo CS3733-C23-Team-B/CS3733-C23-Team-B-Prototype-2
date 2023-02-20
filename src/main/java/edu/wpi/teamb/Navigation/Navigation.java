@@ -16,22 +16,25 @@ public class Navigation {
     final BorderPane rootPane = Bapp.getRootPane();
 
     // Show loading indicator
-    final ProgressIndicator progressIndicator = new ProgressIndicator();
-    progressIndicator.setMaxSize(100, 100);
-    progressIndicator.setStyle("-fx-progress-color: #21357E;");
-
-    rootPane.setCenter(progressIndicator);
-    try {
-      final String header = Screen.NAVIGATION.getFilename();
-      if (!filename.equals("views/Profile/SignIn.fxml")) {
+    if (screen == Screen.MAP_EDITOR || screen == Screen.PATHFINDING) {
+      final ProgressIndicator progressIndicator = new ProgressIndicator();
+      progressIndicator.setMaxSize(100, 100);
+      progressIndicator.setStyle("-fx-progress-color: #21357E;");
+      rootPane.setCenter(progressIndicator);
+    }
+    if (!filename.equals("views/Profile/SignIn.fxml")) {
+      if (rootPane.getTop() == null) {
+        String header = Screen.NAVIGATION.getFilename();
         final var resource = Bapp.class.getResource(header);
         final FXMLLoader loader2 = new FXMLLoader(resource);
-        final Parent headerRoot = loader2.load();
-        if (rootPane.getTop() == null)
-          Platform.runLater(() -> ((BorderPane) rootPane).setTop(headerRoot));
+        final Parent headerRoot;
+        try {
+          headerRoot = loader2.load();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+        rootPane.setTop(headerRoot);
       }
-    } catch (IOException | NullPointerException e) {
-      e.printStackTrace();
     }
     // Load FXML files in background thread
     final Task<Void> loadTask =

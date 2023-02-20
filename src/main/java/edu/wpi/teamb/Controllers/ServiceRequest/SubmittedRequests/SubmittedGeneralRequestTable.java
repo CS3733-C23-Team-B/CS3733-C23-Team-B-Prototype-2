@@ -31,10 +31,11 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
   }
 
   @Override
-  public TableView getTable(RequestStatus status, String Employee, Urgency urgency) {
+  public TableView getTable(
+      RequestStatus status, String Employee, Urgency urgency, Boolean myRequestsOnly) {
     table.getItems().clear();
     List<GeneralRequest> objectList = DBSession.getAllRequests();
-    super.filterTable(status, Employee, objectList, urgency);
+    super.filterTable(status, Employee, objectList, urgency, myRequestsOnly);
     return table;
   }
 

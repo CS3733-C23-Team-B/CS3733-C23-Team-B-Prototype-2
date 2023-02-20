@@ -2,6 +2,8 @@ package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Entities.RequestStatus;
+import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.collections.FXCollections;
@@ -10,8 +12,12 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+
+import java.io.IOException;
 
 public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
@@ -19,6 +25,7 @@ public class SubmittedServiceRequestsController {
   @FXML MFXComboBox requestStatusFilter;
   @FXML MFXComboBox assignedEmployeeFilter;
   @FXML MFXComboBox requestTypeFilter;
+  @FXML ImageView helpButton;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
@@ -63,8 +70,14 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setText("--Select--");
     assignedEmployeeFilter.setText("--Select--");
     requestTypeFilter.setText("--Select--");
-  }
 
+
+  }
+  public void helpButtonClicked()throws IOException {
+    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
+
+
+  }
   private void makeTable(String name) {
     page = name;
     mainVbox.getChildren().clear();
@@ -124,3 +137,4 @@ public class SubmittedServiceRequestsController {
     makeTable(page);
   }
 }
+

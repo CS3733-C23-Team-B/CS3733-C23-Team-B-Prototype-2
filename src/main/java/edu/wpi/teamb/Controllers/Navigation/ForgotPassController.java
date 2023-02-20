@@ -4,11 +4,12 @@ import static edu.wpi.teamb.Database.SendEmail.sendEmail;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
+import edu.wpi.teamb.Navigation.Popup;
+import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.Map;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 import javax.mail.MessagingException;
 
 public class ForgotPassController {
@@ -33,8 +34,11 @@ public class ForgotPassController {
       } catch (MessagingException ex) {
         System.out.println("Failed to send email: " + ex.getMessage());
       }
-      Stage s = (Stage) username.getScene().getWindow();
-      s.close();
+      Popup.hidePopup(Screen.FORGOT_PASSWORD);
     }
+  }
+
+  public void close() {
+    Popup.hidePopup(Screen.FORGOT_PASSWORD);
   }
 }

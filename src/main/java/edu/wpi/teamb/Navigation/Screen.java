@@ -36,7 +36,9 @@ public enum Screen {
   LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml"),
   TEMPLATE("views/ServiceRequest/Template.fxml"),
   FORGOT_PASSWORD("views/Profile/ForgotPass.fxml"),
-  EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml");
+  EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml"),
+
+  ABOUT_PAGE("views/Navigation/AboutPage.fxml");
 
   private final String filename;
 

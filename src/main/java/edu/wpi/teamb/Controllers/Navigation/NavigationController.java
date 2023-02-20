@@ -22,7 +22,7 @@ public class NavigationController {
   }
 
   public void aboutButtonClicked() {
-    Navigation.navigate(Screen.ABOUT);
+    Navigation.navigate(Screen.ABOUT_PAGE);
   }
 
   public void homeButtonClicked() throws IOException {

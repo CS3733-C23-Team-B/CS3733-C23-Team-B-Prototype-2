@@ -30,6 +30,8 @@ public class SubmittedServiceRequestsController {
   SubmittedSecurityRequestTable securityTable = new SubmittedSecurityRequestTable();
   SubmittedGeneralRequestTable allTable = new SubmittedGeneralRequestTable();
 
+  @FXML Label la;
+
   TableView table = new TableView<>();
   String page = "none";
 
@@ -55,10 +57,8 @@ public class SubmittedServiceRequestsController {
     avTable.initialize();
     securityTable.initialize();
     allTable.initialize();
-    requestTypeFilter.setOnAction(
-        e -> {
-          makeTable((String) requestTypeFilter.getValue());
-        });
+    makeTable("All Requests");
+    requestTypeFilter.setOnAction(e -> makeTable((String) requestTypeFilter.getValue()));
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
     assignedEmployeeFilter.setOnAction(e -> filter());
@@ -72,7 +72,6 @@ public class SubmittedServiceRequestsController {
     urgencyFilter.setItems(urgency);
     requestStatusFilter.setText("--Select--");
     assignedEmployeeFilter.setText("--Select--");
-    requestTypeFilter.setText("--Select--");
     urgencyFilter.setText("--Select--");
   }
 
@@ -128,10 +127,9 @@ public class SubmittedServiceRequestsController {
   }
 
   private void setLabel(String name) {
-    Label la = new Label();
     la.setText(name);
     la.setFont(new Font("Ariel", 25));
-    mainVbox.getChildren().add(la);
+    //    mainVbox.getChildren().add(la);
   }
 
   public void clearFilters() {

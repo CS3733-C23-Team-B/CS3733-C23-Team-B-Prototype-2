@@ -373,11 +373,11 @@ public class PathfindingController {
     label.setLayoutX(startNode.getXCoord() + 20);
     label.setLayoutY(startNode.getYCoord() + 20);
     linesPlane.getChildren().add(label);
-//
-//    Label newLabel = new Label(newFloor);
-//    newLabel.setLayoutX(endNode.getXCoord() + 20);
-//    newLabel.setLayoutY(endNode.getYCoord() + 20);
-//    linesPlane.getChildren().add(newLabel);
+    //
+    //    Label newLabel = new Label(newFloor);
+    //    newLabel.setLayoutX(endNode.getXCoord() + 20);
+    //    newLabel.setLayoutY(endNode.getYCoord() + 20);
+    //    linesPlane.getChildren().add(newLabel);
   }
 
   /**

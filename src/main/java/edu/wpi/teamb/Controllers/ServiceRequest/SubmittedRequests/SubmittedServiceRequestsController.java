@@ -1,19 +1,22 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
-import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
+import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
@@ -21,10 +24,11 @@ public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
   @FXML MFXButton clearFiltersButton;
   @FXML MFXComboBox requestStatusFilter;
-  @FXML MFXComboBox assignedEmployeeFilter;
+  @FXML MFXComboBox assignedStaffFilter;
   @FXML MFXComboBox requestTypeFilter;
-  @FXML MFXComboBox urgencyFilter;
+  @FXML MFXComboBox requestUrgencyFilter;
   @FXML MFXCheckbox myRequestsFilter;
+  @FXML ImageView helpButton;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
@@ -52,7 +56,7 @@ public class SubmittedServiceRequestsController {
           "Security");
   private ObservableList<String> staff = DBSession.getStaff();
 
-  private Login currUser = SigninController.getInstance().currentUser;
+  //  private Login currUser = SigninController.getInstance().currentUser;
 
   public void initialize() {
     saniTable.initialize();
@@ -65,19 +69,23 @@ public class SubmittedServiceRequestsController {
     requestTypeFilter.setOnAction(e -> makeTable((String) requestTypeFilter.getValue()));
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
-    assignedEmployeeFilter.setOnAction(e -> filter());
-    urgencyFilter.setOnAction(e -> filter());
+    assignedStaffFilter.setOnAction(e -> filter());
+    requestUrgencyFilter.setOnAction(e -> filter());
     myRequestsFilter.setOnAction(e -> filter());
     table.setOnMouseClicked(e -> mouseClicked());
 
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
     requestStatusFilter.setItems(Status);
-    assignedEmployeeFilter.setItems(staff);
+    assignedStaffFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
-    urgencyFilter.setItems(urgency);
+    requestUrgencyFilter.setItems(urgency);
     requestStatusFilter.setText("--Select--");
-    assignedEmployeeFilter.setText("--Select--");
-    urgencyFilter.setText("--Select--");
+    assignedStaffFilter.setText("--Select--");
+    requestUrgencyFilter.setText("--Select--");
+  }
+
+  public void helpButtonClicked() throws IOException {
+    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
   }
 
   private void makeTable(String name) {
@@ -88,42 +96,42 @@ public class SubmittedServiceRequestsController {
       table =
           saniTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue(),
+              (String) assignedStaffFilter.getValue(),
+              (Urgency) requestUrgencyFilter.getValue(),
               myRequestsFilter.isSelected());
     } else if (page.equals("Internal Patient Transportation")) {
       table =
           ptTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue(),
+              (String) assignedStaffFilter.getValue(),
+              (Urgency) requestUrgencyFilter.getValue(),
               myRequestsFilter.isSelected());
     } else if (page.equals("Computer")) {
       table =
           comTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue(),
+              (String) assignedStaffFilter.getValue(),
+              (Urgency) requestUrgencyFilter.getValue(),
               myRequestsFilter.isSelected());
       table =
           avTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue(),
+              (String) assignedStaffFilter.getValue(),
+              (Urgency) requestUrgencyFilter.getValue(),
               myRequestsFilter.isSelected());
     } else if (page.equals("Security")) {
       table =
           securityTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue(),
+              (String) assignedStaffFilter.getValue(),
+              (Urgency) requestUrgencyFilter.getValue(),
               myRequestsFilter.isSelected());
     } else if (page.equals("All Requests")) {
       table =
           allTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue(),
+              (String) assignedStaffFilter.getValue(),
+              (Urgency) requestUrgencyFilter.getValue(),
               myRequestsFilter.isSelected());
     }
 
@@ -138,26 +146,25 @@ public class SubmittedServiceRequestsController {
   }
 
   public void clearFilters() {
-    assignedEmployeeFilter.setValue(null);
+    assignedStaffFilter.setValue(null);
     requestStatusFilter.setValue(null);
-    urgencyFilter.setValue(null);
+    requestUrgencyFilter.setValue(null);
     requestTypeFilter.setValue(page);
     myRequestsFilter.setSelected(false);
     requestStatusFilter.setText("--Select--");
-    assignedEmployeeFilter.setText("--Select--");
-    urgencyFilter.setText("--Select--");
+    assignedStaffFilter.setText("--Select--");
+    requestUrgencyFilter.setText("--Select--");
     filter();
   }
 
   public void mouseClicked() {
     GeneralRequest r = (GeneralRequest) table.getSelectionModel().getSelectedItem();
     if (r != null) {
-      if (currUser.getAdmin()){
-
-      }
-      else{
-        
-      }
+      //      if (currUser.getAdmin()) {
+      //
+      //      } else {
+      //
+      //      }
     }
   }
 

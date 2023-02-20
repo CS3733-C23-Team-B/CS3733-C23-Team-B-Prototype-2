@@ -1,8 +1,10 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.*;
+import edu.wpi.teamb.Database.Requests.ComputerRequest;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Database.Requests.PatientTransportationRequest;
+import edu.wpi.teamb.Database.Requests.SanitationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Entities.Urgency;
@@ -41,7 +43,6 @@ public class SubmittedServiceRequestsController {
 
   @FXML Label la;
 
-  TableView table = new TableView<>();
   String page = "none";
 
   private ObservableList<RequestStatus> Status =
@@ -75,13 +76,13 @@ public class SubmittedServiceRequestsController {
     assignedStaffFilter.setOnAction(e -> filter());
     requestUrgencyFilter.setOnAction(e -> filter());
     myRequestsFilter.setOnAction(e -> filter());
-    table.setOnMouseClicked(e -> mouseClicked());
 
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
     requestStatusFilter.setItems(Status);
     assignedStaffFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
     requestUrgencyFilter.setItems(urgency);
+    requestTypeFilter.setText("All Request");
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
@@ -93,6 +94,8 @@ public class SubmittedServiceRequestsController {
 
   private void makeTable(String name) {
     page = name;
+    TableView table = new TableView<>();
+
     mainVbox.getChildren().clear();
     //    table.getItems().clear();
     if (page.equals("Sanitation")) {
@@ -137,7 +140,8 @@ public class SubmittedServiceRequestsController {
               (Urgency) requestUrgencyFilter.getValue(),
               myRequestsFilter.isSelected());
     }
-
+    TableView finalTable = table;
+    table.setOnMouseClicked(e -> mouseClicked(finalTable));
     setLabel(name);
     mainVbox.getChildren().add(table);
   }
@@ -164,29 +168,46 @@ public class SubmittedServiceRequestsController {
   @FXML Label dateText;
   @FXML Label UrgencyText;
 
-  public void mouseClicked() {
+  public void mouseClicked(TableView table) {
     GeneralRequest r = (GeneralRequest) table.getSelectionModel().getSelectedItem();
+    specificRequestInfoBox.getChildren().clear();
     if (r != null) {
-      specificRequestInfoBox.getChildren().clear();
       requestTypeText.setText(r.getRequestType().toString());
       dateText.setText(r.getDate());
       UrgencyText.setText(r.getUrgency().toString());
+      specificRequestInfoBox.getChildren().add(requestTypeText);
+      specificRequestInfoBox.getChildren().add(dateText);
+      specificRequestInfoBox.getChildren().add(UrgencyText);
       if (r.getRequestType().equals(RequestType.PATIENTTRANSPOTATION)) {
         PatientTransportationRequest pt = (PatientTransportationRequest) r;
-        Label patientDestination = new Label();
-        Label patientID = new Label();
-        Label patientCurrent = new Label();
-        Label equipmentNeeded = new Label();
-        patientDestination.setText(pt.getPatientDestinationLocation());
-        patientID.setText(pt.getPatientID());
-        patientCurrent.setText(pt.getPatientCurrentLocation());
-        equipmentNeeded.setText(pt.getEquipmentNeeded());
-        specificRequestInfoBox.getChildren().add(patientID);
-        specificRequestInfoBox.getChildren().add(patientCurrent);
-        specificRequestInfoBox.getChildren().add(patientDestination);
-        specificRequestInfoBox.getChildren().add(equipmentNeeded);
+        Label patientDestination =
+            addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
+        Label patientID = addAttribute("Patient ID:", pt.getPatientID());
+        Label patientCurrent =
+            addAttribute("Patient Current Location:", pt.getPatientCurrentLocation());
+        Label equipmentNeeded = addAttribute("Equipment Needed:", pt.getEquipmentNeeded());
+
+      } else if (r.getRequestType().equals(RequestType.SANITATION)) {
+        SanitationRequest sr = (SanitationRequest) r;
+        Label cleanUpLocation = addAttribute("Clean Up Location", sr.getCleanUpLocation());
+        Label typeOfCleanUp = addAttribute("Type of Clean Up:", sr.getTypeOfCleanUp());
+      } else if (r.getRequestType().equals(RequestType.COMPUTER)) {
+        ComputerRequest cr = (ComputerRequest) r;
+        Label typeOfRepair = addAttribute("Type of Repair:", cr.getTypeOfRepair());
+        Label device = addAttribute("Type of Device:", cr.getDevice());
+        Label repairLocation = addAttribute("Repair Location", cr.getRepairLocation());
       }
     }
+  }
+
+  private Label addAttribute(String title, String field) {
+    Label t = new Label();
+    t.setText(title);
+    Label l = new Label();
+    l.setText(field);
+    specificRequestInfoBox.getChildren().add(t);
+    specificRequestInfoBox.getChildren().add(l);
+    return l;
   }
 
   public void filter() {

@@ -69,13 +69,13 @@
                               <Font name="Roboto Italic" size="13.0" />
                            </font>
                         </Label>
-                        <Hyperlink text="https://www.massgeneralbrigham.org/en/patient-care/international/about/brigham-and-womens-hospital" wrapText="true" />
+                        <Hyperlink fx:id="backgroundImageLink" onMouseClicked="#link1Clicked" text="https://www.massgeneralbrigham.org/en/patient-care/international/about/brigham-and-womens-hospital" wrapText="true" />
                         <Label text="Brigham and Women’s Hospital Logo:">
                            <font>
                               <Font name="Roboto Italic" size="13.0" />
                            </font>
                         </Label>
-                        <Hyperlink text="https://innovation.massgeneralbrigham.org/about/about-mass-general-brigham" />
+                        <Hyperlink fx:id="logoLink" onMouseClicked="#link2Clicked" text="https://innovation.massgeneralbrigham.org/about/about-mass-general-brigham" />
                         <Label text="Icons:">
                            <font>
                               <Font name="Roboto Bold" size="15.0" />
@@ -91,7 +91,7 @@
                               <Font name="Roboto" size="13.0" />
                            </font>
                         </Label>
-                        <Hyperlink text="https://www.flaticon.com/free-icons/ui" />
+                        <Hyperlink fx:id="profileLink" onMouseClicked="#profileClicked" text="https://www.flaticon.com/free-icons/ui" />
                         <Label text="Stretcher icon:">
                            <font>
                               <Font name="Roboto Italic" size="13.0" />
@@ -102,14 +102,14 @@
                               <Font name="Roboto" size="13.0" />
                            </font>
                         </Label>
-                        <Hyperlink text="https://www.flaticon.com/free-icons/stretcher" />
+                        <Hyperlink fx:id="stretcherLink" onMouseClicked="#stretcherClicked" text="https://www.flaticon.com/free-icons/stretcher" />
                         <Label text="Cleaning icon: ">
                            <font>
                               <Font name="Roboto Italic" size="13.0" />
                            </font>
                         </Label>
                         <Label text="Created by monkik - Flaticon" />
-                        <Hyperlink text="https://www.flaticon.com/free-icons/cleaning" />
+                        <Hyperlink fx:id="cleaningLink" onMouseClicked="#cleaningClicked" text="https://www.flaticon.com/free-icons/cleaning" />
                         <Label text="Security icon:">
                            <font>
                               <Font name="Roboto Italic" size="13.0" />
@@ -120,7 +120,7 @@
                               <Font name="Roboto" size="13.0" />
                            </font>
                         </Label>
-                        <Hyperlink text="https://www.flaticon.com/free-icons/security" />
+                        <Hyperlink fx:id="securityLink" onMouseClicked="#securityClicked" text="https://www.flaticon.com/free-icons/security" />
                         <Label text="Laptop icons:">
                            <font>
                               <Font name="Roboto Italic" size="13.0" />
@@ -131,14 +131,14 @@
                               <Font name="Roboto" size="13.0" />
                            </font>
                         </Label>
-                        <Hyperlink text="https://www.flaticon.com/free-icons/laptop " />
+                        <Hyperlink fx:id="laptopLink" onMouseClicked="#laptopClicked" text="https://www.flaticon.com/free-icons/laptop " />
                         <Label text="Video and audio icon: ">
                            <font>
                               <Font name="Roboto Italic" size="13.0" />
                            </font>
                         </Label>
                         <Label text="Created by berkahicon - Flaticon" />
-                        <Hyperlink text="https://www.flaticon.com/free-icons/video-and-audio" />
+                        <Hyperlink fx:id="audioVisualLink" onMouseClicked="#audioVisualClicked" text="https://www.flaticon.com/free-icons/video-and-audio" />
                      </children>
                   </VBox>
                </content>

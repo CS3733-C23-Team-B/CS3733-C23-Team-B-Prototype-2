@@ -1,14 +1,14 @@
-package edu.wpi.teamb.Database;
+package edu.wpi.teamb.Database.Requests;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "securityrequest")
+@Table(name = "securityrequest", schema = "iter3")
 @PrimaryKeyJoinColumn(
     name = "securityRequestID",
-    foreignKey = @ForeignKey(name = "SecurityRequestIDKey"))
+    foreignKey = @ForeignKey(name = "SecurityRequestIDKey_iter3"))
 public class SecurityRequest extends GeneralRequest {
   @Column(name = "issuetype", length = 40)
   @Getter

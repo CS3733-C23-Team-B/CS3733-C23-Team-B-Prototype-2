@@ -4,15 +4,35 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Pathfinding {
   private static List<Edge> edges = DBSession.getAllEdges();
   private static Map<String, Node> nodes = DBSession.getAllNodes();
-  private static Map<String, List<Move>> moves = DBSession.getIDMoves(new Date(2023, 1, 1));
+  private static Date date;
+
+  static {
+    try {
+      date = new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01");
+    } catch (ParseException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  private static Map<String, List<Move>> movesID = DBSession.getIDMoves(date);
+  private static Map<String, Move> movesLN = DBSession.getLNMoves(date);
+
   private static int totalDist = 0;
   public static boolean avoidStairs = false;
+
+  public static void setDate(Date d) {
+    date = d;
+    movesID = DBSession.getIDMoves(d);
+    movesLN = DBSession.getLNMoves(d);
+  }
 
   /**
    * Given an edge, evaluates the weight of the edge
@@ -61,16 +81,16 @@ public class Pathfinding {
 
     int kFloor;
 
-    if (!moves.containsKey(node1.getNodeID())) kFloor = 0;
+    if (!movesID.containsKey(node1.getNodeID())) kFloor = 0;
     else {
       if (avoidStairs)
         kFloor =
-            moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
+            movesID.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
                 ? 150
                 : 999999;
       else
         kFloor =
-            moves.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
+            movesID.get(node1.getNodeID()).get(0).getLocationName().getLocationType().equals("ELEV")
                 ? 150
                 : 250;
     }
@@ -138,8 +158,18 @@ public class Pathfinding {
   }
 
   static ArrayList<String> getPathBreadthDepth(String startLoc, String endLoc, boolean breadth) {
-    String start = DBSession.getMostRecentNodeID(startLoc);
-    String end = DBSession.getMostRecentNodeID(endLoc);
+
+    Map<String, Move> moves = Pathfinding.getMovesLN();
+    Move startMove = moves.get(startLoc);
+    Move endMove = moves.get(endLoc);
+
+    if (startMove == null || endMove == null) {
+      return null;
+    }
+
+    String start = startMove.getNode().getNodeID();
+    String end = endMove.getNode().getNodeID();
+    //////
 
     boolean done = false;
     HashMap<String, String> cameFrom = new HashMap<String, String>();
@@ -186,5 +216,9 @@ public class Pathfinding {
   /** Refreshes the node and edge fields from the database */
   public static void refreshData() {
     edges = DBSession.getAllEdges();
+  }
+
+  public static Map<String, Move> getMovesLN() {
+    return movesLN;
   }
 }

@@ -18,13 +18,15 @@ public class MapDAO {
   private static List<Edge> edges;
   private static Map<String, LocationName> locationNames = new HashMap<String, LocationName>();
 
+  private static Map<String, List<Move>> IDMoves = new HashMap<String, List<Move>>();
+
   public static Map<String, Node> getAllNodes() {
-    //        refreshNodes();
+    refreshNodes();
     return nodes;
   }
 
   public static List<Edge> getAllEdges() {
-    //    refreshEdges();
+    refreshEdges();
     return edges;
   }
 
@@ -33,7 +35,11 @@ public class MapDAO {
     return locationNames;
   }
 
-  public static Map<String, List<Move>> getIDMoves(Date d) {
+  public static Map<String, List<Move>> getIDMoves() {
+    return IDMoves;
+  }
+
+  public static void refreshIDMoves(Date d) {
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
     HashMap<String, List<Move>> moves = new HashMap<String, List<Move>>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
@@ -68,12 +74,11 @@ public class MapDAO {
           moves.put(m.getNode().getNodeID(), newM);
         }
       }
-      return moves;
+      IDMoves = moves;
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       session.close();
-      return moves;
     }
   }
 
@@ -252,11 +257,8 @@ public class MapDAO {
     e2.setNode2(n1);
     try {
       Transaction tx = session.beginTransaction();
-      if (session.contains(e1)) {
-        session.remove(e1);
-      } else if (session.contains(e2)) {
-        session.remove(e2);
-      }
+      session.remove(e1);
+      session.remove(e2);
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();

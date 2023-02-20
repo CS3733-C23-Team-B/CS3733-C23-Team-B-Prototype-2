@@ -1,7 +1,8 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.SanitationRequest;
+import edu.wpi.teamb.Database.Requests.SanitationRequest;
+import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -65,6 +66,7 @@ public class SanitationServiceController extends BaseRequestController {
       typeOfcleanUp = "";
     }
     request.setTypeOfCleanUp(typeOfcleanUp.toString());
+    request.setRequestType(RequestType.PATIENTTRANSPOTATION);
 
     DBSession.addRequest(request);
     // may need to clear fields can be done with functions made for clear

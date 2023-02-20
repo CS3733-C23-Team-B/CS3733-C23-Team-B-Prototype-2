@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class SigninController {
   @FXML private TextField passwordField;
   @FXML private Label prompt;
   @FXML private Button exitButton;
+  @FXML private MFXButton forgot;
   public static Login currentUser;
 
   private Map<String, Login> usersMap = new HashMap<>();
@@ -56,6 +58,7 @@ public class SigninController {
       return true;
     }
     prompt.setText("\tInvalid login");
+    forgot.setVisible(true);
     prompt.setTextFill(Color.RED);
     usernameField.clear();
     passwordField.clear();
@@ -114,5 +117,19 @@ public class SigninController {
 
   public static Login getCurrentUser() {
     return currentUser;
+  }
+
+  public void forgotClicked() {
+    Stage newWindow = new Stage();
+    final String filename = Screen.FORGOT_PASSWORD.getFilename();
+    try {
+      final var resource = Bapp.class.getResource(filename);
+      final FXMLLoader loader = new FXMLLoader(resource);
+      Scene scene = new Scene(loader.load(), 700, 300);
+      newWindow.setScene(scene);
+      newWindow.show();
+    } catch (NullPointerException | IOException e) {
+      e.printStackTrace();
+    }
   }
 }

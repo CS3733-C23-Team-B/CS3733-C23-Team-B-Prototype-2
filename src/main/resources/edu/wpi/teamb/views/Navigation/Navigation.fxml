@@ -68,7 +68,7 @@
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#helpClicked" text="Help" />
                   <MenuItem mnemonicParsing="false" onAction="#aboutButtonClicked" text="About" />
-                  <MenuItem mnemonicParsing="false" text="Credits" />
+                  <MenuItem fx:id="creditsButton" mnemonicParsing="false" onAction="#creditsButtonClicked" text="Credits" />
                   <MenuItem mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
                   <MenuItem mnemonicParsing="false" onAction="#signOutClicked" text="Sign Out" />
               </items>

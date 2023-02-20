@@ -10,28 +10,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.SigninController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: grey; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.SigninController">
    <center>
-      <AnchorPane prefHeight="236.0" prefWidth="279.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-opacity: 50;">
+      <AnchorPane prefHeight="236.0" prefWidth="279.0" style="-fx-background-color: white; -fx-background-radius: 0; -fx-opacity: 50;">
          <children>
-            <MFXTextField fx:id="usernameField" layoutX="292.0" layoutY="146.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" promptText="Username" />
-            <MFXPasswordField fx:id="passwordField" layoutX="292.0" layoutY="184.0" maxHeight="25.0" minHeight="-Infinity" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="25.0" prefWidth="215.0" promptText="Password" />
-            <MFXButton fx:id="signInButton" buttonType="RAISED" depthLevel="LEVEL1" layoutX="291.0" layoutY="225.0" onAction="#signInButtonClicked" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #2196F3;" text="Sign In" />
-            <MFXButton layoutX="335.0" layoutY="265.0" onAction="#newAccount" text="Create New Account" />
-            <Label fx:id="prompt" layoutX="295.0" layoutY="100.0" prefHeight="32.0" prefWidth="206.0" text="Please sign In below.">
+            <MFXTextField fx:id="usernameField" layoutX="225.0" layoutY="145.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="50.0" prefWidth="350.0" promptText="Username" />
+            <MFXPasswordField fx:id="passwordField" layoutX="224.0" layoutY="215.0" maxHeight="33.0" minHeight="-Infinity" minWidth="215.0" onKeyReleased="#handleKeyPress" prefHeight="50.0" prefWidth="350.0" promptText="Password" />
+            <MFXButton fx:id="signInButton" buttonType="RAISED" depthLevel="LEVEL1" layoutX="225.0" layoutY="285.0" onAction="#signInButtonClicked" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #21357e;" text="Sign In" textFill="WHITE" />
+            <MFXButton layoutX="224.0" layoutY="355.0" onAction="#newAccount" text="Create New Account" />
+            <Label fx:id="prompt" layoutX="296.0" layoutY="96.0" prefHeight="32.0" prefWidth="206.0" text="Please sign In below.">
                <font>
                   <Font size="22.0" />
                </font></Label>
-            <MFXButton fx:id="forgot" layoutX="342.0" layoutY="301.0" onAction="#forgotClicked" text="Forgot Password?" />
+            <MFXButton fx:id="forgot" layoutX="459.0" layoutY="355.0" onAction="#forgotClicked" text="Forgot Password?" />
             <MFXButton fx:id="exitButton" buttonType="RAISED" depthLevel="LEVEL1" layoutX="672.0" layoutY="475.0" onAction="#exitApplication" text="Exit Application" />
+            <MFXButton fx:id="signInButton1" buttonType="RAISED" depthLevel="LEVEL1" layoutX="291.0" layoutY="425.0" onAction="#signInButtonClicked" prefHeight="50.0" prefWidth="218.0" style="-fx-background-color: #6D9BF8;" text="View Map" textFill="WHITE" />
          </children>
       </AnchorPane>
    </center>
    <top>
-      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="120.0" prefWidth="200.0" style="-fx-background-radius: 20;" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <Text fill="WHITE" layoutX="73.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Brigham and Women’s Hospital!">
+            <Rectangle fx:id="topRect" fill="#21357e" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+            <Text fill="WHITE" layoutX="78.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Brigham and Women’s Hospital">
                <font>
                   <Font size="33.0" />
                </font>

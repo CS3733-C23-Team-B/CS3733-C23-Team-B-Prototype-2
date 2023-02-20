@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -117,15 +118,17 @@
          <children>
             <VBox layoutY="-64.0" prefHeight="600.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
                <children>
-                  <HBox prefHeight="52.0" prefWidth="300.0">
+                  <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
+                  <MFXComboBox fx:id="requestStatusFilter" floatingText="Request Status" prefHeight="40.0" prefWidth="219.0" />
+                  <MFXComboBox fx:id="assignedEmployeeFilter" floatingText="Assigned Employee" prefHeight="40.0" prefWidth="219.0" />
+                  <MFXComboBox fx:id="urgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0" />
+                  <HBox prefHeight="30.0" prefWidth="300.0">
                      <children>
-                        <MFXComboBox fx:id="requestStatusFilter" floatingText="Request Status" prefHeight="40.0" prefWidth="219.0" />
-                        <MFXComboBox fx:id="assignedEmployeeFilter" floatingText="Assigned Employee" prefHeight="40.0" prefWidth="219.0" />
+                        <MFXCheckbox fx:id="myRequestsFilter" />
+                        <Label text="Display My Requests Only" />
                      </children>
                   </HBox>
-                  <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
                   <MFXButton fx:id="clearFiltersButton" onAction="#clearFilters" text="Clear Filters" />
-                  <MFXComboBox fx:id="urgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0" />
                </children>
                <padding>
                   <Insets left="40.0" />

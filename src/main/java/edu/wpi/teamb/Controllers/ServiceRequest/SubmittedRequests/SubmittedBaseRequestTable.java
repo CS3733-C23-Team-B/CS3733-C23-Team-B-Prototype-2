@@ -37,7 +37,7 @@ public abstract class SubmittedBaseRequestTable {
   private ObservableList<String> staff = DBSession.getStaff();
 
   public void initialize() {
-    l = SigninController.getCurrentUser();
+    l = SigninController.getInstance().currentUser;
     addcol(date, "date");
     addcol(firstname, "firstname");
     addcol(lastname, "lastname");
@@ -53,7 +53,8 @@ public abstract class SubmittedBaseRequestTable {
     return table;
   }
 
-  public TableView getTable(RequestStatus status, String employee, Urgency urgency) {
+  public TableView getTable(
+      RequestStatus status, String employee, Urgency urgency, Boolean myRequestsOnly) {
     return table;
   }
 
@@ -66,7 +67,7 @@ public abstract class SubmittedBaseRequestTable {
           DBSession.updateRequest(r);
         });
 
-    if (DBSession.isAdmin(l)) {
+    if (l.getAdmin()) {
       //      edit assignEmployee
       assignedEmployee.setCellFactory(new ComboBoxTableCell().forTableColumn(staff));
       assignedEmployee.setOnEditCommit(
@@ -159,6 +160,20 @@ public abstract class SubmittedBaseRequestTable {
     return filtered;
   }
 
+  List<GeneralRequest> myRequests(List<GeneralRequest> objectList) {
+    List<GeneralRequest> filtered = new ArrayList<>();
+    String myName = l.getFirstname() + " " + l.getLastname();
+    objectList.forEach(
+        (value) -> {
+          String name = value.getFirstname() + " " + value.getLastname();
+          if (myName.equals(name)) {
+            filtered.add(value);
+          }
+        });
+
+    return filtered;
+  }
+
   //  this one needs to go last cause it does the dirty work
   private void filterTableEmployee(String Employee, List<GeneralRequest> filtered) {
     table.getItems().clear();
@@ -175,11 +190,18 @@ public abstract class SubmittedBaseRequestTable {
   }
 
   protected void filterTable(
-      RequestStatus status, String Employee, List<GeneralRequest> objectList, Urgency urgency) {
+      RequestStatus status,
+      String Employee,
+      List<GeneralRequest> objectList,
+      Urgency urgency,
+      Boolean myRequestsOnly) {
     table.getItems().clear();
     List<GeneralRequest> grList = objectList;
     List<GeneralRequest> filtered = filterTableStatus(status, grList);
     filtered = filterTableUrgency(urgency, filtered);
+    if (myRequestsOnly) {
+      filtered = myRequests(filtered);
+    }
     filterTableEmployee(Employee, filtered);
   }
 }

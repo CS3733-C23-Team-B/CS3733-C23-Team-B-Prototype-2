@@ -50,7 +50,6 @@ public class Bapp extends Application {
     primaryStage.setScene(scene);
     primaryStage.setTitle("Brigham and Women's Hospital");
     primaryStage.show();
-    Navigation.navigate(Screen.SIGN_IN);
     DBSession.refreshAll();
 
     final Task<Void> l =
@@ -79,5 +78,6 @@ public class Bapp extends Application {
           }
         };
     new Thread(l).start();
+    Navigation.navigate(Screen.SIGN_IN);
   }
 }

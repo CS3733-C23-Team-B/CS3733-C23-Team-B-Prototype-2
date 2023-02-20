@@ -22,16 +22,19 @@ public class Navigation {
       progressIndicator.setStyle("-fx-progress-color: #21357E;");
       rootPane.setCenter(progressIndicator);
     }
-    try {
-      if (!filename.equals("views/Profile/SignIn.fxml")) {
-        final String header = Screen.NAVIGATION.getFilename();
+    if (!filename.equals("views/Profile/SignIn.fxml")) {
+      if (rootPane.getTop() == null) {
+        String header = Screen.NAVIGATION.getFilename();
         final var resource = Bapp.class.getResource(header);
         final FXMLLoader loader2 = new FXMLLoader(resource);
-        final Parent headerRoot = loader2.load();
-        if (rootPane.getTop() == null) Platform.runLater(() -> rootPane.setTop(headerRoot));
+        final Parent headerRoot;
+        try {
+          headerRoot = loader2.load();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+        rootPane.setTop(headerRoot);
       }
-    } catch (IOException | NullPointerException e) {
-      e.printStackTrace();
     }
     // Load FXML files in background thread
     final Task<Void> loadTask =

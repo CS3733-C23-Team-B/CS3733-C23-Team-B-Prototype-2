@@ -79,6 +79,8 @@ public class PathfindingController {
   Circle endDot;
   private List<Node> addedNodes = new ArrayList<>();
   private TextField textField;
+
+  private HashMap<Node, Label> labelMap = new HashMap<>();
   List<Node> nodePath;
 
   /** Initializes the dropdown menus */
@@ -339,9 +341,7 @@ public class PathfindingController {
       String first = nodePath.get(i).getFloor();
       String second = nodePath.get(i + 1).getFloor();
       if (!first.equals(second)) {
-        if ((nodePath.get(i).getFloor().equals(currentFloor))) {
-          showFloorChangeOnNode(nodePath.get(i), nodePath.get(i + 1));
-        }
+        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i + 1));
       }
     }
 
@@ -350,7 +350,11 @@ public class PathfindingController {
       Node e = nodes.get(path.get(i + 1));
       pathNodePairs.add(Arrays.asList(s, e));
 
-      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) placeLine(s, e);
+      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
+        placeLine(s, e);
+      }
+      if ((labelMap.get(s) != null) && s.getFloor().equals(currentFloor))
+        showLabel(labelMap.get(s));
     }
     pane.toFront();
 
@@ -371,6 +375,10 @@ public class PathfindingController {
     }
   }
 
+  private void showLabel(Label label) {
+    linesPlane.getChildren().add(label);
+  }
+
   // at start node make a print out that lets user know that floor went up
   private void showFloorChangeOnNode(Node startNode, Node endNode) {
     String floorChange = "Go to Floor " + endNode.getFloor();
@@ -379,13 +387,8 @@ public class PathfindingController {
     Label label = new Label(floorChange);
     label.setLayoutX(startNode.getXCoord() + 20);
     label.setLayoutY(startNode.getYCoord() + 20);
-    linesPlane.getChildren().add(label);
     System.out.println("Go to Floor " + endNode.getFloor());
-    //
-    //    Label newLabel = new Label(newFloor);
-    //    newLabel.setLayoutX(endNode.getXCoord() + 20);
-    //    newLabel.setLayoutY(endNode.getYCoord() + 20);
-    //    linesPlane.getChildren().add(newLabel);
+    labelMap.put(startNode, label);
   }
 
   /**

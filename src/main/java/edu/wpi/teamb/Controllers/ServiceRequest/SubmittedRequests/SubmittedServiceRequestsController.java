@@ -143,6 +143,7 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setText("--Select--");
     assignedEmployeeFilter.setText("--Select--");
     urgencyFilter.setText("--Select--");
+    filter();
   }
 
   public void filter() {

@@ -131,7 +131,7 @@
       </AnchorPane>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
          <children>
-            <Label text="Submitted Requests">
+            <Label fx:id="la" text="Submitted Requests">
                <font>
                   <Font size="48.0" />
                </font>

@@ -32,7 +32,7 @@ public class SigninController {
   private static SigninController instance;
 
   public void initialize() {
-    if(instance == null) instance = this;
+    if (instance == null) instance = this;
   }
 
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {

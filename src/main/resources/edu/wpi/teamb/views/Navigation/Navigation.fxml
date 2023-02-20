@@ -9,9 +9,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="1405.0" style="-fx-background-color: #21357E;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.NavigationController">
+
+<HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="1586.0" style="-fx-background-color: #21375e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.NavigationController">
    <children>
-      <MFXButton fx:id="homeButton" alignment="TOP_LEFT" minWidth="-Infinity" onAction="#homeButtonClicked" prefHeight="67.0" prefWidth="257.0" style="-fx-background-color: transparent;" text="." textFill="WHITE">
+      <MFXButton id="homeButton" fx:id="homeButton" onAction="#homeButtonClicked" prefHeight="102.0" prefWidth="289.0" style="-fx-background-color: transparent;" text="." textFill="WHITE">
          <HBox.margin>
             <Insets />
          </HBox.margin>
@@ -19,67 +20,65 @@
             <Font size="1.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="46.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="37.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../media/hospitalLogo.png" />
                </image>
             </ImageView>
          </graphic>
-         <padding>
-            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
-         </padding>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="forms" onAction="#serviceRequestFormsButtonClicked" prefHeight="42.0" prefWidth="274.0" stylesheets="@../../../../../css/style.css" text="Service Request Forms" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" onAction="#serviceRequestFormsButtonClicked" prefHeight="6.0" prefWidth="286.0" style="-fx-background-color: transparent;" text="Service Request Forms" textFill="WHITE">
          <HBox.margin>
             <Insets />
          </HBox.margin>
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="request" layoutX="10.0" layoutY="10.0" onAction="#submittedRequestsButtonClicked" prefHeight="42.0" prefWidth="254.0" stylesheets="@../../../../../css/style.css" text="Submitted Requests" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" layoutX="10.0" layoutY="10.0" onAction="#submittedRequestsButtonClicked" prefHeight="13.0" prefWidth="258.0" style="-fx-background-color: transparent;" text="Submitted Requests" textFill="WHITE">
          <HBox.margin>
             <Insets />
          </HBox.margin>
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="map" layoutX="64.0" layoutY="10.0" onAction="#mapEditorButtonClicked" prefHeight="43.0" prefWidth="161.0" stylesheets="@../../../../../css/style.css" text="Map Editor" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="mapEditorButton" layoutX="64.0" layoutY="10.0" onAction="#mapEditorButtonClicked" prefHeight="0.0" prefWidth="155.0" style="-fx-background-color: transparent;" text="Map Editor" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
          <HBox.margin>
             <Insets />
          </HBox.margin>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="path" layoutX="52.0" layoutY="10.0" onAction="#pathfindingButtonClicked" prefHeight="43.0" prefWidth="171.0" stylesheets="@../../../../../css/style.css" text="Pathfinding" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="homeButton3" onAction="#pathfindingButtonClicked" prefHeight="0.0" prefWidth="161.0" style="-fx-background-color: transparent;" text="Pathfinding" textFill="WHITE">
          <HBox.margin>
             <Insets />
          </HBox.margin>
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
       </MFXButton>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+      <HBox alignment="CENTER_RIGHT" prefWidth="187.0" HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </HBox.margin>
          <children>
-            <MenuButton id="menuIcon" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0" style="-fx-border-color: transparent;" stylesheets="@../../../../../css/style.css">
+            <MenuButton id="menuIcon" mnemonicParsing="false" prefHeight="29.0" prefWidth="33.0" style="-fx-border-color: transparent;" text="MenuButton">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#helpClicked" text="Help" />
                   <MenuItem mnemonicParsing="false" onAction="#aboutButtonClicked" text="About" />
+                  <MenuItem mnemonicParsing="false" text="Credits" />
                   <MenuItem mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
                   <MenuItem mnemonicParsing="false" onAction="#signOutClicked" text="Sign Out" />
               </items>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
             </MenuButton>
-            <MFXButton id="navBarButton" onAction="#exitButtonClicked" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../css/style.css" text="Exit" textFill="#c5d3ea">
+            <MFXButton id="navBarButton" onAction="#exitButtonClicked" prefHeight="0.0" prefWidth="82.0" style="-fx-background-color: transparent;" text="Exit" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
                <font>
-                  <Font size="20.0" />
+                  <Font size="18.0" />
                </font>
             </MFXButton>
          </children>

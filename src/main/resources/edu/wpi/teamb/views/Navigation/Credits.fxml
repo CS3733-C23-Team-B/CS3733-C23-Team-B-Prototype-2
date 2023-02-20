@@ -147,7 +147,7 @@
       </GridPane>
       <HBox alignment="CENTER" GridPane.rowIndex="2">
          <children>
-            <MFXButton text="Back" />
+            <MFXButton fx:id="backButton" onAction="#backButtonClicked" text="Back" />
          </children>
       </HBox>
    </children>

@@ -4,6 +4,7 @@ import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ public class SubmittedServiceRequestsController {
   @FXML MFXComboBox assignedEmployeeFilter;
   @FXML MFXComboBox requestTypeFilter;
   @FXML MFXComboBox urgencyFilter;
+  @FXML MFXCheckbox myRequestsFilter;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
@@ -61,6 +63,7 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setOnAction(e -> filter());
     assignedEmployeeFilter.setOnAction(e -> filter());
     urgencyFilter.setOnAction(e -> filter());
+    myRequestsFilter.setOnAction(e -> filter());
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
 
     requestStatusFilter.setItems(Status);
@@ -82,36 +85,42 @@ public class SubmittedServiceRequestsController {
           saniTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue());
+              (Urgency) urgencyFilter.getValue(),
+              myRequestsFilter.isSelected());
     } else if (page.equals("Internal Patient Transportation")) {
       table =
           ptTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue());
+              (Urgency) urgencyFilter.getValue(),
+              myRequestsFilter.isSelected());
     } else if (page.equals("Computer")) {
       table =
           comTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue());
+              (Urgency) urgencyFilter.getValue(),
+              myRequestsFilter.isSelected());
       table =
           avTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue());
+              (Urgency) urgencyFilter.getValue(),
+              myRequestsFilter.isSelected());
     } else if (page.equals("Security")) {
       table =
           securityTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue());
+              (Urgency) urgencyFilter.getValue(),
+              myRequestsFilter.isSelected());
     } else if (page.equals("All Requests")) {
       table =
           allTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue());
+              (Urgency) urgencyFilter.getValue(),
+              myRequestsFilter.isSelected());
     }
 
     setLabel(name);
@@ -130,6 +139,7 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setValue(null);
     urgencyFilter.setValue(null);
     requestTypeFilter.setValue(page);
+    myRequestsFilter.setSelected(false);
     requestStatusFilter.setText("--Select--");
     assignedEmployeeFilter.setText("--Select--");
     urgencyFilter.setText("--Select--");

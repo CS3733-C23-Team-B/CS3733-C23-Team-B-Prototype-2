@@ -65,7 +65,7 @@ public class SanitationServiceController extends BaseRequestController {
       typeOfcleanUp = "";
     }
     request.setTypeOfCleanUp(typeOfcleanUp.toString());
-    request.setRequestType(RequestType.PATIENTTRANSPOTATION);
+    request.setRequestType(RequestType.SANITATION);
 
     DBSession.addRequest(request);
     // may need to clear fields can be done with functions made for clear

@@ -2,7 +2,9 @@ package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
+import edu.wpi.teamb.Database.Requests.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
+import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Entities.Urgency;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -22,6 +24,7 @@ import javafx.scene.text.Font;
 
 public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
+  @FXML VBox specificRequestInfoBox;
   @FXML MFXButton clearFiltersButton;
   @FXML MFXComboBox requestStatusFilter;
   @FXML MFXComboBox assignedStaffFilter;
@@ -157,14 +160,32 @@ public class SubmittedServiceRequestsController {
     filter();
   }
 
+  @FXML Label requestTypeText;
+  @FXML Label dateText;
+  @FXML Label UrgencyText;
+
   public void mouseClicked() {
     GeneralRequest r = (GeneralRequest) table.getSelectionModel().getSelectedItem();
     if (r != null) {
-      //      if (currUser.getAdmin()) {
-      //
-      //      } else {
-      //
-      //      }
+      specificRequestInfoBox.getChildren().clear();
+      requestTypeText.setText(r.getRequestType().toString());
+      dateText.setText(r.getDate());
+      UrgencyText.setText(r.getUrgency().toString());
+      if (r.getRequestType().equals(RequestType.PATIENTTRANSPOTATION)) {
+        PatientTransportationRequest pt = (PatientTransportationRequest) r;
+        Label patientDestination = new Label();
+        Label patientID = new Label();
+        Label patientCurrent = new Label();
+        Label equipmentNeeded = new Label();
+        patientDestination.setText(pt.getPatientDestinationLocation());
+        patientID.setText(pt.getPatientID());
+        patientCurrent.setText(pt.getPatientCurrentLocation());
+        equipmentNeeded.setText(pt.getEquipmentNeeded());
+        specificRequestInfoBox.getChildren().add(patientID);
+        specificRequestInfoBox.getChildren().add(patientCurrent);
+        specificRequestInfoBox.getChildren().add(patientDestination);
+        specificRequestInfoBox.getChildren().add(equipmentNeeded);
+      }
     }
   }
 

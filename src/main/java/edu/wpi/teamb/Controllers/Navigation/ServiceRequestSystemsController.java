@@ -3,6 +3,7 @@ package edu.wpi.teamb.Controllers.Navigation;
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.awt.*;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,8 @@ public class ServiceRequestSystemsController {
   @FXML MFXButton comButton;
   @FXML MFXButton AVButton;
 
+  @FXML Label headerText;
+
   public void initialize() {
     mainVbox.setPadding(new Insets(20, 20, 0, 20));
   }
@@ -29,6 +32,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Internal Patient Transportation");
+    headerText.setText("");
     transButton.setStyle("-fx-background-color: #6D9BF8");
     saniButton.setStyle("-fx-background-color: #21357E");
     secButton.setStyle("-fx-background-color:  #21357E");
@@ -42,6 +46,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Sanitation Service");
+    headerText.setText("");
     transButton.setStyle("-fx-background-color: #21357E");
     saniButton.setStyle("-fx-background-color: #6D9BF8");
     secButton.setStyle("-fx-background-color:  #21357E");
@@ -55,6 +60,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Security Service");
+    headerText.setText("");
     transButton.setStyle("-fx-background-color: #21357E");
     saniButton.setStyle("-fx-background-color: #21357E");
     secButton.setStyle("-fx-background-color:  #6D9BF8");
@@ -68,6 +74,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Computer Service");
+    headerText.setText("");
     transButton.setStyle("-fx-background-color: #21357E");
     saniButton.setStyle("-fx-background-color: #21357E");
     secButton.setStyle("-fx-background-color:  #21357E");
@@ -81,6 +88,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Audio/Video Service");
+    headerText.setText("");
     transButton.setStyle("-fx-background-color: #21357E");
     saniButton.setStyle("-fx-background-color: #21357E");
     secButton.setStyle("-fx-background-color:  #21357E");

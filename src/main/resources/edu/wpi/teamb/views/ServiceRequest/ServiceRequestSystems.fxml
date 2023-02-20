@@ -201,7 +201,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Label text="Please select one of the following service requests on the left" GridPane.columnIndex="1">
+      <Label fx:id="headerText" text="Please select one of the following service requests on the left" GridPane.columnIndex="1">
          <font>
             <Font name="System Italic" size="17.0" />
          </font>
@@ -209,10 +209,5 @@
             <Insets left="30.0" top="60.0" />
          </padding>
       </Label>
-      <MFXButton fx:id="creditsButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #808B9D;" text="View Credits" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
-         <GridPane.margin>
-            <Insets left="900.0" />
-         </GridPane.margin>
-      </MFXButton>
    </children>
 </GridPane>

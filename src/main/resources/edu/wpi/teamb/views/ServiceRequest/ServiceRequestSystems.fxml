@@ -33,7 +33,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request a patient to be moved to and from different locations within the hospital. Developed by Christina Aube and Cierra O'Grady.">
+            <Label text="Request a patient to be moved to and from different locations within the hospital.">
                <font>
                   <Font size="14.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request that a room or public space be cleaned and sanitized. Developed by Luke Grady and Jolie Walts.">
+            <Label text="Request that a room or public space be cleaned and sanitized.">
                <font>
                   <Font size="14.0" />
                </font>
@@ -65,7 +65,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request an officer/security staff. Developed by Sam Colebourn and Jack Lafond.">
+            <Label text="Request an officer/security staff. ">
                <font>
                   <Font size="14.0" />
                </font>
@@ -81,7 +81,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request a repair on a hospital device. Developed by Kavya Mani and Adrian Johnson.">
+            <Label text="Request a repair on a hospital device. ">
                <font>
                   <Font size="14.0" />
                </font>
@@ -97,7 +97,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label text="Request audio or video entertainment for a patient. Developed by Michael Gatti and Sean Lendrum.">
+            <Label text="Request audio or video entertainment for a patient. ">
                <font>
                   <Font size="14.0" />
                </font>
@@ -203,11 +203,16 @@
       </AnchorPane>
       <Label text="Please select one of the following service requests on the left" GridPane.columnIndex="1">
          <font>
-            <Font size="14.0" />
+            <Font name="System Italic" size="17.0" />
          </font>
          <padding>
             <Insets left="30.0" top="60.0" />
          </padding>
       </Label>
+      <MFXButton fx:id="creditsButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #808B9D;" text="View Credits" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets left="900.0" />
+         </GridPane.margin>
+      </MFXButton>
    </children>
 </GridPane>

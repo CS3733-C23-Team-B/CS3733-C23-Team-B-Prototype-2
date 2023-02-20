@@ -29,6 +29,11 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Internal Patient Transportation");
+    transButton.setStyle("-fx-background-color: #6D9BF8");
+    saniButton.setStyle("-fx-background-color: #21357E");
+    secButton.setStyle("-fx-background-color:  #21357E");
+    comButton.setStyle("-fx-background-color:  #21357E");
+    AVButton.setStyle("-fx-background-color: #21357E");
   }
 
   public void makeSani() throws IOException {
@@ -37,6 +42,11 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Sanitation Service");
+    transButton.setStyle("-fx-background-color: #21357E");
+    saniButton.setStyle("-fx-background-color: #6D9BF8");
+    secButton.setStyle("-fx-background-color:  #21357E");
+    comButton.setStyle("-fx-background-color:  #21357E");
+    AVButton.setStyle("-fx-background-color: #21357E");
   }
 
   public void makeSec() throws IOException {
@@ -45,6 +55,11 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Security Service");
+    transButton.setStyle("-fx-background-color: #21357E");
+    saniButton.setStyle("-fx-background-color: #21357E");
+    secButton.setStyle("-fx-background-color:  #6D9BF8");
+    comButton.setStyle("-fx-background-color:  #21357E");
+    AVButton.setStyle("-fx-background-color: #21357E");
   }
 
   public void makeCom() throws IOException {
@@ -53,6 +68,11 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Computer Service");
+    transButton.setStyle("-fx-background-color: #21357E");
+    saniButton.setStyle("-fx-background-color: #21357E");
+    secButton.setStyle("-fx-background-color:  #21357E");
+    comButton.setStyle("-fx-background-color:  #6D9BF8");
+    AVButton.setStyle("-fx-background-color: #21357E");
   }
 
   public void makeAV() throws IOException {
@@ -61,5 +81,10 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Audio/Video Service");
+    transButton.setStyle("-fx-background-color: #21357E");
+    saniButton.setStyle("-fx-background-color: #21357E");
+    secButton.setStyle("-fx-background-color:  #21357E");
+    comButton.setStyle("-fx-background-color:  #21357E");
+    AVButton.setStyle("-fx-background-color: #6D9BF8");
   }
 }

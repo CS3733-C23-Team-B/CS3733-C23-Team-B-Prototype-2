@@ -4,6 +4,7 @@ import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
@@ -81,17 +82,7 @@ public class SigninController {
 
   /** Exits the application */
   public void exitApplication() {
-    Stage newWindow = new Stage();
-    final String filename = Screen.EXIT_CONFIRMATION.getFilename();
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      Scene scene = new Scene(loader.load(), 700, 300);
-      newWindow.setScene(scene);
-      newWindow.show();
-    } catch (NullPointerException | IOException e) {
-      e.printStackTrace();
-    }
+    Popup.displayPopup(Screen.EXIT_CONFIRMATION);
   }
 
   @FXML

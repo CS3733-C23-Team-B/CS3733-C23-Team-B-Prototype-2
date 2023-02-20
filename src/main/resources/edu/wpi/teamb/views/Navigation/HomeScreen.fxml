@@ -77,7 +77,7 @@
                      <children>
                         <MFXScrollPane prefHeight="396.0" prefWidth="998.0" style="-fx-background-color: #FCFCFC;">
                            <content>
-                              <VBox fx:id="homeRequests" spacing="20.0" style="-fx-background-color: #FCFCFC;" />
+                              <VBox fx:id="homeRequests" prefWidth="998.0" spacing="20.0" style="-fx-background-color: #FCFCFC;" />
                            </content>
                         </MFXScrollPane>
                         <VBox alignment="BOTTOM_RIGHT">

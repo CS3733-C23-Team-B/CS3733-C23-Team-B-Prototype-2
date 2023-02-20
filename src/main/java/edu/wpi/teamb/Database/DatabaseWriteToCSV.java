@@ -145,7 +145,7 @@ public class DatabaseWriteToCSV {
       data[2] = r.getLastname();
       data[3] = r.getEmail();
       data[4] = r.getEmployeeID();
-      data[5] = r.getUrgency();
+      data[5] = r.getUrgency().toString();
       data[6] = r.getAssignedEmployee();
       data[7] = r.getNotes();
       data[8] = r.getStatus().toString();
@@ -170,7 +170,7 @@ public class DatabaseWriteToCSV {
       data[2] = r.getLastname();
       data[3] = r.getEmail();
       data[4] = r.getEmployeeID();
-      data[5] = r.getUrgency();
+      data[5] = r.getUrgency().toString();
       data[6] = r.getAssignedEmployee();
       data[7] = r.getNotes();
       data[8] = r.getStatus().toString();
@@ -193,7 +193,7 @@ public class DatabaseWriteToCSV {
       data[2] = r.getLastname();
       data[3] = r.getEmail();
       data[4] = r.getEmployeeID();
-      data[5] = r.getUrgency();
+      data[5] = r.getUrgency().toString();
       data[6] = r.getAssignedEmployee();
       data[7] = r.getNotes();
       data[8] = r.getStatus().toString();
@@ -217,7 +217,7 @@ public class DatabaseWriteToCSV {
       data[2] = r.getLastname();
       data[3] = r.getEmail();
       data[4] = r.getEmployeeID();
-      data[5] = r.getUrgency();
+      data[5] = r.getUrgency().toString();
       data[6] = r.getAssignedEmployee();
       data[7] = r.getNotes();
       data[8] = r.getStatus().toString();
@@ -241,7 +241,7 @@ public class DatabaseWriteToCSV {
       data[2] = r.getLastname();
       data[3] = r.getEmail();
       data[4] = r.getEmployeeID();
-      data[5] = r.getUrgency();
+      data[5] = r.getUrgency().toString();
       data[6] = r.getAssignedEmployee();
       data[7] = r.getNotes();
       data[8] = r.getStatus().toString();

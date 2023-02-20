@@ -2,6 +2,7 @@ package edu.wpi.teamb.Database.Requests;
 
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.RequestType;
+import edu.wpi.teamb.Entities.Urgency;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,7 +46,7 @@ public class GeneralRequest {
   @Column(name = "urgency", length = 40)
   @Getter
   @Setter
-  private String urgency;
+  private Urgency urgency;
 
   @Column(name = "assignedto", length = 60)
   @Getter

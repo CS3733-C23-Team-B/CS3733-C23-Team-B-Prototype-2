@@ -66,7 +66,7 @@ public class NavigationController {
 
   public void creditsButtonClicked() {
     Navigation.navigate(Screen.CREDITS);
-    // resetButtons();
+    resetButtons();
   }
 
   public void homeButtonClicked() throws IOException {

@@ -145,7 +145,7 @@
                   <Insets left="30.0" right="15.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <ImageView fx:id="helpButton" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#helpButtonClicked">
+            <ImageView fx:id="helpButton" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#helpButtonClicked">
                <image>
                   <Image url="@../../../../../media/question.png" />
                </image>

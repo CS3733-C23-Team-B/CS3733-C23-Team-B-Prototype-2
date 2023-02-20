@@ -37,7 +37,7 @@ public abstract class SubmittedBaseRequestTable {
   private ObservableList<String> staff = DBSession.getStaff();
 
   public void initialize() {
-    l = SigninController.getCurrentUser();
+    l = SigninController.getInstance().currentUser;
     addcol(date, "date");
     addcol(firstname, "firstname");
     addcol(lastname, "lastname");
@@ -67,7 +67,7 @@ public abstract class SubmittedBaseRequestTable {
           DBSession.updateRequest(r);
         });
 
-    if (DBSession.isAdmin(l)) {
+    if (l.getAdmin()) {
       //      edit assignEmployee
       assignedEmployee.setCellFactory(new ComboBoxTableCell().forTableColumn(staff));
       assignedEmployee.setOnEditCommit(
@@ -200,7 +200,7 @@ public abstract class SubmittedBaseRequestTable {
     List<GeneralRequest> filtered = filterTableStatus(status, grList);
     filtered = filterTableUrgency(urgency, filtered);
     if (myRequestsOnly) {
-      myRequests(filtered);
+      filtered = myRequests(filtered);
     }
     filterTableEmployee(Employee, filtered);
   }

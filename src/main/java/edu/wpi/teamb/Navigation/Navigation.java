@@ -23,13 +23,12 @@ public class Navigation {
       rootPane.setCenter(progressIndicator);
     }
     try {
-      final String header = Screen.NAVIGATION.getFilename();
       if (!filename.equals("views/Profile/SignIn.fxml")) {
+        final String header = Screen.NAVIGATION.getFilename();
         final var resource = Bapp.class.getResource(header);
         final FXMLLoader loader2 = new FXMLLoader(resource);
         final Parent headerRoot = loader2.load();
-        if (rootPane.getTop() == null)
-          Platform.runLater(() -> ((BorderPane) rootPane).setTop(headerRoot));
+        if (rootPane.getTop() == null) Platform.runLater(() -> rootPane.setTop(headerRoot));
       }
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();

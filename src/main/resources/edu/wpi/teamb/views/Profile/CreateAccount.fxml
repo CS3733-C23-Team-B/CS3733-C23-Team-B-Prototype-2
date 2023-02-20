@@ -65,12 +65,20 @@
                               <Font size="48.0" />
                            </font>
                         </Label>
+                        <Label text="Create an account as a hospital staff member">
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                         <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="400.0" promptText="First Name">
                            <font>
                               <Font size="17.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="15.0" top="50.0" />
+                              <Insets bottom="15.0" top="15.0" />
                            </VBox.margin>
                         </MFXTextField>
                         <MFXTextField fx:id="lastNameField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="400.0" promptText="Last Name">

@@ -16,11 +16,12 @@ public class Navigation {
     final BorderPane rootPane = Bapp.getRootPane();
 
     // Show loading indicator
-    final ProgressIndicator progressIndicator = new ProgressIndicator();
-    progressIndicator.setMaxSize(100, 100);
-    progressIndicator.setStyle("-fx-progress-color: #21357E;");
-
-    rootPane.setCenter(progressIndicator);
+    if (screen == Screen.MAP_EDITOR || screen == Screen.PATHFINDING) {
+      final ProgressIndicator progressIndicator = new ProgressIndicator();
+      progressIndicator.setMaxSize(100, 100);
+      progressIndicator.setStyle("-fx-progress-color: #21357E;");
+      rootPane.setCenter(progressIndicator);
+    }
     try {
       final String header = Screen.NAVIGATION.getFilename();
       if (!filename.equals("views/Profile/SignIn.fxml")) {

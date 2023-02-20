@@ -1,6 +1,6 @@
 package edu.wpi.teamb.Database.DAO;
 
-import edu.wpi.teamb.Database.*;
+import edu.wpi.teamb.Database.Requests.*;
 import edu.wpi.teamb.Entities.SessionGetter;
 import java.util.ArrayList;
 import java.util.List;

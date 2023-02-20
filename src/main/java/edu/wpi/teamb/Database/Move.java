@@ -4,10 +4,14 @@ import jakarta.persistence.*;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cascade;
 
 @Entity
-@Table(name = "move")
+@Table(name = "move", schema = "iter3")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Move {
 
   @Id
@@ -17,9 +21,9 @@ public class Move {
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "move_node_fk",
+              name = "move_node_fk_iter3",
               foreignKeyDefinition =
-                  "FOREIGN KEY (node) REFERENCES iter2.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (node) REFERENCES iter3.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter
@@ -32,9 +36,9 @@ public class Move {
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "move_locationName_fk",
+              name = "move_locationName_fk_iter3",
               foreignKeyDefinition =
-                  "FOREIGN KEY (locationName) REFERENCES iter2.LocationName(longName) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (locationName) REFERENCES iter3.LocationName(longName) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter

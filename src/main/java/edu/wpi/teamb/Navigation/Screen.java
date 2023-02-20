@@ -14,6 +14,7 @@ public enum Screen {
   FUTURE_MOVES("views/Database/FutureMoves.fxml"),
   EDGE_EDITOR("views/Database/EdgeEditor.fxml"),
   EDGE_CREATOR("views/Database/EdgeCreator.fxml"),
+  EDGE_CLICK_CREATOR("views/Database/EdgeClickCreator.fxml"),
   NAVIGATION("views/Navigation/Navigation.fxml"),
   PATHFINDING("views/Database/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/ServiceRequest/PatientTransportation.fxml"),
@@ -34,6 +35,7 @@ public enum Screen {
   ALL_USERS("views/Profile/AllUsers.fxml"),
   LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml"),
   TEMPLATE("views/ServiceRequest/Template.fxml"),
+  FORGOT_PASSWORD("views/Profile/ForgotPass.fxml"),
   EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml");
 
   private final String filename;

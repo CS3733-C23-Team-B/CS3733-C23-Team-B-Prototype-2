@@ -2,25 +2,26 @@ package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
-import edu.wpi.teamb.Database.Requests.SanitationRequest;
+import edu.wpi.teamb.Database.Requests.SecurityRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class SubmittedSanitationRequestTable extends SubmittedBaseRequestTable {
+public class SubmittedSecurityRequestTable extends SubmittedBaseRequestTable {
 
-  @FXML private TableColumn typeOfCleanUp = new TableColumn<>();
-  @FXML private TableColumn cleanUpLocation = new TableColumn<>();
+  //  add the right tablecols here for this request
+  //  @FXML private TableColumn device = new TableColumn<>();
+  //  @FXML private TableColumn typeOfRepair = new TableColumn<>();
+  //  @FXML private TableColumn repairLocation = new TableColumn();
 
   @Override
   public void initialize() {
     super.initialize();
-    addCol(typeOfCleanUp, "typeOfCleanUp");
-    addCol(cleanUpLocation, "cleanUpLocation");
+    //    addCol(device, "device");
+    //    addCol(typeOfRepair, "typeOfRepair");
+    //    addCol(repairLocation, "repairLocation");
     setTable();
   }
 
@@ -33,7 +34,7 @@ public class SubmittedSanitationRequestTable extends SubmittedBaseRequestTable {
 
   private List<GeneralRequest> convertObj() {
     List<GeneralRequest> grList = new ArrayList<>();
-    List<SanitationRequest> objectList = DBSession.getAllSanRequests();
+    List<SecurityRequest> objectList = DBSession.getAllSecRequests();
     objectList.forEach(
         (value) -> {
           grList.add(value);
@@ -41,7 +42,7 @@ public class SubmittedSanitationRequestTable extends SubmittedBaseRequestTable {
     return grList;
   }
 
-  protected List<GeneralRequest> getSanRequests() {
+  protected List<GeneralRequest> getSecRequests() {
     return convertObj();
   }
 }

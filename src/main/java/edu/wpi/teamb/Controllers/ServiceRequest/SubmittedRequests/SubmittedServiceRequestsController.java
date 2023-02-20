@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.*;
+import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -64,8 +65,9 @@ public class SubmittedServiceRequestsController {
     assignedEmployeeFilter.setOnAction(e -> filter());
     urgencyFilter.setOnAction(e -> filter());
     myRequestsFilter.setOnAction(e -> filter());
-    mainVbox.setPadding(new Insets(50, 20, 0, 20));
+    table.setOnMouseClicked(e -> mouseClicked());
 
+    mainVbox.setPadding(new Insets(50, 20, 0, 20));
     requestStatusFilter.setItems(Status);
     assignedEmployeeFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
@@ -142,6 +144,13 @@ public class SubmittedServiceRequestsController {
     assignedEmployeeFilter.setText("--Select--");
     urgencyFilter.setText("--Select--");
     filter();
+  }
+
+  public void mouseClicked() {
+    GeneralRequest r = (GeneralRequest) table.getSelectionModel().getSelectedItem();
+    if (r != null) {
+      System.out.println("i worked");
+    }
   }
 
   public void filter() {

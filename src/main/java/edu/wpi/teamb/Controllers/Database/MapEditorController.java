@@ -82,13 +82,16 @@ public class MapEditorController {
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
-    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2220, 974));
     pane.setContent(aPane);
     map.getChildren().add(pane);
     // Changes floor when selecting a new floor
     floorCombo.setOnAction(
         e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
-    pane.zoomTo(-5000, -3000, new Point2D(2215, 1045));
+    pane.zoomTo(-5000, -3000, Point2D.ZERO);
+    Platform.runLater(
+        () -> {
+          changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
+        });
   }
 
   private void changeFloor(String floor, Point2D p) {

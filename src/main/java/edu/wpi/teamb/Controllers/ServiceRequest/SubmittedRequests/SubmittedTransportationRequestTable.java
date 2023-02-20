@@ -28,9 +28,10 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
   }
 
   @Override
-  public TableView getTable(RequestStatus status, String Employee, Urgency urgency) {
+  public TableView getTable(
+      RequestStatus status, String Employee, Urgency urgency, Boolean myRequests) {
     table.getItems().clear();
-    super.filterTable(status, Employee, convertObj(), urgency);
+    super.filterTable(status, Employee, convertObj(), urgency, myRequests);
     return table;
   }
 

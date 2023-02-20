@@ -157,10 +157,10 @@ public class PathfindingController {
   }
 
   private void changeFloor(String floor, Point2D p) {
+    currentFloor = floor;
     ImageView image;
     nodeMap.clear();
 
-    currentFloor = floor;
     image = imageMap.get(floor);
 
     image.toFront();
@@ -313,22 +313,13 @@ public class PathfindingController {
       pathNotFoundTextField.setVisible(true);
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #e0e0e0");
     }
-
+    System.out.println(path);
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);
 
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
-    List<Node> nodePath = new ArrayList<>();
-    for (String s : path) {
-      nodePath.add(nodes.get(s));
-    }
-    for (int i = 0; i < nodePath.size() - 1; i++) {
-      if (!nodePath.get(i).getFloor().equals(nodePath.get(i + 1).getFloor())) {
-        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i + 1));
-      }
-    }
 
     Node startNode = nodes.get(path.get(0));
     Node endNode = nodes.get(path.get(path.size() - 1));
@@ -338,6 +329,20 @@ public class PathfindingController {
           (key, value) -> {
             if (value.equals(startNode.getFloor())) floorCombo.setValue(key);
           });
+    }
+
+    List<Node> nodePath = new ArrayList<>();
+    for (String s : path) {
+      nodePath.add(nodes.get(s));
+    }
+    for (int i = 0; i < nodePath.size() - 1; i++) {
+      String first = nodePath.get(i).getFloor();
+      String second = nodePath.get(i + 1).getFloor();
+      if (!first.equals(second)) {
+        if ((nodePath.get(i).getFloor().equals(currentFloor))) {
+          showFloorChangeOnNode(nodePath.get(i), nodePath.get(i + 1));
+        }
+      }
     }
 
     for (int i = 0; i < path.size() - 1; i++) {
@@ -375,6 +380,7 @@ public class PathfindingController {
     label.setLayoutX(startNode.getXCoord() + 20);
     label.setLayoutY(startNode.getYCoord() + 20);
     linesPlane.getChildren().add(label);
+    System.out.println("Go to Floor " + endNode.getFloor());
     //
     //    Label newLabel = new Label(newFloor);
     //    newLabel.setLayoutX(endNode.getXCoord() + 20);

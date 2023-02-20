@@ -91,7 +91,7 @@
                               <Font name="Roboto" size="13.0" />
                            </font>
                         </Label>
-                        <Hyperlink fx:id="profileLink" onMouseClicked="#profileClicked" text="https://www.flaticon.com/free-icons/ui" />
+                        <Hyperlink fx:id="profileLink" onMouseClicked="#link3Clicked" text="https://www.flaticon.com/free-icons/ui" />
                         <Label text="Stretcher icon:">
                            <font>
                               <Font name="Roboto Italic" size="13.0" />
@@ -109,7 +109,7 @@
                            </font>
                         </Label>
                         <Label text="Created by monkik - Flaticon" />
-                        <Hyperlink fx:id="cleaningLink" onMouseClicked="#cleaningClicked" text="https://www.flaticon.com/free-icons/cleaning" />
+                        <Hyperlink fx:id="cleaningLink" onMouseClicked="#cleaningCLicked" text="https://www.flaticon.com/free-icons/cleaning" />
                         <Label text="Security icon:">
                            <font>
                               <Font name="Roboto Italic" size="13.0" />

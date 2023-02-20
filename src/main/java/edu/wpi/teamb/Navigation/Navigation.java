@@ -27,7 +27,8 @@ public class Navigation {
         final var resource = Bapp.class.getResource(header);
         final FXMLLoader loader2 = new FXMLLoader(resource);
         final Parent headerRoot = loader2.load();
-        Platform.runLater(() -> ((BorderPane) rootPane).setTop(headerRoot));
+        if (rootPane.getTop() == null)
+          Platform.runLater(() -> ((BorderPane) rootPane).setTop(headerRoot));
       }
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();

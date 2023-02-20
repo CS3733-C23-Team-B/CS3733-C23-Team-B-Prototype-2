@@ -29,7 +29,7 @@
             <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
          </padding>
       </MFXButton>
-      <MFXButton id="navBarButton" onAction="#serviceRequestFormsButtonClicked" prefHeight="42.0" prefWidth="274.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../css/style.css" text="Service Request Forms" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="forms" onAction="#serviceRequestFormsButtonClicked" prefHeight="42.0" prefWidth="274.0" stylesheets="@../../../../../css/style.css" text="Service Request Forms" textFill="#c5d3ea">
          <HBox.margin>
             <Insets />
          </HBox.margin>
@@ -37,7 +37,7 @@
             <Font size="20.0" />
          </font>
       </MFXButton>
-      <MFXButton id="navBarButton" layoutX="10.0" layoutY="10.0" onAction="#submittedRequestsButtonClicked" prefHeight="42.0" prefWidth="254.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../css/style.css" text="Submitted Requests" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="request" layoutX="10.0" layoutY="10.0" onAction="#submittedRequestsButtonClicked" prefHeight="42.0" prefWidth="254.0" stylesheets="@../../../../../css/style.css" text="Submitted Requests" textFill="#c5d3ea">
          <HBox.margin>
             <Insets />
          </HBox.margin>
@@ -45,7 +45,7 @@
             <Font size="20.0" />
          </font>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="mapEditorButton" layoutX="64.0" layoutY="10.0" onAction="#mapEditorButtonClicked" prefHeight="43.0" prefWidth="161.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../css/style.css" text="Map Editor" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="map" layoutX="64.0" layoutY="10.0" onAction="#mapEditorButtonClicked" prefHeight="43.0" prefWidth="161.0" stylesheets="@../../../../../css/style.css" text="Map Editor" textFill="#c5d3ea">
          <font>
             <Font size="20.0" />
          </font>
@@ -53,7 +53,7 @@
             <Insets />
          </HBox.margin>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="homeButton3" layoutX="52.0" layoutY="10.0" onAction="#pathfindingButtonClicked" prefHeight="43.0" prefWidth="171.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../css/style.css" text="Pathfinding" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="path" layoutX="52.0" layoutY="10.0" onAction="#pathfindingButtonClicked" prefHeight="43.0" prefWidth="171.0" stylesheets="@../../../../../css/style.css" text="Pathfinding" textFill="#c5d3ea">
          <HBox.margin>
             <Insets />
          </HBox.margin>

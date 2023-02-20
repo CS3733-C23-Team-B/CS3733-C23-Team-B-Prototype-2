@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers.Navigation;
 
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
@@ -9,10 +10,7 @@ import java.awt.*;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
 
 public class NavigationController {
   @FXML private MFXButton homeButton;
@@ -24,6 +22,7 @@ public class NavigationController {
   public void initialize() {
     Platform.runLater(
         () -> {
+          if (SigninController.currentUser.getAdmin() == false) map.setVisible(false);
           resetButtons();
         });
   }

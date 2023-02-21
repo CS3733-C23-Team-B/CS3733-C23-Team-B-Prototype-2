@@ -32,14 +32,9 @@
          <children>
             <HBox prefHeight="67.0" prefWidth="738.0">
                <children>
-                  <Label minHeight="45.0" minWidth="294.0" text="Request Information">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
                   <Label minHeight="45.0" minWidth="123.0" text="*Required Field" textFill="RED">
                      <HBox.margin>
-                        <Insets left="36.0" />
+                        <Insets />
                      </HBox.margin>
                      <font>
                         <Font size="18.0" />
@@ -96,7 +91,7 @@
             </HBox>
             <HBox prefHeight="0.0" prefWidth="678.0">
                <children>
-                  <Label text="Type of Repair">
+                  <Label text="Type of Equipment">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -106,15 +101,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text="Type of Device">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="275.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="69.0" layoutY="10.0" text=" *" textFill="RED">
+                  <Label layoutX="69.0" layoutY="10.0" textFill="RED">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -122,42 +109,39 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-               </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="110.0" prefHeight="52.0" prefWidth="200.0">
-               <children>
-                  <MFXFilterComboBox fx:id="typeOfRepairBox" minWidth="313.0" />
-                  <MFXFilterComboBox fx:id="typeOfDeviceBox" minWidth="313.0">
-                     <HBox.margin>
-                        <Insets left="70.0" />
-                     </HBox.margin></MFXFilterComboBox>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="162.0" prefHeight="0.0" prefWidth="678.0">
-               <children>
                   <Label text="Location">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="240.0" />
+                     </HBox.margin>
                   </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text=" *" textFill="RED">
+                  <Label text=" *" textFill="RED">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="144.0" prefHeight="52.0" prefWidth="200.0">
+            <HBox layoutX="10.0" layoutY="110.0" prefHeight="52.0" prefWidth="200.0">
                <children>
-                  <MFXFilterComboBox fx:id="locationBox" minWidth="313.0" />
+                  <MFXFilterComboBox fx:id="typeOfEquipmentBox" minWidth="313.0" />
+                  <HBox prefHeight="52.0" prefWidth="200.0">
+                     <children>
+                        <MFXFilterComboBox fx:id="locationBox" minWidth="313.0">
+                           <HBox.margin>
+                              <Insets left="70.0" />
+                           </HBox.margin>
+                        </MFXFilterComboBox>
+                     </children>
+                  </HBox>
                </children>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </HBox>
+            <HBox layoutX="10.0" layoutY="162.0" prefHeight="0.0" prefWidth="678.0" />
             <HBox layoutX="10.0" layoutY="247.0" prefHeight="0.0" prefWidth="678.0">
                <children>
                   <Label text="Notes">

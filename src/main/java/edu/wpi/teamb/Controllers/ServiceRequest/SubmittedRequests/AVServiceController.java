@@ -3,20 +3,18 @@ package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 import edu.wpi.teamb.Controllers.ServiceRequest.BaseRequestController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.AudioVideoRequest;
-import edu.wpi.teamb.Database.Requests.ComputerRequest;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AVServiceController extends BaseRequestController {
   ObservableList<String> typeOfEquipment =
@@ -31,11 +29,7 @@ public class AVServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      locationBox,
-      urgencyBox,
-      typeOfEquipmentBox,
-      assignedStaffBox,
-      additionalNotesField
+      locationBox, urgencyBox, typeOfEquipmentBox, assignedStaffBox, additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();

@@ -98,6 +98,7 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
+    specificRequestInfoBox.getChildren().clear();
   }
 
   public void helpButtonClicked() throws IOException {
@@ -105,12 +106,10 @@ public class SubmittedServiceRequestsController {
   }
 
   private void makeTable(String name) {
-    //    setFilters();
     page = name;
     TableView table = new TableView<>();
 
     mainVbox.getChildren().clear();
-    //    table.getItems().clear();
     if (page.equals("Sanitation")) {
       table =
           saniTable.getTable(
@@ -162,7 +161,6 @@ public class SubmittedServiceRequestsController {
   private void setLabel(String name) {
     la.setText(name);
     la.setFont(new Font("Ariel", 25));
-    //    mainVbox.getChildren().add(la);
   }
 
   public void clearFilters() {

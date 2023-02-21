@@ -217,6 +217,7 @@ public class MapEditorController {
     for (Move move : l) {
       Label loc = new Label(move.getLocationName().getLongName());
       loc.setFont(new Font("Arial", 6));
+      loc.setRotate(-45);
       vbox.getChildren().add(loc);
     }
 

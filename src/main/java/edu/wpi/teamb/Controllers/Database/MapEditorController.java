@@ -409,8 +409,11 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void viewMovesClicked() {
-    Navigation.navigate((Screen.FUTURE_MOVES));
+  public void viewMovesClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   public void newLocationClicked() throws IOException {

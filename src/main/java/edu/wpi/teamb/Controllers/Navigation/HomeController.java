@@ -44,7 +44,7 @@ public class HomeController {
                 Duration.seconds(0),
                 event -> {
                   LocalDateTime currentTime = LocalDateTime.now();
-                  DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm:ss a");
+                  DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm a");
                   time.setText(currentTime.format(timefmt));
                 }),
             new KeyFrame(Duration.seconds(1)));

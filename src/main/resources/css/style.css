@@ -69,6 +69,14 @@
     -fx-font-family: Nunito, sans-serif;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
+    -fx-background-color: transparent;
+}
+
+#navBarButton:selected{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-background-color: #6D9BF8;
 }
 
 #homePageTitle{

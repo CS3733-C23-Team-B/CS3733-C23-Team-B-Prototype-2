@@ -10,10 +10,13 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.BorderPane;
 
 public class Navigation {
+  public static Screen currentScreen;
 
   public static void navigate(final Screen screen) {
+
     final String filename = screen.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
+    currentScreen = (screen);
 
     // Show loading indicator
     if (screen == Screen.MAP_EDITOR || screen == Screen.PATHFINDING) {
@@ -23,18 +26,16 @@ public class Navigation {
       rootPane.setCenter(progressIndicator);
     }
     if (!filename.equals("views/Profile/SignIn.fxml")) {
-      if (rootPane.getTop() == null) {
-        String header = Screen.NAVIGATION.getFilename();
-        final var resource = Bapp.class.getResource(header);
-        final FXMLLoader loader2 = new FXMLLoader(resource);
-        final Parent headerRoot;
-        try {
-          headerRoot = loader2.load();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-        rootPane.setTop(headerRoot);
+      String header = Screen.NAVIGATION.getFilename();
+      final var resource = Bapp.class.getResource(header);
+      final FXMLLoader loader2 = new FXMLLoader(resource);
+      final Parent headerRoot;
+      try {
+        headerRoot = loader2.load();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
       }
+      rootPane.setTop(headerRoot);
     }
     // Load FXML files in background thread
     final Task<Void> loadTask =

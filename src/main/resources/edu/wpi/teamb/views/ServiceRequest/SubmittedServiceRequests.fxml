@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +12,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests.SubmittedServiceRequestsController">
   <columnConstraints>
@@ -23,109 +23,23 @@
     <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="1056.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <Label text="Internal Patient Transportation">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" top="30.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Request a patient to be moved to and from different locations within the hospital. ">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" top="5.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Sanitation">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" top="30.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Request that a room or public space be cleaned and sanitized. ">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Security">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" top="30.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Request an officer/security staff.">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Computer">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" top="30.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Request a repair on a hospital device.">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Audio/Visual">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" top="30.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Request audio or video entertainment for a patient.">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
-            </Label>
-         </children></VBox>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="115.0" stroke="BLACK" strokeType="INSIDE" width="1088.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE" />
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Submitted Service Requests" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Label>
+      <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="1056.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="343.0" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
             <VBox layoutY="-64.0" prefHeight="600.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
                <children>
-                  <HBox prefHeight="52.0" prefWidth="300.0">
+                  <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
+                  <MFXComboBox fx:id="requestStatusFilter" floatingText="Request Status" prefHeight="40.0" prefWidth="219.0" />
+                  <MFXComboBox fx:id="assignedEmployeeFilter" floatingText="Assigned Employee" prefHeight="40.0" prefWidth="219.0" />
+                  <MFXComboBox fx:id="urgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0" />
+                  <HBox prefHeight="30.0" prefWidth="300.0">
                      <children>
-                        <MFXComboBox fx:id="requestStatusFilter" floatingText="Request Status" prefHeight="40.0" prefWidth="219.0" />
-                        <MFXComboBox fx:id="assignedEmployeeFilter" floatingText="Assigned Employee" prefHeight="40.0" prefWidth="219.0" />
+                        <MFXCheckbox fx:id="myRequestsFilter" />
+                        <Label text="Display My Requests Only" />
                      </children>
                   </HBox>
-                  <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
                   <MFXButton fx:id="clearFiltersButton" onAction="#clearFilters" text="Clear Filters" />
-                  <MFXComboBox fx:id="urgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0" />
                </children>
                <padding>
                   <Insets left="40.0" />
@@ -133,5 +47,6 @@
             </VBox>
          </children>
       </AnchorPane>
+      <Label fx:id="la" text="Label" GridPane.columnIndex="1" />
    </children>
 </GridPane>

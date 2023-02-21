@@ -18,7 +18,7 @@
 <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1579.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.PathfindingController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="0.0" percentWidth="26.0" prefWidth="472.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1552.8000091075896" minWidth="10.0" prefWidth="1161.6000366210938" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1552.8000091075896" minWidth="10.0" percentWidth="74.0" prefWidth="1161.6000366210938" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints maxHeight="55.0" percentHeight="11.0" vgrow="SOMETIMES" />

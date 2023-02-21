@@ -4,7 +4,7 @@ public enum Screen {
   HOME("views/Navigation/HomeScreen.fxml"),
   DATABASE_HELP("views/Database/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
-  MAP_EDITOR("views/Database/MapEditor.fxml"),
+  MAP_EDITOR("views/Database/NewMapEditor.fxml"),
   NODE_EDITOR("views/Database/NodeEditor.fxml"),
   SIDE_NODE_EDITOR("views/Database/SideNodeEditor.fxml"),
   NODE_CREATOR("views/Database/NodeCreator.fxml"),

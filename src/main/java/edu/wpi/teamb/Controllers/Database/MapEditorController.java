@@ -328,14 +328,7 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void addMoveClicked() throws IOException {
-    forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
-    final FXMLLoader loader = new FXMLLoader(res);
-    forms.getChildren().add(loader.load());
-  }
-
-  public void futureMoves() throws IOException {
+  public void viewMovesClicked() throws IOException {
     Stage newWindow = new Stage();
     final String filename = Screen.FUTURE_MOVES.getFilename();
     try {
@@ -408,12 +401,12 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void viewMovesClicked() throws IOException {
-    forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
-    final FXMLLoader loader = new FXMLLoader(res);
-    forms.getChildren().add(loader.load());
-  }
+  //  public void viewMovesClicked() throws IOException {
+  //    forms.getChildren().clear();
+  //    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
+  //    final FXMLLoader loader = new FXMLLoader(res);
+  //    forms.getChildren().add(loader.load());
+  //  }
 
   public void newLocationClicked() throws IOException {
     forms.getChildren().clear();
@@ -497,5 +490,9 @@ public class MapEditorController {
     if (nodes.size() != 2) return;
     EdgeRepairController.setNodes(allNodes.get(nodes.get(0)), allNodes.get(nodes.get(1)));
     Popup.displayPopup(Screen.EDGE_REPAIR);
+  }
+
+  public void helpButtonClicked() {
+    Navigation.navigate(Screen.MAINHELP);
   }
 }

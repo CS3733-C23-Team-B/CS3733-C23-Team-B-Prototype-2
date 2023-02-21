@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -28,7 +28,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="472.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="100.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="352.1999816894531" minHeight="10.0" percentHeight="55.0" prefHeight="309.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="477.8000183105469" minHeight="10.0" percentHeight="100.0" prefHeight="405.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <VBox prefHeight="719.0" prefWidth="412.0" style="-fx-background-color: #F2F2F2;">
@@ -47,7 +48,7 @@
                                         </Label>
                                         <MFXButton fx:id="helpButton" buttonType="RAISED" onAction="#helpButtonClicked" text="help">
                                             <HBox.margin>
-                                                <Insets left="55.0" top="15.0" />
+                                                <Insets left="95.0" top="15.0" />
                                             </HBox.margin>
                                         </MFXButton>
                                     </children>
@@ -60,11 +61,11 @@
                                 <Insets left="40.0" />
                             </VBox.margin>
                         </VBox>
-                        <VBox prefHeight="503.0" prefWidth="402.0">
+                        <VBox prefHeight="186.0" prefWidth="372.0">
                             <children>
-                                <HBox prefHeight="17.0" prefWidth="458.0" spacing="30.0">
+                                <HBox prefHeight="17.0" prefWidth="458.0" spacing="20.0">
                                     <VBox.margin>
-                                        <Insets top="30.0" />
+                                        <Insets top="20.0" />
                                     </VBox.margin>
                            <children>
                               <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" minHeight="-Infinity" onAction="#newNodeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea">
@@ -79,32 +80,43 @@
                               </MFXButton>
                            </children>
                                 </HBox>
-                                <HBox prefHeight="9.0" prefWidth="458.0">
-                                    <VBox.margin>
-                                        <Insets top="10.0" />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox prefHeight="9.0" prefWidth="458.0" />
-                                <HBox prefHeight="9.0" prefWidth="458.0">
-                                    <VBox.margin>
-                                        <Insets top="30.0" />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER" focusTraversable="true" prefHeight="116.0" prefWidth="372.0">
-                                    <children>
-                                        <TextField fx:id="pathNotFoundTextField" minWidth="0.0" prefHeight="51.0" prefWidth="238.0" style="-fx-background-color: #e0e0e0;" text="PATH NOT FOUND" visible="false">
-                                            <HBox.margin>
-                                                <Insets />
-                                            </HBox.margin>
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </TextField>
-                                    </children>
-                                </HBox>
+                        <HBox layoutX="10.0" layoutY="40.0" prefHeight="17.0" prefWidth="458.0" spacing="20.0">
+                           <children>
+                              <MFXButton fx:id="newLocationButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" minHeight="-Infinity" onAction="#newLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </MFXButton>
+                              <MFXButton fx:id="editLocationButton" buttonType="RAISED" depthLevel="LEVEL3" onAction="#editLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="93.0" prefHeight="17.0" prefWidth="458.0" spacing="20.0">
+                           <children>
+                              <MFXButton fx:id="newMoveButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" minHeight="-Infinity" onAction="#newMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Move" textFill="#c5d3ea">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </MFXButton>
+                              <MFXButton fx:id="viewMovesButton" buttonType="RAISED" depthLevel="LEVEL3" onAction="#viewMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="View Moves" textFill="#c5d3ea">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
                             </children>
                             <VBox.margin>
-                                <Insets left="30.0" />
+                                <Insets left="40.0" />
                             </VBox.margin>
                         </VBox>
                     </children>
@@ -112,6 +124,11 @@
                         <Insets />
                     </GridPane.margin>
                 </VBox>
+            <MFXScrollPane style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
+               <content>
+                  <AnchorPane fx:id="forms" prefHeight="458.0" prefWidth="409.0" style="-fx-background-color: #F2F2F2;" />
+               </content>
+            </MFXScrollPane>
             </children>
         </GridPane>
         <HBox maxHeight="-Infinity" prefHeight="19.0" prefWidth="1554.0" style="-fx-background-color: #21357E;" GridPane.rowIndex="1">
@@ -137,10 +154,13 @@
             <children>
                 <VBox prefHeight="653.0" prefWidth="1168.0">
                     <children>
-                        <AnchorPane fx:id="map" prefHeight="732.0" prefWidth="1168.0">
+                        <AnchorPane prefHeight="732.0" prefWidth="1168.0">
                             <VBox.margin>
                                 <Insets top="2.0" />
-                            </VBox.margin></AnchorPane>
+                            </VBox.margin>
+                     <children>
+                        <AnchorPane fx:id="map" prefHeight="714.0" prefWidth="1168.0" />
+                     </children></AnchorPane>
                     </children>
                 </VBox>
             </children>

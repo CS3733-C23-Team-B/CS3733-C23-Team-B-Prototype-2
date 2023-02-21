@@ -3,12 +3,13 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.*;
-import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -23,7 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -49,10 +49,10 @@ public class MapEditorController {
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
   private static Node currentNode;
-  private Circle currentDot;
+  private static Circle currentDot;
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
-  private AnchorPane aPane = new AnchorPane();
+  private AnchorPane aPane;
   private double origX, origY;
   private boolean dragged;
   private boolean MOVING = false;
@@ -65,10 +65,10 @@ public class MapEditorController {
   public void initialize() {
     if (instance == null) {
       moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
-      instance = this;
     } else {
       moveMap = DBSession.getIDMoves();
     }
+    instance = this;
     floorCombo.setItems(
         FXCollections.observableArrayList(
             "Lower Level 2",
@@ -82,13 +82,14 @@ public class MapEditorController {
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
-    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2220, 974));
+    aPane = new AnchorPane();
     pane.setContent(aPane);
     map.getChildren().add(pane);
     // Changes floor when selecting a new floor
     floorCombo.setOnAction(
         e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
-    pane.zoomTo(-5000, -3000, new Point2D(2215, 1045));
+    pane.zoomTo(-5000, -3000, Point2D.ZERO);
+    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
   }
 
   private void changeFloor(String floor, Point2D p) {
@@ -132,6 +133,7 @@ public class MapEditorController {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
             e -> {
+              if (currentDot != null) currentDot.setFill(Color.BLUE);
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
               if (creatingEdge) {
@@ -147,7 +149,7 @@ public class MapEditorController {
         displayLoc(dot);
       }
     }
-    Platform.runLater(() -> pane.centreOn(p));
+    pane.centreOn(p);
   }
 
   public void displayPopUp(Circle dot) {
@@ -248,21 +250,17 @@ public class MapEditorController {
     }
   }
 
-  private Circle placeNode(Node node) {
+  public Circle placeNode(Node node) {
     Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Color.RED);
     aPane.getChildren().add(dot);
     dot.getStyleClass().add("intersection");
-    dot.addEventHandler(
-        MouseEvent.MOUSE_CLICKED,
-        e -> {
-          selectedCircle.set(dot);
-        });
     dot.setCursor(Cursor.HAND);
 
     dot.setOnMousePressed(
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
+          currentDot = dot;
 
           pane.setGestureEnabled(false);
 
@@ -320,7 +318,6 @@ public class MapEditorController {
     clearPopUp();
     if (edgeNode1 != null) {
       edgeNode1.setFill(Color.GOLD);
-      System.out.println("Coloring: " + edgeNode1.hashCode());
     }
   }
 
@@ -411,8 +408,11 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void viewMovesClicked() {
-    Navigation.navigate((Screen.FUTURE_MOVES));
+  public void viewMovesClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   public void newLocationClicked() throws IOException {
@@ -484,5 +484,18 @@ public class MapEditorController {
 
   public void setCurrentDot(Circle dot) {
     currentDot = dot;
+  }
+
+  public static Circle getCurrentDot() {
+    return currentDot;
+  }
+
+  public static void promptEdgeRepair(Node node) {
+    Pathfinding.refreshData();
+    List<String> nodes = Pathfinding.getDirectPaths(node.getNodeID());
+    Map<String, Node> allNodes = DBSession.getAllNodes();
+    if (nodes.size() != 2) return;
+    EdgeRepairController.setNodes(allNodes.get(nodes.get(0)), allNodes.get(nodes.get(1)));
+    Popup.displayPopup(Screen.EDGE_REPAIR);
   }
 }

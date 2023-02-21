@@ -1,8 +1,8 @@
-package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
+package edu.wpi.teamb.Controllers.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Requests.AudioVideoRequest;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
+import edu.wpi.teamb.Database.Requests.PatientTransportationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
@@ -11,18 +11,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
-
-  //  add the right tablecols here for this request
-  @FXML private TableColumn AVType = new TableColumn();
-  @FXML private TableColumn location = new TableColumn();
+public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTable {
+  @FXML private TableColumn patientID = new TableColumn<>();
+  @FXML private TableColumn patientCurrentLocation = new TableColumn<>();
+  @FXML private TableColumn patientDestinationLocation = new TableColumn();
+  @FXML private TableColumn equipmentNeeded = new TableColumn<>();
 
   @Override
   public void initialize() {
     super.initialize();
-    //    addCol(AVType, "AVType");
-    //    addCol(location, "location");
-    setTable();
+    //    addCol(patientID, "patientID");
+    //    addCol(patientCurrentLocation, "patientCurrentLocation");
+    //    addCol(patientDestinationLocation, "patientDestinationLocation");
+    //    addCol(equipmentNeeded, "equipmentNeeded");
+    super.setTable();
   }
 
   @Override
@@ -35,7 +37,7 @@ public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
 
   private List<GeneralRequest> convertObj() {
     List<GeneralRequest> grList = new ArrayList<>();
-    List<AudioVideoRequest> objectList = DBSession.getAllAVRequests();
+    List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
     objectList.forEach(
         (value) -> {
           grList.add(value);

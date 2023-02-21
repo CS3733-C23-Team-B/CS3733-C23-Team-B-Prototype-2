@@ -144,7 +144,7 @@
             </MFXScrollPane>
             </children>
         </GridPane>
-        <HBox maxHeight="-Infinity" prefHeight="19.0" prefWidth="1554.0" style="-fx-background-color: #21357E;" GridPane.rowIndex="1">
+        <HBox style="-fx-background-color: #21357E;" GridPane.rowIndex="1">
             <GridPane.margin>
                 <Insets />
             </GridPane.margin>
@@ -152,7 +152,7 @@
                 <Insets top="10.0" />
             </padding>
         </HBox>
-        <HBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="19.0" prefWidth="1554.0" style="-fx-background-color: #21357E;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <HBox layoutX="10.0" layoutY="10.0" style="-fx-background-color: #21357E;" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <padding>
                 <Insets top="10.0" />
             </padding>

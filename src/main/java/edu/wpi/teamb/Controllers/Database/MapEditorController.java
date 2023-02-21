@@ -3,12 +3,13 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.*;
-import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -88,10 +89,7 @@ public class MapEditorController {
     floorCombo.setOnAction(
         e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    Platform.runLater(
-        () -> {
-          changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
-        });
+    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
   }
 
   private void changeFloor(String floor, Point2D p) {
@@ -124,6 +122,7 @@ public class MapEditorController {
         break;
     }
     image.setOnMouseClicked(e -> handleClick());
+
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
@@ -134,6 +133,7 @@ public class MapEditorController {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
             e -> {
+              if (currentDot != null) currentDot.setFill(Color.BLUE);
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
               if (creatingEdge) {
@@ -149,10 +149,7 @@ public class MapEditorController {
         displayLoc(dot);
       }
     }
-    Platform.runLater(
-        () -> {
-          pane.centreOn(p);
-        });
+    pane.centreOn(p);
   }
 
   public void displayPopUp(Circle dot) {
@@ -184,7 +181,7 @@ public class MapEditorController {
     editButton.setOnAction(
         (eventAction) -> {
           try {
-            editNodeClicked();
+            editClicked();
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -259,12 +256,14 @@ public class MapEditorController {
     dot.getStyleClass().add("intersection");
     dot.setCursor(Cursor.HAND);
 
-    dot.setOnMouseEntered(
+    dot.setOnMousePressed(
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
           currentDot = dot;
+
           pane.setGestureEnabled(false);
+
           Circle c = (Circle) (e.getSource());
           c.toFront();
         });
@@ -397,7 +396,7 @@ public class MapEditorController {
 
   public void editNodeClicked() throws IOException {
     forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.NODE_EDITOR.getFilename());
+    final var res = Bapp.class.getResource(Screen.SIDE_NODE_EDITOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
   }
@@ -489,5 +488,14 @@ public class MapEditorController {
 
   public static Circle getCurrentDot() {
     return currentDot;
+  }
+
+  public static void promptEdgeRepair(Node node) {
+    Pathfinding.refreshData();
+    List<String> nodes = Pathfinding.getDirectPaths(node.getNodeID());
+    Map<String, Node> allNodes = DBSession.getAllNodes();
+    if (nodes.size() != 2) return;
+    EdgeRepairController.setNodes(allNodes.get(nodes.get(0)), allNodes.get(nodes.get(1)));
+    Popup.displayPopup(Screen.EDGE_REPAIR);
   }
 }

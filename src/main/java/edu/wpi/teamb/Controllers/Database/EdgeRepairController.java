@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers.Navigation;
+package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Edge;
@@ -8,15 +8,16 @@ import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
 import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 
 public class EdgeRepairController {
-  @FXML TextField node1Field, node2Field;
+  @FXML Text node1Field, node2Field;
   @FXML MFXButton yesButton, noButton;
   private static Node node1, node2;
 
   public void initialize() {
     node1Field.setText(node1.getNodeID());
-    node1Field.setText(node2.getNodeID());
+    node2Field.setText(node2.getNodeID());
   }
 
   public void noButtonClicked() {

@@ -20,7 +20,7 @@ public enum Screen {
   PATIENT_TRANSPORTATION("views/ServiceRequest/PatientTransportation.fxml"),
   SANITATION("views/ServiceRequest/SanitationService.fxml"),
   COMPUTER_SERVICES("views/ServiceRequest/ComputerService.fxml"),
-  SIGN_IN("views/Profile/SignIn.fxml"),
+  SIGN_IN("views/Profile/SignIn2.fxml"),
   SUBMITTED_SERVICE_REQUESTS("views/ServiceRequest/SubmittedServiceRequests.fxml"),
   PROFILE("views/Profile/Profile.fxml"),
   MAINHELP("views/Navigation/MainHelpPage.fxml"),

@@ -131,7 +131,7 @@ public class MapEditorController {
     for (Node node : nodes.values()) {
       if (node.getFloor().equals(f)) {
         Circle dot = placeNode(node);
-        dot.setOnMouseEntered(
+        dot.setOnMouseClicked(
             e -> {
               displayPopUp(dot);
               dot.setFill(Color.GOLD);

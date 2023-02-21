@@ -38,7 +38,7 @@ public enum Screen {
   FORGOT_PASSWORD("views/Profile/ForgotPass.fxml"),
   EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml"),
 
-  ABOUT_PAGE("views/Navigation/AboutPage.fxml");
+  ABOUT_PAGE("views/Navigation/About.fxml");
 
   private final String filename;
 

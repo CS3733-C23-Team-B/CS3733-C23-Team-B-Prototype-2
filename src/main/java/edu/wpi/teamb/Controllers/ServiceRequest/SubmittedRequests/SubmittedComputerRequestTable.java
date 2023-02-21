@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers.SubmittedRequests;
+package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.ComputerRequest;
@@ -20,9 +20,9 @@ public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
   @Override
   public void initialize() {
     super.initialize();
-    //    addCol(device, "device");
-    //    addCol(typeOfRepair, "typeOfRepair");
-    //    addCol(repairLocation, "repairLocation");
+    addCol(device, "device");
+    addCol(typeOfRepair, "typeOfRepair");
+    addCol(repairLocation, "repairLocation");
     setTable();
   }
 
@@ -42,5 +42,9 @@ public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
           grList.add(value);
         });
     return grList;
+  }
+
+  protected List<GeneralRequest> getComRequests() {
+    return convertObj();
   }
 }

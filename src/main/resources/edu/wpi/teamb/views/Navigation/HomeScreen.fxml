@@ -21,7 +21,7 @@
       <RowConstraints />
       <RowConstraints maxHeight="55.0" percentHeight="7.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="835.79990234375" minHeight="10.0" percentHeight="15.0" prefHeight="499.7999328613281" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="571.0000671386719" minHeight="10.0" percentHeight="71.0" prefHeight="571.0000671386719" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="571.0000671386719" minHeight="10.0" prefHeight="571.0000671386719" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="55.0" percentHeight="7.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>

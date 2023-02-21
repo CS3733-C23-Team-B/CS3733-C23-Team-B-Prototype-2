@@ -48,19 +48,19 @@
          <children>
             <VBox layoutY="-93.0" prefHeight="629.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
                <children>
-                  <HBox prefHeight="42.0" prefWidth="340.0" spacing="10.0">
+                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newNodeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newNodeClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea" wrapText="true">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="26.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newEdgeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Edge" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newEdgeClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Edge" textFill="#c5d3ea" wrapText="true">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="26.0" />
                            </font>
                         </MFXButton>
                      </children>
@@ -68,19 +68,19 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="160.0" prefHeight="44.0" prefWidth="340.0" spacing="10.0">
+                  <HBox layoutX="10.0" layoutY="160.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="newLocationButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="newLocationButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newLocationClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea" wrapText="true">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="26.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="editLocationButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="editLocationButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#editLocationClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea" wrapText="true">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="26.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -91,19 +91,19 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="118.0" prefHeight="46.0" prefWidth="340.0" spacing="10.0">
+                  <HBox layoutX="10.0" layoutY="118.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <MFXButton fx:id="newMoveButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Move" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="newMoveButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#newMovesClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Move" textFill="#c5d3ea" wrapText="true">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="26.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="viewMovesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#viewMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="View Moves" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="viewMovesButton" buttonType="RAISED" depthLevel="LEVEL3" minWidth="-Infinity" onAction="#viewMovesClicked" prefHeight="96.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="View Moves" textFill="#c5d3ea" wrapText="true">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="26.0" />
                            </font>
                         </MFXButton>
                      </children>
@@ -111,7 +111,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <MFXScrollPane fx:id="" prefHeight="458.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
+                  <MFXScrollPane fx:id="" prefHeight="306.0" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

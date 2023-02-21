@@ -2,6 +2,7 @@ package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.*;
+import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
@@ -260,8 +261,7 @@ public class MapEditorController {
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
-          if (currentDot != null)
-            currentDot.setFill(Color.BLUE);
+          if (currentDot != null) currentDot.setFill(Color.BLUE);
           currentDot = dot;
 
           pane.setGestureEnabled(false);
@@ -300,6 +300,7 @@ public class MapEditorController {
     node.setNodeID(node.buildID());
     currentNode = node;
     currentDot = dot;
+    MapDAO.refreshIDMoves(new Date(System.currentTimeMillis()));
     refreshPopUp();
   }
 

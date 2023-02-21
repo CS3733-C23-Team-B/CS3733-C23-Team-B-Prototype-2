@@ -57,7 +57,7 @@ public class ServiceRequestSystemsController {
 
   public void makeAV() throws IOException {
     mainVbox.getChildren().clear();
-    final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
+    final var r = Bapp.class.getResource(Screen.AV_SERVICES.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     pageTitle.setText("Audio/Video Service");

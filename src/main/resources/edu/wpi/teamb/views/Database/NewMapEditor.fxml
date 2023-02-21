@@ -142,7 +142,7 @@
                 </VBox>
             <MFXScrollPane style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
                <content>
-                  <AnchorPane fx:id="forms" prefHeight="502.0" prefWidth="449.0" style="-fx-background-color: #F2F2F2;" />
+                  <AnchorPane fx:id="forms" prefHeight="502.0" prefWidth="380.0" style="-fx-background-color: #F2F2F2;" />
                </content>
             </MFXScrollPane>
             </children>

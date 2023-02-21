@@ -120,7 +120,7 @@ public class SigninController {
     final Parent root1 = loader1.load();
     MFXButton b = new MFXButton();
     b.setText("Back to Sign In");
-    
+
     Platform.runLater(
         () -> {
           rootPane.setCenter(root);

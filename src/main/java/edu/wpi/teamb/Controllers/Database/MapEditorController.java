@@ -31,6 +31,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -153,6 +154,7 @@ public class MapEditorController {
         displayLoc(dot);
       }
     }
+
     Platform.runLater(
         () -> {
           pane.centreOn(p);
@@ -209,6 +211,7 @@ public class MapEditorController {
     aPane.getChildren().add(popPane);
     currentPopUp = popPane;
     currentNode = node;
+    drawEdges();
     currentDot = dot;
   }
 
@@ -502,5 +505,21 @@ public class MapEditorController {
 
   public void helpButtonClicked() {
     Navigation.navigate(Screen.MAINHELP);
+  }
+
+  public void drawEdges() {
+    List<String> edges = Pathfinding.getDirectPaths(currentNode.getNodeID());
+    Map<String, Node> map = DBSession.getAllNodes();
+    // aPane.getChildren().clear();
+    for (String id : edges) drawLineBetween(currentNode, map.get(id));
+    System.out.println("trying to draw edge");
+  }
+
+  private void drawLineBetween(Node n1, Node n2) {
+    Line line = new Line(n1.getXCoord(), n1.getYCoord(), n2.getXCoord(), n2.getYCoord());
+    line.setFill(Color.BLACK);
+    line.setStrokeWidth(5);
+    aPane.getChildren().add(line);
+    System.out.println("PLACED lines: " + aPane);
   }
 }

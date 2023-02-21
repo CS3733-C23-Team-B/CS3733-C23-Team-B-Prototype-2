@@ -9,8 +9,10 @@ import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import java.awt.*;
 import java.io.IOException;
 import java.util.*;
+import java.util.List;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -25,6 +27,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -55,6 +59,7 @@ public class MapEditorController {
   private GesturePane pane;
   private AnchorPane aPane;
   private double origX, origY;
+  private double currentMouseX, currentMouseY;
   private boolean dragged;
   private boolean MOVING = false;
   private Circle edgeNode1, edgeNode2;
@@ -62,6 +67,7 @@ public class MapEditorController {
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
   @FXML MFXFilterComboBox<String> floorCombo;
+  private String currentFloor;
 
   public void initialize() {
     if (instance == null) {
@@ -80,6 +86,12 @@ public class MapEditorController {
             "Third Floor"));
     nodeMap = new HashMap<>();
     pane = new GesturePane();
+    pane.setOnKeyPressed(e -> handleKeyPress(e));
+//    pane.setOnMouseMoved(
+//        e -> {
+//          currentMouseX = e.getSceneX() + aPane.getLayoutX();
+//          currentMouseY = e.getSceneY() + aPane.getLayoutY();
+//        });
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
@@ -95,30 +107,29 @@ public class MapEditorController {
 
   private void changeFloor(String floor, Point2D p) {
     ImageView image = new ImageView();
-    String f = null;
     switch (floor) {
       case "Lower Level 2":
-        f = "L2";
+        currentFloor = "L2";
         image = Bapp.lowerlevel2;
         break;
       case "Lower Level 1":
-        f = "L1";
+        currentFloor = "L1";
         image = Bapp.lowerlevel;
         break;
       case "Ground Floor":
-        f = "G";
+        currentFloor = "G";
         image = Bapp.groundfloor;
         break;
       case "First Floor":
-        f = "1";
+        currentFloor = "1";
         image = Bapp.firstfloor;
         break;
       case "Second Floor":
-        f = "2";
+        currentFloor = "2";
         image = Bapp.secondfloor;
         break;
       case "Third Floor":
-        f = "3";
+        currentFloor = "3";
         image = Bapp.thirdfloor;
         break;
     }
@@ -130,7 +141,7 @@ public class MapEditorController {
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     for (Node node : nodes.values()) {
-      if (node.getFloor().equals(f)) {
+      if (node.getFloor().equals(currentFloor)) {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
             e -> {
@@ -218,6 +229,7 @@ public class MapEditorController {
     for (Move move : l) {
       Label loc = new Label(move.getLocationName().getLongName());
       loc.setFont(new Font("Arial", 6));
+      //      loc.setRotate(-45);
       vbox.getChildren().add(loc);
     }
 
@@ -500,5 +512,25 @@ public class MapEditorController {
     if (nodes.size() != 2) return;
     EdgeRepairController.setNodes(allNodes.get(nodes.get(0)), allNodes.get(nodes.get(1)));
     Popup.displayPopup(Screen.EDGE_REPAIR);
+  }
+
+  public void helpButtonClicked() {
+    Navigation.navigate(Screen.MAINHELP);
+  }
+
+  public void handleKeyPress(KeyEvent e) {
+    if (e.getCode().equals(KeyCode.BACK_SPACE)) {
+      DBSession.deleteNode(nodeMap.get(currentDot));
+      removeNode();
+    }
+//    else if (e.getCode().equals(KeyCode.N)) {
+//      Node n = new Node();
+//      n.setBuilding("Tower");
+//      n.setFloor(currentFloor);
+//      n.setXCoord((int) currentMouseX);
+//      n.setYCoord((int) currentMouseY);
+//      System.out.println(currentMouseX);
+//      System.out.println(currentMouseY);
+//    }
   }
 }

@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.Requests.ComputerRequest;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
@@ -27,6 +28,7 @@ import javafx.scene.text.Font;
 public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
   @FXML VBox specificRequestInfoBox;
+  @FXML VBox filterVbox;
   @FXML MFXButton clearFiltersButton;
   @FXML MFXComboBox requestStatusFilter;
   @FXML MFXComboBox assignedStaffFilter;
@@ -44,7 +46,7 @@ public class SubmittedServiceRequestsController {
   @FXML Label la;
 
   String page = "none";
-
+  Boolean myrequests = true;
   private ObservableList<RequestStatus> Status =
       FXCollections.observableArrayList(
           RequestStatus.BLANK, RequestStatus.PROCESSING, RequestStatus.DONE);
@@ -60,7 +62,7 @@ public class SubmittedServiceRequestsController {
           "Security");
   private ObservableList<String> staff = DBSession.getStaff();
 
-  //  private Login currUser = SigninController.getInstance().currentUser;
+  private Login currUser = SigninController.getInstance().currentUser;
 
   public void initialize() {
     saniTable.initialize();
@@ -70,14 +72,24 @@ public class SubmittedServiceRequestsController {
     securityTable.initialize();
     allTable.initialize();
     makeTable("All Requests");
+    if (currUser.getAdmin()) {
+      myRequestsFilter.setOnAction(
+          e -> {
+            myrequests = myRequestsFilter.isSelected();
+            filter();
+          });
+    }
     requestTypeFilter.setOnAction(e -> makeTable((String) requestTypeFilter.getValue()));
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
     assignedStaffFilter.setOnAction(e -> filter());
     requestUrgencyFilter.setOnAction(e -> filter());
     myRequestsFilter.setOnAction(e -> filter());
+    assignedStaffFilter.setOnAction(e -> filter());
+    requestUrgencyFilter.setOnAction(e -> filter());
 
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
+    setFilters();
     requestStatusFilter.setItems(Status);
     assignedStaffFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
@@ -93,6 +105,7 @@ public class SubmittedServiceRequestsController {
   }
 
   private void makeTable(String name) {
+    //    setFilters();
     page = name;
     TableView table = new TableView<>();
 
@@ -104,41 +117,41 @@ public class SubmittedServiceRequestsController {
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
-              myRequestsFilter.isSelected());
+              myrequests);
     } else if (page.equals("Internal Patient Transportation")) {
       table =
           ptTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
-              myRequestsFilter.isSelected());
+              myrequests);
     } else if (page.equals("Computer")) {
       table =
           comTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
-              myRequestsFilter.isSelected());
+              myrequests);
       table =
           avTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
-              myRequestsFilter.isSelected());
+              myrequests);
     } else if (page.equals("Security")) {
       table =
           securityTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
-              myRequestsFilter.isSelected());
+              myrequests);
     } else if (page.equals("All Requests")) {
       table =
           allTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
-              myRequestsFilter.isSelected());
+              myrequests);
     }
     TableView finalTable = table;
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
@@ -168,6 +181,7 @@ public class SubmittedServiceRequestsController {
   @FXML Label dateText;
   @FXML Label UrgencyText;
 
+  @FXML
   public void mouseClicked(TableView table) {
     GeneralRequest r = (GeneralRequest) table.getSelectionModel().getSelectedItem();
     specificRequestInfoBox.getChildren().clear();
@@ -208,6 +222,18 @@ public class SubmittedServiceRequestsController {
     specificRequestInfoBox.getChildren().add(t);
     specificRequestInfoBox.getChildren().add(l);
     return l;
+  }
+
+  private void setFilters() {
+    filterVbox.getChildren().clear();
+    filterVbox.getChildren().add(requestTypeFilter);
+    filterVbox.getChildren().add(requestUrgencyFilter);
+    filterVbox.getChildren().add(requestStatusFilter);
+    filterVbox.getChildren().add(assignedStaffFilter);
+    if (currUser.getAdmin()) {
+      filterVbox.getChildren().add(myRequestsFilter);
+    }
+    filterVbox.getChildren().add(clearFiltersButton);
   }
 
   public void filter() {

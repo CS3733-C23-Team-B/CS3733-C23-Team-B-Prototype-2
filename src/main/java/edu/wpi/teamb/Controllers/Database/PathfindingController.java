@@ -23,11 +23,11 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -46,7 +46,15 @@ public class PathfindingController {
   private GesturePane pane;
 
   @FXML AnchorPane map;
-
+  @FXML MFXButton helpButton;
+  @FXML MFXDatePicker datePicker;
+  @FXML MFXFilterComboBox<String> floorCombo;
+  @FXML MFXFilterComboBox searchType;
+  @FXML MFXFilterComboBox<String> startLoc;
+  @FXML MFXFilterComboBox<String> endLoc;
+  @FXML MFXCheckbox avoidStairsCheckBox;
+  @FXML MFXCheckbox showLocationsCheckBox;
+  @FXML MFXButton pathfind;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
@@ -55,19 +63,12 @@ public class PathfindingController {
   AnchorPane currentPopUp;
   private static Node currentNode;
   private Circle currentDot;
-  @FXML MFXFilterComboBox<String> startLoc;
-  @FXML MFXFilterComboBox<String> endLoc;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
   private Map<String, List<Move>> moveMap;
-  @FXML MFXButton pathfind;
   @FXML AnchorPane anchor;
   @FXML ImageView floor1;
-  @FXML MFXFilterComboBox<String> floorCombo;
-  @FXML CheckBox avoidStairsCheckBox;
-  @FXML MFXCheckbox showLocationsCheckBox;
   private List<Label> locLabels = new ArrayList<>();
   @FXML MFXFilterComboBox searchCombo;
-  @FXML MFXDatePicker datePicker;
   private String currentFloor;
   private String startID;
   private String endID;
@@ -122,8 +123,8 @@ public class PathfindingController {
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
-    pane.setPrefHeight(536);
-    pane.setPrefWidth(1089.6);
+    pane.setPrefHeight(725);
+    pane.setPrefWidth(1146.4);
     pane.setContent(aPane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     map.getChildren().add(pane);
@@ -520,4 +521,10 @@ public class PathfindingController {
     textField.setPromptText("Click to add note");
     linesPlane.getChildren().add(textField);
   }
+
+  public void helpButtonClicked() {
+    // Navigation.navigate(Screen.PATHFINDING_HELP);
+  }
+
+  public void searchCombo(ActionEvent actionEvent) {}
 }

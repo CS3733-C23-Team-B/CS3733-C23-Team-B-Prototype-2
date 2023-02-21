@@ -22,7 +22,9 @@ public class NavigationController {
   public void initialize() {
     Platform.runLater(
         () -> {
-          if (SigninController.currentUser.getAdmin() == false) map.setVisible(false);
+          if (SigninController.getInstance() != null) {
+            if (!SigninController.getInstance().currentUser.getAdmin()) map.setVisible(false);
+          }
           resetButtons();
         });
   }

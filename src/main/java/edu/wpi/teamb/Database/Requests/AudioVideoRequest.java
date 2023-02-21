@@ -16,5 +16,10 @@ public class AudioVideoRequest extends GeneralRequest {
   @Setter
   private String AVType;
 
+  @Column(name = "location", length = 60)
+  @Getter
+  @Setter
+  private String location;
+
   public AudioVideoRequest() {};
 }

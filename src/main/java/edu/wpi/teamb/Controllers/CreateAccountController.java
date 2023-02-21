@@ -25,13 +25,13 @@ public class CreateAccountController {
   @FXML MFXTextField emailField;
   @FXML MFXTextField usernameField;
   @FXML MFXTextField passwordField;
-  @FXML MFXButton cancelButton;
+  @FXML MFXButton backButton;
   @FXML Label notificationText;
 
   private Map<String, Login> usersMap = new HashMap<>();
   private List<Login> users = new ArrayList<Login>();
 
-  public void cancelClicked() {
+  public void backButtonClicked() {
     Popup.hidePopup(Screen.CREATE_ACCOUNT);
   }
 
@@ -69,8 +69,8 @@ public class CreateAccountController {
                 lastNameField.getText());
         users.add(newLogin);
         DBSession.addLogin(newLogin);
-        Stage s = (Stage) cancelButton.getScene().getWindow();
-        s.close();
+        Stage s = (Stage) backButton.getScene().getWindow();
+        Popup.hidePopup(Screen.CREATE_ACCOUNT);
         SigninController.getInstance().refresh();
       }
     } else {

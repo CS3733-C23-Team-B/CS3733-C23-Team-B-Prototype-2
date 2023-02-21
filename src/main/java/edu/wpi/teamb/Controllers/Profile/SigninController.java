@@ -32,7 +32,7 @@ public class SigninController {
   private static SigninController instance;
 
   public void initialize() {
-    instance = this;
+    if (instance == null) instance = this;
   }
 
   public void handleKeyPress(KeyEvent event) throws IOException, SQLException {
@@ -56,7 +56,7 @@ public class SigninController {
     if (found) {
       return true;
     }
-    prompt.setText("\tInvalid login");
+    prompt.setText("Invalid login");
     forgot.setVisible(true);
     prompt.setTextFill(Color.RED);
     usernameField.clear();

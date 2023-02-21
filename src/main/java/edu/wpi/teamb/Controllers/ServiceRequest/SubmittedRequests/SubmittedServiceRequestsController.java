@@ -131,6 +131,10 @@ public class SubmittedServiceRequestsController {
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
               myrequests);
+              (String) assignedEmployeeFilter.getValue(),
+              (Urgency) urgencyFilter.getValue(),
+              myRequestsFilter.isSelected());
+    } else if (page.equals("Audio and Visual")) {
       table =
           avTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),

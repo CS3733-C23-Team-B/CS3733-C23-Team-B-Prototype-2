@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 
 public class ServiceRequestSystemsController {
   @FXML VBox mainVbox;
@@ -31,6 +33,9 @@ public class ServiceRequestSystemsController {
     final var r = Bapp.class.getResource(Screen.PATIENT_TRANSPORTATION.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
+    Font font = Font.font("System", FontPosture.ITALIC, 48);
+
+    pageTitle.setFont(font);
     pageTitle.setText("Internal Patient Transportation");
     headerText.setText("");
     transButton.setStyle("-fx-background-color: #6D9BF8");
@@ -45,6 +50,9 @@ public class ServiceRequestSystemsController {
     final var r = Bapp.class.getResource(Screen.SANITATION.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
+    Font font = Font.font("System", FontPosture.ITALIC, 48);
+
+    pageTitle.setFont(font);
     pageTitle.setText("Sanitation Service");
     headerText.setText("");
     transButton.setStyle("-fx-background-color: #21357E");
@@ -59,6 +67,10 @@ public class ServiceRequestSystemsController {
     final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
+
+    Font font = Font.font("System", FontPosture.ITALIC, 48);
+
+    pageTitle.setFont(font);
     pageTitle.setText("Security Service");
     headerText.setText("");
     transButton.setStyle("-fx-background-color: #21357E");
@@ -73,6 +85,9 @@ public class ServiceRequestSystemsController {
     final var r = Bapp.class.getResource(Screen.COMPUTER_SERVICES.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
+    Font font = Font.font("System", FontPosture.ITALIC, 48);
+
+    pageTitle.setFont(font);
     pageTitle.setText("Computer Service");
     headerText.setText("");
     transButton.setStyle("-fx-background-color: #21357E");
@@ -87,6 +102,9 @@ public class ServiceRequestSystemsController {
     final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
+    Font font = Font.font("System", FontPosture.ITALIC, 48);
+
+    pageTitle.setFont(font);
     pageTitle.setText("Audio/Video Service");
     headerText.setText("");
     transButton.setStyle("-fx-background-color: #21357E");

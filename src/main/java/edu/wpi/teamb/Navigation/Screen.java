@@ -39,7 +39,8 @@ public enum Screen {
   EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml"),
   SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml"),
 
-  MAP_EDITOR_HELP_POP_UP("views/Popups/MapEditorHelpPopUp.fxml");
+  MAP_EDITOR_HELP_POP_UP("views/Popups/MapEditorHelpPopUp.fxml"),
+  PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml");
 
   private final String filename;
 

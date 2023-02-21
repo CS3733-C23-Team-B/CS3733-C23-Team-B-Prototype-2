@@ -42,8 +42,4 @@ public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
         });
     return grList;
   }
-
-  protected List<GeneralRequest> getAVRequests() {
-    return convertObj();
-  }
 }

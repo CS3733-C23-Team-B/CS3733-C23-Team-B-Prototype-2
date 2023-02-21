@@ -42,7 +42,4 @@ public class SubmittedSanitationRequestTable extends SubmittedBaseRequestTable {
     return grList;
   }
 
-  protected List<GeneralRequest> getSanRequests() {
-    return convertObj();
-  }
 }

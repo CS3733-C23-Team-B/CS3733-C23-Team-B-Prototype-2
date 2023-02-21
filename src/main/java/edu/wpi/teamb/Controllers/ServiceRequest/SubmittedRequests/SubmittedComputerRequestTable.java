@@ -43,8 +43,4 @@ public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
         });
     return grList;
   }
-
-  protected List<GeneralRequest> getComRequests() {
-    return convertObj();
-  }
 }

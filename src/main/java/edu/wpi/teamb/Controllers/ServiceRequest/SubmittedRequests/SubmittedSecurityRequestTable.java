@@ -41,8 +41,4 @@ public class SubmittedSecurityRequestTable extends SubmittedBaseRequestTable {
         });
     return grList;
   }
-
-  protected List<GeneralRequest> getSecRequests() {
-    return convertObj();
-  }
 }

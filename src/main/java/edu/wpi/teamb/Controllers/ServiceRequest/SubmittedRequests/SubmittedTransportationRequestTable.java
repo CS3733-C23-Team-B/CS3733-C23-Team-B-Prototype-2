@@ -35,10 +35,6 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
     return table;
   }
 
-  public TableView getTable(RequestStatus status, String employee, List<String> types) {
-    return null;
-  }
-
   private List<GeneralRequest> convertObj() {
     List<GeneralRequest> grList = new ArrayList<>();
     List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
@@ -49,7 +45,4 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
     return grList;
   }
 
-  protected List<GeneralRequest> getPTRequests() {
-    return convertObj();
-  }
 }

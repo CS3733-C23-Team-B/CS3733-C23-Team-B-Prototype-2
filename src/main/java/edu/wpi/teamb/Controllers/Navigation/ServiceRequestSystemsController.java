@@ -34,7 +34,6 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     Font font = Font.font("System", FontPosture.ITALIC, 48);
-
     pageTitle.setFont(font);
     pageTitle.setText("Internal Patient Transportation");
     headerText.setText("");
@@ -51,7 +50,6 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     Font font = Font.font("System", FontPosture.ITALIC, 48);
-
     pageTitle.setFont(font);
     pageTitle.setText("Sanitation Service");
     headerText.setText("");
@@ -69,7 +67,6 @@ public class ServiceRequestSystemsController {
     mainVbox.getChildren().add(loader.load());
 
     Font font = Font.font("System", FontPosture.ITALIC, 48);
-
     pageTitle.setFont(font);
     pageTitle.setText("Security Service");
     headerText.setText("");
@@ -86,7 +83,6 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     Font font = Font.font("System", FontPosture.ITALIC, 48);
-
     pageTitle.setFont(font);
     pageTitle.setText("Computer Service");
     headerText.setText("");
@@ -103,7 +99,6 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainVbox.getChildren().add(loader.load());
     Font font = Font.font("System", FontPosture.ITALIC, 48);
-
     pageTitle.setFont(font);
     pageTitle.setText("Audio/Video Service");
     headerText.setText("");

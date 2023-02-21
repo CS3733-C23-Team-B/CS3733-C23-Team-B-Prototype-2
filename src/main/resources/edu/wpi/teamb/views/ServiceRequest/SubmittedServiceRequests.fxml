@@ -135,7 +135,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
          <children>
             <Label fx:id="la" text="Submitted Requests">
                <font>

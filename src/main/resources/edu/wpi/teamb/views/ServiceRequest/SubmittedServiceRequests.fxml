@@ -31,7 +31,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="343.0" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <VBox layoutX="1.0" layoutY="-64.0" prefHeight="600.0" prefWidth="343.0" style="-fx-background-color: #E0E0E0;">
+            <VBox fx:id="filterVbox" layoutX="1.0" layoutY="-64.0" prefHeight="600.0" prefWidth="343.0" style="-fx-background-color: #E0E0E0;">
                <children>
                   <HBox prefHeight="52.0" prefWidth="300.0">
                      <children>
@@ -59,9 +59,9 @@
                         <Insets bottom="30.0" />
                      </VBox.margin>
                   </MFXComboBox>
-                  <HBox prefHeight="1.0" prefWidth="303.0">
+                  <HBox fx:id="myRequestsHbox" prefHeight="1.0" prefWidth="303.0">
                      <children>
-                        <MFXCheckbox fx:id="myRequestsFilter" />
+                        <MFXCheckbox fx:id="myRequestsFilter" text="Display My Requests" />
                      </children>
                   </HBox>
                   <MFXButton fx:id="clearFiltersButton" alignment="BOTTOM_LEFT" onAction="#clearFilters" text="Clear Filters" />

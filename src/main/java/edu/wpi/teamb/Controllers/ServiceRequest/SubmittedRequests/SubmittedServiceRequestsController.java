@@ -2,10 +2,7 @@ package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
 
 import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
-import edu.wpi.teamb.Database.Requests.ComputerRequest;
-import edu.wpi.teamb.Database.Requests.GeneralRequest;
-import edu.wpi.teamb.Database.Requests.PatientTransportationRequest;
-import edu.wpi.teamb.Database.Requests.SanitationRequest;
+import edu.wpi.teamb.Database.Requests.*;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Entities.Urgency;
@@ -131,9 +128,6 @@ public class SubmittedServiceRequestsController {
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
               myrequests);
-              (String) assignedEmployeeFilter.getValue(),
-              (Urgency) urgencyFilter.getValue(),
-              myRequestsFilter.isSelected());
     } else if (page.equals("Audio and Visual")) {
       table =
           avTable.getTable(
@@ -212,6 +206,16 @@ public class SubmittedServiceRequestsController {
         Label typeOfRepair = addAttribute("Type of Repair:", cr.getTypeOfRepair());
         Label device = addAttribute("Type of Device:", cr.getDevice());
         Label repairLocation = addAttribute("Repair Location", cr.getRepairLocation());
+      }
+      else if (r.getRequestType().equals(RequestType.AUDOVISUAL)){
+        AudioVideoRequest avr = (AudioVideoRequest) r;
+        Label avType = addAttribute("Audio Visual Type:", avr.getAVType());
+        Label location = addAttribute("Location:", avr.getLocation());
+      } else if (r.getRequestType().equals(RequestType.SECURITY)) {
+        SecurityRequest secr = (SecurityRequest) r;
+        Label issueType = addAttribute("Type Of Issue:", secr.getIssueType());
+        Label equipmentNeeded = addAttribute("Equipment Needed:", secr.getEquipmentNeeded());
+        Label NumberRequired = addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
       }
     }
   }

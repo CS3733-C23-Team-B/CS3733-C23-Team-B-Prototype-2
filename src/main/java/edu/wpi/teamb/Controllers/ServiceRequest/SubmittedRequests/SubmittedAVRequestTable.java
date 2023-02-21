@@ -20,8 +20,8 @@ public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
   @Override
   public void initialize() {
     super.initialize();
-    addCol(AVType, "AVType");
-    addCol(location, "location");
+//    addCol(AVType, "AVType");
+//    addCol(location, "location");
     setTable();
   }
 

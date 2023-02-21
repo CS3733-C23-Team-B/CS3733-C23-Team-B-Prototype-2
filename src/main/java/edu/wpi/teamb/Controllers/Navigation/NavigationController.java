@@ -7,11 +7,6 @@ import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -20,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
-import javafx.util.Duration;
 
 public class NavigationController {
   @FXML private MFXButton homeButton;
@@ -43,25 +37,27 @@ public class NavigationController {
           if (SigninController.getInstance() != null) {
             if (!SigninController.getInstance().currentUser.getAdmin()) map.setVisible(false);
           }
-          if (!(Navigation.currentScreen == Screen.HOME)) {
-            LocalDate currentDate = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
-            String formattedDate = currentDate.format(formatter);
-
-            Timeline timeline =
-                new Timeline(
-                    new KeyFrame(
-                        Duration.seconds(0),
-                        event -> {
-                          LocalDateTime currentTime = LocalDateTime.now();
-                          DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm:ss a");
-                          timeLabel.setText(currentTime.format(timefmt));
-                        }),
-                    new KeyFrame(Duration.seconds(1)));
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.play();
-            dateLabel.setText(formattedDate);
-          }
+          //          if (!(Navigation.currentScreen == Screen.HOME)) {
+          //            LocalDate currentDate = LocalDate.now();
+          //            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd,
+          // yyyy");
+          //            String formattedDate = currentDate.format(formatter);
+          //
+          //            Timeline timeline =
+          //                new Timeline(
+          //                    new KeyFrame(
+          //                        Duration.seconds(0),
+          //                        event -> {
+          //                          LocalDateTime currentTime = LocalDateTime.now();
+          //                          DateTimeFormatter timefmt =
+          // DateTimeFormatter.ofPattern("h:mm:ss a");
+          //                          timeLabel.setText(currentTime.format(timefmt));
+          //                        }),
+          //                    new KeyFrame(Duration.seconds(1)));
+          //            timeline.setCycleCount(Timeline.INDEFINITE);
+          //            timeline.play();
+          //            dateLabel.setText(formattedDate);
+          //          }
           selectedButton.addListener(
               (obs, oldSelection, newSelection) -> {
                 if (oldSelection != null) {

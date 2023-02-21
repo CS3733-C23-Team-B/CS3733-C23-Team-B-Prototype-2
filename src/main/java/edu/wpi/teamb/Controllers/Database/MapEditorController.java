@@ -3,7 +3,9 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
@@ -131,6 +133,7 @@ public class MapEditorController {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
             e -> {
+              if (currentDot != null) currentDot.setFill(Color.BLUE);
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
               if (creatingEdge) {
@@ -482,5 +485,14 @@ public class MapEditorController {
 
   public static Circle getCurrentDot() {
     return currentDot;
+  }
+
+  public static void promptEdgeRepair(Node node) {
+    Pathfinding.refreshData();
+    List<String> nodes = Pathfinding.getDirectPaths(node.getNodeID());
+    Map<String, Node> allNodes = DBSession.getAllNodes();
+    if (nodes.size() != 2) return;
+    EdgeRepairController.setNodes(allNodes.get(nodes.get(0)), allNodes.get(nodes.get(1)));
+    Popup.displayPopup(Screen.EDGE_REPAIR);
   }
 }

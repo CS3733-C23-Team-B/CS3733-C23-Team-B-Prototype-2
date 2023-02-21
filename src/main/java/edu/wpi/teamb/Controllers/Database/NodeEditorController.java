@@ -76,9 +76,10 @@ public class NodeEditorController {
   }
 
   public void deleteClicked() {
-    MapEditorController.getInstance().removeNode();
-    DBSession.deleteNode(node);
     Stage s = (Stage) yField.getScene().getWindow();
     s.close();
+    MapEditorController.promptEdgeRepair(node);
+    MapEditorController.getInstance().removeNode();
+    DBSession.deleteNode(node);
   }
 }

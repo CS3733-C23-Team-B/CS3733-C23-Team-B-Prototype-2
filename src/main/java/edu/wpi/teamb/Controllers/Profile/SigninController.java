@@ -113,6 +113,28 @@ public class SigninController {
     final var r = Bapp.class.getResource(filename);
     final FXMLLoader loader = new FXMLLoader(r);
     final Parent root = loader.load();
-    Platform.runLater(() -> rootPane.setCenter(root));
+
+    final String filename1 = Screen.SIGN_IN.getFilename();
+    final var r1 = Bapp.class.getResource(filename1);
+    final FXMLLoader loader1 = new FXMLLoader(r1);
+    final Parent root1 = loader1.load();
+    MFXButton b = new MFXButton();
+    b.setText("Back to Sign In");
+
+    Platform.runLater(
+        () -> {
+          rootPane.setCenter(root);
+          rootPane.setTop(b);
+        });
+
+    b.setOnAction(
+        e -> {
+          Platform.runLater(
+              () -> {
+                rootPane.setCenter(null);
+                rootPane.setTop(null);
+                rootPane.setCenter(root1);
+              });
+        });
   }
 }

@@ -81,6 +81,7 @@ public class PathfindingController {
   private TextField textField;
 
   private HashMap<Node, Label> labelMap = new HashMap<>();
+  private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
   List<Node> nodePath;
 
   /** Initializes the dropdown menus */
@@ -227,7 +228,7 @@ public class PathfindingController {
       if (pair.get(0).getFloor().equals(currentFloor)
           && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
       if ((labelMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
-        showLabel(labelMap.get(pair.get(1)));
+        showLabelandButton(labelMap.get(pair.get(1)), buttonMap.get(pair.get(1)));
     }
   }
 
@@ -356,7 +357,7 @@ public class PathfindingController {
         placeLine(s, e);
       }
       if ((labelMap.get(s) != null) && s.getFloor().equals(currentFloor))
-        showLabel(labelMap.get(s));
+        showLabelandButton(labelMap.get(s), buttonMap.get(s));
     }
     pane.toFront();
 
@@ -377,20 +378,30 @@ public class PathfindingController {
     }
   }
 
-  private void showLabel(Label label) {
+  private void showLabelandButton(Label label, MFXButton button) {
     linesPlane.getChildren().add(label);
+    linesPlane.getChildren().add(button);
   }
 
   // at start node make a print out that lets user know that floor went up
   private void showFloorChangeOnNode(Node startNode, Node endNode) {
     String floorChange = "Go to Floor " + endNode.getFloor();
     // String newFloor = "Came from floor" + startNode.getFloor();
+    MFXButton nextFloor = new MFXButton();
+    nextFloor.setOnAction(
+        e -> {
+          changeFloor(endNode.getFloor(), new Point2D(endNode.getXCoord(), endNode.getYCoord()));
+        });
+    nextFloor.setText("Go to next Floor");
+    nextFloor.setLayoutX(startNode.getXCoord() + 20);
+    nextFloor.setLayoutY(startNode.getYCoord() - 20);
 
     Label label = new Label(floorChange);
     label.setLayoutX(startNode.getXCoord() + 20);
     label.setLayoutY(startNode.getYCoord() + 20);
     System.out.println("Go to Floor " + endNode.getFloor());
     labelMap.put(startNode, label);
+    buttonMap.put(startNode, nextFloor);
   }
 
   /**

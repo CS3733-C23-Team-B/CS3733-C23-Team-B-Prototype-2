@@ -16,7 +16,7 @@ public enum Screen {
   EDGE_CREATOR("views/Database/EdgeCreator.fxml"),
   EDGE_CLICK_CREATOR("views/Database/EdgeClickCreator.fxml"),
   NAVIGATION("views/Navigation/Navigation.fxml"),
-  PATHFINDING("views/Database/NewPathfinding.fxml"),
+  PATHFINDING("views/Database/Pathfinding.fxml"),
   PATIENT_TRANSPORTATION("views/ServiceRequest/PatientTransportation.fxml"),
   SANITATION("views/ServiceRequest/SanitationService.fxml"),
   COMPUTER_SERVICES("views/ServiceRequest/ComputerService.fxml"),

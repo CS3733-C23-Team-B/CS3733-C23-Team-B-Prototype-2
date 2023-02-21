@@ -504,7 +504,7 @@ public class MapEditorController {
   }
 
   public void helpButtonClicked() {
-    Navigation.navigate(Screen.MAINHELP);
+    Popup.displayPopup(Screen.MAP_EDITOR_HELP_POP_UP);
   }
 
   public void drawEdges() {

@@ -120,7 +120,6 @@ public class MapEditorController {
         break;
     }
     image.setOnMouseClicked(e -> handleClick());
-
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
@@ -253,14 +252,12 @@ public class MapEditorController {
     dot.getStyleClass().add("intersection");
     dot.setCursor(Cursor.HAND);
 
-    dot.setOnMousePressed(
+    dot.setOnMouseEntered(
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
           currentDot = dot;
-
           pane.setGestureEnabled(false);
-
           Circle c = (Circle) (e.getSource());
           c.toFront();
         });

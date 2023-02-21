@@ -421,7 +421,7 @@ public class PathfindingController {
     aPane.getChildren().add(dot);
     dot.getStyleClass().add("intersection");
     dot.addEventHandler(
-        MouseEvent.MOUSE_CLICKED,
+        MouseEvent.MOUSE_ENTERED,
         e -> {
           selectedCircle.set(dot);
         });

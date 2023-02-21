@@ -123,7 +123,6 @@ public class MapEditorController {
         break;
     }
     image.setOnMouseClicked(e -> handleClick());
-
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
@@ -132,7 +131,7 @@ public class MapEditorController {
     for (Node node : nodes.values()) {
       if (node.getFloor().equals(f)) {
         Circle dot = placeNode(node);
-        dot.setOnMouseClicked(
+        dot.setOnMouseEntered(
             e -> {
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
@@ -259,14 +258,12 @@ public class MapEditorController {
     dot.getStyleClass().add("intersection");
     dot.setCursor(Cursor.HAND);
 
-    dot.setOnMousePressed(
+    dot.setOnMouseEntered(
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
           currentDot = dot;
-
           pane.setGestureEnabled(false);
-
           Circle c = (Circle) (e.getSource());
           c.toFront();
         });

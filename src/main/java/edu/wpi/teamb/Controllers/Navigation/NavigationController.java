@@ -91,7 +91,7 @@ public class NavigationController {
 
   public void helpClicked() {
     resetButtons();
-    Navigation.navigate(Screen.MAINHELP);
+    Popup.displayPopup(Screen.MAINHELP);
   }
 
   public void signOutClicked() {

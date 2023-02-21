@@ -258,6 +258,14 @@ public class MapEditorController {
       if (currentDot != null) currentDot.setFill(Color.BLUE);
       currentNode = null;
       currentDot = null;
+      removeEdges();
+    }
+  }
+
+  private void removeEdges() {
+    List<javafx.scene.Node> children = aPane.getChildren();
+    for (int i = children.size() - 1; i >= 0; i--) {
+      if (children.get(i) instanceof Line) aPane.getChildren().remove(children.get(i));
     }
   }
 
@@ -511,7 +519,10 @@ public class MapEditorController {
     List<String> edges = Pathfinding.getDirectPaths(currentNode.getNodeID());
     Map<String, Node> map = DBSession.getAllNodes();
     // aPane.getChildren().clear();
-    for (String id : edges) drawLineBetween(currentNode, map.get(id));
+    for (String id : edges)
+      if (currentNode.getFloor().equals(map.get(id).getFloor())) {
+        drawLineBetween(currentNode, map.get(id));
+      }
     System.out.println("trying to draw edge");
   }
 

@@ -303,17 +303,10 @@ public class MapEditorController {
   }
 
   private void editClicked() throws IOException {
-    Stage newWindow = new Stage();
-    final String filename = Screen.NODE_EDITOR.getFilename();
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      Scene scene = new Scene(loader.load(), 400, 350);
-      newWindow.setScene(scene);
-      newWindow.show();
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-    }
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.NODE_EDITOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   private void clearPopUp() {

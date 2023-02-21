@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1579.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.PathfindingController">
+<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.PathfindingController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" percentWidth="26.0" />
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="74.0" />
@@ -243,7 +243,7 @@
                <children>
                   <AnchorPane fx:id="map" prefHeight="732.0" prefWidth="1168.0">
                      <VBox.margin>
-                        <Insets top="2.0" />
+                        <Insets />
                      </VBox.margin></AnchorPane>
                </children>
             </VBox>

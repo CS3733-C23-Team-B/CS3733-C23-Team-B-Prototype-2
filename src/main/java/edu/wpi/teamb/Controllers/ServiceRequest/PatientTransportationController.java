@@ -1,8 +1,9 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.PatientTransportationRequest;
-import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Database.Requests.PatientTransportationRequest;
+import edu.wpi.teamb.Entities.RequestType;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -55,7 +56,6 @@ public class PatientTransportationController extends BaseRequestController {
     }
     equipmentNeededBox.setItems(equipmentOptions);
 
-    helpScreen = Screen.PATIENT_TRANSPORTATION_HELP;
     super.initialize();
   }
 
@@ -91,10 +91,11 @@ public class PatientTransportationController extends BaseRequestController {
     request.setPatientCurrentLocation(curLocation.toString());
 
     request.setPatientID(this.patientIDField.getText());
+    request.setRequestType(RequestType.PATIENTTRANSPOTATION);
     DBSession.addRequest(request);
 
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
-    Navigation.navigate((Screen.SUBMISSION_SUCCESS));
+    Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }
 }

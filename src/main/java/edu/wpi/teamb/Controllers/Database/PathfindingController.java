@@ -1,6 +1,8 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Algorithms.Sorting;
+import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
@@ -21,11 +23,11 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -34,8 +36,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
@@ -45,7 +46,15 @@ public class PathfindingController {
   private GesturePane pane;
 
   @FXML AnchorPane map;
-
+  @FXML MFXButton helpButton;
+  @FXML MFXDatePicker datePicker;
+  @FXML MFXFilterComboBox<String> floorCombo;
+  @FXML MFXFilterComboBox searchType;
+  @FXML MFXFilterComboBox<String> startLoc;
+  @FXML MFXFilterComboBox<String> endLoc;
+  @FXML MFXCheckbox avoidStairsCheckBox;
+  @FXML MFXCheckbox showLocationsCheckBox;
+  @FXML MFXButton pathfind;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
@@ -54,31 +63,12 @@ public class PathfindingController {
   AnchorPane currentPopUp;
   private static Node currentNode;
   private Circle currentDot;
-  @FXML MFXFilterComboBox<String> startLoc;
-  @FXML MFXFilterComboBox<String> endLoc;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
   private Map<String, List<Move>> moveMap;
-  private ImageView lowerlevel =
-      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
-  private ImageView groundfloor =
-      new ImageView(getClass().getResource("/media/Maps/00_thegroundfloor.png").toExternalForm());
-  private ImageView lowerlevel2 =
-      new ImageView(getClass().getResource("/media/Maps/00_thelowerlevel2.png").toExternalForm());
-  private ImageView firstfloor =
-      new ImageView(getClass().getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
-  private ImageView secondfloor =
-      new ImageView(getClass().getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
-  private ImageView thirdfloor =
-      new ImageView(getClass().getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
-  @FXML MFXButton pathfind;
   @FXML AnchorPane anchor;
   @FXML ImageView floor1;
-  @FXML MFXFilterComboBox<String> floorCombo;
-  @FXML CheckBox avoidStairsCheckBox;
-  @FXML MFXCheckbox showLocationsCheckBox;
   private List<Label> locLabels = new ArrayList<>();
   @FXML MFXFilterComboBox searchCombo;
-  @FXML MFXDatePicker datePicker;
   private String currentFloor;
   private String startID;
   private String endID;
@@ -88,6 +78,12 @@ public class PathfindingController {
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
   Circle startDot;
   Circle endDot;
+  private List<Node> addedNodes = new ArrayList<>();
+  private TextField textField;
+
+  private HashMap<Node, Label> labelMap = new HashMap<>();
+  private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
+  List<Node> nodePath;
 
   /** Initializes the dropdown menus */
   public void initialize() {
@@ -100,12 +96,12 @@ public class PathfindingController {
     floorMap.put("Second Floor", "2");
     floorMap.put("Third Floor", "3");
 
-    imageMap.put("L2", lowerlevel2);
-    imageMap.put("L1", lowerlevel);
-    imageMap.put("G", groundfloor);
-    imageMap.put("1", firstfloor);
-    imageMap.put("2", secondfloor);
-    imageMap.put("3", thirdfloor);
+    imageMap.put("L2", Bapp.lowerlevel2);
+    imageMap.put("L1", Bapp.lowerlevel);
+    imageMap.put("G", Bapp.groundfloor);
+    imageMap.put("1", Bapp.firstfloor);
+    imageMap.put("2", Bapp.secondfloor);
+    imageMap.put("3", Bapp.thirdfloor);
 
     searchTypeMap.put("A* Search", SearchType.A_STAR);
     searchTypeMap.put("Breadth-first Search", SearchType.BREADTH_FIRST);
@@ -127,16 +123,24 @@ public class PathfindingController {
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
-    pane.setPrefHeight(536);
-    pane.setPrefWidth(1089.6);
-    changeFloor("L1", new javafx.geometry.Point2D(2220, 974));
-    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    pane.setPrefHeight(714.4);
+    pane.setPrefWidth(1168);
     pane.setContent(aPane);
-    map.getChildren().add(pane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
+    map.getChildren().add(pane);
+    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     floorCombo.setOnAction(
-        e -> changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre()));
-    showLocationsCheckBox.setOnAction(e -> showLocationsClicked());
+        e -> {
+          changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre());
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
+    Platform.runLater(
+        () -> {
+          changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
+        });
   }
 
   public void setNodeColors() {
@@ -157,10 +161,10 @@ public class PathfindingController {
   }
 
   private void changeFloor(String floor, Point2D p) {
+    currentFloor = floor;
     ImageView image;
     nodeMap.clear();
 
-    currentFloor = floor;
     image = imageMap.get(floor);
 
     image.toFront();
@@ -209,8 +213,6 @@ public class PathfindingController {
           }
         });
     drawLines();
-    Platform.runLater(() -> pane.centreOn(p));
-
     if (startDot != null) {
       startDot.setFill(Color.BLUE);
       startDot = null;
@@ -219,12 +221,15 @@ public class PathfindingController {
       endDot.setFill(Color.BLUE);
       endDot = null;
     }
+    Platform.runLater(() -> pane.centreOn(p));
   }
 
   private void drawLines() {
     for (List<Node> pair : pathNodePairs) {
       if (pair.get(0).getFloor().equals(currentFloor)
           && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
+      if ((labelMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
+        showLabelandButton(labelMap.get(pair.get(1)), buttonMap.get(pair.get(1)));
     }
   }
 
@@ -292,6 +297,7 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
+    textField = null;
     pathNotFoundTextField.setVisible(false);
     Pathfinding.avoidStairs = avoidStairsCheckBox.isSelected();
     SearchType type = searchTypeMap.get(searchCombo.getText());
@@ -313,7 +319,7 @@ public class PathfindingController {
       pathNotFoundTextField.setVisible(true);
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #e0e0e0");
     }
-
+    System.out.println(path);
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);
 
@@ -322,6 +328,7 @@ public class PathfindingController {
     pathNodePairs.clear();
 
     Node startNode = nodes.get(path.get(0));
+    Node endNode = nodes.get(path.get(path.size() - 1));
     if (!currentFloor.equals(startNode.getFloor())) {
       changeFloor(startNode.getFloor(), new Point2D(startNode.getXCoord(), startNode.getYCoord()));
       floorMap.forEach(
@@ -330,12 +337,28 @@ public class PathfindingController {
           });
     }
 
+    List<Node> nodePath = new ArrayList<>();
+    for (String s : path) {
+      nodePath.add(nodes.get(s));
+    }
+    for (int i = 0; i < nodePath.size() - 1; i++) {
+      String first = nodePath.get(i).getFloor();
+      String second = nodePath.get(i + 1).getFloor();
+      if (!first.equals(second)) {
+        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i + 1));
+      }
+    }
+
     for (int i = 0; i < path.size() - 1; i++) {
       Node s = nodes.get(path.get(i));
       Node e = nodes.get(path.get(i + 1));
       pathNodePairs.add(Arrays.asList(s, e));
 
-      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) placeLine(s, e);
+      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
+        placeLine(s, e);
+      }
+      if ((labelMap.get(s) != null) && s.getFloor().equals(currentFloor))
+        showLabelandButton(labelMap.get(s), buttonMap.get(s));
     }
     pane.toFront();
 
@@ -347,8 +370,40 @@ public class PathfindingController {
       endDot.setFill(Color.BLUE);
       endDot = null;
     }
-
     setNodeColors();
+    // Update the text field position to be above the center of the path
+    if (SigninController.currentUser.getAdmin() == true) {
+      addedNodes.add(startNode);
+      addedNodes.add(endNode);
+      updateTextFieldPosition();
+    }
+  }
+
+  private void showLabelandButton(Label label, MFXButton button) {
+    linesPlane.getChildren().add(label);
+    linesPlane.getChildren().add(button);
+  }
+
+  // at start node make a print out that lets user know that floor went up
+  private void showFloorChangeOnNode(Node startNode, Node endNode) {
+    String floorChange = "Go to Floor " + endNode.getFloor();
+    // String newFloor = "Came from floor" + startNode.getFloor();
+    MFXButton nextFloor = new MFXButton();
+    nextFloor.setOnAction(
+        e -> {
+          changeFloor(endNode.getFloor(), new Point2D(endNode.getXCoord(), endNode.getYCoord()));
+          floorCombo.setValue(floorMap.get(endNode.getFloor()));
+        });
+    nextFloor.setText("Go to next Floor");
+    nextFloor.setLayoutX(startNode.getXCoord() + 20);
+    nextFloor.setLayoutY(startNode.getYCoord() - 20);
+
+    Label label = new Label(floorChange);
+    label.setLayoutX(startNode.getXCoord() + 20);
+    label.setLayoutY(startNode.getYCoord() + 20);
+    System.out.println("Go to Floor " + endNode.getFloor());
+    labelMap.put(startNode, label);
+    buttonMap.put(startNode, nextFloor);
   }
 
   /**
@@ -379,7 +434,7 @@ public class PathfindingController {
     aPane.getChildren().add(dot);
     dot.getStyleClass().add("intersection");
     dot.addEventHandler(
-        MouseEvent.MOUSE_CLICKED,
+        MouseEvent.MOUSE_ENTERED,
         e -> {
           selectedCircle.set(dot);
         });
@@ -389,16 +444,17 @@ public class PathfindingController {
   public void displayLoc(Circle dot) {
     Node node = nodeMap.get(dot);
     AnchorPane popPane = new AnchorPane();
-    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 25);
-    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 35);
+    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 50);
+    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 38);
 
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
     List<Move> l = moveMap.get(node.getNodeID());
     if (l == null) l = Arrays.asList();
     for (Move move : l) {
-      Label loc = new Label(move.getLocationName().getLongName());
-      loc.setFont(new Font("Arial", 6));
+      Label loc = new Label(move.getLocationName().getShortName());
+      loc.setFont(new Font("Arial", 8));
+      loc.setRotate(-45);
       vbox.getChildren().add(loc);
       loc.setVisible(false);
       locLabels.add(loc);
@@ -419,13 +475,57 @@ public class PathfindingController {
             loc.setVisible(showLocations);
           }
         });
-    showLocationsCheckBox.setOnMouseMoved(e -> showLocationsClicked());
   }
 
   private void placeLine(Node start, Node end) {
-    Line l = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
-    l.setFill(Color.BLACK);
-    l.setStrokeWidth(5);
-    linesPlane.getChildren().add(l);
+    Line line = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
+    line.setFill(Color.BLACK);
+    line.setStrokeWidth(5);
+
+    // Add the line to the scene graph and track the nodes that have been added
+    linesPlane.getChildren().add(line);
   }
+
+  private void updateTextFieldPosition() {
+    // Find the bounds of the entire path
+    double minX = Double.POSITIVE_INFINITY;
+    double minY = Double.POSITIVE_INFINITY;
+    double maxX = Double.NEGATIVE_INFINITY;
+    double maxY = Double.NEGATIVE_INFINITY;
+    for (Node node : addedNodes) {
+      double x = node.getXCoord();
+      double y = node.getYCoord();
+      if (x < minX) {
+        minX = x;
+      }
+      if (y < minY) {
+        minY = y;
+      }
+      if (x > maxX) {
+        maxX = x;
+      }
+      if (y > maxY) {
+        maxY = y;
+      }
+    }
+
+    // Create or update the text field position to be above the center of the path
+    double textFieldWidth = 200;
+    double textFieldHeight = 80;
+    double textFieldPadding = 70;
+    double centerX = (minX + maxX) / 2;
+    double centerY = (minY + maxY) / 2;
+
+    textField = new TextField();
+    textField.setLayoutX(centerX - textFieldWidth / 2);
+    textField.setLayoutY(centerY - textFieldPadding - textFieldHeight);
+    textField.setPromptText("Click to add note");
+    linesPlane.getChildren().add(textField);
+  }
+
+  public void helpButtonClicked() {
+    // Navigation.navigate(Screen.PATHFINDING_HELP);
+  }
+
+  public void searchCombo(ActionEvent actionEvent) {}
 }

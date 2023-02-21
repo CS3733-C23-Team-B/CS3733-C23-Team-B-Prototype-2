@@ -30,16 +30,11 @@
          </graphic></MFXButton>
       <VBox onMouseMoved="#buttonControl" prefHeight="536.0" prefWidth="677.0">
          <children>
-            <HBox prefHeight="67.0" prefWidth="738.0">
+            <HBox prefHeight="34.0" prefWidth="698.0">
                <children>
-                  <Label minHeight="45.0" minWidth="294.0" text="Request Information">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
                   <Label minHeight="45.0" minWidth="123.0" text="*Required Field" textFill="RED">
                      <HBox.margin>
-                        <Insets left="36.0" />
+                        <Insets />
                      </HBox.margin>
                      <font>
                         <Font size="18.0" />

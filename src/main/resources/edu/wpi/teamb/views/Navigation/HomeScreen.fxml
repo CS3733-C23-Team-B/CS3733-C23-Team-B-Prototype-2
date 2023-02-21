@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="704.0" prefWidth="1556.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.HomeController">
+<GridPane prefHeight="704.0" prefWidth="1555.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.HomeController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="3.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -21,7 +21,7 @@
       <RowConstraints />
       <RowConstraints maxHeight="55.0" percentHeight="7.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="835.79990234375" minHeight="10.0" percentHeight="15.0" prefHeight="499.7999328613281" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="571.0000671386719" minHeight="10.0" prefHeight="571.0000671386719" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="571.0000671386719" minHeight="10.0" percentHeight="71.0" prefHeight="571.0000671386719" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="55.0" percentHeight="7.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
@@ -77,7 +77,7 @@
                      <children>
                         <MFXScrollPane prefHeight="396.0" prefWidth="998.0" style="-fx-background-color: #FCFCFC;">
                            <content>
-                              <VBox fx:id="homeRequests" spacing="20.0" style="-fx-background-color: #FCFCFC;" />
+                              <VBox fx:id="homeRequests" prefWidth="998.0" spacing="20.0" style="-fx-background-color: #FCFCFC;" />
                            </content>
                         </MFXScrollPane>
                         <VBox alignment="BOTTOM_RIGHT">
@@ -127,14 +127,23 @@
             </Label>
             <HBox alignment="CENTER_RIGHT" prefHeight="121.0" prefWidth="1231.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label id="homePageBody" fx:id="date" stylesheets="@../../../../../css/style.css" text="Date" textAlignment="RIGHT" textFill="#c5d3ea">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="859.0">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
-                  </Label>
+                     <children>
+                        <Label id="homePageBody" fx:id="date" stylesheets="@../../../../../css/style.css" text="Date" textAlignment="RIGHT" textFill="#c5d3ea">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label id="homePageBody" fx:id="time" layoutX="10.0" layoutY="10.0" stylesheets="@../../../../../css/style.css" text="Time" textAlignment="RIGHT" textFill="#c5d3ea">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>

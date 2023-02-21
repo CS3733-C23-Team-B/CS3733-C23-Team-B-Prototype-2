@@ -136,9 +136,4 @@ public class DatabaseRestore {
     makeEdges();
     updateNodeIDs();
   }
-
-  public static void main(String[] args)
-      throws FileNotFoundException, URISyntaxException, ParseException {
-    runRestore();
-  }
 }

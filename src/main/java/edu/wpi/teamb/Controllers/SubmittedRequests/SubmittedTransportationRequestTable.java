@@ -44,5 +44,4 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
         });
     return grList;
   }
-
 }

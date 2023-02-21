@@ -1,6 +1,5 @@
-package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
+package edu.wpi.teamb.Controllers.ServiceRequest;
 
-import edu.wpi.teamb.Controllers.ServiceRequest.BaseRequestController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.AudioVideoRequest;
 import edu.wpi.teamb.Entities.RequestType;

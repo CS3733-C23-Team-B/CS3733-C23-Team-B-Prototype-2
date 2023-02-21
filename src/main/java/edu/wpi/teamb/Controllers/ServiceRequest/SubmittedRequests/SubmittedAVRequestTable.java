@@ -7,21 +7,21 @@ import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
 
   //  add the right tablecols here for this request
-  //  @FXML private TableColumn device = new TableColumn<>();
-  //  @FXML private TableColumn typeOfRepair = new TableColumn<>();
-  //  @FXML private TableColumn repairLocation = new TableColumn();
+  @FXML private TableColumn AVType = new TableColumn();
+  @FXML private TableColumn location = new TableColumn();
 
   @Override
   public void initialize() {
     super.initialize();
-    //    addCol(device, "device");
-    //    addCol(typeOfRepair, "typeOfRepair");
-    //    addCol(repairLocation, "repairLocation");
+    addCol(AVType, "AVType");
+    addCol(location, "location");
     setTable();
   }
 

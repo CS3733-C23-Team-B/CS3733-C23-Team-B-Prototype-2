@@ -44,7 +44,7 @@ public class CreditsController {
   }
 
   // Cleaning Icon
-  public void cleaningCLicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
+  public void cleaningClicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
     Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/cleaning"));
   }
 

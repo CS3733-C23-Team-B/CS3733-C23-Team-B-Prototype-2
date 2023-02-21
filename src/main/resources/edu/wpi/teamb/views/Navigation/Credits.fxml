@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.CreditsController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0" />
@@ -195,7 +194,7 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="91.0" prefWidth="641.0" GridPane.rowIndex="2">
                <children>
-                  <MFXButton fx:id="backButton" text="Back" />
+                  <MFXButton fx:id="backButton" onAction="#backButtonClicked" text="Back" />
                </children>
             </HBox>
          </children>

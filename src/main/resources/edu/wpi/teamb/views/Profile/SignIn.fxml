@@ -70,7 +70,10 @@
                            </font>
                            <VBox.margin>
                               <Insets top="8.0" />
-                           </VBox.margin></MFXPasswordField>
+                           </VBox.margin>
+                           <textFill>
+                              <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
+                           </textFill></MFXPasswordField>
                         <HBox prefHeight="20.0" prefWidth="375.0" />
                         <MFXButton fx:id="signInButton" depthLevel="LEVEL1" onAction="#signInButtonClicked" prefHeight="35.0" prefWidth="804.0" style="-fx-background-color: #21357e; -fx-background-radius: 5;" text="Sign In" textFill="WHITE">
                            <font>

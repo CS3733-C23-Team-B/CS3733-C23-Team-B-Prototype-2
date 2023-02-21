@@ -78,7 +78,7 @@
                <children>
                   <HBox prefHeight="52.0" prefWidth="300.0">
                      <children>
-                        <Label text="Request Info">
+                        <Label fx:id="RequestInformationTitle" text="Request Info">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -88,7 +88,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label fx:id="requestTypeText" layoutX="50.0" layoutY="62.0" text="Filler">
+                  <Label layoutX="50.0" layoutY="62.0" text="Filler">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -96,7 +96,7 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="UrgencyText" layoutX="50.0" layoutY="98.0" text="Filler">
+                  <Label layoutX="50.0" layoutY="98.0" text="Filler">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -104,7 +104,7 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="dateText" layoutX="50.0" layoutY="134.0" text="Filler">
+                  <Label layoutX="50.0" layoutY="134.0" text="Filler">
                      <font>
                         <Font size="25.0" />
                      </font>

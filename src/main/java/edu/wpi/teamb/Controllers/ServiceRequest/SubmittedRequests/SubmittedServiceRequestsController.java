@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
@@ -96,6 +97,8 @@ public class SubmittedServiceRequestsController {
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
     specificRequestInfoBox.getChildren().clear();
+    RequestInformationTitle.setText("Request Info");
+    specificRequestInfoBox.getChildren().add(RequestInformationTitle);
   }
 
   public void helpButtonClicked() throws IOException {
@@ -173,7 +176,7 @@ public class SubmittedServiceRequestsController {
     filter();
   }
 
-  @FXML Label requestTypeText;
+  @FXML Label RequestInformationTitle;
   @FXML Label dateText;
   @FXML Label UrgencyText;
 
@@ -181,13 +184,11 @@ public class SubmittedServiceRequestsController {
   public void mouseClicked(TableView table) {
     GeneralRequest r = (GeneralRequest) table.getSelectionModel().getSelectedItem();
     specificRequestInfoBox.getChildren().clear();
+    RequestInformationTitle.setText("Request Info");
+    specificRequestInfoBox.getChildren().add(RequestInformationTitle);
+
     if (r != null) {
-      requestTypeText.setText(r.getRequestType().toString());
-      dateText.setText(r.getDate());
-      UrgencyText.setText(r.getUrgency().toString());
-      specificRequestInfoBox.getChildren().add(requestTypeText);
-      specificRequestInfoBox.getChildren().add(dateText);
-      specificRequestInfoBox.getChildren().add(UrgencyText);
+      addCommonAttritbutes(r.getRequestType().toString(), r.getDate(), r.getUrgency().toString());
       if (r.getRequestType().equals(RequestType.PATIENTTRANSPOTATION)) {
         PatientTransportationRequest pt = (PatientTransportationRequest) r;
         Label patientDestination =
@@ -199,15 +200,14 @@ public class SubmittedServiceRequestsController {
 
       } else if (r.getRequestType().equals(RequestType.SANITATION)) {
         SanitationRequest sr = (SanitationRequest) r;
-        Label cleanUpLocation = addAttribute("Clean Up Location", sr.getCleanUpLocation());
+        Label cleanUpLocation = addAttribute("Clean Up Location:", sr.getCleanUpLocation());
         Label typeOfCleanUp = addAttribute("Type of Clean Up:", sr.getTypeOfCleanUp());
       } else if (r.getRequestType().equals(RequestType.COMPUTER)) {
         ComputerRequest cr = (ComputerRequest) r;
         Label typeOfRepair = addAttribute("Type of Repair:", cr.getTypeOfRepair());
         Label device = addAttribute("Type of Device:", cr.getDevice());
-        Label repairLocation = addAttribute("Repair Location", cr.getRepairLocation());
-      }
-      else if (r.getRequestType().equals(RequestType.AUDOVISUAL)){
+        Label repairLocation = addAttribute("Repair Location:", cr.getRepairLocation());
+      } else if (r.getRequestType().equals(RequestType.AUDOVISUAL)) {
         AudioVideoRequest avr = (AudioVideoRequest) r;
         Label avType = addAttribute("Audio Visual Type:", avr.getAVType());
         Label location = addAttribute("Location:", avr.getLocation());
@@ -215,19 +215,44 @@ public class SubmittedServiceRequestsController {
         SecurityRequest secr = (SecurityRequest) r;
         Label issueType = addAttribute("Type Of Issue:", secr.getIssueType());
         Label equipmentNeeded = addAttribute("Equipment Needed:", secr.getEquipmentNeeded());
-        Label NumberRequired = addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
+        Label NumberRequired =
+            addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
       }
+    } else {
+
     }
   }
 
   private Label addAttribute(String title, String field) {
     Label t = new Label();
-    t.setText(title);
+    int fontSize = 16;
+    String font = "Nunito";
     Label l = new Label();
+    Font f = new Font(font, fontSize);
+    l.setFont(Font.font(font, fontSize));
     l.setText(field);
+    t.setFont(Font.font(font, FontWeight.LIGHT, fontSize));
+    t.setText(title);
+
     specificRequestInfoBox.getChildren().add(t);
     specificRequestInfoBox.getChildren().add(l);
     return l;
+  }
+
+  private Label addCommonAttritbute(String field) {
+    Label t = new Label();
+    int fontSize = 22;
+    String font = "Nunito";
+    t.setFont(Font.font(font, fontSize));
+    t.setText(field);
+    specificRequestInfoBox.getChildren().add(t);
+    return t;
+  }
+
+  private void addCommonAttritbutes(String type, String date, String urgency) {
+    addCommonAttritbute(type);
+    addCommonAttritbute(date);
+    addAttribute("Request Urgency:", urgency);
   }
 
   private void setFilters() {

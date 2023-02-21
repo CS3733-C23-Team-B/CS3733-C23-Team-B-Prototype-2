@@ -184,7 +184,7 @@ public class MapEditorController {
     editButton.setOnAction(
         (eventAction) -> {
           try {
-            editClicked();
+            editNodeClicked();
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -397,7 +397,7 @@ public class MapEditorController {
 
   public void editNodeClicked() throws IOException {
     forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.SIDE_NODE_EDITOR.getFilename());
+    final var res = Bapp.class.getResource(Screen.NODE_EDITOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
   }

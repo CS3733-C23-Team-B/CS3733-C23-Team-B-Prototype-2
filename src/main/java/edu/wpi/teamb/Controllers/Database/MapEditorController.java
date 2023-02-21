@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Navigation.Navigation;
@@ -10,7 +11,10 @@ import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.awt.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.*;
 import java.util.List;
 import javafx.application.Platform;
@@ -35,6 +39,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
@@ -70,6 +75,7 @@ public class MapEditorController {
   private Map<String, List<Move>> moveMap;
   @FXML MFXFilterComboBox<String> floorCombo;
   private String currentFloor;
+  @FXML VBox mapEditorButtons;
 
   public void initialize() {
     if (instance == null) {
@@ -106,6 +112,53 @@ public class MapEditorController {
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     Platform.runLater(
         () -> {
+          if (SigninController.currentUser.getAdmin()) {
+            HBox csvBox = new HBox();
+            csvBox.setSpacing(20);
+            csvBox.setPrefWidth(458);
+            csvBox.setPrefHeight(17);
+            MFXButton write = new MFXButton();
+            write.setPrefWidth(155);
+            write.setPrefHeight(42);
+            write.setTextFill(Paint.valueOf("#c5d3ea"));
+            write.setStyle("-fx-background-color: #21357E");
+            write.setFont(new Font("System", 20));
+            write.setText("Write to CSV");
+            write.setOnAction(
+                e -> {
+                  try {
+                    DatabaseWriteToCSV.runWrites();
+                  } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                  } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                  }
+                });
+
+            MFXButton restore = new MFXButton();
+            restore.setPrefWidth(155);
+            restore.setPrefHeight(42);
+            restore.setTextFill(Paint.valueOf("#c5d3ea"));
+            restore.setStyle("-fx-background-color: #21357E");
+            restore.setFont(new Font("System", 20));
+            restore.setText("Restore Database");
+            restore.setOnAction(
+                e -> {
+                  try {
+                    DatabaseRestore.runRestore();
+                  } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                  } catch (URISyntaxException ex) {
+                    throw new RuntimeException(ex);
+                  } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                  }
+                });
+
+            csvBox.getChildren().add(write);
+            csvBox.getChildren().add(restore);
+            mapEditorButtons.getChildren().add(csvBox);
+          }
           changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
         });
   }

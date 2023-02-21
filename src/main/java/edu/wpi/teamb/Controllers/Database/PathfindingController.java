@@ -6,6 +6,8 @@ import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
+import edu.wpi.teamb.Navigation.Popup;
+import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
@@ -524,7 +526,7 @@ public class PathfindingController {
   }
 
   public void helpButtonClicked() {
-    // Navigation.navigate(Screen.PATHFINDING_HELP);
+    Popup.displayPopup(Screen.PATHFINDING_HELP_POP_UP);
   }
 
   public void searchCombo(ActionEvent actionEvent) {}

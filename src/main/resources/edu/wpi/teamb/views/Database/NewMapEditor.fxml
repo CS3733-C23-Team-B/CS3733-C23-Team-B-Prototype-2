@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1579.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.MapEditorController">
+<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.MapEditorController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="26.0" />
         <ColumnConstraints hgrow="SOMETIMES" />
@@ -24,18 +24,18 @@
         <RowConstraints percentHeight="87.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <GridPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="714.0" prefWidth="411.0" GridPane.rowIndex="2">
+        <GridPane GridPane.rowIndex="2">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="472.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="352.1999816894531" minHeight="10.0" percentHeight="85.0" prefHeight="309.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="85.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="477.8000183105469" minHeight="10.0" percentHeight="100.0" prefHeight="405.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <VBox prefHeight="719.0" prefWidth="412.0" style="-fx-background-color: #F2F2F2;">
+                <VBox style="-fx-background-color: #F2F2F2;">
                     <children>
-                        <VBox prefHeight="65.0" prefWidth="372.0">
+                        <VBox>
                             <children>
                                 <HBox prefHeight="41.0" prefWidth="458.0">
                                     <children>
@@ -62,14 +62,14 @@
                                 <Insets left="40.0" />
                             </VBox.margin>
                         </VBox>
-                        <VBox prefHeight="186.0" prefWidth="372.0">
+                        <VBox>
                             <children>
                                 <HBox prefHeight="17.0" prefWidth="458.0" spacing="20.0">
                                     <VBox.margin>
                                         <Insets top="20.0" />
                                     </VBox.margin>
                            <children>
-                              <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" minHeight="-Infinity" onAction="#newNodeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea">
+                              <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" onAction="#newNodeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -83,7 +83,7 @@
                                 </HBox>
                         <HBox layoutX="10.0" layoutY="40.0" prefHeight="17.0" prefWidth="458.0" spacing="20.0">
                            <children>
-                              <MFXButton fx:id="newLocationButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" minHeight="-Infinity" onAction="#newLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea">
+                              <MFXButton fx:id="newLocationButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" onAction="#newLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -100,7 +100,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="93.0" prefHeight="17.0" prefWidth="458.0" spacing="20.0">
                            <children>
-                              <MFXButton fx:id="newMoveButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" minHeight="-Infinity" onAction="#newMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Move" textFill="#c5d3ea">
+                              <MFXButton fx:id="newMoveButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" onAction="#newMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Move" textFill="#c5d3ea">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -120,9 +120,9 @@
                                 <Insets left="40.0" />
                             </VBox.margin>
                         </VBox>
-                  <HBox prefHeight="25.0" prefWidth="412.0">
+                  <HBox>
                      <children>
-                        <MFXFilterComboBox fx:id="floorCombo" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="42.0" prefWidth="155.0" text="Lower Level 1">
+                        <MFXFilterComboBox fx:id="floorCombo" prefHeight="42.0" prefWidth="155.0" text="Lower Level 1">
                            <HBox.margin>
                               <Insets left="125.0" />
                            </HBox.margin>
@@ -131,20 +131,23 @@
                            </font>
                         </MFXFilterComboBox>
                      </children>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
                   </HBox>
                     </children>
                     <GridPane.margin>
                         <Insets />
                     </GridPane.margin>
                 </VBox>
-            <MFXScrollPane prefHeight="419.0" prefWidth="412.0" style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
+            <MFXScrollPane style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
                <content>
-                  <AnchorPane fx:id="forms" prefHeight="502.0" prefWidth="390.0" style="-fx-background-color: #F2F2F2;" />
+                  <AnchorPane fx:id="forms" prefHeight="502.0" prefWidth="380.0" style="-fx-background-color: #F2F2F2;" />
                </content>
             </MFXScrollPane>
             </children>
         </GridPane>
-        <HBox maxHeight="-Infinity" prefHeight="19.0" prefWidth="1554.0" style="-fx-background-color: #21357E;" GridPane.rowIndex="1">
+        <HBox style="-fx-background-color: #21357E;" GridPane.rowIndex="1">
             <GridPane.margin>
                 <Insets />
             </GridPane.margin>
@@ -152,12 +155,12 @@
                 <Insets top="10.0" />
             </padding>
         </HBox>
-        <HBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="19.0" prefWidth="1554.0" style="-fx-background-color: #21357E;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <HBox layoutX="10.0" layoutY="10.0" style="-fx-background-color: #21357E;" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <padding>
                 <Insets top="10.0" />
             </padding>
         </HBox>
-        <GridPane prefHeight="591.0" prefWidth="1168.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
@@ -165,15 +168,16 @@
                 <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <VBox prefHeight="653.0" prefWidth="1168.0">
+                <VBox>
                     <children>
-                        <AnchorPane prefHeight="732.0" prefWidth="1168.0">
-                            <VBox.margin>
-                                <Insets top="2.0" />
-                            </VBox.margin>
-                     <children>
-                        <AnchorPane fx:id="map" prefHeight="714.0" prefWidth="1168.0" />
-                     </children></AnchorPane>
+                  <GridPane fx:id="map" prefHeight="714.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
                     </children>
                 </VBox>
             </children>

@@ -106,7 +106,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <MFXDatePicker fx:id="datePicker" onAction="#dateEntered">
+      <MFXDatePicker fx:id="datePicker" onAction="#dateEntered" promptText="Jan 1, 2023">
          <GridPane.margin>
             <Insets left="70.0" />
          </GridPane.margin>

@@ -3,7 +3,9 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
@@ -120,6 +122,7 @@ public class MapEditorController {
         break;
     }
     image.setOnMouseClicked(e -> handleClick());
+
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
@@ -130,6 +133,7 @@ public class MapEditorController {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
             e -> {
+              if (currentDot != null) currentDot.setFill(Color.BLUE);
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
               if (creatingEdge) {
@@ -252,12 +256,14 @@ public class MapEditorController {
     dot.getStyleClass().add("intersection");
     dot.setCursor(Cursor.HAND);
 
-    dot.setOnMouseEntered(
+    dot.setOnMousePressed(
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
           currentDot = dot;
+
           pane.setGestureEnabled(false);
+
           Circle c = (Circle) (e.getSource());
           c.toFront();
         });
@@ -402,8 +408,11 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void viewMovesClicked() {
-    Navigation.navigate((Screen.FUTURE_MOVES));
+  public void viewMovesClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   public void newLocationClicked() throws IOException {
@@ -479,5 +488,14 @@ public class MapEditorController {
 
   public static Circle getCurrentDot() {
     return currentDot;
+  }
+
+  public static void promptEdgeRepair(Node node) {
+    Pathfinding.refreshData();
+    List<String> nodes = Pathfinding.getDirectPaths(node.getNodeID());
+    Map<String, Node> allNodes = DBSession.getAllNodes();
+    if (nodes.size() != 2) return;
+    EdgeRepairController.setNodes(allNodes.get(nodes.get(0)), allNodes.get(nodes.get(1)));
+    Popup.displayPopup(Screen.EDGE_REPAIR);
   }
 }

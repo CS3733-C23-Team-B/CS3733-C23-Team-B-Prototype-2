@@ -8,7 +8,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.*;
-import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -39,7 +38,6 @@ public class MapEditorController {
   @FXML AnchorPane map;
   @FXML AnchorPane anchor;
   @FXML MFXButton editNodeButton;
-  private AnchorPane aPane = new AnchorPane();
   @FXML MFXButton newNodeButton;
   @FXML MFXButton viewMovesButton;
   @FXML MFXButton editLocationButton;
@@ -52,6 +50,7 @@ public class MapEditorController {
   private static Circle currentDot;
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
+  private AnchorPane aPane;
   private double origX, origY;
   private boolean dragged;
   private boolean MOVING = false;
@@ -81,16 +80,14 @@ public class MapEditorController {
     pane.setPrefHeight(536);
     pane.setPrefWidth(1089.6);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    aPane = new AnchorPane();
     pane.setContent(aPane);
     map.getChildren().add(pane);
     // Changes floor when selecting a new floor
     floorCombo.setOnAction(
         e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    Platform.runLater(
-        () -> {
-          changeFloor("Lower Level 1", new Point2D(2215, 1045));
-        });
+    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
   }
 
   private void changeFloor(String floor, Point2D p) {
@@ -148,10 +145,7 @@ public class MapEditorController {
         displayLoc(dot);
       }
     }
-    Platform.runLater(
-        () -> {
-          pane.centreOn(p);
-        });
+    pane.centreOn(p);
   }
 
   public void displayPopUp(Circle dot) {

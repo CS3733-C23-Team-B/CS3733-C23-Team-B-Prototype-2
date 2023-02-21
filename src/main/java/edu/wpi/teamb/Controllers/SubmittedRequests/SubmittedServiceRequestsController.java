@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
+package edu.wpi.teamb.Controllers.SubmittedRequests;
 
 import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
@@ -177,8 +177,6 @@ public class SubmittedServiceRequestsController {
   }
 
   @FXML Label RequestInformationTitle;
-  @FXML Label dateText;
-  @FXML Label UrgencyText;
 
   @FXML
   public void mouseClicked(TableView table) {

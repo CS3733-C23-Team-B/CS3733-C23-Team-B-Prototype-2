@@ -79,8 +79,8 @@ public class MapEditorController {
             "Third Floor"));
     nodeMap = new HashMap<>();
     pane = new GesturePane();
-    pane.setPrefHeight(536);
-    pane.setPrefWidth(1089.6);
+    pane.setPrefHeight(714);
+    pane.setPrefWidth(1168);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     aPane = new AnchorPane();
     pane.setContent(aPane);

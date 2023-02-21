@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -28,7 +29,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="472.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="352.1999816894531" minHeight="10.0" percentHeight="55.0" prefHeight="309.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="352.1999816894531" minHeight="10.0" percentHeight="85.0" prefHeight="309.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="477.8000183105469" minHeight="10.0" percentHeight="100.0" prefHeight="405.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
@@ -119,14 +120,26 @@
                                 <Insets left="40.0" />
                             </VBox.margin>
                         </VBox>
+                  <HBox prefHeight="25.0" prefWidth="412.0">
+                     <children>
+                        <MFXFilterComboBox fx:id="floorCombo" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="42.0" prefWidth="155.0" text="Lower Level 1">
+                           <HBox.margin>
+                              <Insets left="125.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXFilterComboBox>
+                     </children>
+                  </HBox>
                     </children>
                     <GridPane.margin>
                         <Insets />
                     </GridPane.margin>
                 </VBox>
-            <MFXScrollPane style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
+            <MFXScrollPane prefHeight="419.0" prefWidth="412.0" style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
                <content>
-                  <AnchorPane fx:id="forms" prefHeight="458.0" prefWidth="409.0" style="-fx-background-color: #F2F2F2;" />
+                  <AnchorPane fx:id="forms" prefHeight="502.0" prefWidth="390.0" style="-fx-background-color: #F2F2F2;" />
                </content>
             </MFXScrollPane>
             </children>

@@ -79,6 +79,8 @@ public class PathfindingController {
   Circle endDot;
   private List<Node> addedNodes = new ArrayList<>();
   private TextField textField;
+
+  private HashMap<Node, Label> labelMap = new HashMap<>();
   List<Node> nodePath;
 
   /** Initializes the dropdown menus */
@@ -157,10 +159,10 @@ public class PathfindingController {
   }
 
   private void changeFloor(String floor, Point2D p) {
+    currentFloor = floor;
     ImageView image;
     nodeMap.clear();
 
-    currentFloor = floor;
     image = imageMap.get(floor);
 
     image.toFront();
@@ -224,6 +226,8 @@ public class PathfindingController {
     for (List<Node> pair : pathNodePairs) {
       if (pair.get(0).getFloor().equals(currentFloor)
           && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
+      if ((labelMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
+        showLabel(labelMap.get(pair.get(1)));
     }
   }
 
@@ -313,22 +317,13 @@ public class PathfindingController {
       pathNotFoundTextField.setVisible(true);
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #e0e0e0");
     }
-
+    System.out.println(path);
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);
 
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
-    List<Node> nodePath = new ArrayList<>();
-    for (String s : path) {
-      nodePath.add(nodes.get(s));
-    }
-    for (int i = 0; i < nodePath.size() - 1; i++) {
-      if (!nodePath.get(i).getFloor().equals(nodePath.get(i + 1).getFloor())) {
-        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i));
-      }
-    }
 
     Node startNode = nodes.get(path.get(0));
     Node endNode = nodes.get(path.get(path.size() - 1));
@@ -340,12 +335,28 @@ public class PathfindingController {
           });
     }
 
+    List<Node> nodePath = new ArrayList<>();
+    for (String s : path) {
+      nodePath.add(nodes.get(s));
+    }
+    for (int i = 0; i < nodePath.size() - 1; i++) {
+      String first = nodePath.get(i).getFloor();
+      String second = nodePath.get(i + 1).getFloor();
+      if (!first.equals(second)) {
+        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i + 1));
+      }
+    }
+
     for (int i = 0; i < path.size() - 1; i++) {
       Node s = nodes.get(path.get(i));
       Node e = nodes.get(path.get(i + 1));
       pathNodePairs.add(Arrays.asList(s, e));
 
-      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) placeLine(s, e);
+      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
+        placeLine(s, e);
+      }
+      if ((labelMap.get(s) != null) && s.getFloor().equals(currentFloor))
+        showLabel(labelMap.get(s));
     }
     pane.toFront();
 
@@ -366,20 +377,20 @@ public class PathfindingController {
     }
   }
 
+  private void showLabel(Label label) {
+    linesPlane.getChildren().add(label);
+  }
+
   // at start node make a print out that lets user know that floor went up
   private void showFloorChangeOnNode(Node startNode, Node endNode) {
     String floorChange = "Go to Floor " + endNode.getFloor();
-    String newFloor = "Came from floor" + startNode.getFloor();
+    // String newFloor = "Came from floor" + startNode.getFloor();
 
     Label label = new Label(floorChange);
     label.setLayoutX(startNode.getXCoord() + 20);
     label.setLayoutY(startNode.getYCoord() + 20);
-    linesPlane.getChildren().add(label);
-    //
-    //    Label newLabel = new Label(newFloor);
-    //    newLabel.setLayoutX(endNode.getXCoord() + 20);
-    //    newLabel.setLayoutY(endNode.getYCoord() + 20);
-    //    linesPlane.getChildren().add(newLabel);
+    System.out.println("Go to Floor " + endNode.getFloor());
+    labelMap.put(startNode, label);
   }
 
   /**

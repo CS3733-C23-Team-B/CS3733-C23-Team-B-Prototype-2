@@ -10,10 +10,13 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.BorderPane;
 
 public class Navigation {
+  public static Screen currentScreen;
 
   public static void navigate(final Screen screen) {
+
     final String filename = screen.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
+    currentScreen = (screen);
 
     // Show loading indicator
     if (screen == Screen.MAP_EDITOR || screen == Screen.PATHFINDING) {
@@ -22,16 +25,17 @@ public class Navigation {
       progressIndicator.setStyle("-fx-progress-color: #21357E;");
       rootPane.setCenter(progressIndicator);
     }
-    try {
-      if (!filename.equals("views/Profile/SignIn.fxml")) {
-        final String header = Screen.NAVIGATION.getFilename();
-        final var resource = Bapp.class.getResource(header);
-        final FXMLLoader loader2 = new FXMLLoader(resource);
-        final Parent headerRoot = loader2.load();
-        if (rootPane.getTop() == null) Platform.runLater(() -> rootPane.setTop(headerRoot));
+    if (!filename.equals("views/Profile/SignIn.fxml")) {
+      String header = Screen.NAVIGATION.getFilename();
+      final var resource = Bapp.class.getResource(header);
+      final FXMLLoader loader2 = new FXMLLoader(resource);
+      final Parent headerRoot;
+      try {
+        headerRoot = loader2.load();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
       }
-    } catch (IOException | NullPointerException e) {
-      e.printStackTrace();
+      rootPane.setTop(headerRoot);
     }
     // Load FXML files in background thread
     final Task<Void> loadTask =

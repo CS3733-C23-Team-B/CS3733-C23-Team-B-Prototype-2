@@ -30,7 +30,7 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints percentHeight="85.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="477.8000183105469" minHeight="10.0" percentHeight="100.0" prefHeight="405.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <VBox style="-fx-background-color: #F2F2F2;">

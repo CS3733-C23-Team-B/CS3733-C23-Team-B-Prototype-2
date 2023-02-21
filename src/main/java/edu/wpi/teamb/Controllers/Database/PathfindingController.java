@@ -35,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -47,7 +48,7 @@ public class PathfindingController {
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private GesturePane pane;
 
-  @FXML AnchorPane map;
+  @FXML GridPane map;
   @FXML MFXButton helpButton;
   @FXML MFXDatePicker datePicker;
   @FXML MFXFilterComboBox<String> floorCombo;
@@ -125,7 +126,7 @@ public class PathfindingController {
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
-    pane.setPrefHeight(714.4);
+    pane.setPrefHeight(714);
     pane.setPrefWidth(1168);
     pane.setContent(aPane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);

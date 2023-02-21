@@ -260,6 +260,8 @@ public class MapEditorController {
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
+          if (currentDot != null)
+            currentDot.setFill(Color.BLUE);
           currentDot = dot;
 
           pane.setGestureEnabled(false);

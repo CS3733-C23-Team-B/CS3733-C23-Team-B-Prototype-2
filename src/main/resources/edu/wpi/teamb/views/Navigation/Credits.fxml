@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.CreditsController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0" />
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="60.0" />

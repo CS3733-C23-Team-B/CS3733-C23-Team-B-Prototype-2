@@ -10,6 +10,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.util.*;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -89,7 +90,10 @@ public class MapEditorController {
     floorCombo.setOnAction(
         e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
+    Platform.runLater(
+        () -> {
+          changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
+        });
   }
 
   private void changeFloor(String floor, Point2D p) {
@@ -122,7 +126,6 @@ public class MapEditorController {
         break;
     }
     image.setOnMouseClicked(e -> handleClick());
-
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
 
@@ -149,7 +152,10 @@ public class MapEditorController {
         displayLoc(dot);
       }
     }
-    pane.centreOn(p);
+    Platform.runLater(
+        () -> {
+          pane.centreOn(p);
+        });
   }
 
   public void displayPopUp(Circle dot) {
@@ -181,7 +187,7 @@ public class MapEditorController {
     editButton.setOnAction(
         (eventAction) -> {
           try {
-            editClicked();
+            editNodeClicked();
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -256,14 +262,12 @@ public class MapEditorController {
     dot.getStyleClass().add("intersection");
     dot.setCursor(Cursor.HAND);
 
-    dot.setOnMousePressed(
+    dot.setOnMouseEntered(
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
           currentDot = dot;
-
           pane.setGestureEnabled(false);
-
           Circle c = (Circle) (e.getSource());
           c.toFront();
         });
@@ -396,7 +400,7 @@ public class MapEditorController {
 
   public void editNodeClicked() throws IOException {
     forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.SIDE_NODE_EDITOR.getFilename());
+    final var res = Bapp.class.getResource(Screen.NODE_EDITOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
   }

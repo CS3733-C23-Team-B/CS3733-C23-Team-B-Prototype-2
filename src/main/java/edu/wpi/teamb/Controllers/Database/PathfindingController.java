@@ -123,7 +123,7 @@ public class PathfindingController {
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
-    pane.setPrefHeight(725);
+    pane.setPrefHeight(714.4);
     pane.setPrefWidth(1146.4);
     pane.setContent(aPane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);

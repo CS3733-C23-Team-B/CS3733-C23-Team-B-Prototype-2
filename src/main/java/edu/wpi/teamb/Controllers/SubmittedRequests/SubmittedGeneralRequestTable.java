@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
+package edu.wpi.teamb.Controllers.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
@@ -19,7 +19,6 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
   public void initialize() {
     super.initialize();
     addColGR(requestType, "requestType");
-
     setTable();
   }
 
@@ -44,6 +43,4 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
     List<GeneralRequest> objectList = DBSession.getAllRequests();
     return requests;
   }
-
-  private void addCol() {}
 }

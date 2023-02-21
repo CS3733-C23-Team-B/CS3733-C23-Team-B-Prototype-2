@@ -1,27 +1,26 @@
-package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
+package edu.wpi.teamb.Controllers.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Requests.AudioVideoRequest;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
+import edu.wpi.teamb.Database.Requests.SanitationRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
+public class SubmittedSanitationRequestTable extends SubmittedBaseRequestTable {
 
-  //  add the right tablecols here for this request
-  //  @FXML private TableColumn device = new TableColumn<>();
-  //  @FXML private TableColumn typeOfRepair = new TableColumn<>();
-  //  @FXML private TableColumn repairLocation = new TableColumn();
+  @FXML private TableColumn typeOfCleanUp = new TableColumn<>();
+  @FXML private TableColumn cleanUpLocation = new TableColumn<>();
 
   @Override
   public void initialize() {
     super.initialize();
-    //    addCol(device, "device");
-    //    addCol(typeOfRepair, "typeOfRepair");
-    //    addCol(repairLocation, "repairLocation");
+    //    addCol(typeOfCleanUp, "typeOfCleanUp");
+    //    addCol(cleanUpLocation, "cleanUpLocation");
     setTable();
   }
 
@@ -35,15 +34,11 @@ public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
 
   private List<GeneralRequest> convertObj() {
     List<GeneralRequest> grList = new ArrayList<>();
-    List<AudioVideoRequest> objectList = DBSession.getAllAVRequests();
+    List<SanitationRequest> objectList = DBSession.getAllSanRequests();
     objectList.forEach(
         (value) -> {
           grList.add(value);
         });
     return grList;
-  }
-
-  protected List<GeneralRequest> getAVRequests() {
-    return convertObj();
   }
 }

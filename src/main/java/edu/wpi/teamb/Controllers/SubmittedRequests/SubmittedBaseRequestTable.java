@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
+package edu.wpi.teamb.Controllers.SubmittedRequests;
 
 import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;

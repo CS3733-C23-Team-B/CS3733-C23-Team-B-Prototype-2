@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
+package edu.wpi.teamb.Controllers.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
@@ -20,10 +20,10 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
   @Override
   public void initialize() {
     super.initialize();
-    addCol(patientID, "patientID");
-    addCol(patientCurrentLocation, "patientCurrentLocation");
-    addCol(patientDestinationLocation, "patientDestinationLocation");
-    addCol(equipmentNeeded, "equipmentNeeded");
+    //    addCol(patientID, "patientID");
+    //    addCol(patientCurrentLocation, "patientCurrentLocation");
+    //    addCol(patientDestinationLocation, "patientDestinationLocation");
+    //    addCol(equipmentNeeded, "equipmentNeeded");
     super.setTable();
   }
 
@@ -35,10 +35,6 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
     return table;
   }
 
-  public TableView getTable(RequestStatus status, String employee, List<String> types) {
-    return null;
-  }
-
   private List<GeneralRequest> convertObj() {
     List<GeneralRequest> grList = new ArrayList<>();
     List<PatientTransportationRequest> objectList = DBSession.getAllPTRequests();
@@ -47,9 +43,5 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
           grList.add(value);
         });
     return grList;
-  }
-
-  protected List<GeneralRequest> getPTRequests() {
-    return convertObj();
   }
 }

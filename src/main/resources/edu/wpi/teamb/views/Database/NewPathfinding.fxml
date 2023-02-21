@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1579.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.PathfindingController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="0.0" percentWidth="26.0" prefWidth="472.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1552.8000091075896" minWidth="10.0" prefWidth="1161.6000366210938" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="55.0" percentHeight="11.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="196.1333236694336" minHeight="0.0" percentHeight="2.0" prefHeight="196.1333236694336" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="800.4666748046875" minHeight="0.0" percentHeight="87.0" prefHeight="630.8666763305664" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <GridPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="714.0" prefWidth="411.0" GridPane.rowIndex="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="472.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="100.0" prefHeight="40.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox prefHeight="719.0" prefWidth="412.0" style="-fx-background-color: #F2F2F2;">
+               <children>
+                  <VBox prefHeight="65.0" prefWidth="372.0">
+                     <children>
+                        <HBox prefHeight="41.0" prefWidth="458.0">
+                           <children>
+                              <Label alignment="CENTER" text="Pathfinding">
+                                 <font>
+                                    <Font size="40.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <MFXButton fx:id="helpButton" buttonType="RAISED" onAction="#helpButtonClicked" text="help">
+                                 <HBox.margin>
+                                    <Insets left="55.0" top="25.0" />
+                                 </HBox.margin>
+                              </MFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox prefHeight="503.0" prefWidth="372.0">
+                     <children>
+                        <HBox prefHeight="17.0" prefWidth="458.0">
+                           <children>
+                              <Label prefHeight="19.0" prefWidth="50.0" text="Date">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <MFXDatePicker fx:id="datePicker" maxHeight="-Infinity" minHeight="-Infinity" onAction="#dateEntered" prefHeight="40.0" prefWidth="300.0" text="Jan 1, 2023" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <Label prefHeight="35.0" prefWidth="66.0" text="Floor">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <MFXFilterComboBox fx:id="floorCombo" prefHeight="40.0" prefWidth="300.0" text="Lower Level 1" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <Label prefHeight="35.0" prefWidth="138.0" text="Search Type">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <MFXFilterComboBox fx:id="searchCombo" prefHeight="40.0" prefWidth="300.0" text="A* Search" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <Label prefHeight="35.0" prefWidth="153.0" text="Starting Node">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <MFXFilterComboBox fx:id="startLoc" prefHeight="40.0" prefWidth="300.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <Label prefHeight="35.0" prefWidth="153.0" text="Ending Node">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <MFXFilterComboBox fx:id="endLoc" prefHeight="40.0" prefWidth="300.0" />
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="0.0" prefWidth="372.0">
+                           <children>
+                              <MFXCheckbox fx:id="avoidStairsCheckBox" text="Avoid Stairs">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </MFXCheckbox>
+                              <MFXCheckbox fx:id="showLocationsCheckBox" onAction="#showLocationsClicked" onMouseMoved="#showLocationsClicked" text="Show Locations">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </MFXCheckbox>
+                           </children>
+                        </VBox>
+                        <HBox prefHeight="9.0" prefWidth="458.0">
+                           <children>
+                              <MFXButton fx:id="pathfind" alignment="CENTER" buttonType="RAISED" prefHeight="60.0" style="-fx-background-color: #003DA6;" text="Find Fastest Path" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="70.0" top="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" focusTraversable="true" prefHeight="116.0" prefWidth="372.0">
+                           <children>
+                              <TextField fx:id="pathNotFoundTextField" minWidth="0.0" prefHeight="51.0" prefWidth="238.0" style="-fx-background-color: #e0e0e0;" text="PATH NOT FOUND" visible="false">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </VBox>
+         </children>
+      </GridPane>
+      <HBox maxHeight="-Infinity" prefHeight="19.0" prefWidth="1554.0" style="-fx-background-color: #21357E;" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="19.0" prefWidth="1554.0" style="-fx-background-color: #21357E;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
+      <GridPane prefHeight="591.0" prefWidth="1168.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox prefHeight="653.0" prefWidth="1168.0">
+               <children>
+                  <AnchorPane fx:id="map" prefHeight="732.0" prefWidth="1168.0">
+                     <VBox.margin>
+                        <Insets top="2.0" />
+                     </VBox.margin></AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </children>
+</GridPane>

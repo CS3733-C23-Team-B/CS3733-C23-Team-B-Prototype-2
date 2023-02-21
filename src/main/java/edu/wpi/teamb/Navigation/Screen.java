@@ -4,7 +4,7 @@ public enum Screen {
   HOME("views/Navigation/HomeScreen.fxml"),
   DATABASE_HELP("views/Database/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
-  MAP_EDITOR("views/Database/MapEditor.fxml"),
+  MAP_EDITOR("views/Database/NewMapEditor.fxml"),
   NODE_EDITOR("views/Database/NodeEditor.fxml"),
   SIDE_NODE_EDITOR("views/Database/SideNodeEditor.fxml"),
   NODE_CREATOR("views/Database/NodeCreator.fxml"),
@@ -34,10 +34,14 @@ public enum Screen {
   CREATE_ACCOUNT("views/Profile/CreateAccount.fxml"),
   ALL_USERS("views/Profile/AllUsers.fxml"),
   LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml"),
-  TEMPLATE("views/ServiceRequest/Template.fxml"),
+  TEMPLATE("views/ServiceRequest/Template2.fxml"),
+  SECURITY_SERVICES("views/ServiceRequest/Security.fxml"),
   FORGOT_PASSWORD("views/Profile/ForgotPass.fxml"),
   EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml"),
-  SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml");
+  SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml"),
+
+  MAP_EDITOR_HELP_POP_UP("views/Popups/MapEditorHelpPopUp.fxml"),
+  PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml");
 
   private final String filename;
 

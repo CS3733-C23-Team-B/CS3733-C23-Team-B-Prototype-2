@@ -13,6 +13,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -35,6 +36,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -42,7 +44,7 @@ import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
   @FXML GridPane gridPane;
-  @FXML AnchorPane map;
+  @FXML GridPane map;
   @FXML AnchorPane anchor;
   @FXML MFXButton editNodeButton;
   @FXML MFXButton newNodeButton;
@@ -92,8 +94,8 @@ public class MapEditorController {
 //          currentMouseX = e.getSceneX() + aPane.getLayoutX();
 //          currentMouseY = e.getSceneY() + aPane.getLayoutY();
 //        });
-    pane.setPrefHeight(536);
-    pane.setPrefWidth(1089.6);
+    pane.setPrefHeight(714);
+    pane.setPrefWidth(1168);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     aPane = new AnchorPane();
     pane.setContent(aPane);
@@ -102,7 +104,10 @@ public class MapEditorController {
     floorCombo.setOnAction(
         e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
+    Platform.runLater(
+        () -> {
+          changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
+        });
   }
 
   private void changeFloor(String floor, Point2D p) {
@@ -161,7 +166,11 @@ public class MapEditorController {
         displayLoc(dot);
       }
     }
-    pane.centreOn(p);
+
+    Platform.runLater(
+        () -> {
+          pane.centreOn(p);
+        });
   }
 
   public void displayPopUp(Circle dot) {
@@ -214,6 +223,7 @@ public class MapEditorController {
     aPane.getChildren().add(popPane);
     currentPopUp = popPane;
     currentNode = node;
+    drawEdges();
     currentDot = dot;
   }
 
@@ -260,6 +270,14 @@ public class MapEditorController {
       if (currentDot != null) currentDot.setFill(Color.BLUE);
       currentNode = null;
       currentDot = null;
+      removeEdges();
+    }
+  }
+
+  private void removeEdges() {
+    List<javafx.scene.Node> children = aPane.getChildren();
+    for (int i = children.size() - 1; i >= 0; i--) {
+      if (children.get(i) instanceof Line) aPane.getChildren().remove(children.get(i));
     }
   }
 
@@ -423,12 +441,12 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  public void viewMovesClicked() throws IOException {
-    forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
-    final FXMLLoader loader = new FXMLLoader(res);
-    forms.getChildren().add(loader.load());
-  }
+  //  public void viewMovesClicked() throws IOException {
+  //    forms.getChildren().clear();
+  //    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
+  //    final FXMLLoader loader = new FXMLLoader(res);
+  //    forms.getChildren().add(loader.load());
+  //  }
 
   public void newLocationClicked() throws IOException {
     forms.getChildren().clear();
@@ -515,7 +533,26 @@ public class MapEditorController {
   }
 
   public void helpButtonClicked() {
-    Navigation.navigate(Screen.MAINHELP);
+    Popup.displayPopup(Screen.MAP_EDITOR_HELP_POP_UP);
+  }
+
+  public void drawEdges() {
+    List<String> edges = Pathfinding.getDirectPaths(currentNode.getNodeID());
+    Map<String, Node> map = DBSession.getAllNodes();
+    // aPane.getChildren().clear();
+    for (String id : edges)
+      if (currentNode.getFloor().equals(map.get(id).getFloor())) {
+        drawLineBetween(currentNode, map.get(id));
+      }
+    System.out.println("trying to draw edge");
+  }
+
+  private void drawLineBetween(Node n1, Node n2) {
+    Line line = new Line(n1.getXCoord(), n1.getYCoord(), n2.getXCoord(), n2.getYCoord());
+    line.setFill(Color.BLACK);
+    line.setStrokeWidth(5);
+    aPane.getChildren().add(line);
+    System.out.println("PLACED lines: " + aPane);
   }
 
   public void handleKeyPress(KeyEvent e) {

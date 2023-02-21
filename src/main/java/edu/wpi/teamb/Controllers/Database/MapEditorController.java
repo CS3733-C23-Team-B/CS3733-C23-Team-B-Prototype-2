@@ -89,11 +89,11 @@ public class MapEditorController {
     nodeMap = new HashMap<>();
     pane = new GesturePane();
     pane.setOnKeyPressed(e -> handleKeyPress(e));
-//    pane.setOnMouseMoved(
-//        e -> {
-//          currentMouseX = e.getSceneX() + aPane.getLayoutX();
-//          currentMouseY = e.getSceneY() + aPane.getLayoutY();
-//        });
+    //    pane.setOnMouseMoved(
+    //        e -> {
+    //          currentMouseX = e.getSceneX() + aPane.getLayoutX();
+    //          currentMouseY = e.getSceneY() + aPane.getLayoutY();
+    //        });
     pane.setPrefHeight(714);
     pane.setPrefWidth(1168);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
@@ -441,12 +441,12 @@ public class MapEditorController {
     forms.getChildren().add(loader.load());
   }
 
-  //  public void viewMovesClicked() throws IOException {
-  //    forms.getChildren().clear();
-  //    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
-  //    final FXMLLoader loader = new FXMLLoader(res);
-  //    forms.getChildren().add(loader.load());
-  //  }
+  public void viewMovesClicked() throws IOException {
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
+  }
 
   public void newLocationClicked() throws IOException {
     forms.getChildren().clear();
@@ -560,14 +560,14 @@ public class MapEditorController {
       DBSession.deleteNode(nodeMap.get(currentDot));
       removeNode();
     }
-//    else if (e.getCode().equals(KeyCode.N)) {
-//      Node n = new Node();
-//      n.setBuilding("Tower");
-//      n.setFloor(currentFloor);
-//      n.setXCoord((int) currentMouseX);
-//      n.setYCoord((int) currentMouseY);
-//      System.out.println(currentMouseX);
-//      System.out.println(currentMouseY);
-//    }
+    //    else if (e.getCode().equals(KeyCode.N)) {
+    //      Node n = new Node();
+    //      n.setBuilding("Tower");
+    //      n.setFloor(currentFloor);
+    //      n.setXCoord((int) currentMouseX);
+    //      n.setYCoord((int) currentMouseY);
+    //      System.out.println(currentMouseX);
+    //      System.out.println(currentMouseY);
+    //    }
   }
 }

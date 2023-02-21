@@ -57,7 +57,8 @@ public class SubmittedServiceRequestsController {
           "Sanitation",
           "Internal Patient Transportation",
           "Audio and Visual",
-          "Security");
+          "Security",
+          "Computer");
   private ObservableList<String> staff = DBSession.getStaff();
 
   private Login currUser = SigninController.getInstance().currentUser;

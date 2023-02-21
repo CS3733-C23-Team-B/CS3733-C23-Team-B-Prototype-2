@@ -226,6 +226,8 @@ public class PathfindingController {
     for (List<Node> pair : pathNodePairs) {
       if (pair.get(0).getFloor().equals(currentFloor)
           && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
+      if ((labelMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
+        showLabel(labelMap.get(pair.get(1)));
     }
   }
 

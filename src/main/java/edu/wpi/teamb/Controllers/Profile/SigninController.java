@@ -56,7 +56,7 @@ public class SigninController {
     if (found) {
       return true;
     }
-    prompt.setText("\tInvalid login");
+    prompt.setText("Invalid login");
     forgot.setVisible(true);
     prompt.setTextFill(Color.RED);
     usernameField.clear();

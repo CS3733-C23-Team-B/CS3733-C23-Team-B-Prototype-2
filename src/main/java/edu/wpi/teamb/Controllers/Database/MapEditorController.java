@@ -557,8 +557,10 @@ public class MapEditorController {
 
   public void handleKeyPress(KeyEvent e) {
     if (e.getCode().equals(KeyCode.BACK_SPACE)) {
-      DBSession.deleteNode(nodeMap.get(currentDot));
+      Node n = nodeMap.get(currentDot);
+      promptEdgeRepair(n);
       removeNode();
+      DBSession.deleteNode(n);
     }
     //    else if (e.getCode().equals(KeyCode.N)) {
     //      Node n = new Node();

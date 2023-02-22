@@ -158,7 +158,7 @@
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font></MFXButton>
-                        <MFXButton prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: F8C630;" text="Help" textFill="WHITE">
+                        <MFXButton id="helpButton" prefHeight="40.0" prefWidth="40.0" text="Help" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="37.0" />
                            </HBox.margin>

@@ -35,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -47,7 +48,7 @@ public class PathfindingController {
   private static final PseudoClass SELECTED_P_C = PseudoClass.getPseudoClass("selected");
   private GesturePane pane;
 
-  @FXML AnchorPane map;
+  @FXML GridPane map;
   @FXML MFXButton helpButton;
   @FXML MFXDatePicker datePicker;
   @FXML MFXFilterComboBox<String> floorCombo;
@@ -80,10 +81,7 @@ public class PathfindingController {
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
   Circle startDot;
   Circle endDot;
-  private List<Node> addedNodes = new ArrayList<>();
   private TextField textField;
-
-  private HashMap<Node, Label> labelMap = new HashMap<>();
   private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
   List<Node> nodePath;
 
@@ -125,7 +123,7 @@ public class PathfindingController {
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
-    pane.setPrefHeight(714.4);
+    pane.setPrefHeight(714);
     pane.setPrefWidth(1168);
     pane.setContent(aPane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
@@ -151,12 +149,14 @@ public class PathfindingController {
       if (n instanceof Circle) {
         Circle c = (Circle) n;
         Node node = nodeMap.get(c);
-        if (node.getNodeID().equals(startID)) {
-          startDot = c;
-          startDot.setFill(Color.GREEN);
-        } else if (node.getNodeID().equals(endID)) {
-          endDot = c;
-          endDot.setFill(Color.RED);
+        if (node != null) {
+          if (node.getNodeID().equals(startID)) {
+            startDot = c;
+            startDot.setFill(Color.GREEN);
+          } else if (node.getNodeID().equals(endID)) {
+            endDot = c;
+            endDot.setFill(Color.RED);
+          }
         }
       }
     }
@@ -230,8 +230,8 @@ public class PathfindingController {
     for (List<Node> pair : pathNodePairs) {
       if (pair.get(0).getFloor().equals(currentFloor)
           && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
-      if ((labelMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
-        showLabelandButton(labelMap.get(pair.get(1)), buttonMap.get(pair.get(1)));
+      if ((buttonMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
+        showButton(buttonMap.get(pair.get(1)));
     }
   }
 
@@ -359,8 +359,8 @@ public class PathfindingController {
       if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
         placeLine(s, e);
       }
-      if ((labelMap.get(s) != null) && s.getFloor().equals(currentFloor))
-        showLabelandButton(labelMap.get(s), buttonMap.get(s));
+      if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor))
+        showButton(buttonMap.get(s));
     }
     pane.toFront();
 
@@ -375,36 +375,29 @@ public class PathfindingController {
     setNodeColors();
     // Update the text field position to be above the center of the path
     if (SigninController.currentUser.getAdmin() == true) {
-      addedNodes.add(startNode);
-      addedNodes.add(endNode);
-      updateTextFieldPosition();
+      updateTextFieldPosition(endNode);
     }
   }
 
-  private void showLabelandButton(Label label, MFXButton button) {
-    linesPlane.getChildren().add(label);
-    linesPlane.getChildren().add(button);
+  private void showButton(MFXButton button) {
+    aPane.getChildren().add(button);
   }
 
   // at start node make a print out that lets user know that floor went up
   private void showFloorChangeOnNode(Node startNode, Node endNode) {
-    String floorChange = "Go to Floor " + endNode.getFloor();
-    // String newFloor = "Came from floor" + startNode.getFloor();
     MFXButton nextFloor = new MFXButton();
     nextFloor.setOnAction(
         e -> {
           changeFloor(endNode.getFloor(), new Point2D(endNode.getXCoord(), endNode.getYCoord()));
-          floorCombo.setValue(floorMap.get(endNode.getFloor()));
+          floorMap.forEach(
+              (key, value) -> {
+                if (value.equals(endNode.getFloor())) floorCombo.setValue(key);
+              });
         });
     nextFloor.setText("Go to next Floor");
     nextFloor.setLayoutX(startNode.getXCoord() + 20);
     nextFloor.setLayoutY(startNode.getYCoord() - 20);
-
-    Label label = new Label(floorChange);
-    label.setLayoutX(startNode.getXCoord() + 20);
-    label.setLayoutY(startNode.getYCoord() + 20);
     System.out.println("Go to Floor " + endNode.getFloor());
-    labelMap.put(startNode, label);
     buttonMap.put(startNode, nextFloor);
   }
 
@@ -488,41 +481,15 @@ public class PathfindingController {
     linesPlane.getChildren().add(line);
   }
 
-  private void updateTextFieldPosition() {
-    // Find the bounds of the entire path
-    double minX = Double.POSITIVE_INFINITY;
-    double minY = Double.POSITIVE_INFINITY;
-    double maxX = Double.NEGATIVE_INFINITY;
-    double maxY = Double.NEGATIVE_INFINITY;
-    for (Node node : addedNodes) {
-      double x = node.getXCoord();
-      double y = node.getYCoord();
-      if (x < minX) {
-        minX = x;
-      }
-      if (y < minY) {
-        minY = y;
-      }
-      if (x > maxX) {
-        maxX = x;
-      }
-      if (y > maxY) {
-        maxY = y;
-      }
-    }
-
-    // Create or update the text field position to be above the center of the path
+  private void updateTextFieldPosition(Node endNode) {
     double textFieldWidth = 200;
     double textFieldHeight = 80;
     double textFieldPadding = 70;
-    double centerX = (minX + maxX) / 2;
-    double centerY = (minY + maxY) / 2;
-
     textField = new TextField();
-    textField.setLayoutX(centerX - textFieldWidth / 2);
-    textField.setLayoutY(centerY - textFieldPadding - textFieldHeight);
+    textField.setLayoutX(endNode.getXCoord() - textFieldWidth / 2);
+    textField.setLayoutY(endNode.getYCoord() - textFieldPadding - textFieldHeight);
     textField.setPromptText("Click to add note");
-    linesPlane.getChildren().add(textField);
+    aPane.getChildren().add(textField);
   }
 
   public void helpButtonClicked() {

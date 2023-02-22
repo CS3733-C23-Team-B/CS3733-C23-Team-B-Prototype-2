@@ -5,187 +5,172 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox onMouseMoved="#buttonControl" prefHeight="536.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.AVServiceController">
+<GridPane onMouseMoved="#buttonControl" prefHeight="613.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.AVServiceController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.00000762939453" minWidth="10.0" prefWidth="132.00000762939453" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="685.6000137329102" minWidth="10.0" prefWidth="659.9999923706055" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="50.0" percentHeight="8.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <MFXButton fx:id="backButton" onAction="#backButtonClicked" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #898989;" text="   Back" textFill="WHITE">
-         <HBox.margin>
-            <Insets top="20.0" />
-         </HBox.margin>
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../media/arrow.png" />
-               </image>
-            </ImageView>
-         </graphic></MFXButton>
-      <VBox onMouseMoved="#buttonControl" prefHeight="536.0" prefWidth="677.0">
+      <HBox GridPane.columnIndex="1">
          <children>
-            <HBox prefHeight="67.0" prefWidth="738.0">
-               <children>
-                  <Label minHeight="45.0" minWidth="123.0" text="*Required Field" textFill="RED">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font></Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="0.0" prefWidth="678.0">
-               <children>
-                  <Label text="Urgency">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text=" *" textFill="RED">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text="Assigned Staff Member">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="315.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="69.0" layoutY="10.0" text=" *" textFill="RED">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="52.0" prefWidth="738.0">
-               <children>
-                  <MFXFilterComboBox fx:id="urgencyBox" minWidth="313.0" />
-                  <MFXFilterComboBox fx:id="assignedStaffBox" minWidth="313.0">
-                     <HBox.margin>
-                        <Insets left="70.0" />
-                     </HBox.margin></MFXFilterComboBox>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="0.0" prefWidth="678.0">
-               <children>
-                  <Label text="Type of Equipment">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text=" *" textFill="RED">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="69.0" layoutY="10.0" textFill="RED">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-                  <Label text="Location">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="245.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label text=" *" textFill="RED">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="110.0" prefHeight="52.0" prefWidth="200.0">
-               <children>
-                  <MFXFilterComboBox fx:id="typeOfEquipmentBox" minWidth="313.0" />
-                  <HBox prefHeight="52.0" prefWidth="200.0">
-                     <children>
-                        <MFXFilterComboBox fx:id="locationBox" minWidth="313.0">
-                           <HBox.margin>
-                              <Insets left="70.0" />
-                           </HBox.margin>
-                        </MFXFilterComboBox>
-                     </children>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="162.0" prefHeight="0.0" prefWidth="678.0" />
-            <HBox layoutX="10.0" layoutY="247.0" prefHeight="0.0" prefWidth="678.0">
-               <children>
-                  <Label text="Notes">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <MFXTextField fx:id="additionalNotesField" minHeight="80.0" minWidth="313.0" onAction="#buttonControl">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin></MFXTextField>
-            <AnchorPane minHeight="0.0" prefHeight="39.0" prefWidth="678.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0">
-                     <children>
-                        <MFXButton fx:id="clearButton" onAction="#clearButtonClicked" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: CECECE;" text="Clear" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font></MFXButton>
-                        <MFXButton id="helpButton" fx:id="helpButton" onAction="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" text="Help" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="37.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </MFXButton>
-                     </children>
-                  </HBox>
-                  <MFXButton fx:id="submitButton" onAction="#submitButtonClicked" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #21357E;" text="Submit" textFill="WHITE" AnchorPane.rightAnchor="0.0">
-                     <font>
-                        <Font size="17.0" />
-                     </font></MFXButton>
-               </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </AnchorPane>
+            <Label prefHeight="35.0" prefWidth="166.0" text="A/V Service">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label text="*Required field" textFill="RED">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Label>
          </children>
-         <HBox.margin>
-            <Insets left="60.0" />
-         </HBox.margin>
-      </VBox>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="TOP_CENTER">
+         <children>
+            <MFXButton fx:id="backButton" onMouseReleased="#backButtonClicked" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: gray; -fx-background-radius: 5;" text="Back" textFill="WHITE" />
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <GridPane hgap="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="105.0" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox>
+               <children>
+                  <HBox prefHeight="0.0" prefWidth="180.0">
+                     <children>
+                        <Label text="Urgency" />
+                        <Label text=" *" textFill="RED" />
+                     </children>
+                  </HBox>
+                  <MFXFilterComboBox fx:id="urgencyBox" prefHeight="40.0" prefWidth="367.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" GridPane.columnIndex="1">
+               <children>
+                  <HBox prefHeight="0.0" prefWidth="180.0">
+                     <children>
+                        <Label text="Assigned Staff Member" />
+                        <Label text=" *" textFill="RED" />
+                     </children>
+                  </HBox>
+                  <MFXFilterComboBox fx:id="assignedStaffBox" prefHeight="40.0" prefWidth="367.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="190.0" layoutY="10.0" GridPane.rowIndex="1">
+               <children>
+                  <HBox prefHeight="0.0" prefWidth="180.0">
+                     <children>
+                        <Label text="Type of Equipment" />
+                        <Label text=" *" textFill="RED" />
+                     </children>
+                  </HBox>
+                  <MFXFilterComboBox fx:id="typeOfEquipmentBox" prefHeight="40.0" prefWidth="367.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="78.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <HBox prefHeight="0.0" prefWidth="180.0">
+                     <children>
+                        <Label text="Location" />
+                        <Label text=" *" textFill="RED" />
+                     </children>
+                  </HBox>
+                  <MFXFilterComboBox fx:id="locationBox" prefHeight="40.0" prefWidth="367.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="190.0" layoutY="147.0" GridPane.rowIndex="2">
+               <children>
+                  <HBox prefHeight="0.0" prefWidth="180.0">
+                     <children>
+                        <Label text="Notes" />
+                     </children>
+                  </HBox>
+                  <MFXTextField fx:id="additionalNotesField" prefHeight="189.0" prefWidth="235.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <MFXButton fx:id="clearButton" onMouseReleased="#clearButtonClicked" style="-fx-background-color: #CECECE; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton fx:id="helpTextButton" onMouseReleased="#helpButtonClicked" style="-fx-background-color: E89F55; -fx-background-radius: 5;" text="Help" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </MFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <MFXButton fx:id="submitButton" onMouseReleased="#submitButtonClicked" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Submit" textFill="WHITE" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </GridPane>
    </children>
-</HBox>
+</GridPane>

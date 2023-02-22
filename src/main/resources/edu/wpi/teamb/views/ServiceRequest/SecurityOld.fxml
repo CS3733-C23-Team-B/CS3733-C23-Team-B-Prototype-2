@@ -12,21 +12,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane onMouseMoved="#buttonControl" prefHeight="613.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.SecurityServiceController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#buttonControl" prefHeight="440.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.SecurityServiceController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.00000762939453" minWidth="10.0" prefWidth="132.00000762939453" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="685.6000137329102" minWidth="10.0" prefWidth="659.9999923706055" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="50.0" percentHeight="8.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <HBox GridPane.columnIndex="1">
+      <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
          <children>
-            <Label prefHeight="35.0" prefWidth="203.0" text="Security Service">
+            <Label prefHeight="30.0" prefWidth="164.0" text="Security Service">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <padding>
                   <Insets left="10.0" />
@@ -36,16 +36,13 @@
                <padding>
                   <Insets left="10.0" />
                </padding>
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
             </Label>
          </children>
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
       </HBox>
-      <HBox alignment="TOP_CENTER">
+      <HBox alignment="CENTER">
          <children>
             <MFXButton fx:id="backButton" onMouseReleased="#backButtonClicked" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: gray; -fx-background-radius: 5;" text="Back" textFill="WHITE" />
          </children>
@@ -66,7 +63,7 @@
           <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="105.0" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="85.0" minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
@@ -119,20 +116,6 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox layoutX="10.0" layoutY="78.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <HBox prefHeight="0.0" prefWidth="180.0">
-                     <children>
-                        <Label text="Number of Guards Required" />
-                        <Label text=" *" textFill="RED" />
-                     </children>
-                  </HBox>
-                  <MFXFilterComboBox fx:id="numbReqBox" prefHeight="40.0" prefWidth="367.0" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
             <VBox layoutX="190.0" layoutY="78.0" GridPane.rowIndex="2">
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
@@ -147,6 +130,20 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
+            <VBox layoutX="10.0" layoutY="147.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <HBox prefHeight="0.0" prefWidth="180.0">
+                     <children>
+                        <Label text="Number of Gaurds Required" />
+                        <Label text=" *" textFill="RED" />
+                     </children>
+                  </HBox>
+                  <MFXFilterComboBox fx:id="numbReqBox" prefHeight="40.0" prefWidth="367.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
             <VBox layoutX="190.0" layoutY="147.0" GridPane.rowIndex="3">
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
@@ -154,7 +151,7 @@
                         <Label text="Notes" />
                      </children>
                   </HBox>
-                  <MFXTextField fx:id="additionalNotesField" prefHeight="189.0" prefWidth="235.0" />
+                  <MFXTextField fx:id="additionalNotesField" prefHeight="80.0" prefWidth="250.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -167,7 +164,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton fx:id="helpTextButton" onMouseReleased="#helpButtonClicked" style="-fx-background-color: E89F55; -fx-background-radius: 5;" text="Help" textFill="WHITE">
+                  <MFXButton id="helpButton" fx:id="helpButton" maxHeight="-Infinity" minHeight="-Infinity" onMouseReleased="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" text="Help" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>

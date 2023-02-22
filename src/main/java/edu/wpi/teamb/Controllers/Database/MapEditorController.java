@@ -376,6 +376,7 @@ public class MapEditorController {
     node.setNodeID(node.buildID());
     currentNode = node;
     currentDot = dot;
+    Pathfinding.refreshData();
     MapDAO.refreshIDMoves(new Date(System.currentTimeMillis()));
     refreshPopUp();
   }
@@ -469,6 +470,7 @@ public class MapEditorController {
     e.setNode1(nodeMap.get(edgeNode1));
     e.setNode2(nodeMap.get(edgeNode2));
     DBSession.addEdge(e);
+    Pathfinding.refreshData();
     cancelClickEdge();
     creatingEdge = false;
   }

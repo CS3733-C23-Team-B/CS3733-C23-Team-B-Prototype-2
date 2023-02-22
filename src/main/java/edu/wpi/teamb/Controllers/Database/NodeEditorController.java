@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class NodeEditorController {
   @FXML Text nodeIDText;
@@ -64,20 +63,15 @@ public class NodeEditorController {
   }
 
   public void cancelClicked() {
-    Stage s = (Stage) yField.getScene().getWindow();
-    s.close();
     MapEditorController.getInstance().refreshPopUp();
+    MapEditorController.getInstance().clearForm();
   }
 
   public void edgesClicked() {
     Navigation.navigate(Screen.EDGE_EDITOR);
-    Stage s = (Stage) yField.getScene().getWindow();
-    s.close();
   }
 
   public void deleteClicked() {
-    Stage s = (Stage) yField.getScene().getWindow();
-    s.close();
     MapEditorController.promptEdgeRepair(node);
     MapEditorController.getInstance().removeNode();
     DBSession.deleteNode(node);

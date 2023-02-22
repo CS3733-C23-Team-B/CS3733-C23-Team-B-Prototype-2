@@ -11,7 +11,6 @@ import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;

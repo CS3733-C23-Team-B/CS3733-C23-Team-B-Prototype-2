@@ -45,6 +45,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
@@ -56,7 +57,7 @@ public class MapEditorController {
   @FXML MFXButton viewMovesButton;
   @FXML MFXButton editLocationButton;
   @FXML MFXButton newMoveButton;
-  @FXML private AnchorPane forms;
+  @Getter @FXML private AnchorPane forms;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
@@ -376,6 +377,7 @@ public class MapEditorController {
     node.setNodeID(node.buildID());
     currentNode = node;
     currentDot = dot;
+    Pathfinding.refreshData();
     MapDAO.refreshIDMoves(new Date(System.currentTimeMillis()));
     refreshPopUp();
   }
@@ -469,6 +471,7 @@ public class MapEditorController {
     e.setNode1(nodeMap.get(edgeNode1));
     e.setNode2(nodeMap.get(edgeNode2));
     DBSession.addEdge(e);
+    Pathfinding.refreshData();
     cancelClickEdge();
     creatingEdge = false;
   }
@@ -601,8 +604,10 @@ public class MapEditorController {
 
   public void handleKeyPress(KeyEvent e) {
     if (e.getCode().equals(KeyCode.BACK_SPACE)) {
-      DBSession.deleteNode(nodeMap.get(currentDot));
+      Node n = nodeMap.get(currentDot);
+      promptEdgeRepair(n);
       removeNode();
+      DBSession.deleteNode(n);
     }
     //    else if (e.getCode().equals(KeyCode.N)) {
     //      Node n = new Node();

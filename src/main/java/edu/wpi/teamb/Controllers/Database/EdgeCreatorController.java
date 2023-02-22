@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.Collection;
 import javafx.collections.FXCollections;
@@ -33,6 +34,7 @@ public class EdgeCreatorController {
     newEdge.setNode1(node);
     newEdge.setNode2(DBSession.getAllNodes().get(edgeBox.getValue()));
     DBSession.addEdge(newEdge);
+    Pathfinding.refreshData();
     cancelClicked();
   }
 

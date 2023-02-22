@@ -40,7 +40,7 @@ public class EdgeEditorController {
   }
 
   public void cancelClicked() {
-    Navigation.navigate(Screen.MAP_EDITOR);
+    MapEditorController.getInstance().clearForm();
   }
 
   public void newEdgeClicked() {

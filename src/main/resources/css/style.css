@@ -111,3 +111,30 @@
     -fx-background-size: 40 40;
     -fx-background-position: top center;
 }
+
+#profileTitle {
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 36px;
+}
+
+#profileHeading{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 22px;
+}
+
+#profileButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+#profileBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+}
+
+#profileBody2{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
+}

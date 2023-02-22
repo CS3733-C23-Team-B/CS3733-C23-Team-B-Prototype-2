@@ -7,7 +7,6 @@ import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
@@ -19,7 +18,7 @@ public class ProfileController {
   @FXML private Text usernameText;
   @FXML private Text passwordText;
   @FXML private ToggleButton showPasswordButton;
-  @FXML private Button deleteAccountButton;
+  @FXML private MFXButton deleteAccountButton;
 
   @FXML private MFXTextField firstName;
   @FXML private MFXTextField lastName;

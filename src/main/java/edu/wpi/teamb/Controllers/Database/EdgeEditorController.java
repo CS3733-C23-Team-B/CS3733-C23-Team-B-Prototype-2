@@ -1,15 +1,17 @@
 package edu.wpi.teamb.Controllers.Database;
 
+import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Node;
-import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -43,8 +45,11 @@ public class EdgeEditorController {
     MapEditorController.getInstance().clearForm();
   }
 
-  public void newEdgeClicked() {
-    Navigation.navigate(Screen.EDGE_CREATOR);
+  public void newEdgeClicked() throws IOException {
+    MapEditorController.getInstance().getForms().getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.EDGE_CREATOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    MapEditorController.getInstance().getForms().getChildren().add(loader.load());
   }
 
   public void deleteClicked() {

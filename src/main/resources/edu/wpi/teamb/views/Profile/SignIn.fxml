@@ -48,12 +48,12 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="prompt" alignment="CENTER" prefHeight="45.0" prefWidth="269.0" text="Please sign in below">
+                        <Label id="signInBody" fx:id="prompt" alignment="CENTER" prefHeight="45.0" prefWidth="269.0" stylesheets="@../../../../../css/style.css" text="Please sign in below">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <MFXTextField fx:id="usernameField" floatMode="ABOVE" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#handleKeyPress" prefHeight="35.0" prefWidth="526.0" promptText="Username" style="-fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #898989; -fx-background-color: #e8e8e8; -fx-border-width: 1.5;">
+                        <MFXTextField id="signInButtons" fx:id="usernameField" floatMode="ABOVE" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#handleKeyPress" prefHeight="35.0" prefWidth="630.0" promptText="Username" style="-fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #898989; -fx-background-color: #e8e8e8; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -64,7 +64,7 @@
                               <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
                            </textFill></MFXTextField>
                         <HBox prefHeight="20.0" prefWidth="375.0" />
-                        <MFXPasswordField fx:id="passwordField" floatMode="ABOVE" maxHeight="47.0" minHeight="-Infinity" onKeyReleased="#handleKeyPress" prefHeight="35.0" prefWidth="630.0" promptText="Password" style="-fx-border-color: #898989; -fx-background-color: #e8e8e8; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;">
+                        <MFXPasswordField id="signInButtons" fx:id="passwordField" floatMode="ABOVE" maxHeight="47.0" minHeight="-Infinity" onKeyReleased="#handleKeyPress" prefHeight="35.0" prefWidth="630.0" promptText="Password" style="-fx-border-color: #898989; -fx-background-color: #e8e8e8; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -75,7 +75,7 @@
                               <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
                            </textFill></MFXPasswordField>
                         <HBox prefHeight="20.0" prefWidth="375.0" />
-                        <MFXButton fx:id="signInButton" depthLevel="LEVEL1" onAction="#signInButtonClicked" prefHeight="35.0" prefWidth="804.0" style="-fx-background-color: #21357e; -fx-background-radius: 5;" text="Sign In" textFill="WHITE">
+                        <MFXButton id="signInButtons" fx:id="signInButton" depthLevel="LEVEL1" onAction="#signInButtonClicked" prefHeight="53.0" prefWidth="630.0" style="-fx-background-color: #21357e; -fx-background-radius: 6;" stylesheets="@../../../../../css/style.css" text="Sign In" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -127,7 +127,7 @@
                               </Label>
                               <HBox alignment="BOTTOM_LEFT">
                                  <children>
-                                    <MFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#newAccount" style="-fx-background-color: #00000000;" text="Create an account" textAlignment="CENTER" textFill="#898989">
+                                    <MFXButton id="signInAccent" alignment="CENTER" contentDisplay="CENTER" onAction="#newAccount" style="-fx-background-color: #00000000;" stylesheets="@../../../../../css/style.css" text="Create an account" textAlignment="CENTER" textFill="#898989">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
@@ -136,7 +136,7 @@
                               </HBox>
                               <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="2">
                                  <children>
-                                    <MFXButton fx:id="forgot" alignment="CENTER" contentDisplay="CENTER" onAction="#forgotClicked" style="-fx-background-color: #00000000;" text="Forgot password?" textAlignment="CENTER" textFill="#898989">
+                                    <MFXButton id="signInAccent" fx:id="forgot" alignment="CENTER" contentDisplay="CENTER" onAction="#forgotClicked" style="-fx-background-color: #00000000;" stylesheets="@../../../../../css/style.css" text="Forgot password?" textAlignment="CENTER" textFill="#898989">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
@@ -148,7 +148,7 @@
                               <Insets />
                            </VBox.margin>
                         </GridPane>
-                        <MFXButton depthLevel="LEVEL1" onAction="#viewMap" prefHeight="35.0" prefWidth="122.0" style="-fx-background-color: #6D9BF8; -fx-background-radius: 5;" text="View Map" textFill="WHITE">
+                        <MFXButton id="signInButtons" depthLevel="LEVEL1" onAction="#viewMap" prefHeight="50.0" prefWidth="122.0" style="-fx-background-color: #6D9BF8; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="View Map" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="15.0" />
                            </VBox.margin></MFXButton>
@@ -159,7 +159,7 @@
                   </VBox>
                   <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <MFXButton fx:id="exitButton" onAction="#exitApplication" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #9a9a9a; -fx-background-radius: 5;" text="Exit Application" textFill="WHITE" />
+                        <MFXButton id="signInButtons" fx:id="exitButton" onAction="#exitApplication" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #9a9a9a; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="Exit Application" textFill="WHITE" />
                      </children>
                      <GridPane.margin>
                         <Insets />
@@ -172,7 +172,7 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #21357E; -fx-background-radius: 15 15 0 0;">
                <children>
-                  <Label text="Welcome to Brigham and Women’s Hospital" textFill="#c5d3ea">
+                  <Label id="signInTitle" stylesheets="@../../../../../css/style.css" text="Welcome to Brigham and Women’s Hospital" textFill="#c5d3ea">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>

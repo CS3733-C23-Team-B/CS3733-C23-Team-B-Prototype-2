@@ -4,6 +4,11 @@ import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -11,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
+import javafx.util.Duration;
 
 public class ServiceRequestSystemsController {
   @FXML GridPane mainGridPane;
@@ -22,9 +28,29 @@ public class ServiceRequestSystemsController {
   @FXML MFXButton AVButton;
 
   @FXML Label headerText;
+  @FXML Label timeLabel;
+  @FXML Label dateLabel;
 
   public void initialize() {
     mainGridPane.setPadding(new Insets(20, 20, 0, 20));
+
+    LocalDate currentDate = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
+    String formattedDate = currentDate.format(formatter);
+
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0),
+                event -> {
+                  LocalDateTime currentTime = LocalDateTime.now();
+                  DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm a");
+                  timeLabel.setText(currentTime.format(timefmt));
+                }),
+            new KeyFrame(Duration.seconds(1)));
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
+    dateLabel.setText(formattedDate);
   }
 
   public void makeTrans() throws IOException {

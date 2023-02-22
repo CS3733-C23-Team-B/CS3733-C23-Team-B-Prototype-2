@@ -9,6 +9,7 @@ import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -50,7 +51,13 @@ public class MapEditorController {
   @FXML GridPane gridPane;
   @FXML GridPane map;
   @FXML MFXButton editNodeButton;
+  @FXML MFXButton newNodeButton;
+  @FXML MFXButton viewMovesButton;
+  @FXML MFXButton editLocationButton;
+  @FXML MFXButton newMoveButton;
+  @FXML MFXCheckbox showLocationsCheckBox;
   @Getter @FXML private AnchorPane forms;
+  private List<Label> locLabels = new ArrayList<>();
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
@@ -67,6 +74,8 @@ public class MapEditorController {
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
   @FXML MFXFilterComboBox<String> floorCombo;
+  private Map<String, String> floorMap = new HashMap<>();
+  private Map<String, ImageView> imageMap = new HashMap<>();
   private String currentFloor;
   @FXML VBox mapEditorButtons;
 
@@ -84,6 +93,21 @@ public class MapEditorController {
       moveMap = DBSession.getIDMoves();
     }
     instance = this;
+
+    floorMap.put("Lower Level 2", "L2");
+    floorMap.put("Lower Level 1", "L1");
+    floorMap.put("Ground Floor", "G");
+    floorMap.put("First Floor", "1");
+    floorMap.put("Second Floor", "2");
+    floorMap.put("Third Floor", "3");
+
+    imageMap.put("L2", Bapp.lowerlevel2);
+    imageMap.put("L1", Bapp.lowerlevel);
+    imageMap.put("G", Bapp.groundfloor);
+    imageMap.put("1", Bapp.firstfloor);
+    imageMap.put("2", Bapp.secondfloor);
+    imageMap.put("3", Bapp.thirdfloor);
+
     floorCombo.setItems(
         FXCollections.observableArrayList(
             "Lower Level 2",
@@ -108,7 +132,13 @@ public class MapEditorController {
     map.getChildren().add(pane);
     // Changes floor when selecting a new floor
     floorCombo.setOnAction(
-        e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
+        e -> {
+          changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre());
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     Platform.runLater(
         () -> {
@@ -159,7 +189,7 @@ public class MapEditorController {
             csvBox.getChildren().add(restore);
             mapEditorButtons.getChildren().add(csvBox);
           }
-          changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
+          changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
         });
   }
 
@@ -178,33 +208,11 @@ public class MapEditorController {
   }
 
   private void changeFloor(String floor, Point2D p) {
-    ImageView image = new ImageView();
-    switch (floor) {
-      case "Lower Level 2":
-        currentFloor = "L2";
-        image = Bapp.lowerlevel2;
-        break;
-      case "Lower Level 1":
-        currentFloor = "L1";
-        image = Bapp.lowerlevel;
-        break;
-      case "Ground Floor":
-        currentFloor = "G";
-        image = Bapp.groundfloor;
-        break;
-      case "First Floor":
-        currentFloor = "1";
-        image = Bapp.firstfloor;
-        break;
-      case "Second Floor":
-        currentFloor = "2";
-        image = Bapp.secondfloor;
-        break;
-      case "Third Floor":
-        currentFloor = "3";
-        image = Bapp.thirdfloor;
-        break;
-    }
+    currentFloor = floor;
+    ImageView image;
+    nodeMap.clear();
+
+    image = imageMap.get(floor);
     image.setOnMouseClicked(e -> handleClick());
 
     aPane.getChildren().clear();
@@ -299,21 +307,34 @@ public class MapEditorController {
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 25);
     popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 35);
+
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
     List<Move> l = moveMap.get(node.getNodeID());
     if (l == null) l = Arrays.asList();
     for (Move move : l) {
-      Label loc = new Label(move.getLocationName().getLongName());
-      loc.setFont(new Font("Arial", 6));
-      //      loc.setRotate(-45);
+      Label loc = new Label(move.getLocationName().getShortName());
+      loc.setFont(new Font("Arial", 8));
       vbox.getChildren().add(loc);
+      loc.setVisible(false);
+      locLabels.add(loc);
     }
 
     HBox hbox = new HBox();
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
     aPane.getChildren().add(popPane);
+  }
+
+  public void showLocationsClicked() {
+
+    showLocationsCheckBox.setOnAction(
+        e -> {
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
   }
 
   private void editClicked() throws IOException {

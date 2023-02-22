@@ -1,14 +1,16 @@
 package edu.wpi.teamb.Controllers.Database;
 
+import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Node;
-import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
+import java.io.IOException;
 import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -67,11 +69,15 @@ public class NodeEditorController {
     MapEditorController.getInstance().clearForm();
   }
 
-  public void edgesClicked() {
-    Navigation.navigate(Screen.EDGE_EDITOR);
+  public void edgesClicked() throws IOException {
+    MapEditorController.getInstance().getForms().getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.EDGE_EDITOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    MapEditorController.getInstance().getForms().getChildren().add(loader.load());
   }
 
   public void deleteClicked() {
+    MapEditorController.getInstance().clearForm();
     MapEditorController.promptEdgeRepair(node);
     MapEditorController.getInstance().removeNode();
     DBSession.deleteNode(node);

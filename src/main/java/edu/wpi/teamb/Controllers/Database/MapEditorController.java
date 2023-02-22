@@ -45,6 +45,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
@@ -56,7 +57,7 @@ public class MapEditorController {
   @FXML MFXButton viewMovesButton;
   @FXML MFXButton editLocationButton;
   @FXML MFXButton newMoveButton;
-  @FXML private AnchorPane forms;
+  @Getter @FXML private AnchorPane forms;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;

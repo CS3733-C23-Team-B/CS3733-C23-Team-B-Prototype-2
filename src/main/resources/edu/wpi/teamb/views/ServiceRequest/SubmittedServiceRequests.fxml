@@ -98,7 +98,7 @@
       </VBox>
       <MFXScrollPane fitToWidth="true" style="-fx-background-color: #E0E0E0;" GridPane.rowIndex="1">
          <content>
-            <VBox fx:id="filterVbox" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="343.0" style="-fx-background-color: #E0E0E0;">
+            <VBox fx:id="filterVbox" alignment="TOP_CENTER" prefWidth="343.0" style="-fx-background-color: #E0E0E0;">
                <children>
                   <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
                   <MFXComboBox fx:id="requestUrgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0">

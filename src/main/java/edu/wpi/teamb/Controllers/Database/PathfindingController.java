@@ -2,7 +2,6 @@ package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Bapp;
-import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
@@ -82,7 +81,7 @@ public class PathfindingController {
   private TextField textField;
   private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
   List<Node> nodePath;
-
+  private TextField adminLabel = new TextField();
   @FXML Label timeLabel;
   @FXML Label dateLabel;
 
@@ -176,6 +175,8 @@ public class PathfindingController {
           } else if (node.getNodeID().equals(endID)) {
             endDot = c;
             endDot.setFill(Color.RED);
+            updateTextFieldPosition(nodeMap.get(endDot));
+            linesPlane.getChildren().add(adminLabel);
           }
         }
       }
@@ -216,13 +217,13 @@ public class PathfindingController {
         });
     Map<String, Node> nodes = DBSession.getAllNodes();
 
-    for (Node value : nodes.values())
+    for (Node value : nodes.values()) {
       if (value.getFloor().equals(currentFloor)) {
         Circle dot = placeNode(value);
         nodeMap.put(dot, value);
         displayLoc(dot);
       }
-
+    }
     selectedCircle.addListener(
         (obs, oldSelection, newSelection) -> {
           if (oldSelection != null) {
@@ -339,7 +340,7 @@ public class PathfindingController {
     if (path == null) {
       System.out.println("PATH NOT FOUND");
       pathNotFoundTextField.setVisible(true);
-      pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #e0e0e0");
+      pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
     }
     System.out.println(path);
     startID = DBSession.getMostRecentNodeID(start);
@@ -395,9 +396,7 @@ public class PathfindingController {
     }
     setNodeColors();
     // Update the text field position to be above the center of the path
-    if (SigninController.currentUser.getAdmin() == true) {
-      updateTextFieldPosition(endNode);
-    }
+
   }
 
   private void showButton(MFXButton button) {
@@ -505,14 +504,12 @@ public class PathfindingController {
   }
 
   private void updateTextFieldPosition(Node endNode) {
-    double textFieldWidth = 200;
-    double textFieldHeight = 80;
-    double textFieldPadding = 70;
-    textField = new TextField();
-    textField.setLayoutX(endNode.getXCoord() - textFieldWidth / 2);
-    textField.setLayoutY(endNode.getYCoord() - textFieldPadding - textFieldHeight);
-    textField.setPromptText("Click to add note");
-    aPane.getChildren().add(textField);
+    double textFieldWidth = 10;
+    double textFieldHeight = 10;
+    double textFieldPadding = 10;
+    adminLabel.setLayoutX(endNode.getXCoord() - textFieldWidth / 2);
+    adminLabel.setLayoutY(endNode.getYCoord() - textFieldHeight - 30);
+    adminLabel.setPromptText("Click to add note");
   }
 
   public void helpButtonClicked() {

@@ -157,3 +157,20 @@
     -fx-font-size: 18px;
     -fx-font-style: bold;
 }
+
+#forgotPasswordTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 36px;
+}
+
+#forgotPasswordBody{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+}
+
+#forgotPasswordLabel{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 20px;
+}

@@ -3,8 +3,6 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.Node;
-import edu.wpi.teamb.Navigation.Navigation;
-import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.Collection;
@@ -46,6 +44,6 @@ public class EdgeCreatorController {
   }
 
   public void cancelClicked() {
-    Navigation.navigate(Screen.MAP_EDITOR);
+    MapEditorController.getInstance().clearForm();
   }
 }

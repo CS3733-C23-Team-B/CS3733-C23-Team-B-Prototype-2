@@ -34,10 +34,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.text.Font;
@@ -216,11 +213,11 @@ public class PathfindingController {
         });
     drawLines();
     if (startDot != null) {
-      startDot.setFill(Color.BLUE);
+      startDot.setFill(Color.valueOf("#21357E"));
       startDot = null;
     }
     if (endDot != null) {
-      endDot.setFill(Color.BLUE);
+      endDot.setFill(Color.valueOf("#21357E"));
       endDot = null;
     }
     Platform.runLater(() -> pane.centreOn(p));
@@ -365,11 +362,11 @@ public class PathfindingController {
     pane.toFront();
 
     if (startDot != null) {
-      startDot.setFill(Color.BLUE);
+      startDot.setFill(Color.valueOf("#21357E"));
       startDot = null;
     }
     if (endDot != null) {
-      endDot.setFill(Color.BLUE);
+      endDot.setFill(Color.valueOf("#21357E"));
       endDot = null;
     }
     setNodeColors();
@@ -395,6 +392,7 @@ public class PathfindingController {
               });
         });
     nextFloor.setText("Go to next Floor");
+    nextFloor.setStyle("-fx-background-color: #21357E; -fx-text-fill: #F2F2F2");
     nextFloor.setLayoutX(startNode.getXCoord() + 20);
     nextFloor.setLayoutY(startNode.getYCoord() - 20);
     System.out.println("Go to Floor " + endNode.getFloor());

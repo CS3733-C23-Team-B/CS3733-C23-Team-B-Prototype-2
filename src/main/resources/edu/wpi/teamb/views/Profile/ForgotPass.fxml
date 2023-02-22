@@ -3,13 +3,13 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <GridPane style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.ForgotPassController">
    <columnConstraints>
@@ -19,7 +19,7 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="400.1999969482422" minHeight="10.0" prefHeight="334.6000061035156" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
@@ -32,40 +32,64 @@
          <rowConstraints>
             <RowConstraints maxHeight="112.79998779296875" minHeight="10.0" percentHeight="17.0" prefHeight="112.79998779296875" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="247.60001220703123" minHeight="10.0" prefHeight="232.79998779296875" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="95.20001220703125" minHeight="10.0" percentHeight="20.0" prefHeight="95.20001220703125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="247.60001220703123" minHeight="10.0" percentHeight="20.0" prefHeight="232.79998779296875" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="95.20001220703125" minHeight="10.0" percentHeight="17.0" prefHeight="95.20001220703125" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <HBox alignment="CENTER">
+                  <Label text="Forgot Your Password?">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="133.0" layoutY="10.0" text="Enter your username and we'll send you an email.">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Text>
-                        <MFXTextField fx:id="username" prefHeight="50.0" prefWidth="214.0">
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </MFXTextField>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label text="Username">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <MFXTextField fx:id="username" prefHeight="50.0" prefWidth="214.0">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </MFXTextField>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="74.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <HBox alignment="CENTER_RIGHT" prefHeight="74.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <MFXButton onAction="#close" prefHeight="50.0" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
                      <font>
                         <Font size="22.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
                   </MFXButton>
                   <MFXButton fx:id="sendPassword" onAction="#sendPassword" prefHeight="50.0" style="-fx-background-color: #21357E;" text="Send Password" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="30.0" />
+                        <Insets left="20.0" />
                      </HBox.margin>
                   </MFXButton>
                </children>

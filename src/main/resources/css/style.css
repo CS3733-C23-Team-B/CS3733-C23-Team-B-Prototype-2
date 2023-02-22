@@ -133,3 +133,27 @@
     -fx-background-size: 40 40;
     -fx-background-position: top center;
 }
+
+#exitConfirmation{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 37px;
+}
+
+#createAccount{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+#createAccountBody{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+#createAccountButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-style: bold;
+}

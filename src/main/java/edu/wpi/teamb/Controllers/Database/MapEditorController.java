@@ -66,8 +66,6 @@ public class MapEditorController {
   AnchorPane currentPopUp;
   private static Node currentNode;
   private static Circle currentDot;
-  private List<Label> locLabels = new ArrayList<>();
-  @FXML MFXCheckbox showLocationsCheckBox;
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane;
@@ -131,13 +129,13 @@ public class MapEditorController {
     map.getChildren().add(pane);
     // Changes floor when selecting a new floor
     floorCombo.setOnAction(
-            e -> {
-              changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre());
-              boolean showLocations = showLocationsCheckBox.isSelected();
-              for (Label loc : locLabels) {
-                loc.setVisible(showLocations);
-              }
-            });
+        e -> {
+          changeFloor(floorMap.get(floorCombo.getValue()), pane.targetPointAtViewportCentre());
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     Platform.runLater(
         () -> {

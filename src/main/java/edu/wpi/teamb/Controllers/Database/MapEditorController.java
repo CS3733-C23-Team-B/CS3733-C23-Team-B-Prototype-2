@@ -203,7 +203,7 @@ public class MapEditorController {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
             e -> {
-              if (currentDot != null) currentDot.setFill(Color.BLUE);
+              if (currentDot != null) currentDot.setFill(Color.valueOf("#21375E"));
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
               if (creatingEdge) {
@@ -313,7 +313,7 @@ public class MapEditorController {
     if (currentPopUp != null) {
       aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
-      if (currentDot != null) currentDot.setFill(Color.BLUE);
+      if (currentDot != null) currentDot.setFill(Color.valueOf("#21357E"));
       currentNode = null;
       currentDot = null;
       removeEdges();
@@ -337,7 +337,7 @@ public class MapEditorController {
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
-          if (currentDot != null) currentDot.setFill(Color.BLUE);
+          if (currentDot != null) currentDot.setFill(Color.valueOf("#21357E"));
           currentDot = dot;
 
           pane.setGestureEnabled(false);
@@ -449,11 +449,11 @@ public class MapEditorController {
 
   public void cancelClickEdge() {
     if (edgeNode1 != null) {
-      edgeNode1.setFill(Color.BLUE);
+      edgeNode1.setFill(Color.valueOf("#21357E"));
       edgeNode1 = null;
     }
     if (edgeNode2 != null) {
-      edgeNode2.setFill(Color.BLUE);
+      edgeNode2.setFill(Color.valueOf("#21357E"));
       edgeNode2 = null;
     }
     clearForm();

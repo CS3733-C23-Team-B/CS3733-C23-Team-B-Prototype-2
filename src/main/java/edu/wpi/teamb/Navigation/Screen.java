@@ -25,10 +25,9 @@ public enum Screen {
   SIGN_IN("views/Profile/SignIn.fxml"),
   SUBMITTED_SERVICE_REQUESTS("views/ServiceRequest/SubmittedServiceRequests.fxml"),
   PROFILE("views/Profile/Profile.fxml"),
-  MAINHELP("views/Navigation/MainHelpPage.fxml"),
+  MAINHELP("views/Popups/MainHelpPage.fxml"),
   FOOTER("views/Navigation/Footer.fxml"),
   SUBMISSION_SUCCESS("views/Popups/SubmissionSuccess.fxml"),
-  ABOUT("views/Navigation/AboutWithAttributions.fxml"),
   CREDITS("views/Navigation/Credits.fxml"),
   SERVICE_REQUEST_SYSTEMS("views/ServiceRequest/ServiceRequestSystems.fxml"),
   CREATE_ACCOUNT("views/Profile/CreateAccount.fxml"),
@@ -38,8 +37,8 @@ public enum Screen {
   SECURITY_SERVICES("views/ServiceRequest/Security.fxml"),
   FORGOT_PASSWORD("views/Profile/ForgotPass.fxml"),
   EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml"),
+  ABOUT_PAGE("views/Navigation/About.fxml"),
   SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml"),
-
   MAP_EDITOR_HELP_POP_UP("views/Popups/MapEditorHelpPopUp.fxml"),
   PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml");
 

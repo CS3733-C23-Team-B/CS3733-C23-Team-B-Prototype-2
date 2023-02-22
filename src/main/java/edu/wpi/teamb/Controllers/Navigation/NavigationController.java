@@ -60,7 +60,7 @@ public class NavigationController {
   }
 
   public void aboutButtonClicked() {
-    Navigation.navigate(Screen.ABOUT);
+    Navigation.navigate(Screen.ABOUT_PAGE);
     resetButtons();
   }
 
@@ -96,7 +96,7 @@ public class NavigationController {
 
   public void helpClicked() {
     resetButtons();
-    Navigation.navigate(Screen.MAINHELP);
+    Popup.displayPopup(Screen.MAINHELP);
   }
 
   public void signOutClicked() {

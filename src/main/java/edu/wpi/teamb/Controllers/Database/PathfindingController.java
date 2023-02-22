@@ -330,6 +330,7 @@ public class PathfindingController {
     Node endNode = nodes.get(path.get(path.size() - 1));
     if (!currentFloor.equals(startNode.getFloor())) {
       changeFloor(startNode.getFloor(), new Point2D(startNode.getXCoord(), startNode.getYCoord()));
+      pane.centreOn(new Point2D(startNode.getXCoord(), startNode.getYCoord()));
       floorMap.forEach(
           (key, value) -> {
             if (value.equals(startNode.getFloor())) floorCombo.setValue(key);

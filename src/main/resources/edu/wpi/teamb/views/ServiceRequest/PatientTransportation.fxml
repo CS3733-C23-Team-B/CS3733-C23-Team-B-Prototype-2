@@ -181,7 +181,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton fx:id="helpButton" onMouseReleased="#helpButtonClicked" style="-fx-background-color: E89F55; -fx-background-radius: 5;" text="Help" textFill="WHITE">
+                  <MFXButton fx:id="helpTextButton" onMouseReleased="#helpButtonClicked" style="-fx-background-color: E89F55; -fx-background-radius: 5;" text="Help" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>

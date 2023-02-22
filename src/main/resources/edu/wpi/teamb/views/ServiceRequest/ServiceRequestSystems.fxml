@@ -19,10 +19,12 @@
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="1088.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" percentHeight="100.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" percentHeight="3.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" percentHeight="94.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" percentHeight="3.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <GridPane GridPane.columnIndex="1">
+      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
@@ -31,7 +33,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <MFXScrollPane style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
+            <MFXScrollPane fitToWidth="true" style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
                <content>
                   <VBox fx:id="mainVbox" prefWidth="1056.0">
                      <children>
@@ -40,7 +42,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                         <Label text="Request a patient to be moved to and from different locations within the hospital.">
@@ -48,7 +50,7 @@
                               <Font size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" top="5.0" />
+                              <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label text="Sanitation">
@@ -56,7 +58,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" top="30.0" />
+                              <Insets top="20.0" />
                            </VBox.margin>
                         </Label>
                         <Label text="Request that a room or public space be cleaned and sanitized.">
@@ -64,7 +66,7 @@
                               <Font size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                         <Label text="Security">
@@ -72,7 +74,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" top="30.0" />
+                              <Insets top="20.0" />
                            </VBox.margin>
                         </Label>
                         <Label text="Request an officer/security staff. ">
@@ -80,7 +82,7 @@
                               <Font size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                         <Label text="Computer">
@@ -88,7 +90,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" top="30.0" />
+                              <Insets top="20.0" />
                            </VBox.margin>
                         </Label>
                         <Label text="Request a repair on a hospital device. ">
@@ -96,7 +98,7 @@
                               <Font size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                         <Label text="Audio/Visual">
@@ -104,7 +106,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" top="30.0" />
+                              <Insets top="20.0" />
                            </VBox.margin>
                         </Label>
                         <Label text="Request audio or video entertainment for a patient. ">
@@ -112,14 +114,17 @@
                               <Font size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="30.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                      </children>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
                   </VBox>
                </content>
                <GridPane.margin>
-                  <Insets top="10.0" />
+                  <Insets />
                </GridPane.margin>
             </MFXScrollPane>
             <GridPane prefHeight="114.0" prefWidth="1057.0">
@@ -132,7 +137,7 @@
                      <children>
                         <Label fx:id="pageTitle" prefHeight="96.0" prefWidth="1090.0" text="Service Request Systems">
                            <font>
-                              <Font size="48.0" />
+                              <Font size="40.0" />
                            </font>
                         </Label>
                      </children>
@@ -140,7 +145,7 @@
                         <Insets />
                      </GridPane.margin>
                      <padding>
-                        <Insets bottom="10.0" top="20.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </HBox>
                   <HBox GridPane.rowIndex="1">
@@ -171,23 +176,13 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </GridPane>
-      <MFXScrollPane fitToHeight="true" fitToWidth="true">
+      <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
          <content>
-            <GridPane prefHeight="646.0" prefWidth="300.0" style="-fx-background-color: #F2F2F2;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <VBox alignment="CENTER" spacing="25.0">
                <children>
-                  <MFXButton fx:id="transButton" onAction="#makeTrans" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Internal Patient Transportation" textFill="#c5d3ea" wrapText="true">
+                  <MFXButton fx:id="transButton" alignment="BASELINE_LEFT" onAction="#makeTrans" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Internal Patient Transportation" textFill="#c5d3ea" wrapText="true">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="20.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -197,9 +192,9 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="saniButton" onAction="#makeSani" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Sanitation       " textFill="#c5d3ea" wrapText="true" GridPane.rowIndex="1">
+                  <MFXButton fx:id="saniButton" alignment="BASELINE_LEFT" onAction="#makeSani" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Sanitation" textFill="#c5d3ea">
                      <font>
-                        <Font size="26.0" />
+                        <Font size="20.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -208,13 +203,10 @@
                            </image>
                         </ImageView>
                      </graphic>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
                   </MFXButton>
-                  <MFXButton fx:id="secButton" onAction="#makeSec" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Security           " textFill="#c5d3ea" wrapText="true" GridPane.rowIndex="2">
+                  <MFXButton fx:id="secButton" alignment="BASELINE_LEFT" onAction="#makeSec" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Security" textFill="#c5d3ea">
                      <font>
-                        <Font size="26.0" />
+                        <Font size="20.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -224,9 +216,9 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="comButton" onAction="#makeCom" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Computer       " textFill="#c5d3ea" wrapText="true" GridPane.rowIndex="3">
+                  <MFXButton fx:id="comButton" alignment="BASELINE_LEFT" onAction="#makeCom" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Computer" textFill="#c5d3ea">
                      <font>
-                        <Font size="26.0" />
+                        <Font size="20.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -236,9 +228,9 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="AVButton" onAction="#makeAV" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Audio/Video   " textFill="#c5d3ea" wrapText="true" GridPane.rowIndex="4">
+                  <MFXButton fx:id="AVButton" alignment="BASELINE_LEFT" onAction="#makeAV" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Audio/Video" textFill="#c5d3ea" wrapText="true">
                      <font>
-                        <Font size="26.0" />
+                        <Font size="20.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -250,9 +242,9 @@
                   </MFXButton>
                </children>
                <padding>
-                  <Insets left="15.0" right="15.0" />
+                  <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
-            </GridPane>
+            </VBox>
          </content>
       </MFXScrollPane>
    </children>

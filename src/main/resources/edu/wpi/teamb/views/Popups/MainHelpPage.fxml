@@ -42,7 +42,7 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                      <content>
-                        <VBox prefHeight="253.0" prefWidth="599.0">
+                        <VBox prefWidth="599.0">
                            <children>
                               <Label text="Service Requests: Fill out the required form. Take note that all of the required fields need to be filled out before the form can be submitted. You can also view your previously submitted requests via the labeled button." wrapText="true">
                                  <font>

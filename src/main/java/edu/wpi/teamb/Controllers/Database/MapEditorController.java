@@ -70,7 +70,6 @@ public class MapEditorController {
   private GesturePane pane;
   private AnchorPane aPane;
   private double origX, origY;
-  private double currentMouseX, currentMouseY;
   private boolean dragged;
   private boolean MOVING = false;
   private Circle edgeNode1, edgeNode2;
@@ -116,15 +115,43 @@ public class MapEditorController {
     nodeMap = new HashMap<>();
     pane = new GesturePane();
     pane.setOnKeyPressed(e -> handleKeyPress(e));
-    //    pane.setOnMouseMoved(
-    //        e -> {
-    //          currentMouseX = e.getSceneX() + aPane.getLayoutX();
-    //          currentMouseY = e.getSceneY() + aPane.getLayoutY();
-    //        });
+
     pane.setPrefHeight(714);
     pane.setPrefWidth(1168);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     aPane = new AnchorPane();
+
+    aPane.setOnMouseClicked(
+        e -> {
+          if (e.getClickCount() == 2) {
+            Node n = new Node();
+            n.setBuilding("Tower");
+            n.setFloor(currentFloor);
+            n.setXCoord((int) e.getX());
+            n.setYCoord((int) e.getY());
+            n.setNodeID(n.buildID());
+            DBSession.addNode(n);
+            Circle c = placeNode(n);
+
+            c.setOnMouseClicked(
+                ev -> {
+                  if (currentDot != null) currentDot.setFill(Color.valueOf("#21375E"));
+                  displayPopUp(c);
+                  c.setFill(Color.GOLD);
+                  if (creatingEdge) {
+                    if (edgeNode1 == null) edgeNode1 = c;
+                    else if (edgeNode2 == null && c != edgeNode1) {
+                      edgeNode2 = c;
+                      createEdge();
+                    }
+                  }
+                });
+
+            nodeMap.put(c, n);
+            selectedCircle.set(c);
+          }
+        });
+
     pane.setContent(aPane);
     map.getChildren().add(pane);
     // Changes floor when selecting a new floor
@@ -626,14 +653,5 @@ public class MapEditorController {
       removeNode();
       DBSession.deleteNode(n);
     }
-    //    else if (e.getCode().equals(KeyCode.N)) {
-    //      Node n = new Node();
-    //      n.setBuilding("Tower");
-    //      n.setFloor(currentFloor);
-    //      n.setXCoord((int) currentMouseX);
-    //      n.setYCoord((int) currentMouseY);
-    //      System.out.println(currentMouseX);
-    //      System.out.println(currentMouseY);
-    //    }
   }
 }

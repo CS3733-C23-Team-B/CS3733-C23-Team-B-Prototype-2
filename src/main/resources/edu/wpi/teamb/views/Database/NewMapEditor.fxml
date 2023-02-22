@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
@@ -62,16 +63,24 @@
                                 <Insets left="40.0" />
                             </VBox.margin>
                         </VBox>
-                  <HBox>
+                  <HBox spacing="20.0">
                      <children>
                         <MFXFilterComboBox fx:id="floorCombo" prefHeight="42.0" prefWidth="155.0" text="Lower Level 1">
                            <HBox.margin>
-                              <Insets left="125.0" />
+                              <Insets left="40.0" />
                            </HBox.margin>
                            <font>
                               <Font size="16.0" />
                            </font>
                         </MFXFilterComboBox>
+                        <MFXCheckbox fx:id="showLocationsCheckBox" onAction="#showLocationsClicked" onMouseMoved="#showLocationsClicked" text="Show Locations">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </MFXCheckbox>
                      </children>
                      <padding>
                         <Insets top="15.0" />

@@ -305,8 +305,8 @@ public class MapEditorController {
   public void displayLoc(Circle dot) {
     Node node = nodeMap.get(dot);
     AnchorPane popPane = new AnchorPane();
-    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 25);
-    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 35);
+    popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 50);
+    popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 38);
 
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);

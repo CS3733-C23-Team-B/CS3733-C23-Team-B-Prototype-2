@@ -67,7 +67,7 @@
                   </Label>
                </children>
             </VBox>
-            <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <HBox fx:id="playButton" alignment="CENTER" onMouseClicked="#playGame" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <MFXButton fx:id="backButton" onAction="#backButtonClicked" prefHeight="38.0" prefWidth="124.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" text="Return Home" textFill="WHITE">
                      <font>
@@ -83,6 +83,14 @@
                      <HBox.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                      </HBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="playButton" onAction="#playGameClicked" prefHeight="38.0" prefWidth="127.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" text="Play Game!" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                   </MFXButton>
                </children>
                <padding>

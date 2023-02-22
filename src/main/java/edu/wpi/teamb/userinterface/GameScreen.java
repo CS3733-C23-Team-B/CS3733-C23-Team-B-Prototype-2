@@ -28,7 +28,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {private
         gameOverButtonImage = Resource.getResouceImage("data/gameover_text.png");
         enemiesManager = new EnemiesManager(mainCharacter);
         clouds = new Clouds(GameWindow.SCREEN_WIDTH, mainCharacter);
-    }public void startGame() {
+    }public static void startGame() {
         thread = new Thread(this);
         thread.start();
     }public void gameUpdate() {

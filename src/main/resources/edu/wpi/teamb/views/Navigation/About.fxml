@@ -1,67 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+<GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.AboutPageController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.4000244140625" minWidth="10.0" percentWidth="18.75" prefWidth="12.66663138071695" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="800.6665852864584" minWidth="10.0" percentWidth="62.5" prefWidth="800.6665852864584" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.39996337890625" minWidth="10.0" percentWidth="18.75" prefWidth="25.33341471354163" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="126.9999755859375" minHeight="0.0" percentHeight="8.0" prefHeight="0.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="471.3333333333333" minHeight="10.0" percentHeight="84.0" prefHeight="471.3333333333333" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="73.40000000000003" minHeight="0.0" percentHeight="8.0" prefHeight="0.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <GridPane prefHeight="714.0" prefWidth="849.0" style="-fx-background-color: F2F2F2; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" percentWidth="6.25" prefWidth="54.333351135253906" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="648.6666259765625" minWidth="10.0" percentWidth="87.5" prefWidth="639.3333740234375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" percentWidth="6.25" prefWidth="23.6666259765625" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="135.9999755859375" minHeight="0.0" percentHeight="6.25" prefHeight="34.33334445953369" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="443.0" minHeight="10.0" percentHeight="87.5" prefHeight="372.333322207133" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="271.6" minHeight="0.0" percentHeight="6.25" prefHeight="54.99999491373694" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox alignment="BOTTOM_CENTER" prefHeight="623.0" prefWidth="875.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Text id="titleRoboto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="About">
-                     <font>
-                        <Font size="50.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="325.0" top="25.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
-   </top>
-   <left>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="801.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
-         <children>
-            <VBox prefHeight="530.0" prefWidth="800.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Badger Crossing Health Clinic app allows hospital employees to remotely request assistance, find the quickest path to an urgent destination, and adjust the internal hospital map." textAlignment="CENTER" wrappingWidth="448.63604736328125">
+                  <MFXScrollPane fitToWidth="true" prefHeight="619.0" prefWidth="875.0" style="-fx-border-color: #F2F2F2; -fx-background-color: #F2F2F2;">
+                     <content>
+                        <VBox alignment="CENTER" prefHeight="583.0" prefWidth="871.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="1012.0" text="About" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="991.0" text="WPI Computer Science Department">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="963.0" text="CS3733-C23 Software Engineering">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="1000.0" text="Prof. Wilson Wong">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_CENTER" prefHeight="41.0" prefWidth="978.0" text="Team Coach Nestor Lopez" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <VBox>
+                                 <children>
+                                    <Label prefHeight="9.0" text="Christina Aube - Project Manager, Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="2.0" text="Sam Colebourn - Software Lead, Full Stack">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="0.0" text="Michael Gatti - Product Owner, Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="0.0" text="Sean Lendrum - Assistant Software Lead, Full Stack">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="10.0" text="Luke Grady - Full Stack">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="10.0" text="Adrian Johnson - Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="10.0" text="Jack Lafond - Scrum Master, Assistance Software Lead, Back End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="17.0" text="Kavya Mani - Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="15.0" text="Cierra O’Grady - Assistance Software Lead, Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="6.0" style="-fx-border-color: transparent;" text="Jolie Walts - Document Analyst, Full Stack">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="BOTTOM_LEFT" prefHeight="101.0" text="Thank you to Brigham and Women’s Hospital and their representative, Andrew Shinn, for their time and input." wrapText="true">
+                                       <font>
+                                          <Font name="System Italic" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </MFXScrollPane>
+                  <MFXButton fx:id="backButton" alignment="CENTER" onMouseReleased="#backButtonClicked" prefHeight="37.0" prefWidth="80.0" style="-fx-background-color: #21357E; -fx-background-radius: 7;" text="Back" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="170.0" top="50.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text id="subTitleNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Developers" textAlignment="CENTER" wrappingWidth="431.8360595703125">
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="175.0" top="25.0" />
-                     </VBox.margin>
-                  </Text>
-                  <TextArea editable="false" maxWidth="-Infinity" prefHeight="200.0" prefWidth="510.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF;" text="                                  Home Page: Sam Colebourn&#10;   Patient Transportation Service: Christina Aube &amp; Cierra O'Grady&#10;                  Sanitation Services: Luke Grady &amp; Jolie Walts&#10;                     Edit Nodes: Sean Lendrum &amp; Jack Lafond&#10;                                Pathfinding: Sean Lendrum&#10;                                 About Page: Michael Gatti&#10;                                  Help Page: Michael Gatti">
-                     <VBox.margin>
-                        <Insets left="150.0" top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </TextArea>
+                  </MFXButton>
                </children>
             </VBox>
          </children>
-      </AnchorPane>
-   </left>
-</BorderPane>
+      </GridPane>
+   </children>
+</GridPane>

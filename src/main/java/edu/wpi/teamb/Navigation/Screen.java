@@ -40,7 +40,8 @@ public enum Screen {
   ABOUT_PAGE("views/Navigation/About.fxml"),
   SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml"),
   MAP_EDITOR_HELP_POP_UP("views/Popups/MapEditorHelpPopUp.fxml"),
-  PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml");
+  PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml"),
+  DATABASE_CONFIRMATION("views/Database/DatabaseConfirmation.fxml");
 
   private final String filename;
 

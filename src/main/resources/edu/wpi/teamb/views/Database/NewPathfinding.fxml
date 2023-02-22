@@ -55,9 +55,9 @@
                                           <Insets />
                                        </HBox.margin>
                                     </Label>
-                                    <MFXButton id="helpButton" fx:id="helpButton" buttonType="RAISED" onAction="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" textFill="WHITE">
+                                    <MFXButton id="helpButton" fx:id="helpButton" onAction="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" textFill="WHITE">
                                        <HBox.margin>
-                                          <Insets left="95.0" top="10.0" />
+                                          <Insets left="25.0" top="10.0" />
                                        </HBox.margin>
                                     </MFXButton>
                                  </children>

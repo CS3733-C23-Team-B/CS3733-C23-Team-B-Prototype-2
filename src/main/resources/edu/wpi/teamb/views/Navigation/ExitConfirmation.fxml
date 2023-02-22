@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <GridPane style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.ExitConfirmationController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,7 +32,7 @@
          <children>
             <VBox alignment="CENTER">
                <children>
-                  <Label text="Are you sure you want to exit?">
+                  <Label id="exitConfirmation" stylesheets="@../../../../../css/style.css" text="Are you sure you want to exit?">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
@@ -53,14 +52,14 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT">
                            <children>
-                              <MFXButton fx:id="yesButton" onAction="#yesButtonClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Yes" textAlignment="CENTER" textFill="WHITE">
+                              <MFXButton id="navBarButton" fx:id="yesButton" onAction="#yesButtonClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" stylesheets="@../../../../../css/style.css" text="Yes" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </MFXButton>
                            </children>
                         </HBox>
-                        <MFXButton fx:id="noButton" onAction="#noButtonClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #898989; -fx-background-radius: 10;" text="No" textFill="WHITE" GridPane.columnIndex="2">
+                        <MFXButton id="navBarButton" fx:id="noButton" onAction="#noButtonClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #898989; -fx-background-radius: 10;" stylesheets="@../../../../../css/style.css" text="No" textFill="WHITE" GridPane.columnIndex="2">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>

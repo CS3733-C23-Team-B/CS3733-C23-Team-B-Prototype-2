@@ -16,7 +16,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <GridPane prefHeight="820.0" prefWidth="1402.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.ProfileController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
@@ -119,7 +118,7 @@
                                           <HBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
                                              <children>
                                                 <MFXButton id="profileButton" fx:id="save" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="Save Changes" textFill="WHITE" />
-                                                <Label fx:id="messege">
+                                                <Label id="profileBody" fx:id="messege">
                                                    <HBox.margin>
                                                       <Insets left="30.0" />
                                                    </HBox.margin>
@@ -142,21 +141,25 @@
                   </MFXScrollPane>
                   <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #f2f2f2;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <content>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <VBox fx:id="vbox">
                            <children>
-                              <Text id="profileBody2" fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="250.17774963378906">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                              <Text id="profileBody2" fx:id="passwordText" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="250.17776489257812">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                              <ToggleButton id="profileBody" fx:id="showPasswordButton" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="26.0" prefWidth="57.0" stylesheets="@../../../../../css/style.css" text="show" />
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text id="profileBody2" fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="250.17774963378906">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <Text id="profileBody2" fx:id="passwordText" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="250.17776489257812">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <ToggleButton id="profileBody" fx:id="showPasswordButton" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="26.0" prefWidth="57.0" stylesheets="@../../../../../css/style.css" text="show" />
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
+                        </VBox>
                      </content>
                   </MFXScrollPane>
                </children>

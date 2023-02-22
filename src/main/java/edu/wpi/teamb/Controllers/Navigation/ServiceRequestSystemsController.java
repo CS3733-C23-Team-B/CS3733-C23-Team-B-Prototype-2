@@ -9,12 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 
 public class ServiceRequestSystemsController {
-  @FXML VBox mainVbox;
+  @FXML GridPane mainGridPane;
   @FXML Label pageTitle;
   @FXML MFXButton transButton;
   @FXML MFXButton saniButton;
@@ -25,14 +26,14 @@ public class ServiceRequestSystemsController {
   @FXML Label headerText;
 
   public void initialize() {
-    mainVbox.setPadding(new Insets(20, 20, 0, 20));
+    mainGridPane.setPadding(new Insets(20, 20, 0, 20));
   }
 
   public void makeTrans() throws IOException {
-    mainVbox.getChildren().clear();
+    mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.PATIENT_TRANSPORTATION.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
-    mainVbox.getChildren().add(loader.load());
+    mainGridPane.getChildren().add(loader.load());
     Font font = Font.font("System", FontPosture.ITALIC, 48);
     pageTitle.setFont(font);
     pageTitle.setText("Internal Patient Transportation");
@@ -45,10 +46,10 @@ public class ServiceRequestSystemsController {
   }
 
   public void makeSani() throws IOException {
-    mainVbox.getChildren().clear();
+    mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.SANITATION.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
-    mainVbox.getChildren().add(loader.load());
+    mainGridPane.getChildren().add(loader.load());
     Font font = Font.font("System", FontPosture.ITALIC, 48);
     pageTitle.setFont(font);
     pageTitle.setText("Sanitation Service");
@@ -61,10 +62,10 @@ public class ServiceRequestSystemsController {
   }
 
   public void makeSec() throws IOException {
-    mainVbox.getChildren().clear();
+    mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.SECURITY_SERVICES.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
-    mainVbox.getChildren().add(loader.load());
+    mainGridPane.getChildren().add(loader.load());
 
     Font font = Font.font("System", FontPosture.ITALIC, 48);
     pageTitle.setFont(font);
@@ -78,10 +79,10 @@ public class ServiceRequestSystemsController {
   }
 
   public void makeCom() throws IOException {
-    mainVbox.getChildren().clear();
+    mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.COMPUTER_SERVICES.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
-    mainVbox.getChildren().add(loader.load());
+    mainGridPane.getChildren().add(loader.load());
     Font font = Font.font("System", FontPosture.ITALIC, 48);
     pageTitle.setFont(font);
     pageTitle.setText("Computer Service");
@@ -94,10 +95,10 @@ public class ServiceRequestSystemsController {
   }
 
   public void makeAV() throws IOException {
-    mainVbox.getChildren().clear();
+    mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.AV_SERVICES.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
-    mainVbox.getChildren().add(loader.load());
+    mainGridPane.getChildren().add(loader.load());
     Font font = Font.font("System", FontPosture.ITALIC, 48);
     pageTitle.setFont(font);
     pageTitle.setText("Audio/Video Service");

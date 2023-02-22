@@ -11,9 +11,7 @@ import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -210,15 +208,7 @@ public class MapEditorController {
             restore.setText("Database");
             restore.setOnAction(
                 e -> {
-                  try {
-                    DatabaseRestore.runRestore();
-                  } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                  } catch (URISyntaxException ex) {
-                    throw new RuntimeException(ex);
-                  } catch (ParseException ex) {
-                    throw new RuntimeException(ex);
-                  }
+                  Popup.displayPopup(Screen.DATABASE_CONFIRMATION);
                 });
 
             csvBox.getChildren().add(write);

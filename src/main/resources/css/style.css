@@ -26,6 +26,28 @@
     -fx-background-color: rgba(163, 233, 228, 0.6);
 }
 
+#signInTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 27px;
+    -fx-font-weight: bold;
+}
+
+#signInBody{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 18px;
+}
+
+#signInButtons{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+#signInAccent{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 10px;
+}
+
 #menuIcon{
     -fx-background-radius: 30px;
     -fx-background-image: url("/media/profile_icon.png");

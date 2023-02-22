@@ -15,117 +15,140 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SubmittedRequests.SubmittedServiceRequestsController">
+<GridPane prefHeight="1135.0" prefWidth="1510.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SubmittedRequests.SubmittedServiceRequestsController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="347.9999755859375" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="758.4000244140626" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="337.8" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints maxHeight="371.0000366210937" minHeight="10.0" prefHeight="113.40002059936523" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
+    <RowConstraints percentHeight="11.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="2.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints percentHeight="87.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="1056.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <VBox fx:id="specificRequestInfoBox" prefHeight="650.0" prefWidth="334.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <padding>
-            <Insets left="40.0" />
-         </padding>
-      </VBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+      <GridPane prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" GridPane.rowIndex="2">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="60.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="371.0000366210937" minHeight="10.0" percentHeight="15.0" prefHeight="113.40002059936523" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" percentHeight="83.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <GridPane prefHeight="93.0" prefWidth="748.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="547.7999572753906" minWidth="10.0" prefWidth="430.3999938964844" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="1056.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <VBox fx:id="specificRequestInfoBox" prefHeight="650.0" prefWidth="334.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                  <GridPane prefHeight="93.0" prefWidth="748.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="547.7999572753906" minWidth="10.0" prefWidth="430.3999938964844" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <Label fx:id="la" text="Submitted Requests">
-                           <font>
-                              <Font size="48.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="helpButton" fitHeight="21.0" fitWidth="21.0" onMouseClicked="#helpButtonClicked">
-                           <image>
-                              <Image url="@../../../../../media/question.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </ImageView>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="la" text="Submitted Requests">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="helpButton" fitHeight="21.0" fitWidth="21.0" onMouseClicked="#helpButtonClicked">
+                                 <image>
+                                    <Image url="@../../../../../media/question.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </HBox>
                      </children>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </HBox>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </GridPane>
                </children>
                <padding>
-                  <Insets left="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
-            </GridPane>
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </HBox>
-      <VBox fx:id="mainVbox1" layoutX="353.0" layoutY="124.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2">
-         <children>
-            <HBox prefHeight="52.0" prefWidth="300.0">
-               <children>
-                  <Label fx:id="RequestInformationTitle" alignment="TOP_LEFT" text="Request Info">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
             </HBox>
-         </children>
-      </VBox>
-      <VBox fx:id="mainVbox11" layoutX="10.0" layoutY="10.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </VBox>
-      <MFXScrollPane fitToWidth="true" style="-fx-background-color: #E0E0E0;" GridPane.rowIndex="1">
-         <content>
-            <VBox fx:id="filterVbox" alignment="TOP_CENTER" prefWidth="343.0" style="-fx-background-color: #E0E0E0;">
+            <VBox fx:id="mainVbox1" layoutX="353.0" layoutY="124.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2">
                <children>
-                  <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
-                  <MFXComboBox fx:id="requestUrgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0">
+                  <HBox alignment="CENTER" prefHeight="52.0" prefWidth="300.0">
+                     <children>
+                        <Label fx:id="RequestInformationTitle" alignment="TOP_LEFT" text="Request Info">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                     </children>
                      <VBox.margin>
-                        <Insets bottom="30.0" top="15.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
-                  </MFXComboBox>
-                  <MFXComboBox fx:id="requestStatusFilter" floatingText="Request Status" layoutX="50.0" layoutY="62.0" prefHeight="40.0" prefWidth="219.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                  </MFXComboBox>
-                  <MFXComboBox fx:id="assignedStaffFilter" floatingText="Assigned Staff" layoutX="50.0" layoutY="340.0" prefHeight="40.0" prefWidth="219.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                  </MFXComboBox>
-                  <MFXComboBox fx:id="requestReporterFilter" floatingText="Request Reporter" layoutX="50.0" layoutY="411.0" prefHeight="40.0" prefWidth="219.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                  </MFXComboBox>
-                  <MFXCheckbox fx:id="myRequestsFilter" text="Display My Requests" />
-                  <MFXButton fx:id="clearFiltersButton" alignment="BOTTOM_LEFT" onAction="#clearFilters" prefHeight="30.0" prefWidth="82.0" text="Clear Filters" />
+                  </HBox>
                </children>
             </VBox>
-         </content>
-      </MFXScrollPane>
+            <VBox fx:id="mainVbox11" layoutX="10.0" layoutY="10.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+            <MFXScrollPane fitToWidth="true" style="-fx-background-color: #E0E0E0;" GridPane.rowIndex="1">
+               <content>
+                  <VBox fx:id="filterVbox" alignment="TOP_CENTER" prefHeight="805.0" prefWidth="300.0" spacing="50.0" style="-fx-background-color: #E0E0E0;">
+                     <children>
+                        <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></MFXComboBox>
+                        <MFXComboBox fx:id="requestUrgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </MFXComboBox>
+                        <MFXComboBox fx:id="requestStatusFilter" floatingText="Request Status" layoutX="50.0" layoutY="62.0" prefHeight="40.0" prefWidth="219.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </MFXComboBox>
+                        <MFXComboBox fx:id="assignedStaffFilter" floatingText="Assigned Staff" layoutX="50.0" layoutY="340.0" prefHeight="40.0" prefWidth="219.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </MFXComboBox>
+                        <MFXComboBox fx:id="requestReporterFilter" floatingText="Request Reporter" layoutX="50.0" layoutY="411.0" prefHeight="40.0" prefWidth="219.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </MFXComboBox>
+                        <MFXCheckbox fx:id="myRequestsFilter" text="Display My Requests" />
+                        <MFXButton fx:id="clearFiltersButton" alignment="BOTTOM_LEFT" onAction="#clearFilters" prefHeight="30.0" prefWidth="82.0" text="Clear Filters" />
+                     </children>
+                  </VBox>
+               </content>
+            </MFXScrollPane>
+         </children>
+      </GridPane>
+      <HBox style="-fx-background-color: #21357E;" GridPane.rowIndex="1">
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
    </children>
 </GridPane>

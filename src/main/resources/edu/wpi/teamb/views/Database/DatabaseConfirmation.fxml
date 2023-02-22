@@ -32,7 +32,7 @@
          <children>
             <VBox alignment="CENTER">
                <children>
-                  <Label id="exitConfirmation" stylesheets="@../../../../../css/style.css" text="Are you sure you want to Restore?">
+                  <Label id="exitConfirmation" stylesheets="@../../../../../css/style.css" text="Are you sure you want to restore?">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>

@@ -141,7 +141,7 @@ public class MapEditorController {
             restore.setTextFill(Paint.valueOf("#c5d3ea"));
             restore.setStyle("-fx-background-color: #21357E");
             restore.setFont(new Font("System", 20));
-            restore.setText("Restore Database");
+            restore.setText("Database");
             restore.setOnAction(
                 e -> {
                   try {

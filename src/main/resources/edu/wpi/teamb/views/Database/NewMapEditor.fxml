@@ -29,8 +29,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints percentHeight="85.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <VBox style="-fx-background-color: #F2F2F2;">

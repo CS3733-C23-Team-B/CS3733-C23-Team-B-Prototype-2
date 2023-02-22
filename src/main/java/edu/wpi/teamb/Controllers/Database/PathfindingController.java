@@ -508,7 +508,7 @@ public class PathfindingController {
     double textFieldHeight = 10;
     double textFieldPadding = 10;
     adminLabel.setLayoutX(endNode.getXCoord() - textFieldWidth / 2);
-    adminLabel.setLayoutY(endNode.getYCoord() - textFieldPadding - textFieldHeight);
+    adminLabel.setLayoutY(endNode.getYCoord() - textFieldHeight - 30);
     adminLabel.setPromptText("Click to add note");
   }
 

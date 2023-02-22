@@ -99,7 +99,7 @@ public class SubmittedServiceRequestsController {
     assignedStaffFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
     requestUrgencyFilter.setItems(urgency);
-    requestTypeFilter.setText("All Request");
+    requestTypeFilter.setText("All Requests");
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
@@ -190,8 +190,11 @@ public class SubmittedServiceRequestsController {
   }
 
   public void clearFilters() {
+    assignedStaffFilter.getSelectionModel().clearSelection();
     assignedStaffFilter.setValue(null);
+    requestStatusFilter.getSelectionModel().clearSelection();
     requestStatusFilter.setValue(null);
+    requestUrgencyFilter.getSelectionModel().clearSelection();
     requestUrgencyFilter.setValue(null);
     requestTypeFilter.setValue(page);
     if (currUser.getAdmin()) myRequestsFilter.setSelected(false);

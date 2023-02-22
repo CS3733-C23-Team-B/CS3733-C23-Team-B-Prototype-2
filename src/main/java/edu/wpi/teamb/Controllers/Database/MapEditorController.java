@@ -274,10 +274,10 @@ public class MapEditorController {
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
 
-    aPane.getChildren().add(popPane);
-    currentPopUp = popPane;
     currentNode = node;
     drawEdges();
+    aPane.getChildren().add(popPane);
+    currentPopUp = popPane;
     currentDot = dot;
   }
 

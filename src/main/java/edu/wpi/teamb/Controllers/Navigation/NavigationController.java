@@ -36,7 +36,6 @@ public class NavigationController {
   }
 
   public void resetButtons() {
-    homeButton.setStyle("-fx-background-color: transparent;");
     forms.setStyle("-fx-background-color: transparent;");
     map.setStyle("-fx-background-color: transparent;");
     request.setStyle("-fx-background-color: transparent;");

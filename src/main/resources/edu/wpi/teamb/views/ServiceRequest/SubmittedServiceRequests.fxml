@@ -133,7 +133,7 @@
                            </VBox.margin>
                         </MFXComboBox>
                         <MFXCheckbox fx:id="myRequestsFilter" text="Display My Requests" />
-                        <MFXButton fx:id="clearFiltersButton" alignment="BOTTOM_LEFT" onAction="#clearFilters" prefHeight="30.0" prefWidth="82.0" text="Clear Filters" />
+                        <MFXButton fx:id="clearFiltersButton" alignment="CENTER" contentDisplay="CENTER" onAction="#clearFilters" prefHeight="46.0" prefWidth="98.0" text="Clear Filters" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </content>

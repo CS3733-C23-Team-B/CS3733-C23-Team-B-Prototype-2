@@ -49,7 +49,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField alignment="CENTER" prefHeight="26.0" prefWidth="150.0" fx:id="xField">
+                  <TextField prefHeight="26.0" prefWidth="150.0" fx:id="xField">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

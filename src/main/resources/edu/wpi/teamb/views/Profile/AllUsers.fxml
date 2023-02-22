@@ -13,7 +13,7 @@
    <top>
       <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21357e" height="120.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
             <Text fill="WHITE" layoutX="285.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Users">
                <font>
                   <Font size="50.0" />

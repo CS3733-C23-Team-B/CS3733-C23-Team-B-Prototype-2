@@ -389,7 +389,10 @@ public class PathfindingController {
     nextFloor.setOnAction(
         e -> {
           changeFloor(endNode.getFloor(), new Point2D(endNode.getXCoord(), endNode.getYCoord()));
-          floorCombo.setValue(floorMap.get(endNode.getFloor()));
+          floorMap.forEach(
+              (key, value) -> {
+                if (value.equals(endNode.getFloor())) floorCombo.setValue(key);
+              });
         });
     nextFloor.setText("Go to next Floor");
     nextFloor.setLayoutX(startNode.getXCoord() + 20);

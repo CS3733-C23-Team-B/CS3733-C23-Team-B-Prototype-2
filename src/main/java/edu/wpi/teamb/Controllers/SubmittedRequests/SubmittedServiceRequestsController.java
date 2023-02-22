@@ -161,8 +161,8 @@ public class SubmittedServiceRequestsController {
   }
 
   private void setLabel(String name) {
+    la.setFont(new Font("Ariel", 50));
     la.setText(name);
-    la.setFont(new Font("Ariel", 25));
   }
 
   public void clearFilters() {

@@ -30,7 +30,6 @@ public class ForgotPassController {
                 + ",\nYour Password is: "
                 + loginMap.get(username.getText()).getPassword();
         sendEmail(user, password, recipient, subject, message);
-        System.out.println("Email sent successfully.");
       } catch (MessagingException ex) {
         System.out.println("Failed to send email: " + ex.getMessage());
       }

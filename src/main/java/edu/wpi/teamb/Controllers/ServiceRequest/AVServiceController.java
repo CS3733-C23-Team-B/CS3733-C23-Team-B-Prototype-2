@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Requests.SanitationRequest;
+import edu.wpi.teamb.Database.Requests.AudioVideoRequest;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
@@ -15,12 +15,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 
-public class SanitationServiceController extends BaseRequestController {
-  // Lists for checkboxes
-  ObservableList<String> typeOfCleanUpList =
-      FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
-  @FXML private MFXFilterComboBox<String> cleanUpLocationBox;
-  @FXML private MFXFilterComboBox<String> typeOfCleanUpBox;
+public class AVServiceController extends BaseRequestController {
+  ObservableList<String> typeOfEquipment =
+      FXCollections.observableArrayList("TV", "Radio", "iPad", "Headphones");
+
+  @FXML private MFXFilterComboBox locationBox;
+  @FXML private MFXFilterComboBox<String> typeOfEquipmentBox;
 
   @FXML
   @Override
@@ -28,19 +28,19 @@ public class SanitationServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      cleanUpLocationBox, urgencyBox, typeOfCleanUpBox, assignedStaffBox, additionalNotesField
+      locationBox, urgencyBox, typeOfEquipmentBox, assignedStaffBox, additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    cleanUpLocationBox.setItems(getLocations());
+    locationBox.setItems(getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
-    typeOfCleanUpBox.setItems(typeOfCleanUpList);
+    typeOfEquipmentBox.setItems(typeOfEquipment);
 
     super.initialize();
   }
@@ -50,24 +50,21 @@ public class SanitationServiceController extends BaseRequestController {
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
-    SanitationRequest request = new SanitationRequest();
+    AudioVideoRequest request = new AudioVideoRequest();
 
     super.submit(request);
 
-    var cleanUpLocation = cleanUpLocationBox.getValue();
-    if (cleanUpLocation == null) {
-      cleanUpLocation = "";
-    }
-    request.setCleanUpLocation(cleanUpLocation.toString());
+    request.setLocation(locationBox.getText());
 
-    var typeOfcleanUp = typeOfCleanUpBox.getValue();
-    if (typeOfcleanUp == null) {
-      typeOfcleanUp = "";
+    var equipment = typeOfEquipmentBox.getValue();
+    if (equipment == null) {
+      equipment = "";
     }
-    request.setTypeOfCleanUp(typeOfcleanUp.toString());
-    request.setRequestType(RequestType.SANITATION);
+    request.setAVType(equipment.toString());
 
+    request.setRequestType(RequestType.AUDOVISUAL);
     DBSession.addRequest(request);
+
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
 

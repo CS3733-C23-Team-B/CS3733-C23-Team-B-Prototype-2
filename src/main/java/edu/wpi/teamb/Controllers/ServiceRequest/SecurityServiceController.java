@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Requests.SanitationRequest;
+import edu.wpi.teamb.Database.Requests.SecurityRequest;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
@@ -15,12 +15,23 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 
-public class SanitationServiceController extends BaseRequestController {
-  // Lists for checkboxes
-  ObservableList<String> typeOfCleanUpList =
-      FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
-  @FXML private MFXFilterComboBox<String> cleanUpLocationBox;
-  @FXML private MFXFilterComboBox<String> typeOfCleanUpBox;
+public class SecurityServiceController extends BaseRequestController {
+  ObservableList<String> typeOfEquipment =
+      FXCollections.observableArrayList("Restraints", "Taser", "Barricade");
+
+  ObservableList<String> typeOfIssue =
+      FXCollections.observableArrayList(
+          "Unruly Patient",
+          "Intruder",
+          "General Danger",
+          "Escalated Disagreement",
+          "Suspicious Activity");
+
+  ObservableList<String> numberList =
+      FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+  @FXML private MFXFilterComboBox<String> issueBox;
+  @FXML private MFXFilterComboBox<String> equipNeededBox;
+  @FXML private MFXFilterComboBox<String> numbReqBox;
 
   @FXML
   @Override
@@ -28,19 +39,20 @@ public class SanitationServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      cleanUpLocationBox, urgencyBox, typeOfCleanUpBox, assignedStaffBox, additionalNotesField
+      equipNeededBox, urgencyBox, issueBox, assignedStaffBox, additionalNotesField, numbReqBox
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    cleanUpLocationBox.setItems(getLocations());
+    equipNeededBox.setItems(typeOfEquipment);
+    issueBox.setItems(typeOfIssue);
+    numbReqBox.setItems(numberList);
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
-    typeOfCleanUpBox.setItems(typeOfCleanUpList);
 
     super.initialize();
   }
@@ -50,24 +62,17 @@ public class SanitationServiceController extends BaseRequestController {
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
-    SanitationRequest request = new SanitationRequest();
+    SecurityRequest request = new SecurityRequest();
 
     super.submit(request);
 
-    var cleanUpLocation = cleanUpLocationBox.getValue();
-    if (cleanUpLocation == null) {
-      cleanUpLocation = "";
-    }
-    request.setCleanUpLocation(cleanUpLocation.toString());
+    request.setEquipmentNeeded(equipNeededBox.getText());
+    request.setIssueType(issueBox.getText());
+    request.setNumberRequired(Integer.parseInt(numbReqBox.getText()));
 
-    var typeOfcleanUp = typeOfCleanUpBox.getValue();
-    if (typeOfcleanUp == null) {
-      typeOfcleanUp = "";
-    }
-    request.setTypeOfCleanUp(typeOfcleanUp.toString());
-    request.setRequestType(RequestType.SANITATION);
-
+    request.setRequestType(RequestType.SECURITY);
     DBSession.addRequest(request);
+
     // may need to clear fields can be done with functions made for clear
     clearButtonClicked();
 

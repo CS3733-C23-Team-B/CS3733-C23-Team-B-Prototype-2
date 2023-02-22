@@ -5,178 +5,118 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1016.0" prefWidth="1709.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.CreateAccountController">
+<GridPane alignment="CENTER" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.CreateAccountController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="192.3999481201172" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="800.0" minWidth="800.0" prefWidth="800.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" percentWidth="25.0" prefWidth="192.3999481201172" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="800.0" minWidth="800.0" percentWidth="50.0" prefWidth="800.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="506.800048828125" minHeight="10.0" prefHeight="506.800048828125" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="670.0" minHeight="30.400048828125023" prefHeight="30.400048828125023" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="487.599951171875" minHeight="10.0" prefHeight="487.599951171875" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="506.800048828125" minHeight="10.0" percentHeight="10.0" prefHeight="506.800048828125" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="670.0" minHeight="30.400048828125023" percentHeight="80.0" prefHeight="30.400048828125023" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="487.599951171875" minHeight="10.0" percentHeight="10.0" prefHeight="487.599951171875" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="800.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <center>
-            <AnchorPane prefHeight="522.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <GridPane style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="70.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" percentHeight="100.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox>
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="70.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-                  <Text fill="WHITE" layoutX="216.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Account" textAlignment="CENTER">
+                  <MFXButton fx:id="backButton" alignment="CENTER" onAction="#backButtonClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #898989;" text="Back" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="5.0" top="15.0" />
+                     </VBox.margin>
                      <font>
-                        <Font size="37.0" />
+                        <Font size="22.0" />
                      </font>
-                  </Text>
-                  <VBox layoutX="-1.0" layoutY="84.0" prefHeight="491.0" prefWidth="800.0">
-                     <children>
-                        <HBox prefHeight="43.0" prefWidth="800.0">
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="275.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="30.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="22.0" prefWidth="200.0">
-                           <children>
-                              <MFXTextField fx:id="firstNameField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </MFXTextField>
-                              <MFXTextField fx:id="lastNameField" layoutX="50.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <padding>
-                              <Insets left="40.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox prefHeight="22.0" prefWidth="200.0">
-                           <children>
-                              <MFXTextField fx:id="emailField" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Text id="categoriesNunito" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                              <Text id="categoriesNunito" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="277.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <padding>
-                              <Insets left="40.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox prefHeight="22.0" prefWidth="200.0">
-                           <children>
-                              <MFXTextField fx:id="usernameField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="49.0" prefWidth="340.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXTextField>
-                              <MFXPasswordField fx:id="passwordField" prefHeight="44.0" prefWidth="340.0">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
-                              </MFXPasswordField>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="37.0" prefWidth="800.0" spacing="50.0">
-                           <children>
-                              <Label fx:id="notificationText" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="70.0" prefWidth="800.0" spacing="50.0">
-                           <children>
-                              <MFXButton fx:id="cancelButton" minHeight="46.0" minWidth="100.0" onAction="#cancelClicked" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </MFXButton>
-                              <MFXButton minHeight="46.0" minWidth="100.0" onAction="#submitClicked" style="-fx-background-color: green;" text="Create Account" textFill="WHITE">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </MFXButton>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
+                  </MFXButton>
                </children>
-            </AnchorPane>
-         </center>
-         <padding>
-            <Insets top="74.0" />
-         </padding>
-      </BorderPane>
+            </VBox>
+            <VBox alignment="TOP_CENTER" GridPane.columnIndex="1">
+               <children>
+                  <Label text="Create New Account">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
+                  <Label text="Create an account as a hospital staff member">
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <MFXTextField fx:id="firstNameField" minHeight="10.0" prefHeight="50.0" prefWidth="400.0" promptText="First Name">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="15.0" />
+                     </VBox.margin>
+                  </MFXTextField>
+                  <MFXTextField fx:id="lastNameField" minHeight="10.0" prefHeight="50.0" prefWidth="400.0" promptText="Last Name">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="15.0" />
+                     </VBox.margin>
+                  </MFXTextField>
+                  <MFXTextField fx:id="emailField" minHeight="10.0" prefHeight="50.0" prefWidth="400.0" promptText="Email">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="15.0" />
+                     </VBox.margin>
+                  </MFXTextField>
+                  <MFXTextField fx:id="usernameField" minHeight="10.0" prefHeight="50.0" prefWidth="400.0" promptText="Username">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="15.0" />
+                     </VBox.margin>
+                  </MFXTextField>
+                  <MFXPasswordField fx:id="passwordField" borderGap="0.0" floatingTextGap="0.0" graphicTextGap="0.0" measureUnitGap="0.0" minHeight="10.0" prefHeight="50.0" prefWidth="400.0" promptText="Password">
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MFXPasswordField>
+                  <MFXButton minHeight="46.0" minWidth="100.0" onAction="#submitClicked" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #21357E;" text="Create Account" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="15.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <HBox alignment="CENTER" prefHeight="37.0" prefWidth="800.0" spacing="50.0">
+                     <children>
+                        <Label fx:id="notificationText" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
    </children>
 </GridPane>

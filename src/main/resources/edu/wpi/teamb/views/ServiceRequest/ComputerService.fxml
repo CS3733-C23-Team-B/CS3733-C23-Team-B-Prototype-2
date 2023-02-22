@@ -5,6 +5,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -24,7 +26,7 @@
    <children>
       <HBox GridPane.columnIndex="1">
          <children>
-            <Label prefHeight="35.0" prefWidth="228.0" text="Computer Service">
+            <Label id="formTitle" prefHeight="35.0" prefWidth="245.0" text="Computer Service">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
@@ -32,7 +34,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <Label text="*Required field" textFill="RED">
+            <Label id="formBody" text="*Required field" textFill="RED">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -46,15 +48,23 @@
          </GridPane.margin>
       </HBox>
       <HBox alignment="TOP_CENTER">
-         <children>
-            <MFXButton fx:id="backButton" onMouseReleased="#backButtonClicked" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: gray; -fx-background-radius: 5;" text="Back" textFill="WHITE" />
-         </children>
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
+         <children>
+            <MFXButton id="formButton" fx:id="backButton" onMouseReleased="#backButtonClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: gray; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text=" Back" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="13.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../media/arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MFXButton>
+         </children>
       </HBox>
       <GridPane hgap="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columnConstraints>
@@ -75,7 +85,7 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label text="Urgency" />
+                        <Label id="formBody" text="Urgency" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
@@ -92,7 +102,7 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label text="Assigned Staff Member" />
+                        <Label id="formBody" text="Assigned Staff Member" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
@@ -106,7 +116,7 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label text="Type of Repair" />
+                        <Label id="formBody" text="Type of Repair" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
@@ -123,7 +133,7 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label text="Type of Device" />
+                        <Label id="formBody" text="Type of Device" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
@@ -137,7 +147,7 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label text="Location" />
+                        <Label id="formBody" text="Location" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
@@ -151,7 +161,7 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label text="Notes" />
+                        <Label id="formBody" text="Notes" />
                      </children>
                   </HBox>
                   <MFXTextField fx:id="additionalNotesField" prefHeight="189.0" prefWidth="235.0" />
@@ -162,12 +172,12 @@
             </VBox>
             <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
-                  <MFXButton fx:id="clearButton" onMouseReleased="#clearButtonClicked" style="-fx-background-color: #CECECE; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
+                  <MFXButton id="formButton" fx:id="clearButton" onMouseReleased="#clearButtonClicked" style="-fx-background-color: #CECECE; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton fx:id="helpTextButton" onMouseReleased="#helpButtonClicked" style="-fx-background-color: E89F55; -fx-background-radius: 5;" text="Help" textFill="WHITE">
+                  <MFXButton id="formButton" fx:id="helpTextButton" onMouseReleased="#helpButtonClicked" style="-fx-background-color: E89F55; -fx-background-radius: 5;" text="Help" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -179,7 +189,7 @@
             </HBox>
             <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <MFXButton fx:id="submitButton" onMouseReleased="#submitButtonClicked" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Submit" textFill="WHITE" />
+                  <MFXButton id="formButton" fx:id="submitButton" onMouseReleased="#submitButtonClicked" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Submit" textFill="WHITE" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

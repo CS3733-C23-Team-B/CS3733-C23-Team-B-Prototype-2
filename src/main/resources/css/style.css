@@ -174,3 +174,21 @@
     -fx-font-family: Nunito, sans-serif;
     -fx-font-size: 20px;
 }
+
+#formTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#formBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+}
+
+#formButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}

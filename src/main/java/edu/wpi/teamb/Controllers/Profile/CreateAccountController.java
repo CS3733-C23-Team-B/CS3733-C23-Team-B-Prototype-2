@@ -1,6 +1,5 @@
-package edu.wpi.teamb.Controllers;
+package edu.wpi.teamb.Controllers.Profile;
 
-import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Popup;

@@ -11,14 +11,6 @@ public class apiConnection {
   public static String url =
       "https://3pfgc7ju3e.execute-api.us-east-1.amazonaws.com/newStage/newFunction";
 
-  public static void main(String[] args) throws IOException {
-    System.out.println(sendGET());
-    String[] l = getNewsList(sendGET());
-    for (String s : l) {
-      System.out.println(s);
-    }
-  }
-
   public static String sendGET() throws IOException {
     URL obj = new URL(url);
     HttpURLConnection con = (HttpURLConnection) obj.openConnection();

@@ -1,15 +1,23 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
+import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import java.awt.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.*;
+import java.util.List;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -24,12 +32,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -37,7 +49,7 @@ import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
   @FXML GridPane gridPane;
-  @FXML AnchorPane map;
+  @FXML GridPane map;
   @FXML AnchorPane anchor;
   @FXML MFXButton editNodeButton;
   @FXML MFXButton newNodeButton;
@@ -54,6 +66,7 @@ public class MapEditorController {
   private GesturePane pane;
   private AnchorPane aPane;
   private double origX, origY;
+  private double currentMouseX, currentMouseY;
   private boolean dragged;
   private boolean MOVING = false;
   private Circle edgeNode1, edgeNode2;
@@ -61,6 +74,8 @@ public class MapEditorController {
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
   @FXML MFXFilterComboBox<String> floorCombo;
+  private String currentFloor;
+  @FXML VBox mapEditorButtons;
 
   public void initialize() {
     if (instance == null) {
@@ -79,8 +94,14 @@ public class MapEditorController {
             "Third Floor"));
     nodeMap = new HashMap<>();
     pane = new GesturePane();
-    pane.setPrefHeight(536);
-    pane.setPrefWidth(1089.6);
+    pane.setOnKeyPressed(e -> handleKeyPress(e));
+    //    pane.setOnMouseMoved(
+    //        e -> {
+    //          currentMouseX = e.getSceneX() + aPane.getLayoutX();
+    //          currentMouseY = e.getSceneY() + aPane.getLayoutY();
+    //        });
+    pane.setPrefHeight(714);
+    pane.setPrefWidth(1168);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     aPane = new AnchorPane();
     pane.setContent(aPane);
@@ -89,35 +110,84 @@ public class MapEditorController {
     floorCombo.setOnAction(
         e -> changeFloor(floorCombo.getValue(), pane.targetPointAtViewportCentre()));
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
+    Platform.runLater(
+        () -> {
+          if (SigninController.currentUser.getAdmin()) {
+            HBox csvBox = new HBox();
+            csvBox.setSpacing(20);
+            csvBox.setPrefWidth(458);
+            csvBox.setPrefHeight(17);
+            MFXButton write = new MFXButton();
+            write.setPrefWidth(155);
+            write.setPrefHeight(42);
+            write.setTextFill(Paint.valueOf("#c5d3ea"));
+            write.setStyle("-fx-background-color: #21357E");
+            write.setFont(new Font("System", 20));
+            write.setText("Write to CSV");
+            write.setOnAction(
+                e -> {
+                  try {
+                    DatabaseWriteToCSV.runWrites();
+                  } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                  } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                  }
+                });
+
+            MFXButton restore = new MFXButton();
+            restore.setPrefWidth(155);
+            restore.setPrefHeight(42);
+            restore.setTextFill(Paint.valueOf("#c5d3ea"));
+            restore.setStyle("-fx-background-color: #21357E");
+            restore.setFont(new Font("System", 20));
+            restore.setText("Restore Database");
+            restore.setOnAction(
+                e -> {
+                  try {
+                    DatabaseRestore.runRestore();
+                  } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                  } catch (URISyntaxException ex) {
+                    throw new RuntimeException(ex);
+                  } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                  }
+                });
+
+            csvBox.getChildren().add(write);
+            csvBox.getChildren().add(restore);
+            mapEditorButtons.getChildren().add(csvBox);
+          }
+          changeFloor("Lower Level 1", new javafx.geometry.Point2D(2215, 1045));
+        });
   }
 
   private void changeFloor(String floor, Point2D p) {
     ImageView image = new ImageView();
-    String f = null;
     switch (floor) {
       case "Lower Level 2":
-        f = "L2";
+        currentFloor = "L2";
         image = Bapp.lowerlevel2;
         break;
       case "Lower Level 1":
-        f = "L1";
+        currentFloor = "L1";
         image = Bapp.lowerlevel;
         break;
       case "Ground Floor":
-        f = "G";
+        currentFloor = "G";
         image = Bapp.groundfloor;
         break;
       case "First Floor":
-        f = "1";
+        currentFloor = "1";
         image = Bapp.firstfloor;
         break;
       case "Second Floor":
-        f = "2";
+        currentFloor = "2";
         image = Bapp.secondfloor;
         break;
       case "Third Floor":
-        f = "3";
+        currentFloor = "3";
         image = Bapp.thirdfloor;
         break;
     }
@@ -129,7 +199,7 @@ public class MapEditorController {
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     for (Node node : nodes.values()) {
-      if (node.getFloor().equals(f)) {
+      if (node.getFloor().equals(currentFloor)) {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
             e -> {
@@ -149,7 +219,11 @@ public class MapEditorController {
         displayLoc(dot);
       }
     }
-    pane.centreOn(p);
+
+    Platform.runLater(
+        () -> {
+          pane.centreOn(p);
+        });
   }
 
   public void displayPopUp(Circle dot) {
@@ -202,6 +276,7 @@ public class MapEditorController {
     aPane.getChildren().add(popPane);
     currentPopUp = popPane;
     currentNode = node;
+    drawEdges();
     currentDot = dot;
   }
 
@@ -217,6 +292,7 @@ public class MapEditorController {
     for (Move move : l) {
       Label loc = new Label(move.getLocationName().getLongName());
       loc.setFont(new Font("Arial", 6));
+      //      loc.setRotate(-45);
       vbox.getChildren().add(loc);
     }
 
@@ -227,17 +303,10 @@ public class MapEditorController {
   }
 
   private void editClicked() throws IOException {
-    Stage newWindow = new Stage();
-    final String filename = Screen.NODE_EDITOR.getFilename();
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      Scene scene = new Scene(loader.load(), 400, 350);
-      newWindow.setScene(scene);
-      newWindow.show();
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-    }
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.NODE_EDITOR.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   private void clearPopUp() {
@@ -247,6 +316,14 @@ public class MapEditorController {
       if (currentDot != null) currentDot.setFill(Color.BLUE);
       currentNode = null;
       currentDot = null;
+      removeEdges();
+    }
+  }
+
+  private void removeEdges() {
+    List<javafx.scene.Node> children = aPane.getChildren();
+    for (int i = children.size() - 1; i >= 0; i--) {
+      if (children.get(i) instanceof Line) aPane.getChildren().remove(children.get(i));
     }
   }
 
@@ -260,6 +337,7 @@ public class MapEditorController {
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
+          if (currentDot != null) currentDot.setFill(Color.BLUE);
           currentDot = dot;
 
           pane.setGestureEnabled(false);
@@ -298,6 +376,7 @@ public class MapEditorController {
     node.setNodeID(node.buildID());
     currentNode = node;
     currentDot = dot;
+    MapDAO.refreshIDMoves(new Date(System.currentTimeMillis()));
     refreshPopUp();
   }
 
@@ -497,5 +576,42 @@ public class MapEditorController {
     if (nodes.size() != 2) return;
     EdgeRepairController.setNodes(allNodes.get(nodes.get(0)), allNodes.get(nodes.get(1)));
     Popup.displayPopup(Screen.EDGE_REPAIR);
+  }
+
+  public void helpButtonClicked() {
+    Popup.displayPopup(Screen.MAP_EDITOR_HELP_POP_UP);
+  }
+
+  public void drawEdges() {
+    List<String> edges = Pathfinding.getDirectPaths(currentNode.getNodeID());
+    Map<String, Node> map = DBSession.getAllNodes();
+    // aPane.getChildren().clear();
+    for (String id : edges)
+      if (currentNode.getFloor().equals(map.get(id).getFloor())) {
+        drawLineBetween(currentNode, map.get(id));
+      }
+  }
+
+  private void drawLineBetween(Node n1, Node n2) {
+    Line line = new Line(n1.getXCoord(), n1.getYCoord(), n2.getXCoord(), n2.getYCoord());
+    line.setFill(Color.BLACK);
+    line.setStrokeWidth(5);
+    aPane.getChildren().add(line);
+  }
+
+  public void handleKeyPress(KeyEvent e) {
+    if (e.getCode().equals(KeyCode.BACK_SPACE)) {
+      DBSession.deleteNode(nodeMap.get(currentDot));
+      removeNode();
+    }
+    //    else if (e.getCode().equals(KeyCode.N)) {
+    //      Node n = new Node();
+    //      n.setBuilding("Tower");
+    //      n.setFloor(currentFloor);
+    //      n.setXCoord((int) currentMouseX);
+    //      n.setYCoord((int) currentMouseY);
+    //      System.out.println(currentMouseX);
+    //      System.out.println(currentMouseY);
+    //    }
   }
 }

@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
+package edu.wpi.teamb.Controllers.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.GeneralRequest;
@@ -40,9 +40,5 @@ public class SubmittedSecurityRequestTable extends SubmittedBaseRequestTable {
           grList.add(value);
         });
     return grList;
-  }
-
-  protected List<GeneralRequest> getSecRequests() {
-    return convertObj();
   }
 }

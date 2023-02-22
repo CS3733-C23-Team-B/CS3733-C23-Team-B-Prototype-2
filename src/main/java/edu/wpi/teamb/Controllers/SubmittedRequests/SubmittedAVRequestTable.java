@@ -1,4 +1,4 @@
-package edu.wpi.teamb.Controllers.ServiceRequest.SubmittedRequests;
+package edu.wpi.teamb.Controllers.SubmittedRequests;
 
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.AudioVideoRequest;
@@ -20,8 +20,8 @@ public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
   @Override
   public void initialize() {
     super.initialize();
-    addCol(AVType, "AVType");
-    addCol(location, "location");
+    //    addCol(AVType, "AVType");
+    //    addCol(location, "location");
     setTable();
   }
 
@@ -41,9 +41,5 @@ public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
           grList.add(value);
         });
     return grList;
-  }
-
-  protected List<GeneralRequest> getAVRequests() {
-    return convertObj();
   }
 }

@@ -446,6 +446,7 @@ public class PathfindingController {
     List<Move> l = moveMap.get(node.getNodeID());
     if (l == null) l = Arrays.asList();
     for (Move move : l) {
+      if (move.getLocationName().getLocationType().equals("HALL")) continue;
       Label loc = new Label(move.getLocationName().getShortName());
       loc.setFont(new Font("Arial", 8));
       loc.setRotate(-45);

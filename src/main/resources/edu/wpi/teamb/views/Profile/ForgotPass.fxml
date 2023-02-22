@@ -18,7 +18,7 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" prefWidth="100.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="184.39999389648438" minHeight="10.0" percentHeight="18.0" prefHeight="184.39999389648438" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="400.1999969482422" minHeight="10.0" prefHeight="334.6000061035156" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
@@ -39,9 +39,9 @@
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Username:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
                            <font>
-                              <Font name="System Bold" size="36.0" />
+                              <Font size="36.0" />
                            </font>
                         </Text>
                         <MFXTextField fx:id="username" prefHeight="50.0" prefWidth="214.0">
@@ -51,25 +51,25 @@
                         </MFXTextField>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="74.0" prefWidth="608.0">
-                     <children>
-                        <MFXButton onAction="#close" prefHeight="50.0" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </MFXButton>
-                        <MFXButton fx:id="sendPassword" onAction="#sendPassword" prefHeight="50.0" style="-fx-background-color: #21357E;" text="Send Password" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </MFXButton>
-                     </children>
-                  </HBox>
                </children>
             </VBox>
+            <HBox alignment="CENTER" prefHeight="74.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <MFXButton onAction="#close" prefHeight="50.0" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton fx:id="sendPassword" onAction="#sendPassword" prefHeight="50.0" style="-fx-background-color: #21357E;" text="Send Password" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </MFXButton>
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </children>

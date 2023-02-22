@@ -34,10 +34,13 @@ public enum Screen {
   ALL_USERS("views/Profile/AllUsers.fxml"),
   LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml"),
   TEMPLATE("views/ServiceRequest/Template2.fxml"),
+  SECURITY_SERVICES("views/ServiceRequest/Security.fxml"),
   FORGOT_PASSWORD("views/Profile/ForgotPass.fxml"),
   EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml"),
   ABOUT_PAGE("views/Navigation/About.fxml"),
-  SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml");
+  SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml"),
+  MAP_EDITOR_HELP_POP_UP("views/Popups/MapEditorHelpPopUp.fxml"),
+  PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml");
 
   private final String filename;
 

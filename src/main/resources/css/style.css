@@ -44,7 +44,7 @@
 }
 
 .intersection {
-    -fx-fill: blue ;
+    -fx-fill: #21357E ;
 }
 .intersection:selected {
     -fx-fill: gold ;

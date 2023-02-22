@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="899.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.AboutPageController">
+<GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.AboutPageController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.4000244140625" minWidth="10.0" percentWidth="18.75" prefWidth="12.66663138071695" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="800.6665852864584" minWidth="10.0" percentWidth="62.5" prefWidth="800.6665852864584" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.39996337890625" minWidth="10.0" percentWidth="18.75" prefWidth="25.33341471354163" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="126.9999755859375" minHeight="0.0" percentHeight="10.2" prefHeight="0.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="471.3333333333333" minHeight="10.0" percentHeight="79.6" prefHeight="471.3333333333333" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="73.40000000000003" minHeight="0.0" percentHeight="10.2" prefHeight="0.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="126.9999755859375" minHeight="0.0" percentHeight="8.0" prefHeight="0.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="471.3333333333333" minHeight="10.0" percentHeight="84.0" prefHeight="471.3333333333333" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="73.40000000000003" minHeight="0.0" percentHeight="8.0" prefHeight="0.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <GridPane prefHeight="714.0" prefWidth="849.0" style="-fx-background-color: F2F2F2; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -35,7 +35,7 @@
          <children>
             <VBox alignment="BOTTOM_CENTER" prefHeight="623.0" prefWidth="875.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <MFXScrollPane prefHeight="619.0" prefWidth="875.0" style="-fx-border-color: #F2F2F2; -fx-background-color: #F2F2F2;">
+                  <MFXScrollPane fitToWidth="true" prefHeight="619.0" prefWidth="875.0" style="-fx-border-color: #F2F2F2; -fx-background-color: #F2F2F2;">
                      <content>
                         <VBox alignment="CENTER" prefHeight="583.0" prefWidth="871.0">
                            <children>
@@ -64,61 +64,65 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="9.0" prefWidth="875.0" text="Christina Aube - Project Manager, Front End">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="2.0" prefWidth="875.0" text="Sam Colebourn - Software Lead, Full Stack">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="0.0" prefWidth="875.0" text="Michael Gatti - Product Owner, Front End">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="0.0" prefWidth="875.0" text="Sean Lendrum - Assistant Software Lead, Full Stack">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="10.0" prefWidth="875.0" text="Luke Grady - Full Stack">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="10.0" prefWidth="875.0" text="Adrian Johnson - Front End">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="10.0" prefWidth="875.0" text="Jack Lafond - Scrum Master, Assistance Software Lead, Back End">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="17.0" prefWidth="875.0" text="Kavya Mani - Front End">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="487.0" prefHeight="15.0" prefWidth="875.0" text="Cierra O’Grady - Assistance Software Lead, Front End">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="601.0" prefHeight="6.0" prefWidth="875.0" style="-fx-border-color: transparent;" text="Jolie Walts - Document Analyst, Full Stack">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="437.0" prefHeight="101.0" prefWidth="871.0" text="Thank you to Brigham and Women’s Hospital and their representative, Andrew Shinn, for their time and input." wrapText="true">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
+                              <VBox>
+                                 <children>
+                                    <Label prefHeight="9.0" text="Christina Aube - Project Manager, Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="2.0" text="Sam Colebourn - Software Lead, Full Stack">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="0.0" text="Michael Gatti - Product Owner, Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="0.0" text="Sean Lendrum - Assistant Software Lead, Full Stack">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="10.0" text="Luke Grady - Full Stack">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="10.0" text="Adrian Johnson - Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="10.0" text="Jack Lafond - Scrum Master, Assistance Software Lead, Back End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="17.0" text="Kavya Mani - Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="15.0" text="Cierra O’Grady - Assistance Software Lead, Front End">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="6.0" style="-fx-border-color: transparent;" text="Jolie Walts - Document Analyst, Full Stack">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="BOTTOM_LEFT" prefHeight="101.0" text="Thank you to Brigham and Women’s Hospital and their representative, Andrew Shinn, for their time and input." wrapText="true">
+                                       <font>
+                                          <Font name="System Italic" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                            </children>
                         </VBox>
                      </content>

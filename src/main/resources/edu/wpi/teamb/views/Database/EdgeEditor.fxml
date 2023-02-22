@@ -15,7 +15,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="73.0" prefWidth="350.0">
                <children>
-                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="Edges" wrappingWidth="94.7109375">
+                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="Edges" textAlignment="CENTER" wrappingWidth="141.1109161376953">
                      <font>
                         <Font size="36.0" />
                      </font>

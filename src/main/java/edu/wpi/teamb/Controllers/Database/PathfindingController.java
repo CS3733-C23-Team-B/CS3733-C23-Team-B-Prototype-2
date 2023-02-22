@@ -339,7 +339,7 @@ public class PathfindingController {
     if (path == null) {
       System.out.println("PATH NOT FOUND");
       pathNotFoundTextField.setVisible(true);
-      pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #e0e0e0");
+      pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
     }
     System.out.println(path);
     startID = DBSession.getMostRecentNodeID(start);

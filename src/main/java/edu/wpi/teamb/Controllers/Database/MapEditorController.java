@@ -385,7 +385,7 @@ public class MapEditorController {
   }
 
   private void editClicked() throws IOException {
-    setActive(editNodeButton);
+    resetButton();
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.NODE_EDITOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);

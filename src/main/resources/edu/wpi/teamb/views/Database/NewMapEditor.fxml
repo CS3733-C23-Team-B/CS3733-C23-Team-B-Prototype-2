@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
@@ -33,7 +34,7 @@
             <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <VBox style="-fx-background-color: #F2F2F2;">
+                <VBox prefHeight="350.0" prefWidth="498.0" style="-fx-background-color: #F2F2F2;">
                     <children>
                         <VBox>
                             <children>
@@ -47,9 +48,9 @@
                                                 <Insets />
                                             </HBox.margin>
                                         </Label>
-                                        <MFXButton fx:id="helpButton" buttonType="RAISED" onAction="#helpButtonClicked" text="help">
+                                        <MFXButton id="helpButton" fx:id="helpButton" buttonType="RAISED" onAction="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" textFill="WHITE">
                                             <HBox.margin>
-                                                <Insets left="95.0" top="15.0" />
+                                                <Insets left="95.0" top="10.0" />
                                             </HBox.margin>
                                         </MFXButton>
                                     </children>
@@ -62,6 +63,29 @@
                                 <Insets left="40.0" />
                             </VBox.margin>
                         </VBox>
+                  <HBox spacing="20.0">
+                     <children>
+                        <MFXFilterComboBox fx:id="floorCombo" prefHeight="42.0" prefWidth="155.0" text="Lower Level 1">
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXFilterComboBox>
+                        <MFXCheckbox fx:id="showLocationsCheckBox" onAction="#showLocationsClicked" onMouseMoved="#showLocationsClicked" text="Show Locations">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </MFXCheckbox>
+                     </children>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                  </HBox>
                         <VBox fx:id="mapEditorButtons">
                             <children>
                                 <HBox prefHeight="17.0" prefWidth="458.0" spacing="20.0">
@@ -69,12 +93,12 @@
                                         <Insets top="20.0" />
                                     </VBox.margin>
                            <children>
-                              <MFXButton fx:id="newNodeButton" buttonType="RAISED" depthLevel="LEVEL3" onAction="#newNodeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea">
+                              <MFXButton fx:id="newnode" buttonType="RAISED" depthLevel="LEVEL3" onAction="#newNodeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </MFXButton>
-                              <MFXButton buttonType="RAISED" depthLevel="LEVEL3" onAction="#newEdgeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Edge" textFill="#c5d3ea">
+                              <MFXButton fx:id="newedge" buttonType="RAISED" depthLevel="LEVEL3" onAction="#newEdgeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Edge" textFill="#c5d3ea">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -83,12 +107,12 @@
                                 </HBox>
                         <HBox layoutX="10.0" layoutY="40.0" prefHeight="17.0" prefWidth="458.0" spacing="20.0">
                            <children>
-                              <MFXButton fx:id="newLocationButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" onAction="#newLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea">
+                              <MFXButton fx:id="newLocation" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" onAction="#newLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </MFXButton>
-                              <MFXButton fx:id="editLocationButton" buttonType="RAISED" depthLevel="LEVEL3" onAction="#editLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea">
+                              <MFXButton fx:id="editlocation" buttonType="RAISED" depthLevel="LEVEL3" onAction="#editLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -100,12 +124,12 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="93.0" prefHeight="17.0" prefWidth="458.0" spacing="20.0">
                            <children>
-                              <MFXButton fx:id="newMoveButton" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" onAction="#newMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Move" textFill="#c5d3ea">
+                              <MFXButton fx:id="newmove" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" onAction="#newMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Move" textFill="#c5d3ea">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </MFXButton>
-                              <MFXButton fx:id="viewMovesButton" buttonType="RAISED" depthLevel="LEVEL3" onAction="#viewMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="View Moves" textFill="#c5d3ea">
+                              <MFXButton fx:id="viewmoves" buttonType="RAISED" depthLevel="LEVEL3" onAction="#viewMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="View Moves" textFill="#c5d3ea">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -123,21 +147,6 @@
                                 <Insets left="40.0" />
                             </VBox.margin>
                         </VBox>
-                  <HBox>
-                     <children>
-                        <MFXFilterComboBox fx:id="floorCombo" prefHeight="42.0" prefWidth="155.0" text="Lower Level 1">
-                           <HBox.margin>
-                              <Insets left="125.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </MFXFilterComboBox>
-                     </children>
-                     <padding>
-                        <Insets top="15.0" />
-                     </padding>
-                  </HBox>
                     </children>
                     <GridPane.margin>
                         <Insets />
@@ -145,7 +154,7 @@
                 </VBox>
             <MFXScrollPane style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
                <content>
-                  <AnchorPane fx:id="forms" prefHeight="502.0" prefWidth="380.0" style="-fx-background-color: #F2F2F2;" />
+                  <AnchorPane fx:id="forms" prefHeight="300.0" prefWidth="380.0" style="-fx-background-color: #F2F2F2;" />
                </content>
             </MFXScrollPane>
             </children>

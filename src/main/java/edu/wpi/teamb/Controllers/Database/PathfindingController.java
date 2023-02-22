@@ -34,10 +34,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.text.Font;
@@ -216,11 +213,11 @@ public class PathfindingController {
         });
     drawLines();
     if (startDot != null) {
-      startDot.setFill(Color.BLUE);
+      startDot.setFill(Color.valueOf("#21357E"));
       startDot = null;
     }
     if (endDot != null) {
-      endDot.setFill(Color.BLUE);
+      endDot.setFill(Color.valueOf("#21357E"));
       endDot = null;
     }
     Platform.runLater(() -> pane.centreOn(p));
@@ -333,6 +330,7 @@ public class PathfindingController {
     Node endNode = nodes.get(path.get(path.size() - 1));
     if (!currentFloor.equals(startNode.getFloor())) {
       changeFloor(startNode.getFloor(), new Point2D(startNode.getXCoord(), startNode.getYCoord()));
+      pane.centreOn(new Point2D(startNode.getXCoord(), startNode.getYCoord()));
       floorMap.forEach(
           (key, value) -> {
             if (value.equals(startNode.getFloor())) floorCombo.setValue(key);
@@ -365,11 +363,11 @@ public class PathfindingController {
     pane.toFront();
 
     if (startDot != null) {
-      startDot.setFill(Color.BLUE);
+      startDot.setFill(Color.valueOf("#21357E"));
       startDot = null;
     }
     if (endDot != null) {
-      endDot.setFill(Color.BLUE);
+      endDot.setFill(Color.valueOf("#21357E"));
       endDot = null;
     }
     setNodeColors();
@@ -395,6 +393,7 @@ public class PathfindingController {
               });
         });
     nextFloor.setText("Go to next Floor");
+    nextFloor.setStyle("-fx-background-color: #21357E; -fx-text-fill: #F2F2F2");
     nextFloor.setLayoutX(startNode.getXCoord() + 20);
     nextFloor.setLayoutY(startNode.getYCoord() - 20);
     System.out.println("Go to Floor " + endNode.getFloor());
@@ -447,6 +446,7 @@ public class PathfindingController {
     List<Move> l = moveMap.get(node.getNodeID());
     if (l == null) l = Arrays.asList();
     for (Move move : l) {
+      if (move.getLocationName().getLocationType().equals("HALL")) continue;
       Label loc = new Label(move.getLocationName().getShortName());
       loc.setFont(new Font("Arial", 8));
       loc.setRotate(-45);

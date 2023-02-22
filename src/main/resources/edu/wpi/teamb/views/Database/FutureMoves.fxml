@@ -1,51 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.FutureMovesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.FutureMovesController">
    <center>
       <VBox prefHeight="528.0" prefWidth="470.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="470.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="View Moves">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
             <HBox alignment="CENTER" prefHeight="58.0" prefWidth="470.0">
                <children>
                   <MFXDatePicker fx:id="datePicker" onAction="#dateEntered" prefHeight="38.0" prefWidth="260.0" text="Select Date" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="444.0" prefWidth="326.0">
+            <HBox alignment="CENTER" prefHeight="239.0" prefWidth="380.0">
                <children>
-                  <TableView fx:id="table1" prefHeight="442.0" prefWidth="310.0">
+                  <TableView fx:id="table1" prefHeight="247.0" prefWidth="310.0">
                     <columns>
                       <TableColumn fx:id="moveDate" prefWidth="75.0" text="Move Date" />
                       <TableColumn fx:id="locationName" prefWidth="116.22219848632812" text="Location Name" />
                         <TableColumn fx:id="node" prefWidth="114.4000244140625" text="Node Id" />
                     </columns>
                   </TableView>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="470.0">
-               <children>
-                  <MFXButton fx:id="backButton" buttonType="RAISED" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="125.0" text="Back">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </MFXButton>
                </children>
             </HBox>
          </children>

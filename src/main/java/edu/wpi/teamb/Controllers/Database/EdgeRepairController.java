@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
 import javafx.fxml.FXML;
@@ -33,6 +34,7 @@ public class EdgeRepairController {
     edge.setNode1(node1);
     edge.setNode2(node2);
     DBSession.addEdge(edge);
+    Pathfinding.refreshData();
     noButtonClicked();
   }
 

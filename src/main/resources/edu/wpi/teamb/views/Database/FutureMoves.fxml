@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -37,15 +36,6 @@
                         <TableColumn fx:id="node" prefWidth="114.4000244140625" text="Node Id" />
                     </columns>
                   </TableView>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="470.0">
-               <children>
-                  <MFXButton fx:id="backButton" buttonType="RAISED" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="125.0" text="Back">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </MFXButton>
                </children>
             </HBox>
          </children>

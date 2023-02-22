@@ -164,7 +164,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton id="helpButton" fx:id="helpButton" maxHeight="-Infinity" minHeight="-Infinity" onMouseReleased="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 5;" text="Help" textFill="WHITE">
+                  <MFXButton id="helpButton" fx:id="helpButton" maxHeight="-Infinity" minHeight="-Infinity" onMouseReleased="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" text="Help" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>

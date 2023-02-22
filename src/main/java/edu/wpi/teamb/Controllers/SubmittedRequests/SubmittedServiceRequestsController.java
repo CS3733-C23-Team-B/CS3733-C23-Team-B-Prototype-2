@@ -12,6 +12,11 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Duration;
 
 public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
@@ -34,6 +40,8 @@ public class SubmittedServiceRequestsController {
   @FXML MFXComboBox requestUrgencyFilter;
   @FXML MFXCheckbox myRequestsFilter;
   @FXML ImageView helpButton;
+  @FXML Label dateLabel;
+  @FXML Label timeLabel;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
@@ -98,6 +106,24 @@ public class SubmittedServiceRequestsController {
     specificRequestInfoBox.getChildren().clear();
     RequestInformationTitle.setText("Request Info");
     specificRequestInfoBox.getChildren().add(RequestInformationTitle);
+
+    LocalDate currentDate = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
+    String formattedDate = currentDate.format(formatter);
+
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0),
+                event -> {
+                  LocalDateTime currentTime = LocalDateTime.now();
+                  DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm a");
+                  timeLabel.setText(currentTime.format(timefmt));
+                }),
+            new KeyFrame(Duration.seconds(1)));
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
+    dateLabel.setText(formattedDate);
   }
 
   public void helpButtonClicked() throws IOException {

@@ -15,8 +15,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -43,6 +48,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -85,6 +91,8 @@ public class MapEditorController {
   @FXML MFXButton newLocation;
   @FXML MFXButton newmove;
   @FXML MFXButton viewmoves;
+  @FXML Label timeLabel;
+  @FXML Label dateLabel;
 
   public void initialize() {
     if (instance == null) {
@@ -219,6 +227,24 @@ public class MapEditorController {
           }
           changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
         });
+
+    LocalDate currentDate = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
+    String formattedDate = currentDate.format(formatter);
+
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0),
+                event -> {
+                  LocalDateTime currentTime = LocalDateTime.now();
+                  DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm a");
+                  timeLabel.setText(currentTime.format(timefmt));
+                }),
+            new KeyFrame(Duration.seconds(1)));
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
+    dateLabel.setText(formattedDate);
   }
 
   private void setActive(MFXButton button) {

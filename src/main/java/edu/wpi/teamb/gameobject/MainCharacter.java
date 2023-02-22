@@ -1,7 +1,8 @@
 package edu.wpi.teamb.gameobject;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
+
+
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -10,7 +11,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import edu.wpi.teamb.util.Animation;
 import edu.wpi.teamb.util.Resource;
-public class MainCharacter {public static final int LAND_POSY = 80;
+import javafx.scene.media.AudioClip;
+
+public class MainCharacter {
+
+    public static final int LAND_POSY = 80;
     public static final float GRAVITY = 0.4f;
 
     private static final int NORMAL_RUN = 0;
@@ -50,16 +55,20 @@ public class MainCharacter {public static final int LAND_POSY = 80;
         downRunAnim.addFrame(Resource.getResouceImage("data/main-character6.png"));
         deathImage = Resource.getResouceImage("data/main-character4.png");
 
-        try {
-            jumpSound =  Applet.newAudioClip(new URL("file","","data/jump.wav"));
-            deadSound =  Applet.newAudioClip(new URL("file","","data/dead.wav"));
-            scoreUpSound =  Applet.newAudioClip(new URL("file","","data/scoreup.wav"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }public float getSpeedX() {
+      //  try {
+           // jumpSound =  newAudioClip(new URL("file","","data/jump.wav"));
+           // deadSound =  newAudioClip(new URL("file","","data/dead.wav"));
+            //scoreUpSound =  newAudioClip(new URL("file","","data/scoreup.wav"));
+        //} catch (MalformedURLException e) {
+         //   e.printStackTrace();
+        //}
+    }
+
+    public float getSpeedX() {
+
         return speedX;
-    }public void setSpeedX(int speedX) {
+    }
+    public void setSpeedX(int speedX) {
         this.speedX = speedX;
     }
 
@@ -144,10 +153,12 @@ public class MainCharacter {public static final int LAND_POSY = 80;
     }
 
     public void reset() {
+
         posY = LAND_POSY;
     }
 
     public void playDeadSound() {
+
         deadSound.play();
     }
 

@@ -29,7 +29,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -45,14 +44,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
   @FXML GridPane gridPane;
   @FXML GridPane map;
-  @FXML AnchorPane anchor;
   @FXML MFXButton editNodeButton;
   @FXML MFXButton newNodeButton;
   @FXML MFXButton viewMovesButton;
@@ -70,7 +67,6 @@ public class MapEditorController {
   private GesturePane pane;
   private AnchorPane aPane;
   private double origX, origY;
-  private double currentMouseX, currentMouseY;
   private boolean dragged;
   private boolean MOVING = false;
   private Circle edgeNode1, edgeNode2;
@@ -82,6 +78,13 @@ public class MapEditorController {
   private Map<String, ImageView> imageMap = new HashMap<>();
   private String currentFloor;
   @FXML VBox mapEditorButtons;
+
+  @FXML MFXButton newnode;
+  @FXML MFXButton newedge;
+  @FXML MFXButton editlocation;
+  @FXML MFXButton newLocation;
+  @FXML MFXButton newmove;
+  @FXML MFXButton viewmoves;
 
   public void initialize() {
     if (instance == null) {
@@ -188,6 +191,20 @@ public class MapEditorController {
           }
           changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
         });
+  }
+
+  private void setActive(MFXButton button) {
+    resetButton();
+    button.setStyle("-fx-background-color: #6D9BF8;");
+  }
+
+  private void resetButton() {
+    newnode.setStyle("-fx-background-color:  #21357E;");
+    newedge.setStyle("-fx-background-color:  #21357E;");
+    editlocation.setStyle("-fx-background-color:  #21357E;");
+    newLocation.setStyle("-fx-background-color:  #21357E;");
+    newmove.setStyle("-fx-background-color:  #21357E;");
+    viewmoves.setStyle("-fx-background-color:  #21357E;");
   }
 
   private void changeFloor(String floor, Point2D p) {
@@ -321,6 +338,7 @@ public class MapEditorController {
   }
 
   private void editClicked() throws IOException {
+    setActive(editNodeButton);
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.NODE_EDITOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
@@ -399,18 +417,6 @@ public class MapEditorController {
     refreshPopUp();
   }
 
-  private double scaleX(NodeInfo n) {
-    double padding = 2000;
-    double xScalar = (2770 - 1630) / (5000 - padding);
-    return ((n.getXCoord() - 1637) / xScalar) + (padding / 2);
-  }
-
-  private double scaleY(NodeInfo n) {
-    double padding = 1000;
-    double yScalar = (2260 - 799) / (3400 - padding);
-    return (((n.getYCoord() - 799) / yScalar) + (padding / 2));
-  }
-
   public void handleClick() {
     selectedCircle.set(null);
     clearPopUp();
@@ -420,45 +426,29 @@ public class MapEditorController {
   }
 
   public void editLocationClicked() throws IOException {
+    setActive(editlocation);
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.LOCATION_EDITOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
   }
 
-  public void addMoveClicked() throws IOException {
-    forms.getChildren().clear();
-    final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
-    final FXMLLoader loader = new FXMLLoader(res);
-    forms.getChildren().add(loader.load());
-  }
-
-  public void futureMoves() throws IOException {
-    Stage newWindow = new Stage();
-    final String filename = Screen.FUTURE_MOVES.getFilename();
-    try {
-      final var resource = Bapp.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
-      Scene scene = new Scene(loader.load(), 800, 650);
-      newWindow.setScene(scene);
-      newWindow.show();
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-    }
-  }
-
   public void home() {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void newNodeClicked() throws IOException {
+  @FXML
+  private void newNodeClicked() throws IOException {
+
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.NODE_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
+    Platform.runLater(() -> setActive(newnode));
   }
 
   public void newEdgeClicked() throws IOException {
+    setActive(newedge);
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.EDGE_CLICK_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
@@ -479,6 +469,7 @@ public class MapEditorController {
   }
 
   public void clearForm() {
+    resetButton();
     forms.getChildren().clear();
   }
 
@@ -494,6 +485,7 @@ public class MapEditorController {
   }
 
   public void editNodeClicked() throws IOException {
+    setActive(editNodeButton);
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.SIDE_NODE_EDITOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
@@ -501,6 +493,7 @@ public class MapEditorController {
   }
 
   public void newMovesClicked() throws IOException {
+    setActive(newmove);
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.MOVE_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
@@ -508,6 +501,7 @@ public class MapEditorController {
   }
 
   public void viewMovesClicked() throws IOException {
+    setActive(viewmoves);
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.FUTURE_MOVES.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
@@ -515,6 +509,7 @@ public class MapEditorController {
   }
 
   public void newLocationClicked() throws IOException {
+    setActive(newLocation);
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.LOCATION_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);

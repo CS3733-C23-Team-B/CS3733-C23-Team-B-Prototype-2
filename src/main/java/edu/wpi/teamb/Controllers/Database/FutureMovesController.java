@@ -39,10 +39,6 @@ public class FutureMovesController {
     Navigation.navigate(Screen.MOVE_CREATOR);
   }
 
-  public void backButtonClicked() {
-    Navigation.navigate(Screen.MAP_EDITOR);
-  }
-
   public void dateEntered() {
     LocalDate d = datePicker.getValue();
     ZoneId z = ZoneId.of("-05:00");

@@ -25,7 +25,7 @@ public enum Screen {
   SIGN_IN("views/Profile/SignIn.fxml"),
   SUBMITTED_SERVICE_REQUESTS("views/ServiceRequest/SubmittedServiceRequests.fxml"),
   PROFILE("views/Profile/Profile.fxml"),
-  MAINHELP("views/Navigation/MainHelpPage.fxml"),
+  MAINHELP("views/Popups/MainHelpPage.fxml"),
   FOOTER("views/Navigation/Footer.fxml"),
   SUBMISSION_SUCCESS("views/Popups/SubmissionSuccess.fxml"),
   CREDITS("views/Navigation/Credits.fxml"),

@@ -590,7 +590,6 @@ public class MapEditorController {
       if (currentNode.getFloor().equals(map.get(id).getFloor())) {
         drawLineBetween(currentNode, map.get(id));
       }
-    System.out.println("trying to draw edge");
   }
 
   private void drawLineBetween(Node n1, Node n2) {
@@ -598,7 +597,6 @@ public class MapEditorController {
     line.setFill(Color.BLACK);
     line.setStrokeWidth(5);
     aPane.getChildren().add(line);
-    System.out.println("PLACED lines: " + aPane);
   }
 
   public void handleKeyPress(KeyEvent e) {

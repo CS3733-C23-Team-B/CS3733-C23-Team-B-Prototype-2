@@ -9,6 +9,7 @@ import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -57,7 +58,9 @@ public class MapEditorController {
   @FXML MFXButton viewMovesButton;
   @FXML MFXButton editLocationButton;
   @FXML MFXButton newMoveButton;
+  @FXML MFXCheckbox showLocationsCheckBox;
   @Getter @FXML private AnchorPane forms;
+  private List<Label> locLabels = new ArrayList<>();
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
@@ -286,21 +289,34 @@ public class MapEditorController {
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 25);
     popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 35);
+
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
     List<Move> l = moveMap.get(node.getNodeID());
     if (l == null) l = Arrays.asList();
     for (Move move : l) {
-      Label loc = new Label(move.getLocationName().getLongName());
-      loc.setFont(new Font("Arial", 6));
-      //      loc.setRotate(-45);
+      Label loc = new Label(move.getLocationName().getShortName());
+      loc.setFont(new Font("Arial", 8));
       vbox.getChildren().add(loc);
+      loc.setVisible(false);
+      locLabels.add(loc);
     }
 
     HBox hbox = new HBox();
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
     aPane.getChildren().add(popPane);
+  }
+
+  public void showLocationsClicked() {
+
+    showLocationsCheckBox.setOnAction(
+        e -> {
+          boolean showLocations = showLocationsCheckBox.isSelected();
+          for (Label loc : locLabels) {
+            loc.setVisible(showLocations);
+          }
+        });
   }
 
   private void editClicked() throws IOException {

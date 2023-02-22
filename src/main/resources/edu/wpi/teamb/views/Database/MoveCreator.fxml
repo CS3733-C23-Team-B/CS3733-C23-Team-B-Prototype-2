@@ -11,14 +11,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.MoveCreatorController">
+<BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.MoveCreatorController">
    <padding>
       <Insets top="74.0" />
    </padding>
    <left>
       <AnchorPane prefHeight="451.0" prefWidth="402.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutY="-74.0" prefHeight="506.0" prefWidth="380.0">
+            <VBox layoutY="-74.0" prefHeight="379.0" prefWidth="380.0">
                <children>
                   <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="New Move" wrappingWidth="176.9706587791443">
                      <font>
@@ -35,19 +35,19 @@
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="75.0" top="10.0" />
+                              <Insets left="80.0" top="10.0" />
                            </HBox.margin>
                         </Text>
                      </children>
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="30.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <MFXFilterComboBox fx:id="nodeIdBox" prefHeight="42.0" prefWidth="200.0">
                            <HBox.margin>
-                              <Insets left="75.0" />
+                              <Insets left="80.0" />
                            </HBox.margin>
                         </MFXFilterComboBox>
                      </children>
@@ -62,19 +62,19 @@
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="75.0" top="10.0" />
+                              <Insets left="80.0" top="10.0" />
                            </HBox.margin>
                         </Text>
                      </children>
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <MFXFilterComboBox fx:id="locationsBox" prefHeight="42.0" prefWidth="200.0">
                            <HBox.margin>
-                              <Insets left="75.0" />
+                              <Insets left="80.0" />
                            </HBox.margin>
                         </MFXFilterComboBox>
                      </children>
@@ -89,19 +89,19 @@
                               <Font size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="75.0" top="10.0" />
+                              <Insets left="80.0" top="10.0" />
                            </HBox.margin>
                         </Text>
                      </children>
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <MFXDatePicker fx:id="datePicker" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0">
                            <HBox.margin>
-                              <Insets left="75.0" />
+                              <Insets left="80.0" />
                            </HBox.margin>
                         </MFXDatePicker>
                      </children>
@@ -121,7 +121,7 @@
                         </MFXButton>
                      </children>
                      <VBox.margin>
-                        <Insets top="50.0" />
+                        <Insets top="100.0" />
                      </VBox.margin>
                   </HBox>
                </children>

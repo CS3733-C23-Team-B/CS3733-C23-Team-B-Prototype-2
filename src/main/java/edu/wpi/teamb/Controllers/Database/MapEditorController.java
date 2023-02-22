@@ -11,7 +11,6 @@ import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -76,6 +75,7 @@ public class MapEditorController {
   @FXML MFXFilterComboBox<String> floorCombo;
   private Map<String, String> floorMap = new HashMap<>();
   private Map<String, ImageView> imageMap = new HashMap<>();
+  private Map<Node, AnchorPane> locationMap = new HashMap<>();
   private String currentFloor;
   @FXML VBox mapEditorButtons;
 
@@ -336,6 +336,8 @@ public class MapEditorController {
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 50);
     popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 38);
 
+    locationMap.put(node, popPane);
+
     VBox vbox = new VBox();
     popPane.getChildren().add(vbox);
     List<Move> l = moveMap.get(node.getNodeID());
@@ -414,7 +416,14 @@ public class MapEditorController {
     dot.setOnMouseReleased(
         e -> {
           pane.setGestureEnabled(true);
-          if (dragged) updateNode(dot);
+          if (dragged) {
+            updateNode(dot);
+            AnchorPane popPane = locationMap.get(nodeMap.get(dot));
+            if (popPane != null) {
+              popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 50);
+              popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 38);
+            }
+          }
           dragged = false;
         });
 

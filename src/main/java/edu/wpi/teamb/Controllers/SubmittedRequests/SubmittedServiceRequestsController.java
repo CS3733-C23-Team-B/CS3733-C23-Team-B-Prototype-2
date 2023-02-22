@@ -44,7 +44,7 @@ public class SubmittedServiceRequestsController {
   @FXML Label la;
 
   String page = "none";
-  Boolean myrequests = true;
+  Boolean myrequests = false;
   private ObservableList<RequestStatus> Status =
       FXCollections.observableArrayList(
           RequestStatus.BLANK, RequestStatus.PROCESSING, RequestStatus.DONE);
@@ -64,6 +64,7 @@ public class SubmittedServiceRequestsController {
   private Login currUser = SigninController.getInstance().currentUser;
 
   public void initialize() {
+    if (!currUser.getAdmin()) myrequests = true;
     saniTable.initialize();
     ptTable.initialize();
     comTable.initialize();
@@ -71,19 +72,16 @@ public class SubmittedServiceRequestsController {
     securityTable.initialize();
     allTable.initialize();
     makeTable("All Requests");
-    if (currUser.getAdmin()) {
-      myRequestsFilter.setOnAction(
-          e -> {
-            myrequests = myRequestsFilter.isSelected();
-            filter();
-          });
-    }
+    myRequestsFilter.setOnAction(
+        e -> {
+          myrequests = myRequestsFilter.isSelected();
+          filter();
+        });
     requestTypeFilter.setOnAction(e -> makeTable((String) requestTypeFilter.getValue()));
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
     assignedStaffFilter.setOnAction(e -> filter());
     requestUrgencyFilter.setOnAction(e -> filter());
-    myRequestsFilter.setOnAction(e -> filter());
     assignedStaffFilter.setOnAction(e -> filter());
     requestUrgencyFilter.setOnAction(e -> filter());
 
@@ -170,7 +168,8 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setValue(null);
     requestUrgencyFilter.setValue(null);
     requestTypeFilter.setValue(page);
-    myRequestsFilter.setSelected(false);
+    if (currUser.getAdmin()) myRequestsFilter.setSelected(false);
+    else myRequestsFilter.setSelected(true);
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");

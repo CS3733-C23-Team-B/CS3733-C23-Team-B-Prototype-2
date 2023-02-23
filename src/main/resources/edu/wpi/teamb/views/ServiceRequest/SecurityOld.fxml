@@ -5,8 +5,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,57 +12,46 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane onMouseMoved="#buttonControl" prefHeight="613.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.SanitationServiceController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#buttonControl" prefHeight="440.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.SecurityServiceController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.00000762939453" minWidth="10.0" prefWidth="132.00000762939453" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="685.6000137329102" minWidth="10.0" prefWidth="659.9999923706055" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="50.0" percentHeight="8.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <HBox GridPane.columnIndex="1">
+      <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
          <children>
-            <Label id="formTitle" prefHeight="35.0" prefWidth="234.0" text="Sanitation Service">
+            <Label prefHeight="30.0" prefWidth="164.0" text="Security Service">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <padding>
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <Label id="formBody" text="*Required field" textFill="RED">
+            <Label text="*Required field" textFill="RED">
                <padding>
                   <Insets left="10.0" />
                </padding>
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
             </Label>
          </children>
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
       </HBox>
-      <HBox alignment="TOP_CENTER">
+      <HBox alignment="CENTER">
+         <children>
+            <MFXButton fx:id="backButton" onMouseReleased="#backButtonClicked" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: gray; -fx-background-radius: 5;" text="Back" textFill="WHITE" />
+         </children>
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
-         <children>
-            <MFXButton id="formButton" fx:id="backButton" onMouseReleased="#backButtonClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: gray; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text=" Back" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="13.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../media/arrow.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </MFXButton>
-         </children>
       </HBox>
       <GridPane hgap="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columnConstraints>
@@ -75,7 +62,8 @@
         <rowConstraints>
           <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="105.0" minHeight="10.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="85.0" minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
@@ -84,7 +72,7 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label id="formBody" text="Urgency" />
+                        <Label text="Urgency" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
@@ -101,7 +89,7 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label id="formBody" text="Assigned Staff Member" />
+                        <Label text="Assigned Staff Member" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
@@ -115,11 +103,11 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label id="formBody" text="Type of Cleanup" />
+                        <Label text="Issue" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
-                  <MFXFilterComboBox fx:id="typeOfCleanUpBox" prefHeight="40.0" prefWidth="367.0" />
+                  <MFXFilterComboBox fx:id="issueBox" prefHeight="40.0" prefWidth="367.0" />
                </children>
                <GridPane.margin>
                   <Insets />
@@ -128,41 +116,55 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox layoutX="10.0" layoutY="78.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox layoutX="190.0" layoutY="78.0" GridPane.rowIndex="2">
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label id="formBody" text="Cleanup Location" />
+                        <Label text="Equipment Needed" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
-                  <MFXFilterComboBox fx:id="cleanUpLocationBox" prefHeight="40.0" prefWidth="367.0" />
+                  <MFXFilterComboBox fx:id="equipNeededBox" prefHeight="40.0" prefWidth="367.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox layoutX="190.0" layoutY="147.0" GridPane.rowIndex="2">
+            <VBox layoutX="10.0" layoutY="147.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label id="formBody" text="Notes" />
+                        <Label text="Number of Gaurds Required" />
+                        <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
-                  <MFXTextField fx:id="additionalNotesField" prefHeight="189.0" prefWidth="235.0" />
+                  <MFXFilterComboBox fx:id="numbReqBox" prefHeight="40.0" prefWidth="367.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+            <VBox layoutX="190.0" layoutY="147.0" GridPane.rowIndex="3">
                <children>
-                  <MFXButton id="formButton" fx:id="clearButton" onMouseReleased="#clearButtonClicked" style="-fx-background-color: #CECECE; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
+                  <HBox prefHeight="0.0" prefWidth="180.0">
+                     <children>
+                        <Label text="Notes" />
+                     </children>
+                  </HBox>
+                  <MFXTextField fx:id="additionalNotesField" prefHeight="80.0" prefWidth="250.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+               <children>
+                  <MFXButton fx:id="clearButton" onMouseReleased="#clearButtonClicked" style="-fx-background-color: #CECECE; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton id="formButton" fx:id="helpTextButton" onMouseReleased="#helpButtonClicked" style="-fx-background-color: E89F55; -fx-background-radius: 5;" text="Help" textFill="WHITE">
+                  <MFXButton id="helpButton" fx:id="helpButton" maxHeight="-Infinity" minHeight="-Infinity" onMouseReleased="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" text="Help" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -172,9 +174,9 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <MFXButton id="formButton" fx:id="submitButton" onMouseReleased="#submitButtonClicked" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Submit" textFill="WHITE" />
+                  <MFXButton fx:id="submitButton" onMouseReleased="#submitButtonClicked" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Submit" textFill="WHITE" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

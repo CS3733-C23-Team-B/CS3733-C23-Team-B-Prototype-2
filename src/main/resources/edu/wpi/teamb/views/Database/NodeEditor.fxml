@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.NodeEditorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="409.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.NodeEditorController">
    <center>
-      <VBox prefHeight="300.0" prefWidth="326.0">
+      <VBox prefHeight="413.0" prefWidth="325.0">
          <children>
             <HBox alignment="CENTER" prefHeight="58.0" prefWidth="326.0">
                <children>
@@ -49,7 +49,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField alignment="CENTER" prefHeight="26.0" prefWidth="150.0" fx:id="xField">
+                  <TextField prefHeight="26.0" prefWidth="150.0" fx:id="xField">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -89,24 +89,33 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="51.0" prefWidth="326.0">
                <children>
-                  <MFXButton onAction="#deleteClicked" style="-fx-background-color: Crimson;" text="Delete Node" textFill="WHITE">
+                  <MFXButton onAction="#deleteClicked" style="-fx-background-color: Crimson;" text="Delete" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                   </MFXButton>
-                  <MFXButton onAction="#submitClicked" style="-fx-background-color: #003DA6;" text="Submit Changes" textFill="WHITE">
+                  <MFXButton onAction="#submitClicked" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                   </MFXButton>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="45.0" prefWidth="326.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#edgesClicked" text="Edges">
+                  <Button mnemonicParsing="false" onAction="#edgesClicked" style="-fx-background-color: grey;" text="Edges" textFill="WHITE">
                      <HBox.margin>
-                        <Insets />
+                        <Insets top="10.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                   </Button>
                </children>
             </HBox>

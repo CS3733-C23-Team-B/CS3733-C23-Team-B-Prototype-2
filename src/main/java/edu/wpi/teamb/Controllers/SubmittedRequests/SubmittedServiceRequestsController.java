@@ -37,6 +37,8 @@ public class SubmittedServiceRequestsController {
   @FXML MFXComboBox requestUrgencyFilter;
   @FXML MFXCheckbox myRequestsFilter;
   @FXML ImageView helpButton;
+  @FXML Label dateLabel;
+  @FXML Label timeLabel = new Label();
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
@@ -54,7 +56,7 @@ public class SubmittedServiceRequestsController {
   @FXML Label la;
 
   String page = "none";
-  Boolean myrequests = true;
+  Boolean myrequests = false;
   private ObservableList<RequestStatus> Status =
       FXCollections.observableArrayList(
           RequestStatus.BLANK, RequestStatus.PROCESSING, RequestStatus.DONE);
@@ -74,26 +76,25 @@ public class SubmittedServiceRequestsController {
   private Login currUser = SigninController.getInstance().currentUser;
 
   public void initialize() {
+    if (!currUser.getAdmin()) myrequests = true;
     saniTable.initialize();
     ptTable.initialize();
     comTable.initialize();
     avTable.initialize();
     securityTable.initialize();
     allTable.initialize();
+    initLabels();
     makeTable("All Requests");
-    if (currUser.getAdmin()) {
-      myRequestsFilter.setOnAction(
-          e -> {
-            myrequests = myRequestsFilter.isSelected();
-            filter();
-          });
-    }
+    myRequestsFilter.setOnAction(
+        e -> {
+          myrequests = myRequestsFilter.isSelected();
+          filter();
+        });
     requestTypeFilter.setOnAction(e -> makeTable((String) requestTypeFilter.getValue()));
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
     assignedStaffFilter.setOnAction(e -> filter());
     requestUrgencyFilter.setOnAction(e -> filter());
-    myRequestsFilter.setOnAction(e -> filter());
     assignedStaffFilter.setOnAction(e -> filter());
     requestUrgencyFilter.setOnAction(e -> filter());
 
@@ -103,7 +104,7 @@ public class SubmittedServiceRequestsController {
     assignedStaffFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
     requestUrgencyFilter.setItems(urgency);
-    requestTypeFilter.setText("All Request");
+    requestTypeFilter.setText("All Requests");
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
@@ -124,7 +125,26 @@ public class SubmittedServiceRequestsController {
   public void resetRequestVboxes() {
     specificRequestInfoBox.getChildren().clear();
     generalRequestInfoVbox.getChildren().clear();
+    RequestInformationTitle.setText("Request Info");
     generalRequestInfoVbox.getChildren().add(RequestInformationTitle);
+
+    //    LocalDate currentDate = LocalDate.now();
+    //    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
+    //    String formattedDate = currentDate.format(formatter);
+    //
+    //    Timeline timeline =
+    //        new Timeline(
+    //            new KeyFrame(
+    //                Duration.seconds(0),
+    //                event -> {
+    //                  LocalDateTime currentTime = LocalDateTime.now();
+    //                  DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm a");
+    //                  timeLabel.setText(currentTime.format(timefmt));
+    //                }),
+    //            new KeyFrame(Duration.seconds(1)));
+    //    timeline.setCycleCount(Timeline.INDEFINITE);
+    //    timeline.play();
+    //    dateLabel.setText(formattedDate);
   }
 
   public void helpButtonClicked() throws IOException {
@@ -191,11 +211,15 @@ public class SubmittedServiceRequestsController {
   }
 
   public void clearFilters() {
+    assignedStaffFilter.getSelectionModel().clearSelection();
     assignedStaffFilter.setValue(null);
+    requestStatusFilter.getSelectionModel().clearSelection();
     requestStatusFilter.setValue(null);
+    requestUrgencyFilter.getSelectionModel().clearSelection();
     requestUrgencyFilter.setValue(null);
     requestTypeFilter.setValue(page);
-    myRequestsFilter.setSelected(false);
+    if (currUser.getAdmin()) myRequestsFilter.setSelected(false);
+    else myRequestsFilter.setSelected(true);
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
@@ -213,8 +237,8 @@ public class SubmittedServiceRequestsController {
       addCommonAttritbutes(r.getRequestType().toString(), r.getDate(), r.getUrgency().toString());
       if (r.getRequestType().equals(RequestType.PATIENTTRANSPOTATION)) {
         PatientTransportationRequest pt = (PatientTransportationRequest) r;
-        addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
         addAttribute("Patient ID:", pt.getPatientID());
+        addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
         addAttribute("Patient Current Location:", pt.getPatientCurrentLocation());
         addAttribute("Equipment Needed:", pt.getEquipmentNeeded());
         setFields();
@@ -225,14 +249,14 @@ public class SubmittedServiceRequestsController {
         setFields();
       } else if (r.getRequestType().equals(RequestType.COMPUTER)) {
         ComputerRequest cr = (ComputerRequest) r;
+        addAttribute("Repair Location:", cr.getRepairLocation());
         addAttribute("Type of Repair:", cr.getTypeOfRepair());
         addAttribute("Type of Device:", cr.getDevice());
-        addAttribute("Repair Location:", cr.getRepairLocation());
         setFields();
       } else if (r.getRequestType().equals(RequestType.AUDOVISUAL)) {
         AudioVideoRequest avr = (AudioVideoRequest) r;
-        addAttribute("Audio Visual Type:", avr.getAVType());
         addAttribute("Location:", avr.getLocation());
+        addAttribute("Audio Visual Type:", avr.getAVType());
         setFields();
       } else if (r.getRequestType().equals(RequestType.SECURITY)) {
         SecurityRequest secr = (SecurityRequest) r;

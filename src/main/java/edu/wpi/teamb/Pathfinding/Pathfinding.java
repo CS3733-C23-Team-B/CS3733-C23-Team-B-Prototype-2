@@ -127,7 +127,6 @@ public class Pathfinding {
     totalDist = 0;
     if (path == null) return "PATH NOT FOUND";
     for (int i = 0; i < path.size() - 1; i++) totalDist += getWeight(path.get(i), path.get(i + 1));
-    System.out.println("Total dist: " + totalDist);
 
     String retStr = "";
 

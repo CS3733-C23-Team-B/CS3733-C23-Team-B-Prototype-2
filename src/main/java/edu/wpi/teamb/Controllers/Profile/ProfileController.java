@@ -7,11 +7,9 @@ import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
@@ -19,14 +17,15 @@ public class ProfileController {
   @FXML private Text usernameText;
   @FXML private Text passwordText;
   @FXML private ToggleButton showPasswordButton;
-  @FXML private Button deleteAccountButton;
-
+  @FXML private MFXButton deleteAccountButton;
   @FXML private MFXTextField firstName;
   @FXML private MFXTextField lastName;
   @FXML private MFXTextField email;
   @FXML MFXButton save;
   @FXML Label messege;
-  @FXML AnchorPane anchor;
+  @FXML VBox vBox;
+
+  @FXML MFXButton adminButton;
   private String passwordDisplay;
   private Login user;
 
@@ -41,13 +40,9 @@ public class ProfileController {
     hidePassword();
     if (user.getUsername().equals("")) deleteAccountButton.setDisable(true);
     if (user.getAdmin() == true) {
-      MFXButton adminButton = new MFXButton();
-      adminButton.setText("View All Users");
-      adminButton.setLayoutX(25);
-      adminButton.setLayoutY(490);
-      adminButton.setTextFill(Color.BLUE);
+      adminButton.setVisible(true);
+      adminButton.setDisable(false);
       adminButton.setOnAction(e -> viewAllUsers());
-      anchor.getChildren().add(adminButton);
     }
   }
 

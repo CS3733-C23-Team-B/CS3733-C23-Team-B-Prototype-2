@@ -33,7 +33,7 @@ public class BaseRequestController {
   @FXML protected MFXTextField additionalNotesField;
   private RequestStatus request;
   @FXML protected MFXButton backButton;
-  @FXML protected MFXButton helpButton;
+  @FXML protected MFXButton helpTextButton;
   @FXML protected MFXButton clearButton;
 
   @FXML protected MFXButton submitButton;

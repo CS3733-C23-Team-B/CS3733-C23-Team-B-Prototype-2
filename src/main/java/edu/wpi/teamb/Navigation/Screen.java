@@ -24,23 +24,24 @@ public enum Screen {
   AV_SERVICES("views/ServiceRequest/AVService.fxml"),
   SIGN_IN("views/Profile/SignIn.fxml"),
   SUBMITTED_SERVICE_REQUESTS("views/ServiceRequest/SubmittedServiceRequests.fxml"),
-  PROFILE("views/Profile/Profile.fxml"),
-  MAINHELP("views/Navigation/MainHelpPage.fxml"),
+  PROFILE("views/Profile/Profile2.fxml"),
+  MAINHELP("views/Popups/MainHelpPage.fxml"),
   FOOTER("views/Navigation/Footer.fxml"),
   SUBMISSION_SUCCESS("views/Popups/SubmissionSuccess.fxml"),
-  ABOUT("views/Navigation/AboutWithAttributions.fxml"),
   CREDITS("views/Navigation/Credits.fxml"),
   SERVICE_REQUEST_SYSTEMS("views/ServiceRequest/ServiceRequestSystems.fxml"),
   CREATE_ACCOUNT("views/Profile/CreateAccount.fxml"),
-  ALL_USERS("views/Profile/AllUsers.fxml"),
+  ALL_USERS("views/Profile/AllUsers2.fxml"),
   LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml"),
   TEMPLATE("views/ServiceRequest/Template2.fxml"),
+  SECURITY_SERVICES("views/ServiceRequest/Security.fxml"),
   FORGOT_PASSWORD("views/Profile/ForgotPass.fxml"),
   EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml"),
+  ABOUT_PAGE("views/Navigation/About.fxml"),
   SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml"),
-
   MAP_EDITOR_HELP_POP_UP("views/Popups/MapEditorHelpPopUp.fxml"),
-  PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml");
+  PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml"),
+  DATABASE_CONFIRMATION("views/Database/DatabaseConfirmation.fxml");
 
   private final String filename;
 

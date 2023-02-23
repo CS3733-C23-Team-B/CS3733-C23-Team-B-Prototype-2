@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Entities.SessionGetter;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.hibernate.Session;
@@ -207,7 +208,8 @@ public class MapDAO {
     } finally {
       session.close();
       refreshNodes();
-      refreshEdges();
+      //      refreshEdges();
+      Pathfinding.refreshData();
     }
   }
 

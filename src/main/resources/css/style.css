@@ -44,7 +44,7 @@
 }
 
 .intersection {
-    -fx-fill: blue ;
+    -fx-fill: #21357E ;
 }
 .intersection:selected {
     -fx-fill: gold ;
@@ -102,4 +102,39 @@
 #landingPageButtons{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-size: 43px;
+}
+
+#helpButton{
+    -fx-background-radius: 30px;
+    -fx-background-image: url("/media/help.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 40 40;
+    -fx-background-position: top center;
+}
+
+#profileTitle {
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 36px;
+}
+
+#profileHeading{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 22px;
+}
+
+#profileButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+#profileBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+}
+
+#profileBody2{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
 }

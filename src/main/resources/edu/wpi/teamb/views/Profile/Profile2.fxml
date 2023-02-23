@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane prefHeight="820.0" prefWidth="1402.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.ProfileController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+      <ColumnConstraints hgrow="SOMETIMES" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <GridPane style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" percentHeight="17.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane prefWidth="730.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 0 0 15 15;" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="4.0" />
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="4.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="4.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="35.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="BOTTOM_LEFT" layoutX="34.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Label id="profileHeading" prefHeight="32.0" prefWidth="130.0" text="Password">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <children>
+                        <MFXButton fx:id="adminButton" disable="true" prefHeight="41.0" prefWidth="117.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="View All Users" textFill="WHITE" visible="false">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                        <MFXButton id="profileButton" fx:id="deleteAccountButton" onAction="#deleteAccount" prefHeight="42.0" prefWidth="107.0" style="-fx-background-color: E89F55; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="Delete Account" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="2">
+                     <children>
+                        <Label id="profileHeading" stylesheets="@../../../../../css/style.css" text="User Details">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <MFXScrollPane fitToHeight="true" fitToWidth="true" prefHeight="209.0" prefWidth="774.0" style="-fx-background-color: #f2f2f2;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <content>
+                        <HBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="762.0">
+                           <children>
+                              <ImageView fitHeight="137.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../media/profile.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <HBox prefHeight="311.0" prefWidth="671.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <VBox prefHeight="438.0">
+                                       <children>
+                                          <Label id="profileBody" text="First name" />
+                                          <MFXTextField fx:id="firstName" floatMode="ABOVE" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="262.0" />
+                                          <Label id="profileBody" text="Last name">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <MFXTextField fx:id="lastName" floatMode="ABOVE" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="262.0">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </MFXTextField>
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label id="profileBody" text="Email" />
+                                          <MFXTextField fx:id="email" floatMode="ABOVE" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="262.0">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </MFXTextField>
+                                          <HBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <MFXButton id="profileButton" fx:id="save" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="Save Changes" textFill="WHITE" />
+                                                <Label id="profileBody" fx:id="messege">
+                                                   <HBox.margin>
+                                                      <Insets left="30.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </content>
+                  </MFXScrollPane>
+                  <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #f2f2f2;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <content>
+                        <VBox fx:id="vbox">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text id="profileBody2" fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="250.17774963378906">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <Text id="profileBody2" fx:id="passwordText" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="250.17776489257812">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <ToggleButton id="profileBody" fx:id="showPasswordButton" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="26.0" prefWidth="57.0" stylesheets="@../../../../../css/style.css" text="show" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </MFXScrollPane>
+               </children>
+            </GridPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #21357E; -fx-background-radius: 15 15 0 0;">
+               <children>
+                  <Label id="profileTitle" stylesheets="@../../../../../css/style.css" text="Profile Info" textFill="#c5d3ea">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</GridPane>

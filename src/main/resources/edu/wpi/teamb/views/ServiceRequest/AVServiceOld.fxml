@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="536.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox onMouseMoved="#buttonControl" prefHeight="536.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.AVServiceController">
    <children>
-      <MFXButton prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #898989;" text="   Back" textFill="WHITE">
+      <MFXButton fx:id="backButton" onAction="#backButtonClicked" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #898989;" text="   Back" textFill="WHITE">
          <HBox.margin>
             <Insets top="20.0" />
          </HBox.margin>
@@ -28,18 +28,13 @@
                </image>
             </ImageView>
          </graphic></MFXButton>
-      <VBox prefHeight="536.0" prefWidth="677.0">
+      <VBox onMouseMoved="#buttonControl" prefHeight="536.0" prefWidth="677.0">
          <children>
             <HBox prefHeight="67.0" prefWidth="738.0">
                <children>
-                  <Label minHeight="45.0" minWidth="294.0" text="Request Information">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
                   <Label minHeight="45.0" minWidth="123.0" text="*Required Field" textFill="RED">
                      <HBox.margin>
-                        <Insets left="36.0" />
+                        <Insets />
                      </HBox.margin>
                      <font>
                         <Font size="18.0" />
@@ -96,7 +91,7 @@
             </HBox>
             <HBox prefHeight="0.0" prefWidth="678.0">
                <children>
-                  <Label text="Type of Cleanup">
+                  <Label text="Type of Equipment">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -106,15 +101,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text="Cleanup Location">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="265.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label layoutX="69.0" layoutY="10.0" text=" *" textFill="RED">
+                  <Label layoutX="69.0" layoutY="10.0" textFill="RED">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -122,15 +109,33 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
+                  <Label text="Location">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="245.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text=" *" textFill="RED">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="110.0" prefHeight="52.0" prefWidth="200.0">
                <children>
-                  <MFXFilterComboBox fx:id="typeOfCleanUpBox" minWidth="313.0" />
-                  <MFXFilterComboBox fx:id="cleanUpLocationBox" minWidth="313.0">
-                     <HBox.margin>
-                        <Insets left="70.0" />
-                     </HBox.margin></MFXFilterComboBox>
+                  <MFXFilterComboBox fx:id="typeOfEquipmentBox" minWidth="313.0" />
+                  <HBox prefHeight="52.0" prefWidth="200.0">
+                     <children>
+                        <MFXFilterComboBox fx:id="locationBox" minWidth="313.0">
+                           <HBox.margin>
+                              <Insets left="70.0" />
+                           </HBox.margin>
+                        </MFXFilterComboBox>
+                     </children>
+                  </HBox>
                </children>
                <VBox.margin>
                   <Insets />
@@ -146,7 +151,7 @@
                   </Label>
                </children>
             </HBox>
-            <MFXTextField fx:id="additionalNotesBox" minHeight="80.0" minWidth="313.0">
+            <MFXTextField fx:id="additionalNotesField" minHeight="80.0" minWidth="313.0" onAction="#buttonControl">
                <VBox.margin>
                   <Insets />
                </VBox.margin></MFXTextField>
@@ -154,11 +159,11 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0">
                      <children>
-                        <MFXButton prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: CECECE;" text="Clear" textFill="WHITE">
+                        <MFXButton fx:id="clearButton" onAction="#clearButtonClicked" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: CECECE;" text="Clear" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font></MFXButton>
-                        <MFXButton prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: F8C630;" text="Help" textFill="WHITE">
+                        <MFXButton id="helpButton" fx:id="helpButton" onAction="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" text="Help" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="37.0" />
                            </HBox.margin>
@@ -168,7 +173,7 @@
                         </MFXButton>
                      </children>
                   </HBox>
-                  <MFXButton prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #21357E;" text="Submit" textFill="WHITE" AnchorPane.rightAnchor="0.0">
+                  <MFXButton fx:id="submitButton" onAction="#submitButtonClicked" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #21357E;" text="Submit" textFill="WHITE" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="17.0" />
                      </font></MFXButton>

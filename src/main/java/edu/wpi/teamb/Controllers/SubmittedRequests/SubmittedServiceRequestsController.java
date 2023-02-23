@@ -17,12 +17,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -34,8 +28,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.util.Duration;
-import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
 public class SubmittedServiceRequestsController {
@@ -51,8 +43,8 @@ public class SubmittedServiceRequestsController {
   @FXML MFXComboBox requestUrgencyFilter;
   @FXML MFXCheckbox myRequestsFilter;
   @FXML ImageView helpButton;
-  @FXML Label dateLabel;
-  @FXML Label timeLabel;
+  @FXML Label dateLabel = new Label();
+  @FXML Label timeLabel = new Label();
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
@@ -129,15 +121,15 @@ public class SubmittedServiceRequestsController {
     String formattedDate = currentDate.format(formatter);
 
     Timeline timeline =
-            new Timeline(
-                    new KeyFrame(
-                            Duration.seconds(0),
-                            event -> {
-                              LocalDateTime currentTime = LocalDateTime.now();
-                              DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm a");
-                              timeLabel.setText(currentTime.format(timefmt));
-                            }),
-                    new KeyFrame(Duration.seconds(1)));
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0),
+                event -> {
+                  LocalDateTime currentTime = LocalDateTime.now();
+                  DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm a");
+                  timeLabel.setText(currentTime.format(timefmt));
+                }),
+            new KeyFrame(Duration.seconds(1)));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
     dateLabel.setText(formattedDate);
@@ -159,9 +151,6 @@ public class SubmittedServiceRequestsController {
     generalRequestInfoVbox.getChildren().clear();
     RequestInformationTitle.setText("Request Info");
     generalRequestInfoVbox.getChildren().add(RequestInformationTitle);
-
-    specificRequestInfoBox.getChildren().add(RequestInformationTitle);
-
   }
 
   public void helpButtonClicked() throws IOException {

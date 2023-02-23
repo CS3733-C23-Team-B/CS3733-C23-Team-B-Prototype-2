@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <GridPane style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SubmittedRequests.SubmittedServiceRequestsController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="347.9999755859375" />
@@ -79,7 +80,7 @@
          <content>
             <VBox fx:id="filterVbox" alignment="TOP_CENTER" prefWidth="343.0" style="-fx-background-color: #E0E0E0;">
                <children>
-                  <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
+                  <MFXFilterComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
                   <MFXComboBox fx:id="requestUrgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0">
                      <VBox.margin>
                         <Insets bottom="30.0" top="15.0" />
@@ -90,11 +91,11 @@
                         <Insets bottom="30.0" />
                      </VBox.margin>
                   </MFXComboBox>
-                  <MFXComboBox fx:id="assignedStaffFilter" floatingText="Assigned Staff" layoutX="50.0" layoutY="340.0" prefHeight="40.0" prefWidth="219.0">
+                  <MFXFilterComboBox fx:id="assignedStaffFilter" floatingText="Assigned Staff" layoutX="50.0" layoutY="340.0" prefHeight="40.0" prefWidth="219.0">
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>
-                  </MFXComboBox>
+                  </MFXFilterComboBox>
                   <MFXComboBox fx:id="requestReporterFilter" floatingText="Request Reporter" layoutX="50.0" layoutY="411.0" prefHeight="40.0" prefWidth="219.0">
                      <VBox.margin>
                         <Insets bottom="30.0" />

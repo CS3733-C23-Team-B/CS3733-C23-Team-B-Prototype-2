@@ -11,6 +11,7 @@ import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -38,8 +39,8 @@ public class SubmittedServiceRequestsController {
   @FXML VBox filterVbox;
   @FXML MFXButton clearFiltersButton;
   @FXML MFXComboBox<RequestStatus> requestStatusFilter;
-  @FXML MFXComboBox<String> assignedStaffFilter;
-  @FXML MFXComboBox<RequestType> requestTypeFilter;
+  @FXML MFXFilterComboBox<String> assignedStaffFilter;
+  @FXML MFXFilterComboBox<RequestType> requestTypeFilter;
   @FXML MFXComboBox<Urgency> requestUrgencyFilter;
   @FXML MFXCheckbox myRequestsFilter;
   @FXML ImageView helpButton;

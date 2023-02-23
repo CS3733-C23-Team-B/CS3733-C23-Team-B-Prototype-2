@@ -26,7 +26,7 @@ public class SubmittedFacilitiesRequestTable extends SubmittedBaseRequestTable {
 
   private List<GeneralRequest> convertObj() {
     List<GeneralRequest> grList = new ArrayList<>();
-//    change this once i have the query
+    //    change this once i have the query
     List<SecurityRequest> objectList = DBSession.getAllSecRequests();
     objectList.forEach(
         (value) -> {

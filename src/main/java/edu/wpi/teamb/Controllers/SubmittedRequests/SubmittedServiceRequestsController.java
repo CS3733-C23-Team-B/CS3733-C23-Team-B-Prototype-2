@@ -37,10 +37,10 @@ public class SubmittedServiceRequestsController {
   @FXML VBox generalRequestInfoVbox;
   @FXML VBox filterVbox;
   @FXML MFXButton clearFiltersButton;
-  @FXML MFXComboBox requestStatusFilter;
-  @FXML MFXComboBox assignedStaffFilter;
-  @FXML MFXComboBox requestTypeFilter;
-  @FXML MFXComboBox requestUrgencyFilter;
+  @FXML MFXComboBox<RequestStatus> requestStatusFilter;
+  @FXML MFXComboBox<String> assignedStaffFilter;
+  @FXML MFXComboBox<RequestType> requestTypeFilter;
+  @FXML MFXComboBox<Urgency> requestUrgencyFilter;
   @FXML MFXCheckbox myRequestsFilter;
   @FXML ImageView helpButton;
   @FXML Label dateLabel = new Label();
@@ -216,25 +216,25 @@ public class SubmittedServiceRequestsController {
               myrequests);
     } else if (page.equals(RequestType.MEDICINE.toString())) {
       table =
-              medicineTable.getTable(
-                      (RequestStatus) requestStatusFilter.getValue(),
-                      (String) assignedStaffFilter.getValue(),
-                      (Urgency) requestUrgencyFilter.getValue(),
-                      myrequests);
+          medicineTable.getTable(
+              (RequestStatus) requestStatusFilter.getValue(),
+              (String) assignedStaffFilter.getValue(),
+              (Urgency) requestUrgencyFilter.getValue(),
+              myrequests);
     } else if (page.equals(RequestType.MEDICALEQUIPMENT.toString())) {
       table =
-              equipTable.getTable(
-                      (RequestStatus) requestStatusFilter.getValue(),
-                      (String) assignedStaffFilter.getValue(),
-                      (Urgency) requestUrgencyFilter.getValue(),
-                      myrequests);
+          equipTable.getTable(
+              (RequestStatus) requestStatusFilter.getValue(),
+              (String) assignedStaffFilter.getValue(),
+              (Urgency) requestUrgencyFilter.getValue(),
+              myrequests);
     } else if (page.equals(RequestType.FACILITIES.toString())) {
       table =
-              facTable.getTable(
-                      (RequestStatus) requestStatusFilter.getValue(),
-                      (String) assignedStaffFilter.getValue(),
-                      (Urgency) requestUrgencyFilter.getValue(),
-                      myrequests);
+          facTable.getTable(
+              (RequestStatus) requestStatusFilter.getValue(),
+              (String) assignedStaffFilter.getValue(),
+              (Urgency) requestUrgencyFilter.getValue(),
+              myrequests);
     }
     TableView finalTable = table;
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
@@ -254,7 +254,7 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setValue(null);
     requestUrgencyFilter.getSelectionModel().clearSelection();
     requestUrgencyFilter.setValue(null);
-    requestTypeFilter.setValue(page);
+    requestTypeFilter.setValue(cur);
     if (currUser.getAdmin()) myRequestsFilter.setSelected(false);
     else myRequestsFilter.setSelected(true);
     requestStatusFilter.setText("--Select--");

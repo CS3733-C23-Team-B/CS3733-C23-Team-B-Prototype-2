@@ -5,10 +5,9 @@ import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Database.Requests.SecurityRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
-import javafx.scene.control.TableView;
-
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.TableView;
 
 public class SubmittedMedicineRequestTable extends SubmittedBaseRequestTable {
 
@@ -27,7 +26,7 @@ public class SubmittedMedicineRequestTable extends SubmittedBaseRequestTable {
 
   private List<GeneralRequest> convertObj() {
     List<GeneralRequest> grList = new ArrayList<>();
-//    change this once i have the query
+    //    change this once i have the query
     List<SecurityRequest> objectList = DBSession.getAllSecRequests();
     objectList.forEach(
         (value) -> {

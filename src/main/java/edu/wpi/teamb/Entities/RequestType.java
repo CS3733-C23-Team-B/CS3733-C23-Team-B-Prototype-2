@@ -11,7 +11,6 @@ public enum RequestType {
   FACILITIES("Facilities Maintenance"),
   AUDOVISUAL("Audio and Visual");
 
-
   private String str;
 
   RequestType(String str) {

@@ -49,9 +49,11 @@ public class SubmittedServiceRequestsController {
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
   SubmittedAVRequestTable avTable = new SubmittedAVRequestTable();
-  SubmittedSecurityRequestTable securityTable = new SubmittedSecurityRequestTable();
+  SubmittedFacilitiesRequestTable securityTable = new SubmittedFacilitiesRequestTable();
   SubmittedGeneralRequestTable allTable = new SubmittedGeneralRequestTable();
-
+  SubmittedMedicineRequestTable medicineTable = new SubmittedMedicineRequestTable();
+  SubmittedMedicalEquipmentRequestTable equipTable = new SubmittedMedicalEquipmentRequestTable();
+  SubmittedFacilitiesRequestTable facTable = new SubmittedFacilitiesRequestTable();
   List<String> titles = new ArrayList<>();
   List<String> data = new ArrayList<>();
   @FXML Label field1label, field2label, field3label, field4label;
@@ -62,6 +64,7 @@ public class SubmittedServiceRequestsController {
   @FXML Label la;
 
   String page = "none";
+  RequestType cur;
   Boolean myrequests = false;
   private ObservableList<RequestStatus> Status =
       FXCollections.observableArrayList(
@@ -69,14 +72,17 @@ public class SubmittedServiceRequestsController {
   protected ObservableList<Urgency> urgency =
       FXCollections.observableArrayList(
           Urgency.LOW, Urgency.MODERATE, Urgency.HIGH, Urgency.REQUIRESIMMEADIATEATTENTION);
-  private ObservableList<String> requestType =
+  private ObservableList<RequestType> requestType =
       FXCollections.observableArrayList(
-          "All Requests",
-          "Sanitation",
-          "Internal Patient Transportation",
-          "Audio and Visual",
-          "Security",
-          "Computer");
+          RequestType.ALLREQUESTS,
+          RequestType.AUDOVISUAL,
+          RequestType.COMPUTER,
+          RequestType.FACILITIES,
+          RequestType.PATIENTTRANSPOTATION,
+          RequestType.MEDICALEQUIPMENT,
+          RequestType.MEDICINE,
+          RequestType.SANITATION,
+          RequestType.SECURITY);
   private ObservableList<String> staff = DBSession.getStaff();
 
   private Login currUser = SigninController.getInstance().currentUser;
@@ -89,14 +95,17 @@ public class SubmittedServiceRequestsController {
     avTable.initialize();
     securityTable.initialize();
     allTable.initialize();
+    medicineTable.initialize();
+    equipTable.initialize();
+    facTable.initialize();
     initLabels();
-    makeTable("All Requests");
+    makeTable(RequestType.ALLREQUESTS);
     myRequestsFilter.setOnAction(
         e -> {
           myrequests = myRequestsFilter.isSelected();
           filter();
         });
-    requestTypeFilter.setOnAction(e -> makeTable((String) requestTypeFilter.getValue()));
+    requestTypeFilter.setOnAction(e -> makeTable((RequestType) requestTypeFilter.getValue()));
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
     assignedStaffFilter.setOnAction(e -> filter());
@@ -157,57 +166,79 @@ public class SubmittedServiceRequestsController {
     Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
   }
 
-  private void makeTable(String name) {
-    page = name;
+  private void makeTable(RequestType name) {
+    page = name.toString();
+    this.cur = name;
     TableView table = new TableView<>();
 
     mainVbox.getChildren().clear();
-    if (page.equals("Sanitation")) {
+    if (page.equals(RequestType.SANITATION.toString())) {
       table =
           saniTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("Internal Patient Transportation")) {
+    } else if (page.equals(RequestType.PATIENTTRANSPOTATION.toString())) {
       table =
           ptTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("Computer")) {
+    } else if (page.equals(RequestType.COMPUTER.toString())) {
       table =
           comTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("Audio and Visual")) {
+    } else if (page.equals(RequestType.AUDOVISUAL.toString())) {
       table =
           avTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("Security")) {
+    } else if (page.equals(RequestType.SECURITY.toString())) {
       table =
           securityTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("All Requests")) {
+    } else if (page.equals(RequestType.ALLREQUESTS.toString())) {
       table =
           allTable.getTable(
               (RequestStatus) requestStatusFilter.getValue(),
               (String) assignedStaffFilter.getValue(),
               (Urgency) requestUrgencyFilter.getValue(),
               myrequests);
+    } else if (page.equals(RequestType.MEDICINE.toString())) {
+      table =
+              medicineTable.getTable(
+                      (RequestStatus) requestStatusFilter.getValue(),
+                      (String) assignedStaffFilter.getValue(),
+                      (Urgency) requestUrgencyFilter.getValue(),
+                      myrequests);
+    } else if (page.equals(RequestType.MEDICALEQUIPMENT.toString())) {
+      table =
+              equipTable.getTable(
+                      (RequestStatus) requestStatusFilter.getValue(),
+                      (String) assignedStaffFilter.getValue(),
+                      (Urgency) requestUrgencyFilter.getValue(),
+                      myrequests);
+    } else if (page.equals(RequestType.FACILITIES.toString())) {
+      table =
+              facTable.getTable(
+                      (RequestStatus) requestStatusFilter.getValue(),
+                      (String) assignedStaffFilter.getValue(),
+                      (Urgency) requestUrgencyFilter.getValue(),
+                      myrequests);
     }
     TableView finalTable = table;
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
-    setLabel(name);
+    setLabel(page);
     mainVbox.getChildren().add(table);
   }
 
@@ -270,6 +301,22 @@ public class SubmittedServiceRequestsController {
         addAttribute("Equipment Needed:", secr.getEquipmentNeeded());
         addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
         setFields();
+      } else if (r.getRequestType().equals(RequestType.MEDICINE)) {
+        MedicineDeliveryRequest medr = (MedicineDeliveryRequest) r;
+        addAttribute("Location:", medr.getLocation());
+        addAttribute("Type of Medicine:", medr.getMedicineType());
+        addAttribute("Dosage:", medr.getDoasage());
+        addAttribute("Patient ID:", medr.getPatientID());
+        setFields();
+      } else if (r.getRequestType().equals(RequestType.MEDICALEQUIPMENT)) {
+        MedicalEquipmentDeliveryRequest equipr = (MedicalEquipmentDeliveryRequest) r;
+        addAttribute("Location:", equipr.getLocation());
+        addAttribute("Type of Equipment:", equipr.getEquipmentType());
+        setFields();
+      } else if (r.getRequestType().equals(RequestType.FACILITIES)) {
+        FacilitiesRequest fr = (FacilitiesRequest) r;
+        addAttribute("Location:", fr.getLocation());
+        addAttribute("Type of Maintenance", fr.getMaintenanceType());
       }
     } else {
 
@@ -318,6 +365,6 @@ public class SubmittedServiceRequestsController {
   }
 
   public void filter() {
-    makeTable(page);
+    makeTable(cur);
   }
 }

@@ -5,23 +5,16 @@ import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Database.Requests.SecurityRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.scene.control.TableView;
 
-public class SubmittedSecurityRequestTable extends SubmittedBaseRequestTable {
+import java.util.ArrayList;
+import java.util.List;
 
-  //  add the right tablecols here for this request
-  //  @FXML private TableColumn device = new TableColumn<>();
-  //  @FXML private TableColumn typeOfRepair = new TableColumn<>();
-  //  @FXML private TableColumn repairLocation = new TableColumn();
+public class SubmittedMedicineRequestTable extends SubmittedBaseRequestTable {
 
   @Override
   public void initialize() {
     super.initialize();
-    //    addCol(device, "device");
-    //    addCol(typeOfRepair, "typeOfRepair");
-    //    addCol(repairLocation, "repairLocation");
     setTable();
   }
 
@@ -34,6 +27,7 @@ public class SubmittedSecurityRequestTable extends SubmittedBaseRequestTable {
 
   private List<GeneralRequest> convertObj() {
     List<GeneralRequest> grList = new ArrayList<>();
+//    change this once i have the query
     List<SecurityRequest> objectList = DBSession.getAllSecRequests();
     objectList.forEach(
         (value) -> {

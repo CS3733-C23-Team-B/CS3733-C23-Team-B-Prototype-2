@@ -31,7 +31,7 @@ public enum Screen {
   CREDITS("views/Navigation/Credits.fxml"),
   SERVICE_REQUEST_SYSTEMS("views/ServiceRequest/ServiceRequestSystems.fxml"),
   CREATE_ACCOUNT("views/Profile/CreateAccount.fxml"),
-  ALL_USERS("views/Profile/AllUsers.fxml"),
+  ALL_USERS("views/Profile/AllUsers2.fxml"),
   LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml"),
   TEMPLATE("views/ServiceRequest/Template2.fxml"),
   SECURITY_SERVICES("views/ServiceRequest/Security.fxml"),

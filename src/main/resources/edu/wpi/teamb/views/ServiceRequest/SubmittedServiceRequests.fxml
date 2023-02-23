@@ -28,8 +28,72 @@
    <children>
       <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="1056.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <VBox fx:id="specificRequestInfoBox" prefHeight="650.0" prefWidth="334.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Label fx:id="UrgencyLabel" text="Urgency:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="urgencyText" text="Urgency Text">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="field1label" text="Field 1 Label:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="field1text" text="Field 1 Text">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="field2label" text="Field 2 Label:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="field2text" text="Field 2 Text">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="field3label" text="Field 3 Label:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="field3text" text="Field 3 Text">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="field4label" text="Field 4 Label:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="field4text" text="Field 4 Text">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
          <padding>
-            <Insets left="40.0" />
+            <Insets left="30.0" top="15.0" />
          </padding>
       </VBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -72,21 +136,33 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-      <VBox fx:id="mainVbox1" layoutX="353.0" layoutY="124.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2">
+      <VBox fx:id="generalRequestInfoVbox" layoutX="353.0" layoutY="124.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2">
          <children>
-            <HBox prefHeight="52.0" prefWidth="300.0">
-               <children>
-                  <Label fx:id="RequestInformationTitle" alignment="TOP_LEFT" text="Request Info">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
+            <Label fx:id="RequestInformationTitle" alignment="TOP_LEFT" text="Request Info">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="requestTypeText" text="Request Type">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateText" text="Request Date">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
       </VBox>
       <VBox fx:id="mainVbox11" layoutX="10.0" layoutY="10.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;">
          <GridPane.margin>

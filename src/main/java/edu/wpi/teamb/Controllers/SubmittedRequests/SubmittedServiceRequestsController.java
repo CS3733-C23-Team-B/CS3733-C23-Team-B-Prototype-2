@@ -20,6 +20,11 @@ import java.util.List;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,6 +34,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
+import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
 public class SubmittedServiceRequestsController {
@@ -45,7 +52,7 @@ public class SubmittedServiceRequestsController {
   @FXML MFXCheckbox myRequestsFilter;
   @FXML ImageView helpButton;
   @FXML Label dateLabel;
-  @FXML Label timeLabel = new Label();
+  @FXML Label timeLabel;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
@@ -152,6 +159,8 @@ public class SubmittedServiceRequestsController {
     generalRequestInfoVbox.getChildren().clear();
     RequestInformationTitle.setText("Request Info");
     generalRequestInfoVbox.getChildren().add(RequestInformationTitle);
+
+    specificRequestInfoBox.getChildren().add(RequestInformationTitle);
 
   }
 

@@ -12,8 +12,14 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,6 +29,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
@@ -109,6 +116,24 @@ public class SubmittedServiceRequestsController {
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
     resetRequestVboxes();
+
+    LocalDate currentDate = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
+    String formattedDate = currentDate.format(formatter);
+
+    Timeline timeline =
+            new Timeline(
+                    new KeyFrame(
+                            Duration.seconds(0),
+                            event -> {
+                              LocalDateTime currentTime = LocalDateTime.now();
+                              DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm a");
+                              timeLabel.setText(currentTime.format(timefmt));
+                            }),
+                    new KeyFrame(Duration.seconds(1)));
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
+    dateLabel.setText(formattedDate);
   }
 
   public void initLabels() {
@@ -128,23 +153,6 @@ public class SubmittedServiceRequestsController {
     RequestInformationTitle.setText("Request Info");
     generalRequestInfoVbox.getChildren().add(RequestInformationTitle);
 
-    //    LocalDate currentDate = LocalDate.now();
-    //    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
-    //    String formattedDate = currentDate.format(formatter);
-    //
-    //    Timeline timeline =
-    //        new Timeline(
-    //            new KeyFrame(
-    //                Duration.seconds(0),
-    //                event -> {
-    //                  LocalDateTime currentTime = LocalDateTime.now();
-    //                  DateTimeFormatter timefmt = DateTimeFormatter.ofPattern("h:mm a");
-    //                  timeLabel.setText(currentTime.format(timefmt));
-    //                }),
-    //            new KeyFrame(Duration.seconds(1)));
-    //    timeline.setCycleCount(Timeline.INDEFINITE);
-    //    timeline.play();
-    //    dateLabel.setText(formattedDate);
   }
 
   public void helpButtonClicked() throws IOException {

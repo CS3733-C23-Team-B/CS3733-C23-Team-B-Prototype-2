@@ -15,87 +15,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="650.0" prefWidth="1431.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SubmittedRequests.SubmittedServiceRequestsController">
+<GridPane style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SubmittedRequests.SubmittedServiceRequestsController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="347.9999755859375" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="758.4000244140626" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="337.8" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints maxHeight="371.0000366210937" minHeight="10.0" prefHeight="113.40002059936523" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" prefHeight="535.7999794006348" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="371.0000366210937" minHeight="10.0" prefHeight="130.39999694824218" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" prefHeight="520.0000030517579" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="1056.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <VBox fx:id="specificRequestInfoBox" prefHeight="650.0" prefWidth="334.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <children>
-            <Label fx:id="UrgencyLabel" text="Urgency:">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="urgencyText" text="Urgency Text">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="field1label" text="Field 1 Label:">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="field1text" text="Field 1 Text">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="field2label" text="Field 2 Label:">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="field2text" text="Field 2 Text">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="field3label" text="Field 3 Label:">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="field3text" text="Field 3 Text">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="field4label" text="Field 4 Label:">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="field4text" text="Field 4 Text">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-         </children>
-         <padding>
-            <Insets left="30.0" top="15.0" />
-         </padding>
-      </VBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
          <children>
             <GridPane prefHeight="93.0" prefWidth="748.0">
@@ -136,7 +67,50 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-      <VBox fx:id="generalRequestInfoVbox" layoutX="353.0" layoutY="124.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2">
+      <VBox fx:id="mainVbox11" layoutX="10.0" layoutY="10.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </VBox>
+      <MFXScrollPane fitToWidth="true" style="-fx-background-color: #E0E0E0;" GridPane.rowIndex="1">
+         <content>
+            <VBox fx:id="filterVbox" alignment="TOP_CENTER" prefWidth="343.0" style="-fx-background-color: #E0E0E0;">
+               <children>
+                  <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
+                  <MFXComboBox fx:id="requestUrgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0">
+                     <VBox.margin>
+                        <Insets bottom="30.0" top="15.0" />
+                     </VBox.margin>
+                  </MFXComboBox>
+                  <MFXComboBox fx:id="requestStatusFilter" floatingText="Request Status" layoutX="50.0" layoutY="62.0" prefHeight="40.0" prefWidth="219.0">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
+                  </MFXComboBox>
+                  <MFXComboBox fx:id="assignedStaffFilter" floatingText="Assigned Staff" layoutX="50.0" layoutY="340.0" prefHeight="40.0" prefWidth="219.0">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
+                  </MFXComboBox>
+                  <MFXComboBox fx:id="requestReporterFilter" floatingText="Request Reporter" layoutX="50.0" layoutY="411.0" prefHeight="40.0" prefWidth="219.0">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
+                  </MFXComboBox>
+                  <MFXCheckbox fx:id="myRequestsFilter" text="Display My Requests" />
+                  <MFXButton fx:id="clearFiltersButton" alignment="BOTTOM_LEFT" onAction="#clearFilters" prefHeight="30.0" prefWidth="82.0" text="Clear Filters">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </MFXButton>
+               </children>
+            </VBox>
+         </content>
+      </MFXScrollPane>
+      <VBox fx:id="generalRequestInfoVbox" layoutX="353.0" layoutY="124.0" minHeight="10.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2">
          <children>
             <Label fx:id="RequestInformationTitle" alignment="TOP_LEFT" text="Request Info">
                <font>
@@ -164,42 +138,76 @@
             <Insets />
          </GridPane.margin>
       </VBox>
-      <VBox fx:id="mainVbox11" layoutX="10.0" layoutY="10.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </VBox>
-      <MFXScrollPane fitToWidth="true" style="-fx-background-color: #E0E0E0;" GridPane.rowIndex="1">
+      <MFXScrollPane fitToWidth="true" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <content>
-            <VBox fx:id="filterVbox" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="343.0" style="-fx-background-color: #E0E0E0;">
+            <VBox fx:id="specificRequestInfoBox" style="-fx-background-color: #E0E0E0;">
                <children>
-                  <MFXComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
-                  <MFXComboBox fx:id="requestUrgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0">
+                  <Label fx:id="UrgencyLabel" text="Urgency:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="urgencyText" text="Urgency Text">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                      <VBox.margin>
-                        <Insets bottom="30.0" top="15.0" />
+                        <Insets bottom="20.0" />
                      </VBox.margin>
-                  </MFXComboBox>
-                  <MFXComboBox fx:id="requestStatusFilter" floatingText="Request Status" layoutX="50.0" layoutY="62.0" prefHeight="40.0" prefWidth="219.0">
+                  </Label>
+                  <Label fx:id="field1label" text="Field 1 Label:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="field1text" text="Field 1 Text">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                      <VBox.margin>
-                        <Insets bottom="30.0" />
+                        <Insets bottom="20.0" />
                      </VBox.margin>
-                  </MFXComboBox>
-                  <MFXComboBox fx:id="assignedStaffFilter" floatingText="Assigned Staff" layoutX="50.0" layoutY="340.0" prefHeight="40.0" prefWidth="219.0">
+                  </Label>
+                  <Label fx:id="field2label" text="Field 2 Label:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="field2text" text="Field 2 Text">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                      <VBox.margin>
-                        <Insets bottom="30.0" />
+                        <Insets bottom="20.0" />
                      </VBox.margin>
-                  </MFXComboBox>
-                  <MFXComboBox fx:id="requestReporterFilter" floatingText="Request Reporter" layoutX="50.0" layoutY="411.0" prefHeight="40.0" prefWidth="219.0">
+                  </Label>
+                  <Label fx:id="field3label" text="Field 3 Label:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="field3text" text="Field 3 Text">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                      <VBox.margin>
-                        <Insets bottom="30.0" />
+                        <Insets bottom="20.0" />
                      </VBox.margin>
-                  </MFXComboBox>
-                  <MFXCheckbox fx:id="myRequestsFilter" text="Display My Requests" />
-                  <MFXButton fx:id="clearFiltersButton" alignment="BOTTOM_LEFT" onAction="#clearFilters" prefHeight="30.0" prefWidth="82.0" text="Clear Filters" />
+                  </Label>
+                  <Label fx:id="field4label" text="Field 4 Label:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="field4text" text="Field 4 Text">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
                </children>
+               <padding>
+                  <Insets left="30.0" top="5.0" />
+               </padding>
             </VBox>
          </content>
       </MFXScrollPane>

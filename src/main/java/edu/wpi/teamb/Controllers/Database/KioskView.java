@@ -1,75 +1,58 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.SearchType;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import net.kurobako.gesturefx.GesturePane;
 
 public class KioskView {
 
   private GridPane centerPane = new GridPane();
+  private AnchorPane aPane = new AnchorPane();
+  private GesturePane pane;
   @FXML GridPane center;
+  private Map<String, String> floorMap = new HashMap<>();
+  private Map<String, ImageView> imageMap = new HashMap<>();
+  private Map<String, SearchType> searchTypeMap = new HashMap<>();
+  private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
 
   public void initialize() {
-    popup();
-  }
+    floorMap.put("Lower Level 2", "L2");
+    floorMap.put("Lower Level 1", "L1");
+    floorMap.put("Ground Floor", "G");
+    floorMap.put("First Floor", "1");
+    floorMap.put("Second Floor", "2");
+    floorMap.put("Third Floor", "3");
 
-  private void popup() {
-    center.add(centerPane, 0, 0);
-    locationPopup();
-    buttonsPopup();
-  }
+    imageMap.put("L2", Bapp.lowerlevel2);
+    imageMap.put("L1", Bapp.lowerlevel);
+    imageMap.put("G", Bapp.groundfloor);
+    imageMap.put("1", Bapp.firstfloor);
+    imageMap.put("2", Bapp.secondfloor);
+    imageMap.put("3", Bapp.thirdfloor);
 
-  private void locationPopup() {
-    VBox vBox = new VBox();
-
-    MFXButton message = new MFXButton("Upcoming Location Names");
-
-    centerPane.addRow(1, message);
-  }
-
-  private void buttonsPopup() {
-    VBox vBox = new VBox();
-    HBox hBox = new HBox();
-
-    MFXButton message = new MFXButton("Message Goes Here");
-
-    MFXButton b = new MFXButton("sign in button");
-    b.setOnAction(
-        e -> {
-          signIn();
-        });
-
-    MFXButton m = new MFXButton("Open Map");
-    m.setOnAction(
-        e -> {
-          try {
-            openMap();
-          } catch (IOException ex) {
-            throw new RuntimeException(ex);
-          }
-        });
-
-    hBox.getChildren().add(b);
-    hBox.getChildren().add(m);
-    hBox.setPrefWidth(100);
-    hBox.setSpacing(20);
-    vBox.getChildren().add(message);
-
-    vBox.getChildren().add(hBox);
-    b.setStyle("-fx-background-color: blue");
-    m.setStyle("-fx-background-color: green");
-
-    centerPane.addRow(1, vBox);
+    pane = new GesturePane();
+    pane.setPrefHeight(714);
+    pane.setPrefWidth(1168);
+    pane.setContent(aPane);
+    pane.zoomTo(-5000, -3000, Point2D.ZERO);
+    center.getChildren().add(pane);
+    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
   }
 
   private void openMap() throws IOException {

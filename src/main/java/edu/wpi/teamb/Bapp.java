@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class Bapp extends Application {
   public static ImageView firstfloor;
   public static ImageView secondfloor;
   public static ImageView thirdfloor;
+  public static final Color blue = Color.valueOf("#21357E");
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static StackPane stackPane;
   @Setter @Getter private static BorderPane rootPane;

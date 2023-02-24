@@ -64,6 +64,7 @@ public class MapEditorController {
   AnchorPane currentPopUp;
   private static Node currentNode;
   private static Circle currentDot;
+  private static List<Circle> currentDots;
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane;
@@ -427,7 +428,10 @@ public class MapEditorController {
     if (currentPopUp != null) {
       aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
-      if (currentDot != null) currentDot.setFill(Color.valueOf("#21357E"));
+      if (currentDot != null) currentDot.setFill(Bapp.blue);
+      for (Circle dot : currentDots)
+        if (dot != null)
+          dot.setFill(Bapp.blue);
       currentNode = null;
       currentDot = null;
       removeEdges();
@@ -451,7 +455,7 @@ public class MapEditorController {
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
-          if (currentDot != null) currentDot.setFill(Color.valueOf("#21357E"));
+          if (currentDot != null) currentDot.setFill(Bapp.blue);
           currentDot = dot;
 
           pane.setGestureEnabled(false);
@@ -543,11 +547,11 @@ public class MapEditorController {
 
   public void cancelClickEdge() {
     if (edgeNode1 != null) {
-      edgeNode1.setFill(Color.valueOf("#21357E"));
+      edgeNode1.setFill(Bapp.blue);
       edgeNode1 = null;
     }
     if (edgeNode2 != null) {
-      edgeNode2.setFill(Color.valueOf("#21357E"));
+      edgeNode2.setFill(Bapp.blue);
       edgeNode2 = null;
     }
     clearForm();

@@ -26,7 +26,6 @@ import net.kurobako.gesturefx.GesturePane;
 
 public class KioskViewController {
   private String currentFloor;
-  private GridPane centerPane = new GridPane();
   private AnchorPane aPane = new AnchorPane();
   private GesturePane pane;
   @FXML GridPane center;
@@ -43,7 +42,7 @@ public class KioskViewController {
   private String endLoc;
   Map<Circle, Node> nodeMap;
 
-  public void initialize() {
+  public void initialize() throws IOException {
     floorMap.put("Lower Level 2", "L2");
     floorMap.put("Lower Level 1", "L1");
     floorMap.put("Ground Floor", "G");
@@ -65,35 +64,24 @@ public class KioskViewController {
     pane.setPrefWidth(1168);
     pane.setContent(aPane);
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    center.getChildren().add(pane);
+    center.add(pane, 0, 0);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    pane.toBack();
     Platform.runLater(
         () -> {
-          try {
-            changeFloor("1", new Point2D(2215, 1045));
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
+          changeFloor("1", new Point2D(2215, 1045));
         });
   }
 
-  private void changeFloor(String floor, Point2D p) throws IOException {
+  private void changeFloor(String floor, Point2D p) {
     currentFloor = floor;
     nodeMap.clear();
     ImageView image = imageMap.get(floor);
     aPane.getChildren().clear();
     image.toFront();
-    // aPane.getChildren().add(image);
+    aPane.getChildren().add(image);
     aPane.getChildren().add(linesPlane);
     linesPlane.getChildren().clear();
-    //    pathfind.setOnAction(
-    //        (eventAction) -> {
-    //          try {
-    //            findPath();
-    //          } catch (SQLException e) {
-    //            throw new RuntimeException(e);
-    //          }
-    //        });
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     for (Node value : nodes.values()) {
@@ -102,11 +90,6 @@ public class KioskViewController {
         nodeMap.put(dot, value);
       }
     }
-
-    final var res = Bapp.class.getResource(Screen.MESSAGE_BOX.getFilename());
-    final FXMLLoader loader = new FXMLLoader(res);
-    GridPane message = loader.load();
-    center.getChildren().add(message);
 
     Platform.runLater(() -> pane.centreOn(p));
   }
@@ -117,7 +100,7 @@ public class KioskViewController {
     return dot;
   }
 
-  private void openMap() throws IOException {
+  public void openMap() throws IOException {
     final String filename = Screen.PATHFINDING.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
     final var r = Bapp.class.getResource(filename);

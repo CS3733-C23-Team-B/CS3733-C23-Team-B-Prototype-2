@@ -74,7 +74,7 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="christinaAube" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#christinaAubeClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Christina%20Aube.png" />
                                                    </image>
@@ -91,7 +91,7 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="samColebourn" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#samColebournClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Sam%20Colebourn.png" />
                                                    </image>
@@ -108,7 +108,7 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="michaelGatti" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#michaelGattiClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Michael%20Gatti.png" />
                                                    </image>
@@ -128,7 +128,7 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="seanLendrum" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#seanLendrumClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Sean%20Lendrum.png" />
                                                    </image>
@@ -145,7 +145,7 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="lukeGrady" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#lukeGradyClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Luke%20Grady.png" />
                                                    </image>
@@ -163,7 +163,7 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="adrianJohnson" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#adrianJohnsonClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Adrian%20Johnson.png" />
                                                    </image>
@@ -183,7 +183,7 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="jackLaford" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#jackLafordClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Jack%20Laford.png" />
                                                    </image>
@@ -200,7 +200,7 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="kavyaMani" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#kavyaManiClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/Important%20Documents/Kavya%20Mani.jpg" />
                                                    </image>
@@ -217,7 +217,7 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="cierraOGrady" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#cierraOGradyClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Cierra%20O'Grady.png" />
                                                    </image>
@@ -234,7 +234,7 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fitHeight="125.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="jolieWalts" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#jolieWaltsClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Jolie%20Walts.png" />
                                                    </image>

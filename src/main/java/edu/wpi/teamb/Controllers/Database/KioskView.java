@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
@@ -18,10 +19,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import net.kurobako.gesturefx.GesturePane;
 
 public class KioskView {
-
+  private String currentFloor;
   private GridPane centerPane = new GridPane();
   private AnchorPane aPane = new AnchorPane();
   private GesturePane pane;
@@ -30,6 +33,13 @@ public class KioskView {
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
   private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
+  private AnchorPane linesPlane = new AnchorPane();
+  Circle startDot;
+  Circle endDot;
+
+  private String startLoc;
+  private String endLoc;
+  Map<Circle, Node> nodeMap;
 
   public void initialize() {
     floorMap.put("Lower Level 2", "L2");
@@ -46,6 +56,8 @@ public class KioskView {
     imageMap.put("2", Bapp.secondfloor);
     imageMap.put("3", Bapp.thirdfloor);
 
+    nodeMap = new HashMap<>();
+    nodeMap.clear();
     pane = new GesturePane();
     pane.setPrefHeight(714);
     pane.setPrefWidth(1168);
@@ -53,6 +65,57 @@ public class KioskView {
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     center.getChildren().add(pane);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+    Platform.runLater(
+        () -> {
+          changeFloor("1", new javafx.geometry.Point2D(2215, 1045));
+        });
+  }
+
+  private void changeFloor(String floor, Point2D p) {
+    currentFloor = floor;
+    nodeMap.clear();
+    ImageView image = imageMap.get(floor);
+
+    aPane.getChildren().clear();
+    image.toFront();
+    aPane.getChildren().add(image);
+    aPane.getChildren().add(linesPlane);
+    linesPlane.getChildren().clear();
+    //    pathfind.setOnAction(
+    //        (eventAction) -> {
+    //          try {
+    //            findPath();
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
+    Map<String, Node> nodes = DBSession.getAllNodes();
+
+    for (Node value : nodes.values()) {
+      if (value.getFloor().equals(currentFloor)) {
+        Circle dot = placeNode(value);
+        nodeMap.put(dot, value);
+      }
+    }
+    ;
+
+    // drawLines();
+    if (startDot != null) {
+      startDot.setFill(Color.valueOf("#21357E"));
+      startDot = null;
+    }
+    if (endDot != null) {
+      endDot.setFill(Color.valueOf("#21357E"));
+      endDot = null;
+    }
+
+    Platform.runLater(() -> pane.centreOn(p));
+  }
+
+  private Circle placeNode(Node node) {
+    Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Color.RED);
+    aPane.getChildren().add(dot);
+    return dot;
   }
 
   private void openMap() throws IOException {

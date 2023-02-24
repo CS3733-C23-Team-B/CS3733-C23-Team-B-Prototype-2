@@ -5,7 +5,6 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,32 +52,19 @@ public class Bapp extends Application {
     primaryStage.show();
     DBSession.refreshAll();
 
-    final Task<Void> l =
-        new Task<>() {
-          @Override
-          protected Void call() {
-            lowerlevel =
-                new ImageView(
-                    Bapp.class.getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
-            groundfloor =
-                new ImageView(
-                    Bapp.class.getResource("/media/Maps/00_thegroundfloor.png").toExternalForm());
-            lowerlevel2 =
-                new ImageView(
-                    Bapp.class.getResource("/media/Maps/00_thelowerlevel2.png").toExternalForm());
-            firstfloor =
-                new ImageView(
-                    Bapp.class.getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
-            secondfloor =
-                new ImageView(
-                    Bapp.class.getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
-            thirdfloor =
-                new ImageView(
-                    Bapp.class.getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
-            return null;
-          }
-        };
-    new Thread(l).start();
+    lowerlevel =
+        new ImageView(Bapp.class.getResource("/media/Maps/00_thelowerlevel1.png").toExternalForm());
+    groundfloor =
+        new ImageView(Bapp.class.getResource("/media/Maps/00_thegroundfloor.png").toExternalForm());
+    lowerlevel2 =
+        new ImageView(Bapp.class.getResource("/media/Maps/00_thelowerlevel2.png").toExternalForm());
+    firstfloor =
+        new ImageView(Bapp.class.getResource("/media/Maps/01_thefirstfloor.png").toExternalForm());
+    secondfloor =
+        new ImageView(Bapp.class.getResource("/media/Maps/02_thesecondfloor.png").toExternalForm());
+    thirdfloor =
+        new ImageView(Bapp.class.getResource("/media/Maps/03_thethirdfloor.png").toExternalForm());
+
     Navigation.navigate(Screen.KIOSK_VIEW);
   }
 }

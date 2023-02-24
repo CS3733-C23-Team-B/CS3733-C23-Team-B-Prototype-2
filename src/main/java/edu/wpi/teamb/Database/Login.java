@@ -7,12 +7,12 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name = "login", schema = "iter3")
+@Table(name = "login", schema = "iter4")
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Login {
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_seq_iter3")
-  @SequenceGenerator(name = "log_seq_iter3", sequenceName = "log_seq_iter3")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_seq_iter4")
+  @SequenceGenerator(name = "log_seq_iter4", sequenceName = "log_seq_iter4")
   @Getter
   @Setter
   @Id

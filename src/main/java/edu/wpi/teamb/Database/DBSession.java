@@ -119,6 +119,18 @@ public class DBSession {
     return RequestDAO.getAllCRequests();
   }
 
+  public static synchronized List<MedicalEquipmentDeliveryRequest> getAllMEDRequests() {
+    return RequestDAO.getAllMEDRequests();
+  }
+
+  public static synchronized List<MedicineDeliveryRequest> getAllMDRequests() {
+    return RequestDAO.getAllMDRequests();
+  }
+
+  public static synchronized List<FacilitiesRequest> getAllFacRequests() {
+    return RequestDAO.getAllFacRequests();
+  }
+
   public static synchronized Map<String, List<Move>> getIDMoves(Date d) {
     MapDAO.refreshIDMoves(d);
     return MapDAO.getIDMoves();

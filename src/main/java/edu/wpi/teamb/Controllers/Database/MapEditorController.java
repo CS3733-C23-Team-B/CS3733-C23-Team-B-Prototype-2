@@ -36,6 +36,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -44,6 +45,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -54,10 +56,6 @@ public class MapEditorController {
   @FXML GridPane gridPane;
   @FXML GridPane map;
   @FXML MFXButton editNodeButton;
-  @FXML MFXButton newNodeButton;
-  @FXML MFXButton viewMovesButton;
-  @FXML MFXButton editLocationButton;
-  @FXML MFXButton newMoveButton;
   @FXML MFXCheckbox showLocationsCheckBox;
   @Getter @FXML private AnchorPane forms;
   private List<Label> locLabels = new ArrayList<>();
@@ -70,7 +68,9 @@ public class MapEditorController {
   private GesturePane pane;
   private AnchorPane aPane;
   private double origX, origY;
+  private double origSelectX, origSelectY;
   private boolean dragged;
+  private boolean selectDragged;
   private boolean MOVING = false;
   private Circle edgeNode1, edgeNode2;
   private boolean creatingEdge;
@@ -81,8 +81,8 @@ public class MapEditorController {
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<Node, AnchorPane> locationMap = new HashMap<>();
   private String currentFloor;
+  private Rectangle selectionRectangle;
   @FXML VBox mapEditorButtons;
-
   @FXML MFXButton newnode;
   @FXML MFXButton newedge;
   @FXML MFXButton editlocation;
@@ -130,6 +130,37 @@ public class MapEditorController {
     pane.setPrefWidth(1168);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     aPane = new AnchorPane();
+
+    aPane.setOnMouseDragged(
+        e -> {
+          if (!e.getButton().equals(MouseButton.SECONDARY)) return;
+          if (!selectDragged) {
+            selectionRectangle = new Rectangle();
+            selectionRectangle.setFill(Color.LIGHTBLUE);
+            selectionRectangle.setOpacity(.5);
+            aPane.getChildren().add(selectionRectangle);
+            selectionRectangle.toFront();
+          }
+          sizeRectangle(e.getX(), e.getY());
+          selectDragged = true;
+        });
+
+    aPane.setOnMousePressed(
+        e -> {
+          if (e.getButton().equals(MouseButton.SECONDARY)) {
+            origSelectX = e.getX();
+            origSelectY = e.getY();
+            pane.setGestureEnabled(false);
+          }
+        });
+
+    aPane.setOnMouseReleased(
+        e -> {
+          if (selectDragged) aPane.getChildren().remove(selectionRectangle);
+          selectionRectangle = null;
+          selectDragged = false;
+          pane.setGestureEnabled(true);
+        });
 
     aPane.setOnMouseClicked(
         e -> {
@@ -675,5 +706,31 @@ public class MapEditorController {
       removeNode();
       DBSession.deleteNode(n);
     }
+  }
+
+  private void sizeRectangle(double cornerX, double cornerY) {
+    double tlx, tly, brx, bry;
+    if (origSelectX < cornerX) {
+      tlx = origSelectX;
+      brx = cornerX;
+    } else {
+      tlx = cornerX;
+      brx = origSelectX;
+    }
+    if (origSelectY < cornerY) {
+      tly = origSelectY;
+      bry = cornerY;
+    } else {
+      tly = cornerY;
+      bry = origSelectY;
+    }
+
+    selectionRectangle.setX(tlx);
+    selectionRectangle.setY(tly);
+
+    selectionRectangle.setWidth(brx - tlx);
+    selectionRectangle.setHeight(bry - tly);
+
+    selectionRectangle.toFront();
   }
 }

@@ -258,7 +258,7 @@
                               </ImageView>
                            </graphic>
                         </MFXButton>
-                        <MFXButton fx:id="equipButton" alignment="BASELINE_LEFT" layoutX="40.0" layoutY="520.0" onAction="#makeAV" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Medical Equipment Delivery" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton fx:id="equipButton" alignment="BASELINE_LEFT" layoutX="40.0" layoutY="520.0" onAction="#makeMedEquip" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Medical Equipment Delivery" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="20.0" />
                            </font>

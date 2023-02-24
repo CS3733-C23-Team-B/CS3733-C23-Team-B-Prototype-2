@@ -32,6 +32,7 @@ public class Bapp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
+
     Parent root = FXMLLoader.load(getClass().getResource("views/Navigation/Root.fxml"));
     root.setId("home");
     Scene scene = new Scene(root, 1200, 650);
@@ -78,6 +79,6 @@ public class Bapp extends Application {
           }
         };
     new Thread(l).start();
-    Navigation.navigate(Screen.SIGN_IN);
+    Navigation.navigate(Screen.KIOSK_VIEW);
   }
 }

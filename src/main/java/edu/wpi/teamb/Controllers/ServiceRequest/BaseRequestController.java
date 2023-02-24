@@ -30,12 +30,12 @@ public class BaseRequestController {
 
   @FXML protected MFXFilterComboBox<Urgency> urgencyBox;
   @FXML protected MFXFilterComboBox<String> assignedStaffBox;
+  @FXML protected MFXFilterComboBox locationBox;
   @FXML protected MFXTextField additionalNotesField;
   private RequestStatus request;
   @FXML protected MFXButton backButton;
   @FXML protected MFXButton helpTextButton;
   @FXML protected MFXButton clearButton;
-
   @FXML protected MFXButton submitButton;
 
   // Choice-box options
@@ -64,6 +64,9 @@ public class BaseRequestController {
     urgencyBox.setItems(urgencyOptions);
     assignedStaffBox.setItems(staffMembers);
     currUser = SigninController.getCurrentUser();
+
+    ObservableList<String> locations = getLocations();
+    locationBox.setItems(locations);
   }
 
   /**

@@ -26,6 +26,8 @@ public class SigninController {
   @FXML private Button exitButton;
   @FXML private MFXButton forgot;
   @FXML private Rectangle topRect;
+
+  @FXML private Button backButton;
   public static Login currentUser;
 
   private Map<String, Login> usersMap = new HashMap<>();

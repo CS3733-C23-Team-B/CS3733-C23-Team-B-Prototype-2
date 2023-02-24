@@ -71,6 +71,18 @@ public class DBSession {
     MapDAO.addMove(m);
   }
 
+  public static void addKioskMove(KioskMove km) {
+    MapDAO.addKioskMove(km);
+  }
+
+  public static void deleteKioskMove(KioskMove km) {
+    MapDAO.deleteKioskMove(km);
+  }
+
+  public static List<KioskMove> getAllKioskMoves() {
+    return MapDAO.getAllKioskMoves();
+  }
+
   public static void deleteMove(Move m) {
     MapDAO.deleteMove(m);
   }

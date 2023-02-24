@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import net.kurobako.gesturefx.GesturePane;
 
-public class KioskView {
+public class KioskViewController {
   private String currentFloor;
   private GridPane centerPane = new GridPane();
   private AnchorPane aPane = new AnchorPane();
@@ -67,15 +67,18 @@ public class KioskView {
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     Platform.runLater(
         () -> {
-          changeFloor("1", new javafx.geometry.Point2D(2215, 1045));
+          try {
+            changeFloor("1", new Point2D(2215, 1045));
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
         });
   }
 
-  private void changeFloor(String floor, Point2D p) {
+  private void changeFloor(String floor, Point2D p) throws IOException {
     currentFloor = floor;
     nodeMap.clear();
     ImageView image = imageMap.get(floor);
-
     aPane.getChildren().clear();
     image.toFront();
     aPane.getChildren().add(image);
@@ -108,6 +111,11 @@ public class KioskView {
       endDot.setFill(Color.valueOf("#21357E"));
       endDot = null;
     }
+
+    final var res = Bapp.class.getResource(Screen.MESSAGE_BOX.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    GridPane message = loader.load();
+    center.getChildren().add(message);
 
     Platform.runLater(() -> pane.centreOn(p));
   }

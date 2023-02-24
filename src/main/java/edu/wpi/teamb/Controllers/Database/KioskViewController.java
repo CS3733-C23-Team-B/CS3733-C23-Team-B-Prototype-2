@@ -81,7 +81,7 @@ public class KioskViewController {
     ImageView image = imageMap.get(floor);
     aPane.getChildren().clear();
     image.toFront();
-    aPane.getChildren().add(image);
+    // aPane.getChildren().add(image);
     aPane.getChildren().add(linesPlane);
     linesPlane.getChildren().clear();
     //    pathfind.setOnAction(
@@ -99,17 +99,6 @@ public class KioskViewController {
         Circle dot = placeNode(value);
         nodeMap.put(dot, value);
       }
-    }
-    ;
-
-    // drawLines();
-    if (startDot != null) {
-      startDot.setFill(Color.valueOf("#21357E"));
-      startDot = null;
-    }
-    if (endDot != null) {
-      endDot.setFill(Color.valueOf("#21357E"));
-      endDot = null;
     }
 
     final var res = Bapp.class.getResource(Screen.MESSAGE_BOX.getFilename());

@@ -2,8 +2,8 @@ package edu.wpi.teamb.Navigation;
 
 public enum Screen {
   HOME("views/Navigation/HomeScreen.fxml"),
-  MESSAGE_BOX("views/KioskMessegeBox.fxml"),
-  KIOSK_VIEW("views/Database/KioskView.fxml"),
+  MESSAGE_BOX("views/KioskMessageBox.fxml"),
+  KIOSK_VIEW("views/Kiosk/KioskView.fxml"),
   DATABASE_HELP("views/Database/DatabaseHelp.fxml"),
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
   MAP_EDITOR("views/Database/NewMapEditor.fxml"),

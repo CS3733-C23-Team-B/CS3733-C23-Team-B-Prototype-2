@@ -66,6 +66,7 @@ public class BaseRequestController {
     currUser = SigninController.getCurrentUser();
 
     ObservableList<String> locations = getLocations();
+
     locationBox.setItems(locations);
   }
 
@@ -191,5 +192,7 @@ public class BaseRequestController {
     }
     request.setUrgency(urgency);
     request.setStatus(RequestStatus.PROCESSING);
+
+    request.setLocation(locationBox.getText());
   }
 }

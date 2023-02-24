@@ -16,10 +16,5 @@ public class FacilitiesRequest extends GeneralRequest {
   @Setter
   private String maintenanceType;
 
-  @Column(name = "location", length = 60)
-  @Getter
-  @Setter
-  private String location;
-
   public FacilitiesRequest() {};
 }

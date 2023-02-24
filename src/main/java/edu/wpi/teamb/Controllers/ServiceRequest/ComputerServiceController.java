@@ -22,7 +22,6 @@ public class ComputerServiceController extends BaseRequestController {
   ObservableList<String> typeOfDeviceList =
       FXCollections.observableArrayList("Computer", "Phone", "Monitor");
 
-  @FXML private MFXFilterComboBox locationBox;
   @FXML private MFXFilterComboBox typeOfRepairBox;
   @FXML private MFXFilterComboBox<String> typeOfDeviceBox;
 
@@ -42,7 +41,6 @@ public class ComputerServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    locationBox.setItems(getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -63,8 +61,6 @@ public class ComputerServiceController extends BaseRequestController {
     ComputerRequest request = new ComputerRequest();
 
     super.submit(request);
-
-    request.setRepairLocation(locationBox.getText());
 
     var typeOfrepair = typeOfRepairBox.getValue();
     if (typeOfrepair == null) {

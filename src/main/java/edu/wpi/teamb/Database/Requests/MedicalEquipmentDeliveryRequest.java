@@ -16,10 +16,5 @@ public class MedicalEquipmentDeliveryRequest extends GeneralRequest {
   @Setter
   private String equipmentType;
 
-  @Column(name = "location", length = 60)
-  @Getter
-  @Setter
-  private String location;
-
   public MedicalEquipmentDeliveryRequest() {};
 }

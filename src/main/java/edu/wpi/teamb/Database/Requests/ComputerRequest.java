@@ -20,10 +20,5 @@ public class ComputerRequest extends GeneralRequest {
   @Setter
   private String device;
 
-  @Column(name = "repairlocation", length = 60)
-  @Getter
-  @Setter
-  private String repairLocation;
-
   public void ComputerRequest() {}
 }

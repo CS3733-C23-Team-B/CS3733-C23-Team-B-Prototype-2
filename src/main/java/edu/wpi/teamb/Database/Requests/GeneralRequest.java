@@ -73,5 +73,10 @@ public class GeneralRequest {
   @Setter
   private RequestType requestType;
 
+  @Column(name = "location", length = 60)
+  @Getter
+  @Setter
+  private String location;
+
   public void generalRequest() {}
 }

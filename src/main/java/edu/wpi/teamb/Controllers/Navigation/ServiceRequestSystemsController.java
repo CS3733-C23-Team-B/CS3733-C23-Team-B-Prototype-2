@@ -26,7 +26,6 @@ public class ServiceRequestSystemsController {
   @FXML MFXButton secButton;
   @FXML MFXButton comButton;
   @FXML MFXButton AVButton;
-
   @FXML Label headerText;
   @FXML Label timeLabel;
   @FXML Label dateLabel;

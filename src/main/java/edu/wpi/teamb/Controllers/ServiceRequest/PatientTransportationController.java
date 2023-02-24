@@ -20,8 +20,7 @@ public class PatientTransportationController extends BaseRequestController {
   // Lists for checkboxes
   private ObservableList<String> equipmentOptions =
       FXCollections.observableArrayList("Stretcher", "Wheelchair", "Restraints", "Stair Chair");
-  @FXML private MFXFilterComboBox patientCurrentLocationBox;
-  @FXML private MFXFilterComboBox patientDestinationLocationBox;
+  @FXML private MFXFilterComboBox patientDestinationBox;
   @FXML private MFXComboBox equipmentNeededBox;
   @FXML private MFXTextField patientIDField;
 
@@ -34,8 +33,8 @@ public class PatientTransportationController extends BaseRequestController {
     Control[] ctrl = {
       urgencyBox,
       assignedStaffBox,
-      patientCurrentLocationBox,
-      patientDestinationLocationBox,
+      locationBox,
+      patientDestinationBox,
       equipmentNeededBox,
       patientIDField,
       additionalNotesField
@@ -46,8 +45,7 @@ public class PatientTransportationController extends BaseRequestController {
 
     ObservableList<String> locations = getLocations();
 
-    patientCurrentLocationBox.setItems(locations);
-    patientDestinationLocationBox.setItems(locations);
+    patientDestinationBox.setItems(locations);
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -78,17 +76,10 @@ public class PatientTransportationController extends BaseRequestController {
     }
     request.setEquipmentNeeded(equipment.toString());
 
-    var destination = patientDestinationLocationBox.getValue();
+    var destination = patientDestinationBox.getValue();
     if (destination == null) {
       destination = "";
     }
-    request.setPatientDestinationLocation(destination.toString());
-
-    var curLocation = patientCurrentLocationBox.getValue();
-    if (curLocation == null) {
-      curLocation = "";
-    }
-    request.setPatientCurrentLocation(curLocation.toString());
 
     request.setPatientID(this.patientIDField.getText());
     request.setRequestType(RequestType.PATIENTTRANSPOTATION);

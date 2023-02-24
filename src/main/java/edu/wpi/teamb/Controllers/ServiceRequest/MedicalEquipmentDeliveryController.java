@@ -1,21 +1,18 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
-import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.PatientTransportationRequest;
-import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MedicalEquipmentDeliveryController extends BaseRequestController {
   // Lists for checkboxes
@@ -30,11 +27,7 @@ public class MedicalEquipmentDeliveryController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      urgencyBox,
-      assignedStaffBox,
-      locationBox,
-      equipmentNeededBox,
-      additionalNotesField
+      urgencyBox, assignedStaffBox, locationBox, equipmentNeededBox, additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();

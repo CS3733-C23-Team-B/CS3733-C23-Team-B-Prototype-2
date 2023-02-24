@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -29,6 +30,7 @@ public class KioskViewController {
   private AnchorPane aPane = new AnchorPane();
   private GesturePane pane;
   @FXML GridPane center;
+  @FXML Label messageLabel;
   private Map<String, String> floorMap = new HashMap<>();
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<String, SearchType> searchTypeMap = new HashMap<>();

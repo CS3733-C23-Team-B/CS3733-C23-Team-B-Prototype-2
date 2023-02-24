@@ -64,7 +64,7 @@ public class MapEditorController {
   AnchorPane currentPopUp;
   private static Node currentNode;
   private static Circle currentDot;
-  private static List<Circle> currentDots;
+  private List<Circle> currentDots = new ArrayList<>();
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane;
@@ -158,6 +158,9 @@ public class MapEditorController {
     aPane.setOnMouseReleased(
         e -> {
           if (selectDragged) aPane.getChildren().remove(selectionRectangle);
+
+          if (selectDragged) setSelectedDots();
+
           selectionRectangle = null;
           selectDragged = false;
           pane.setGestureEnabled(true);
@@ -177,7 +180,8 @@ public class MapEditorController {
 
             c.setOnMouseClicked(
                 ev -> {
-                  if (currentDot != null) currentDot.setFill(Color.valueOf("#21375E"));
+                  if (currentDot != null) currentDot.setFill(Bapp.blue);
+                  clearCurrentDots();
                   displayPopUp(c);
                   c.setFill(Color.GOLD);
                   if (creatingEdge) {
@@ -289,7 +293,7 @@ public class MapEditorController {
     nodeMap.clear();
 
     image = imageMap.get(floor);
-    image.setOnMouseClicked(e -> handleClick());
+    image.setOnMousePressed(e -> handleClick());
 
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
@@ -301,7 +305,8 @@ public class MapEditorController {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
             e -> {
-              if (currentDot != null) currentDot.setFill(Color.valueOf("#21375E"));
+              if (currentDot != null) currentDot.setFill(Bapp.blue);
+              clearCurrentDots();
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
               if (creatingEdge) {
@@ -429,9 +434,7 @@ public class MapEditorController {
       aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
       if (currentDot != null) currentDot.setFill(Bapp.blue);
-      for (Circle dot : currentDots)
-        if (dot != null)
-          dot.setFill(Bapp.blue);
+      clearCurrentDots();
       currentNode = null;
       currentDot = null;
       removeEdges();
@@ -468,7 +471,8 @@ public class MapEditorController {
         e -> {
           pane.setGestureEnabled(true);
           if (dragged) {
-            updateNode(dot);
+            if (currentDots.size() == 0) updateNode(dot);
+            else updateNodes();
             AnchorPane popPane = locationMap.get(nodeMap.get(dot));
             if (popPane != null) {
               popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 50);
@@ -482,9 +486,18 @@ public class MapEditorController {
         (e) -> {
           double offsetX = (e.getSceneX() - origX) / pane.getCurrentScaleX();
           double offsetY = (e.getSceneY() - origY) / pane.getCurrentScaleY();
-          Circle c = (Circle) (e.getSource());
-          c.setCenterX(c.getCenterX() + offsetX);
-          c.setCenterY(c.getCenterY() + offsetY);
+
+          if (currentDots.size() == 0) {
+            Circle c = (Circle) (e.getSource());
+            c.setCenterX(c.getCenterX() + offsetX);
+            c.setCenterY(c.getCenterY() + offsetY);
+          }
+
+          for (Circle sd : currentDots) {
+            sd.setCenterX(sd.getCenterX() + offsetX);
+            sd.setCenterY(sd.getCenterY() + offsetY);
+          }
+
           origX = e.getSceneX();
           origY = e.getSceneY();
           dragged = true;
@@ -506,8 +519,21 @@ public class MapEditorController {
     refreshPopUp();
   }
 
+  public void updateNodes() {
+    for (Circle dot : currentDots) {
+      Node node = nodeMap.get(dot);
+      node.setXCoord((int) dot.getCenterX());
+      node.setYCoord((int) dot.getCenterY());
+      DBSession.updateNode(node);
+      node.setNodeID(node.buildID());
+    }
+    Pathfinding.refreshData();
+    MapDAO.refreshIDMoves(new Date(System.currentTimeMillis()));
+  }
+
   public void handleClick() {
     selectedCircle.set(null);
+    clearCurrentDots();
     clearPopUp();
     if (edgeNode1 != null) {
       edgeNode1.setFill(Color.GOLD);
@@ -648,6 +674,13 @@ public class MapEditorController {
     clearPopUp();
   }
 
+  public void removeNodes() {
+    for (Circle dot : currentDots) {
+      aPane.getChildren().remove(dot);
+      nodeMap.remove(dot);
+    }
+  }
+
   public static MapEditorController getInstance() {
     return instance;
   }
@@ -705,10 +738,19 @@ public class MapEditorController {
 
   public void handleKeyPress(KeyEvent e) {
     if (e.getCode().equals(KeyCode.BACK_SPACE)) {
-      Node n = nodeMap.get(currentDot);
-      promptEdgeRepair(n);
-      removeNode();
-      DBSession.deleteNode(n);
+      if (currentDot != null) {
+        Node n = nodeMap.get(currentDot);
+        promptEdgeRepair(n);
+        removeNode();
+        DBSession.deleteNode(n);
+      }
+
+      for (Circle dot : currentDots) {
+        Node n = nodeMap.get(dot);
+        DBSession.deleteNode(n);
+      }
+
+      removeNodes();
     }
   }
 
@@ -736,5 +778,37 @@ public class MapEditorController {
     selectionRectangle.setHeight(bry - tly);
 
     selectionRectangle.toFront();
+  }
+
+  public void clearCurrentDots() {
+    for (Circle dot : currentDots) dot.setFill(Bapp.blue);
+    currentDots.clear();
+  }
+
+  private void setSelectedDots() {
+    for (Circle dot : nodeMap.keySet()) {
+      if (withinSelection(dot)) {
+        currentDots.add(dot);
+        dot.setFill(Color.GOLD);
+      }
+    }
+  }
+
+  private boolean withinSelection(Circle dot) {
+    if (selectionRectangle == null) {
+      System.err.println("THIS SHOULD NOT BE NULL");
+      return false;
+    }
+
+    double x, y, x1, y1, x2, y2;
+    x1 = selectionRectangle.getX();
+    y1 = selectionRectangle.getY();
+    x2 = selectionRectangle.getX() + selectionRectangle.getWidth();
+    y2 = selectionRectangle.getY() + selectionRectangle.getHeight();
+
+    x = dot.getCenterX();
+    y = dot.getCenterY();
+
+    return (x >= x1 && x <= x2 && y >= y1 && y <= y2);
   }
 }

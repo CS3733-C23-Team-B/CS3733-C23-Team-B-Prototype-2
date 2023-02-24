@@ -68,9 +68,9 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <VBox prefHeight="435.0" prefWidth="870.0">
+                              <VBox alignment="TOP_CENTER" prefHeight="435.0" prefWidth="870.0">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
@@ -159,7 +159,7 @@
                                           </VBox>
                                        </children>
                                     </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
@@ -170,8 +170,11 @@
                                                 </ImageView>
                                                 <Label prefHeight="10.0" text="Adrian Johnson ">
                                                    <font>
-                                                      <Font size="20.0" />
+                                                      <Font size="18.0" />
                                                    </font>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
                                                 </Label>
                                              </children>
                                              <HBox.margin>
@@ -187,10 +190,13 @@
                                                 </ImageView>
                                                 <Label prefHeight="10.0" text="Jack Lafond ">
                                                    <font>
-                                                      <Font size="20.0" />
+                                                      <Font size="18.0" />
                                                    </font>
                                                 </Label>
                                              </children>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
@@ -201,10 +207,13 @@
                                                 </ImageView>
                                                 <Label prefHeight="17.0" text="Kavya Mani ">
                                                    <font>
-                                                      <Font size="20.0" />
+                                                      <Font size="18.0" />
                                                    </font>
                                                 </Label>
                                              </children>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
@@ -215,10 +224,13 @@
                                                 </ImageView>
                                                 <Label prefHeight="15.0" text="Cierra O’Grady ">
                                                    <font>
-                                                      <Font size="20.0" />
+                                                      <Font size="18.0" />
                                                    </font>
                                                 </Label>
                                              </children>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
@@ -229,14 +241,14 @@
                                                 </ImageView>
                                                 <Label prefHeight="6.0" style="-fx-border-color: transparent;" text="Jolie Walts">
                                                    <font>
-                                                      <Font size="20.0" />
+                                                      <Font size="18.0" />
                                                    </font>
                                                 </Label>
                                              </children>
                                           </VBox>
                                        </children>
                                     </HBox>
-                                    <Label alignment="BOTTOM_LEFT" prefHeight="101.0" text="Thank you to Brigham and Women’s Hospital and their representative, Andrew Shinn, for their time and input." wrapText="true">
+                                    <Label alignment="BOTTOM_LEFT" prefHeight="101.0" text="Thank you to Brigham and Women’s Hospital and their representative, Andrew Shinn, for their time and input. The Brigham &amp; Women’s Hospital maps and data used in this application are copyrighted and provided for the sole use of educational purposes." wrapText="true">
                                        <font>
                                           <Font name="System Italic" size="20.0" />
                                        </font>

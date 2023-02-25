@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<GridPane onMouseMoved="#buttonControl" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane onMouseMoved="#buttonControl" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.SecurityServiceController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="850.0" />
     <ColumnConstraints hgrow="SOMETIMES" />
@@ -56,7 +56,7 @@
             </HBox>
             <HBox GridPane.columnIndex="1">
                <children>
-                  <Label id="formTitle" prefHeight="30.0" prefWidth="262.0" stylesheets="@../../../../../css/style.css" text="Service Request Name" />
+                  <Label id="formTitle" prefHeight="30.0" prefWidth="262.0" stylesheets="@../../../../../css/style.css" text="Security Service" />
                   <Label id="formBody" stylesheets="@../../../../../css/style.css" text="*Required Field" textFill="RED">
                      <HBox.margin>
                         <Insets top="6.0" />
@@ -155,11 +155,11 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Label" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Number of Guards Required" />
                               <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
-                        <MFXFilterComboBox floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
+                        <MFXFilterComboBox fx:id="numbReqBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
                            <textFill>
                               <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
                            </textFill></MFXFilterComboBox>
@@ -172,11 +172,11 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Label" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Equipment Needed" />
                               <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
-                        <MFXFilterComboBox floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
+                        <MFXFilterComboBox fx:id="equipNeededBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
                            <textFill>
                               <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
                            </textFill></MFXFilterComboBox>
@@ -189,14 +189,15 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Label" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Issue" />
                               <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
-                        <MFXTextField floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;" textLimit="60">
+                        <MFXFilterComboBox fx:id="issueBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
                            <textFill>
                               <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
-                           </textFill></MFXTextField>
+                           </textFill>
+                        </MFXFilterComboBox>
                      </children>
                      <padding>
                         <Insets bottom="10.0" />

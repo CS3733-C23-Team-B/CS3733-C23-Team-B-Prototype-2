@@ -66,6 +66,7 @@ public class MapEditorController {
   private static Circle currentDot;
   private List<Circle> currentDots = new ArrayList<>();
   private Line currentLine;
+  private Line edge = new Line();
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane;
@@ -179,26 +180,7 @@ public class MapEditorController {
             DBSession.addNode(n);
             Circle c = placeNode(n);
 
-            c.setOnMouseClicked(
-                ev -> {
-                  if (ev.isControlDown()) {
-                    currentDots.add(c);
-                    c.setFill(Color.GOLD);
-                    return;
-                  }
-                  if (currentDot != null) currentDot.setFill(Bapp.blue);
-                  clearCurrentLine();
-                  clearCurrentDots();
-                  if (creatingEdge) {
-                    if (edgeNode1 == null) edgeNode1 = c;
-                    else if (edgeNode2 == null && c != edgeNode1) {
-                      edgeNode2 = c;
-                      createEdge();
-                    }
-                  }
-                  displayPopUp(c);
-                  c.setFill(Color.GOLD);
-                });
+            setOnMouseClicked(c);
 
             nodeMap.put(c, n);
             selectedCircle.set(c);
@@ -310,26 +292,7 @@ public class MapEditorController {
     for (Node node : nodes.values()) {
       if (node.getFloor().equals(currentFloor)) {
         Circle dot = placeNode(node);
-        dot.setOnMouseClicked(
-            ev -> {
-              if (ev.isControlDown()) {
-                currentDots.add(dot);
-                dot.setFill(Color.GOLD);
-                return;
-              }
-              if (currentDot != null) currentDot.setFill(Bapp.blue);
-              clearCurrentLine();
-              clearCurrentDots();
-              if (creatingEdge) {
-                if (edgeNode1 == null) edgeNode1 = dot;
-                else if (edgeNode2 == null && dot != edgeNode1) {
-                  edgeNode2 = dot;
-                  createEdge();
-                }
-              }
-              displayPopUp(dot);
-              dot.setFill(Color.GOLD);
-            });
+        setOnMouseClicked(dot);
 
         nodeMap.put(dot, node);
         displayLoc(dot);
@@ -572,7 +535,6 @@ public class MapEditorController {
 
   @FXML
   private void newNodeClicked() throws IOException {
-
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.NODE_CREATOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
@@ -598,6 +560,7 @@ public class MapEditorController {
       edgeNode2.setFill(Bapp.blue);
       edgeNode2 = null;
     }
+    aPane.getChildren().remove(edge);
     clearForm();
   }
 
@@ -928,5 +891,28 @@ public class MapEditorController {
       currentLine.setStroke(Color.BLACK);
       currentLine = null;
     }
+  }
+
+  public void setOnMouseClicked(Circle c) {
+    c.setOnMouseClicked(
+      ev -> {
+        if (ev.isControlDown()) {
+          currentDots.add(c);
+          c.setFill(Color.GOLD);
+          return;
+        }
+        if (currentDot != null) currentDot.setFill(Bapp.blue);
+        clearCurrentLine();
+        clearCurrentDots();
+        if (creatingEdge) {
+          if (edgeNode1 == null) edgeNode1 = c;
+          else if (edgeNode2 == null && c != edgeNode1) {
+            edgeNode2 = c;
+            createEdge();
+          }
+        }
+        displayPopUp(c);
+        c.setFill(Color.GOLD);
+      });
   }
 }

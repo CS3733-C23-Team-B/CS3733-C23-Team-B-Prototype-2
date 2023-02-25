@@ -16,6 +16,8 @@ import javafx.scene.control.Control;
 
 public class MedicineDeliveryServiceController extends BaseRequestController {
 
+  ObservableList<String> locations = getLocations();
+
   @FXML private MFXTextField typeofmedicineField;
   @FXML private MFXTextField dosageField;
   @FXML private MFXTextField patientidField;
@@ -39,15 +41,15 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
 
-    ObservableList<String> locations = getLocations();
-
-    deliverylocationLocationBox.setItems(locations);
-
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
+
+    assignedStaffBox.setItems(staffMembers);
+
+    deliverylocationLocationBox.setItems(locations);
 
     super.initialize();
   }
@@ -71,7 +73,12 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     }
     request.setLocation(destination.toString());
 
-    // request.setEmployeeID(this.staffidField.getText());
+    var assignedstaff = assignedStaffBox.getValue();
+    if (assignedstaff == null) {
+      assignedstaff = "";
+    }
+    request.setAssignedEmployee(assignedstaff.toString());
+
     request.setMedicineType(this.typeofmedicineField.getText());
     request.setDoasage(this.dosageField.getText());
     request.setPatientID(this.patientidField.getText());

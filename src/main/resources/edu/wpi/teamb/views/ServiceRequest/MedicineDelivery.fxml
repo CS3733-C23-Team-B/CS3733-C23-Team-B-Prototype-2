@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="536.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.MedicineDeliveryServiceController">
+<HBox onMouseMoved="#buttonControl" prefHeight="536.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.MedicineDeliveryServiceController">
     <children>
         <MFXButton prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #898989;" text="   Back" textFill="WHITE">
             <HBox.margin>
@@ -192,7 +192,7 @@
                                     <font>
                                         <Font name="System Bold" size="17.0" />
                                     </font></MFXButton>
-                                <MFXButton fx:id="helpButton" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: F8C630;" text="Help" textFill="WHITE">
+                                <MFXButton fx:id="helpTextButton" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: F8C630;" text="Help" textFill="WHITE">
                                     <HBox.margin>
                                         <Insets left="37.0" />
                                     </HBox.margin>
@@ -202,7 +202,7 @@
                                 </MFXButton>
                             </children>
                         </HBox>
-                        <MFXButton fx:id="submitButton" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #21357E;" text="Submit" textFill="WHITE" AnchorPane.rightAnchor="0.0">
+                        <MFXButton fx:id="submitButton" onMouseReleased="#submitButtonClicked" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #21357E;" text="Submit" textFill="WHITE" AnchorPane.rightAnchor="0.0">
                             <font>
                                 <Font size="17.0" />
                             </font></MFXButton>

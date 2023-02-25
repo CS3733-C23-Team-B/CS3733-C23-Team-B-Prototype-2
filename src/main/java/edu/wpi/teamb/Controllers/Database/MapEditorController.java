@@ -65,6 +65,7 @@ public class MapEditorController {
   private static Node currentNode;
   private static Circle currentDot;
   private List<Circle> currentDots = new ArrayList<>();
+  private Line currentLine;
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane;
@@ -81,6 +82,7 @@ public class MapEditorController {
   private Map<String, String> floorMap = new HashMap<>();
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<Node, AnchorPane> locationMap = new HashMap<>();
+  private Map<Line, List<Node>> lineMap = new HashMap<>();
   private String currentFloor;
   private Rectangle selectionRectangle;
   @FXML VBox mapEditorButtons;
@@ -181,6 +183,7 @@ public class MapEditorController {
             c.setOnMouseClicked(
                 ev -> {
                   if (currentDot != null) currentDot.setFill(Bapp.blue);
+                  clearCurrentLine();
                   clearCurrentDots();
                   displayPopUp(c);
                   c.setFill(Color.GOLD);
@@ -306,6 +309,7 @@ public class MapEditorController {
         dot.setOnMouseClicked(
             e -> {
               if (currentDot != null) currentDot.setFill(Bapp.blue);
+              clearCurrentLine();
               clearCurrentDots();
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
@@ -459,7 +463,8 @@ public class MapEditorController {
           origX = e.getSceneX();
           origY = e.getSceneY();
           if (currentDot != null) currentDot.setFill(Bapp.blue);
-          currentDot = dot;
+
+          if (currentDots.size() == 0) currentDot = dot;
 
           pane.setGestureEnabled(false);
 
@@ -533,6 +538,7 @@ public class MapEditorController {
 
   public void handleClick() {
     selectedCircle.set(null);
+    clearCurrentLine();
     clearCurrentDots();
     clearPopUp();
     if (edgeNode1 != null) {
@@ -731,14 +737,35 @@ public class MapEditorController {
 
   private void drawLineBetween(Node n1, Node n2) {
     Line line = new Line(n1.getXCoord(), n1.getYCoord(), n2.getXCoord(), n2.getYCoord());
-    line.setFill(Color.BLACK);
+    line.setStroke(Color.BLACK);
     line.setStrokeWidth(5);
     aPane.getChildren().add(line);
+    lineMap.put(line, Arrays.asList(n1, n2));
+
+    line.setCursor(Cursor.HAND);
+
+    line.setOnMouseEntered(e -> line.setStrokeWidth(10));
+    line.setOnMouseExited(e -> line.setStrokeWidth(5));
+
+    line.setOnMouseClicked(
+        e -> {
+          currentDot.setFill(Bapp.blue);
+          clearCurrentLine();
+          line.setStroke(Color.GOLD);
+          currentLine = line;
+        });
   }
 
   public void handleKeyPress(KeyEvent e) {
     if (e.getCode().equals(KeyCode.BACK_SPACE)) {
-      if (currentDot != null) {
+      if (currentLine != null) {
+        Node n1 = lineMap.get(currentLine).get(0);
+        Node n2 = lineMap.get(currentLine).get(1);
+        aPane.getChildren().remove(currentLine);
+        DBSession.deleteEdge(n1, n2);
+        Pathfinding.refreshData();
+        currentLine = null;
+      } else if (currentDot != null) {
         Node n = nodeMap.get(currentDot);
         promptEdgeRepair(n);
         removeNode();
@@ -810,5 +837,12 @@ public class MapEditorController {
     y = dot.getCenterY();
 
     return (x >= x1 && x <= x2 && y >= y1 && y <= y2);
+  }
+
+  public void clearCurrentLine() {
+    if (currentLine != null) {
+      currentLine.setStroke(Color.BLACK);
+      currentLine = null;
+    }
   }
 }

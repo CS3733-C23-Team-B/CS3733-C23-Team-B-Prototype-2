@@ -159,7 +159,7 @@
                   </VBox>
                   <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <MFXButton id="signInButtons" fx:id="exitButton" onAction="#exitApplication" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #9a9a9a; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="Exit Application" textFill="WHITE" />
+                        <MFXButton id="signInButtons" fx:id="exitButton" onAction="#exitApplication" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #898989; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="Exit Application" textFill="WHITE" />
                      </children>
                      <GridPane.margin>
                         <Insets />

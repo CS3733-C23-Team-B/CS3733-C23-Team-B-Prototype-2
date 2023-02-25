@@ -501,6 +501,7 @@ public class MapEditorController {
 
     dot.setOnMouseDragged(
         (e) -> {
+          if (e.isControlDown()) return;
           double offsetX = (e.getSceneX() - origX) / pane.getCurrentScaleX();
           double offsetY = (e.getSceneY() - origY) / pane.getCurrentScaleY();
 

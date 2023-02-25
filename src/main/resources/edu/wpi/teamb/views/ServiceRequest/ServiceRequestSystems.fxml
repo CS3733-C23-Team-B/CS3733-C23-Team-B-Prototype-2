@@ -194,9 +194,9 @@
                   </GridPane>
                </children>
             </GridPane>
-            <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #F2F2F2;">
+            <MFXScrollPane fitToWidth="true" style="-fx-background-color: #F2F2F2;">
                <content>
-                  <VBox alignment="CENTER" prefHeight="667.0" prefWidth="264.0" spacing="25.0">
+                  <VBox alignment="CENTER" prefHeight="780.0" prefWidth="264.0" spacing="25.0">
                      <children>
                         <MFXButton fx:id="transButton" alignment="BASELINE_LEFT" onAction="#makeTrans" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Internal Patient Transportation" textFill="#c5d3ea" wrapText="true">
                            <font>
@@ -258,9 +258,21 @@
                               </ImageView>
                            </graphic>
                         </MFXButton>
+                        <MFXButton fx:id="equipButton" alignment="BASELINE_LEFT" layoutX="40.0" layoutY="520.0" onAction="#makeMedEquip" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Medical Equipment Delivery" textFill="#c5d3ea" wrapText="true">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../media/RequestIcons/medical-equipment.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
                   </VBox>
                </content>

@@ -116,11 +116,11 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="180.0">
                      <children>
-                        <Label id="formBody" text="Issue" />
+                        <Label id="formBody" text="Location" />
                         <Label text=" *" textFill="RED" />
                      </children>
                   </HBox>
-                  <MFXFilterComboBox fx:id="issueBox" prefHeight="40.0" prefWidth="367.0" />
+                  <MFXFilterComboBox fx:id="locationBox" prefHeight="40.0" prefWidth="367.0" />
                </children>
                <GridPane.margin>
                   <Insets />
@@ -195,6 +195,20 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
+            <VBox layoutX="10.0" layoutY="84.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <HBox prefHeight="0.0" prefWidth="180.0">
+                     <children>
+                        <Label id="formBody" text="Issue" />
+                        <Label text=" *" textFill="RED" />
+                     </children>
+                  </HBox>
+                  <MFXFilterComboBox fx:id="issueBox" prefHeight="40.0" prefWidth="367.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
          </children>
       </GridPane>
    </children>

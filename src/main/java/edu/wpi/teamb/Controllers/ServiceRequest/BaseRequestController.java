@@ -26,8 +26,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 
 public class BaseRequestController {
-  // JavaFX components
-
   @FXML protected MFXFilterComboBox<Urgency> urgencyBox;
   @FXML protected MFXFilterComboBox<String> assignedStaffBox;
   @FXML protected MFXFilterComboBox locationBox;
@@ -66,7 +64,6 @@ public class BaseRequestController {
     currUser = SigninController.getCurrentUser();
 
     ObservableList<String> locations = getLocations();
-
     locationBox.setItems(locations);
   }
 
@@ -105,7 +102,6 @@ public class BaseRequestController {
    * @throws IOException
    */
   public void submitButtonClicked() throws IOException, SQLException {
-    Navigation.navigate(submissionScreen);
   }
 
   /**
@@ -141,7 +137,7 @@ public class BaseRequestController {
   }
 
   /**
-   * Whenever a key is released, updates disable status of clearButton and submitButton
+   * Whenever a key is released, updates disable status of submitButton
    *
    * @throws IOException
    */
@@ -177,19 +173,15 @@ public class BaseRequestController {
     request.setEmployeeID(String.valueOf(currUser.getId()));
     request.setEmail(currUser.getEmail());
     request.setNotes(additionalNotesField.getText());
+
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
     request.setDate(dtf.format(now));
+
     var staff = assignedStaffBox.getValue();
-    if (staff == null) {
-      staff = "";
-    }
     request.setAssignedEmployee(staff.toString());
 
     var urgency = urgencyBox.getValue();
-    if (urgency == null) {
-      urgency = Urgency.LOW;
-    }
     request.setUrgency(urgency);
     request.setStatus(RequestStatus.PROCESSING);
 

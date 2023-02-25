@@ -85,6 +85,7 @@ public class MapEditorController {
   private Map<Line, List<Node>> lineMap = new HashMap<>();
   private String currentFloor;
   private Rectangle selectionRectangle;
+  private ImageView image;
   @FXML VBox mapEditorButtons;
   @FXML MFXButton newnode;
   @FXML MFXButton newedge;
@@ -129,10 +130,29 @@ public class MapEditorController {
     pane = new GesturePane();
     pane.setOnKeyPressed(e -> handleKeyPress(e));
 
+    edge.setStrokeWidth(5);
+
     pane.setPrefHeight(714);
     pane.setPrefWidth(1168);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     aPane = new AnchorPane();
+
+    aPane.setOnMouseMoved(
+        e -> {
+          if (creatingEdge) {
+            if (edgeNode1 != null) {
+              if (!aPane.getChildren().contains(edge)) {
+                aPane.getChildren().add(edge);
+                edge.toBack();
+                image.toBack();
+                edge.setStartX(edgeNode1.getCenterX());
+                edge.setStartY(edgeNode1.getCenterY());
+              }
+              edge.setEndX(e.getX());
+              edge.setEndY(e.getY());
+            }
+          }
+        });
 
     aPane.setOnMouseDragged(
         e -> {
@@ -278,7 +298,6 @@ public class MapEditorController {
 
   private void changeFloor(String floor, Point2D p) {
     currentFloor = floor;
-    ImageView image;
     nodeMap.clear();
 
     image = imageMap.get(floor);
@@ -407,7 +426,7 @@ public class MapEditorController {
 
   private void clearPopUp() {
     if (currentPopUp != null) {
-      aPane.getChildren().remove(currentPopUp);
+      if (aPane.getChildren().contains(currentPopUp)) aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
       if (currentDot != null) currentDot.setFill(Bapp.blue);
       clearCurrentDots();
@@ -549,6 +568,11 @@ public class MapEditorController {
     final FXMLLoader loader = new FXMLLoader(res);
     forms.getChildren().add(loader.load());
     creatingEdge = true;
+    hidePopUpOnly();
+  }
+
+  public void hidePopUpOnly() {
+    if (currentPopUp != null) aPane.getChildren().remove(currentPopUp);
   }
 
   public void cancelClickEdge() {
@@ -561,6 +585,7 @@ public class MapEditorController {
       edgeNode2 = null;
     }
     aPane.getChildren().remove(edge);
+    creatingEdge = false;
     clearForm();
   }
 
@@ -577,7 +602,6 @@ public class MapEditorController {
     DBSession.addEdge(e);
     Pathfinding.refreshData();
     cancelClickEdge();
-    creatingEdge = false;
   }
 
   public void editNodeClicked() throws IOException {
@@ -705,9 +729,9 @@ public class MapEditorController {
     Map<String, Node> map = DBSession.getAllNodes();
     // aPane.getChildren().clear();
     for (String id : edges)
-      if (currentNode.getFloor().equals(map.get(id).getFloor())) {
+      if (currentNode.getFloor().equals(map.get(id).getFloor()))
         drawLineBetween(currentNode, map.get(id));
-      }
+    image.toBack();
   }
 
   private void drawLineBetween(Node n1, Node n2) {
@@ -716,6 +740,7 @@ public class MapEditorController {
     line.setStrokeWidth(5);
     aPane.getChildren().add(line);
     lineMap.put(line, Arrays.asList(n1, n2));
+    line.toBack();
 
     line.setCursor(Cursor.HAND);
 
@@ -895,24 +920,28 @@ public class MapEditorController {
 
   public void setOnMouseClicked(Circle c) {
     c.setOnMouseClicked(
-      ev -> {
-        if (ev.isControlDown()) {
-          currentDots.add(c);
-          c.setFill(Color.GOLD);
-          return;
-        }
-        if (currentDot != null) currentDot.setFill(Bapp.blue);
-        clearCurrentLine();
-        clearCurrentDots();
-        if (creatingEdge) {
-          if (edgeNode1 == null) edgeNode1 = c;
-          else if (edgeNode2 == null && c != edgeNode1) {
-            edgeNode2 = c;
-            createEdge();
+        ev -> {
+          if (ev.isControlDown()) {
+            currentDots.add(c);
+            c.setFill(Color.GOLD);
+            return;
           }
-        }
-        displayPopUp(c);
-        c.setFill(Color.GOLD);
-      });
+          if (currentDot != null) currentDot.setFill(Bapp.blue);
+          clearCurrentLine();
+          clearCurrentDots();
+          if (creatingEdge) {
+            if (edgeNode1 == null) edgeNode1 = c;
+            else if (edgeNode2 == null && c != edgeNode1) {
+              edgeNode2 = c;
+              createEdge();
+              displayPopUp(c);
+              c.setFill(Color.GOLD);
+            }
+            c.setFill(Color.GOLD);
+          } else {
+            displayPopUp(c);
+            c.setFill(Color.GOLD);
+          }
+        });
   }
 }

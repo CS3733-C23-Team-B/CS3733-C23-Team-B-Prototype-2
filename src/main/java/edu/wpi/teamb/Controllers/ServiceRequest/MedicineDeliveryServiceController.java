@@ -10,12 +10,12 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 
 public class MedicineDeliveryServiceController extends BaseRequestController {
 
-  @FXML private MFXTextField staffidField;
   @FXML private MFXTextField typeofmedicineField;
   @FXML private MFXTextField dosageField;
   @FXML private MFXTextField patientidField;
@@ -28,8 +28,8 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
+      urgencyBox,
       assignedStaffBox,
-      staffidField,
       typeofmedicineField,
       dosageField,
       deliverylocationLocationBox,
@@ -38,6 +38,10 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
+
+    ObservableList<String> locations = getLocations();
+
+    deliverylocationLocationBox.setItems(locations);
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -67,7 +71,7 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     }
     request.setLocation(destination.toString());
 
-    request.setEmployeeID(this.staffidField.getText());
+    // request.setEmployeeID(this.staffidField.getText());
     request.setMedicineType(this.typeofmedicineField.getText());
     request.setDoasage(this.dosageField.getText());
     request.setPatientID(this.patientidField.getText());

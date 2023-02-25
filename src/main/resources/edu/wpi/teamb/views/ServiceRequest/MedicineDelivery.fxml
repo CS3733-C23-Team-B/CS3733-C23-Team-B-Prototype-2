@@ -51,7 +51,7 @@
                 </HBox>
                 <HBox prefHeight="0.0" prefWidth="678.0">
                     <children>
-                        <Label text="Staff ID">
+                        <Label text="Urgency">
                             <font>
                                 <Font size="16.0" />
                             </font>
@@ -66,7 +66,7 @@
                                 <Font size="16.0" />
                             </font>
                             <HBox.margin>
-                                <Insets left="315.0" />
+                                <Insets left="310.0" />
                             </HBox.margin>
                         </Label>
                         <Label layoutX="69.0" layoutY="10.0" text=" *" textFill="RED">
@@ -84,7 +84,7 @@
                 </HBox>
                 <HBox prefHeight="52.0" prefWidth="738.0">
                     <children>
-                        <MFXTextField fx:id="staffidField" minHeight="40.0" minWidth="313.0" />
+                  <MFXFilterComboBox fx:id="urgencyBox" minHeight="40.0" minWidth="313.0" />
                         <MFXTextField fx:id="typeofmedicineField" minHeight="40.0" minWidth="313.0">
                             <HBox.margin>
                                 <Insets left="70.0" />
@@ -145,7 +145,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                        <Label text="Notes">
+                        <Label text="Assigned Staff Member">
                             <font>
                                 <Font size="16.0" />
                             </font>
@@ -155,12 +155,30 @@
                         </Label>
                     </children>
                 </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="60.0" prefWidth="696.0">
                <children>
                   <MFXFilterComboBox fx:id="deliverylocationLocationBox" minHeight="40.0" minWidth="313.0" />
-                      <MFXTextField fx:id="additionalNotesField" minHeight="80.0" minWidth="313.0">
+                  <HBox prefHeight="52.0" prefWidth="200.0" />
+                  <MFXFilterComboBox fx:id="assignedStaffBox" minHeight="40.0" minWidth="313.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="0.0" prefWidth="678.0">
+               <children>
+                  <Label text="Notes">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                      <HBox.margin>
-                        <Insets left="70.0" />
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MFXTextField fx:id="additionalNotesField" minHeight="80.0" minWidth="313.0">
+                     <HBox.margin>
+                        <Insets />
                      </HBox.margin>
                   </MFXTextField>
                   <HBox prefHeight="52.0" prefWidth="200.0" />

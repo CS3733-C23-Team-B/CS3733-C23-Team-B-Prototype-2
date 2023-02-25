@@ -50,12 +50,12 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Cierra%20O'Grady.png" />
+                                          <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Luke%20Grady.png" />
                                        </image>
                                     </ImageView>
                                     <VBox>
                                        <children>
-                                          <Label text="Position: Assistant Software Lead, Front End " wrapText="true">
+                                          <Label text="Position: Full Stack" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
@@ -65,22 +65,12 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Minor: IMGD" wrapText="true">
+                                          <Label text="Hobby: Rolling dice with Jack Laford" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Hobbies: Drawing, video games" wrapText="true">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Fun Fact: I am a git simp" wrapText="true">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Quote: &quot;UI GridPanes more like U and I are in GridPain haha!&quot;" wrapText="true">
+                                          <Label text="Quote: &quot;I've never fought for anything in my entire life. I'm fighting for this hat&quot; - Sam Colebourn" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
@@ -103,7 +93,7 @@
             </VBox>
             <VBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="1">
                <children>
-                  <Label text="Cierra O'Grady" textOverrun="CLIP">
+                  <Label text="Luke Grady " textOverrun="CLIP">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>

@@ -35,7 +35,6 @@ public enum Screen {
   CREATE_ACCOUNT("views/Profile/CreateAccount.fxml"),
   ALL_USERS("views/Profile/AllUsers2.fxml"),
   LANDING_PAGE_CREDITS("views/Navigation/LandingPageCredits.fxml"),
-  TEMPLATE("views/ServiceRequest/Template2.fxml"),
   SECURITY_SERVICES("views/ServiceRequest/Security.fxml"),
   FORGOT_PASSWORD("views/Profile/ForgotPass.fxml"),
   EXIT_CONFIRMATION("views/Navigation/ExitConfirmation.fxml"),

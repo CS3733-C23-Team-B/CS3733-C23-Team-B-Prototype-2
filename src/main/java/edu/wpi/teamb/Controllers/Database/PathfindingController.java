@@ -237,11 +237,11 @@ public class PathfindingController {
         });
     drawLines();
     if (startDot != null) {
-      startDot.setFill(Color.valueOf("#21357E"));
+      startDot.setFill(Bapp.blue);
       startDot = null;
     }
     if (endDot != null) {
-      endDot.setFill(Color.valueOf("#21357E"));
+      endDot.setFill(Bapp.blue);
       endDot = null;
     }
     Platform.runLater(() -> pane.centreOn(p));
@@ -387,11 +387,11 @@ public class PathfindingController {
     pane.toFront();
 
     if (startDot != null) {
-      startDot.setFill(Color.valueOf("#21357E"));
+      startDot.setFill(Bapp.blue);
       startDot = null;
     }
     if (endDot != null) {
-      endDot.setFill(Color.valueOf("#21357E"));
+      endDot.setFill(Bapp.blue);
       endDot = null;
     }
     setNodeColors();

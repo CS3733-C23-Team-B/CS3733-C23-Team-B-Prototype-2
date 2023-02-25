@@ -36,6 +36,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -44,6 +45,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -54,10 +56,6 @@ public class MapEditorController {
   @FXML GridPane gridPane;
   @FXML GridPane map;
   @FXML MFXButton editNodeButton;
-  @FXML MFXButton newNodeButton;
-  @FXML MFXButton viewMovesButton;
-  @FXML MFXButton editLocationButton;
-  @FXML MFXButton newMoveButton;
   @FXML MFXCheckbox showLocationsCheckBox;
   @Getter @FXML private AnchorPane forms;
   private List<Label> locLabels = new ArrayList<>();
@@ -66,11 +64,14 @@ public class MapEditorController {
   AnchorPane currentPopUp;
   private static Node currentNode;
   private static Circle currentDot;
+  private List<Circle> currentDots = new ArrayList<>();
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane;
   private double origX, origY;
+  private double origSelectX, origSelectY;
   private boolean dragged;
+  private boolean selectDragged;
   private boolean MOVING = false;
   private Circle edgeNode1, edgeNode2;
   private boolean creatingEdge;
@@ -81,8 +82,8 @@ public class MapEditorController {
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<Node, AnchorPane> locationMap = new HashMap<>();
   private String currentFloor;
+  private Rectangle selectionRectangle;
   @FXML VBox mapEditorButtons;
-
   @FXML MFXButton newnode;
   @FXML MFXButton newedge;
   @FXML MFXButton editlocation;
@@ -131,6 +132,40 @@ public class MapEditorController {
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     aPane = new AnchorPane();
 
+    aPane.setOnMouseDragged(
+        e -> {
+          if (!e.getButton().equals(MouseButton.SECONDARY)) return;
+          if (!selectDragged) {
+            selectionRectangle = new Rectangle();
+            selectionRectangle.setFill(Color.LIGHTBLUE);
+            selectionRectangle.setOpacity(.5);
+            aPane.getChildren().add(selectionRectangle);
+            selectionRectangle.toFront();
+          }
+          sizeRectangle(e.getX(), e.getY());
+          selectDragged = true;
+        });
+
+    aPane.setOnMousePressed(
+        e -> {
+          if (e.getButton().equals(MouseButton.SECONDARY)) {
+            origSelectX = e.getX();
+            origSelectY = e.getY();
+            pane.setGestureEnabled(false);
+          }
+        });
+
+    aPane.setOnMouseReleased(
+        e -> {
+          if (selectDragged) aPane.getChildren().remove(selectionRectangle);
+
+          if (selectDragged) setSelectedDots();
+
+          selectionRectangle = null;
+          selectDragged = false;
+          pane.setGestureEnabled(true);
+        });
+
     aPane.setOnMouseClicked(
         e -> {
           if (e.getClickCount() == 2) {
@@ -145,7 +180,8 @@ public class MapEditorController {
 
             c.setOnMouseClicked(
                 ev -> {
-                  if (currentDot != null) currentDot.setFill(Color.valueOf("#21375E"));
+                  if (currentDot != null) currentDot.setFill(Bapp.blue);
+                  clearCurrentDots();
                   displayPopUp(c);
                   c.setFill(Color.GOLD);
                   if (creatingEdge) {
@@ -257,7 +293,7 @@ public class MapEditorController {
     nodeMap.clear();
 
     image = imageMap.get(floor);
-    image.setOnMouseClicked(e -> handleClick());
+    image.setOnMousePressed(e -> handleClick());
 
     aPane.getChildren().clear();
     aPane.getChildren().add(image);
@@ -269,7 +305,8 @@ public class MapEditorController {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
             e -> {
-              if (currentDot != null) currentDot.setFill(Color.valueOf("#21375E"));
+              if (currentDot != null) currentDot.setFill(Bapp.blue);
+              clearCurrentDots();
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
               if (creatingEdge) {
@@ -396,7 +433,8 @@ public class MapEditorController {
     if (currentPopUp != null) {
       aPane.getChildren().remove(currentPopUp);
       currentPopUp = null;
-      if (currentDot != null) currentDot.setFill(Color.valueOf("#21357E"));
+      if (currentDot != null) currentDot.setFill(Bapp.blue);
+      clearCurrentDots();
       currentNode = null;
       currentDot = null;
       removeEdges();
@@ -420,7 +458,7 @@ public class MapEditorController {
         (e) -> {
           origX = e.getSceneX();
           origY = e.getSceneY();
-          if (currentDot != null) currentDot.setFill(Color.valueOf("#21357E"));
+          if (currentDot != null) currentDot.setFill(Bapp.blue);
           currentDot = dot;
 
           pane.setGestureEnabled(false);
@@ -433,7 +471,8 @@ public class MapEditorController {
         e -> {
           pane.setGestureEnabled(true);
           if (dragged) {
-            updateNode(dot);
+            if (currentDots.size() == 0) updateNode(dot);
+            else updateNodes();
             AnchorPane popPane = locationMap.get(nodeMap.get(dot));
             if (popPane != null) {
               popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 50);
@@ -447,9 +486,18 @@ public class MapEditorController {
         (e) -> {
           double offsetX = (e.getSceneX() - origX) / pane.getCurrentScaleX();
           double offsetY = (e.getSceneY() - origY) / pane.getCurrentScaleY();
-          Circle c = (Circle) (e.getSource());
-          c.setCenterX(c.getCenterX() + offsetX);
-          c.setCenterY(c.getCenterY() + offsetY);
+
+          if (currentDots.size() == 0) {
+            Circle c = (Circle) (e.getSource());
+            c.setCenterX(c.getCenterX() + offsetX);
+            c.setCenterY(c.getCenterY() + offsetY);
+          }
+
+          for (Circle sd : currentDots) {
+            sd.setCenterX(sd.getCenterX() + offsetX);
+            sd.setCenterY(sd.getCenterY() + offsetY);
+          }
+
           origX = e.getSceneX();
           origY = e.getSceneY();
           dragged = true;
@@ -471,8 +519,21 @@ public class MapEditorController {
     refreshPopUp();
   }
 
+  public void updateNodes() {
+    for (Circle dot : currentDots) {
+      Node node = nodeMap.get(dot);
+      node.setXCoord((int) dot.getCenterX());
+      node.setYCoord((int) dot.getCenterY());
+      DBSession.updateNode(node);
+      node.setNodeID(node.buildID());
+    }
+    Pathfinding.refreshData();
+    MapDAO.refreshIDMoves(new Date(System.currentTimeMillis()));
+  }
+
   public void handleClick() {
     selectedCircle.set(null);
+    clearCurrentDots();
     clearPopUp();
     if (edgeNode1 != null) {
       edgeNode1.setFill(Color.GOLD);
@@ -512,11 +573,11 @@ public class MapEditorController {
 
   public void cancelClickEdge() {
     if (edgeNode1 != null) {
-      edgeNode1.setFill(Color.valueOf("#21357E"));
+      edgeNode1.setFill(Bapp.blue);
       edgeNode1 = null;
     }
     if (edgeNode2 != null) {
-      edgeNode2.setFill(Color.valueOf("#21357E"));
+      edgeNode2.setFill(Bapp.blue);
       edgeNode2 = null;
     }
     clearForm();
@@ -613,6 +674,13 @@ public class MapEditorController {
     clearPopUp();
   }
 
+  public void removeNodes() {
+    for (Circle dot : currentDots) {
+      aPane.getChildren().remove(dot);
+      nodeMap.remove(dot);
+    }
+  }
+
   public static MapEditorController getInstance() {
     return instance;
   }
@@ -670,10 +738,77 @@ public class MapEditorController {
 
   public void handleKeyPress(KeyEvent e) {
     if (e.getCode().equals(KeyCode.BACK_SPACE)) {
-      Node n = nodeMap.get(currentDot);
-      promptEdgeRepair(n);
-      removeNode();
-      DBSession.deleteNode(n);
+      if (currentDot != null) {
+        Node n = nodeMap.get(currentDot);
+        promptEdgeRepair(n);
+        removeNode();
+        DBSession.deleteNode(n);
+      }
+
+      for (Circle dot : currentDots) {
+        Node n = nodeMap.get(dot);
+        DBSession.deleteNode(n);
+      }
+
+      removeNodes();
     }
+  }
+
+  private void sizeRectangle(double cornerX, double cornerY) {
+    double tlx, tly, brx, bry;
+    if (origSelectX < cornerX) {
+      tlx = origSelectX;
+      brx = cornerX;
+    } else {
+      tlx = cornerX;
+      brx = origSelectX;
+    }
+    if (origSelectY < cornerY) {
+      tly = origSelectY;
+      bry = cornerY;
+    } else {
+      tly = cornerY;
+      bry = origSelectY;
+    }
+
+    selectionRectangle.setX(tlx);
+    selectionRectangle.setY(tly);
+
+    selectionRectangle.setWidth(brx - tlx);
+    selectionRectangle.setHeight(bry - tly);
+
+    selectionRectangle.toFront();
+  }
+
+  public void clearCurrentDots() {
+    for (Circle dot : currentDots) dot.setFill(Bapp.blue);
+    currentDots.clear();
+  }
+
+  private void setSelectedDots() {
+    for (Circle dot : nodeMap.keySet()) {
+      if (withinSelection(dot)) {
+        currentDots.add(dot);
+        dot.setFill(Color.GOLD);
+      }
+    }
+  }
+
+  private boolean withinSelection(Circle dot) {
+    if (selectionRectangle == null) {
+      System.err.println("THIS SHOULD NOT BE NULL");
+      return false;
+    }
+
+    double x, y, x1, y1, x2, y2;
+    x1 = selectionRectangle.getX();
+    y1 = selectionRectangle.getY();
+    x2 = selectionRectangle.getX() + selectionRectangle.getWidth();
+    y2 = selectionRectangle.getY() + selectionRectangle.getHeight();
+
+    x = dot.getCenterX();
+    y = dot.getCenterY();
+
+    return (x >= x1 && x <= x2 && y >= y1 && y <= y2);
   }
 }

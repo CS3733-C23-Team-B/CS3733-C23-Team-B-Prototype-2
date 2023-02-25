@@ -71,6 +71,18 @@ public class DBSession {
     MapDAO.addMove(m);
   }
 
+  public static void addKioskMove(KioskMove km) {
+    MapDAO.addKioskMove(km);
+  }
+
+  public static void deleteKioskMove(KioskMove km) {
+    MapDAO.deleteKioskMove(km);
+  }
+
+  public static List<KioskMove> getAllKioskMoves() {
+    return MapDAO.getAllKioskMoves();
+  }
+
   public static void deleteMove(Move m) {
     MapDAO.deleteMove(m);
   }
@@ -117,6 +129,18 @@ public class DBSession {
 
   public static synchronized List<ComputerRequest> getAllCRequests() {
     return RequestDAO.getAllCRequests();
+  }
+
+  public static synchronized List<MedicalEquipmentDeliveryRequest> getAllMEDRequests() {
+    return RequestDAO.getAllMEDRequests();
+  }
+
+  public static synchronized List<MedicineDeliveryRequest> getAllMDRequests() {
+    return RequestDAO.getAllMDRequests();
+  }
+
+  public static synchronized List<FacilitiesRequest> getAllFacRequests() {
+    return RequestDAO.getAllFacRequests();
   }
 
   public static synchronized Map<String, List<Move>> getIDMoves(Date d) {

@@ -26,6 +26,28 @@
     -fx-background-color: rgba(163, 233, 228, 0.6);
 }
 
+#signInTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 27px;
+    -fx-font-weight: bold;
+}
+
+#signInBody{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 18px;
+}
+
+#signInButtons{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+#signInAccent{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 10px;
+}
+
 #menuIcon{
     -fx-background-radius: 30px;
     -fx-background-image: url("/media/profile_icon.png");
@@ -110,6 +132,65 @@
     -fx-background-repeat: stretch;
     -fx-background-size: 40 40;
     -fx-background-position: top center;
+}
+
+#exitConfirmation{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 37px;
+}
+
+#createAccount{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+#createAccountBody{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+#createAccountButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-style: bold;
+}
+
+#forgotPasswordTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 36px;
+}
+
+#forgotPasswordBody{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+}
+
+#forgotPasswordLabel{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 20px;
+}
+
+#formTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#formBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+}
+
+#formButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
 }
 
 #profileTitle {

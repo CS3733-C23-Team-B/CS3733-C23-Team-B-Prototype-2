@@ -188,7 +188,7 @@
                               </VBox>
                               <HBox>
                                  <children>
-                                    <MFXButton fx:id="pathfind" alignment="CENTER" buttonType="RAISED" style="-fx-background-color: #003DA6;" text="Find Fastest Path" textFill="WHITE">
+                                    <MFXButton fx:id="pathfind" alignment="CENTER" buttonType="RAISED" prefWidth="150.0" style="-fx-background-color: #003DA6;" text="Find Path" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="70.0" top="10.0" />
                                        </HBox.margin>

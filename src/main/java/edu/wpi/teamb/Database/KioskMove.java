@@ -9,25 +9,25 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cascade;
 
 @Entity
-@Table(name = "move", schema = "iter4")
+@Table(name = "kioskmove", schema = "iter4")
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Move {
+public class KioskMove {
 
   @Id
   @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
   @JoinColumn(
-      name = "node",
+      name = "nextNode",
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "move_node_fk_iter4",
+              name = "kioskmove_nextnode_fk_iter4",
               foreignKeyDefinition =
-                  "FOREIGN KEY (node) REFERENCES iter4.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+                  "FOREIGN KEY (nextNode) REFERENCES iter4.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne
   @Setter
   @Getter
-  private Node node;
+  private Node nextNode;
 
   @Id
   @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
@@ -50,11 +50,24 @@ public class Move {
   @Setter
   private Date moveDate;
 
-  public Move(Node node, LocationName locationName, Date moveDate) {
-    this.node = node;
-    this.locationName = locationName;
-    this.moveDate = moveDate;
-  }
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+  @JoinColumn(
+      name = "prevNode",
+      nullable = false,
+      foreignKey =
+          @ForeignKey(
+              name = "kioskmove_prevnode_fk_iter4",
+              foreignKeyDefinition =
+                  "FOREIGN KEY (prevNode) REFERENCES iter4.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
+  @ManyToOne
+  @Setter
+  @Getter
+  private Node prevNode;
 
-  public Move() {}
+  @Column(name = "message")
+  @Getter
+  @Setter
+  private String message;
+
+  public KioskMove() {};
 }

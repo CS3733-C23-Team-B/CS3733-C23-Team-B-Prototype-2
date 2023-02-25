@@ -15,10 +15,11 @@ public class RequestDAO {
   private static List<PatientTransportationRequest> PTRequests = new ArrayList<>();
   private static List<SanitationRequest> SanRequests = new ArrayList<>();
   private static List<ComputerRequest> CRequests = new ArrayList<>();
-
   private static List<SecurityRequest> SecRequests = new ArrayList<>();
-
   private static List<AudioVideoRequest> AVRequests = new ArrayList<>();
+  private static List<MedicalEquipmentDeliveryRequest> MEDRequests = new ArrayList<>();
+  private static List<MedicineDeliveryRequest> MDRequests = new ArrayList<>();
+  private static List<FacilitiesRequest> FacRequests = new ArrayList<>();
 
   public static List<GeneralRequest> getAllRequests() {
     return allRequests;
@@ -47,6 +48,21 @@ public class RequestDAO {
   public static List<AudioVideoRequest> getAllAVRequests() {
     refreshRequests();
     return AVRequests;
+  }
+
+  public static List<MedicalEquipmentDeliveryRequest> getAllMEDRequests() {
+    refreshRequests();
+    return MEDRequests;
+  }
+
+  public static List<MedicineDeliveryRequest> getAllMDRequests() {
+    refreshRequests();
+    return MDRequests;
+  }
+
+  public static List<FacilitiesRequest> getAllFacRequests() {
+    refreshRequests();
+    return FacRequests;
   }
 
   public static List<GeneralRequest> getAllRequestsWithEmpID(String id) {
@@ -86,6 +102,15 @@ public class RequestDAO {
       SecRequests = q5.list();
       Query q6 = session.createQuery("FROM AudioVideoRequest", AudioVideoRequest.class);
       AVRequests = q6.list();
+      Query q7 =
+          session.createQuery(
+              "FROM MedicalEquipmentDeliveryRequest", MedicalEquipmentDeliveryRequest.class);
+      MEDRequests = q7.list();
+      Query q8 =
+          session.createQuery("FROM MedicineDeliveryRequest ", MedicineDeliveryRequest.class);
+      MDRequests = q8.list();
+      Query q9 = session.createQuery("FROM FacilitiesRequest", FacilitiesRequest.class);
+      FacRequests = q9.list();
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();

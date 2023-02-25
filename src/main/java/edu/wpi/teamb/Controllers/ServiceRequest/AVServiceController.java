@@ -19,7 +19,6 @@ public class AVServiceController extends BaseRequestController {
   ObservableList<String> typeOfEquipment =
       FXCollections.observableArrayList("TV", "Radio", "iPad", "Headphones");
 
-  @FXML private MFXFilterComboBox locationBox;
   @FXML private MFXFilterComboBox<String> typeOfEquipmentBox;
 
   @FXML
@@ -33,7 +32,6 @@ public class AVServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    locationBox.setItems(getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -53,8 +51,6 @@ public class AVServiceController extends BaseRequestController {
     AudioVideoRequest request = new AudioVideoRequest();
 
     super.submit(request);
-
-    request.setLocation(locationBox.getText());
 
     var equipment = typeOfEquipmentBox.getValue();
     if (equipment == null) {

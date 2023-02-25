@@ -19,7 +19,6 @@ public class SanitationServiceController extends BaseRequestController {
   // Lists for checkboxes
   ObservableList<String> typeOfCleanUpList =
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
-  @FXML private MFXFilterComboBox<String> cleanUpLocationBox;
   @FXML private MFXFilterComboBox<String> typeOfCleanUpBox;
 
   @FXML
@@ -28,12 +27,11 @@ public class SanitationServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      cleanUpLocationBox, urgencyBox, typeOfCleanUpBox, assignedStaffBox, additionalNotesField
+      locationBox, urgencyBox, typeOfCleanUpBox, assignedStaffBox, additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    cleanUpLocationBox.setItems(getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -53,12 +51,6 @@ public class SanitationServiceController extends BaseRequestController {
     SanitationRequest request = new SanitationRequest();
 
     super.submit(request);
-
-    var cleanUpLocation = cleanUpLocationBox.getValue();
-    if (cleanUpLocation == null) {
-      cleanUpLocation = "";
-    }
-    request.setCleanUpLocation(cleanUpLocation.toString());
 
     var typeOfcleanUp = typeOfCleanUpBox.getValue();
     if (typeOfcleanUp == null) {

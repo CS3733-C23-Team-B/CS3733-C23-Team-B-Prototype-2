@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.PatientTransportationController">
    <columnConstraints>
       <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="80.0" prefWidth="80.0" />
@@ -142,14 +141,19 @@
                               </HBox>
                               <MFXFilterComboBox fx:id="patientCurrentLocationBox" prefHeight="40.0" prefWidth="367.0" />
                            </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
                         </VBox>
-                        <VBox layoutX="10.0" layoutY="78.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <MFXFilterComboBox fx:id="locationBox" prefHeight="40.0" prefWidth="367.0" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </GridPane>
+                  <VBox layoutX="10.0" layoutY="78.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <HBox prefHeight="0.0" prefWidth="180.0">
                            <children>
                               <HBox prefHeight="0.0" prefWidth="180.0">
                                  <children>
@@ -159,11 +163,16 @@
                               </HBox>
                               <MFXFilterComboBox fx:id="patientDestinationLocationBox" prefHeight="40.0" prefWidth="367.0" />
                            </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="190.0" layoutY="78.0" GridPane.rowIndex="2">
+                        </HBox>
+                        <MFXFilterComboBox fx:id="patientDestinationBox" prefHeight="40.0" prefWidth="367.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="190.0" layoutY="78.0" GridPane.rowIndex="2">
+                     <children>
+                        <HBox prefHeight="0.0" prefWidth="180.0">
                            <children>
                               <HBox prefHeight="0.0" prefWidth="180.0">
                                  <children>
@@ -235,5 +244,3 @@
             </GridPane>
          </children>
       </GridPane>
-   </children>
-</GridPane>

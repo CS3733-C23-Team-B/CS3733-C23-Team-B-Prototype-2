@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.Move;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.List;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
@@ -15,7 +16,11 @@ public class KioskEditController {
 
   public void initialize() {
     List<Move> moves = DBSession.getAllMoves();
-    moveDropdown.setItems(FXCollections.observableList(moves));
+    List<String> l =
+        moves.stream()
+            .map(move -> move.getLocationName().getLongName())
+            .collect(Collectors.toList());
+    moveDropdown.setItems(FXCollections.observableList(l));
   }
 
   public void addKiosk() {

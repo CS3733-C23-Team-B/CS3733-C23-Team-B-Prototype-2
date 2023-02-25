@@ -116,7 +116,7 @@
                               <Insets />
                            </VBox.margin>
                         </GridPane>
-                        <MFXButton id="signInButtons" depthLevel="LEVEL1" onAction="#viewMap" prefHeight="50.0" prefWidth="122.0" style="-fx-background-color: #6D9BF8; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="View Map" textFill="WHITE">
+                        <MFXButton id="signInButtons" depthLevel="LEVEL1" onAction="#signInButtonClicked" prefHeight="50.0" prefWidth="122.0" style="-fx-background-color: #6D9BF8; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="View Map" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="15.0" />
                            </VBox.margin></MFXButton>

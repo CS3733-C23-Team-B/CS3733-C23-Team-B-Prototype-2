@@ -196,6 +196,8 @@ public class DBSession {
     }
   }
 
+  public static synchronized List<Move> getAllMoves() { return MapDAO.getAllMoves();}
+
   public static synchronized String getMostRecentNodeID(String longName) {
     try {
       return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01"))

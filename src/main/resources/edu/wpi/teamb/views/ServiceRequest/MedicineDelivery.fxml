@@ -157,7 +157,7 @@
                 </HBox>
             <HBox prefHeight="60.0" prefWidth="696.0">
                <children>
-                  <MFXFilterComboBox fx:id="deliverylocationLocationBox" minHeight="40.0" minWidth="313.0" />
+                  <MFXFilterComboBox fx:id="locationBox" minHeight="40.0" minWidth="313.0" />
                   <HBox prefHeight="52.0" prefWidth="200.0" />
                   <MFXFilterComboBox fx:id="assignedStaffBox" minHeight="40.0" minWidth="313.0" />
                </children>

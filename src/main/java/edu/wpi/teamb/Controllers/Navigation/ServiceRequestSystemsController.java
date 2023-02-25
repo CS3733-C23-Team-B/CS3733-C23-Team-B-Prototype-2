@@ -28,6 +28,7 @@ public class ServiceRequestSystemsController {
   @FXML MFXButton comButton;
   @FXML MFXButton AVButton;
   @FXML MFXButton equipButton;
+  @FXML MFXButton medDeliveryButton;
   @FXML Label headerText;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
@@ -191,5 +192,28 @@ public class ServiceRequestSystemsController {
     AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
     equipButton.setStyle("-fx-background-color: #6D9BF8");
     equipButton.setTextFill(Paint.valueOf("#FFFFFF"));
+  }
+
+  public void makeMedDelivery() throws IOException {
+    mainGridPane.getChildren().clear();
+    final var r = Bapp.class.getResource(Screen.MEDICINE_DELIVERY_SERVICE_REQUEST.getFilename());
+    final FXMLLoader loader = new FXMLLoader(r);
+    mainGridPane.getChildren().add(loader.load());
+    Font font = Font.font("System", FontPosture.ITALIC, 48);
+    pageTitle.setFont(font);
+    pageTitle.setText("Medicine Delivery");
+    headerText.setText("");
+    transButton.setStyle("-fx-background-color: #6D9BF8");
+    transButton.setTextFill(Paint.valueOf("#FFFFFF"));
+    saniButton.setStyle("-fx-background-color: #21357E");
+    saniButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    secButton.setStyle("-fx-background-color:  #21357E");
+    secButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    comButton.setStyle("-fx-background-color:  #21357E");
+    comButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    AVButton.setStyle("-fx-background-color: #21357E");
+    AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    equipButton.setStyle("-fx-background-color: #21357E");
+    equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
   }
 }

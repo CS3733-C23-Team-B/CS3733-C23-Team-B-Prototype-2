@@ -270,6 +270,18 @@
                               </ImageView>
                            </graphic>
                         </MFXButton>
+                        <MFXButton fx:id="medDeliveryButton" alignment="BASELINE_LEFT" onAction="#makeMedDelivery" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Medicine Delivery" textFill="#c5d3ea" wrapText="true">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../media/RequestIcons/video-and-audio.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />

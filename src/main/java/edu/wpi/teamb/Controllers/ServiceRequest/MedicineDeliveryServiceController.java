@@ -21,7 +21,7 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
   @FXML private MFXTextField typeofmedicineField;
   @FXML private MFXTextField dosageField;
   @FXML private MFXTextField patientidField;
-  @FXML private MFXFilterComboBox deliverylocationLocationBox;
+  // @FXML private MFXFilterComboBox deliverylocationLocationBox;
 
   /** Initialize the page by declaring choice-box options */
   @FXML
@@ -34,7 +34,7 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
       assignedStaffBox,
       typeofmedicineField,
       dosageField,
-      deliverylocationLocationBox,
+      // deliverylocationLocationBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
@@ -49,7 +49,7 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
 
     assignedStaffBox.setItems(staffMembers);
 
-    deliverylocationLocationBox.setItems(locations);
+    locationBox.setItems(locations);
 
     super.initialize();
   }
@@ -67,17 +67,11 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     MedicineDeliveryRequest request = new MedicineDeliveryRequest();
     super.submit(request);
 
-    var destination = deliverylocationLocationBox.getValue();
+    var destination = locationBox.getValue();
     if (destination == null) {
       destination = "";
     }
     request.setLocation(destination.toString());
-
-    var assignedstaff = assignedStaffBox.getValue();
-    if (assignedstaff == null) {
-      assignedstaff = "";
-    }
-    request.setAssignedEmployee(assignedstaff.toString());
 
     request.setMedicineType(this.typeofmedicineField.getText());
     request.setDoasage(this.dosageField.getText());

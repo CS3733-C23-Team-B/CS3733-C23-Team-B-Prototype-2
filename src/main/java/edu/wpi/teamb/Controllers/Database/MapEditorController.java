@@ -127,8 +127,8 @@ public class MapEditorController {
     pane = new GesturePane();
     pane.setOnKeyPressed(e -> handleKeyPress(e));
 
-    pane.setPrefHeight(714);
-    pane.setPrefWidth(1168);
+    pane.setPrefHeight(map.getHeight());
+    pane.setPrefWidth(map.getWidth());
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     aPane = new AnchorPane();
 

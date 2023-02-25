@@ -196,7 +196,9 @@ public class DBSession {
     }
   }
 
-  public static synchronized List<Move> getAllMoves() { return MapDAO.getAllMoves();}
+  public static synchronized List<Move> getAllMoves() {
+    return MapDAO.getAllMoves();
+  }
 
   public static synchronized String getMostRecentNodeID(String longName) {
     try {

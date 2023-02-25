@@ -34,6 +34,7 @@ public class KioskViewController {
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
   private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
   private AnchorPane linesPlane = new AnchorPane();
+
   Circle startDot;
   Circle endDot;
 

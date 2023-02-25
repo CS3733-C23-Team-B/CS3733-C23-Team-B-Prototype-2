@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <GridPane style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SubmittedRequests.SubmittedServiceRequestsController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="347.9999755859375" />
@@ -27,7 +27,6 @@
     <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" prefHeight="520.0000030517579" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="1056.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
          <children>
             <GridPane prefHeight="93.0" prefWidth="748.0">

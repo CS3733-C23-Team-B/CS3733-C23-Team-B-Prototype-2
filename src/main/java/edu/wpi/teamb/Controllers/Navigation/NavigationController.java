@@ -24,7 +24,10 @@ public class NavigationController {
     Platform.runLater(
         () -> {
           if (SigninController.getInstance() != null) {
-            if (!SigninController.getInstance().currentUser.getAdmin()) map.setVisible(false);
+            if (!SigninController.getInstance().currentUser.getAdmin()) {
+              map.setVisible(false);
+              editKiosk.setVisible(false);
+            }
           }
           resetButtons();
         });

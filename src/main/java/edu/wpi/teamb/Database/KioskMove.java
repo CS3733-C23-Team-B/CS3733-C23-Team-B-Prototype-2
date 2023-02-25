@@ -50,19 +50,10 @@ public class KioskMove {
   @Setter
   private Date moveDate;
 
-  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-  @JoinColumn(
-      name = "prevNode",
-      nullable = false,
-      foreignKey =
-          @ForeignKey(
-              name = "kioskmove_prevnode_fk_iter4",
-              foreignKeyDefinition =
-                  "FOREIGN KEY (prevNode) REFERENCES iter4.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
-  @ManyToOne
+  @Column(name = "prevnode")
   @Setter
   @Getter
-  private Node prevNode;
+  private Object prevNode;
 
   @Column(name = "message")
   @Getter

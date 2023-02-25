@@ -56,7 +56,7 @@ public class ServiceRequestSystemsController {
 
   public void makeTrans() throws IOException {
     mainGridPane.getChildren().clear();
-    final var r = Bapp.class.getResource(Screen.TEMPLATE.getFilename());
+    final var r = Bapp.class.getResource(Screen.PATIENT_TRANSPORTATION.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
     Font font = Font.font("System", FontPosture.ITALIC, 48);

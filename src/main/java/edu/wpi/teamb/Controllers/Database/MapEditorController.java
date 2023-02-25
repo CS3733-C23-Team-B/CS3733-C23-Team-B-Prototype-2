@@ -73,7 +73,6 @@ public class MapEditorController {
   private double origSelectX, origSelectY;
   private boolean dragged;
   private boolean selectDragged;
-  private boolean MOVING = false;
   private Circle edgeNode1, edgeNode2;
   private boolean creatingEdge;
   private static MapEditorController instance;
@@ -190,8 +189,6 @@ public class MapEditorController {
                   if (currentDot != null) currentDot.setFill(Bapp.blue);
                   clearCurrentLine();
                   clearCurrentDots();
-                  displayPopUp(c);
-                  c.setFill(Color.GOLD);
                   if (creatingEdge) {
                     if (edgeNode1 == null) edgeNode1 = c;
                     else if (edgeNode2 == null && c != edgeNode1) {
@@ -199,6 +196,8 @@ public class MapEditorController {
                       createEdge();
                     }
                   }
+                  displayPopUp(c);
+                  c.setFill(Color.GOLD);
                 });
 
             nodeMap.put(c, n);
@@ -321,8 +320,6 @@ public class MapEditorController {
               if (currentDot != null) currentDot.setFill(Bapp.blue);
               clearCurrentLine();
               clearCurrentDots();
-              displayPopUp(dot);
-              dot.setFill(Color.GOLD);
               if (creatingEdge) {
                 if (edgeNode1 == null) edgeNode1 = dot;
                 else if (edgeNode2 == null && dot != edgeNode1) {
@@ -330,6 +327,8 @@ public class MapEditorController {
                   createEdge();
                 }
               }
+              displayPopUp(dot);
+              dot.setFill(Color.GOLD);
             });
 
         nodeMap.put(dot, node);

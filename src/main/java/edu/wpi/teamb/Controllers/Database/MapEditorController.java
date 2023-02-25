@@ -655,7 +655,7 @@ public class MapEditorController {
   }
 
   public void refreshPopUp() {
-    if (!currentNode.getFloor().equals("L1")) {
+    if (!currentNode.getFloor().equals(currentFloor)) {
       removeNode();
       return;
     }

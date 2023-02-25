@@ -65,6 +65,7 @@ public class MapEditorController {
   private static Node currentNode;
   private static Circle currentDot;
   private List<Circle> currentDots = new ArrayList<>();
+  private Line currentLine;
   private final int POP_UP_HEIGHT = 110;
   private GesturePane pane;
   private AnchorPane aPane;
@@ -81,6 +82,7 @@ public class MapEditorController {
   private Map<String, String> floorMap = new HashMap<>();
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<Node, AnchorPane> locationMap = new HashMap<>();
+  private Map<Line, List<Node>> lineMap = new HashMap<>();
   private String currentFloor;
   private Rectangle selectionRectangle;
   @FXML VBox mapEditorButtons;
@@ -180,7 +182,13 @@ public class MapEditorController {
 
             c.setOnMouseClicked(
                 ev -> {
+                  if (ev.isControlDown()) {
+                    currentDots.add(c);
+                    c.setFill(Color.GOLD);
+                    return;
+                  }
                   if (currentDot != null) currentDot.setFill(Bapp.blue);
+                  clearCurrentLine();
                   clearCurrentDots();
                   displayPopUp(c);
                   c.setFill(Color.GOLD);
@@ -304,8 +312,14 @@ public class MapEditorController {
       if (node.getFloor().equals(currentFloor)) {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
-            e -> {
+            ev -> {
+              if (ev.isControlDown()) {
+                currentDots.add(dot);
+                dot.setFill(Color.GOLD);
+                return;
+              }
               if (currentDot != null) currentDot.setFill(Bapp.blue);
+              clearCurrentLine();
               clearCurrentDots();
               displayPopUp(dot);
               dot.setFill(Color.GOLD);
@@ -456,10 +470,12 @@ public class MapEditorController {
 
     dot.setOnMousePressed(
         (e) -> {
+          if (e.isControlDown()) return;
           origX = e.getSceneX();
           origY = e.getSceneY();
           if (currentDot != null) currentDot.setFill(Bapp.blue);
-          currentDot = dot;
+
+          if (currentDots.size() == 0) currentDot = dot;
 
           pane.setGestureEnabled(false);
 
@@ -469,6 +485,7 @@ public class MapEditorController {
 
     dot.setOnMouseReleased(
         e -> {
+          if (e.isControlDown()) return;
           pane.setGestureEnabled(true);
           if (dragged) {
             if (currentDots.size() == 0) updateNode(dot);
@@ -484,6 +501,7 @@ public class MapEditorController {
 
     dot.setOnMouseDragged(
         (e) -> {
+          if (e.isControlDown()) return;
           double offsetX = (e.getSceneX() - origX) / pane.getCurrentScaleX();
           double offsetY = (e.getSceneY() - origY) / pane.getCurrentScaleY();
 
@@ -533,6 +551,7 @@ public class MapEditorController {
 
   public void handleClick() {
     selectedCircle.set(null);
+    clearCurrentLine();
     clearCurrentDots();
     clearPopUp();
     if (edgeNode1 != null) {
@@ -731,14 +750,35 @@ public class MapEditorController {
 
   private void drawLineBetween(Node n1, Node n2) {
     Line line = new Line(n1.getXCoord(), n1.getYCoord(), n2.getXCoord(), n2.getYCoord());
-    line.setFill(Color.BLACK);
+    line.setStroke(Color.BLACK);
     line.setStrokeWidth(5);
     aPane.getChildren().add(line);
+    lineMap.put(line, Arrays.asList(n1, n2));
+
+    line.setCursor(Cursor.HAND);
+
+    line.setOnMouseEntered(e -> line.setStrokeWidth(10));
+    line.setOnMouseExited(e -> line.setStrokeWidth(5));
+
+    line.setOnMouseClicked(
+        e -> {
+          currentDot.setFill(Bapp.blue);
+          clearCurrentLine();
+          line.setStroke(Color.GOLD);
+          currentLine = line;
+        });
   }
 
   public void handleKeyPress(KeyEvent e) {
     if (e.getCode().equals(KeyCode.BACK_SPACE)) {
-      if (currentDot != null) {
+      if (currentLine != null) {
+        Node n1 = lineMap.get(currentLine).get(0);
+        Node n2 = lineMap.get(currentLine).get(1);
+        aPane.getChildren().remove(currentLine);
+        DBSession.deleteEdge(n1, n2);
+        Pathfinding.refreshData();
+        currentLine = null;
+      } else if (currentDot != null) {
         Node n = nodeMap.get(currentDot);
         promptEdgeRepair(n);
         removeNode();
@@ -752,6 +792,78 @@ public class MapEditorController {
 
       removeNodes();
     }
+
+    if (e.getCode().equals(KeyCode.S)) {
+      straightenNodes();
+    }
+
+    if (e.getCode().equals(KeyCode.H)) {
+      horizontalNodes();
+    }
+
+    if (e.getCode().equals(KeyCode.V)) {
+      verticalNodes();
+    }
+  }
+
+  private void horizontalNodes() {
+    if (currentDots.size() < 2) return;
+    double avgY = 0;
+    for (Circle dot : currentDots) avgY += dot.getCenterY();
+    avgY /= currentDots.size();
+    for (Circle dot : currentDots) dot.setCenterY(avgY);
+    updateNodes();
+  }
+
+  private void verticalNodes() {
+    if (currentDots.size() < 2) return;
+    double avgX = 0;
+    for (Circle dot : currentDots) avgX += dot.getCenterX();
+    avgX /= currentDots.size();
+    for (Circle dot : currentDots) dot.setCenterX(avgX);
+    updateNodes();
+  }
+
+  private void straightenNodes() {
+    if (currentDots.size() < 2) return;
+
+    double m, b; // y = mx + b
+
+    currentDots.sort((n1, n2) -> (int) (n1.getCenterX() - n2.getCenterX()));
+    int size = currentDots.size();
+    double[][] table = new double[size][2];
+
+    double avgX = 0;
+    double avgY = 0;
+
+    for (Circle dot : currentDots) {
+      avgX += dot.getCenterX();
+      avgY += dot.getCenterY();
+    }
+    avgX /= size;
+    avgY /= size;
+
+    for (int i = 0; i < size; i++) {
+      double x = currentDots.get(i).getCenterX();
+      double y = currentDots.get(i).getCenterY();
+      table[i][0] = x - avgX;
+      table[i][1] = y - avgY;
+    }
+
+    double s1, s2;
+    s1 = s2 = 0;
+
+    for (int i = 0; i < size; i++) {
+      s1 += table[i][0] * table[i][1];
+      s2 += table[i][0] * table[i][0];
+    }
+
+    m = s1 / s2;
+    b = avgY - m * avgX;
+
+    for (Circle dot : currentDots) dot.setCenterY(m * dot.getCenterX() + b);
+
+    updateNodes();
   }
 
   private void sizeRectangle(double cornerX, double cornerY) {
@@ -810,5 +922,12 @@ public class MapEditorController {
     y = dot.getCenterY();
 
     return (x >= x1 && x <= x2 && y >= y1 && y <= y2);
+  }
+
+  public void clearCurrentLine() {
+    if (currentLine != null) {
+      currentLine.setStroke(Color.BLACK);
+      currentLine = null;
+    }
   }
 }

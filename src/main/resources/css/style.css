@@ -14,6 +14,17 @@
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 
+#body{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+}
+
+#button{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
 #toolbar{
     -fx-background-color: rgba(0, 61, 166, 1);
     -fx-font-family: Nunito, sans-serif;
@@ -180,17 +191,6 @@
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-font-style: italic;
-}
-
-#formBody{
-    -fx-font-family: Nunito, sans-serif;
-    -fx-font-size: 12px;
-}
-
-#formButton{
-    -fx-font-family: Nunito, sans-serif;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
 }
 
 #profileTitle {

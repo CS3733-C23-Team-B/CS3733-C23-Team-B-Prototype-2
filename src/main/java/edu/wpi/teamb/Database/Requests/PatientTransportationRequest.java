@@ -15,11 +15,6 @@ public class PatientTransportationRequest extends GeneralRequest {
   @Setter
   private String equipmentNeeded;
 
-  @Column(name = "patientLocation", length = 60)
-  @Getter
-  @Setter
-  private String patientCurrentLocation;
-
   @Column(name = "patientDestination", length = 60)
   @Getter
   @Setter

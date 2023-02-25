@@ -10,10 +10,6 @@ import lombok.Setter;
     name = "sanitationRequestID",
     foreignKey = @ForeignKey(name = "SanitationRequestIDKey_iter4"))
 public class SanitationRequest extends GeneralRequest {
-  @Column(name = "cleanuplocation", length = 80)
-  @Getter
-  @Setter
-  private String cleanUpLocation;
 
   @Column(name = "typeofcleanup", length = 80)
   @Getter

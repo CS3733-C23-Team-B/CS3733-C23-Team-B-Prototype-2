@@ -277,17 +277,17 @@ public class SubmittedServiceRequestsController {
         PatientTransportationRequest pt = (PatientTransportationRequest) r;
         addAttribute("Patient ID:", pt.getPatientID());
         addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
-        addAttribute("Patient Current Location:", pt.getPatientCurrentLocation());
+        addAttribute("Patient Current Location:", pt.getLocation());
         addAttribute("Equipment Needed:", pt.getEquipmentNeeded());
         setFields();
       } else if (r.getRequestType().equals(RequestType.SANITATION)) {
         SanitationRequest sr = (SanitationRequest) r;
-        addAttribute("Clean Up Location:", sr.getCleanUpLocation());
+        addAttribute("Clean Up Location:", sr.getLocation());
         addAttribute("Type of Clean Up:", sr.getTypeOfCleanUp());
         setFields();
       } else if (r.getRequestType().equals(RequestType.COMPUTER)) {
         ComputerRequest cr = (ComputerRequest) r;
-        addAttribute("Repair Location:", cr.getRepairLocation());
+        addAttribute("Repair Location:", cr.getLocation());
         addAttribute("Type of Repair:", cr.getTypeOfRepair());
         addAttribute("Type of Device:", cr.getDevice());
         setFields();

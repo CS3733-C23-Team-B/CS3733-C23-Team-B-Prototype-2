@@ -182,6 +182,11 @@ public class MapEditorController {
 
             c.setOnMouseClicked(
                 ev -> {
+                  if (ev.isControlDown()) {
+                    currentDots.add(c);
+                    c.setFill(Color.GOLD);
+                    return;
+                  }
                   if (currentDot != null) currentDot.setFill(Bapp.blue);
                   clearCurrentLine();
                   clearCurrentDots();
@@ -307,7 +312,12 @@ public class MapEditorController {
       if (node.getFloor().equals(currentFloor)) {
         Circle dot = placeNode(node);
         dot.setOnMouseClicked(
-            e -> {
+            ev -> {
+              if (ev.isControlDown()) {
+                currentDots.add(dot);
+                dot.setFill(Color.GOLD);
+                return;
+              }
               if (currentDot != null) currentDot.setFill(Bapp.blue);
               clearCurrentLine();
               clearCurrentDots();
@@ -460,6 +470,7 @@ public class MapEditorController {
 
     dot.setOnMousePressed(
         (e) -> {
+          if (e.isControlDown()) return;
           origX = e.getSceneX();
           origY = e.getSceneY();
           if (currentDot != null) currentDot.setFill(Bapp.blue);
@@ -474,6 +485,7 @@ public class MapEditorController {
 
     dot.setOnMouseReleased(
         e -> {
+          if (e.isControlDown()) return;
           pane.setGestureEnabled(true);
           if (dragged) {
             if (currentDots.size() == 0) updateNode(dot);
@@ -846,8 +858,11 @@ public class MapEditorController {
     }
 
     m = s1 / s2;
+    b = avgY - m * avgX;
 
-    System.out.println(m);
+    for (Circle dot : currentDots) dot.setCenterY(m * dot.getCenterX() + b);
+
+    updateNodes();
   }
 
   private void sizeRectangle(double cornerX, double cornerY) {

@@ -5,6 +5,7 @@ public enum Screen {
   MESSAGE_BOX("views/Kiosk/KioskMessageBox.fxml"),
   KIOSK_VIEW("views/Kiosk/KioskView.fxml"),
   DATABASE_HELP("views/Database/DatabaseHelp.fxml"),
+  KIOSK_EDIT("views/Kiosk/KioskEditor.fxml"),
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
   MAP_EDITOR("views/Database/NewMapEditor.fxml"),
   NODE_EDITOR("views/Database/NodeEditor.fxml"),

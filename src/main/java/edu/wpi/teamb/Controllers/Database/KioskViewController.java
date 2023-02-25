@@ -20,7 +20,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -95,7 +94,7 @@ public class KioskViewController {
   }
 
   private Circle placeNode(Node node) {
-    Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Color.RED);
+    Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Bapp.blue);
     aPane.getChildren().add(dot);
     return dot;
   }

@@ -779,6 +779,75 @@ public class MapEditorController {
 
       removeNodes();
     }
+
+    if (e.getCode().equals(KeyCode.S)) {
+      straightenNodes();
+    }
+
+    if (e.getCode().equals(KeyCode.H)) {
+      horizontalNodes();
+    }
+
+    if (e.getCode().equals(KeyCode.V)) {
+      verticalNodes();
+    }
+  }
+
+  private void horizontalNodes() {
+    if (currentDots.size() < 2) return;
+    double avgY = 0;
+    for (Circle dot : currentDots) avgY += dot.getCenterY();
+    avgY /= currentDots.size();
+    for (Circle dot : currentDots) dot.setCenterY(avgY);
+    updateNodes();
+  }
+
+  private void verticalNodes() {
+    if (currentDots.size() < 2) return;
+    double avgX = 0;
+    for (Circle dot : currentDots) avgX += dot.getCenterX();
+    avgX /= currentDots.size();
+    for (Circle dot : currentDots) dot.setCenterX(avgX);
+    updateNodes();
+  }
+
+  private void straightenNodes() {
+    if (currentDots.size() < 2) return;
+
+    double m, b; // y = mx + b
+
+    currentDots.sort((n1, n2) -> (int) (n1.getCenterX() - n2.getCenterX()));
+    int size = currentDots.size();
+    double[][] table = new double[size][2];
+
+    double avgX = 0;
+    double avgY = 0;
+
+    for (Circle dot : currentDots) {
+      avgX += dot.getCenterX();
+      avgY += dot.getCenterY();
+    }
+    avgX /= size;
+    avgY /= size;
+
+    for (int i = 0; i < size; i++) {
+      double x = currentDots.get(i).getCenterX();
+      double y = currentDots.get(i).getCenterY();
+      table[i][0] = x - avgX;
+      table[i][1] = y - avgY;
+    }
+
+    double s1, s2;
+    s1 = s2 = 0;
+
+    for (int i = 0; i < size; i++) {
+      s1 += table[i][0] * table[i][1];
+      s2 += table[i][0] * table[i][0];
+    }
+
+    m = s1 / s2;
+
+    System.out.println(m);
   }
 
   private void sizeRectangle(double cornerX, double cornerY) {

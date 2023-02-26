@@ -423,7 +423,6 @@ public class SubmittedServiceRequestsController {
     filterVbox.getChildren().add(requestTypeFilter);
     addFilter(urgencyBox, requestUrgencyFilter);
     addFilter(requestStatusBox, requestStatusFilter);
-    addDateFilter();
     filterVbox.getChildren().add(assignedStaffBox);
     filterVbox.getChildren().add(assignedStaffFilter);
 
@@ -440,19 +439,7 @@ public class SubmittedServiceRequestsController {
     filterVbox.getChildren().add(b);
   }
 
-  @FXML Label dateRangeBox;
-  @FXML Label fromLabel;
-  @FXML MFXDatePicker fromDatePicker;
-  @FXML Label toLabel;
-  @FXML MFXDatePicker toDatePicker;
 
-  private void addDateFilter() {
-    filterVbox.getChildren().add(dateRangeBox);
-    filterVbox.getChildren().add(fromLabel);
-    filterVbox.getChildren().add(fromDatePicker);
-    filterVbox.getChildren().add(toLabel);
-    filterVbox.getChildren().add(toDatePicker);
-  }
 
   public void filter() {
     makeTable(cur);

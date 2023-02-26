@@ -3,7 +3,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
@@ -72,26 +71,9 @@
                         </Label>
                         <MFXComboBox fx:id="requestStatusFilter" alignment="TOP_LEFT" layoutX="50.0" layoutY="62.0" prefHeight="44.0" prefWidth="220.0">
                            <VBox.margin>
-                              <Insets bottom="30.0" />
+                              <Insets />
                            </VBox.margin>
                         </MFXComboBox>
-                        <Label fx:id="dateRangeBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="324.0" text="Date Range:">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="fromLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="433.0" text="From:" textFill="GREY">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <MFXDatePicker fx:id="fromDatePicker" prefHeight="44.0" prefWidth="220.0" />
-                        <Label fx:id="toLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="468.0" text="To:" textFill="GREY">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <MFXDatePicker fx:id="toDatePicker" layoutX="10.0" layoutY="499.0" prefHeight="44.0" prefWidth="220.0" />
                         <Label fx:id="assignedStaffBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="214.0" text="Assigned Staff:">
                            <font>
                               <Font size="24.0" />

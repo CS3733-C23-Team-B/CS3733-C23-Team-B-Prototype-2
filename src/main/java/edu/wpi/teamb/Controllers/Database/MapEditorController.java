@@ -757,39 +757,33 @@ public class MapEditorController {
   }
 
   public void handleKeyPress(KeyEvent e) {
-    if (e.getCode().equals(KeyCode.BACK_SPACE)) {
-      if (currentLine != null) {
-        Node n1 = lineMap.get(currentLine).get(0);
-        Node n2 = lineMap.get(currentLine).get(1);
-        aPane.getChildren().remove(currentLine);
-        DBSession.deleteEdge(n1, n2);
-        Pathfinding.refreshData();
-        currentLine = null;
-      } else if (currentDot != null) {
-        Node n = nodeMap.get(currentDot);
-        promptEdgeRepair(n);
-        removeNode();
-        DBSession.deleteNode(n);
+
+    switch (e.getCode()) {
+
+      case BACK_SPACE -> {
+        if (currentLine != null) {
+          Node n1 = lineMap.get(currentLine).get(0);
+          Node n2 = lineMap.get(currentLine).get(1);
+          aPane.getChildren().remove(currentLine);
+          DBSession.deleteEdge(n1, n2);
+          Pathfinding.refreshData();
+          currentLine = null;
+        } else if (currentDot != null) {
+          Node n = nodeMap.get(currentDot);
+          promptEdgeRepair(n);
+          removeNode();
+          DBSession.deleteNode(n);
+        }
+        for (Circle dot : currentDots) {
+          Node n = nodeMap.get(dot);
+          DBSession.deleteNode(n);
+        }
+        removeNodes();
       }
 
-      for (Circle dot : currentDots) {
-        Node n = nodeMap.get(dot);
-        DBSession.deleteNode(n);
-      }
-
-      removeNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.S)) {
-      straightenNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.H)) {
-      horizontalNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.V)) {
-      verticalNodes();
+      case S -> straightenNodes();
+      case H -> horizontalNodes();
+      case V -> verticalNodes();
     }
   }
 

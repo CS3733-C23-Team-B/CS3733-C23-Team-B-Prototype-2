@@ -23,7 +23,6 @@ public class AboutPageController {
     Popup.displayPopup(Screen.CIERRA_OGRADY);
   }
 
-
   public void adrianJohnsonClicked() {
     Popup.displayPopup(Screen.ADRIAN_JOHNSON);
   }

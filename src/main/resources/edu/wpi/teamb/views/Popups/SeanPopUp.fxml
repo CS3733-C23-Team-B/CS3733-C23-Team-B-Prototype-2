@@ -60,7 +60,7 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Major: Computer Science and Robotics Enginneering " wrapText="true">
+                                          <Label text="Major: Computer Science and Robotics Engineering " wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
@@ -70,7 +70,7 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Fun Fact: I am a certified archary teacher" wrapText="true">
+                                          <Label text="Fun Fact: I am a certified archery teacher" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

@@ -1,9 +1,6 @@
 package edu.wpi.teamb.Database.DAO;
 
-import edu.wpi.teamb.Database.Edge;
-import edu.wpi.teamb.Database.LocationName;
-import edu.wpi.teamb.Database.Move;
-import edu.wpi.teamb.Database.Node;
+import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Entities.SessionGetter;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
 import java.text.SimpleDateFormat;
@@ -18,7 +15,7 @@ public class MapDAO {
   private static Map<String, Node> nodes = new HashMap<String, Node>();
   private static List<Edge> edges;
   private static Map<String, LocationName> locationNames = new HashMap<String, LocationName>();
-
+  private static List<KioskMove> kioskMoves = new ArrayList<KioskMove>();
   private static Map<String, List<Move>> IDMoves = new HashMap<String, List<Move>>();
 
   public static Map<String, Node> getAllNodes() {
@@ -34,6 +31,11 @@ public class MapDAO {
   public static Map<String, LocationName> getAllLocationNames() {
     refreshLocationNames();
     return locationNames;
+  }
+
+  public static List<KioskMove> getAllKioskMoves() {
+    refreshKioskMoves();
+    return kioskMoves;
   }
 
   public static Map<String, List<Move>> getIDMoves() {
@@ -84,14 +86,14 @@ public class MapDAO {
   }
 
   public static Map<String, Move> getLNMoves(Date d) {
-    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     HashMap<String, Move> moves = new HashMap<String, Move>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     String hql =
         "SELECT DISTINCT locationName, node, moveDate FROM Move WHERE moveDate <= '"
             + d
-            + "' ORDER BY moveDate DESC";
+            + "' ORDER BY moveDate";
     try {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery(hql);
@@ -172,6 +174,21 @@ public class MapDAO {
       tx.commit();
       locationNames.clear();
       for (LocationName ln : lns) locationNames.put(ln.getLongName(), ln);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
+
+  public static void refreshKioskMoves() {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM KioskMove", KioskMove.class);
+      kioskMoves = q.list();
+      tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
@@ -342,6 +359,11 @@ public class MapDAO {
   }
 
   public static void deleteMove(Move m) {
+    KioskMove km = new KioskMove();
+    km.setNextNode(m.getNode());
+    km.setLocationName(m.getLocationName());
+    km.setMoveDate(m.getMoveDate());
+    deleteKioskMove(km);
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     try {
@@ -355,9 +377,52 @@ public class MapDAO {
     }
   }
 
+  public static void addKioskMove(KioskMove km) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      session.persist(km);
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
+
+  public static void deleteKioskMove(KioskMove km) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      session.remove(km);
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
+
   public static void updateMove(Move oldM, Move newM) {
+    List<KioskMove> ks = getAllKioskMoves();
+    KioskMove newK = new KioskMove();
+    for (KioskMove k : ks) {
+      if (k.getNextNode().getNodeID().equals(oldM.getNode().getNodeID())
+          && k.getLocationName().getLongName().equals(oldM.getLocationName().getLongName())
+          && k.getMoveDate().equals(oldM.getMoveDate())) {
+        newK.setMessage(k.getMessage());
+        newK.setPrevNode(k.getPrevNode());
+        deleteKioskMove(k);
+      }
+    }
+    newK.setNextNode(newM.getNode());
+    newK.setMoveDate(newM.getMoveDate());
+    newK.setLocationName(newM.getLocationName());
     deleteMove(oldM);
     addMove(newM);
+    addKioskMove(newK);
   }
 
   public static Move getMostRecentMoveWithLocationName(LocationName ln) {

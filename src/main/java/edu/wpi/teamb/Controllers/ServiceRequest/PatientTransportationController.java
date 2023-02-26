@@ -20,12 +20,11 @@ public class PatientTransportationController extends BaseRequestController {
   // Lists for checkboxes
   private ObservableList<String> equipmentOptions =
       FXCollections.observableArrayList("Stretcher", "Wheelchair", "Restraints", "Stair Chair");
-  @FXML private MFXFilterComboBox patientCurrentLocationBox;
-  @FXML private MFXFilterComboBox patientDestinationLocationBox;
+  @FXML private MFXFilterComboBox patientDestinationBox;
   @FXML private MFXComboBox equipmentNeededBox;
   @FXML private MFXTextField patientIDField;
 
-  /** Initialize the page by declaring choice-box options */
+  /** Initialize the page by creating lists of components and declaring choice-box options */
   @FXML
   @Override
   public void initialize() {
@@ -34,8 +33,8 @@ public class PatientTransportationController extends BaseRequestController {
     Control[] ctrl = {
       urgencyBox,
       assignedStaffBox,
-      patientCurrentLocationBox,
-      patientDestinationLocationBox,
+      locationBox,
+      patientDestinationBox,
       equipmentNeededBox,
       patientIDField,
       additionalNotesField
@@ -44,23 +43,21 @@ public class PatientTransportationController extends BaseRequestController {
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
 
-    ObservableList<String> locations = getLocations();
-
-    patientCurrentLocationBox.setItems(locations);
-    patientDestinationLocationBox.setItems(locations);
-
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
+
+    ObservableList<String> locations = getLocations();
+    patientDestinationBox.setItems(locations);
     equipmentNeededBox.setItems(equipmentOptions);
 
     super.initialize();
   }
 
   /**
-   * Store the data from the form in a csv file and return to home screen
+   * Store the user's input in the database and show confirmation popup
    *
    * @throws IOException
    */
@@ -73,29 +70,15 @@ public class PatientTransportationController extends BaseRequestController {
     super.submit(request);
 
     var equipment = equipmentNeededBox.getValue();
-    if (equipment == null) {
-      equipment = "";
-    }
     request.setEquipmentNeeded(equipment.toString());
 
-    var destination = patientDestinationLocationBox.getValue();
-    if (destination == null) {
-      destination = "";
-    }
+    var destination = patientDestinationBox.getValue();
     request.setPatientDestinationLocation(destination.toString());
-
-    var curLocation = patientCurrentLocationBox.getValue();
-    if (curLocation == null) {
-      curLocation = "";
-    }
-    request.setPatientCurrentLocation(curLocation.toString());
 
     request.setPatientID(this.patientIDField.getText());
     request.setRequestType(RequestType.PATIENTTRANSPOTATION);
     DBSession.addRequest(request);
 
-    // may need to clear fields can be done with functions made for clear
-    clearButtonClicked();
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }
 }

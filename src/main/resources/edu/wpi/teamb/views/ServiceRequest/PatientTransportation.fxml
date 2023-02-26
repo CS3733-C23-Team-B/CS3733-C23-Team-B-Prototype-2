@@ -12,58 +12,35 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.paint.Color?>
 
-
-<GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.PatientTransportationController">
-   <columnConstraints>
-      <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="80.0" prefWidth="80.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="810.0" minWidth="10.0" />
-      <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-   </rowConstraints>
+<GridPane onMouseMoved="#buttonControl" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.ServiceRequest.PatientTransportationController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="850.0" />
+    <ColumnConstraints hgrow="SOMETIMES" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <GridPane onMouseMoved="#buttonControl" prefHeight="613.0" style="-fx-background-color: #fcfcfc; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <GridPane prefWidth="646.0" style="-fx-background-color: #fcfcfc; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.00000762939453" minWidth="10.0" prefWidth="132.00000762939453" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="810.0" minWidth="10.0" prefWidth="659.9999923706055" />
+          <ColumnConstraints hgrow="SOMETIMES" />
+          <ColumnConstraints hgrow="SOMETIMES" percentWidth="80.0" />
+            <ColumnConstraints />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="50.0" minHeight="10.0" percentHeight="2.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="50.0" percentHeight="8.0" vgrow="SOMETIMES" />
-          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+          <RowConstraints />
+            <RowConstraints vgrow="ALWAYS" />
         </rowConstraints>
+         <GridPane.margin>
+            <Insets bottom="20.0" left="40.0" right="10.0" top="10.0" />
+         </GridPane.margin>
          <children>
-            <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <HBox alignment="TOP_CENTER">
                <children>
-                  <Label id="formTitle" prefHeight="35.0" prefWidth="384.0" stylesheets="@../../../../../css/style.css" text="Internal Patient Transportation">
-                     <font>
-                        <Font name="System Bold Italic" size="24.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label id="formBody" stylesheets="@../../../../../css/style.css" text="*Required field" textFill="RED">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </HBox>
-            <HBox alignment="TOP_CENTER" GridPane.rowIndex="1">
-               <children>
-                  <MFXButton id="formButton" fx:id="backButton" onMouseReleased="#backButtonClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: gray; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text=" Back" textFill="WHITE">
+                  <MFXButton id="button" fx:id="backButton" onMouseReleased="#backButtonClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #898989; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text=" Back" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="13.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -73,161 +50,176 @@
                      </graphic>
                   </MFXButton>
                </children>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <GridPane hgap="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <HBox GridPane.columnIndex="1">
+               <children>
+                  <Label id="formTitle" prefHeight="30.0" prefWidth="347.0" stylesheets="@../../../../../css/style.css" text="Internal Patient Transportation" />
+                  <Label id="formBody" stylesheets="@../../../../../css/style.css" text="*Required Field" textFill="RED">
+                     <HBox.margin>
+                        <Insets top="6.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <MFXButton id="button" fx:id="clearButton" onAction="#clearButtonClicked" prefWidth="49.0" style="-fx-background-radius: 5; -fx-background-color: #CECECE;" stylesheets="@../../../../../css/style.css" text="Clear" textFill="WHITE" />
+                  <MFXButton id="button" fx:id="helpTextButton" layoutX="10.0" layoutY="84.0" onAction="#helpButtonClicked" prefWidth="49.0" style="-fx-background-radius: 5; -fx-background-color: #E89F55;" stylesheets="@../../../../../css/style.css" text="Help" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets left="20.0" />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </MFXButton>
+                  <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXButton id="button" fx:id="submitButton" onAction="#submitButtonClicked" style="-fx-border-radius: 8; -fx-background-color: #21357E;" stylesheets="@../../../../../css/style.css" text="Submit" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <GridPane hgap="40.0" maxHeight="-Infinity" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="TOP">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="120.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="120.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="105.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <VBox>
                      <children>
-                        <HBox prefHeight="0.0" prefWidth="180.0">
+                        <HBox>
                            <children>
-                              <Label id="formBody" text="Urgency" />
-                              <Label text=" *" textFill="RED" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Urgency" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
-                        <MFXFilterComboBox fx:id="urgencyBox" prefHeight="40.0" prefWidth="367.0" />
+                        <MFXFilterComboBox fx:id="urgencyBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
+                           <textFill>
+                              <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                           </textFill></MFXFilterComboBox>
                      </children>
                      <GridPane.margin>
-                        <Insets />
+                        <Insets bottom="10.0" />
                      </GridPane.margin>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" GridPane.columnIndex="1">
                      <children>
-                        <HBox prefHeight="0.0" prefWidth="180.0">
+                        <HBox>
                            <children>
-                              <Label id="formBody" text="Assigned Staff Member" />
-                              <Label text=" *" textFill="RED" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Assigned Staff Member" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
-                        <MFXFilterComboBox fx:id="assignedStaffBox" prefHeight="40.0" prefWidth="367.0" />
+                        <MFXFilterComboBox fx:id="assignedStaffBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
+                           <textFill>
+                              <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                           </textFill></MFXFilterComboBox>
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="190.0" layoutY="10.0" GridPane.rowIndex="1">
+                  <VBox layoutX="202.0" layoutY="10.0" GridPane.rowIndex="1">
                      <children>
-                        <HBox prefHeight="0.0" prefWidth="180.0">
+                        <HBox>
                            <children>
-                              <Label id="formBody" text="Patient's Current Location" />
-                              <Label text=" *" textFill="RED" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Patient's Current Location" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
-                        <MFXFilterComboBox fx:id="patientCurrentLocationBox" prefHeight="40.0" prefWidth="367.0" />
+                        <MFXFilterComboBox fx:id="locationBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
+                           <textFill>
+                              <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                           </textFill></MFXFilterComboBox>
                      </children>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="78.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox layoutX="10.0" layoutY="68.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <HBox prefHeight="0.0" prefWidth="180.0">
+                        <HBox>
                            <children>
-                              <Label id="formBody" text="Patient's Destination Location" />
-                              <Label text=" *" textFill="RED" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Patient's Destination Location" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
-                        <MFXFilterComboBox fx:id="patientDestinationLocationBox" prefHeight="40.0" prefWidth="367.0" />
+                        <MFXFilterComboBox fx:id="patientDestinationBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
+                           <textFill>
+                              <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                           </textFill></MFXFilterComboBox>
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="190.0" layoutY="78.0" GridPane.rowIndex="2">
+                  <VBox layoutX="202.0" layoutY="68.0" GridPane.rowIndex="2">
                      <children>
-                        <HBox prefHeight="0.0" prefWidth="180.0">
+                        <HBox>
                            <children>
-                              <Label id="formBody" text="Equipment Needed" />
-                              <Label text=" *" textFill="RED" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Equipment Needed" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
-                        <MFXFilterComboBox fx:id="equipmentNeededBox" prefHeight="40.0" prefWidth="367.0" />
+                        <MFXFilterComboBox fx:id="equipmentNeededBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
+                           <textFill>
+                              <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                           </textFill></MFXFilterComboBox>
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="147.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <VBox layoutX="10.0" layoutY="125.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <HBox prefHeight="0.0" prefWidth="180.0">
+                        <HBox>
                            <children>
-                              <Label id="formBody" text="Patient ID" />
-                              <Label text=" *" textFill="RED" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Patient ID" />
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
-                        <MFXTextField fx:id="patientIDField" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="367.0" />
+                        <MFXTextField fx:id="patientIDField" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;" textLimit="60">
+                           <textFill>
+                              <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                           </textFill></MFXTextField>
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="190.0" layoutY="147.0" GridPane.rowIndex="3">
+                  <VBox layoutX="202.0" layoutY="125.0" GridPane.rowIndex="3">
                      <children>
-                        <HBox prefHeight="0.0" prefWidth="180.0">
-                           <children>
-                              <Label id="formBody" text="Notes" />
-                           </children>
-                        </HBox>
-                        <MFXTextField fx:id="additionalNotesField" prefHeight="68.0" prefWidth="367.0" />
+                        <Label id="body" stylesheets="@../../../../../css/style.css" text="Notes" />
+                        <MFXTextField fx:id="additionalNotesField" floatMode="DISABLED" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="60.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;" textLimit="60">
+                           <textFill>
+                              <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                           </textFill></MFXTextField>
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
-                     <children>
-                        <MFXButton id="formButton" fx:id="clearButton" onMouseReleased="#clearButtonClicked" style="-fx-background-color: #CECECE; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </MFXButton>
-                        <MFXButton id="formButton" fx:id="helpTextButton" onMouseReleased="#helpButtonClicked" style="-fx-background-color: E89F55; -fx-background-radius: 5;" text="Help" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </MFXButton>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <children>
-                        <MFXButton id="formButton" fx:id="submitButton" onMouseReleased="#submitButtonClicked" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Submit" textFill="WHITE" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
                </children>
-               <padding>
-                  <Insets right="30.0" />
-               </padding>
             </GridPane>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
+         </padding>
       </GridPane>
    </children>
 </GridPane>

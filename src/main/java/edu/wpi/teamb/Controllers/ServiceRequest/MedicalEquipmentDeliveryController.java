@@ -1,10 +1,9 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
-import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Requests.SanitationRequest;
-import edu.wpi.teamb.Entities.RequestType;
+import edu.wpi.teamb.Database.Requests.PatientTransportationRequest;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
@@ -15,11 +14,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 
-public class SanitationServiceController extends BaseRequestController {
+public class MedicalEquipmentDeliveryController extends BaseRequestController {
   // Lists for checkboxes
-  ObservableList<String> typeOfCleanUpList =
-      FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
-  @FXML private MFXFilterComboBox<String> typeOfCleanUpBox;
+  private ObservableList<String> equipmentOptions =
+      FXCollections.observableArrayList("Stretcher", "Wheelchair", "Restraints", "Stair Chair");
+  @FXML private MFXComboBox equipmentNeededBox;
 
   /** Initialize the page by creating lists of components and declaring choice-box options */
   @FXML
@@ -28,7 +27,7 @@ public class SanitationServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      locationBox, urgencyBox, typeOfCleanUpBox, assignedStaffBox, additionalNotesField
+      urgencyBox, assignedStaffBox, locationBox, equipmentNeededBox, additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
@@ -40,7 +39,7 @@ public class SanitationServiceController extends BaseRequestController {
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
 
-    typeOfCleanUpBox.setItems(typeOfCleanUpList);
+    equipmentNeededBox.setItems(equipmentOptions);
 
     super.initialize();
   }
@@ -55,15 +54,11 @@ public class SanitationServiceController extends BaseRequestController {
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
-    SanitationRequest request = new SanitationRequest();
-
+    PatientTransportationRequest request = new PatientTransportationRequest();
     super.submit(request);
 
-    var typeOfcleanUp = typeOfCleanUpBox.getValue();
-    request.setTypeOfCleanUp(typeOfcleanUp.toString());
-
-    request.setRequestType(RequestType.SANITATION);
-    DBSession.addRequest(request);
+    var equipment = equipmentNeededBox.getValue();
+    request.setEquipmentNeeded(equipment.toString());
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }

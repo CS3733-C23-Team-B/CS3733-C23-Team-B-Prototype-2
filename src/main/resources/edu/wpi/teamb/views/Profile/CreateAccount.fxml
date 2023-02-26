@@ -30,9 +30,9 @@
    <children>
       <GridPane style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -42,7 +42,7 @@
          <children>
             <VBox alignment="TOP_CENTER" GridPane.rowIndex="1">
                <children>
-                  <MFXButton fx:id="backButton" onAction="#backButtonClicked" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" text="   Back" textFill="WHITE">
+                  <MFXButton id="createAccountButton" fx:id="backButton" onAction="#backButtonClicked" prefHeight="35.0" prefWidth="86.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" stylesheets="@../../../../../css/style.css" text="Back" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -63,12 +63,12 @@
                <content>
                   <VBox alignment="TOP_CENTER">
                      <children>
-                        <Label id="createAccount" stylesheets="@../../../../../css/style.css" text="Create New Account" wrapText="true">
+                        <Label id="signInTitle" stylesheets="@../../../../../css/style.css" text="Create New Account" textFill="#333333" wrapText="true">
                            <font>
                               <Font size="48.0" />
                            </font>
                         </Label>
-                        <Label id="createAccountBody" stylesheets="@../../../../../css/style.css" text="Create an account as a hospital staff member">
+                        <Label id="createAccountBody" stylesheets="@../../../../../css/style.css" text="Create an account as a hospital staff member" textFill="#333333">
                            <VBox.margin>
                               <Insets top="25.0" />
                            </VBox.margin>

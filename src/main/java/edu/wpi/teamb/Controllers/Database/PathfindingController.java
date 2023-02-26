@@ -175,8 +175,10 @@ public class PathfindingController {
           } else if (node.getNodeID().equals(endID)) {
             endDot = c;
             endDot.setFill(Color.RED);
-            updateTextFieldPosition(nodeMap.get(endDot));
-            linesPlane.getChildren().add(adminLabel);
+            if (nodeMap != null) {
+              updateTextFieldPosition(nodeMap.get(endDot));
+              linesPlane.getChildren().add(adminLabel);
+            }
           }
         }
       }
@@ -310,7 +312,8 @@ public class PathfindingController {
   public void dateEntered() {
     LocalDate d = datePicker.getValue();
     ZoneId z = ZoneId.of("-05:00");
-    ZonedDateTime zdt = d.atStartOfDay(z);
+    LocalDateTime ldt = d.atTime(23, 59, 59, 999_000_000);
+    ZonedDateTime zdt = ldt.atZone(z);
     Instant instant = zdt.toInstant();
     Date date = Date.from(instant);
     Pathfinding.setDate(date);
@@ -342,9 +345,11 @@ public class PathfindingController {
       pathNotFoundTextField.setVisible(true);
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
     }
+
     System.out.println(path);
-    startID = DBSession.getMostRecentNodeID(start);
-    endID = DBSession.getMostRecentNodeID(end);
+    Map<String, Move> moves = Pathfinding.getMovesLN();
+    startID = moves.get(start).getNode().getNodeID();
+    endID = moves.get(end).getNode().getNodeID();
 
     Map<String, Node> nodes = DBSession.getAllNodes();
 
@@ -450,7 +455,7 @@ public class PathfindingController {
     aPane.getChildren().add(dot);
     dot.getStyleClass().add("intersection");
     dot.addEventHandler(
-        MouseEvent.MOUSE_ENTERED,
+        MouseEvent.MOUSE_CLICKED,
         e -> {
           selectedCircle.set(dot);
         });

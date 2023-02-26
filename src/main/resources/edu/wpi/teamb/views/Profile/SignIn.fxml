@@ -15,9 +15,9 @@
 
 <GridPane prefHeight="650.0" prefWidth="1229.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.SigninController">
   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
-    <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
-    <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="24.0" />
+    <ColumnConstraints hgrow="SOMETIMES" percentWidth="52.0" />
+    <ColumnConstraints hgrow="SOMETIMES" percentWidth="24.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints percentHeight="10.6" vgrow="SOMETIMES" />
@@ -48,7 +48,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label id="signInBody" fx:id="prompt" alignment="CENTER" prefHeight="45.0" prefWidth="269.0" stylesheets="@../../../../../css/style.css" text="Please sign in below">
+                        <Label id="signInBody" fx:id="prompt" alignment="CENTER" prefHeight="45.0" prefWidth="269.0" stylesheets="@../../../../../css/style.css" text="Please sign in below" textFill="#333333">
                            <font>
                               <Font size="18.0" />
                            </font>

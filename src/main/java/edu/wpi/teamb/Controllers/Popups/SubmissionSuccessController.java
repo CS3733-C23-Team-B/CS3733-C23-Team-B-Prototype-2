@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Controllers.Popups;
 
+import edu.wpi.teamb.Controllers.Navigation.NavigationController;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
@@ -14,6 +15,7 @@ public class SubmissionSuccessController {
   public void backButtonClicked() {
     Popup.hidePopup(Screen.SUBMISSION_SUCCESS);
     Navigation.navigate(Screen.HOME);
+    NavigationController.getInstance().resetButtons();
   }
 
   public void requestsButtonClicked() throws IOException {

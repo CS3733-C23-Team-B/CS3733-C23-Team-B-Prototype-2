@@ -71,7 +71,9 @@ public class HomeController {
         rStatus.setText("Status: " + r.getStatus() + " ");
         rName.setPadding(new Insets(15, 0, 15, 20));
         rName.setFont(new Font("Nunito", 20));
+        rName.setStyle("-fx-text-fill: #333333");
         rStatus.setFont(new Font("Nunito", 20));
+        rStatus.setStyle("-fx-text-fill: #333333");
         rbox.getChildren().add(rName);
         sbox.getChildren().add(rStatus);
         rbox.setAlignment(Pos.CENTER_LEFT);
@@ -95,6 +97,7 @@ public class HomeController {
       label.setText("You have no service requests");
       label.setPadding(new Insets(15, 0, 15, 20));
       label.setFont(new Font("Nunito", 20));
+      label.setStyle("-fx-text-fill: #333333");
       box.getChildren().add(label);
       homeRequests.getChildren().add(box);
     }
@@ -103,6 +106,7 @@ public class HomeController {
       Label newsLabel = new Label();
       newsLabel.setText(s);
       newsLabel.setFont(new Font("Nunito", 20));
+      newsLabel.setStyle("-fx-text-fill: #333333");
       newsLabel.setUnderline(true);
       news.getChildren().add(newsLabel);
     }

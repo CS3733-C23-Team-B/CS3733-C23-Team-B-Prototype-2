@@ -50,7 +50,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Sam%20Colebourn.png" />
+                                          <Image url="@../../../../../media/Developers/Sam%20Colebourn.png" />
                                        </image>
                                     </ImageView>
                                     <VBox>
@@ -70,7 +70,7 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Quote: &quot;If at first you don't succeed lower your expectations are a success&quot;" wrapText="true">
+                                          <Label text="Quote: &quot;If at first you don't succeed, lower your expectations until you are a success&quot;" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

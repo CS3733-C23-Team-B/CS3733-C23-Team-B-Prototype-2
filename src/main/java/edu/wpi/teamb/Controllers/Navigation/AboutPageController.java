@@ -47,11 +47,11 @@ public class AboutPageController {
     Popup.displayPopup(Screen.SAM_COLEBOURN);
   }
 
-  public void seanLendrumClicked(){
+  public void seanLendrumClicked() {
     Popup.displayPopup(Screen.SEAN_LENDRUM);
   }
 
-  public void michaelGattiCLicked(){
+  public void michaelGattiClicked() {
     Popup.displayPopup(Screen.MICHAEL_GATTI);
   }
 }

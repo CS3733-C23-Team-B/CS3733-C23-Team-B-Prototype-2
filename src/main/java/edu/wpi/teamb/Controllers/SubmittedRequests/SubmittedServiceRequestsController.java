@@ -474,12 +474,17 @@ public class SubmittedServiceRequestsController {
   @Setter Date date;
 
   public void dateEntered() {
-    LocalDate d = datePicker.getValue();
-    ZoneId z = ZoneId.of("-05:00");
-    ZonedDateTime zdt = d.atStartOfDay(z);
-    Instant instant = zdt.toInstant();
-    Date date = java.util.Date.from(instant);
-    setDate(date);
+    Object value = datePicker.getValue();
+    if (value != null) {
+      LocalDate da = datePicker.getValue();
+      ZoneId z = ZoneId.of("-05:00");
+      ZonedDateTime zdt = da.atStartOfDay(z);
+      Instant instant = zdt.toInstant();
+      Date date = java.util.Date.from(instant);
+      setDate(date);
+    } else {
+      setDate(null);
+    }
   }
 
   public void filter() {

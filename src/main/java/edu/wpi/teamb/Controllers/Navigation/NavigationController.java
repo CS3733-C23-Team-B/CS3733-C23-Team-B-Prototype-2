@@ -18,8 +18,11 @@ public class NavigationController {
   @FXML private MFXButton map;
   @FXML private MFXButton request;
   @FXML private MFXButton path;
+  private static NavigationController instance;
 
   public void initialize() {
+    instance = this;
+
     Platform.runLater(
         () -> {
           if (SigninController.getInstance() != null) {
@@ -65,7 +68,7 @@ public class NavigationController {
 
   public void creditsButtonClicked() {
     Navigation.navigate(Screen.CREDITS);
-    // resetButtons();
+    resetButtons();
   }
 
   public void homeButtonClicked() throws IOException {
@@ -84,7 +87,6 @@ public class NavigationController {
   }
 
   public void exitButtonClicked() {
-    resetButtons();
     Popup.displayPopup(Screen.EXIT_CONFIRMATION);
   }
 
@@ -101,5 +103,9 @@ public class NavigationController {
   public void signOutClicked() {
     Navigation.navigate(Screen.SIGN_IN);
     Bapp.getRootPane().setTop(null);
+  }
+
+  public static NavigationController getInstance() {
+    return instance;
   }
 }

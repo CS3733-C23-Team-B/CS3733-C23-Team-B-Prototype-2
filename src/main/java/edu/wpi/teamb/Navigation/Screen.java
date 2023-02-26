@@ -30,6 +30,7 @@ public enum Screen {
   MAINHELP("views/Popups/MainHelpPage.fxml"),
   FOOTER("views/Navigation/Footer.fxml"),
   SUBMISSION_SUCCESS("views/Popups/SubmissionSuccess.fxml"),
+  DEVELOPERS("views/Popups/ServiceRequestDevelopers.fxml"),
   CREDITS("views/Navigation/Credits.fxml"),
   SERVICE_REQUEST_SYSTEMS("views/ServiceRequest/ServiceRequestSystems.fxml"),
   CREATE_ACCOUNT("views/Profile/CreateAccount.fxml"),

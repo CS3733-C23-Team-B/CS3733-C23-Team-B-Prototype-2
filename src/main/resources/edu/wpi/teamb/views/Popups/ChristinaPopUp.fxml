@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="633.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Popups.AboutPopUpsController">
+<GridPane prefHeight="633.0" prefWidth="1309.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Popups.AboutPopUpsController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" />
@@ -44,18 +44,18 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                      <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="232.0">
+                        <VBox alignment="TOP_CENTER">
                            <children>
-                              <HBox prefHeight="100.0">
+                              <HBox>
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../../media/Developers/Christina%20Aube.png" />
                                        </image>
                                     </ImageView>
-                                    <VBox prefHeight="167.0">
+                                    <VBox>
                                        <children>
-                                          <Label text="Position: Project Manager, Front End  " textAlignment="CENTER" wrapText="true">
+                                          <Label text="Position: Project Manager, Front End  " wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

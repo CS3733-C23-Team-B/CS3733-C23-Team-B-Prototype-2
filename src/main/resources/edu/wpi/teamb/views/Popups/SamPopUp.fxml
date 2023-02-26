@@ -50,12 +50,12 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Adrian%20Johnson.png" />
+                                          <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Sam%20Colebourn.png" />
                                        </image>
                                     </ImageView>
                                     <VBox>
                                        <children>
-                                          <Label text="Position: Front End" wrapText="true">
+                                          <Label text="Position: Software Lead Full Stack" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
@@ -65,17 +65,12 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Minor: Robotics Engineering" wrapText="true">
+                                          <Label text="Hobby: Spelling" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Hobbies: Cooking, photography" wrapText="true">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Fun Fact: I am from Jamaica" wrapText="true">
+                                          <Label text="Quote: &quot;If at first you don't succeed lower your expectations are a success&quot;" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
@@ -98,7 +93,7 @@
             </VBox>
             <VBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="1">
                <children>
-                  <Label text="Adrian Johnson" textOverrun="CLIP">
+                  <Label text="Sam Colebourn" textOverrun="CLIP">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>

@@ -174,7 +174,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="stretcherLink1" onMouseClicked="#stretcherClicked" text="https://www.flaticon.com/free-icons/medical-equipment">
+                              <Hyperlink fx:id="equipmentLink" onMouseClicked="#equipmentClicked" text="https://www.flaticon.com/free-icons/medical-equipment">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -204,7 +204,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="laptopLink1" onMouseClicked="#laptopClicked" text="https://www.flaticon.com/free-icons/drug">
+                              <Hyperlink fx:id="medicineLink" onMouseClicked="#medicineClicked" text="https://www.flaticon.com/free-icons/drug">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>

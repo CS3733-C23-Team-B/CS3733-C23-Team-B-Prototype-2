@@ -147,19 +147,12 @@ public class KioskViewController {
   private void findPath(String st, String en) throws SQLException {
 
     Pathfinding.avoidStairs = true;
-    SearchType type = SearchType.A_STAR;
 
     linesPlane.getChildren().clear();
     String start = st;
     String end = st;
 
-    Pathfindable pathfindable;
-    if (type == SearchType.BREADTH_FIRST) pathfindable = new BreadthFirstPathfinder();
-    else if (type == SearchType.DEPTH_FIRST) pathfindable = new DepthFirstPathfinder();
-    else pathfindable = new AStarPathfinder();
-
-    PathfindingContext pContext = new PathfindingContext(pathfindable);
-    ArrayList<String> path = pContext.getShortestPath(start, end);
+    ArrayList<String> path = Pathfinding.getPathFromID(start, end);
 
     if (path == null) {
       System.out.println("PATH NOT FOUND");

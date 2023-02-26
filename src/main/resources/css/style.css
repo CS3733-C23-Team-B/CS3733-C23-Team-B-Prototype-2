@@ -6,6 +6,12 @@
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 
+#title{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 40px;
+}
+
 #body{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-size: 12px;
@@ -19,7 +25,7 @@
 
 #signInTitle{
     -fx-font-family: Roboto, regular;
-    -fx-font-size: 27px;
+    -fx-font-size: 30px;
     -fx-font-weight: bold;
 }
 
@@ -37,6 +43,18 @@
 #signInAccent{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-size: 10px;
+}
+
+#createAccountBody{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+#createAccountButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
 }
 
 #menuIcon{
@@ -72,13 +90,13 @@
 #homePageTitle{
     -fx-font-family: Roboto, regular;
     -fx-font-weight: bold;
-    -fx-font-size: 33px;
+    -fx-font-size: 35px;
 }
 
 #homePageSubtitle{
     -fx-font-family: Roboto, regular;
     -fx-font-weight: bold;
-    -fx-font-size: 28px;
+    -fx-font-size: 25px;
 }
 
 #homePageBody{
@@ -87,9 +105,10 @@
     -fx-font-size: 18px;
 }
 
-#homePageButtons{
+#homePageButton{
     -fx-font-family: Nunito, sans-serif;
-    -fx-font-size: 18px;
+    -fx-font-size: 20px;
+    -fx-underline: true;
 }
 
 #helpButton{
@@ -104,24 +123,6 @@
     -fx-font-family: Roboto, regular;
     -fx-font-weight: bold;
     -fx-font-size: 37px;
-}
-
-#createAccount{
-    -fx-font-family: Roboto, regular;
-    -fx-font-weight: bold;
-    -fx-font-size: 30px;
-}
-
-#createAccountBody{
-    -fx-font-family: Roboto, regular;
-    -fx-font-size: 14px;
-    -fx-font-style: italic;
-}
-
-#createAccountButton{
-    -fx-font-family: Nunito, sans-serif;
-    -fx-font-weight: bold;
-    -fx-font-size: 18px;
 }
 
 #forgotPasswordTitle{
@@ -139,6 +140,34 @@
 #forgotPasswordLabel{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-size: 20px;
+}
+
+#headerText{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 17px;
+}
+
+#requestsSubtitle{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+}
+
+#requestsAccent{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+}
+
+#requestsBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 16px;
+}
+
+#requestsButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
 }
 
 #formTitle{

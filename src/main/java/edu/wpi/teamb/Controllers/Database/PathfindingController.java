@@ -175,8 +175,10 @@ public class PathfindingController {
           } else if (node.getNodeID().equals(endID)) {
             endDot = c;
             endDot.setFill(Color.RED);
-            updateTextFieldPosition(nodeMap.get(endDot));
-            linesPlane.getChildren().add(adminLabel);
+            if (nodeMap != null) {
+              updateTextFieldPosition(nodeMap.get(endDot));
+              linesPlane.getChildren().add(adminLabel);
+            }
           }
         }
       }

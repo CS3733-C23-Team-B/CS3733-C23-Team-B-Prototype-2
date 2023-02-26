@@ -73,15 +73,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
 
-    for (Button b : buttons) {
-      if (b.equals(transButton)) {
-        b.setStyle("-fx-background-color: #6D9BF8");
-        b.setTextFill(Paint.valueOf("#FFFFFF"));
-      } else {
-        b.setStyle("-fx-background-color: #21357E");
-        b.setTextFill(Paint.valueOf("#c5d3ea"));
-      }
-    }
+    highlightButton(transButton);
   }
 
   /**
@@ -95,15 +87,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
 
-    for (Button b : buttons) {
-      if (b.equals(saniButton)) {
-        b.setStyle("-fx-background-color: #6D9BF8");
-        b.setTextFill(Paint.valueOf("#FFFFFF"));
-      } else {
-        b.setStyle("-fx-background-color: #21357E");
-        b.setTextFill(Paint.valueOf("#c5d3ea"));
-      }
-    }
+    highlightButton(saniButton);
   }
 
   /**
@@ -117,15 +101,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
 
-    for (Button b : buttons) {
-      if (b.equals(secButton)) {
-        b.setStyle("-fx-background-color: #6D9BF8");
-        b.setTextFill(Paint.valueOf("#FFFFFF"));
-      } else {
-        b.setStyle("-fx-background-color: #21357E");
-        b.setTextFill(Paint.valueOf("#c5d3ea"));
-      }
-    }
+    highlightButton(secButton);
   }
 
   /**
@@ -139,15 +115,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
 
-    for (Button b : buttons) {
-      if (b.equals(comButton)) {
-        b.setStyle("-fx-background-color: #6D9BF8");
-        b.setTextFill(Paint.valueOf("#FFFFFF"));
-      } else {
-        b.setStyle("-fx-background-color: #21357E");
-        b.setTextFill(Paint.valueOf("#c5d3ea"));
-      }
-    }
+    highlightButton(comButton);
   }
 
   /**
@@ -161,15 +129,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
 
-    for (Button b : buttons) {
-      if (b.equals(AVButton)) {
-        b.setStyle("-fx-background-color: #6D9BF8");
-        b.setTextFill(Paint.valueOf("#FFFFFF"));
-      } else {
-        b.setStyle("-fx-background-color: #21357E");
-        b.setTextFill(Paint.valueOf("#c5d3ea"));
-      }
-    }
+    highlightButton(AVButton);
   }
 
   /**
@@ -183,15 +143,7 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
 
-    for (Button b : buttons) {
-      if (b.equals(equipButton)) {
-        b.setStyle("-fx-background-color: #6D9BF8");
-        b.setTextFill(Paint.valueOf("#FFFFFF"));
-      } else {
-        b.setStyle("-fx-background-color: #21357E");
-        b.setTextFill(Paint.valueOf("#c5d3ea"));
-      }
-    }
+    highlightButton(equipButton);
   }
 
   /**
@@ -205,8 +157,17 @@ public class ServiceRequestSystemsController {
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
 
+    highlightButton(medDeliveryButton);
+  }
+
+  /**
+   * Make the given button light blue, and reset all others to dark blue
+   *
+   * @param button the highlighted button
+   */
+  private void highlightButton(Button button) {
     for (Button b : buttons) {
-      if (b.equals(medDeliveryButton)) {
+      if (b.equals(button)) {
         b.setStyle("-fx-background-color: #6D9BF8");
         b.setTextFill(Paint.valueOf("#FFFFFF"));
       } else {

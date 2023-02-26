@@ -136,7 +136,6 @@ public class KioskViewController {
     frontBox.toFront();
     frontLabel.toFront();
     if (buttonMap.get(node) != null) {
-      System.out.println("Showing button with text: " + buttonMap.get(node).getText());
       showButton(buttonMap.get(node));
     }
 
@@ -185,10 +184,6 @@ public class KioskViewController {
     String end = en;
 
     ArrayList<String> path = Pathfinding.getPathFromID(start, end);
-
-    if (path == null) {
-      System.out.println("PATH NOT FOUND");
-    }
 
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);
@@ -248,7 +243,6 @@ public class KioskViewController {
     nextFloor.setStyle("-fx-background-color: #21357E; -fx-text-fill: #F2F2F2");
     nextFloor.setLayoutX(startNode.getXCoord() + 20);
     nextFloor.setLayoutY(startNode.getYCoord() - 20);
-    System.out.println("Go to Floor " + endNode.getFloor());
     buttonMap.put(startNode, nextFloor);
   }
 

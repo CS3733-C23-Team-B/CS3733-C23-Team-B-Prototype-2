@@ -38,8 +38,6 @@ public class KioskEditController {
   private List<Move> moves;
 
   public void initialize() {
-    List<KioskMove> allKiosks;
-    allKiosks = DBSession.getAllKioskMoves();
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     moves = DBSession.getAllMoves();
     List<String> l =
@@ -78,6 +76,12 @@ public class KioskEditController {
     startCol.setCellValueFactory(new PropertyValueFactory<>("prevNode"));
     endCol.setCellValueFactory(new PropertyValueFactory<>("nextNode"));
 
+    setTableValues();
+  }
+
+  private void setTableValues() {
+    List<KioskMove> allKiosks = DBSession.getAllKioskMoves();
+    table.getItems().clear();
     allKiosks.forEach(
         (value) -> {
           table.getItems().add(value);
@@ -87,6 +91,9 @@ public class KioskEditController {
   public void addKiosk() {
     if (moveMessage.getText().length() > 0 && moveDropdown.getValue() != null) {
       DBSession.addKioskMove(moves.get(moveDropdown.getSelectedIndex()), moveMessage.getText());
+      moveMessage.clear();
+      moveDropdown.clear();
+      setTableValues();
     }
   }
 }

@@ -24,6 +24,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
@@ -143,6 +144,35 @@ public class SubmittedServiceRequestsController {
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
     dateLabel.setText(formattedDate);
+
+    //    ObservableList<PieChart.Data> pieChartData =
+    //        FXCollections.observableArrayList(
+    //            new PieChart.Data(
+    //                "Patient Transportation Requests", ptTable.getTable().getItems().size()),
+    //            new PieChart.Data("Sanitation Requests", saniTable.getTable().getItems().size()),
+    //            new PieChart.Data("Computer Requests", comTable.getTable().getItems().size()),
+    //            new PieChart.Data("A/V Requests", avTable.getTable().getItems().size()),
+    //            new PieChart.Data("Security Requests",
+    // securityTable.getTable().getItems().size()),
+    //            new PieChart.Data(
+    //                "Medicine Delivery Requests", medicineTable.getTable().getItems().size()),
+    //            new PieChart.Data(
+    //                "Equipment Delivery Requests", equipTable.getTable().getItems().size()),
+    //            new PieChart.Data(
+    //                "Facilities Maintenance Requests", facTable.getTable().getItems().size()));
+    ObservableList<PieChart.Data> pieChartData =
+        FXCollections.observableArrayList(
+            new PieChart.Data(
+                "Patient Transportation Requests", ptTable.getTable().getItems().size()),
+            new PieChart.Data("Sanitation Requests", saniTable.getTable().getItems().size()),
+            new PieChart.Data("Computer Requests", comTable.getTable().getItems().size()));
+    System.out.println(ptTable.getTable().getItems().size());
+    System.out.println(saniTable.getTable().getItems().size());
+    System.out.println(comTable.getTable().getItems().size());
+    PieChart pieChart = new PieChart(pieChartData);
+    pieChart.setTitle("Submitted Requests");
+    //    Bapp.getStackPane().getChildren().add(pieChart);
+    mainVbox.getChildren().add(pieChart);
   }
 
   public void initLabels() {

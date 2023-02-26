@@ -38,6 +38,7 @@ public class SubmittedServiceRequestsController {
   @FXML MFXFilterComboBox<String> assignedStaffFilter;
   @FXML MFXFilterComboBox<RequestType> requestTypeFilter;
   @FXML MFXComboBox<Urgency> requestUrgencyFilter;
+  @FXML MFXComboBox<String> requestReporterFilter;
   @FXML MFXCheckbox myRequestsFilter;
   @FXML ImageView helpButton;
   @FXML Label dateLabel = new Label();
@@ -107,8 +108,7 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setOnAction(e -> filter());
     assignedStaffFilter.setOnAction(e -> filter());
     requestUrgencyFilter.setOnAction(e -> filter());
-    assignedStaffFilter.setOnAction(e -> filter());
-    requestUrgencyFilter.setOnAction(e -> filter());
+    requestReporterFilter.setOnAction(e -> filter());
 
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
     setFilters();
@@ -116,10 +116,12 @@ public class SubmittedServiceRequestsController {
     assignedStaffFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
     requestUrgencyFilter.setItems(urgency);
+    requestReporterFilter.setItems(staff);
     requestTypeFilter.setText("All Requests");
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
+    requestReporterFilter.setText("--Select--");
     resetRequestVboxes();
 
     LocalDate currentDate = LocalDate.now();
@@ -251,12 +253,16 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setValue(null);
     requestUrgencyFilter.getSelectionModel().clearSelection();
     requestUrgencyFilter.setValue(null);
+    requestReporterFilter.getSelectionModel().clearSelection();
+    requestReporterFilter.setValue(null);
     requestTypeFilter.setValue(cur);
+
     if (currUser.getAdmin()) myRequestsFilter.setSelected(false);
     else myRequestsFilter.setSelected(true);
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
+    requestReporterFilter.setText("--Select--");
     filter();
   }
 
@@ -399,19 +405,19 @@ public class SubmittedServiceRequestsController {
   @FXML Label requestStatusBox;
   @FXML Label assignedStaffBox;
   @FXML Label requestReporterBox;
-  @FXML MFXComboBox requestReporterFilter;
 
   private void setFilters() {
     filterVbox.getChildren().clear();
     addFilter(requestTypeBox, requestTypeFilter);
     addFilter(urgencyBox, requestUrgencyFilter);
     addFilter(requestStatusBox, requestStatusFilter);
-    addDateFilter();
     addFilter(assignedStaffBox, assignedStaffFilter);
+    addDateFilter();
     if (currUser.getAdmin()) {
-      //      addFilter(requestReporterBox, requestReporterFilter);
+      addFilter(requestReporterBox, requestReporterFilter);
       filterVbox.getChildren().add(myRequestsFilter);
     }
+
     filterVbox.getChildren().add(clearFiltersButton);
   }
 

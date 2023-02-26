@@ -111,17 +111,19 @@ public class SubmittedServiceRequestsController {
     requestReporterFilter.setOnAction(e -> filter());
 
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
-    setFilters();
+
     requestStatusFilter.setItems(Status);
     assignedStaffFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
     requestUrgencyFilter.setItems(urgency);
     requestReporterFilter.setItems(staff);
     requestTypeFilter.setText("All Requests");
+    requestTypeFilter.setValue(RequestType.ALLREQUESTS);
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
     requestReporterFilter.setText("--Select--");
+    setFilters();
     resetRequestVboxes();
 
     LocalDate currentDate = LocalDate.now();
@@ -174,65 +176,74 @@ public class SubmittedServiceRequestsController {
     if (page.equals(RequestType.SANITATION.toString())) {
       table =
           saniTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     } else if (page.equals(RequestType.PATIENTTRANSPOTATION.toString())) {
       table =
           ptTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     } else if (page.equals(RequestType.COMPUTER.toString())) {
       table =
           comTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     } else if (page.equals(RequestType.AUDOVISUAL.toString())) {
       table =
           avTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     } else if (page.equals(RequestType.SECURITY.toString())) {
       table =
           securityTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     } else if (page.equals(RequestType.ALLREQUESTS.toString())) {
       table =
           allTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     } else if (page.equals(RequestType.MEDICINE.toString())) {
       table =
           medicineTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     } else if (page.equals(RequestType.MEDICALEQUIPMENT.toString())) {
       table =
           equipTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     } else if (page.equals(RequestType.FACILITIES.toString())) {
       table =
           facTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     }
     TableView finalTable = table;
@@ -408,7 +419,8 @@ public class SubmittedServiceRequestsController {
 
   private void setFilters() {
     filterVbox.getChildren().clear();
-    addFilter(requestTypeBox, requestTypeFilter);
+    filterVbox.getChildren().add(requestTypeBox);
+    filterVbox.getChildren().add(requestTypeFilter);
     addFilter(urgencyBox, requestUrgencyFilter);
     addFilter(requestStatusBox, requestStatusFilter);
     addDateFilter();
@@ -441,8 +453,6 @@ public class SubmittedServiceRequestsController {
     filterVbox.getChildren().add(toLabel);
     filterVbox.getChildren().add(toDatePicker);
   }
-
-  private void addFilter(Label l, MFXFilterComboBox b) {}
 
   public void filter() {
     makeTable(cur);

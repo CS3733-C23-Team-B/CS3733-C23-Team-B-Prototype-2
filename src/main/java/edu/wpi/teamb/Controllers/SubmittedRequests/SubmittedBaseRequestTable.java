@@ -39,14 +39,14 @@ public abstract class SubmittedBaseRequestTable {
   public void initialize() {
     l = SigninController.getInstance().currentUser;
     addcol(date, "date");
-    addcol(firstname, "firstname");
-    addcol(lastname, "lastname");
-    addcol(employeeID, "employeeID");
-    addcol(email, "email");
+    //    addcol(firstname, "firstname");
+    //    addcol(lastname, "lastname");
+    //    addcol(employeeID, "employeeID");
+    //    addcol(email, "email");
     addcol(urgency, "urgency");
     addcol(assignedEmployee, "assignedEmployee");
     addcol(status, "status");
-    addcol(notes, "notes");
+    //    addcol(notes, "notes");
   }
 
   public TableView getTable() {
@@ -54,7 +54,11 @@ public abstract class SubmittedBaseRequestTable {
   }
 
   public TableView getTable(
-      RequestStatus status, String employee, Urgency urgency, Boolean myRequestsOnly) {
+      RequestStatus status,
+      String assignedEmployee,
+      String requestor,
+      Urgency urgency,
+      Boolean myRequestsOnly) {
     return table;
   }
 
@@ -166,7 +170,8 @@ public abstract class SubmittedBaseRequestTable {
     objectList.forEach(
         (value) -> {
           String name = value.getFirstname() + " " + value.getLastname();
-          if (myName.equals(name)) {
+          String assignedEmp = value.getAssignedEmployee();
+          if (myName.equals(name) || myName.equals(assignedEmp)) {
             filtered.add(value);
           }
         });
@@ -174,13 +179,26 @@ public abstract class SubmittedBaseRequestTable {
     return filtered;
   }
 
+  List<GeneralRequest> requestor(String requestor, List<GeneralRequest> objectList) {
+    List<GeneralRequest> filtered = new ArrayList<>();
+    if (requestor != null) {
+      objectList.forEach(
+          (value) -> {
+            String name = value.getFirstname() + " " + value.getLastname();
+            if (name.equals(requestor)) {
+              filtered.add(value);
+            }
+          });
+    }
+    return filtered;
+  }
   //  this one needs to go last cause it does the dirty work
-  private void filterTableEmployee(String Employee, List<GeneralRequest> filtered) {
+  private void filterTableEmployee(String assignedEmployee, List<GeneralRequest> filtered) {
     table.getItems().clear();
     filtered.forEach(
         (value) -> {
-          if (Employee != null) {
-            if (value.getAssignedEmployee().equals(Employee)) {
+          if (assignedEmployee != null) {
+            if (value.getAssignedEmployee().equals(assignedEmployee)) {
               table.getItems().add(value);
             }
           } else {
@@ -191,7 +209,8 @@ public abstract class SubmittedBaseRequestTable {
 
   protected void filterTable(
       RequestStatus status,
-      String Employee,
+      String assignedEmployee,
+      String requestor,
       List<GeneralRequest> objectList,
       Urgency urgency,
       Boolean myRequestsOnly) {
@@ -202,6 +221,10 @@ public abstract class SubmittedBaseRequestTable {
     if (myRequestsOnly) {
       filtered = myRequests(filtered);
     }
-    filterTableEmployee(Employee, filtered);
+    if (requestor != null) {
+      filtered = requestor(requestor, filtered);
+    }
+
+    filterTableEmployee(assignedEmployee, filtered);
   }
 }

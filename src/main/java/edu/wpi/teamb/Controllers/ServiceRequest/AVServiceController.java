@@ -19,9 +19,9 @@ public class AVServiceController extends BaseRequestController {
   ObservableList<String> typeOfEquipment =
       FXCollections.observableArrayList("TV", "Radio", "iPad", "Headphones");
 
-  @FXML private MFXFilterComboBox locationBox;
   @FXML private MFXFilterComboBox<String> typeOfEquipmentBox;
 
+  /** Initialize the page by creating lists of components and declaring choice-box options */
   @FXML
   @Override
   public void initialize() {
@@ -33,18 +33,23 @@ public class AVServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    locationBox.setItems(getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
+
     typeOfEquipmentBox.setItems(typeOfEquipment);
 
     super.initialize();
   }
 
+  /**
+   * Store the user's input in the database and show confirmation popup
+   *
+   * @throws IOException
+   */
   @FXML
   @Override
   public void submitButtonClicked() throws IOException {
@@ -54,19 +59,11 @@ public class AVServiceController extends BaseRequestController {
 
     super.submit(request);
 
-    request.setLocation(locationBox.getText());
-
     var equipment = typeOfEquipmentBox.getValue();
-    if (equipment == null) {
-      equipment = "";
-    }
     request.setAVType(equipment.toString());
 
     request.setRequestType(RequestType.AUDOVISUAL);
     DBSession.addRequest(request);
-
-    // may need to clear fields can be done with functions made for clear
-    clearButtonClicked();
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }

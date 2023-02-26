@@ -188,7 +188,7 @@
                               </VBox>
                               <HBox>
                                  <children>
-                                    <MFXButton fx:id="pathfind" alignment="CENTER" buttonType="RAISED" style="-fx-background-color: #003DA6;" text="Find Fastest Path" textFill="WHITE">
+                                    <MFXButton fx:id="pathfind" alignment="CENTER" buttonType="RAISED" prefWidth="150.0" style="-fx-background-color: #003DA6;" text="Find Path" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="70.0" top="10.0" />
                                        </HBox.margin>
@@ -260,7 +260,7 @@
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="dateLabel" text="Label" textFill="WHITE">
+                        <Label id="headerText" fx:id="dateLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -269,7 +269,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="timeLabel" text="Label" textFill="WHITE">
+                        <Label id="headerText" fx:id="timeLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -278,7 +278,7 @@
                   </HBox>
                </children>
                <HBox.margin>
-                  <Insets left="40.0" />
+                  <Insets left="20.0" />
                </HBox.margin>
             </VBox>
          </children>

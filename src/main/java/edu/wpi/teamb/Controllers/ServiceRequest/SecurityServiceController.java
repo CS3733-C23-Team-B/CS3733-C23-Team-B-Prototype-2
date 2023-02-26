@@ -29,10 +29,12 @@ public class SecurityServiceController extends BaseRequestController {
 
   ObservableList<String> numberList =
       FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+
   @FXML private MFXFilterComboBox<String> issueBox;
   @FXML private MFXFilterComboBox<String> equipNeededBox;
   @FXML private MFXFilterComboBox<String> numbReqBox;
 
+  /** Initialize the page by creating lists of components and declaring choice-box options */
   @FXML
   @Override
   public void initialize() {
@@ -44,9 +46,6 @@ public class SecurityServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    equipNeededBox.setItems(typeOfEquipment);
-    issueBox.setItems(typeOfIssue);
-    numbReqBox.setItems(numberList);
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
@@ -54,9 +53,18 @@ public class SecurityServiceController extends BaseRequestController {
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
 
+    equipNeededBox.setItems(typeOfEquipment);
+    issueBox.setItems(typeOfIssue);
+    numbReqBox.setItems(numberList);
+
     super.initialize();
   }
 
+  /**
+   * Store the user's input in the database and show confirmation popup
+   *
+   * @throws IOException
+   */
   @FXML
   @Override
   public void submitButtonClicked() throws IOException {
@@ -72,9 +80,6 @@ public class SecurityServiceController extends BaseRequestController {
 
     request.setRequestType(RequestType.SECURITY);
     DBSession.addRequest(request);
-
-    // may need to clear fields can be done with functions made for clear
-    clearButtonClicked();
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }

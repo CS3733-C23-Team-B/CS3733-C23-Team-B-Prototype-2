@@ -8,13 +8,13 @@ import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Entities.Urgency;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -26,32 +26,43 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
 public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
+  @FXML Label RequestInformationTitle;
   @FXML VBox specificRequestInfoBox;
   @FXML VBox filterVbox;
   @FXML MFXButton clearFiltersButton;
-  @FXML MFXComboBox requestStatusFilter;
-  @FXML MFXComboBox assignedStaffFilter;
-  @FXML MFXComboBox requestTypeFilter;
-  @FXML MFXComboBox requestUrgencyFilter;
+  @FXML MFXComboBox<RequestStatus> requestStatusFilter;
+  @FXML MFXFilterComboBox<String> assignedStaffFilter;
+  @FXML MFXFilterComboBox<RequestType> requestTypeFilter;
+  @FXML MFXComboBox<Urgency> requestUrgencyFilter;
+  @FXML MFXComboBox<String> requestReporterFilter;
   @FXML MFXCheckbox myRequestsFilter;
   @FXML ImageView helpButton;
-  @FXML Label dateLabel;
-  @FXML Label timeLabel;
+  @FXML Label dateLabel = new Label();
+  @FXML Label timeLabel = new Label();
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
   SubmittedAVRequestTable avTable = new SubmittedAVRequestTable();
-  SubmittedSecurityRequestTable securityTable = new SubmittedSecurityRequestTable();
+  SubmittedFacilitiesRequestTable securityTable = new SubmittedFacilitiesRequestTable();
   SubmittedGeneralRequestTable allTable = new SubmittedGeneralRequestTable();
+  SubmittedMedicineRequestTable medicineTable = new SubmittedMedicineRequestTable();
+  SubmittedMedicalEquipmentRequestTable equipTable = new SubmittedMedicalEquipmentRequestTable();
+  SubmittedFacilitiesRequestTable facTable = new SubmittedFacilitiesRequestTable();
+  List<String> titles = new ArrayList<>();
+  List<String> data = new ArrayList<>();
+  @FXML Label field1label, field2label, field3label, field4label;
+  List<Label> Labels = new ArrayList<>();
+  @FXML Label field1text, field2text, field3text, field4text;
+  List<Label> text = new ArrayList<>();
 
   @FXML Label la;
 
   String page = "none";
+  RequestType cur;
   Boolean myrequests = false;
   private ObservableList<RequestStatus> Status =
       FXCollections.observableArrayList(
@@ -59,14 +70,17 @@ public class SubmittedServiceRequestsController {
   protected ObservableList<Urgency> urgency =
       FXCollections.observableArrayList(
           Urgency.LOW, Urgency.MODERATE, Urgency.HIGH, Urgency.REQUIRESIMMEADIATEATTENTION);
-  private ObservableList<String> requestType =
+  private ObservableList<RequestType> requestType =
       FXCollections.observableArrayList(
-          "All Requests",
-          "Sanitation",
-          "Internal Patient Transportation",
-          "Audio and Visual",
-          "Security",
-          "Computer");
+          RequestType.ALLREQUESTS,
+          RequestType.AUDOVISUAL,
+          RequestType.COMPUTER,
+          RequestType.FACILITIES,
+          RequestType.PATIENTTRANSPOTATION,
+          RequestType.MEDICALEQUIPMENT,
+          RequestType.MEDICINE,
+          RequestType.SANITATION,
+          RequestType.SECURITY);
   private ObservableList<String> staff = DBSession.getStaff();
 
   private Login currUser = SigninController.getInstance().currentUser;
@@ -79,33 +93,38 @@ public class SubmittedServiceRequestsController {
     avTable.initialize();
     securityTable.initialize();
     allTable.initialize();
-    makeTable("All Requests");
+    medicineTable.initialize();
+    equipTable.initialize();
+    facTable.initialize();
+    initLabels();
+    makeTable(RequestType.ALLREQUESTS);
     myRequestsFilter.setOnAction(
         e -> {
           myrequests = myRequestsFilter.isSelected();
           filter();
         });
-    requestTypeFilter.setOnAction(e -> makeTable((String) requestTypeFilter.getValue()));
+    requestTypeFilter.setOnAction(e -> makeTable((RequestType) requestTypeFilter.getValue()));
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
     assignedStaffFilter.setOnAction(e -> filter());
     requestUrgencyFilter.setOnAction(e -> filter());
-    assignedStaffFilter.setOnAction(e -> filter());
-    requestUrgencyFilter.setOnAction(e -> filter());
+    requestReporterFilter.setOnAction(e -> filter());
 
     mainVbox.setPadding(new Insets(50, 20, 0, 20));
-    setFilters();
+
     requestStatusFilter.setItems(Status);
     assignedStaffFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
     requestUrgencyFilter.setItems(urgency);
+    requestReporterFilter.setItems(staff);
     requestTypeFilter.setText("All Requests");
+    requestTypeFilter.setValue(RequestType.ALLREQUESTS);
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
-    specificRequestInfoBox.getChildren().clear();
-    RequestInformationTitle.setText("Request Info");
-    specificRequestInfoBox.getChildren().add(RequestInformationTitle);
+    requestReporterFilter.setText("--Select--");
+    setFilters();
+    resetRequestVboxes();
 
     LocalDate currentDate = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
@@ -126,61 +145,110 @@ public class SubmittedServiceRequestsController {
     dateLabel.setText(formattedDate);
   }
 
+  public void initLabels() {
+    Labels.add(field1label);
+    Labels.add(field2label);
+    Labels.add(field3label);
+    Labels.add(field4label);
+    text.add(field1text);
+    text.add(field2text);
+    text.add(field3text);
+    text.add(field4text);
+  }
+
+  public void resetRequestVboxes() {
+    specificRequestInfoBox.getChildren().clear();
+    specificRequestInfoBox.getChildren().clear();
+    RequestInformationTitle.setText("Request Info");
+    specificRequestInfoBox.getChildren().add(RequestInformationTitle);
+  }
+
   public void helpButtonClicked() throws IOException {
     Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
   }
 
-  private void makeTable(String name) {
-    page = name;
+  private void makeTable(RequestType name) {
+    page = name.toString();
+    this.cur = name;
     TableView table = new TableView<>();
 
     mainVbox.getChildren().clear();
-    if (page.equals("Sanitation")) {
+    if (page.equals(RequestType.SANITATION.toString())) {
       table =
           saniTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("Internal Patient Transportation")) {
+    } else if (page.equals(RequestType.PATIENTTRANSPOTATION.toString())) {
       table =
           ptTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("Computer")) {
+    } else if (page.equals(RequestType.COMPUTER.toString())) {
       table =
           comTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("Audio and Visual")) {
+    } else if (page.equals(RequestType.AUDOVISUAL.toString())) {
       table =
           avTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("Security")) {
+    } else if (page.equals(RequestType.SECURITY.toString())) {
       table =
           securityTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals("All Requests")) {
+    } else if (page.equals(RequestType.ALLREQUESTS.toString())) {
       table =
           allTable.getTable(
-              (RequestStatus) requestStatusFilter.getValue(),
-              (String) assignedStaffFilter.getValue(),
-              (Urgency) requestUrgencyFilter.getValue(),
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
+              myrequests);
+    } else if (page.equals(RequestType.MEDICINE.toString())) {
+      table =
+          medicineTable.getTable(
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
+              myrequests);
+    } else if (page.equals(RequestType.MEDICALEQUIPMENT.toString())) {
+      table =
+          equipTable.getTable(
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
+              myrequests);
+    } else if (page.equals(RequestType.FACILITIES.toString())) {
+      table =
+          facTable.getTable(
+              requestStatusFilter.getValue(),
+              assignedStaffFilter.getValue(),
+              requestReporterFilter.getValue(),
+              requestUrgencyFilter.getValue(),
               myrequests);
     }
     TableView finalTable = table;
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
-    setLabel(name);
+    setLabel(page);
     mainVbox.getChildren().add(table);
   }
 
@@ -196,105 +264,182 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setValue(null);
     requestUrgencyFilter.getSelectionModel().clearSelection();
     requestUrgencyFilter.setValue(null);
-    requestTypeFilter.setValue(page);
+    requestReporterFilter.getSelectionModel().clearSelection();
+    requestReporterFilter.setValue(null);
+    requestTypeFilter.setValue(cur);
+
     if (currUser.getAdmin()) myRequestsFilter.setSelected(false);
     else myRequestsFilter.setSelected(true);
     requestStatusFilter.setText("--Select--");
     assignedStaffFilter.setText("--Select--");
     requestUrgencyFilter.setText("--Select--");
+    requestReporterFilter.setText("--Select--");
     filter();
   }
-
-  @FXML Label RequestInformationTitle;
 
   @FXML
   public void mouseClicked(TableView table) {
     GeneralRequest r = (GeneralRequest) table.getSelectionModel().getSelectedItem();
-    specificRequestInfoBox.getChildren().clear();
-    RequestInformationTitle.setText("Request Info");
-    specificRequestInfoBox.getChildren().add(RequestInformationTitle);
+    resetRequestVboxes();
+    titles = new ArrayList<>();
+    data = new ArrayList<>();
 
     if (r != null) {
-      addCommonAttritbutes(r.getRequestType().toString(), r.getDate(), r.getUrgency().toString());
+      //      get request info
+      String type = r.getRequestType().toString();
+      String date = r.getDate();
+      String requestor = r.getFirstname() + " " + r.getLastname();
+      String employeeId = r.getEmployeeID();
+      String email = r.getEmail();
+      String urgency = r.getUrgency().toString();
+      String assignedEmployee = r.getAssignedEmployee();
+      String status = r.getStatus().toString();
+      String notes = r.getNotes();
+      //      type, date, requestor, employeeId, email, urgency, assignedEmployee
+      addCommonAttritbutes(type, date, requestor, employeeId, email, urgency, assignedEmployee);
       if (r.getRequestType().equals(RequestType.PATIENTTRANSPOTATION)) {
         PatientTransportationRequest pt = (PatientTransportationRequest) r;
-        Label patientDestination =
-            addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
-        Label patientID = addAttribute("Patient ID:", pt.getPatientID());
-        Label patientCurrent =
-            addAttribute("Patient Current Location:", pt.getPatientCurrentLocation());
-        Label equipmentNeeded = addAttribute("Equipment Needed:", pt.getEquipmentNeeded());
-
+        addAttribute("Patient ID:", pt.getPatientID());
+        addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
+        addAttribute("Patient Current Location:", r.getLocation());
+        addAttribute("Equipment Needed:", pt.getEquipmentNeeded());
+        setFields();
       } else if (r.getRequestType().equals(RequestType.SANITATION)) {
         SanitationRequest sr = (SanitationRequest) r;
-        Label cleanUpLocation = addAttribute("Clean Up Location:", sr.getCleanUpLocation());
-        Label typeOfCleanUp = addAttribute("Type of Clean Up:", sr.getTypeOfCleanUp());
+        addAttribute("Clean Up Location:", r.getLocation());
+        addAttribute("Type of Clean Up:", sr.getTypeOfCleanUp());
+        setFields();
       } else if (r.getRequestType().equals(RequestType.COMPUTER)) {
         ComputerRequest cr = (ComputerRequest) r;
-        Label typeOfRepair = addAttribute("Type of Repair:", cr.getTypeOfRepair());
-        Label device = addAttribute("Type of Device:", cr.getDevice());
-        Label repairLocation = addAttribute("Repair Location:", cr.getRepairLocation());
+        addAttribute("Repair Location:", r.getLocation());
+        addAttribute("Type of Repair:", cr.getTypeOfRepair());
+        addAttribute("Type of Device:", cr.getDevice());
+        setFields();
       } else if (r.getRequestType().equals(RequestType.AUDOVISUAL)) {
         AudioVideoRequest avr = (AudioVideoRequest) r;
-        Label avType = addAttribute("Audio Visual Type:", avr.getAVType());
-        Label location = addAttribute("Location:", avr.getLocation());
+        addAttribute("Location:", avr.getLocation());
+        addAttribute("Audio Visual Type:", avr.getAVType());
+        setFields();
       } else if (r.getRequestType().equals(RequestType.SECURITY)) {
         SecurityRequest secr = (SecurityRequest) r;
-        Label issueType = addAttribute("Type Of Issue:", secr.getIssueType());
-        Label equipmentNeeded = addAttribute("Equipment Needed:", secr.getEquipmentNeeded());
-        Label NumberRequired =
-            addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
+        addAttribute("Location: ", secr.getLocation());
+        addAttribute("Type Of Issue:", secr.getIssueType());
+        addAttribute("Equipment Needed:", secr.getEquipmentNeeded());
+        addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
+        setFields();
+      } else if (r.getRequestType().equals(RequestType.MEDICINE)) {
+        MedicineDeliveryRequest medr = (MedicineDeliveryRequest) r;
+        addAttribute("Location:", medr.getLocation());
+        addAttribute("Type of Medicine:", medr.getMedicineType());
+        addAttribute("Dosage:", medr.getDoasage());
+        addAttribute("Patient ID:", medr.getPatientID());
+        setFields();
+      } else if (r.getRequestType().equals(RequestType.MEDICALEQUIPMENT)) {
+        MedicalEquipmentDeliveryRequest equipr = (MedicalEquipmentDeliveryRequest) r;
+        addAttribute("Location:", equipr.getLocation());
+        addAttribute("Type of Equipment:", equipr.getEquipmentType());
+        setFields();
+      } else if (r.getRequestType().equals(RequestType.FACILITIES)) {
+        FacilitiesRequest fr = (FacilitiesRequest) r;
+        addAttribute("Location:", fr.getLocation());
+        addAttribute("Type of Maintenance", fr.getMaintenanceType());
       }
+      addStatusAndNotes(status, notes);
     } else {
 
     }
   }
 
-  private Label addAttribute(String title, String field) {
-    Label t = new Label();
-    int fontSize = 16;
-    String font = "Nunito";
-    Label l = new Label();
-    Font f = new Font(font, fontSize);
-    l.setFont(Font.font(font, fontSize));
-    l.setText(field);
-    t.setFont(Font.font(font, FontWeight.LIGHT, fontSize));
-    t.setText(title);
+  private void addAttribute(String title, String field) {
+    titles.add(title);
+    data.add(field);
+  }
 
-    specificRequestInfoBox.getChildren().add(t);
+  @FXML Label requestTypeText;
+  @FXML Label dateText;
+  @FXML Label requestorText;
+  @FXML Label employeeIdText;
+  @FXML Label emailText;
+  @FXML Label UrgencyLabel;
+  @FXML Label urgencyText;
+  @FXML Label assignedEmployeeLabel;
+  @FXML Label assignedEmployeeText;
+
+  private void addCommonAttritbutes(
+      String type,
+      String date,
+      String requestor,
+      String employeeId,
+      String email,
+      String urgency,
+      String assignedEmployee) {
+    addAttribute(requestTypeText, type);
+    addAttribute(dateText, date);
+    addAttribute(requestorText, "Requestor: " + requestor);
+    addAttribute(employeeIdText, "Employee ID: " + employeeId);
+    addAttribute(emailText, "Email: " + email);
+    addAttribute(UrgencyLabel, urgencyText, urgency);
+    addAttribute(assignedEmployeeLabel, assignedEmployeeText, assignedEmployee);
+  }
+
+  private void addAttribute(Label title, Label text, String s) {
+    specificRequestInfoBox.getChildren().add(title);
+    addAttribute(text, s);
+  }
+
+  @FXML Label statusLabel;
+  @FXML Label statusText;
+  @FXML Label notesLabel;
+  @FXML Label notesText;
+
+  private void addStatusAndNotes(String status, String notes) {
+    addAttribute(statusLabel, statusText, status);
+    addAttribute(notesLabel, notesText, notes);
+  }
+
+  private void addAttribute(Label l, String s) {
+    l.setText(s);
     specificRequestInfoBox.getChildren().add(l);
-    return l;
   }
 
-  private Label addCommonAttritbute(String field) {
-    Label t = new Label();
-    int fontSize = 22;
-    String font = "Nunito";
-    t.setFont(Font.font(font, fontSize));
-    t.setText(field);
-    specificRequestInfoBox.getChildren().add(t);
-    return t;
+  private void setFields() {
+    for (int i = 0; i < data.size(); i++) {
+      Labels.get(i).setText(titles.get(i));
+      text.get(i).setText(data.get(i));
+      specificRequestInfoBox.getChildren().add(Labels.get(i));
+      specificRequestInfoBox.getChildren().add(text.get(i));
+    }
   }
 
-  private void addCommonAttritbutes(String type, String date, String urgency) {
-    addCommonAttritbute(type);
-    addCommonAttritbute(date);
-    addAttribute("Request Urgency:", urgency);
-  }
+  @FXML Label requestTypeBox;
+  @FXML Label urgencyBox;
+  @FXML Label requestStatusBox;
+  @FXML Label assignedStaffBox;
+  @FXML Label requestReporterBox;
 
   private void setFilters() {
     filterVbox.getChildren().clear();
+    filterVbox.getChildren().add(requestTypeBox);
     filterVbox.getChildren().add(requestTypeFilter);
-    filterVbox.getChildren().add(requestUrgencyFilter);
-    filterVbox.getChildren().add(requestStatusFilter);
+    addFilter(urgencyBox, requestUrgencyFilter);
+    addFilter(requestStatusBox, requestStatusFilter);
+    filterVbox.getChildren().add(assignedStaffBox);
     filterVbox.getChildren().add(assignedStaffFilter);
+
     if (currUser.getAdmin()) {
+      addFilter(requestReporterBox, requestReporterFilter);
       filterVbox.getChildren().add(myRequestsFilter);
     }
+
     filterVbox.getChildren().add(clearFiltersButton);
   }
 
+  private void addFilter(Label l, MFXComboBox b) {
+    filterVbox.getChildren().add(l);
+    filterVbox.getChildren().add(b);
+  }
+
   public void filter() {
-    makeTable(page);
+    makeTable(cur);
   }
 }

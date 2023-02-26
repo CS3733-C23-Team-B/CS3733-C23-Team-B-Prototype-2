@@ -43,7 +43,7 @@ public class AboutPageController {
     Popup.displayPopup(Screen.CHRISTINA_AUBE);
   }
 
-  public void samColebournClicked(){
+  public void samColebournClicked() {
     Popup.displayPopup(Screen.SAM_COLEBOURN);
   }
 }

@@ -40,7 +40,14 @@ public enum Screen {
   SERVICE_REQUEST_FORM_HELP("views/Popups/ServiceRequestFormHelp.fxml"),
   MAP_EDITOR_HELP_POP_UP("views/Popups/MapEditorHelpPopUp.fxml"),
   PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml"),
-  DATABASE_CONFIRMATION("views/Database/DatabaseConfirmation.fxml");
+  DATABASE_CONFIRMATION("views/Database/DatabaseConfirmation.fxml"),
+  KAVYA_MANI("views/Popups/KavyaPopUp.fxml"),
+  ADRIAN_JOHNSON("views/Popups/AdrianPopUp.fxml"),
+  JOLIE_WALTS("views/Popups/JoliePopUp.fxml"),
+  CHRISTINA_AUBE("views/Popups/ChristinaPopUp.fxml"),
+  CIERRA_OGRADY("views/Popups/CierraPopUp.fxml"),
+  LUKE_GRADY("views/Popups/LukePopUp.fxml"),
+  JACK_LAFORD("views/Popups/JackPopUp.fxml");
 
   private final String filename;
 

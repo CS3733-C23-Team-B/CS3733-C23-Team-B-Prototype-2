@@ -406,6 +406,7 @@ public class MapDAO {
   }
 
   public static void addKioskMove(Move m, String message) {
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     KioskMove km = new KioskMove();
     km.setNextNode(m.getNode());
     km.setLocationName(m.getLocationName());
@@ -414,11 +415,9 @@ public class MapDAO {
     String hql =
         "FROM Move m WHERE m.locationName = '"
             + m.getLocationName().getLongName()
-            + "' AND m.node = '"
-            + m.getNode().getNodeID()
             + "' AND m.moveDate < '"
-            + m.getMoveDate()
-            + "' ORDER BY m.moveDate";
+            + fmt.format(m.getMoveDate())
+            + "' ORDER BY m.moveDate DESC";
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session s = sf.openSession();
     try {

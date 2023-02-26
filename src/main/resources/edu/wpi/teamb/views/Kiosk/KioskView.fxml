@@ -100,7 +100,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="151.0" prefWidth="622.0">
                      <children>
-                        <Label fx:id="messageLabel" alignment="CENTER" prefHeight="326.0" prefWidth="624.0" text="This is a move messege">
+                        <Label fx:id="moveMessage" alignment="CENTER" prefHeight="326.0" prefWidth="624.0" text="This is a move messege">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

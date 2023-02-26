@@ -165,8 +165,8 @@
 
 #createAccountButton{
     -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
     -fx-font-size: 18px;
-    -fx-font-style: bold;
 }
 
 #forgotPasswordTitle{

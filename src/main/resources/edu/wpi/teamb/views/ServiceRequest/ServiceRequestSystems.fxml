@@ -277,7 +277,7 @@
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../../Downloads/medicine.png" />
+                                    <Image url="media/RequestIcons/medicine.png" />
                                  </image>
                               </ImageView>
                            </graphic>

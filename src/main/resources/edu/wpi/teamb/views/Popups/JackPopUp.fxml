@@ -50,7 +50,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Jack%20Laford.png" />
+                                          <Image url="@../../../../../media/Developers/Jack%20Laford.png" />
                                        </image>
                                     </ImageView>
                                     <VBox>
@@ -70,7 +70,7 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Hobbies: Rolling Gnarly Dice" wrapText="true">
+                                          <Label text="Hobby: Rolling Gnarly Dice" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

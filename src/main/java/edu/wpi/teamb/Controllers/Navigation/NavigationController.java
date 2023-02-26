@@ -10,7 +10,6 @@ import java.awt.*;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.paint.Paint;
 
 public class NavigationController {
   @FXML private MFXButton homeButton;
@@ -31,21 +30,21 @@ public class NavigationController {
 
   public void setActiveButton(MFXButton button) {
     resetButtons();
-    button.setStyle("-fx-background-color: #6D9BF8;");
-    button.setTextFill(Paint.valueOf("white"));
+    //    button.setStyle("-fx-background-color: #6D9BF8;");
+    //    button.setTextFill(Paint.valueOf("white"));
   }
 
   public void resetButtons() {
-    forms.setStyle("-fx-background-color: transparent;");
-    map.setStyle("-fx-background-color: transparent;");
-    request.setStyle("-fx-background-color: transparent;");
-    path.setStyle("-fx-background-color: transparent;");
-
-    homeButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    forms.setTextFill(Paint.valueOf("#c5d3ea"));
-    map.setTextFill(Paint.valueOf("#c5d3ea"));
-    request.setTextFill(Paint.valueOf("#c5d3ea"));
-    path.setTextFill(Paint.valueOf("#c5d3ea"));
+    //    forms.setStyle("-fx-background-color: transparent;");
+    //    map.setStyle("-fx-background-color: transparent;");
+    //    request.setStyle("-fx-background-color: transparent;");
+    //    path.setStyle("-fx-background-color: transparent;");
+    //
+    //    homeButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    //    forms.setTextFill(Paint.valueOf("#c5d3ea"));
+    //    map.setTextFill(Paint.valueOf("#c5d3ea"));
+    //    request.setTextFill(Paint.valueOf("#c5d3ea"));
+    //    path.setTextFill(Paint.valueOf("#c5d3ea"));
   }
 
   public void serviceRequestFormsButtonClicked() throws IOException {

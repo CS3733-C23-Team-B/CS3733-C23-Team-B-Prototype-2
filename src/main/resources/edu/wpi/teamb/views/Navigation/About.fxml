@@ -202,7 +202,7 @@
                                              <children>
                                                 <ImageView fx:id="kavyaMani" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#kavyaManiClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../../../../media/Developers/Kavya%20Mani.jpg" />
+                                                      <Image url="@../../../../../media/Developers/Kavya%20Mani%20.jpg" />
                                                    </image>
                                                 </ImageView>
                                                 <Label prefHeight="17.0" text="Kavya Mani ">

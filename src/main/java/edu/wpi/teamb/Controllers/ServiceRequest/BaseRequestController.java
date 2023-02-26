@@ -101,8 +101,7 @@ public class BaseRequestController {
    *
    * @throws IOException
    */
-  public void submitButtonClicked() throws IOException, SQLException {
-  }
+  public void submitButtonClicked() throws IOException, SQLException {}
 
   /**
    * Get the locations in the hospital

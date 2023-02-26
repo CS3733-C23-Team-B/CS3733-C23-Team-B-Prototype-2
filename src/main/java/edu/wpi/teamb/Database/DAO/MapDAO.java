@@ -416,13 +416,13 @@ public class MapDAO {
     km.setMoveDate(m.getMoveDate());
     km.setMessage(message);
     String hql =
-        "SELECT FROM Move WHERE locationName = '"
+        "FROM Move m WHERE m.locationName = '"
             + m.getLocationName().getLongName()
-            + "' AND node = '"
+            + "' AND m.node = '"
             + m.getNode().getNodeID()
-            + "' AND moveDate < '"
+            + "' AND m.moveDate < '"
             + m.getMoveDate()
-            + "', ORDER BY moveDate";
+            + "' ORDER BY m.moveDate";
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session s = sf.openSession();
     try {
@@ -430,7 +430,9 @@ public class MapDAO {
       Query q = s.createQuery(hql, Move.class);
       tx.commit();
       List<Object> results = q.list();
-      if (!results.isEmpty()) {
+      if (results.isEmpty()) {
+        km.setPrevNode(km.getNextNode());
+      } else {
         Move prevM = (Move) results.get(0);
         Node prevN = prevM.getNode();
         km.setPrevNode(prevN);

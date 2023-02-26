@@ -4,6 +4,7 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Move;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,11 +24,20 @@ public class KioskEditController {
   @FXML Label timeLabel;
   @FXML Label dateLabel;
 
+  private List<Move> moves;
+
   public void initialize() {
-    List<Move> moves = DBSession.getAllMoves();
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+    moves = DBSession.getAllMoves();
     List<String> l =
         moves.stream()
-            .map(move -> move.getLocationName().getLongName())
+            .map(
+                move ->
+                    move.getLocationName().getLongName()
+                        + ", "
+                        + move.getNode().getNodeID()
+                        + ", "
+                        + fmt.format(move.getMoveDate()))
             .collect(Collectors.toList());
     moveDropdown.setItems(FXCollections.observableList(l));
 
@@ -52,7 +62,7 @@ public class KioskEditController {
 
   public void addKiosk() {
     if (moveMessage.getText().length() > 0 && moveDropdown.getValue() != null) {
-      DBSession.addKioskMove((Move) moveDropdown.getValue(), moveMessage.getText());
+      DBSession.addKioskMove(moves.get(moveDropdown.getSelectedIndex()), moveMessage.getText());
     }
   }
 }

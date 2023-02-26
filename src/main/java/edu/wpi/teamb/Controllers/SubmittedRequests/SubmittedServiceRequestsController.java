@@ -145,30 +145,19 @@ public class SubmittedServiceRequestsController {
     timeline.play();
     dateLabel.setText(formattedDate);
 
-    //    ObservableList<PieChart.Data> pieChartData =
-    //        FXCollections.observableArrayList(
-    //            new PieChart.Data(
-    //                "Patient Transportation Requests", ptTable.getTable().getItems().size()),
-    //            new PieChart.Data("Sanitation Requests", saniTable.getTable().getItems().size()),
-    //            new PieChart.Data("Computer Requests", comTable.getTable().getItems().size()),
-    //            new PieChart.Data("A/V Requests", avTable.getTable().getItems().size()),
-    //            new PieChart.Data("Security Requests",
-    // securityTable.getTable().getItems().size()),
-    //            new PieChart.Data(
-    //                "Medicine Delivery Requests", medicineTable.getTable().getItems().size()),
-    //            new PieChart.Data(
-    //                "Equipment Delivery Requests", equipTable.getTable().getItems().size()),
-    //            new PieChart.Data(
-    //                "Facilities Maintenance Requests", facTable.getTable().getItems().size()));
     ObservableList<PieChart.Data> pieChartData =
         FXCollections.observableArrayList(
             new PieChart.Data(
-                "Patient Transportation Requests", ptTable.getTable().getItems().size()),
-            new PieChart.Data("Sanitation Requests", saniTable.getTable().getItems().size()),
-            new PieChart.Data("Computer Requests", comTable.getTable().getItems().size()));
-    System.out.println(ptTable.getTable().getItems().size());
-    System.out.println(saniTable.getTable().getItems().size());
-    System.out.println(comTable.getTable().getItems().size());
+                "Patient Transportation Requests", DBSession.getAllPTRequests().size()),
+            new PieChart.Data("Sanitation Requests", DBSession.getAllSanRequests().size()),
+            new PieChart.Data("Computer Requests", DBSession.getAllCRequests().size()),
+            new PieChart.Data("A/V Requests", DBSession.getAllAVRequests().size()),
+            new PieChart.Data("Security Requests", DBSession.getAllSecRequests().size()),
+            new PieChart.Data("Medicine Delivery Requests", DBSession.getAllMDRequests().size()),
+            new PieChart.Data("Equipment Delivery Requests", DBSession.getAllMEDRequests().size()),
+            new PieChart.Data(
+                "Facilities Maintenance Requests", DBSession.getAllFacRequests().size()));
+
     PieChart pieChart = new PieChart(pieChartData);
     pieChart.setTitle("Submitted Requests");
     //    Bapp.getStackPane().getChildren().add(pieChart);

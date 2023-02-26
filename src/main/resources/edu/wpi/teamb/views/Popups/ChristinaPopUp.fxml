@@ -50,7 +50,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/CS%203733/Christina%20Aube.png" />
+                                          <Image url="@../../../../../media/Developers/Christina%20Aube.png" />
                                        </image>
                                     </ImageView>
                                     <VBox prefHeight="167.0">

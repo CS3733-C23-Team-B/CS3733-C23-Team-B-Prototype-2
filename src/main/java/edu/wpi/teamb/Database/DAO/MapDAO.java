@@ -86,7 +86,7 @@ public class MapDAO {
   }
 
   public static Map<String, Move> getLNMoves(Date d) {
-    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     HashMap<String, Move> moves = new HashMap<String, Move>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
@@ -104,7 +104,12 @@ public class MapDAO {
         m.setLocationName((LocationName) moveInfo[0]);
         m.setNode((Node) moveInfo[1]);
         m.setMoveDate((Date) moveInfo[2]);
-        moves.put(m.getLocationName().getLongName(), m);
+        if (moves.containsKey(m.getLocationName().getLongName())) {
+          Date d1 = moves.get(m.getLocationName().getLongName()).getMoveDate();
+          Date d2 = (Date) moveInfo[2];
+          if (moves.get(m.getLocationName().getLongName()).getMoveDate().before((Date) moveInfo[2]))
+            moves.put(m.getLocationName().getLongName(), m);
+        } else moves.put(m.getLocationName().getLongName(), m);
       }
     } catch (Exception e) {
       e.printStackTrace();

@@ -40,7 +40,7 @@
                <content>
                   <VBox fx:id="filterVbox" style="-fx-background-color: #E0E0E0;">
                      <children>
-                        <Label alignment="TOP_LEFT" text="Request type:">
+                        <Label fx:id="requestTypeBox" alignment="TOP_LEFT" text="Request type:">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -49,7 +49,7 @@
                            </VBox.margin>
                         </Label>
                         <MFXFilterComboBox fx:id="requestTypeFilter" alignment="TOP_CENTER" prefHeight="44.0" prefWidth="220.0" />
-                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" text="Urgency:">
+                        <Label fx:id="urgencyBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" text="Urgency:">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -62,7 +62,7 @@
                               <Insets />
                            </VBox.margin>
                         </MFXComboBox>
-                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="89.0" text="Request Status:">
+                        <Label fx:id="requestStatusBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="89.0" text="Request Status:">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -75,24 +75,24 @@
                               <Insets bottom="30.0" />
                            </VBox.margin>
                         </MFXComboBox>
-                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="324.0" text="Date Range:">
+                        <Label fx:id="dateRangeBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="324.0" text="Date Range:">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="433.0" text="From:" textFill="GREY">
+                        <Label fx:id="fromLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="433.0" text="From:" textFill="GREY">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <MFXDatePicker prefHeight="44.0" prefWidth="220.0" />
-                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="468.0" text="To:" textFill="GREY">
+                        <MFXDatePicker fx:id="fromDatePicker" prefHeight="44.0" prefWidth="220.0" />
+                        <Label fx:id="toLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="468.0" text="To:" textFill="GREY">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <MFXDatePicker layoutX="10.0" layoutY="499.0" prefHeight="44.0" prefWidth="220.0" />
-                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="214.0" text="Assigned Staff:">
+                        <MFXDatePicker fx:id="toDatePicker" layoutX="10.0" layoutY="499.0" prefHeight="44.0" prefWidth="220.0" />
+                        <Label fx:id="assignedStaffBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="214.0" text="Assigned Staff:">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -105,7 +105,7 @@
                               <Insets />
                            </VBox.margin>
                         </MFXFilterComboBox>
-                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="324.0" text="Request Reporter:">
+                        <Label fx:id="requestReporterBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="324.0" text="Request Reporter:">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -180,24 +180,24 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="dateText1" layoutX="40.0" layoutY="150.0" text="Requestor Label" textFill="#565656">
+                        <Label fx:id="requestorText" layoutX="40.0" layoutY="150.0" text="Requestor Label" textFill="#565656">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="dateText11" layoutX="40.0" layoutY="185.0" text="Employee ID Label" textFill="#565656">
+                        <Label fx:id="employeeIdText" layoutX="40.0" layoutY="185.0" text="Employee ID Label" textFill="#565656">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="dateText111" layoutX="40.0" layoutY="217.0" text="Email Label" textFill="#565656">
+                        <Label fx:id="emailText" layoutX="40.0" layoutY="217.0" text="Email Label" textFill="#565656">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
                         <Label fx:id="UrgencyLabel" text="Urgency:">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="40.0" />
@@ -205,59 +205,98 @@
                         </Label>
                         <Label fx:id="urgencyText" text="Urgency Text">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="20.0" />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="field1label" text="Assigned Staff:">
+                        <Label fx:id="assignedEmployeeLabel" text="Assigned Employee:">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="assignedEmployeeText" text="Urgency Text">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="field1label" text="Field 1 Label:">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
                         <Label fx:id="field1text" text="Field 1 Text">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="20.0" />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="field2label" text="Field 2 Label:">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
                         <Label fx:id="field2text" text="Field 2 Text">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="20.0" />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="field3label" text="Field 3 Label:">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
                         <Label fx:id="field3text" text="Field 3 Text">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="field4label" text="Field 4 Label:">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="field4text" text="Field 4 Text">
+                           <font>
+                              <Font size="20.0" />
                            </font>
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="field4label" text="Field 4 Label:">
+                        <Label fx:id="statusLabel" text="Status:">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="field4text" text="Field 4 Text">
+                        <Label fx:id="statusText" text="Status Text">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="notesLabel" text="Notes:">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="notesText" text="Notes Text">
+                           <font>
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
@@ -323,6 +362,7 @@
                   <Insets />
                </GridPane.margin>
             </HBox>
+            <VBox fx:id="mainVbox" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

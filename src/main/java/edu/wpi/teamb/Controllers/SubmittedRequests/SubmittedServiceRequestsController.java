@@ -8,10 +8,7 @@ import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Entities.Urgency;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -35,7 +32,6 @@ public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
   @FXML Label RequestInformationTitle;
   @FXML VBox specificRequestInfoBox;
-  @FXML VBox generalRequestInfoVbox;
   @FXML VBox filterVbox;
   @FXML MFXButton clearFiltersButton;
   @FXML MFXComboBox<RequestStatus> requestStatusFilter;
@@ -158,9 +154,9 @@ public class SubmittedServiceRequestsController {
 
   public void resetRequestVboxes() {
     specificRequestInfoBox.getChildren().clear();
-    generalRequestInfoVbox.getChildren().clear();
+    specificRequestInfoBox.getChildren().clear();
     RequestInformationTitle.setText("Request Info");
-    generalRequestInfoVbox.getChildren().add(RequestInformationTitle);
+    specificRequestInfoBox.getChildren().add(RequestInformationTitle);
   }
 
   public void helpButtonClicked() throws IOException {
@@ -272,22 +268,33 @@ public class SubmittedServiceRequestsController {
     data = new ArrayList<>();
 
     if (r != null) {
-      addCommonAttritbutes(r.getRequestType().toString(), r.getDate(), r.getUrgency().toString());
+      //      get request info
+      String type = r.getRequestType().toString();
+      String date = r.getDate();
+      String requestor = r.getFirstname() + " " + r.getLastname();
+      String employeeId = r.getEmployeeID();
+      String email = r.getEmail();
+      String urgency = r.getUrgency().toString();
+      String assignedEmployee = r.getAssignedEmployee();
+      String status = r.getStatus().toString();
+      String notes = r.getNotes();
+      //      type, date, requestor, employeeId, email, urgency, assignedEmployee
+      addCommonAttritbutes(type, date, requestor, employeeId, email, urgency, assignedEmployee);
       if (r.getRequestType().equals(RequestType.PATIENTTRANSPOTATION)) {
         PatientTransportationRequest pt = (PatientTransportationRequest) r;
         addAttribute("Patient ID:", pt.getPatientID());
         addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
-        addAttribute("Patient Current Location:", pt.getLocation());
+        addAttribute("Patient Current Location:", r.getLocation());
         addAttribute("Equipment Needed:", pt.getEquipmentNeeded());
         setFields();
       } else if (r.getRequestType().equals(RequestType.SANITATION)) {
         SanitationRequest sr = (SanitationRequest) r;
-        addAttribute("Clean Up Location:", sr.getLocation());
+        addAttribute("Clean Up Location:", r.getLocation());
         addAttribute("Type of Clean Up:", sr.getTypeOfCleanUp());
         setFields();
       } else if (r.getRequestType().equals(RequestType.COMPUTER)) {
         ComputerRequest cr = (ComputerRequest) r;
-        addAttribute("Repair Location:", cr.getLocation());
+        addAttribute("Repair Location:", r.getLocation());
         addAttribute("Type of Repair:", cr.getTypeOfRepair());
         addAttribute("Type of Device:", cr.getDevice());
         setFields();
@@ -298,6 +305,7 @@ public class SubmittedServiceRequestsController {
         setFields();
       } else if (r.getRequestType().equals(RequestType.SECURITY)) {
         SecurityRequest secr = (SecurityRequest) r;
+        addAttribute("Location: ", secr.getLocation());
         addAttribute("Type Of Issue:", secr.getIssueType());
         addAttribute("Equipment Needed:", secr.getEquipmentNeeded());
         addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
@@ -319,6 +327,7 @@ public class SubmittedServiceRequestsController {
         addAttribute("Location:", fr.getLocation());
         addAttribute("Type of Maintenance", fr.getMaintenanceType());
       }
+      addStatusAndNotes(status, notes);
     } else {
 
     }
@@ -331,17 +340,49 @@ public class SubmittedServiceRequestsController {
 
   @FXML Label requestTypeText;
   @FXML Label dateText;
-  @FXML Label urgencyText;
+  @FXML Label requestorText;
+  @FXML Label employeeIdText;
+  @FXML Label emailText;
   @FXML Label UrgencyLabel;
+  @FXML Label urgencyText;
+  @FXML Label assignedEmployeeLabel;
+  @FXML Label assignedEmployeeText;
 
-  private void addCommonAttritbutes(String type, String date, String urgency) {
-    requestTypeText.setText(type);
-    generalRequestInfoVbox.getChildren().add(requestTypeText);
-    dateText.setText(date);
-    generalRequestInfoVbox.getChildren().add(dateText);
-    urgencyText.setText(urgency);
-    specificRequestInfoBox.getChildren().add(UrgencyLabel);
-    specificRequestInfoBox.getChildren().add(urgencyText);
+  private void addCommonAttritbutes(
+      String type,
+      String date,
+      String requestor,
+      String employeeId,
+      String email,
+      String urgency,
+      String assignedEmployee) {
+    addAttribute(requestTypeText, type);
+    addAttribute(dateText, date);
+    addAttribute(requestorText, "Requestor: " + requestor);
+    addAttribute(employeeIdText, "Employee ID: " + employeeId);
+    addAttribute(emailText, "Email: " + email);
+    addAttribute(UrgencyLabel, urgencyText, urgency);
+    addAttribute(assignedEmployeeLabel, assignedEmployeeText, assignedEmployee);
+  }
+
+  private void addAttribute(Label title, Label text, String s) {
+    specificRequestInfoBox.getChildren().add(title);
+    addAttribute(text, s);
+  }
+
+  @FXML Label statusLabel;
+  @FXML Label statusText;
+  @FXML Label notesLabel;
+  @FXML Label notesText;
+
+  private void addStatusAndNotes(String status, String notes) {
+    addAttribute(statusLabel, statusText, status);
+    addAttribute(notesLabel, notesText, notes);
+  }
+
+  private void addAttribute(Label l, String s) {
+    l.setText(s);
+    specificRequestInfoBox.getChildren().add(l);
   }
 
   private void setFields() {
@@ -353,17 +394,47 @@ public class SubmittedServiceRequestsController {
     }
   }
 
+  @FXML Label requestTypeBox;
+  @FXML Label urgencyBox;
+  @FXML Label requestStatusBox;
+  @FXML Label assignedStaffBox;
+  @FXML Label requestReporterBox;
+  @FXML MFXComboBox requestReporterFilter;
+
   private void setFilters() {
     filterVbox.getChildren().clear();
-    filterVbox.getChildren().add(requestTypeFilter);
-    filterVbox.getChildren().add(requestUrgencyFilter);
-    filterVbox.getChildren().add(requestStatusFilter);
-    filterVbox.getChildren().add(assignedStaffFilter);
+    addFilter(requestTypeBox, requestTypeFilter);
+    addFilter(urgencyBox, requestUrgencyFilter);
+    addFilter(requestStatusBox, requestStatusFilter);
+    addDateFilter();
+    addFilter(assignedStaffBox, assignedStaffFilter);
     if (currUser.getAdmin()) {
+      //      addFilter(requestReporterBox, requestReporterFilter);
       filterVbox.getChildren().add(myRequestsFilter);
     }
     filterVbox.getChildren().add(clearFiltersButton);
   }
+
+  private void addFilter(Label l, MFXComboBox b) {
+    filterVbox.getChildren().add(l);
+    filterVbox.getChildren().add(b);
+  }
+
+  @FXML Label dateRangeBox;
+  @FXML Label fromLabel;
+  @FXML MFXDatePicker fromDatePicker;
+  @FXML Label toLabel;
+  @FXML MFXDatePicker toDatePicker;
+
+  private void addDateFilter() {
+    filterVbox.getChildren().add(dateRangeBox);
+    filterVbox.getChildren().add(fromLabel);
+    filterVbox.getChildren().add(fromDatePicker);
+    filterVbox.getChildren().add(toLabel);
+    filterVbox.getChildren().add(toDatePicker);
+  }
+
+  private void addFilter(Label l, MFXFilterComboBox b) {}
 
   public void filter() {
     makeTable(cur);

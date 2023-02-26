@@ -21,6 +21,7 @@ public class AVServiceController extends BaseRequestController {
 
   @FXML private MFXFilterComboBox<String> typeOfEquipmentBox;
 
+  /** Initialize the page by creating lists of components and declaring choice-box options */
   @FXML
   @Override
   public void initialize() {
@@ -38,11 +39,17 @@ public class AVServiceController extends BaseRequestController {
       if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
+
     typeOfEquipmentBox.setItems(typeOfEquipment);
 
     super.initialize();
   }
 
+  /**
+   * Store the user's input in the database and show confirmation popup
+   *
+   * @throws IOException
+   */
   @FXML
   @Override
   public void submitButtonClicked() throws IOException {
@@ -53,16 +60,10 @@ public class AVServiceController extends BaseRequestController {
     super.submit(request);
 
     var equipment = typeOfEquipmentBox.getValue();
-    if (equipment == null) {
-      equipment = "";
-    }
     request.setAVType(equipment.toString());
 
     request.setRequestType(RequestType.AUDOVISUAL);
     DBSession.addRequest(request);
-
-    // may need to clear fields can be done with functions made for clear
-    clearButtonClicked();
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }

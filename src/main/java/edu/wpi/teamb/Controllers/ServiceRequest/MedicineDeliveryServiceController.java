@@ -18,12 +18,11 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
 
   ObservableList<String> locations = getLocations();
 
-  @FXML private MFXTextField typeofmedicineField;
+  @FXML private MFXTextField typeOfMedicineField;
   @FXML private MFXTextField dosageField;
-  @FXML private MFXTextField patientidField;
-  // @FXML private MFXFilterComboBox deliverylocationLocationBox;
+  @FXML private MFXTextField patientIDField;
 
-  /** Initialize the page by declaring choice-box options */
+  /** Initialize the page by creating lists of components and declaring choice-box options */
   @FXML
   @Override
   public void initialize() {
@@ -32,9 +31,10 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     Control[] ctrl = {
       urgencyBox,
       assignedStaffBox,
-      typeofmedicineField,
+      locationBox,
+      typeOfMedicineField,
       dosageField,
-      // deliverylocationLocationBox,
+      patientIDField,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
@@ -55,7 +55,7 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
   }
 
   /**
-   * Store the data from the form in a csv file and return to home screen
+   * Store the user's input in the database and show confirmation popup
    *
    * @throws IOException
    */
@@ -68,19 +68,15 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     super.submit(request);
 
     var destination = locationBox.getValue();
-    if (destination == null) {
-      destination = "";
-    }
     request.setLocation(destination.toString());
 
-    request.setMedicineType(this.typeofmedicineField.getText());
+    request.setMedicineType(this.typeOfMedicineField.getText());
     request.setDoasage(this.dosageField.getText());
-    request.setPatientID(this.patientidField.getText());
+    request.setPatientID(this.patientIDField.getText());
+
     request.setRequestType(RequestType.MEDICINE);
     DBSession.addRequest(request);
 
-    // may need to clear fields can be done with functions made for clear
-    clearButtonClicked();
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }
 }

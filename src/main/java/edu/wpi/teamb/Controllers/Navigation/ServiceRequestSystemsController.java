@@ -76,6 +76,8 @@ public class ServiceRequestSystemsController {
     AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
     equipButton.setStyle("-fx-background-color: #21357E");
     equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    medDeliveryButton.setStyle("-fx-background-color: #21357E");
+    medDeliveryButton.setTextFill(Paint.valueOf("#c5d3ea"));
   }
 
   public void makeSani() throws IOException {
@@ -99,6 +101,8 @@ public class ServiceRequestSystemsController {
     AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
     equipButton.setStyle("-fx-background-color: #21357E");
     equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    medDeliveryButton.setStyle("-fx-background-color: #21357E");
+    medDeliveryButton.setTextFill(Paint.valueOf("#c5d3ea"));
   }
 
   public void makeSec() throws IOException {
@@ -123,6 +127,8 @@ public class ServiceRequestSystemsController {
     AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
     equipButton.setStyle("-fx-background-color: #21357E");
     equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    medDeliveryButton.setStyle("-fx-background-color: #21357E");
+    medDeliveryButton.setTextFill(Paint.valueOf("#c5d3ea"));
   }
 
   public void makeCom() throws IOException {
@@ -146,6 +152,8 @@ public class ServiceRequestSystemsController {
     AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
     equipButton.setStyle("-fx-background-color: #21357E");
     equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    medDeliveryButton.setStyle("-fx-background-color: #21357E");
+    medDeliveryButton.setTextFill(Paint.valueOf("#c5d3ea"));
   }
 
   public void makeAV() throws IOException {
@@ -169,6 +177,8 @@ public class ServiceRequestSystemsController {
     AVButton.setTextFill(Paint.valueOf("#FFFFFF"));
     equipButton.setStyle("-fx-background-color: #21357E");
     equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    medDeliveryButton.setStyle("-fx-background-color: #21357E");
+    medDeliveryButton.setTextFill(Paint.valueOf("#c5d3ea"));
   }
 
   public void makeMedEquip() throws IOException {
@@ -192,6 +202,8 @@ public class ServiceRequestSystemsController {
     AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
     equipButton.setStyle("-fx-background-color: #6D9BF8");
     equipButton.setTextFill(Paint.valueOf("#FFFFFF"));
+    medDeliveryButton.setStyle("-fx-background-color: #21357E");
+    medDeliveryButton.setTextFill(Paint.valueOf("#c5d3ea"));
   }
 
   public void makeMedDelivery() throws IOException {
@@ -203,8 +215,8 @@ public class ServiceRequestSystemsController {
     pageTitle.setFont(font);
     pageTitle.setText("Medicine Delivery");
     headerText.setText("");
-    transButton.setStyle("-fx-background-color: #6D9BF8");
-    transButton.setTextFill(Paint.valueOf("#FFFFFF"));
+    transButton.setStyle("-fx-background-color: #21357E");
+    transButton.setTextFill(Paint.valueOf("#c5d3ea"));
     saniButton.setStyle("-fx-background-color: #21357E");
     saniButton.setTextFill(Paint.valueOf("#c5d3ea"));
     secButton.setStyle("-fx-background-color:  #21357E");
@@ -215,5 +227,7 @@ public class ServiceRequestSystemsController {
     AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
     equipButton.setStyle("-fx-background-color: #21357E");
     equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    medDeliveryButton.setStyle("-fx-background-color: #6D9BF8");
+    medDeliveryButton.setTextFill(Paint.valueOf("#FFFFFF"));
   }
 }

@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import net.kurobako.gesturefx.GesturePane;
@@ -42,14 +43,17 @@ public class KioskViewController {
   private List<List<Node>> pathNodePairs = new ArrayList<>();
   Circle startDot;
   Circle endDot;
+  private Map<String, Node> nodes = DBSession.getAllNodes();
+  @FXML GridPane frontBox;
+  @FXML Label frontLabel;
 
   private String startLoc;
   private String endLoc;
   Map<Circle, Node> nodeMap;
 
   public void initialize() throws IOException, SQLException {
-    int index = 2;
-    List<KioskMove> kioskMoveList = new ArrayList<>();
+    int index = 3;
+    List<KioskMove> kioskMoveList;
     kioskMoveList = DBSession.getAllKioskMoves();
     moveMessage.setText(kioskMoveList.get(index).getMessage());
     floorMap.put("Lower Level 2", "L2");
@@ -76,17 +80,14 @@ public class KioskViewController {
     center.add(pane, 0, 0);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     pane.toBack();
+    frontBox.toFront();
+    frontLabel.toFront();
     findPath(
         kioskMoveList.get(index).getPrevNode().getNodeID(),
         kioskMoveList.get(index).getNextNode().getNodeID());
-
-    Platform.runLater(
-        () -> {
-          changeFloor("1", new Point2D(2215, 1045));
-        });
   }
 
-  private void changeFloor(String floor, Point2D p) {
+  private void changeFloor(String floor, Point2D p, ArrayList<String> path) {
     currentFloor = floor;
     nodeMap.clear();
     ImageView image = imageMap.get(floor);
@@ -95,14 +96,22 @@ public class KioskViewController {
     aPane.getChildren().add(image);
     aPane.getChildren().add(linesPlane);
     linesPlane.getChildren().clear();
-    Map<String, Node> nodes = DBSession.getAllNodes();
 
     for (Node value : nodes.values()) {
-      if (value.getFloor().equals(currentFloor)) {
+      if (value.getFloor().equals(currentFloor) && path.contains(value.getNodeID())) {
         Circle dot = placeNode(value);
         nodeMap.put(dot, value);
       }
     }
+    for (int i = 0; i < path.size() - 1; i++) {
+      Node s = nodes.get(path.get(i));
+      Node e = nodes.get(path.get(i + 1));
+      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
+        placeLine(s, e);
+      }
+    }
+    frontBox.toFront();
+    frontLabel.toFront();
 
     Platform.runLater(() -> pane.centreOn(p));
   }
@@ -110,6 +119,8 @@ public class KioskViewController {
   private Circle placeNode(Node node) {
     Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Bapp.blue);
     aPane.getChildren().add(dot);
+    frontBox.toFront();
+    frontLabel.toFront();
     return dot;
   }
 
@@ -146,11 +157,13 @@ public class KioskViewController {
 
   private void findPath(String st, String en) throws SQLException {
 
+    Node startNode = nodes.get(st);
+
     Pathfinding.avoidStairs = true;
 
     linesPlane.getChildren().clear();
     String start = st;
-    String end = st;
+    String end = en;
 
     ArrayList<String> path = Pathfinding.getPathFromID(start, end);
 
@@ -159,10 +172,16 @@ public class KioskViewController {
     }
     System.out.println(path);
 
+    Platform.runLater(
+        () -> {
+          changeFloor(
+              startNode.getFloor(),
+              new Point2D(startNode.getXCoord(), startNode.getYCoord()),
+              path);
+        });
+
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);
-
-    Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
 
@@ -174,7 +193,7 @@ public class KioskViewController {
       String first = nodePath.get(i).getFloor();
       String second = nodePath.get(i + 1).getFloor();
       if (!first.equals(second)) {
-        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i + 1));
+        showFloorChangeOnNode(nodePath.get(i), nodePath.get(i + 1), path);
       }
     }
     for (int i = 0; i < path.size() - 1; i++) {
@@ -182,42 +201,25 @@ public class KioskViewController {
       Node e = nodes.get(path.get(i + 1));
       pathNodePairs.add(Arrays.asList(s, e));
 
-      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
-        placeLine(s, e);
-      }
-      // if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor))
-      // showButton(buttonMap.get(s));
+      if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor))
+        showButton(buttonMap.get(s));
     }
     pane.toFront();
+    frontBox.toFront();
+    frontLabel.toFront();
 
     if (startDot != null) {
-      startDot.setFill(Bapp.blue);
+      startDot.setFill(Paint.valueOf("green"));
       startDot = null;
     }
     if (endDot != null) {
-      endDot.setFill(Bapp.blue);
+      endDot.setFill(Paint.valueOf("red"));
       endDot = null;
     }
-    setNodeColors();
   }
 
-  public void setNodeColors() {
-    List<javafx.scene.Node> nodeTest = aPane.getChildren();
-    for (javafx.scene.Node n : nodeTest) {
-      if (n instanceof Circle) {
-        Circle c = (Circle) n;
-        Node node = nodeMap.get(c);
-        if (node != null) {
-          if (node.getNodeID().equals(startID)) {
-            startDot = c;
-            startDot.setFill(Color.GREEN);
-          } else if (node.getNodeID().equals(endID)) {
-            endDot = c;
-            endDot.setFill(Color.RED);
-          }
-        }
-      }
-    }
+  private void showButton(MFXButton button) {
+    aPane.getChildren().add(button);
   }
 
   private void placeLine(Node start, Node end) {
@@ -225,12 +227,19 @@ public class KioskViewController {
     line.setFill(Color.BLACK);
     line.setStrokeWidth(5);
 
+    System.out.println("Line placed on floor: " + start.getFloor());
+
     // Add the line to the scene graph and track the nodes that have been added
     linesPlane.getChildren().add(line);
   }
 
-  private void showFloorChangeOnNode(Node startNode, Node endNode) {
+  private void showFloorChangeOnNode(Node startNode, Node endNode, ArrayList<String> path) {
     MFXButton nextFloor = new MFXButton();
+    nextFloor.setOnAction(
+        e -> {
+          changeFloor(
+              endNode.getFloor(), new Point2D(endNode.getXCoord(), endNode.getYCoord()), path);
+        });
     nextFloor.setText("Go to next Floor");
     nextFloor.setStyle("-fx-background-color: #21357E; -fx-text-fill: #F2F2F2");
     nextFloor.setLayoutX(startNode.getXCoord() + 20);

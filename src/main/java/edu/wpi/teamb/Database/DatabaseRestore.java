@@ -69,7 +69,7 @@ public class DatabaseRestore {
       if (!(ln.getLongName() == null)) {
         m.setNode(n);
         m.setLocationName(ln);
-        m.setMoveDate(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01"));
+        m.setMoveDate(new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-01"));
         s.persist(m);
       }
     }

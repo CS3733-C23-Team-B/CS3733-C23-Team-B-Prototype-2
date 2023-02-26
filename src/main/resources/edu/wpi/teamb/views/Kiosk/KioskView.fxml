@@ -89,7 +89,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="654.0" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #FCFCFC; -fx-background-radius: 5;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <GridPane fx:id="frontBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="654.0" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #FCFCFC; -fx-background-radius: 5;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" percentWidth="100.0" />
                </columnConstraints>
@@ -140,7 +140,7 @@
                   <Insets bottom="30.0" />
                </GridPane.margin>
             </GridPane>
-            <Label alignment="CENTER" prefHeight="66.0" prefWidth="544.0" style="-fx-background-color: #FCFCFC; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" text="Upcoming Location Moves" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <Label fx:id="frontLabel" alignment="CENTER" prefHeight="66.0" prefWidth="544.0" style="-fx-background-color: #FCFCFC; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" text="Upcoming Location Moves" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <font>
                   <Font size="36.0" />
                </font>

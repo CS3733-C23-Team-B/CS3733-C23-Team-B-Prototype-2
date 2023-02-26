@@ -41,7 +41,7 @@ public class KioskEditController {
   public void initialize() {
     List<KioskMove> allKiosks = new ArrayList<>();
     allKiosks = DBSession.getAllKioskMoves();
-    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     moves = DBSession.getAllMoves();
     List<String> l =
         moves.stream()

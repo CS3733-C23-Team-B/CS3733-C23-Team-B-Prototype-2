@@ -16,7 +16,7 @@ public class Pathfinding {
 
   static {
     try {
-      date = new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01");
+      date = new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-01");
     } catch (ParseException e) {
       throw new RuntimeException(e);
     }

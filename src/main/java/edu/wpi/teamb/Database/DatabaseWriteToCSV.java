@@ -84,7 +84,7 @@ public class DatabaseWriteToCSV {
   public static void writeMoves() throws IOException, ParseException {
     String fileName = "moveWriteTo";
     Map<String, Move> ms =
-        MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("3000-01-01"));
+        MapDAO.getLNMoves(new SimpleDateFormat("yyyy-MM-dd").parse("3000-01-01"));
     boolean first = true;
     for (Map.Entry<String, Move> en : ms.entrySet()) {
       Move m = en.getValue();

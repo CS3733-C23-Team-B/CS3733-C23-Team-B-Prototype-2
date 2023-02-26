@@ -136,7 +136,7 @@ public class LocationEditorController {
         else {
           java.util.Date d;
           try {
-            d = new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01");
+            d = new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-01");
           } catch (ParseException e) {
             throw new RuntimeException(e);
           }
@@ -160,7 +160,7 @@ public class LocationEditorController {
       else {
         java.util.Date d;
         try {
-          d = new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01");
+          d = new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-01");
         } catch (ParseException e) {
           throw new RuntimeException(e);
         }

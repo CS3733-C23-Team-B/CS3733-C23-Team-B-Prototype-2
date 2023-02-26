@@ -50,7 +50,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../../../../../CloudStorage/OneDrive-WorcesterPolytechnicInstitute(wpi.edu)/Important%20Documents/Kavya%20Mani.jpg" />
+                                          <Image url="@../../../../../media/Developers/Kavya%20Mani.jpg" />
                                        </image>
                                     </ImageView>
                                     <VBox prefHeight="150.0" prefWidth="308.0">
@@ -60,17 +60,17 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Major: Computer Science ">
+                                          <Label text="Major: Computer Science " wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Hobby: Dancing ">
+                                          <Label text="Hobby: Dancing, Cooking, Watching Movies " wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Interesting Fact: I have a twin sister">
+                                          <Label text="Interesting Fact: I have a twin sister" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

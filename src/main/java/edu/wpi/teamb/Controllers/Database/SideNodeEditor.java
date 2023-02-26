@@ -36,7 +36,7 @@ public class SideNodeEditor {
   @FXML private AnchorPane forms;
 
   public void initialize() {
-    moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
+    moveMap = DBSession.getIDMoves(new Date(123, 1, 1));
     ObservableList<String> floors = FXCollections.observableArrayList();
     Collections.addAll(floors, "1", "2", "3", "L1", "L2");
     ObservableList<String> nodes = FXCollections.observableArrayList();

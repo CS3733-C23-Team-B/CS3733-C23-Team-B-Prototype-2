@@ -87,7 +87,7 @@ public class PathfindingController {
 
   /** Initializes the dropdown menus */
   public void initialize() {
-    moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
+    moveMap = DBSession.getIDMoves(new Date(123, 1, 1));
 
     floorMap.put("Lower Level 2", "L2");
     floorMap.put("Lower Level 1", "L1");
@@ -177,7 +177,8 @@ public class PathfindingController {
             endDot.setFill(Color.RED);
             if (nodeMap != null) {
               updateTextFieldPosition(nodeMap.get(endDot));
-              linesPlane.getChildren().add(adminLabel);
+              if (!linesPlane.getChildren().contains(adminLabel))
+                linesPlane.getChildren().add(adminLabel);
             }
           }
         }
@@ -344,6 +345,7 @@ public class PathfindingController {
       System.out.println("PATH NOT FOUND");
       pathNotFoundTextField.setVisible(true);
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
+      return;
     }
 
     System.out.println(path);
@@ -435,7 +437,7 @@ public class PathfindingController {
   static ObservableList<String> getLocations(String s) {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    Map<String, Move> moves = DBSession.getLNMoves(new Date(2023, 1, 1));
+    Map<String, Move> moves = DBSession.getLNMoves(new Date(123, 1, 1));
 
     for (Move move : moves.values())
       if (!list.contains(move.getLocationName().getLongName()))

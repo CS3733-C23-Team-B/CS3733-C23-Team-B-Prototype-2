@@ -31,7 +31,8 @@ public class AStarPathfinder implements Pathfindable {
 
       if (current.equals(end)) break;
 
-      for (String next : Pathfinding.getDirectPaths(current)) {
+      List<String> dp = Pathfinding.getDirectPaths(current);
+      for (String next : dp) {
         double newCost = costSoFar.get(current) + Pathfinding.getWeight(current, next);
         if (!costSoFar.containsKey(next) || newCost < costSoFar.get(next)) {
           costSoFar.put(next, newCost);

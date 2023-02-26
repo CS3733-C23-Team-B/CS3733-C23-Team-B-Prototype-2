@@ -98,7 +98,7 @@ public class MapEditorController {
 
   public void initialize() {
     if (instance == null) {
-      moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
+      moveMap = DBSession.getIDMoves(new Date(123, 1, 1));
     } else {
       moveMap = DBSession.getIDMoves();
     }
@@ -204,6 +204,8 @@ public class MapEditorController {
 
             nodeMap.put(c, n);
             selectedCircle.set(c);
+
+            Pathfinding.refreshData();
           }
         });
 

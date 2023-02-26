@@ -43,7 +43,7 @@ public class MapDAO {
   }
 
   public static void refreshIDMoves(Date d) {
-    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     HashMap<String, List<Move>> moves = new HashMap<String, List<Move>>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

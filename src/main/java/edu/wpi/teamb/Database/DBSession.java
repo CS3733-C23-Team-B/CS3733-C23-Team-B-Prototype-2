@@ -194,7 +194,7 @@ public class DBSession {
 
   public static synchronized String getMostRecentNodeID(String longName) {
     try {
-      return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01"))
+      return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-01"))
           .get(longName)
           .getNode()
           .getNodeID();

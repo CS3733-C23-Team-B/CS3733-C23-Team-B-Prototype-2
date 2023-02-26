@@ -168,10 +168,10 @@ public class ServiceRequestSystemsController {
   private void highlightButton(Button button) {
     for (Button b : buttons) {
       if (b.equals(button)) {
-        b.setStyle("-fx-background-color: #6D9BF8");
+        b.setStyle("-fx-background-color: #6D9BF8; -fx-background-radius: 10");
         b.setTextFill(Paint.valueOf("#FFFFFF"));
       } else {
-        b.setStyle("-fx-background-color: #21357E");
+        b.setStyle("-fx-background-color: #21357E; -fx-background-radius: 10");
         b.setTextFill(Paint.valueOf("#c5d3ea"));
       }
     }

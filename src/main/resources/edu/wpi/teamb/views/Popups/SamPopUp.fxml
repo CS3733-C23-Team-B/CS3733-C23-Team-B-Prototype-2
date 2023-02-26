@@ -55,7 +55,7 @@
                                     </ImageView>
                                     <VBox>
                                        <children>
-                                          <Label text="Position: Software Lead Full Stack" wrapText="true">
+                                          <Label text="Position: Software Lead, Full Stack" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

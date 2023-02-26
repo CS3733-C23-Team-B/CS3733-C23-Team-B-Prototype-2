@@ -98,7 +98,7 @@
             </VBox>
             <VBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="1">
                <children>
-                  <Label text="Jack Laford" textOverrun="CLIP">
+                  <Label text="Jack Lafond" textOverrun="CLIP">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>

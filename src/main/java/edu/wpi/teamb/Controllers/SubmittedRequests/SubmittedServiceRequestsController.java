@@ -439,8 +439,6 @@ public class SubmittedServiceRequestsController {
     filterVbox.getChildren().add(b);
   }
 
-
-
   public void filter() {
     makeTable(cur);
   }

@@ -60,27 +60,17 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Major: Computer Science " wrapText="true">
+                                          <Label text="Major: Computer Science and Robotics Enginneering " wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Minor: IMGD" wrapText="true">
+                                          <Label text="Favorite Food: Fried Rice" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Hobbies: Drawing, video games" wrapText="true">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Fun Fact: I am a git simp" wrapText="true">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Quote: &quot;UI GridPanes more like U and I are in GridPain haha!&quot;" wrapText="true">
+                                          <Label text="Fun Fact: I am a certified archary teacher" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

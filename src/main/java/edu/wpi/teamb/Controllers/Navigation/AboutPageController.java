@@ -46,4 +46,12 @@ public class AboutPageController {
   public void samColebournClicked() {
     Popup.displayPopup(Screen.SAM_COLEBOURN);
   }
+
+  public void seanLendrumClicked(){
+    Popup.displayPopup(Screen.SEAN_LENDRUM);
+  }
+
+  public void michaelGattiCLicked(){
+    Popup.displayPopup(Screen.MICHAEL_GATTI);
+  }
 }

@@ -15,7 +15,6 @@ public class MapDAO {
   private static Map<String, Node> nodes = new HashMap<String, Node>();
   private static List<Edge> edges;
   private static Map<String, LocationName> locationNames = new HashMap<String, LocationName>();
-  private static List<KioskMove> kioskMoves = new ArrayList<KioskMove>();
   private static Map<String, List<Move>> IDMoves = new HashMap<String, List<Move>>();
 
   public static Map<String, Node> getAllNodes() {
@@ -31,11 +30,6 @@ public class MapDAO {
   public static Map<String, LocationName> getAllLocationNames() {
     refreshLocationNames();
     return locationNames;
-  }
-
-  public static List<KioskMove> getAllKioskMoves() {
-    refreshKioskMoves();
-    return kioskMoves;
   }
 
   public static Map<String, List<Move>> getIDMoves() {
@@ -199,9 +193,10 @@ public class MapDAO {
     }
   }
 
-  public static void refreshKioskMoves() {
+  public static List<KioskMove> getAllKioskMoves() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
+    List<KioskMove> kioskMoves = new ArrayList<KioskMove>();
     try {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery("FROM KioskMove", KioskMove.class);
@@ -211,6 +206,7 @@ public class MapDAO {
       e.printStackTrace();
     } finally {
       session.close();
+      return kioskMoves;
     }
   }
 

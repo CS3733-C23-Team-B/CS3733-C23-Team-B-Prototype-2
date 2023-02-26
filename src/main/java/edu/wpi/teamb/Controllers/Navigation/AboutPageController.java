@@ -42,4 +42,8 @@ public class AboutPageController {
   public void christinaAubeClicked() {
     Popup.displayPopup(Screen.CHRISTINA_AUBE);
   }
+
+  public void samColebournClicked(){
+    Popup.displayPopup(Screen.SAM_COLEBOURN);
+  }
 }

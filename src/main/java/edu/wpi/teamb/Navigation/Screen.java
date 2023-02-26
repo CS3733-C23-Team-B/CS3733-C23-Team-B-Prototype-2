@@ -47,6 +47,8 @@ public enum Screen {
   CHRISTINA_AUBE("views/Popups/ChristinaPopUp.fxml"),
   CIERRA_OGRADY("views/Popups/CierraPopUp.fxml"),
   LUKE_GRADY("views/Popups/LukePopUp.fxml"),
+
+  SAM_COLEBOURN("views/Popups/SamPopUp.fxml"),
   JACK_LAFORD("views/Popups/JackPopUp.fxml");
 
   private final String filename;

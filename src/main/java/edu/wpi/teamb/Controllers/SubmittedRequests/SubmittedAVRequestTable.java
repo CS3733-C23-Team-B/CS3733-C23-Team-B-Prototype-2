@@ -27,9 +27,13 @@ public class SubmittedAVRequestTable extends SubmittedBaseRequestTable {
 
   @Override
   public TableView getTable(
-      RequestStatus status, String Employee, Urgency urgency, Boolean myRequests) {
+      RequestStatus status,
+      String assignedEmployee,
+      String requestor,
+      Urgency urgency,
+      Boolean myRequests) {
     table.getItems().clear();
-    super.filterTable(status, Employee, convertObj(), urgency, myRequests);
+    super.filterTable(status, assignedEmployee, requestor, convertObj(), urgency, myRequests);
     return table;
   }
 

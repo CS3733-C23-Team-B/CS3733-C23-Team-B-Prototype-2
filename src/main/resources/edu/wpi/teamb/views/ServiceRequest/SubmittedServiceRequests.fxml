@@ -85,7 +85,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <MFXDatePicker fx:id="fromDatePicker" prefHeight="44.0" prefWidth="220.0" />
+                        <MFXDatePicker fx:id="datePicker" prefHeight="44.0" prefWidth="220.0" />
                         <Label fx:id="toLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="468.0" text="To:" textFill="GREY">
                            <font>
                               <Font size="20.0" />

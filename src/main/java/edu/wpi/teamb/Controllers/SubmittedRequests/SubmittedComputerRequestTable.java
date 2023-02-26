@@ -6,6 +6,7 @@ import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -26,14 +27,16 @@ public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
     setTable();
   }
 
+  @Override
   public TableView getTable(
       RequestStatus status,
-      String Employee,
+      String assignedEmployee,
       String requestor,
       Urgency urgency,
-      Boolean myRequests) {
+      Boolean myRequests,
+      Date d) {
     table.getItems().clear();
-    super.filterTable(status, Employee, requestor, convertObj(), urgency, myRequests);
+    super.filterTable(status, assignedEmployee, requestor, convertObj(), urgency, myRequests, d);
     return table;
   }
 

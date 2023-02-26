@@ -2,7 +2,9 @@ package edu.wpi.teamb.Database.DAO;
 
 import edu.wpi.teamb.Database.Requests.*;
 import edu.wpi.teamb.Entities.SessionGetter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,6 +25,26 @@ public class RequestDAO {
 
   public static List<GeneralRequest> getAllRequests() {
     return allRequests;
+  }
+
+  public static List<GeneralRequest> getAllRequestsOnDate(Date d) {
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy/MM/dd");
+    String dateLike = fmt.format(d);
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session s = sf.openSession();
+    List<GeneralRequest> rs = new ArrayList<GeneralRequest>();
+    String hql = "FROM GeneralRequest g WHERE g.date like('*" + dateLike + "*')";
+    try {
+      Transaction tx = s.beginTransaction();
+      Query q = s.createQuery(hql, GeneralRequest.class);
+      rs = q.list();
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      s.close();
+      return rs;
+    }
   }
 
   public static List<PatientTransportationRequest> getAllPTRequests() {

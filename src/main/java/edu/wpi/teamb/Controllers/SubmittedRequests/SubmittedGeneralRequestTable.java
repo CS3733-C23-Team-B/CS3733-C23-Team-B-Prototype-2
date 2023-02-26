@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -35,11 +36,22 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
       String assignedEmployee,
       String requestor,
       Urgency urgency,
-      Boolean myRequestsOnly) {
+      Boolean myRequestsOnly,
+      Date d) {
     table.getItems().clear();
-    List<GeneralRequest> objectList = DBSession.getAllRequests();
-    super.filterTable(status, assignedEmployee, requestor, objectList, urgency, myRequestsOnly);
+    List<GeneralRequest> objectList = filterDate(d);
+    super.filterTable(status, assignedEmployee, requestor, objectList, urgency, myRequestsOnly, d);
     return table;
+  }
+
+  List<GeneralRequest> filterDate(Date d) {
+    List<GeneralRequest> objectList = new ArrayList<>();
+    if (d != null) {
+      objectList = DBSession.getAllRequestsOnDate(d);
+    } else {
+      objectList = DBSession.getAllRequests();
+    }
+    return objectList;
   }
 
   private List<GeneralRequest> filterByRequest(List<String> types) {

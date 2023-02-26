@@ -10,10 +10,10 @@ import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.*;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import lombok.Setter;
 
 public class SubmittedServiceRequestsController {
   @FXML VBox mainVbox;
@@ -107,6 +108,11 @@ public class SubmittedServiceRequestsController {
     clearFiltersButton.setOnAction(e -> clearFilters());
     requestStatusFilter.setOnAction(e -> filter());
     assignedStaffFilter.setOnAction(e -> filter());
+    datePicker.setOnAction(
+        e -> {
+          dateEntered();
+          filter();
+        });
     requestUrgencyFilter.setOnAction(e -> filter());
     requestReporterFilter.setOnAction(e -> filter());
 
@@ -180,7 +186,8 @@ public class SubmittedServiceRequestsController {
               assignedStaffFilter.getValue(),
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
-              myrequests);
+              myrequests,
+              this.date);
     } else if (page.equals(RequestType.PATIENTTRANSPOTATION.toString())) {
       table =
           ptTable.getTable(
@@ -188,7 +195,8 @@ public class SubmittedServiceRequestsController {
               assignedStaffFilter.getValue(),
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
-              myrequests);
+              myrequests,
+              this.date);
     } else if (page.equals(RequestType.COMPUTER.toString())) {
       table =
           comTable.getTable(
@@ -196,7 +204,8 @@ public class SubmittedServiceRequestsController {
               assignedStaffFilter.getValue(),
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
-              myrequests);
+              myrequests,
+              this.date);
     } else if (page.equals(RequestType.AUDOVISUAL.toString())) {
       table =
           avTable.getTable(
@@ -204,7 +213,8 @@ public class SubmittedServiceRequestsController {
               assignedStaffFilter.getValue(),
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
-              myrequests);
+              myrequests,
+              this.date);
     } else if (page.equals(RequestType.SECURITY.toString())) {
       table =
           securityTable.getTable(
@@ -212,7 +222,8 @@ public class SubmittedServiceRequestsController {
               assignedStaffFilter.getValue(),
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
-              myrequests);
+              myrequests,
+              this.date);
     } else if (page.equals(RequestType.ALLREQUESTS.toString())) {
       table =
           allTable.getTable(
@@ -220,7 +231,8 @@ public class SubmittedServiceRequestsController {
               assignedStaffFilter.getValue(),
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
-              myrequests);
+              myrequests,
+              this.date);
     } else if (page.equals(RequestType.MEDICINE.toString())) {
       table =
           medicineTable.getTable(
@@ -228,7 +240,8 @@ public class SubmittedServiceRequestsController {
               assignedStaffFilter.getValue(),
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
-              myrequests);
+              myrequests,
+              this.date);
     } else if (page.equals(RequestType.MEDICALEQUIPMENT.toString())) {
       table =
           equipTable.getTable(
@@ -236,7 +249,8 @@ public class SubmittedServiceRequestsController {
               assignedStaffFilter.getValue(),
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
-              myrequests);
+              myrequests,
+              this.date);
     } else if (page.equals(RequestType.FACILITIES.toString())) {
       table =
           facTable.getTable(
@@ -244,7 +258,8 @@ public class SubmittedServiceRequestsController {
               assignedStaffFilter.getValue(),
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
-              myrequests);
+              myrequests,
+              this.date);
     }
     TableView finalTable = table;
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
@@ -266,6 +281,8 @@ public class SubmittedServiceRequestsController {
     requestUrgencyFilter.setValue(null);
     requestReporterFilter.getSelectionModel().clearSelection();
     requestReporterFilter.setValue(null);
+    datePicker.clear();
+    datePicker.setValue(null);
     requestTypeFilter.setValue(cur);
 
     if (currUser.getAdmin()) myRequestsFilter.setSelected(false);
@@ -442,16 +459,27 @@ public class SubmittedServiceRequestsController {
 
   @FXML Label dateRangeBox;
   @FXML Label fromLabel;
-  @FXML MFXDatePicker fromDatePicker;
+  @FXML MFXDatePicker datePicker;
   @FXML Label toLabel;
   @FXML MFXDatePicker toDatePicker;
 
   private void addDateFilter() {
     filterVbox.getChildren().add(dateRangeBox);
-    filterVbox.getChildren().add(fromLabel);
-    filterVbox.getChildren().add(fromDatePicker);
-    filterVbox.getChildren().add(toLabel);
-    filterVbox.getChildren().add(toDatePicker);
+    //    filterVbox.getChildren().add(fromLabel);
+    filterVbox.getChildren().add(datePicker);
+    //    filterVbox.getChildren().add(toLabel);
+    //    filterVbox.getChildren().add(toDatePicker);
+  }
+
+  @Setter Date date;
+
+  public void dateEntered() {
+    LocalDate d = datePicker.getValue();
+    ZoneId z = ZoneId.of("-05:00");
+    ZonedDateTime zdt = d.atStartOfDay(z);
+    Instant instant = zdt.toInstant();
+    Date date = java.util.Date.from(instant);
+    setDate(date);
   }
 
   public void filter() {

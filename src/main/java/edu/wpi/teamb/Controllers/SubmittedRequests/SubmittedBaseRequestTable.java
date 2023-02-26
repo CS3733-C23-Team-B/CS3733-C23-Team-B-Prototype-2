@@ -7,6 +7,7 @@ import edu.wpi.teamb.Database.Requests.GeneralRequest;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.Urgency;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,7 +59,8 @@ public abstract class SubmittedBaseRequestTable {
       String assignedEmployee,
       String requestor,
       Urgency urgency,
-      Boolean myRequestsOnly) {
+      Boolean myRequestsOnly,
+      Date d) {
     return table;
   }
 
@@ -213,7 +215,8 @@ public abstract class SubmittedBaseRequestTable {
       String requestor,
       List<GeneralRequest> objectList,
       Urgency urgency,
-      Boolean myRequestsOnly) {
+      Boolean myRequestsOnly,
+      Date d) {
     table.getItems().clear();
     List<GeneralRequest> grList = objectList;
     List<GeneralRequest> filtered = filterTableStatus(status, grList);

@@ -111,6 +111,10 @@ public class DBSession {
     return RequestDAO.getAllRequests();
   }
 
+  public static synchronized List<GeneralRequest> getAllRequestsOnDate(Date d) {
+    return RequestDAO.getAllRequestsOnDate(d);
+  }
+
   public static synchronized List<PatientTransportationRequest> getAllPTRequests() {
     return RequestDAO.getAllPTRequests();
   }

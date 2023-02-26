@@ -56,7 +56,7 @@
                            <content>
                               <VBox prefWidth="1106.0">
                                  <children>
-                                    <Label text="Internal Patient Transportation">
+                                    <Label id="requestsSubtitle" stylesheets="@../../../../../css/style.css" text="Internal Patient Transportation">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -64,7 +64,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Request a patient to be moved to and from different locations within the hospital.">
+                                    <Label id="requestsBody" stylesheets="@../../../../../css/style.css" text="Request a patient to be moved to and from different locations within the hospital.">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -72,7 +72,7 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Sanitation">
+                                    <Label id="requestsSubtitle" stylesheets="@../../../../../css/style.css" text="Sanitation">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -80,7 +80,7 @@
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Request that a room or public space be cleaned and sanitized.">
+                                    <Label id="requestsBody" stylesheets="@../../../../../css/style.css" text="Request that a room or public space be cleaned and sanitized.">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -88,7 +88,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Security">
+                                    <Label id="requestsSubtitle" stylesheets="@../../../../../css/style.css" text="Security">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -96,7 +96,7 @@
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Request an officer/security staff. ">
+                                    <Label id="requestsBody" stylesheets="@../../../../../css/style.css" text="Request an officer/security staff. ">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -104,7 +104,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Computer">
+                                    <Label id="requestsSubtitle" stylesheets="@../../../../../css/style.css" text="Computer">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -112,7 +112,7 @@
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Request a repair on a hospital device. ">
+                                    <Label id="requestsBody" stylesheets="@../../../../../css/style.css" text="Request a repair on a hospital device. ">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -120,7 +120,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Audio/Visual">
+                                    <Label id="requestsSubtitle" stylesheets="@../../../../../css/style.css" text="Audio/Visual">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -128,7 +128,7 @@
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Request audio or video entertainment for a patient. ">
+                                    <Label id="requestsBody" stylesheets="@../../../../../css/style.css" text="Request audio or video entertainment for a patient. ">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -138,7 +138,7 @@
                                     </Label>
                                  </children>
                                  <padding>
-                                    <Insets left="30.0" />
+                                    <Insets bottom="10.0" left="30.0" />
                                  </padding>
                               </VBox>
                            </content>
@@ -148,13 +148,13 @@
                         </MFXScrollPane>
                         <GridPane>
                            <rowConstraints>
-                              <RowConstraints maxHeight="94.00000610351563" minHeight="10.0" percentHeight="70.0" prefHeight="79.2" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="94.00000610351563" minHeight="10.0" percentHeight="60.0" prefHeight="79.2" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="66.40000534057617" minHeight="10.0" prefHeight="35.2" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <HBox GridPane.halignment="LEFT">
                                  <children>
-                                    <Label fx:id="pageTitle" prefHeight="96.0" prefWidth="1090.0" text="Service Request Systems">
+                                    <Label id="title" fx:id="pageTitle" prefHeight="96.0" prefWidth="1090.0" stylesheets="@../../../../../css/style.css" text="Service Request Systems">
                                        <font>
                                           <Font size="40.0" />
                                        </font>
@@ -169,7 +169,7 @@
                               </HBox>
                               <HBox GridPane.rowIndex="1">
                                  <children>
-                                    <Label fx:id="headerText" text="Please select one of the following service requests on the left">
+                                    <Label id="requestsAccent" fx:id="headerText" stylesheets="@../../../../../css/style.css" text="Please select one of the following service requests on the left">
                                        <font>
                                           <Font name="System Italic" size="17.0" />
                                        </font>
@@ -187,7 +187,7 @@
                               <ColumnConstraints />
                            </columnConstraints>
                            <GridPane.margin>
-                              <Insets left="10.0" />
+                              <Insets left="10.0" top="5.0" />
                            </GridPane.margin>
                         </GridPane>
                      </children>
@@ -198,76 +198,172 @@
                <content>
                   <VBox alignment="CENTER" prefHeight="780.0" prefWidth="264.0" spacing="25.0">
                      <children>
-                        <MFXButton fx:id="transButton" alignment="BASELINE_LEFT" onAction="#makeTrans" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Internal Patient Transportation" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton id="requestsButton" fx:id="transButton" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" onAction="#makeTrans" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" stylesheets="@../../../../../css/style.css" text="Internal Patient Transportation" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../media/RequestIcons/stretcher.png" />
-                                 </image>
-                              </ImageView>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../media/RequestIcons/stretcher.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Internal Patient Transportation" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </HBox>
                            </graphic>
                         </MFXButton>
-                        <MFXButton fx:id="saniButton" alignment="BASELINE_LEFT" onAction="#makeSani" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Sanitation" textFill="#c5d3ea">
+                        <MFXButton id="requestsButton" fx:id="saniButton" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="20.0" onAction="#makeSani" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" stylesheets="@../../../../../css/style.css" text="Sanitation" textAlignment="CENTER" textFill="#c5d3ea">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../media/RequestIcons/spray.png" />
-                                 </image>
-                              </ImageView>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../media/RequestIcons/spray.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Sanitation" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </HBox>
                            </graphic>
                         </MFXButton>
-                        <MFXButton fx:id="secButton" alignment="BASELINE_LEFT" onAction="#makeSec" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Security" textFill="#c5d3ea">
+                        <MFXButton id="requestsButton" fx:id="secButton" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" onAction="#makeSec" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" stylesheets="@../../../../../css/style.css" text="Security" textAlignment="CENTER" textFill="#c5d3ea">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../media/RequestIcons/policeman.png" />
-                                 </image>
-                              </ImageView>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../media/RequestIcons/policeman.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Security" textFill="#c5d3ea" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </HBox>
                            </graphic>
                         </MFXButton>
-                        <MFXButton fx:id="comButton" alignment="BASELINE_LEFT" onAction="#makeCom" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Computer" textFill="#c5d3ea">
+                        <MFXButton id="requestsButton" fx:id="comButton" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" onAction="#makeCom" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" stylesheets="@../../../../../css/style.css" text="Computer" textAlignment="CENTER" textFill="#c5d3ea">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../media/RequestIcons/laptop.png" />
-                                 </image>
-                              </ImageView>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../media/RequestIcons/laptop.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Computer" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </HBox>
                            </graphic>
                         </MFXButton>
-                        <MFXButton fx:id="AVButton" alignment="BASELINE_LEFT" onAction="#makeAV" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Audio/Video" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton id="requestsButton" fx:id="AVButton" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" onAction="#makeAV" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" stylesheets="@../../../../../css/style.css" text="Audio/Video" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../media/RequestIcons/video-and-audio.png" />
-                                 </image>
-                              </ImageView>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../media/RequestIcons/video-and-audio.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Audio/Video" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </HBox>
                            </graphic>
                         </MFXButton>
-                        <MFXButton fx:id="equipButton" alignment="BASELINE_LEFT" layoutX="40.0" layoutY="520.0" onAction="#makeMedEquip" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Medical Equipment Delivery" textFill="#c5d3ea" wrapText="true">
+                        <MFXButton id="requestsButton" fx:id="equipButton" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="40.0" layoutY="520.0" onAction="#makeMedEquip" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" stylesheets="@../../../../../css/style.css" text="Medical Equipment Delivery" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../media/RequestIcons/medical-equipment.png" />
-                                 </image>
-                              </ImageView>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../media/RequestIcons/medical-equipment.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Medical Equipment Delivery" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton id="requestsButton" fx:id="medDeliveryButton" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" onAction="#makeMedDelivery" prefHeight="96.0" prefWidth="264.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" stylesheets="@../../../../../css/style.css" text="Medicine Delivery" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../media/RequestIcons/medicine.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Medicine Delivery" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </HBox>
                            </graphic>
                         </MFXButton>
                      </children>
@@ -290,7 +386,7 @@
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="dateLabel" text="Label" textFill="WHITE">
+                        <Label id="headerText" fx:id="dateLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -299,7 +395,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="timeLabel" text="Label" textFill="WHITE">
+                        <Label id="headerText" fx:id="timeLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -308,7 +404,7 @@
                   </HBox>
                </children>
                <HBox.margin>
-                  <Insets left="40.0" />
+                  <Insets left="20.0" />
                </HBox.margin>
             </VBox>
          </children>

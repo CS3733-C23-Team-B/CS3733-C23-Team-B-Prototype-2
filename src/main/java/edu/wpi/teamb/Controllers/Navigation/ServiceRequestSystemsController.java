@@ -7,32 +7,40 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.util.Duration;
 
 public class ServiceRequestSystemsController {
   @FXML GridPane mainGridPane;
-  @FXML Label pageTitle;
   @FXML MFXButton transButton;
   @FXML MFXButton saniButton;
   @FXML MFXButton secButton;
   @FXML MFXButton comButton;
   @FXML MFXButton AVButton;
   @FXML MFXButton equipButton;
-  @FXML Label headerText;
+  @FXML MFXButton medDeliveryButton;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
 
+  private ArrayList<Button> buttons;
+
+  /** Create a list of buttons and display the time in the header */
   public void initialize() {
+    Button[] btns = {
+      transButton, saniButton, secButton, comButton, AVButton, equipButton, medDeliveryButton
+    };
+    buttons = new ArrayList<>(Arrays.asList(btns));
+
     mainGridPane.setPadding(new Insets(20, 20, 0, 20));
 
     LocalDate currentDate = LocalDate.now();
@@ -54,142 +62,118 @@ public class ServiceRequestSystemsController {
     dateLabel.setText(formattedDate);
   }
 
+  /**
+   * Display the Internal Patient Transportation page and highlight its associated button
+   *
+   * @throws IOException
+   */
   public void makeTrans() throws IOException {
     mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.PATIENT_TRANSPORTATION.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
-    Font font = Font.font("System", FontPosture.ITALIC, 48);
-    pageTitle.setFont(font);
-    pageTitle.setText("Internal Patient Transportation");
-    headerText.setText("");
-    transButton.setStyle("-fx-background-color: #6D9BF8");
-    transButton.setTextFill(Paint.valueOf("#FFFFFF"));
-    saniButton.setStyle("-fx-background-color: #21357E");
-    saniButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    secButton.setStyle("-fx-background-color:  #21357E");
-    secButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    comButton.setStyle("-fx-background-color:  #21357E");
-    comButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    AVButton.setStyle("-fx-background-color: #21357E");
-    AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    equipButton.setStyle("-fx-background-color: #21357E");
-    equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+
+    highlightButton(transButton);
   }
 
+  /**
+   * Display the Sanitation page and highlight its associated button
+   *
+   * @throws IOException
+   */
   public void makeSani() throws IOException {
     mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.SANITATION.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
-    Font font = Font.font("System", FontPosture.ITALIC, 48);
-    pageTitle.setFont(font);
-    pageTitle.setText("Sanitation Service");
-    headerText.setText("");
-    transButton.setStyle("-fx-background-color: #21357E");
-    transButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    saniButton.setStyle("-fx-background-color: #6D9BF8");
-    saniButton.setTextFill(Paint.valueOf("#FFFFFF"));
-    secButton.setStyle("-fx-background-color:  #21357E");
-    secButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    comButton.setStyle("-fx-background-color:  #21357E");
-    comButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    AVButton.setStyle("-fx-background-color: #21357E");
-    AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    equipButton.setStyle("-fx-background-color: #21357E");
-    equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+
+    highlightButton(saniButton);
   }
 
+  /**
+   * Display the Security page and highlight its associated button
+   *
+   * @throws IOException
+   */
   public void makeSec() throws IOException {
     mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.SECURITY_SERVICES.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
 
-    Font font = Font.font("System", FontPosture.ITALIC, 48);
-    pageTitle.setFont(font);
-    pageTitle.setText("Security Service");
-    headerText.setText("");
-    transButton.setStyle("-fx-background-color: #21357E");
-    transButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    saniButton.setStyle("-fx-background-color: #21357E");
-    saniButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    secButton.setStyle("-fx-background-color:  #6D9BF8");
-    secButton.setTextFill(Paint.valueOf("#FFFFFF"));
-    comButton.setStyle("-fx-background-color:  #21357E");
-    comButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    AVButton.setStyle("-fx-background-color: #21357E");
-    AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    equipButton.setStyle("-fx-background-color: #21357E");
-    equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+    highlightButton(secButton);
   }
 
+  /**
+   * Display the Computer page and highlight its associated button
+   *
+   * @throws IOException
+   */
   public void makeCom() throws IOException {
     mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.COMPUTER_SERVICES.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
-    Font font = Font.font("System", FontPosture.ITALIC, 48);
-    pageTitle.setFont(font);
-    pageTitle.setText("Computer Service");
-    headerText.setText("");
-    transButton.setStyle("-fx-background-color: #21357E");
-    transButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    saniButton.setStyle("-fx-background-color: #21357E");
-    saniButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    secButton.setStyle("-fx-background-color:  #21357E");
-    secButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    comButton.setStyle("-fx-background-color:  #6D9BF8");
-    comButton.setTextFill(Paint.valueOf("#FFFFFF"));
-    AVButton.setStyle("-fx-background-color: #21357E");
-    AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    equipButton.setStyle("-fx-background-color: #21357E");
-    equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+
+    highlightButton(comButton);
   }
 
+  /**
+   * Display the A/V page and highlight its associated button
+   *
+   * @throws IOException
+   */
   public void makeAV() throws IOException {
     mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.AV_SERVICES.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
-    Font font = Font.font("System", FontPosture.ITALIC, 48);
-    pageTitle.setFont(font);
-    pageTitle.setText("Audio/Video Service");
-    headerText.setText("");
-    transButton.setStyle("-fx-background-color: #21357E");
-    transButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    saniButton.setStyle("-fx-background-color: #21357E");
-    saniButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    secButton.setStyle("-fx-background-color:  #21357E");
-    secButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    comButton.setStyle("-fx-background-color:  #21357E");
-    comButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    AVButton.setStyle("-fx-background-color: #6D9BF8");
-    AVButton.setTextFill(Paint.valueOf("#FFFFFF"));
-    equipButton.setStyle("-fx-background-color: #21357E");
-    equipButton.setTextFill(Paint.valueOf("#c5d3ea"));
+
+    highlightButton(AVButton);
   }
 
+  /**
+   * Display the Medical Equipment Delivery page and highlight its associated button
+   *
+   * @throws IOException
+   */
   public void makeMedEquip() throws IOException {
     mainGridPane.getChildren().clear();
     final var r = Bapp.class.getResource(Screen.MEDICAL_EQUIPMENT.getFilename());
     final FXMLLoader loader = new FXMLLoader(r);
     mainGridPane.getChildren().add(loader.load());
-    Font font = Font.font("System", FontPosture.ITALIC, 48);
-    pageTitle.setFont(font);
-    pageTitle.setText("Medical Equipment Delivery");
-    headerText.setText("");
-    transButton.setStyle("-fx-background-color: #21357E");
-    transButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    saniButton.setStyle("-fx-background-color: #21357E");
-    saniButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    secButton.setStyle("-fx-background-color:  #21357E");
-    secButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    comButton.setStyle("-fx-background-color:  #21357E");
-    comButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    AVButton.setStyle("-fx-background-color: #21357E");
-    AVButton.setTextFill(Paint.valueOf("#c5d3ea"));
-    equipButton.setStyle("-fx-background-color: #6D9BF8");
-    equipButton.setTextFill(Paint.valueOf("#FFFFFF"));
+
+    highlightButton(equipButton);
+  }
+
+  /**
+   * Display the Medicine Delivery page and highlight its associated button
+   *
+   * @throws IOException
+   */
+  public void makeMedDelivery() throws IOException {
+    mainGridPane.getChildren().clear();
+    final var r = Bapp.class.getResource(Screen.MEDICINE_DELIVERY_SERVICE_REQUEST.getFilename());
+    final FXMLLoader loader = new FXMLLoader(r);
+    mainGridPane.getChildren().add(loader.load());
+
+    highlightButton(medDeliveryButton);
+  }
+
+  /**
+   * Make the given button light blue, and reset all others to dark blue
+   *
+   * @param button the highlighted button
+   */
+  private void highlightButton(Button button) {
+    for (Button b : buttons) {
+      if (b.equals(button)) {
+        b.setStyle("-fx-background-color: #6D9BF8; -fx-background-radius: 10");
+        b.setTextFill(Paint.valueOf("#FFFFFF"));
+      } else {
+        b.setStyle("-fx-background-color: #21357E; -fx-background-radius: 10");
+        b.setTextFill(Paint.valueOf("#c5d3ea"));
+      }
+    }
   }
 }

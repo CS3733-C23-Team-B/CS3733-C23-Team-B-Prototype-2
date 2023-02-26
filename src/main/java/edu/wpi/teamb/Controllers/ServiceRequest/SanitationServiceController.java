@@ -21,6 +21,7 @@ public class SanitationServiceController extends BaseRequestController {
       FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
   @FXML private MFXFilterComboBox<String> typeOfCleanUpBox;
 
+  /** Initialize the page by creating lists of components and declaring choice-box options */
   @FXML
   @Override
   public void initialize() {
@@ -38,11 +39,17 @@ public class SanitationServiceController extends BaseRequestController {
       if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
+
     typeOfCleanUpBox.setItems(typeOfCleanUpList);
 
     super.initialize();
   }
 
+  /**
+   * Store the user's input in the database and show confirmation popup
+   *
+   * @throws IOException
+   */
   @FXML
   @Override
   public void submitButtonClicked() throws IOException {
@@ -53,15 +60,10 @@ public class SanitationServiceController extends BaseRequestController {
     super.submit(request);
 
     var typeOfcleanUp = typeOfCleanUpBox.getValue();
-    if (typeOfcleanUp == null) {
-      typeOfcleanUp = "";
-    }
     request.setTypeOfCleanUp(typeOfcleanUp.toString());
-    request.setRequestType(RequestType.SANITATION);
 
+    request.setRequestType(RequestType.SANITATION);
     DBSession.addRequest(request);
-    // may need to clear fields can be done with functions made for clear
-    clearButtonClicked();
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }

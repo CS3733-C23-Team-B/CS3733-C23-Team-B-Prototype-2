@@ -159,8 +159,7 @@ public class SubmittedServiceRequestsController {
                 "Facilities Maintenance Requests", DBSession.getAllFacRequests().size()));
 
     PieChart pieChart = new PieChart(pieChartData);
-    pieChart.setTitle("Submitted Requests");
-    //    Bapp.getStackPane().getChildren().add(pieChart);
+    pieChart.setTitle("Report");
     mainVbox.getChildren().add(pieChart);
   }
 

@@ -411,8 +411,10 @@ public class SubmittedServiceRequestsController {
     addFilter(requestTypeBox, requestTypeFilter);
     addFilter(urgencyBox, requestUrgencyFilter);
     addFilter(requestStatusBox, requestStatusFilter);
-    addFilter(assignedStaffBox, assignedStaffFilter);
     addDateFilter();
+    filterVbox.getChildren().add(assignedStaffBox);
+    filterVbox.getChildren().add(assignedStaffFilter);
+
     if (currUser.getAdmin()) {
       addFilter(requestReporterBox, requestReporterFilter);
       filterVbox.getChildren().add(myRequestsFilter);

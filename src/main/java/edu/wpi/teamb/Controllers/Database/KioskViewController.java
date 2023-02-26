@@ -11,6 +11,9 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,9 +25,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class KioskViewController {
@@ -33,7 +36,6 @@ public class KioskViewController {
   private GesturePane pane;
   @FXML GridPane center;
   @FXML Label moveMessage;
-  private Map<String, String> floorMap = new HashMap<>();
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
   private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
@@ -41,28 +43,16 @@ public class KioskViewController {
   private String startID;
   private String endID;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
-  Circle startDot;
-  Circle endDot;
   private Map<String, Node> nodes = DBSession.getAllNodes();
   @FXML GridPane frontBox;
   @FXML Label frontLabel;
-
-  private String startLoc;
-  private String endLoc;
   Map<Circle, Node> nodeMap;
 
   public void initialize() throws IOException, SQLException {
-    int index = 3;
+    AtomicInteger index = new AtomicInteger(0);
     List<KioskMove> kioskMoveList;
     kioskMoveList = DBSession.getAllKioskMoves();
-    moveMessage.setText(kioskMoveList.get(index).getMessage());
-    floorMap.put("Lower Level 2", "L2");
-    floorMap.put("Lower Level 1", "L1");
-    floorMap.put("Ground Floor", "G");
-    floorMap.put("First Floor", "1");
-    floorMap.put("Second Floor", "2");
-    floorMap.put("Third Floor", "3");
-
+    moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
     imageMap.put("L2", Bapp.lowerlevel2);
     imageMap.put("L1", Bapp.lowerlevel);
     imageMap.put("G", Bapp.groundfloor);
@@ -83,8 +73,30 @@ public class KioskViewController {
     frontBox.toFront();
     frontLabel.toFront();
     findPath(
-        kioskMoveList.get(index).getPrevNode().getNodeID(),
-        kioskMoveList.get(index).getNextNode().getNodeID());
+        kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
+        kioskMoveList.get(index.get()).getNextNode().getNodeID());
+
+    // Schedule a task to update the index and set the new message and image every 10 seconds
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(10),
+                event -> {
+                  index.getAndIncrement();
+                  if (index.get() >= kioskMoveList.size()) {
+                    index.set(0);
+                  }
+                  moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
+                  try {
+                    findPath(
+                        kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
+                        kioskMoveList.get(index.get()).getNextNode().getNodeID());
+                  } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                  }
+                }));
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
   }
 
   private void changeFloor(String floor, Point2D p, ArrayList<String> path) {
@@ -110,6 +122,7 @@ public class KioskViewController {
         placeLine(s, e);
       }
     }
+    aPane.toFront();
     frontBox.toFront();
     frontLabel.toFront();
 
@@ -119,6 +132,7 @@ public class KioskViewController {
   private Circle placeNode(Node node) {
     Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Bapp.blue);
     aPane.getChildren().add(dot);
+    aPane.toFront();
     frontBox.toFront();
     frontLabel.toFront();
     return dot;
@@ -170,7 +184,6 @@ public class KioskViewController {
     if (path == null) {
       System.out.println("PATH NOT FOUND");
     }
-    System.out.println(path);
 
     Platform.runLater(
         () -> {
@@ -201,21 +214,15 @@ public class KioskViewController {
       Node e = nodes.get(path.get(i + 1));
       pathNodePairs.add(Arrays.asList(s, e));
 
-      if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor))
+      if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor)) {
+        System.out.println("Showing button with text: " + buttonMap.get(s).getText());
         showButton(buttonMap.get(s));
+      }
     }
     pane.toFront();
+    aPane.toFront();
     frontBox.toFront();
     frontLabel.toFront();
-
-    if (startDot != null) {
-      startDot.setFill(Paint.valueOf("green"));
-      startDot = null;
-    }
-    if (endDot != null) {
-      endDot.setFill(Paint.valueOf("red"));
-      endDot = null;
-    }
   }
 
   private void showButton(MFXButton button) {
@@ -226,9 +233,6 @@ public class KioskViewController {
     Line line = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
     line.setFill(Color.BLACK);
     line.setStrokeWidth(5);
-
-    System.out.println("Line placed on floor: " + start.getFloor());
-
     // Add the line to the scene graph and track the nodes that have been added
     linesPlane.getChildren().add(line);
   }

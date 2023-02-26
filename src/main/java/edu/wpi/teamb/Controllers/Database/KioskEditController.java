@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.animation.KeyFrame;
@@ -39,7 +38,7 @@ public class KioskEditController {
   private List<Move> moves;
 
   public void initialize() {
-    List<KioskMove> allKiosks = new ArrayList<>();
+    List<KioskMove> allKiosks;
     allKiosks = DBSession.getAllKioskMoves();
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     moves = DBSession.getAllMoves();

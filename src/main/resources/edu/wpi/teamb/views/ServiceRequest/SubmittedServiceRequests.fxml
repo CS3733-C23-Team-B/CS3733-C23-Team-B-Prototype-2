@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SubmittedRequests.SubmittedServiceRequestsController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -55,7 +54,7 @@
                                     <Font size="24.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
                               </Label>
                               <MFXFilterComboBox fx:id="requestTypeFilter" alignment="TOP_CENTER" prefHeight="44.0" prefWidth="220.0" />
@@ -64,7 +63,7 @@
                                     <Font size="24.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </Label>
                               <MFXComboBox fx:id="requestUrgencyFilter" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="220.0">
@@ -77,7 +76,7 @@
                                     <Font size="24.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </Label>
                               <MFXComboBox fx:id="requestStatusFilter" alignment="TOP_LEFT" layoutX="50.0" layoutY="62.0" prefHeight="44.0" prefWidth="220.0">
@@ -90,7 +89,7 @@
                                     <Font size="24.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </Label>
                               <MFXFilterComboBox fx:id="assignedStaffFilter" alignment="TOP_LEFT" layoutX="50.0" layoutY="340.0" prefHeight="44.0" prefWidth="220.0">
@@ -103,7 +102,7 @@
                                     <Font size="24.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </Label>
                               <MFXComboBox fx:id="requestReporterFilter" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="220.0">
@@ -116,12 +115,12 @@
                                     <Font size="18.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </MFXCheckbox>
                               <MFXButton fx:id="clearFiltersButton" alignment="TOP_LEFT" contentDisplay="CENTER" onAction="#clearFilters" prefHeight="44.0" prefWidth="220.0" style="-fx-background-color: #898989; -fx-background-radius: 10;" text="Clear Filters" textAlignment="CENTER" textFill="WHITE">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font name="System Bold" size="30.0" />

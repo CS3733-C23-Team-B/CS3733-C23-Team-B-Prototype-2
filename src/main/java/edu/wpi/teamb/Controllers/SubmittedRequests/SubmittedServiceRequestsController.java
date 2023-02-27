@@ -336,7 +336,7 @@ public class SubmittedServiceRequestsController {
         setFields();
       } else if (r.getRequestType().equals(RequestType.MEDICALEQUIPMENT)) {
         MedicalEquipmentDeliveryRequest equipr = (MedicalEquipmentDeliveryRequest) r;
-        addAttribute("Location:", equipr.getLocation());
+        addAttribute("Equipment Destination:", equipr.getLocation());
         addAttribute("Type of Equipment:", equipr.getEquipmentType());
         setFields();
       } else if (r.getRequestType().equals(RequestType.FACILITIES)) {

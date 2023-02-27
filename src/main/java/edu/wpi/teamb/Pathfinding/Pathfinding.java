@@ -168,7 +168,6 @@ public class Pathfinding {
 
     String start = startMove.getNode().getNodeID();
     String end = endMove.getNode().getNodeID();
-    //////
 
     boolean done = false;
     HashMap<String, String> cameFrom = new HashMap<String, String>();

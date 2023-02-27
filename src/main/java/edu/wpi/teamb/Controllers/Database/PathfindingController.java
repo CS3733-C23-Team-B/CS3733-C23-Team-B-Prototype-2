@@ -88,6 +88,8 @@ public class PathfindingController {
   /** Initializes the dropdown menus */
   public void initialize() {
     moveMap = DBSession.getIDMoves(new Date(123, 1, 1));
+    Pathfinding.refreshData();
+    Pathfinding.setDate(new Date(123, 1, 1));
 
     floorMap.put("Lower Level 2", "L2");
     floorMap.put("Lower Level 1", "L1");

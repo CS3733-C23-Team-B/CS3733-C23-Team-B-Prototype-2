@@ -65,9 +65,9 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="73.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                            <image>
-                              <Image url="@../../../../../media/leftArrow.png" />
+                              <Image url="@../../../../../media/rightArrow.png" />
                            </image>
                         </ImageView>
                         <VBox alignment="CENTER_LEFT">

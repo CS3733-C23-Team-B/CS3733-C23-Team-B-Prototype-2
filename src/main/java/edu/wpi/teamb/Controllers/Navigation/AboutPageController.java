@@ -40,7 +40,6 @@ public class AboutPageController {
             jolieWalts,
             cierraOGrady);
     for (ImageView image : people) image.setCursor(Cursor.HAND);
-    System.out.println("INITIALIZED");
   }
 
   public void backButtonClicked() throws IOException {

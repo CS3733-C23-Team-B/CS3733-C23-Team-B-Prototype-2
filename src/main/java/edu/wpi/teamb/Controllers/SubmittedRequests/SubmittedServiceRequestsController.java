@@ -41,8 +41,8 @@ public class SubmittedServiceRequestsController {
   @FXML MFXComboBox<String> requestReporterFilter;
   @FXML MFXCheckbox myRequestsFilter;
   @FXML ImageView helpButton;
-  @FXML Label dateLabel = new Label();
-  @FXML Label timeLabel = new Label();
+  @FXML Label dateLabel;
+  @FXML Label timeLabel;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();

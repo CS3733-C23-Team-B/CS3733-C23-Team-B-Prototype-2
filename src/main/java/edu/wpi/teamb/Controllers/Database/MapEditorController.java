@@ -12,7 +12,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -42,7 +41,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -225,45 +223,8 @@ public class MapEditorController {
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     Platform.runLater(
         () -> {
-          if (SigninController.currentUser.getAdmin()) {
-            HBox csvBox = new HBox();
-            csvBox.setSpacing(20);
-            csvBox.setPrefWidth(458);
-            csvBox.setPrefHeight(17);
-            MFXButton write = new MFXButton();
-            write.setPrefWidth(155);
-            write.setPrefHeight(42);
-            write.setTextFill(Paint.valueOf("#c5d3ea"));
-            write.setStyle("-fx-background-color: #21357E");
-            write.setFont(new Font("System", 20));
-            write.setText("Write to CSV");
-            write.setOnAction(
-                e -> {
-                  try {
-                    DatabaseWriteToCSV.runWrites();
-                  } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                  } catch (ParseException ex) {
-                    throw new RuntimeException(ex);
-                  }
-                });
+          if (SigninController.currentUser.getAdmin()) {}
 
-            MFXButton restore = new MFXButton();
-            restore.setPrefWidth(155);
-            restore.setPrefHeight(42);
-            restore.setTextFill(Paint.valueOf("#c5d3ea"));
-            restore.setStyle("-fx-background-color: #21357E");
-            restore.setFont(new Font("System", 20));
-            restore.setText("Database");
-            restore.setOnAction(
-                e -> {
-                  Popup.displayPopup(Screen.DATABASE_CONFIRMATION);
-                });
-
-            csvBox.getChildren().add(write);
-            csvBox.getChildren().add(restore);
-            mapEditorButtons.getChildren().add(csvBox);
-          }
           changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
         });
 

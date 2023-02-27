@@ -47,6 +47,7 @@ public class KioskViewController {
   @FXML GridPane frontBox;
   @FXML Label frontLabel;
   Map<Circle, Node> nodeMap;
+  Timeline timeline;
 
   public void initialize() throws IOException, SQLException {
     AtomicInteger index = new AtomicInteger(0);
@@ -77,7 +78,7 @@ public class KioskViewController {
         kioskMoveList.get(index.get()).getNextNode().getNodeID());
 
     // Schedule a task to update the index and set the new message and image every 10 seconds
-    Timeline timeline =
+    timeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(10),
@@ -247,6 +248,7 @@ public class KioskViewController {
   }
 
   public void signIn() {
+    timeline.stop();
     Navigation.navigate(Screen.SIGN_IN);
   }
 }

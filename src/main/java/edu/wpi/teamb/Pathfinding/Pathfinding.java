@@ -168,7 +168,6 @@ public class Pathfinding {
 
     String start = startMove.getNode().getNodeID();
     String end = endMove.getNode().getNodeID();
-    //////
 
     boolean done = false;
     HashMap<String, String> cameFrom = new HashMap<String, String>();
@@ -215,6 +214,7 @@ public class Pathfinding {
   /** Refreshes the node and edge fields from the database */
   public static void refreshData() {
     edges = DBSession.getAllEdges();
+    nodes = DBSession.getAllNodes();
   }
 
   public static Map<String, Move> getMovesLN() {

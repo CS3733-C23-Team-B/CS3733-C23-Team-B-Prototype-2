@@ -1,7 +1,7 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Requests.PatientTransportationRequest;
+import edu.wpi.teamb.Database.Requests.MedicalEquipmentDeliveryRequest;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
@@ -56,11 +56,11 @@ public class MedicalEquipmentDeliveryController extends BaseRequestController {
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
-    PatientTransportationRequest request = new PatientTransportationRequest();
+    MedicalEquipmentDeliveryRequest request = new MedicalEquipmentDeliveryRequest();
     super.submit(request);
 
     var equipment = equipmentNeededBox.getValue();
-    request.setEquipmentNeeded(equipment.toString());
+    request.setEquipmentType(equipment.toString());
     request.setRequestType(RequestType.MEDICALEQUIPMENT);
     DBSession.addRequest(request);
 

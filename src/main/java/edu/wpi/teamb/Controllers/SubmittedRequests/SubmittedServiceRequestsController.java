@@ -343,6 +343,7 @@ public class SubmittedServiceRequestsController {
         FacilitiesRequest fr = (FacilitiesRequest) r;
         addAttribute("Location:", fr.getLocation());
         addAttribute("Type of Maintenance", fr.getMaintenanceType());
+        setFields();
       }
       addStatusAndNotes(status, notes);
     } else {

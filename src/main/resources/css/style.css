@@ -177,6 +177,41 @@
     -fx-font-style: italic;
 }
 
+#submittedReqSubtitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+#submittedReqBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: 500;
+    -fx-font-size: 14px;
+}
+
+#submittedReqBodyBold{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#submittedReqBodyItalic{
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+#submittedReqCheckbox{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
+}
+
+#submittedReqButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
 #profileTitle {
     -fx-font-family: Roboto, regular;
     -fx-font-weight: bold;

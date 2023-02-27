@@ -96,7 +96,7 @@ public class MapEditorController {
 
   public void initialize() {
     if (instance == null) {
-      moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
+      moveMap = DBSession.getIDMoves(new Date(System.currentTimeMillis()));
     } else {
       moveMap = DBSession.getIDMoves();
     }
@@ -128,6 +128,8 @@ public class MapEditorController {
     pane = new GesturePane();
     pane.setOnKeyPressed(e -> handleKeyPress(e));
 
+    pane.setPrefHeight(map.getHeight());
+    pane.setPrefWidth(map.getWidth());
     edge.setStrokeWidth(5);
 
     pane.setPrefHeight(714);
@@ -202,6 +204,8 @@ public class MapEditorController {
 
             nodeMap.put(c, n);
             selectedCircle.set(c);
+
+            Pathfinding.refreshData();
           }
         });
 
@@ -732,26 +736,15 @@ public class MapEditorController {
         removeNode();
         DBSession.deleteNode(n);
       }
-
       for (Circle dot : currentDots) {
         Node n = nodeMap.get(dot);
         DBSession.deleteNode(n);
       }
-
       removeNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.S)) {
-      straightenNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.H)) {
-      horizontalNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.V)) {
-      verticalNodes();
-    }
+      MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
+    } else if (e.getCode().equals(KeyCode.S)) straightenNodes();
+    else if (e.getCode().equals(KeyCode.H)) horizontalNodes();
+    else if (e.getCode().equals(KeyCode.V)) verticalNodes();
   }
 
   private void horizontalNodes() {

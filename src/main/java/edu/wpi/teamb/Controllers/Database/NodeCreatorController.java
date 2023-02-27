@@ -5,6 +5,7 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.Collections;
 import javafx.collections.FXCollections;
@@ -51,6 +52,7 @@ public class NodeCreatorController {
     newNode.setBuilding(newBuilding);
     newNode.setNodeID(newNode.buildID());
     DBSession.addNode(newNode);
+    Pathfinding.refreshData();
 
     cancelClicked();
   }

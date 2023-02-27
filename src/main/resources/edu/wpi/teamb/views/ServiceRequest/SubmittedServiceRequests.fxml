@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -13,204 +14,392 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
-<GridPane style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SubmittedRequests.SubmittedServiceRequestsController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.4000244140625" minWidth="10.0" prefWidth="347.9999755859375" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="758.4000244140626" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1247.7999877929688" minWidth="10.0" prefWidth="337.8" />
-  </columnConstraints>
-  <rowConstraints>
-      <RowConstraints maxHeight="371.0000366210937" minHeight="10.0" prefHeight="130.39999694824218" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" prefHeight="520.0000030517579" vgrow="SOMETIMES" />
-  </rowConstraints>
+<GridPane prefHeight="650.0" prefWidth="1200.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.SubmittedRequests.SubmittedServiceRequestsController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="2.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="1056.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+      <GridPane style="-fx-background-color: #E0e0e0; -fx-background-radius: 5;" GridPane.rowIndex="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+          <ColumnConstraints hgrow="SOMETIMES" percentWidth="56.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="24.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints prefHeight="858.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <GridPane prefHeight="93.0" prefWidth="748.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="547.7999572753906" minWidth="10.0" prefWidth="430.3999938964844" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <GridPane style="-fx-background-color: #e0e0e0;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" percentHeight="85.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="145.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                  <GridPane style="-fx-background-color: #E0E0E0;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="90.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <Label fx:id="la" text="Submitted Requests">
+                        <MFXScrollPane fitToWidth="true" minWidth="1.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="1">
+                           <content>
+                              <VBox fx:id="filterVbox" prefWidth="340.0" style="-fx-background-color: #E0E0E0;">
+                                 <children>
+                                    <Label id="submittedReqBody" fx:id="requestTypeBox" alignment="TOP_LEFT" stylesheets="@../../../../../css/style.css" text="Request type:" textFill="#333333">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXFilterComboBox id="submittedReqBody" fx:id="requestTypeFilter" floatMode="DISABLED" prefHeight="44.0" prefWidth="220.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CECECE;" stylesheets="@../../../../../css/style.css">
+                                       <textFill>
+                                          <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                                       </textFill>
+                                    </MFXFilterComboBox>
+                                    <Label id="submittedReqBody" fx:id="urgencyBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" stylesheets="@../../../../../css/style.css" text="Urgency:" textFill="#333333">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXComboBox id="submittedReqBody" fx:id="requestUrgencyFilter" floatMode="DISABLED" prefHeight="44.0" prefWidth="220.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CECECE;" stylesheets="@../../../../../css/style.css">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <textFill>
+                                          <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                                       </textFill>
+                                    </MFXComboBox>
+                                    <Label id="submittedReqBody" fx:id="requestStatusBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="89.0" stylesheets="@../../../../../css/style.css" text="Request Status:" textFill="#333333">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXComboBox id="submittedReqBody" fx:id="requestStatusFilter" floatMode="DISABLED" layoutX="50.0" layoutY="62.0" prefHeight="44.0" prefWidth="220.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CECECE;" stylesheets="@../../../../../css/style.css">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <textFill>
+                                          <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                                       </textFill>
+                                    </MFXComboBox>
+                                    <Label id="submittedReqBody" fx:id="assignedStaffBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="214.0" stylesheets="@../../../../../css/style.css" text="Assigned Staff:" textFill="#333333">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXFilterComboBox id="submittedReqBody" fx:id="assignedStaffFilter" floatMode="DISABLED" layoutX="50.0" layoutY="340.0" prefHeight="44.0" prefWidth="220.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CECECE;" stylesheets="@../../../../../css/style.css">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <textFill>
+                                          <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                                       </textFill>
+                                    </MFXFilterComboBox>
+                                    <Label id="submittedReqBody" fx:id="requestReporterBox" alignment="TOP_LEFT" layoutX="10.0" layoutY="324.0" stylesheets="@../../../../../css/style.css" text="Request Reporter:" textFill="#333333">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXComboBox id="submittedReqBody" fx:id="requestReporterFilter" floatMode="DISABLED" prefHeight="44.0" prefWidth="220.0" style="-fx-background-color: #EEEEEE; -fx-border-color: #CECECE;" stylesheets="@../../../../../css/style.css">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <textFill>
+                                          <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                                       </textFill>
+                                    </MFXComboBox>
+                                    <MFXCheckbox id="submittedReqCheckbox" fx:id="myRequestsFilter" alignment="TOP_LEFT" stylesheets="@../../../../../css/style.css" text="Display My Requests" textFill="#333333">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </MFXCheckbox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="30.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </MFXScrollPane>
+                     </children>
+                  </GridPane>
+                  <HBox alignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <MFXButton id="submittedReqButton" fx:id="clearFiltersButton" alignment="CENTER" contentDisplay="CENTER" onAction="#clearFilters" prefHeight="44.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" text="Clear Filters" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="48.0" />
+                              <Font name="System Bold" size="30.0" />
                            </font>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" percentHeight="100.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <MFXScrollPane fitToWidth="true" style="-fx-background-color: #E0E0E0;">
+                     <content>
+                        <VBox fx:id="specificRequestInfoBox" style="-fx-background-color: #E0E0E0;">
+                           <children>
+                              <Label id="submittedReqSubtitle" fx:id="RequestInformationTitle" alignment="TOP_LEFT" stylesheets="@../../../../../css/style.css" text="Request Info" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBodyItalic" fx:id="requestTypeText" stylesheets="@../../../../../css/style.css" text="Request Type" textFill="#333333">
+                                 <font>
+                                    <Font name="System Italic" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="13.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBodyItalic" fx:id="dateText" stylesheets="@../../../../../css/style.css" text="Request Date" textFill="#333333">
+                                 <font>
+                                    <Font name="System Italic" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="requestorText" layoutX="40.0" layoutY="150.0" stylesheets="@../../../../../css/style.css" text="Requestor Label" textFill="#565656">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="employeeIdText" layoutX="40.0" layoutY="185.0" stylesheets="@../../../../../css/style.css" text="Employee ID Label" textFill="#565656">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="emailText" layoutX="40.0" layoutY="217.0" stylesheets="@../../../../../css/style.css" text="Email Label" textFill="#565656">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBodyBold" fx:id="UrgencyLabel" stylesheets="@../../../../../css/style.css" text="Urgency:" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="urgencyText" stylesheets="@../../../../../css/style.css" text="Urgency Text" textFill="#333333">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBodyBold" fx:id="assignedEmployeeLabel" stylesheets="@../../../../../css/style.css" text="Assigned Employee:" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="assignedEmployeeText" stylesheets="@../../../../../css/style.css" text="Urgency Text" textFill="#333333">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBodyBold" fx:id="field1label" stylesheets="@../../../../../css/style.css" text="Field 1 Label:" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="field1text" stylesheets="@../../../../../css/style.css" text="Field 1 Text" textFill="#333333">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBodyBold" fx:id="field2label" stylesheets="@../../../../../css/style.css" text="Field 2 Label:" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="field2text" stylesheets="@../../../../../css/style.css" text="Field 2 Text" textFill="#333333">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBodyBold" fx:id="field3label" stylesheets="@../../../../../css/style.css" text="Field 3 Label:" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="field3text" stylesheets="@../../../../../css/style.css" text="Field 3 Text" textFill="#333333">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBodyBold" fx:id="field4label" stylesheets="@../../../../../css/style.css" text="Field 4 Label:" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="field4text" stylesheets="@../../../../../css/style.css" text="Field 4 Text" textFill="#333333">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBodyBold" fx:id="statusLabel" stylesheets="@../../../../../css/style.css" text="Status:" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="statusText" stylesheets="@../../../../../css/style.css" text="Status Text" textFill="#333333">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="submittedReqBodyBold" fx:id="notesLabel" stylesheets="@../../../../../css/style.css" text="Notes:" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label id="submittedReqBody" fx:id="notesText" stylesheets="@../../../../../css/style.css" text="Notes Text" textFill="#333333">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </MFXScrollPane>
+               </children>
+            </GridPane>
+            <GridPane style="-fx-background-color: #f2f2f2;" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" percentHeight="12.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="674.0">
+                     <children>
+                        <Label id="title" fx:id="la" stylesheets="@../../../../../css/style.css" text="Submitted Requests" textFill="#333333">
+                           <font>
+                              <Font name="System Bold" size="60.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
                         </Label>
-                        <ImageView fx:id="helpButton" fitHeight="21.0" fitWidth="21.0" onMouseClicked="#helpButtonClicked">
+                        <ImageView fx:id="helpButton" fitHeight="36.0" fitWidth="36.0" onMouseClicked="#helpButtonClicked">
                            <image>
                               <Image url="@../../../../../media/question.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="15.0" />
                            </HBox.margin>
                         </ImageView>
                      </children>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </HBox>
+                  <VBox fx:id="mainVbox" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
                </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
             </GridPane>
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </HBox>
-      <VBox fx:id="mainVbox11" layoutX="10.0" layoutY="10.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </VBox>
-      <MFXScrollPane fitToWidth="true" style="-fx-background-color: #E0E0E0;" GridPane.rowIndex="1">
-         <content>
-            <VBox fx:id="filterVbox" alignment="TOP_CENTER" prefWidth="343.0" style="-fx-background-color: #E0E0E0;">
-               <children>
-                  <MFXFilterComboBox fx:id="requestTypeFilter" floatingText="Request Type" prefHeight="40.0" prefWidth="219.0" />
-                  <MFXComboBox fx:id="requestUrgencyFilter" floatingText="Urgency" prefHeight="40.0" prefWidth="219.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" top="15.0" />
-                     </VBox.margin>
-                  </MFXComboBox>
-                  <MFXComboBox fx:id="requestStatusFilter" floatingText="Request Status" layoutX="50.0" layoutY="62.0" prefHeight="40.0" prefWidth="219.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                  </MFXComboBox>
-                  <MFXFilterComboBox fx:id="assignedStaffFilter" floatingText="Assigned Staff" layoutX="50.0" layoutY="340.0" prefHeight="40.0" prefWidth="219.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                  </MFXFilterComboBox>
-                  <MFXComboBox fx:id="requestReporterFilter" floatingText="Request Reporter" layoutX="50.0" layoutY="411.0" prefHeight="40.0" prefWidth="219.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                  </MFXComboBox>
-                  <MFXCheckbox fx:id="myRequestsFilter" text="Display My Requests" />
-                  <MFXButton fx:id="clearFiltersButton" alignment="BOTTOM_LEFT" onAction="#clearFilters" prefHeight="30.0" prefWidth="82.0" text="Clear Filters">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </MFXButton>
-               </children>
-            </VBox>
-         </content>
-      </MFXScrollPane>
-      <VBox fx:id="generalRequestInfoVbox" layoutX="353.0" layoutY="124.0" minHeight="10.0" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2">
+      </GridPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #21357E;" GridPane.rowIndex="1" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label fx:id="RequestInformationTitle" alignment="TOP_LEFT" text="Request Info">
-               <font>
-                  <Font size="30.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="requestTypeText" text="Request Type">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="dateText" text="Request Date">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-         <padding>
-            <Insets left="30.0" />
-         </padding>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-      </VBox>
-      <MFXScrollPane fitToWidth="true" style="-fx-background-color: #E0E0E0;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <content>
-            <VBox fx:id="specificRequestInfoBox" style="-fx-background-color: #E0E0E0;">
+            <VBox prefHeight="125.0" prefWidth="1543.0">
                <children>
-                  <Label fx:id="UrgencyLabel" text="Urgency:">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="urgencyText" text="Urgency Text">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="field1label" text="Field 1 Label:">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="field1text" text="Field 1 Text">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="field2label" text="Field 2 Label:">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="field2text" text="Field 2 Text">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="field3label" text="Field 3 Label:">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="field3text" text="Field 3 Text">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="field4label" text="Field 4 Label:">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="field4text" text="Field 4 Text">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label id="headerText" fx:id="dateLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label id="headerText" fx:id="timeLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
-               <padding>
-                  <Insets left="30.0" top="5.0" />
-               </padding>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
             </VBox>
-         </content>
-      </MFXScrollPane>
+         </children>
+      </HBox>
    </children>
 </GridPane>

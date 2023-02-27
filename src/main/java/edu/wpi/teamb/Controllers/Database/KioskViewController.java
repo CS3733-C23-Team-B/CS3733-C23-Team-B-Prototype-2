@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -46,6 +47,7 @@ public class KioskViewController {
   private Map<String, Node> nodes = DBSession.getAllNodes();
   @FXML GridPane frontBox;
   @FXML Label frontLabel;
+  @FXML VBox frontBox2;
   Map<Circle, Node> nodeMap;
   Timeline timeline;
 
@@ -53,7 +55,6 @@ public class KioskViewController {
     AtomicInteger index = new AtomicInteger(0);
     List<KioskMove> kioskMoveList;
     kioskMoveList = DBSession.getAllKioskMoves();
-    moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
     imageMap.put("L2", Bapp.lowerlevel2);
     imageMap.put("L1", Bapp.lowerlevel);
     imageMap.put("G", Bapp.groundfloor);
@@ -71,12 +72,14 @@ public class KioskViewController {
     center.add(pane, 0, 0);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     pane.toBack();
-    frontBox.toFront();
-    frontLabel.toFront();
+    moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
+    frontLabel.setText(
+        kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
     findPath(
         kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
         kioskMoveList.get(index.get()).getNextNode().getNodeID());
-
+    frontBox.toFront();
+    frontBox2.toFront();
     // Schedule a task to update the index and set the new message and image every 10 seconds
     timeline =
         new Timeline(
@@ -88,6 +91,9 @@ public class KioskViewController {
                     index.set(0);
                   }
                   moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
+                  frontLabel.setText(
+                      kioskMoveList.get(index.get()).getLocationName().getLongName()
+                          + " is being moved");
                   try {
                     findPath(
                         kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
@@ -125,7 +131,7 @@ public class KioskViewController {
     }
     aPane.toFront();
     frontBox.toFront();
-    frontLabel.toFront();
+    frontBox2.toFront();
 
     Platform.runLater(() -> pane.centreOn(p));
   }
@@ -135,7 +141,7 @@ public class KioskViewController {
     aPane.getChildren().add(dot);
     aPane.toFront();
     frontBox.toFront();
-    frontLabel.toFront();
+    frontBox2.toFront();
     if (buttonMap.get(node) != null) {
       showButton(buttonMap.get(node));
     }
@@ -144,6 +150,7 @@ public class KioskViewController {
   }
 
   public void openMap() throws IOException {
+    timeline.stop();
     final String filename = Screen.PATHFINDING.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
     final var r = Bapp.class.getResource(filename);
@@ -210,7 +217,7 @@ public class KioskViewController {
     pane.toFront();
     aPane.toFront();
     frontBox.toFront();
-    frontLabel.toFront();
+    frontBox2.toFront();
 
     Platform.runLater(
         () -> {

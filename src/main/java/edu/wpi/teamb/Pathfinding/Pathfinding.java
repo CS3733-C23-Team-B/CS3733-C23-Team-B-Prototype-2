@@ -156,6 +156,15 @@ public class Pathfinding {
     return getPathBreadthDepth(startLoc, endLoc, false);
   }
 
+  public static String[] getPathDirections(List<String> nodeList) {
+    String[] directions = new String[6];
+    List<String> floors = Arrays.asList("L2", "L1", "G", "1", "2", "3");
+
+    
+
+    return directions;
+  }
+
   static ArrayList<String> getPathBreadthDepth(String startLoc, String endLoc, boolean breadth) {
 
     Map<String, Move> moves = Pathfinding.getMovesLN();

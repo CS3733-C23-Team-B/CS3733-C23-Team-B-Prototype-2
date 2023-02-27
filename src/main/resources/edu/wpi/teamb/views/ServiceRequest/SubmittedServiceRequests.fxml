@@ -5,7 +5,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -191,129 +190,97 @@
                               <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <MFXFilterComboBox fx:id="requestUrgencyEdit" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="220.0" />
                         <Label fx:id="assignedEmployeeLabel" text="Assigned Employee:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
                         </Label>
-                        <Label fx:id="assignedEmployeeText" text="Assigned Employee Text">
+                        <Label fx:id="assignedEmployeeText" text="Urgency Text">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <MFXFilterComboBox fx:id="assignedStaffEdit" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="220.0" />
                         <Label fx:id="field1label" text="Field 1 Label:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
                         </Label>
                         <Label fx:id="field1text" text="Field 1 Text">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <MFXFilterComboBox fx:id="field1EditBox" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="220.0" />
                         <Label fx:id="field2label" text="Field 2 Label:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
                         </Label>
                         <Label fx:id="field2text" text="Field 2 Text">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <MFXFilterComboBox fx:id="field2EditBox" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="220.0" />
-                        <MFXTextField fx:id="field2EditText" prefHeight="50.0" prefWidth="220.0" />
                         <Label fx:id="field3label" text="Field 3 Label:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
                         </Label>
                         <Label fx:id="field3text" text="Field 3 Text">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <MFXFilterComboBox fx:id="field3EditBox" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="220.0" />
-                        <MFXTextField fx:id="field3EditText" prefHeight="50.0" prefWidth="220.0" />
                         <Label fx:id="field4label" text="Field 4 Label:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
                         </Label>
                         <Label fx:id="field4text" text="Field 4 Text">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </Label>
-                        <MFXFilterComboBox fx:id="field4EditBox" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="220.0" />
-                        <MFXTextField fx:id="field4EditText" prefHeight="50.0" prefWidth="220.0" />
                         <Label fx:id="statusLabel" text="Status:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
                         </Label>
                         <Label fx:id="statusText" text="Status Text">
                            <font>
                               <Font size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="15.0" />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </Label>
-                        <MFXFilterComboBox fx:id="statusEdit" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="220.0" />
                         <Label fx:id="notesLabel" text="Notes:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
                         </Label>
                         <Label fx:id="notesText" text="Notes Text">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <MFXTextField fx:id="notesEdit" prefHeight="50.0" prefWidth="220.0" />
                      </children>
                      <padding>
                         <Insets left="30.0" />
@@ -333,7 +300,7 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="26.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <MFXButton fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" prefHeight="55.0" prefWidth="120.0" style="-fx-background-color: #243780; -fx-background-radius: 10;" text="Edit" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                  <MFXButton alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" prefHeight="55.0" prefWidth="120.0" style="-fx-background-color: #243780; -fx-background-radius: 10;" text="Edit" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>

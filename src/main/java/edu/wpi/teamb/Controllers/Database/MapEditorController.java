@@ -781,7 +781,9 @@ public class MapEditorController {
       }
       removeNodes();
       MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
-    } else if (e.getCode().equals(KeyCode.S)) straightenNodes();
+    }
+
+    else if (e.getCode().equals(KeyCode.S)) straightenNodes();
     else if (e.getCode().equals(KeyCode.H)) horizontalNodes();
     else if (e.getCode().equals(KeyCode.V)) verticalNodes();
   }

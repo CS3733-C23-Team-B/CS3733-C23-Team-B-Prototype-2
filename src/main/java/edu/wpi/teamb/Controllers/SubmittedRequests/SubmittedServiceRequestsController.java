@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Controllers.SubmittedRequests;
 
-import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.Requests.*;
@@ -16,7 +15,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -69,7 +67,7 @@ public class SubmittedServiceRequestsController {
   private ObservableList<RequestStatus> Status =
       FXCollections.observableArrayList(
           RequestStatus.BLANK, RequestStatus.PROCESSING, RequestStatus.DONE);
-  protected ObservableList<Urgency> urgencyList =
+  protected ObservableList<Urgency> urgency =
       FXCollections.observableArrayList(
           Urgency.LOW, Urgency.MODERATE, Urgency.HIGH, Urgency.REQUIRESIMMEADIATEATTENTION);
   private ObservableList<RequestType> requestType =
@@ -117,7 +115,7 @@ public class SubmittedServiceRequestsController {
     requestStatusFilter.setItems(Status);
     assignedStaffFilter.setItems(staff);
     requestTypeFilter.setItems(requestType);
-    requestUrgencyFilter.setItems(urgencyList);
+    requestUrgencyFilter.setItems(urgency);
     requestReporterFilter.setItems(staff);
     requestTypeFilter.setText("All Requests");
     requestTypeFilter.setValue(RequestType.ALLREQUESTS);
@@ -279,15 +277,12 @@ public class SubmittedServiceRequestsController {
     filter();
   }
 
-  boolean edit = false;
-
   @FXML
   public void mouseClicked(TableView table) {
     GeneralRequest r = (GeneralRequest) table.getSelectionModel().getSelectedItem();
     resetRequestVboxes();
     titles = new ArrayList<>();
     data = new ArrayList<>();
-    edit = true;
 
     if (r != null) {
       //      get request info
@@ -304,53 +299,51 @@ public class SubmittedServiceRequestsController {
       addCommonAttritbutes(type, date, requestor, employeeId, email, urgency, assignedEmployee);
       if (r.getRequestType().equals(RequestType.PATIENTTRANSPOTATION)) {
         PatientTransportationRequest pt = (PatientTransportationRequest) r;
-        addAttribute("Patient Current Location:", r.getLocation());
-        addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
         addAttribute("Patient ID:", pt.getPatientID());
+        addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
+        addAttribute("Patient Current Location:", r.getLocation());
         addAttribute("Equipment Needed:", pt.getEquipmentNeeded());
-        setFields(r);
+        setFields();
       } else if (r.getRequestType().equals(RequestType.SANITATION)) {
         SanitationRequest sr = (SanitationRequest) r;
         addAttribute("Clean Up Location:", r.getLocation());
         addAttribute("Type of Clean Up:", sr.getTypeOfCleanUp());
-        setFields(r);
+        setFields();
       } else if (r.getRequestType().equals(RequestType.COMPUTER)) {
         ComputerRequest cr = (ComputerRequest) r;
         addAttribute("Repair Location:", r.getLocation());
         addAttribute("Type of Repair:", cr.getTypeOfRepair());
         addAttribute("Type of Device:", cr.getDevice());
-        setFields(r);
+        setFields();
       } else if (r.getRequestType().equals(RequestType.AUDOVISUAL)) {
         AudioVideoRequest avr = (AudioVideoRequest) r;
         addAttribute("Location:", avr.getLocation());
         addAttribute("Audio Visual Type:", avr.getAVType());
-        setFields(r);
+        setFields();
       } else if (r.getRequestType().equals(RequestType.SECURITY)) {
         SecurityRequest secr = (SecurityRequest) r;
         addAttribute("Location: ", secr.getLocation());
         addAttribute("Type Of Issue:", secr.getIssueType());
         addAttribute("Equipment Needed:", secr.getEquipmentNeeded());
         addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
-        setFields(r);
+        setFields();
       } else if (r.getRequestType().equals(RequestType.MEDICINE)) {
         MedicineDeliveryRequest medr = (MedicineDeliveryRequest) r;
         addAttribute("Location:", medr.getLocation());
         addAttribute("Type of Medicine:", medr.getMedicineType());
         addAttribute("Dosage:", medr.getDoasage());
         addAttribute("Patient ID:", medr.getPatientID());
-        setFields(r);
+        setFields();
       } else if (r.getRequestType().equals(RequestType.MEDICALEQUIPMENT)) {
         MedicalEquipmentDeliveryRequest equipr = (MedicalEquipmentDeliveryRequest) r;
         addAttribute("Location:", equipr.getLocation());
         addAttribute("Type of Equipment:", equipr.getEquipmentType());
-        setFields(r);
+        setFields();
       } else if (r.getRequestType().equals(RequestType.FACILITIES)) {
         FacilitiesRequest fr = (FacilitiesRequest) r;
         addAttribute("Location:", fr.getLocation());
         addAttribute("Type of Maintenance", fr.getMaintenanceType());
-        setFields(r);
       }
-
       addStatusAndNotes(status, notes);
     } else {
 
@@ -367,10 +360,10 @@ public class SubmittedServiceRequestsController {
   @FXML Label requestorText;
   @FXML Label employeeIdText;
   @FXML Label emailText;
-  @FXML Label UrgencyLabel, urgencyText;
-  @FXML Label assignedEmployeeLabel, assignedEmployeeText;
-  @FXML MFXFilterComboBox<Urgency> requestUrgencyEdit;
-  @FXML MFXFilterComboBox<String> assignedStaffEdit;
+  @FXML Label UrgencyLabel;
+  @FXML Label urgencyText;
+  @FXML Label assignedEmployeeLabel;
+  @FXML Label assignedEmployeeText;
 
   private void addCommonAttritbutes(
       String type,
@@ -385,22 +378,8 @@ public class SubmittedServiceRequestsController {
     addAttribute(requestorText, "Requestor: " + requestor);
     addAttribute(employeeIdText, "Employee ID: " + employeeId);
     addAttribute(emailText, "Email: " + email);
-    if (edit) {
-      //      urgency
-      specificRequestInfoBox.getChildren().add(UrgencyLabel);
-      requestUrgencyEdit.setItems(urgencyList);
-      requestUrgencyEdit.setText(urgency);
-      specificRequestInfoBox.getChildren().add(requestUrgencyEdit);
-
-      //      assigned employee
-      specificRequestInfoBox.getChildren().add(assignedEmployeeLabel);
-      assignedStaffEdit.setItems(staff);
-      assignedStaffEdit.setText(assignedEmployee);
-      specificRequestInfoBox.getChildren().add(assignedStaffEdit);
-    } else {
-      addAttribute(UrgencyLabel, urgencyText, urgency);
-      addAttribute(assignedEmployeeLabel, assignedEmployeeText, assignedEmployee);
-    }
+    addAttribute(UrgencyLabel, urgencyText, urgency);
+    addAttribute(assignedEmployeeLabel, assignedEmployeeText, assignedEmployee);
   }
 
   private void addAttribute(Label title, Label text, String s) {
@@ -412,23 +391,10 @@ public class SubmittedServiceRequestsController {
   @FXML Label statusText;
   @FXML Label notesLabel;
   @FXML Label notesText;
-  @FXML MFXFilterComboBox<RequestStatus> statusEdit;
-  @FXML MFXTextField notesEdit;
 
   private void addStatusAndNotes(String status, String notes) {
-    if (edit) {
-      specificRequestInfoBox.getChildren().add(statusLabel);
-      statusEdit.setItems(Status);
-      statusEdit.setText(status);
-      specificRequestInfoBox.getChildren().add(statusEdit);
-
-      specificRequestInfoBox.getChildren().add(notesLabel);
-      notesEdit.setText(notes);
-      specificRequestInfoBox.getChildren().add(notesEdit);
-    } else {
-      addAttribute(statusLabel, statusText, status);
-      addAttribute(notesLabel, notesText, notes);
-    }
+    addAttribute(statusLabel, statusText, status);
+    addAttribute(notesLabel, notesText, notes);
   }
 
   private void addAttribute(Label l, String s) {
@@ -436,110 +402,12 @@ public class SubmittedServiceRequestsController {
     specificRequestInfoBox.getChildren().add(l);
   }
 
-  @FXML MFXFilterComboBox field1EditBox, field2EditBox, field3EditBox, field4EditBox;
-  @FXML MFXTextField field2EditText, field3EditText, field4EditText;
-
-  private ObservableList<String> ptEquipment =
-      FXCollections.observableArrayList("Stretcher", "Wheelchair", "Restraints", "Stair Chair");
-  ObservableList<String> typeOfCleanUpList =
-          FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
-  ObservableList<String> typeOfRepairList =
-          FXCollections.observableArrayList("New Hardware", "Broken Hardware", "Technical Issues");
-  ObservableList<String> typeOfDeviceList =
-          FXCollections.observableArrayList("Computer", "Phone", "Monitor");
-  private void setEditFields(GeneralRequest r) {
-    setFieldLabels();
-    specificRequestInfoBox.getChildren().add(field1label);
-    field1EditBox.setItems(getLocations());
-    field1EditBox.setText(r.getLocation());
-    specificRequestInfoBox.getChildren().add(field1EditBox);
-
-    if (r.getRequestType().equals(RequestType.PATIENTTRANSPOTATION)) {
-
-      PatientTransportationRequest pt = (PatientTransportationRequest) r;
-
-      addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
-      //      patient destination
-      specificRequestInfoBox.getChildren().add(field2label);
-      field2EditBox.setItems(getLocations());
-      field2EditBox.setText(r.getLocation());
-      specificRequestInfoBox.getChildren().add(field2EditBox);
-
-      //      Patient ID
-      specificRequestInfoBox.getChildren().add(field3label);
-      field3EditText.setText(pt.getPatientID());
-      specificRequestInfoBox.getChildren().add(field3EditText);
-
-      //    equipment
-      specificRequestInfoBox.getChildren().add(field4label);
-      field4EditBox.setItems(ptEquipment);
-      field4EditBox.setText(pt.getEquipmentNeeded());
-      specificRequestInfoBox.getChildren().add(field2EditBox);
-
-    } else if (r.getRequestType().equals(RequestType.SANITATION)) {
-      SanitationRequest sr = (SanitationRequest) r;
-      //      type of clean up
-      specificRequestInfoBox.getChildren().add(field2label);
-      field2EditBox.setItems(typeOfCleanUpList);
-      field2EditBox.setText(sr.getTypeOfCleanUp());
-      specificRequestInfoBox.getChildren().add(field2EditBox);
-
-    } else if (r.getRequestType().equals(RequestType.COMPUTER)) {
-      ComputerRequest cr = (ComputerRequest) r;
-//      type of repair
-      specificRequestInfoBox.getChildren().add(field2label);
-      field2EditBox.setItems(typeOfRepairList);
-      field2EditBox.setText(cr.getTypeOfRepair());
-      specificRequestInfoBox.getChildren().add(field2EditBox);
-
-      //    type of device
-      specificRequestInfoBox.getChildren().add(field3label);
-      field3EditBox.setItems(typeOfDeviceList);
-      field3EditBox.setText(cr.getDevice());
-      specificRequestInfoBox.getChildren().add(field3EditBox);
-
-    } else if (r.getRequestType().equals(RequestType.AUDOVISUAL)) {
-      AudioVideoRequest avr = (AudioVideoRequest) r;
-      addAttribute("Audio Visual Type:", avr.getAVType());
-
-    } else if (r.getRequestType().equals(RequestType.SECURITY)) {
-      SecurityRequest secr = (SecurityRequest) r;
-      addAttribute("Type Of Issue:", secr.getIssueType());
-      addAttribute("Equipment Needed:", secr.getEquipmentNeeded());
-      addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
-
-    } else if (r.getRequestType().equals(RequestType.MEDICINE)) {
-      MedicineDeliveryRequest medr = (MedicineDeliveryRequest) r;
-      addAttribute("Type of Medicine:", medr.getMedicineType());
-      addAttribute("Dosage:", medr.getDoasage());
-      addAttribute("Patient ID:", medr.getPatientID());
-
-    } else if (r.getRequestType().equals(RequestType.MEDICALEQUIPMENT)) {
-      MedicalEquipmentDeliveryRequest equipr = (MedicalEquipmentDeliveryRequest) r;
-      addAttribute("Type of Equipment:", equipr.getEquipmentType());
-
-    } else if (r.getRequestType().equals(RequestType.FACILITIES)) {
-      FacilitiesRequest fr = (FacilitiesRequest) r;
-      addAttribute("Type of Maintenance", fr.getMaintenanceType());
-    }
-  }
-
-  private void setFields(GeneralRequest r) {
-    if (edit) {
-      setEditFields(r);
-    } else {
-      for (int i = 0; i < data.size(); i++) {
-        Labels.get(i).setText(titles.get(i));
-        text.get(i).setText(data.get(i));
-        specificRequestInfoBox.getChildren().add(Labels.get(i));
-        specificRequestInfoBox.getChildren().add(text.get(i));
-      }
-    }
-  }
-
-  private void setFieldLabels() {
+  private void setFields() {
     for (int i = 0; i < data.size(); i++) {
       Labels.get(i).setText(titles.get(i));
+      text.get(i).setText(data.get(i));
+      specificRequestInfoBox.getChildren().add(Labels.get(i));
+      specificRequestInfoBox.getChildren().add(text.get(i));
     }
   }
 
@@ -573,15 +441,5 @@ public class SubmittedServiceRequestsController {
 
   public void filter() {
     makeTable(cur);
-  }
-
-  protected ObservableList<String> getLocations() {
-    ObservableList<String> list = FXCollections.observableArrayList();
-
-    Map<String, LocationName> locationNames = DBSession.getAllLocationNames();
-    locationNames.forEach((key, value) -> list.add(value.getLongName()));
-
-    Sorting.quickSort(list);
-    return list;
   }
 }

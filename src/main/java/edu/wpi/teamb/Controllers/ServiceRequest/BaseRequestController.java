@@ -166,7 +166,7 @@ public class BaseRequestController {
     return !getText(components.get(i)).equals("") && isFormFull(i + 1);
   }
 
-  public void submit(GeneralRequest request) {
+  protected void submit(GeneralRequest request) {
     request.setFirstname(currUser.getFirstname());
     request.setLastname(currUser.getLastname());
     request.setEmployeeID(String.valueOf(currUser.getId()));

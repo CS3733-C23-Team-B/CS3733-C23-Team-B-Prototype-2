@@ -2,7 +2,6 @@ package edu.wpi.teamb.Controllers.SubmittedRequests;
 
 import edu.wpi.teamb.Algorithms.Sorting;
 import edu.wpi.teamb.Controllers.Profile.SigninController;
-import edu.wpi.teamb.Controllers.ServiceRequest.BaseRequestController;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.Requests.*;
 import edu.wpi.teamb.Entities.RequestStatus;
@@ -27,7 +26,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -62,11 +60,6 @@ public class SubmittedServiceRequestsController {
   List<Label> Labels = new ArrayList<>();
   @FXML Label field1text, field2text, field3text, field4text;
   List<Label> text = new ArrayList<>();
-
-  @FXML MFXButton editButton;
-  @FXML MFXButton cancelButton;
-  @FXML MFXButton submitButton;
-  @FXML GridPane buttons;
 
   @FXML Label la;
 
@@ -152,8 +145,6 @@ public class SubmittedServiceRequestsController {
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
     dateLabel.setText(formattedDate);
-    buttons.getChildren().clear();
-    buttons.getChildren().add(editButton);
   }
 
   public void initLabels() {
@@ -259,31 +250,8 @@ public class SubmittedServiceRequestsController {
     }
     TableView finalTable = table;
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
-    editButton.setOnAction(e -> editClicked(finalTable));
-    cancelButton.setOnAction(e -> cancelClicked(finalTable));
     setLabel(page);
     mainVbox.getChildren().add(table);
-  }
-
-  private void editClicked(TableView t) {
-    edit = true;
-    mouseClicked(t);
-    buttons.getChildren().clear();
-    buttons.getChildren().add(submitButton);
-    buttons.getChildren().add(cancelButton);
-  }
-
-  private void submitClicked(TableView t, GeneralRequest r) {
-    BaseRequestController br = new BaseRequestController();
-    br.submit(r);
-    cancelClicked(t);
-  }
-
-  private void cancelClicked(TableView t) {
-    edit = false;
-    mouseClicked(t);
-    buttons.getChildren().clear();
-    buttons.getChildren().add(editButton);
   }
 
   private void setLabel(String name) {
@@ -319,7 +287,7 @@ public class SubmittedServiceRequestsController {
     resetRequestVboxes();
     titles = new ArrayList<>();
     data = new ArrayList<>();
-    //    edit = true;
+    edit = true;
 
     if (r != null) {
       //      get request info
@@ -474,24 +442,11 @@ public class SubmittedServiceRequestsController {
   private ObservableList<String> ptEquipment =
       FXCollections.observableArrayList("Stretcher", "Wheelchair", "Restraints", "Stair Chair");
   ObservableList<String> typeOfCleanUpList =
-      FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
+          FXCollections.observableArrayList("Bathroom", "Spill", "Vacant Room", "Blood", "Chemicals");
   ObservableList<String> typeOfRepairList =
-      FXCollections.observableArrayList("New Hardware", "Broken Hardware", "Technical Issues");
+          FXCollections.observableArrayList("New Hardware", "Broken Hardware", "Technical Issues");
   ObservableList<String> typeOfDeviceList =
-      FXCollections.observableArrayList("Computer", "Phone", "Monitor");
-  ObservableList<String> avEquipment =
-      FXCollections.observableArrayList("TV", "Radio", "iPad", "Headphones");
-  ObservableList<String> secEquipment =
-      FXCollections.observableArrayList("Restraints", "Taser", "Barricade");
-
-  ObservableList<String> secIssue =
-      FXCollections.observableArrayList(
-          "Unruly Patient",
-          "Intruder",
-          "General Danger",
-          "Escalated Disagreement",
-          "Suspicious Activity");
-
+          FXCollections.observableArrayList("Computer", "Phone", "Monitor");
   private void setEditFields(GeneralRequest r) {
     setFieldLabels();
     specificRequestInfoBox.getChildren().add(field1label);
@@ -519,7 +474,7 @@ public class SubmittedServiceRequestsController {
       specificRequestInfoBox.getChildren().add(field4label);
       field4EditBox.setItems(ptEquipment);
       field4EditBox.setText(pt.getEquipmentNeeded());
-      specificRequestInfoBox.getChildren().add(field4EditBox);
+      specificRequestInfoBox.getChildren().add(field2EditBox);
 
     } else if (r.getRequestType().equals(RequestType.SANITATION)) {
       SanitationRequest sr = (SanitationRequest) r;
@@ -531,7 +486,7 @@ public class SubmittedServiceRequestsController {
 
     } else if (r.getRequestType().equals(RequestType.COMPUTER)) {
       ComputerRequest cr = (ComputerRequest) r;
-      //      type of repair
+//      type of repair
       specificRequestInfoBox.getChildren().add(field2label);
       field2EditBox.setItems(typeOfRepairList);
       field2EditBox.setText(cr.getTypeOfRepair());
@@ -545,65 +500,27 @@ public class SubmittedServiceRequestsController {
 
     } else if (r.getRequestType().equals(RequestType.AUDOVISUAL)) {
       AudioVideoRequest avr = (AudioVideoRequest) r;
-      //      av type
-      specificRequestInfoBox.getChildren().add(field2label);
-      field2EditBox.setItems(avEquipment);
-      field2EditBox.setText(avr.getAVType());
-      specificRequestInfoBox.getChildren().add(field2EditBox);
       addAttribute("Audio Visual Type:", avr.getAVType());
 
     } else if (r.getRequestType().equals(RequestType.SECURITY)) {
       SecurityRequest secr = (SecurityRequest) r;
-      //      type of issue
-      specificRequestInfoBox.getChildren().add(field2label);
-      field2EditBox.setItems(secIssue);
-      field2EditBox.setText(secr.getIssueType());
-      specificRequestInfoBox.getChildren().add(field2EditBox);
-
-      //    equipment
-      specificRequestInfoBox.getChildren().add(field3label);
-      field3EditBox.setItems(secEquipment);
-      field3EditBox.setText(secr.getEquipmentNeeded());
-      specificRequestInfoBox.getChildren().add(field3EditBox);
-
-      //      number req
-      specificRequestInfoBox.getChildren().add(field4label);
-      field4EditText.setText(String.valueOf(secr.getNumberRequired()));
-      specificRequestInfoBox.getChildren().add(field4EditText);
+      addAttribute("Type Of Issue:", secr.getIssueType());
+      addAttribute("Equipment Needed:", secr.getEquipmentNeeded());
+      addAttribute("Number Required:", String.valueOf(secr.getNumberRequired()));
 
     } else if (r.getRequestType().equals(RequestType.MEDICINE)) {
       MedicineDeliveryRequest medr = (MedicineDeliveryRequest) r;
-      //      type of medicine
-      specificRequestInfoBox.getChildren().add(field2label);
-      field2EditText.setText(medr.getMedicineType());
-      specificRequestInfoBox.getChildren().add(field2EditText);
-
-      //     dosage
-      specificRequestInfoBox.getChildren().add(field3label);
-      field3EditText.setText(medr.getDoasage());
-      specificRequestInfoBox.getChildren().add(field3EditText);
-
-      //      Patient ID
-      specificRequestInfoBox.getChildren().add(field4label);
-      field4EditText.setText(medr.getPatientID());
-      specificRequestInfoBox.getChildren().add(field4EditText);
+      addAttribute("Type of Medicine:", medr.getMedicineType());
+      addAttribute("Dosage:", medr.getDoasage());
+      addAttribute("Patient ID:", medr.getPatientID());
 
     } else if (r.getRequestType().equals(RequestType.MEDICALEQUIPMENT)) {
       MedicalEquipmentDeliveryRequest equipr = (MedicalEquipmentDeliveryRequest) r;
-      //      type of equip
-      specificRequestInfoBox.getChildren().add(field2label);
-      field2EditBox.setItems(ptEquipment);
-      field2EditBox.setText(equipr.getEquipmentType());
-      specificRequestInfoBox.getChildren().add(field2EditBox);
+      addAttribute("Type of Equipment:", equipr.getEquipmentType());
 
     } else if (r.getRequestType().equals(RequestType.FACILITIES)) {
       FacilitiesRequest fr = (FacilitiesRequest) r;
-      //      type of maintenance
-      specificRequestInfoBox.getChildren().add(field2label);
-      //      change this once added
-      field2EditBox.setItems(secIssue);
-      field2EditBox.setText(fr.getMaintenanceType());
-      specificRequestInfoBox.getChildren().add(field2EditBox);
+      addAttribute("Type of Maintenance", fr.getMaintenanceType());
     }
   }
 

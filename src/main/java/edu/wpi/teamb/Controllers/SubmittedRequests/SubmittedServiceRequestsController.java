@@ -110,7 +110,7 @@ public class SubmittedServiceRequestsController {
     requestUrgencyFilter.setOnAction(e -> filter());
     requestReporterFilter.setOnAction(e -> filter());
 
-    mainVbox.setPadding(new Insets(50, 20, 0, 20));
+    mainVbox.setPadding(new Insets(20, 20, 0, 20));
 
     requestStatusFilter.setItems(Status);
     assignedStaffFilter.setItems(staff);

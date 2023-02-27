@@ -221,7 +221,7 @@
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="25.0" />
+                                    <Insets top="30.0" />
                                  </VBox.margin>
                               </Label>
                               <Label id="submittedReqBody" fx:id="urgencyText" stylesheets="@../../../../../css/style.css" text="Urgency Text" textFill="#333333">
@@ -338,13 +338,6 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="48.0" prefHeight="55.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="26.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
-                     <children>
-                        <MFXButton id="submittedReqButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" prefHeight="55.0" prefWidth="120.0" style="-fx-background-color: #243780; -fx-background-radius: 8;" text="Edit" textFill="#c5d3ea" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-                           <font>
-                              <Font name="System Bold" size="32.0" />
-                           </font>
-                        </MFXButton>
-                     </children>
                   </GridPane>
                </children>
             </GridPane>

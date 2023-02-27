@@ -30,6 +30,7 @@ public class ServiceRequestSystemsController {
   @FXML MFXButton AVButton;
   @FXML MFXButton equipButton;
   @FXML MFXButton medDeliveryButton;
+  @FXML MFXButton facMainButton;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
 
@@ -38,7 +39,14 @@ public class ServiceRequestSystemsController {
   /** Create a list of buttons and display the time in the header */
   public void initialize() {
     Button[] btns = {
-      transButton, saniButton, secButton, comButton, AVButton, equipButton, medDeliveryButton
+      transButton,
+      saniButton,
+      secButton,
+      comButton,
+      AVButton,
+      equipButton,
+      medDeliveryButton,
+      facMainButton
     };
     buttons = new ArrayList<>(Arrays.asList(btns));
 
@@ -165,6 +173,15 @@ public class ServiceRequestSystemsController {
     highlightButton(medDeliveryButton);
   }
 
+  public void makeFacilitiesMaintenance() throws IOException {
+    mainGridPane.getChildren().clear();
+    final var r = Bapp.class.getResource(Screen.FACILITIES_MAINTENANCE.getFilename());
+    final FXMLLoader loader = new FXMLLoader(r);
+    mainGridPane.getChildren().add(loader.load());
+
+    highlightButton(facMainButton);
+  }
+  // makeFacilitiesMaintenance
   /**
    * Make the given button light blue, and reset all others to dark blue
    *

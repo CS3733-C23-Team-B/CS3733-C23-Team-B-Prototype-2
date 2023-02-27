@@ -40,7 +40,8 @@ public class Bapp extends Application {
     scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
     scene
         .getStylesheets()
-        .add("https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap");
+        .add(
+            "https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap");
 
     Bapp.primaryStage = primaryStage;
     Bapp.stackPane = (StackPane) root;

@@ -432,7 +432,7 @@ public class SubmittedServiceRequestsController {
       filterVbox.getChildren().add(myRequestsFilter);
     }
 
-    filterVbox.getChildren().add(clearFiltersButton);
+    // filterVbox.getChildren().add(clearFiltersButton);
   }
 
   private void addFilter(Label l, MFXComboBox b) {

@@ -5,11 +5,42 @@ import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.image.ImageView;
 
 public class AboutPageController {
 
   @FXML MFXButton backButton;
+  @FXML
+  ImageView christinaAube,
+      lukeGrady,
+      samColebourn,
+      kavyaMani,
+      adrianJohnson,
+      jackLafond,
+      michaelGatti,
+      seanLendrum,
+      jolieWalts,
+      cierraOGrady;
+
+  public void initialize() {
+    List<ImageView> people =
+        Arrays.asList(
+            christinaAube,
+            lukeGrady,
+            samColebourn,
+            kavyaMani,
+            adrianJohnson,
+            jackLafond,
+            michaelGatti,
+            seanLendrum,
+            jolieWalts,
+            cierraOGrady);
+    for (ImageView image : people) image.setCursor(Cursor.HAND);
+  }
 
   public void backButtonClicked() throws IOException {
     Navigation.navigate(Screen.HOME);

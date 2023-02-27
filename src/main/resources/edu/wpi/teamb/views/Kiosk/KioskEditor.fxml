@@ -95,7 +95,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="la" text="Kiosk Edditor">
+                              <Label fx:id="la" text="Kiosk Editor">
                                  <font>
                                     <Font size="48.0" />
                                  </font>

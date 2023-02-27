@@ -98,7 +98,7 @@ public class MapEditorController {
 
   public void initialize() {
     if (instance == null) {
-      moveMap = DBSession.getIDMoves(new Date(123, 0, 1));
+      moveMap = DBSession.getIDMoves(new Date(System.currentTimeMillis()));
     } else {
       moveMap = DBSession.getIDMoves();
     }

@@ -39,7 +39,14 @@ public class ServiceRequestSystemsController {
   /** Create a list of buttons and display the time in the header */
   public void initialize() {
     Button[] btns = {
-      transButton, saniButton, secButton, comButton, AVButton, equipButton, medDeliveryButton
+      transButton,
+      saniButton,
+      secButton,
+      comButton,
+      AVButton,
+      equipButton,
+      medDeliveryButton,
+      facMainButton
     };
     buttons = new ArrayList<>(Arrays.asList(btns));
 

@@ -44,7 +44,7 @@ public class MapDAO {
     String hql =
         "SELECT DISTINCT locationName, node, moveDate FROM Move WHERE moveDate <= '"
             + d
-            + "' ORDER BY moveDate DESC";
+            + "' ORDER BY moveDate";
     try {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery(hql);

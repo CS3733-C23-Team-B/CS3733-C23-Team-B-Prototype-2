@@ -4,8 +4,6 @@ import edu.wpi.teamb.Database.DAO.LoginDAO;
 import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Database.DAO.RequestDAO;
 import edu.wpi.teamb.Database.Requests.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import javafx.collections.ObservableList;
 
@@ -190,6 +188,7 @@ public class DBSession {
 
   public static synchronized List<Move> getMostRecentMoves(String NodeID) {
     try {
+      MapDAO.refreshIDMoves(new Date(System.currentTimeMillis()));
       return MapDAO.getIDMoves().get(NodeID);
     } catch (Exception e) {
       throw new RuntimeException(e);
@@ -202,12 +201,10 @@ public class DBSession {
 
   public static synchronized String getMostRecentNodeID(String longName) {
     try {
-      return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-01"))
+      return MapDAO.getLNMoves(new Date(System.currentTimeMillis()))
           .get(longName)
           .getNode()
           .getNodeID();
-    } catch (ParseException e) {
-      throw new RuntimeException(e);
     } catch (NullPointerException e) {
       return null;
     }

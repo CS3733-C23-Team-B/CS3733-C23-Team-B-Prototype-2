@@ -61,6 +61,7 @@ public class PathfindingController {
   private final int POP_UP_HEIGHT = 110;
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
+  private boolean pathNotFound = false;
   private static Node currentNode;
   private Circle currentDot;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
@@ -87,7 +88,9 @@ public class PathfindingController {
 
   /** Initializes the dropdown menus */
   public void initialize() {
-    moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
+    moveMap = DBSession.getIDMoves(new Date(123, 0, 1));
+    Pathfinding.refreshData();
+    Pathfinding.setDate(new Date(123, 0, 1));
 
     floorMap.put("Lower Level 2", "L2");
     floorMap.put("Lower Level 1", "L1");
@@ -163,6 +166,7 @@ public class PathfindingController {
   }
 
   public void setNodeColors() {
+    if (pathNotFound) return;
     List<javafx.scene.Node> nodeTest = aPane.getChildren();
     for (javafx.scene.Node n : nodeTest) {
       if (n instanceof Circle) {
@@ -177,7 +181,8 @@ public class PathfindingController {
             endDot.setFill(Color.RED);
             if (nodeMap != null) {
               updateTextFieldPosition(nodeMap.get(endDot));
-              linesPlane.getChildren().add(adminLabel);
+              if (!linesPlane.getChildren().contains(adminLabel))
+                linesPlane.getChildren().add(adminLabel);
             }
           }
         }
@@ -238,14 +243,6 @@ public class PathfindingController {
           }
         });
     drawLines();
-    if (startDot != null) {
-      startDot.setFill(Bapp.blue);
-      startDot = null;
-    }
-    if (endDot != null) {
-      endDot.setFill(Bapp.blue);
-      endDot = null;
-    }
     Platform.runLater(() -> pane.centreOn(p));
   }
 
@@ -323,6 +320,18 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
+    pathNotFound = false;
+
+    if (startDot != null) {
+      startDot.setFill(Bapp.blue);
+      startDot = null;
+    }
+    if (endDot != null) {
+      endDot.setFill(Bapp.blue);
+      endDot = null;
+    }
+    if (linesPlane.getChildren().contains(adminLabel)) linesPlane.getChildren().remove(adminLabel);
+
     textField = null;
     pathNotFoundTextField.setVisible(false);
     Pathfinding.avoidStairs = avoidStairsCheckBox.isSelected();
@@ -343,7 +352,9 @@ public class PathfindingController {
     if (path == null) {
       System.out.println("PATH NOT FOUND");
       pathNotFoundTextField.setVisible(true);
+      pathNotFound = true;
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
+      return;
     }
 
     System.out.println(path);
@@ -435,7 +446,7 @@ public class PathfindingController {
   static ObservableList<String> getLocations(String s) {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    Map<String, Move> moves = DBSession.getLNMoves(new Date(2023, 1, 1));
+    Map<String, Move> moves = DBSession.getLNMoves(new Date(123, 0, 1));
 
     for (Move move : moves.values())
       if (!list.contains(move.getLocationName().getLongName()))
@@ -474,7 +485,7 @@ public class PathfindingController {
     if (l == null) l = Arrays.asList();
     for (Move move : l) {
       if (move.getLocationName().getLocationType().equals("HALL")) continue;
-      Label loc = new Label(move.getLocationName().getShortName());
+      Label loc = new Label(move.getLocationName().getLongName());
       loc.setFont(new Font("Arial", 8));
       loc.setRotate(-45);
       vbox.getChildren().add(loc);

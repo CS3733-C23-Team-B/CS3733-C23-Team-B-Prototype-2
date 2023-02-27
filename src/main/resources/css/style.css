@@ -14,6 +14,7 @@
 
 #body{
     -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: 500;
     -fx-font-size: 12px;
 }
 
@@ -34,7 +35,13 @@
     -fx-font-size: 18px;
 }
 
-#signInButtons{
+#signInBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+
+#signInButton{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-size: 12px;
     -fx-font-weight: bold;

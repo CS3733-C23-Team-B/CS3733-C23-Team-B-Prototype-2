@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="650.0" prefWidth="1229.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.SigninController">
+<GridPane prefHeight="650.0" prefWidth="1229.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.SigninController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="24.0" />
     <ColumnConstraints hgrow="SOMETIMES" percentWidth="52.0" />
@@ -53,7 +53,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <MFXTextField id="signInButtons" fx:id="usernameField" floatMode="ABOVE" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#handleKeyPress" prefHeight="35.0" prefWidth="630.0" promptText="Username" style="-fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #898989; -fx-background-color: #e8e8e8; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXTextField id="signInBody" fx:id="usernameField" floatMode="ABOVE" maxHeight="-Infinity" minHeight="-Infinity" onKeyReleased="#handleKeyPress" prefHeight="35.0" prefWidth="630.0" promptText="Username" style="-fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #898989; -fx-background-color: #e8e8e8; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -64,7 +64,7 @@
                               <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
                            </textFill></MFXTextField>
                         <HBox prefHeight="20.0" prefWidth="375.0" />
-                        <MFXPasswordField id="signInButtons" fx:id="passwordField" floatMode="ABOVE" maxHeight="47.0" minHeight="-Infinity" onKeyReleased="#handleKeyPress" prefHeight="35.0" prefWidth="630.0" promptText="Password" style="-fx-border-color: #898989; -fx-background-color: #e8e8e8; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" stylesheets="@../../../../../css/style.css">
+                        <MFXPasswordField id="signInBody" fx:id="passwordField" floatMode="ABOVE" maxHeight="47.0" minHeight="-Infinity" onKeyReleased="#handleKeyPress" prefHeight="35.0" prefWidth="630.0" promptText="Password" style="-fx-border-color: #898989; -fx-background-color: #e8e8e8; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -75,7 +75,7 @@
                               <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
                            </textFill></MFXPasswordField>
                         <HBox prefHeight="20.0" prefWidth="375.0" />
-                        <MFXButton id="signInButtons" fx:id="signInButton" depthLevel="LEVEL1" onAction="#signInButtonClicked" prefHeight="53.0" prefWidth="630.0" style="-fx-background-color: #21357e; -fx-background-radius: 6;" stylesheets="@../../../../../css/style.css" text="Sign In" textFill="WHITE">
+                        <MFXButton id="signInButton" fx:id="signInButton" depthLevel="LEVEL1" onAction="#signInButtonClicked" prefHeight="53.0" prefWidth="630.0" style="-fx-background-color: #21357e; -fx-background-radius: 6;" stylesheets="@../../../../../css/style.css" text="Sign In" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -116,7 +116,7 @@
                               <Insets />
                            </VBox.margin>
                         </GridPane>
-                        <MFXButton id="signInButtons" depthLevel="LEVEL1" onAction="#signInButtonClicked" prefHeight="50.0" prefWidth="122.0" style="-fx-background-color: #6D9BF8; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="View Map" textFill="WHITE">
+                        <MFXButton id="signInButton" depthLevel="LEVEL1" onAction="#signInButtonClicked" prefHeight="50.0" prefWidth="122.0" style="-fx-background-color: #6D9BF8; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="View Map" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="15.0" />
                            </VBox.margin></MFXButton>
@@ -127,7 +127,7 @@
                   </VBox>
                   <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <MFXButton id="signInButtons" fx:id="exitButton" onAction="#exitApplication" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #9a9a9a; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="Exit Application" textFill="WHITE" />
+                        <MFXButton id="signInButton" fx:id="exitButton" onAction="#exitApplication" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #9a9a9a; -fx-background-radius: 5;" stylesheets="@../../../../../css/style.css" text="Exit Application" textFill="WHITE" />
                      </children>
                      <GridPane.margin>
                         <Insets />

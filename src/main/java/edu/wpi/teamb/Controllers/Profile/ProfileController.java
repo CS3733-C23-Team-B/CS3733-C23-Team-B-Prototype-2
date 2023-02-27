@@ -1,14 +1,19 @@
 package edu.wpi.teamb.Controllers.Profile;
 
 import edu.wpi.teamb.Database.DBSession;
+import edu.wpi.teamb.Database.DatabaseWriteToCSV;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.IOException;
+import java.text.ParseException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
@@ -24,6 +29,10 @@ public class ProfileController {
   @FXML MFXButton save;
   @FXML Label messege;
   @FXML VBox vBox;
+  @FXML HBox mainHBox;
+  @FXML MFXButton writeToCSVButton;
+
+  @FXML MFXButton databaseButton;
 
   @FXML MFXButton adminButton;
   private String passwordDisplay;
@@ -43,11 +52,29 @@ public class ProfileController {
       adminButton.setVisible(true);
       adminButton.setDisable(false);
       adminButton.setOnAction(e -> viewAllUsers());
+      writeToCSVButton.setVisible(true);
+      writeToCSVButton.setDisable(false);
+      databaseButton.setVisible(true);
+      databaseButton.setDisable(false);
     }
   }
 
   private void viewAllUsers() {
     Navigation.navigate(Screen.ALL_USERS);
+  }
+
+  public void writeToCSVClicked() {
+    try {
+      DatabaseWriteToCSV.runWrites();
+    } catch (IOException ex) {
+      throw new RuntimeException(ex);
+    } catch (ParseException ex) {
+      throw new RuntimeException(ex);
+    }
+  }
+
+  public void databaseClicked() {
+    Popup.displayPopup(Screen.DATABASE_CONFIRMATION);
   }
 
   private void saveClicked() {

@@ -18,9 +18,13 @@ public class SubmittedMedicalEquipmentRequestTable extends SubmittedBaseRequestT
   }
 
   public TableView getTable(
-      RequestStatus status, String Employee, Urgency urgency, Boolean myRequests) {
+      RequestStatus status,
+      String Employee,
+      String requestor,
+      Urgency urgency,
+      Boolean myRequests) {
     table.getItems().clear();
-    super.filterTable(status, Employee, convertObj(), urgency, myRequests);
+    super.filterTable(status, Employee, requestor, convertObj(), urgency, myRequests);
     return table;
   }
 

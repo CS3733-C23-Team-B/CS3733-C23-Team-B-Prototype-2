@@ -97,7 +97,7 @@ public class MapEditorController {
 
   public void initialize() {
     if (instance == null) {
-      moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
+      moveMap = DBSession.getIDMoves(new Date(System.currentTimeMillis()));
     } else {
       moveMap = DBSession.getIDMoves();
     }
@@ -129,6 +129,8 @@ public class MapEditorController {
     pane = new GesturePane();
     pane.setOnKeyPressed(e -> handleKeyPress(e));
 
+    pane.setPrefHeight(map.getHeight());
+    pane.setPrefWidth(map.getWidth());
     edge.setStrokeWidth(5);
 
     pane.setPrefHeight(714);
@@ -203,6 +205,8 @@ public class MapEditorController {
 
             nodeMap.put(c, n);
             selectedCircle.set(c);
+
+            Pathfinding.refreshData();
           }
         });
 

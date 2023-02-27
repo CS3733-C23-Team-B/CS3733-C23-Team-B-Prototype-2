@@ -136,6 +136,32 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Label>
+                                    <Label id="requestsSubtitle" stylesheets="@../../../../../css/style.css" text="Medical Equipment Delivery">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label id="requestsBody" layoutX="40.0" layoutY="373.0" stylesheets="@../../../../../css/style.css" text="Request equipment delivered to your location. ">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="requestsSubtitle" stylesheets="@../../../../../css/style.css" text="Medicine Delivery">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label id="requestsBody" layoutX="40.0" layoutY="454.0" stylesheets="@../../../../../css/style.css" text="Request medicine for a patient.">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" left="30.0" />
@@ -154,11 +180,19 @@
                            <children>
                               <HBox GridPane.halignment="LEFT">
                                  <children>
-                                    <Label id="title" fx:id="pageTitle" prefHeight="96.0" prefWidth="1090.0" stylesheets="@../../../../../css/style.css" text="Service Request Systems">
+                                    <Label id="title" fx:id="pageTitle" prefHeight="96.0" stylesheets="@../../../../../css/style.css" text="Service Request Systems">
                                        <font>
                                           <Font size="40.0" />
                                        </font>
                                     </Label>
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <MFXButton id="requestsButton" onAction="#viewDevsButtonClicked" prefHeight="26.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" stylesheets="@../../../../../css/style.css" text="View Developers" textFill="WHITE" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
                                  </children>
                                  <GridPane.margin>
                                     <Insets />
@@ -184,7 +218,7 @@
                               <Insets left="20.0" />
                            </padding>
                            <columnConstraints>
-                              <ColumnConstraints />
+                              <ColumnConstraints percentWidth="100.0" />
                            </columnConstraints>
                            <GridPane.margin>
                               <Insets left="10.0" top="5.0" />

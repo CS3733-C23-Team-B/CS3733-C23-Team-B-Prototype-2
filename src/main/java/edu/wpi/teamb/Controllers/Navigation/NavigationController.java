@@ -19,6 +19,7 @@ public class NavigationController {
   @FXML private MFXButton request;
   @FXML private MFXButton path;
   private static NavigationController instance;
+  @FXML private MFXButton editKiosk;
 
   public void initialize() {
     instance = this;
@@ -26,7 +27,10 @@ public class NavigationController {
     Platform.runLater(
         () -> {
           if (SigninController.getInstance() != null) {
-            if (!SigninController.getInstance().currentUser.getAdmin()) map.setVisible(false);
+            if (!SigninController.getInstance().currentUser.getAdmin()) {
+              map.setVisible(false);
+              editKiosk.setVisible(false);
+            }
           }
           resetButtons();
         });
@@ -43,12 +47,14 @@ public class NavigationController {
     map.setStyle("-fx-background-color: transparent;");
     request.setStyle("-fx-background-color: transparent;");
     path.setStyle("-fx-background-color: transparent;");
+    editKiosk.setStyle("-fx-background-color: transparent;");
 
     homeButton.setTextFill(Paint.valueOf("#c5d3ea"));
     forms.setTextFill(Paint.valueOf("#c5d3ea"));
     map.setTextFill(Paint.valueOf("#c5d3ea"));
     request.setTextFill(Paint.valueOf("#c5d3ea"));
     path.setTextFill(Paint.valueOf("#c5d3ea"));
+    editKiosk.setTextFill(Paint.valueOf("#c5d3ea"));
   }
 
   public void serviceRequestFormsButtonClicked() throws IOException {
@@ -84,6 +90,11 @@ public class NavigationController {
   public void mapEditorButtonClicked() throws IOException {
     Navigation.navigate(Screen.MAP_EDITOR);
     setActiveButton(map);
+  }
+
+  public void editKiosk() {
+    Navigation.navigate(Screen.KIOSK_EDIT);
+    setActiveButton(editKiosk);
   }
 
   public void exitButtonClicked() {

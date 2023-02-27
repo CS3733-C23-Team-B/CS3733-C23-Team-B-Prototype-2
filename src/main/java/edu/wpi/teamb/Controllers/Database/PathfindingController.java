@@ -61,6 +61,7 @@ public class PathfindingController {
   private final int POP_UP_HEIGHT = 110;
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
+  private boolean pathNotFound = false;
   private static Node currentNode;
   private Circle currentDot;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
@@ -165,6 +166,7 @@ public class PathfindingController {
   }
 
   public void setNodeColors() {
+    if (pathNotFound) return;
     List<javafx.scene.Node> nodeTest = aPane.getChildren();
     for (javafx.scene.Node n : nodeTest) {
       if (n instanceof Circle) {
@@ -241,14 +243,6 @@ public class PathfindingController {
           }
         });
     drawLines();
-    if (startDot != null) {
-      startDot.setFill(Bapp.blue);
-      startDot = null;
-    }
-    if (endDot != null) {
-      endDot.setFill(Bapp.blue);
-      endDot = null;
-    }
     Platform.runLater(() -> pane.centreOn(p));
   }
 
@@ -326,6 +320,18 @@ public class PathfindingController {
 
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
+    pathNotFound = false;
+
+    if (startDot != null) {
+      startDot.setFill(Bapp.blue);
+      startDot = null;
+    }
+    if (endDot != null) {
+      endDot.setFill(Bapp.blue);
+      endDot = null;
+    }
+    if (linesPlane.getChildren().contains(adminLabel)) linesPlane.getChildren().remove(adminLabel);
+
     textField = null;
     pathNotFoundTextField.setVisible(false);
     Pathfinding.avoidStairs = avoidStairsCheckBox.isSelected();
@@ -346,6 +352,7 @@ public class PathfindingController {
     if (path == null) {
       System.out.println("PATH NOT FOUND");
       pathNotFoundTextField.setVisible(true);
+      pathNotFound = true;
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
       return;
     }

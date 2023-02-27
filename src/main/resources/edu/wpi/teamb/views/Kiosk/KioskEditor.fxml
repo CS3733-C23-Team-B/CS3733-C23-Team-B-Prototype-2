@@ -174,11 +174,11 @@
                            <children>
                               <TableView fx:id="table" prefHeight="516.0" prefWidth="1402.0">
                                 <columns>
-                                  <TableColumn fx:id="dateCol" maxWidth="500.80006635189056" minWidth="-1.0" prefWidth="211.19989240169525" text="Date" />
-                                  <TableColumn fx:id="messageCol" maxWidth="1128.0001068115234" minWidth="-1.0" prefWidth="339.9999237060547" text="Messege" />
-                                    <TableColumn fx:id="nameCol" prefWidth="295.2000732421875" text="Location Name" />
-                                    <TableColumn fx:id="startCol" prefWidth="255.99981689453125" text="Start Node" />
-                                    <TableColumn fx:id="endCol" minWidth="0.0" prefWidth="236.79999999999995" text="End Node" />
+                                  <TableColumn fx:id="dateCol" maxWidth="-1.0" minWidth="-1.0" prefWidth="-1.0" text="Date" />
+                                  <TableColumn fx:id="messageCol" maxWidth="1128.0001068115234" minWidth="-1.0" prefWidth="341.6000541448593" text="Messege" />
+                                    <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="283.1999206542969" text="Location Name" />
+                                    <TableColumn fx:id="startCol" minWidth="0.0" prefWidth="175.2000732421875" text="Start Node" />
+                                    <TableColumn fx:id="endCol" minWidth="0.0" prefWidth="187.2000732421875" text="End Node" />
                                 </columns>
                                  <VBox.margin>
                                     <Insets bottom="30.0" left="30.0" right="30.0" />

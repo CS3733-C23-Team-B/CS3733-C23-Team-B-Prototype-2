@@ -20,7 +20,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <GridPane fx:id="center" alignment="TOP_CENTER" prefHeight="838.0" prefWidth="287.0" GridPane.halignment="RIGHT">
+      <GridPane fx:id="center" alignment="CENTER" prefHeight="838.0" prefWidth="287.0" GridPane.halignment="RIGHT">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -28,98 +28,70 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <GridPane fx:id="frontBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="1115.0" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #FCFCFC; -fx-background-radius: 5;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
-               </rowConstraints>
+            <HBox fx:id="frontRight" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #21357E; -fx-background-radius: 5;" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                <children>
-                  <HBox alignment="CENTER" prefHeight="71.0" prefWidth="670.0" GridPane.columnIndex="1">
+                  <VBox alignment="CENTER" prefHeight="74.0" prefWidth="248.0">
                      <children>
-                        <MFXButton fx:id="signInButton" onAction="#signIn" prefHeight="41.0" prefWidth="176.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Sign In" textFill="#fcfcfc">
+                        <Label alignment="BOTTOM_RIGHT" prefHeight="39.0" prefWidth="278.0" text="Ambulence Parnking" textAlignment="RIGHT" textFill="#f2f2f2">
                            <font>
-                              <Font size="23.0" />
-                           </font>
-                        </MFXButton>
-                        <Label text="OR">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="24.0" />
+                              <Font size="27.0" />
                            </font>
                         </Label>
-                        <MFXButton fx:id="viewMapButton" onAction="#openMap" prefHeight="42.0" prefWidth="164.0" style="-fx-background-color: #E89F55; -fx-background-radius: 10;" text="View Map">
+                        <Label alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="194.0" text="Weee Wooo Weeee Wooo" textAlignment="RIGHT" textFill="#f2f2f2">
                            <font>
-                              <Font size="23.0" />
+                              <Font size="16.0" />
                            </font>
-                        </MFXButton>
+                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@../../../../../media/arrow.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
                      </children>
-                     <opaqueInsets>
+                     <HBox.margin>
                         <Insets />
-                     </opaqueInsets>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <children>
-                        <ImageView fitHeight="73.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                           <image>
-                              <Image url="@../../../../../media/rightArrow.png" />
-                           </image>
-                        </ImageView>
-                        <VBox alignment="CENTER_LEFT">
-                           <children>
-                              <Label prefHeight="39.0" prefWidth="159.0" text="Room Name">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="30.0" prefWidth="122.0" text="Description">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
-                     <children>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <Label alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="159.0" text="Room Name" textAlignment="RIGHT">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="122.0" text="Description" textAlignment="RIGHT">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <ImageView fitHeight="73.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../media/rightArrow.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
+                     </HBox.margin>
+                  </VBox>
                </children>
                <GridPane.margin>
-                  <Insets bottom="30.0" />
+                  <Insets bottom="70.0" right="40.0" />
                </GridPane.margin>
-            </GridPane>
+            </HBox>
+            <HBox fx:id="frontLeft" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" style="-fx-background-color: #21357E; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+               <children>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Label alignment="BASELINE_LEFT" prefHeight="39.0" prefWidth="159.0" text="Au Bon Pain" textFill="#f2f2f2">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="151.0" text="Im in so much Pain" textFill="#f2f2f2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../media/arrow.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="70.0" left="40.0" />
+               </GridPane.margin>
+            </HBox>
             <VBox fx:id="frontBox2" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #FCFCFC; -fx-background-radius: 5;" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <children>
                   <Label fx:id="frontLabel" alignment="CENTER" text="Upcoming Location Moves">
@@ -140,6 +112,34 @@
                   <Insets top="30.0" />
                </GridPane.margin>
             </VBox>
+            <HBox fx:id="frontCenter" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="66.0" prefWidth="435.0" style="-fx-background-color: #FCFCFC; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <children>
+                  <MFXButton fx:id="signInButton" onAction="#signIn" prefHeight="41.0" prefWidth="176.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Sign In" textFill="#fcfcfc">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </MFXButton>
+                  <Label text="OR">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <MFXButton fx:id="viewMapButton" onAction="#openMap" prefHeight="42.0" prefWidth="164.0" style="-fx-background-color: #E89F55; -fx-background-radius: 10;" text="View Map">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </MFXButton>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets bottom="40.0" />
+               </GridPane.margin>
+            </HBox>
          </children>
          <GridPane.margin>
             <Insets />

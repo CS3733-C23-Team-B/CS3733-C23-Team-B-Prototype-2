@@ -21,10 +21,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -43,9 +40,12 @@ public class KioskViewController {
   private AnchorPane linesPlane = new AnchorPane();
   private String startID;
   private String endID;
+  private ArrayList<String> path;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
   private Map<String, Node> nodes = DBSession.getAllNodes();
-  @FXML GridPane frontBox;
+  @FXML HBox frontRight;
+  @FXML HBox frontLeft;
+  @FXML HBox frontCenter;
   @FXML Label frontLabel;
   @FXML VBox frontBox2;
   Map<Circle, Node> nodeMap;
@@ -68,7 +68,6 @@ public class KioskViewController {
     pane.setPrefHeight(714);
     pane.setPrefWidth(1168);
     pane.setContent(aPane);
-    pane.zoomTo(-5000, -3000, Point2D.ZERO);
     center.add(pane, 0, 0);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     pane.toBack();
@@ -78,8 +77,11 @@ public class KioskViewController {
     findPath(
         kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
         kioskMoveList.get(index.get()).getNextNode().getNodeID());
-    frontBox.toFront();
+
     frontBox2.toFront();
+    frontCenter.toFront();
+    frontRight.toFront();
+    frontLeft.toFront();
     // Schedule a task to update the index and set the new message and image every 10 seconds
     timeline =
         new Timeline(
@@ -104,9 +106,17 @@ public class KioskViewController {
                 }));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
+    Platform.runLater(
+        () -> {
+          changeFloor(
+              kioskMoveList.get(index.get()).getPrevNode().getFloor(),
+              new Point2D(
+                  kioskMoveList.get(index.get()).getPrevNode().getXCoord(),
+                  kioskMoveList.get(index.get()).getPrevNode().getYCoord()));
+        });
   }
 
-  private void changeFloor(String floor, Point2D p, ArrayList<String> path) {
+  private void changeFloor(String floor, Point2D p) {
     currentFloor = floor;
     nodeMap.clear();
     ImageView image = imageMap.get(floor);
@@ -130,8 +140,10 @@ public class KioskViewController {
       }
     }
     aPane.toFront();
-    frontBox.toFront();
     frontBox2.toFront();
+    frontCenter.toFront();
+    frontRight.toFront();
+    frontLeft.toFront();
 
     Platform.runLater(() -> pane.centreOn(p));
   }
@@ -140,8 +152,10 @@ public class KioskViewController {
     Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Bapp.blue);
     aPane.getChildren().add(dot);
     aPane.toFront();
-    frontBox.toFront();
     frontBox2.toFront();
+    frontCenter.toFront();
+    frontRight.toFront();
+    frontLeft.toFront();
     if (buttonMap.get(node) != null) {
       showButton(buttonMap.get(node));
     }
@@ -191,7 +205,7 @@ public class KioskViewController {
     String start = st;
     String end = en;
 
-    ArrayList<String> path = Pathfinding.getPathFromID(start, end);
+    path = Pathfinding.getPathFromID(start, end);
 
     startID = DBSession.getMostRecentNodeID(start);
     endID = DBSession.getMostRecentNodeID(end);
@@ -216,15 +230,15 @@ public class KioskViewController {
     }
     pane.toFront();
     aPane.toFront();
-    frontBox.toFront();
     frontBox2.toFront();
+    frontCenter.toFront();
+    frontRight.toFront();
+    frontLeft.toFront();
 
     Platform.runLater(
         () -> {
           changeFloor(
-              startNode.getFloor(),
-              new Point2D(startNode.getXCoord(), startNode.getYCoord()),
-              path);
+              startNode.getFloor(), new Point2D(startNode.getXCoord(), startNode.getYCoord()));
         });
   }
 
@@ -244,8 +258,7 @@ public class KioskViewController {
     MFXButton nextFloor = new MFXButton();
     nextFloor.setOnAction(
         e -> {
-          changeFloor(
-              endNode.getFloor(), new Point2D(endNode.getXCoord(), endNode.getYCoord()), path);
+          changeFloor(endNode.getFloor(), new Point2D(endNode.getXCoord(), endNode.getYCoord()));
         });
     nextFloor.setText("Go to next Floor");
     nextFloor.setStyle("-fx-background-color: #21357E; -fx-text-fill: #F2F2F2");

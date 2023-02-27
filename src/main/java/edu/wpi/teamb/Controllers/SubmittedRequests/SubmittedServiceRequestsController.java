@@ -143,6 +143,25 @@ public class SubmittedServiceRequestsController {
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
     dateLabel.setText(formattedDate);
+
+    //    ObservableList<PieChart.Data> pieChartData =
+    //        FXCollections.observableArrayList(
+    //            new PieChart.Data(
+    //                "Patient Transportation Requests", DBSession.getAllPTRequests().size()),
+    //            new PieChart.Data("Sanitation Requests", DBSession.getAllSanRequests().size()),
+    //            new PieChart.Data("Computer Requests", DBSession.getAllCRequests().size()),
+    //            new PieChart.Data("A/V Requests", DBSession.getAllAVRequests().size()),
+    //            new PieChart.Data("Security Requests", DBSession.getAllSecRequests().size()),
+    //            new PieChart.Data("Medicine Delivery Requests",
+    // DBSession.getAllMDRequests().size()),
+    //            new PieChart.Data("Equipment Delivery Requests",
+    // DBSession.getAllMEDRequests().size()),
+    //            new PieChart.Data(
+    //                "Facilities Maintenance Requests", DBSession.getAllFacRequests().size()));
+    //
+    //    PieChart pieChart = new PieChart(pieChartData);
+    //    pieChart.setTitle("Report");
+    //    mainVbox.getChildren().add(pieChart);
   }
 
   public void initLabels() {

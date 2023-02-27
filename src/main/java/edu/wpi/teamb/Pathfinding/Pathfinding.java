@@ -157,12 +157,23 @@ public class Pathfinding {
   }
 
   public static String[] getPathDirections(List<String> nodeList) {
-    String[] directions = new String[6];
+    String[] directions = {"", "", "", "", "", ""};
     List<String> floors = Arrays.asList("L2", "L1", "G", "1", "2", "3");
+    int index;
+    String s;
 
-
+    for (int i = 0; i < nodeList.size() - 1; i++) {
+      index = floors.indexOf(nodes.get(nodeList.get(i)).getFloor());
+      if (onSameFloor(nodeList.get(i), nodeList.get(i + 1))) {
+        System.out.println("Test");
+      }
+    }
 
     return directions;
+  }
+
+  private static boolean onSameFloor(String s1, String s2) {
+    return nodes.get(s1).getFloor().equals(nodes.get(s2).getFloor());
   }
 
   static ArrayList<String> getPathBreadthDepth(String startLoc, String endLoc, boolean breadth) {

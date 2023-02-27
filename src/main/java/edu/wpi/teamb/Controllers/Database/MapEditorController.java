@@ -34,6 +34,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
@@ -760,34 +761,28 @@ public class MapEditorController {
   }
 
   public void handleKeyPress(KeyEvent e) {
-
-    switch (e.getCode()) {
-
-        //      case BACK_SPACE -> {
-        //        if (currentLine != null) {
-        //          Node n1 = lineMap.get(currentLine).get(0);
-        //          Node n2 = lineMap.get(currentLine).get(1);
-        //          aPane.getChildren().remove(currentLine);
-        //          DBSession.deleteEdge(n1, n2);
-        //          Pathfinding.refreshData();
-        //          currentLine = null;
-        //        } else if (currentDot != null) {
-        //          Node n = nodeMap.get(currentDot);
-        //          promptEdgeRepair(n);
-        //          removeNode();
-        //          DBSession.deleteNode(n);
-        //        }
-        //        for (Circle dot : currentDots) {
-        //          Node n = nodeMap.get(dot);
-        //          DBSession.deleteNode(n);
-        //        }
-        //        removeNodes();
-        //      }
-        //
-        //      case S -> straightenNodes();
-        //      case H -> horizontalNodes();
-        //      case V -> verticalNodes();
-    }
+    if (e.getCode().equals(KeyCode.BACK_SPACE)) {
+      if (currentLine != null) {
+        Node n1 = lineMap.get(currentLine).get(0);
+        Node n2 = lineMap.get(currentLine).get(1);
+        aPane.getChildren().remove(currentLine);
+        DBSession.deleteEdge(n1, n2);
+        Pathfinding.refreshData();
+        currentLine = null;
+      } else if (currentDot != null) {
+        Node n = nodeMap.get(currentDot);
+        promptEdgeRepair(n);
+        removeNode();
+        DBSession.deleteNode(n);
+      }
+      for (Circle dot : currentDots) {
+        Node n = nodeMap.get(dot);
+        DBSession.deleteNode(n);
+      }
+      removeNodes();
+    } else if (e.getCode().equals(KeyCode.S)) straightenNodes();
+    else if (e.getCode().equals(KeyCode.H)) horizontalNodes();
+    else if (e.getCode().equals(KeyCode.V)) verticalNodes();
   }
 
   private void horizontalNodes() {

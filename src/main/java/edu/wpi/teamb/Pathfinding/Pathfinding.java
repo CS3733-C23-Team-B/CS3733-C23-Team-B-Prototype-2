@@ -160,7 +160,7 @@ public class Pathfinding {
     String[] directions = new String[6];
     List<String> floors = Arrays.asList("L2", "L1", "G", "1", "2", "3");
 
-    
+
 
     return directions;
   }

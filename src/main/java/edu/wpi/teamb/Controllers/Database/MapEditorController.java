@@ -775,26 +775,17 @@ public class MapEditorController {
         removeNode();
         DBSession.deleteNode(n);
       }
-
       for (Circle dot : currentDots) {
         Node n = nodeMap.get(dot);
         DBSession.deleteNode(n);
       }
-
       removeNodes();
+      MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
     }
 
-    if (e.getCode().equals(KeyCode.S)) {
-      straightenNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.H)) {
-      horizontalNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.V)) {
-      verticalNodes();
-    }
+    else if (e.getCode().equals(KeyCode.S)) straightenNodes();
+    else if (e.getCode().equals(KeyCode.H)) horizontalNodes();
+    else if (e.getCode().equals(KeyCode.V)) verticalNodes();
   }
 
   private void horizontalNodes() {

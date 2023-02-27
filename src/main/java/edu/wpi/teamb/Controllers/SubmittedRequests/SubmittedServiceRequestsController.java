@@ -21,6 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
@@ -110,7 +111,7 @@ public class SubmittedServiceRequestsController {
     requestUrgencyFilter.setOnAction(e -> filter());
     requestReporterFilter.setOnAction(e -> filter());
 
-    mainVbox.setPadding(new Insets(20, 20, 0, 20));
+    mainVbox.setPadding(new Insets(0, 20, 0, 20));
 
     requestStatusFilter.setItems(Status);
     assignedStaffFilter.setItems(staff);
@@ -143,25 +144,25 @@ public class SubmittedServiceRequestsController {
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
     dateLabel.setText(formattedDate);
+  }
 
-    //    ObservableList<PieChart.Data> pieChartData =
-    //        FXCollections.observableArrayList(
-    //            new PieChart.Data(
-    //                "Patient Transportation Requests", DBSession.getAllPTRequests().size()),
-    //            new PieChart.Data("Sanitation Requests", DBSession.getAllSanRequests().size()),
-    //            new PieChart.Data("Computer Requests", DBSession.getAllCRequests().size()),
-    //            new PieChart.Data("A/V Requests", DBSession.getAllAVRequests().size()),
-    //            new PieChart.Data("Security Requests", DBSession.getAllSecRequests().size()),
-    //            new PieChart.Data("Medicine Delivery Requests",
-    // DBSession.getAllMDRequests().size()),
-    //            new PieChart.Data("Equipment Delivery Requests",
-    // DBSession.getAllMEDRequests().size()),
-    //            new PieChart.Data(
-    //                "Facilities Maintenance Requests", DBSession.getAllFacRequests().size()));
-    //
-    //    PieChart pieChart = new PieChart(pieChartData);
+  public void displayChart() {
+    ObservableList<PieChart.Data> pieChartData =
+        FXCollections.observableArrayList(
+            new PieChart.Data(
+                "Patient Transportation Requests", DBSession.getAllPTRequests().size()),
+            new PieChart.Data("Sanitation Requests", DBSession.getAllSanRequests().size()),
+            new PieChart.Data("Computer Requests", DBSession.getAllCRequests().size()),
+            new PieChart.Data("A/V Requests", DBSession.getAllAVRequests().size()),
+            new PieChart.Data("Security Requests", DBSession.getAllSecRequests().size()),
+            new PieChart.Data("Medicine Delivery Requests", DBSession.getAllMDRequests().size()),
+            new PieChart.Data("Equipment Delivery Requests", DBSession.getAllMEDRequests().size()),
+            new PieChart.Data(
+                "Facilities Maintenance Requests", DBSession.getAllFacRequests().size()));
+
+    PieChart pieChart = new PieChart(pieChartData);
     //    pieChart.setTitle("Report");
-    //    mainVbox.getChildren().add(pieChart);
+    mainVbox.getChildren().add(pieChart);
   }
 
   public void initLabels() {
@@ -269,6 +270,9 @@ public class SubmittedServiceRequestsController {
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
     setLabel(page);
     mainVbox.getChildren().add(table);
+    if (page.equals(RequestType.ALLREQUESTS.toString())) {
+      displayChart();
+    }
   }
 
   private void setLabel(String name) {

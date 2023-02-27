@@ -4,9 +4,11 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
+import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Pathfinding {
@@ -144,7 +146,7 @@ public class Pathfinding {
    */
   private static List<String> nodesToLocations(List<String> path) {
     return path.stream()
-        .map(nodeID -> DBSession.getMostRecentMoves(nodeID).get(0).getLocationName().getLongName())
+        .map(nodeID -> movesID.get(nodeID).get(0).getLocationName().getLongName())
         .collect(Collectors.toList());
   }
 
@@ -158,15 +160,21 @@ public class Pathfinding {
 
   public static String[] getPathDirections(List<String> nodeList) {
     String[] directions = {"", "", "", "", "", ""};
+    List<String> locationList = nodesToLocations(nodeList);
     List<String> floors = Arrays.asList("L2", "L1", "G", "1", "2", "3");
     int index;
     String s;
 
     for (int i = 0; i < nodeList.size() - 1; i++) {
       index = floors.indexOf(nodes.get(nodeList.get(i)).getFloor());
+      s = "";
       if (onSameFloor(nodeList.get(i), nodeList.get(i + 1))) {
-        System.out.println("Test");
-      }
+        if (s.isEmpty()) s += "Go to " + locationList.get(i + 1) + ".";
+        else s += "\nThen go to " + locationList.get(i + 1) + ".";
+      } else
+        for (int j = i; j < nodeList.size() - 1; j++) {
+          if (true) System.out.println("TRUE");
+        }
     }
 
     return directions;

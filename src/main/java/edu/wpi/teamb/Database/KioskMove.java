@@ -56,7 +56,7 @@ public class KioskMove {
       nullable = false,
       foreignKey =
           @ForeignKey(
-              name = "kioskmove_prevnode_fk_iter4",
+              name = "move_prevNode_fk_iter4",
               foreignKeyDefinition =
                   "FOREIGN KEY (prevNode) REFERENCES iter4.Node(nodeID) ON UPDATE CASCADE ON DELETE CASCADE"))
   @ManyToOne

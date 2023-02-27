@@ -1,6 +1,8 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
+import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Requests.PatientTransportationRequest;
+import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -59,6 +61,8 @@ public class MedicalEquipmentDeliveryController extends BaseRequestController {
 
     var equipment = equipmentNeededBox.getValue();
     request.setEquipmentNeeded(equipment.toString());
+    request.setRequestType(RequestType.MEDICALEQUIPMENT);
+    DBSession.addRequest(request);
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }

@@ -2,7 +2,10 @@ package edu.wpi.teamb.Navigation;
 
 public enum Screen {
   HOME("views/Navigation/HomeScreen.fxml"),
+  MESSAGE_BOX("views/Kiosk/KioskMessageBox.fxml"),
+  KIOSK_VIEW("views/Kiosk/KioskView.fxml"),
   DATABASE_HELP("views/Database/DatabaseHelp.fxml"),
+  KIOSK_EDIT("views/Kiosk/KioskEditor.fxml"),
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
   MAP_EDITOR("views/Database/MapEditor.fxml"),
   NODE_EDITOR("views/Database/NodeEditor.fxml"),
@@ -30,6 +33,7 @@ public enum Screen {
   MAINHELP("views/Popups/MainHelpPage.fxml"),
   FOOTER("views/Navigation/Footer.fxml"),
   SUBMISSION_SUCCESS("views/Popups/SubmissionSuccess.fxml"),
+  DEVELOPERS("views/Popups/ServiceRequestDevelopers.fxml"),
   CREDITS("views/Navigation/Credits.fxml"),
   SERVICE_REQUEST_SYSTEMS("views/ServiceRequest/ServiceRequestSystems.fxml"),
   CREATE_ACCOUNT("views/Profile/CreateAccount.fxml"),
@@ -43,7 +47,17 @@ public enum Screen {
   MAP_EDITOR_HELP_POP_UP("views/Popups/MapEditorHelpPopUp.fxml"),
   PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml"),
   DATABASE_CONFIRMATION("views/Database/DatabaseConfirmation.fxml"),
-  MEDICINE_DELIVERY_SERVICE_REQUEST("views/ServiceRequest/MedicineDelivery.fxml");
+  MEDICINE_DELIVERY_SERVICE_REQUEST("views/ServiceRequest/MedicineDelivery.fxml"),
+  KAVYA_MANI("views/Popups/KavyaPopUp.fxml"),
+  ADRIAN_JOHNSON("views/Popups/AdrianPopUp.fxml"),
+  JOLIE_WALTS("views/Popups/JoliePopUp.fxml"),
+  CHRISTINA_AUBE("views/Popups/ChristinaPopUp.fxml"),
+  CIERRA_OGRADY("views/Popups/CierraPopUp.fxml"),
+  LUKE_GRADY("views/Popups/LukePopUp.fxml"),
+  SAM_COLEBOURN("views/Popups/SamPopUp.fxml"),
+  SEAN_LENDRUM("views/Popups/SeanPopUp.fxml"),
+  MICHAEL_GATTI("views/Popups/MichaelPopUp.fxml"),
+  JACK_LAFORD("views/Popups/JackPopUp.fxml");
 
   private final String filename;
 

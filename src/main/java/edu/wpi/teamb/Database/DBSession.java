@@ -75,6 +75,10 @@ public class DBSession {
     MapDAO.addKioskMove(km);
   }
 
+  public static void addKioskMove(Move m, String message) {
+    MapDAO.addKioskMove(m, message);
+  }
+
   public static void deleteKioskMove(KioskMove km) {
     MapDAO.deleteKioskMove(km);
   }
@@ -190,6 +194,10 @@ public class DBSession {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public static synchronized List<Move> getAllMoves() {
+    return MapDAO.getAllMoves();
   }
 
   public static synchronized String getMostRecentNodeID(String longName) {

@@ -130,6 +130,8 @@ public class MapEditorController {
     pane = new GesturePane();
     pane.setOnKeyPressed(e -> handleKeyPress(e));
 
+    pane.setPrefHeight(map.getHeight());
+    pane.setPrefWidth(map.getWidth());
     edge.setStrokeWidth(5);
 
     pane.setPrefHeight(714);

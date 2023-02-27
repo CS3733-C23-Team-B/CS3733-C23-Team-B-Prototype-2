@@ -1,6 +1,7 @@
 package edu.wpi.teamb.Controllers.Navigation;
 
 import edu.wpi.teamb.Bapp;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
@@ -60,6 +61,10 @@ public class ServiceRequestSystemsController {
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
     dateLabel.setText(formattedDate);
+  }
+
+  public void viewDevsButtonClicked() throws IOException {
+    Popup.displayPopup(Screen.DEVELOPERS);
   }
 
   /**

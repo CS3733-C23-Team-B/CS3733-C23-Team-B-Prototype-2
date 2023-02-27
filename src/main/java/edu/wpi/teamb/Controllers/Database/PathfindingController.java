@@ -87,9 +87,9 @@ public class PathfindingController {
 
   /** Initializes the dropdown menus */
   public void initialize() {
-    moveMap = DBSession.getIDMoves(new Date(123, 1, 1));
+    moveMap = DBSession.getIDMoves(new Date(123, 0, 1));
     Pathfinding.refreshData();
-    Pathfinding.setDate(new Date(123, 1, 1));
+    Pathfinding.setDate(new Date(123, 0, 1));
 
     floorMap.put("Lower Level 2", "L2");
     floorMap.put("Lower Level 1", "L1");
@@ -439,7 +439,7 @@ public class PathfindingController {
   static ObservableList<String> getLocations(String s) {
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    Map<String, Move> moves = DBSession.getLNMoves(new Date(123, 1, 1));
+    Map<String, Move> moves = DBSession.getLNMoves(new Date(123, 0, 1));
 
     for (Move move : moves.values())
       if (!list.contains(move.getLocationName().getLongName()))

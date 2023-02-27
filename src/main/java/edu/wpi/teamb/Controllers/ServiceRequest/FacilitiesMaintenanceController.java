@@ -1,11 +1,10 @@
 package edu.wpi.teamb.Controllers.ServiceRequest;
 
 import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.Requests.MedicalEquipmentDeliveryRequest;
+import edu.wpi.teamb.Database.Requests.FacilitiesRequest;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
@@ -16,11 +15,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
 
-public class MedicalEquipmentDeliveryController extends BaseRequestController {
-  // Lists for checkboxes
-  private ObservableList<String> equipmentOptions =
-      FXCollections.observableArrayList("Stretcher", "Wheelchair", "Restraints", "Stair Chair");
-  @FXML private MFXComboBox equipmentNeededBox;
+public class FacilitiesMaintenanceController extends BaseRequestController {
+  ObservableList<String> maintenanceType =
+      FXCollections.observableArrayList("HVAC", "Elevator", "Power");
+
+  @FXML private MFXFilterComboBox<String> maintenanceTypeBox;
 
   /** Initialize the page by creating lists of components and declaring choice-box options */
   @FXML
@@ -29,7 +28,7 @@ public class MedicalEquipmentDeliveryController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      urgencyBox, assignedStaffBox, locationBox, equipmentNeededBox, additionalNotesField
+      locationBox, urgencyBox, maintenanceTypeBox, assignedStaffBox, additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
@@ -41,7 +40,7 @@ public class MedicalEquipmentDeliveryController extends BaseRequestController {
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
 
-    equipmentNeededBox.setItems(equipmentOptions);
+    maintenanceTypeBox.setItems(maintenanceType);
 
     super.initialize();
   }
@@ -56,12 +55,14 @@ public class MedicalEquipmentDeliveryController extends BaseRequestController {
   public void submitButtonClicked() throws IOException {
     // handle retrieving values and saving
 
-    MedicalEquipmentDeliveryRequest request = new MedicalEquipmentDeliveryRequest();
+    FacilitiesRequest request = new FacilitiesRequest();
+
     super.submit(request);
 
-    var equipment = equipmentNeededBox.getValue();
-    request.setEquipmentType(equipment.toString());
-    request.setRequestType(RequestType.MEDICALEQUIPMENT);
+    var equipment = maintenanceTypeBox.getValue();
+    request.setMaintenanceType(equipment.toString());
+
+    request.setRequestType(RequestType.FACILITIES);
     DBSession.addRequest(request);
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);

@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="650.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="edu.wpi.teamb.Controllers.Database.MapEditorController">
+<GridPane prefHeight="650.0" prefWidth="1200.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.MapEditorController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -79,7 +79,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label text="Map Editor" textFill="#333333">
+                              <Label id="title" text="Map Editor" textFill="#333333">
                                  <font>
                                     <Font size="40.0" />
                                  </font>
@@ -93,7 +93,7 @@
                         </HBox>
                         <HBox alignment="CENTER" minHeight="0.0" spacing="20.0">
                            <children>
-                              <MFXFilterComboBox fx:id="floorCombo" floatMode="DISABLED" maxHeight="40.0" minHeight="25.0" minWidth="0.0" prefHeight="40.0" style="-fx-background-radius: 8; -fx-background-color: #eeeeee; -fx-border-color: #cecece;" text="Lower Level 1">
+                              <MFXFilterComboBox id="button" fx:id="floorCombo" floatMode="DISABLED" maxHeight="40.0" minHeight="25.0" minWidth="0.0" prefHeight="40.0" style="-fx-background-radius: 8; -fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-border-radius: 8;" text="Lower Level 1">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -101,7 +101,7 @@
                                     <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
                                  </textFill>
                               </MFXFilterComboBox>
-                              <MFXCheckbox fx:id="showLocationsCheckBox" minWidth="0.0" onAction="#showLocationsClicked" text="Show Locations" textFill="#333333" wrapText="true">
+                              <MFXCheckbox id="mapEditorCheckbox" fx:id="showLocationsCheckBox" minWidth="0.0" onAction="#showLocationsClicked" text="Show Locations" textFill="#333333" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -112,26 +112,12 @@
                            <children>
                               <HBox alignment="TOP_CENTER" spacing="15.0">
                                  <children>
-                                    <MFXButton fx:id="newnode" depthLevel="LEVEL3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newNodeClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Node" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="newnode" depthLevel="LEVEL3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newNodeClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Node" textFill="#c5d3ea">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </MFXButton>
-                                    <MFXButton fx:id="newedge" depthLevel="LEVEL3" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newEdgeClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Edge" textFill="#c5d3ea">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </MFXButton>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="TOP_CENTER" spacing="15.0">
-                                 <children>
-                                    <MFXButton fx:id="newLocation" depthLevel="LEVEL3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newLocationClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Location" textFill="#c5d3ea">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </MFXButton>
-                                    <MFXButton fx:id="editlocation" depthLevel="LEVEL3" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#editLocationClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Edit Location" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="newedge" depthLevel="LEVEL3" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newEdgeClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Edge" textFill="#c5d3ea">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -140,12 +126,26 @@
                               </HBox>
                               <HBox alignment="TOP_CENTER" spacing="15.0">
                                  <children>
-                                    <MFXButton fx:id="newmove" depthLevel="LEVEL3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newMovesClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Move" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="newLocation" depthLevel="LEVEL3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newLocationClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Location" textFill="#c5d3ea">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </MFXButton>
-                                    <MFXButton fx:id="viewmoves" depthLevel="LEVEL3" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#viewMovesClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="View Moves" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="editlocation" depthLevel="LEVEL3" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#editLocationClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Edit Location" textFill="#c5d3ea">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" spacing="15.0">
+                                 <children>
+                                    <MFXButton id="mapEditorButton" fx:id="newmove" depthLevel="LEVEL3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newMovesClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Move" textFill="#c5d3ea">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <MFXButton id="mapEditorButton" fx:id="viewmoves" depthLevel="LEVEL3" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#viewMovesClicked" prefWidth="138.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="View Moves" textFill="#c5d3ea">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

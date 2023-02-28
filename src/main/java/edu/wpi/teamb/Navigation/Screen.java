@@ -20,7 +20,7 @@ public enum Screen {
   EDGE_CLICK_CREATOR("views/Database/EdgeClickCreator.fxml"),
   EDGE_REPAIR("views/Database/EdgeRepair.fxml"),
   NAVIGATION("views/Navigation/Navigation.fxml"),
-  PATHFINDING("views/Database/Pathfinding.fxml"),
+  PATHFINDING("views/Database/Pathfinding2.fxml"),
   PATIENT_TRANSPORTATION("views/ServiceRequest/PatientTransportation.fxml"),
   SANITATION("views/ServiceRequest/SanitationService.fxml"),
   COMPUTER_SERVICES("views/ServiceRequest/ComputerService.fxml"),
@@ -60,7 +60,8 @@ public enum Screen {
   SAM_COLEBOURN("views/Popups/SamPopUp.fxml"),
   SEAN_LENDRUM("views/Popups/SeanPopUp.fxml"),
   MICHAEL_GATTI("views/Popups/MichaelPopUp.fxml"),
-  JACK_LAFOND("views/Popups/JackPopUp.fxml");
+  JACK_LAFOND("views/Popups/JackPopUp.fxml"),
+  SUBMITTED_REQUESTS_HELP("views/Popups/SubmittedRequestsHelpPage.fxml");
 
   private final String filename;
 

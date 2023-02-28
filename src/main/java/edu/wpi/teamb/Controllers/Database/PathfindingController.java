@@ -18,9 +18,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,8 +29,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -93,6 +91,8 @@ public class PathfindingController {
   List<Node> nodePath;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
+
+  @Getter @FXML private Pane forms;
 
   /** Initializes the dropdown menus */
   public void initialize() {
@@ -562,17 +562,15 @@ public class PathfindingController {
 
     Group lineGroup = new Group();
     linesPlane.getChildren().add(lineGroup);
-    Path path = new Path();
-    int startX = start.getXCoord();
-    int startY = start.getYCoord();
-    int endX = end.getXCoord();
-    int endY = end.getYCoord();
-    int xLength = (startX - endX) / 2;
-    int yLength = (startY - endY) / 2;
 
-    MoveTo moveTo = new MoveTo(startX - xLength, startY - yLength);
-    LineTo lineTo = new LineTo(endX - xLength, endY - yLength);
-    path.getElements().addAll(moveTo, lineTo);
+    double startX = start.getXCoord() - ((start.getXCoord() - end.getXCoord()) / 3);
+    double startY = start.getYCoord() - ((start.getYCoord() - end.getYCoord()) / 3);
+    double endX = end.getXCoord() + ((start.getXCoord() - end.getXCoord()) / 3);
+    double endY = end.getYCoord() + ((start.getYCoord() - end.getYCoord()) / 3);
+
+    Path path = new Path();
+    path.getElements().add(new MoveTo(startX - 5, startY));
+    path.getElements().add(new LineTo(endX - 5, endY));
 
     PathTransition transition = new PathTransition();
     transition.setDuration(Duration.seconds(2)); // set the duration of the animation
@@ -580,17 +578,28 @@ public class PathfindingController {
     transition.setPath(path); // set the path along which the line will be animated
     transition.setCycleCount(Timeline.INDEFINITE); // set the number of cycles for the animation
 
-    // set the properties of the dashed line
-    DoubleProperty dashOffset = new SimpleDoubleProperty();
-    Line line = new Line(startX, startY, endX - xLength, endY - yLength);
+    Line line = new Line(startX, startY, endX, endY);
     line.setStroke(Color.BLACK);
     line.setStrokeWidth(5);
-    line.getStrokeDashArray().addAll(15d, 10d);
-    line.setStrokeDashOffset(0);
-    line.strokeDashOffsetProperty().bind(dashOffset);
 
-    // add the line to the pane
-    lineGroup.getChildren().add(line);
+    // Create a triangle polygon for the end of the line
+    Polygon triangle = new Polygon();
+    triangle.getPoints().addAll(endX - 5, endY - 10, endX + 5, endY, endX - 5, endY + 10);
+
+    // Calculate the angle between the start and end points
+    double angle = Math.atan2((endY - startY), (endX - startX)) * (180 / Math.PI);
+
+    // Rotate the triangle to match the angle of the line
+    triangle.setRotate(angle);
+
+    // Set the fill and stroke properties of the triangle
+    triangle.setFill(Color.BLACK);
+    triangle.setStroke(Color.BLACK);
+    triangle.setStrokeWidth(5);
+
+    // add the line and triangle to the pane
+    lineGroup.getChildren().addAll(line, triangle);
+
     transition.play();
   }
 

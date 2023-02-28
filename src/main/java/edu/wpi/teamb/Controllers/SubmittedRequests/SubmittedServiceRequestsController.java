@@ -354,7 +354,7 @@ public class SubmittedServiceRequestsController {
         MedicineDeliveryRequest medr = (MedicineDeliveryRequest) r;
         addAttribute("Location:", medr.getLocation());
         addAttribute("Type of Medicine:", medr.getMedicineType());
-        addAttribute("Dosage:", medr.getDoasage());
+        addAttribute("Dosage:", medr.getDosage());
         addAttribute("Patient ID:", medr.getPatientID());
         setFields();
       } else if (r.getRequestType().equals(RequestType.MEDICALEQUIPMENT)) {

@@ -47,6 +47,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import lombok.Getter;
+import lombok.Setter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
@@ -74,7 +75,9 @@ public class MapEditorController {
   private boolean creatingEdge;
   private boolean context = false;
   private Circle edgeNode1, edgeNode2;
-  private static MapEditorController instance;
+  @Getter public static MapEditorController instance;
+
+  @Getter @Setter public String currentLoc;
   private Map<String, List<Move>> moveMap;
   @FXML MFXFilterComboBox<String> floorCombo;
   private Map<String, String> floorMap = new HashMap<>();
@@ -334,6 +337,7 @@ public class MapEditorController {
       t = moves.get(0).getLocationName().getLongName();
       if (moves.size() > 1) t += "\n" + moves.get(1).getLocationName().getLongName();
     }
+    this.getInstance().setCurrentLoc(t);
     Text loc = new Text(t);
 
     Button editButton = new Button("Edit");

@@ -34,7 +34,7 @@ public class RequestDAO {
     List<PatientTransportationRequest> rs = new ArrayList<PatientTransportationRequest>();
     for (PatientTransportationRequest r : PTRequests) {
       if (r.getPatientDestinationLocation().equalsIgnoreCase(l)
-              || r.getLocation().equalsIgnoreCase(l)) {
+          || r.getLocation().equalsIgnoreCase(l)) {
         rs.add(r);
       }
     }

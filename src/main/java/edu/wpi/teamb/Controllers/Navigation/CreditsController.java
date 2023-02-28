@@ -48,6 +48,11 @@ public class CreditsController {
     Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/cleaning"));
   }
 
+  // Facilities Maintenance Icon
+  public void facilitiesClicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
+    Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/facility-management"));
+  }
+
   // Security Icon
   public void securityClicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
     Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/security"));

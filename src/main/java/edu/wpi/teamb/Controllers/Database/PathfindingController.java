@@ -71,6 +71,8 @@ public class PathfindingController {
   private boolean pathingByClick = false;
   private static Node currentNode;
   private Circle currentDot;
+
+  private Timeline animationTimeline;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
   private Map<String, List<Move>> moveMap;
   @FXML AnchorPane anchor;
@@ -197,6 +199,9 @@ public class PathfindingController {
   }
 
   private void changeFloor(String floor, Point2D p) {
+    if (animationTimeline != null) animationTimeline.stop();
+    animationTimeline = null;
+
     currentFloor = floor;
     ImageView image;
     nodeMap.clear();
@@ -255,13 +260,21 @@ public class PathfindingController {
   }
 
   private void drawLines() {
+    linesPlane.getChildren().clear();
+    List<List<Node>> floorPathPairs = new ArrayList<>();
+    floorPathPairs.clear();
     for (List<Node> pair : pathNodePairs) {
       if (pair.get(0).getFloor().equals(currentFloor)
-          && pair.get(1).getFloor().equals(currentFloor))
-        placeAnimatedLine(pair.get(0), pair.get(1));
-      if ((buttonMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
+          && pair.get(1).getFloor().equals(currentFloor)) {
+        floorPathPairs.add(pair);
+      }
+      if ((buttonMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor)) {
         showButton(buttonMap.get(pair.get(1)));
+      }
     }
+    if (animationTimeline != null) animationTimeline.stop();
+    animationTimeline = null;
+    placeAnimatedLine(floorPathPairs);
   }
 
   public void displayPopUp(Circle dot) {
@@ -418,13 +431,8 @@ public class PathfindingController {
       Node s = nodes.get(path.get(i));
       Node e = nodes.get(path.get(i + 1));
       pathNodePairs.add(Arrays.asList(s, e));
-
-      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
-        placeAnimatedLine(s, e);
-      }
-      if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor))
-        showButton(buttonMap.get(s));
     }
+    drawLines();
     pane.toFront();
 
     if (startDot != null) {
@@ -542,6 +550,9 @@ public class PathfindingController {
   }
 
   public void startPathFromHereClicked() throws IOException {
+    if (animationTimeline != null) animationTimeline.stop();
+    animationTimeline = null;
+    linesPlane.getChildren().clear();
     pathingByClick = true;
     Node n = nodeMap.get(currentDot);
     String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
@@ -565,49 +576,45 @@ public class PathfindingController {
         });
   }
 
-  private void placeAnimatedLine(Node start, Node end) {
+  private void placeAnimatedLine(List<List<Node>> nodePairs) {
+    linesPlane.getChildren().clear();
+    animationTimeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(100),
+                event -> {
+                  Group lineGroup = new Group();
+                  linesPlane.getChildren().add(lineGroup);
+                  Circle line = new Circle(0, 0, 3, Color.BLACK);
 
-    Group lineGroup = new Group();
-    linesPlane.getChildren().add(lineGroup);
+                  lineGroup.getChildren().add(line);
 
-    double startX = start.getXCoord() - ((start.getXCoord() - end.getXCoord()) / 3);
-    double startY = start.getYCoord() - ((start.getYCoord() - end.getYCoord()) / 3);
-    double endX = end.getXCoord() + ((start.getXCoord() - end.getXCoord()) / 3);
-    double endY = end.getYCoord() + ((start.getYCoord() - end.getYCoord()) / 3);
+                  Path path = getPath(nodePairs);
 
+                  PathTransition transition = new PathTransition();
+                  transition.setDuration(Duration.seconds(nodePairs.size() / 2));
+                  transition.setNode(lineGroup);
+                  transition.setPath(path);
+                  transition.setCycleCount(Timeline.INDEFINITE);
+                  transition.play();
+                }));
+    animationTimeline.setCycleCount(Timeline.INDEFINITE);
+    animationTimeline.play();
+  }
+
+  private Path getPath(List<List<Node>> nodePairs) {
     Path path = new Path();
-    path.getElements().add(new MoveTo(startX - 5, startY));
-    path.getElements().add(new LineTo(endX - 5, endY));
-
-    PathTransition transition = new PathTransition();
-    transition.setDuration(Duration.seconds(2)); // set the duration of the animation
-    transition.setNode(lineGroup); // set the node on which the line will be drawn
-    transition.setPath(path); // set the path along which the line will be animated
-    transition.setCycleCount(Timeline.INDEFINITE); // set the number of cycles for the animation
-
-    Line line = new Line(startX, startY, endX, endY);
-    line.setStroke(Color.BLACK);
-    line.setStrokeWidth(5);
-
-    // Create a triangle polygon for the end of the line
-    Polygon triangle = new Polygon();
-    triangle.getPoints().addAll(endX - 5, endY - 10, endX + 5, endY, endX - 5, endY + 10);
-
-    // Calculate the angle between the start and end points
-    double angle = Math.atan2((endY - startY), (endX - startX)) * (180 / Math.PI);
-
-    // Rotate the triangle to match the angle of the line
-    triangle.setRotate(angle);
-
-    // Set the fill and stroke properties of the triangle
-    triangle.setFill(Color.BLACK);
-    triangle.setStroke(Color.BLACK);
-    triangle.setStrokeWidth(5);
-
-    // add the line and triangle to the pane
-    lineGroup.getChildren().addAll(line, triangle);
-
-    transition.play();
+    if (nodePairs.size() > 0)
+      path.getElements()
+          .add(
+              new MoveTo(nodePairs.get(0).get(0).getXCoord(), nodePairs.get(0).get(0).getYCoord()));
+    for (List<Node> pair : nodePairs) {
+      Node end = pair.get(1);
+      int endX = end.getXCoord();
+      int endY = end.getYCoord();
+      path.getElements().add(new LineTo(endX, endY));
+    }
+    return path;
   }
 
   public void helpButtonClicked() {

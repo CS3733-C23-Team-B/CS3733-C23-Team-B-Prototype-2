@@ -15,7 +15,9 @@ import java.time.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
+import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -23,12 +25,12 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -70,6 +72,8 @@ public class PathfindingController {
   private boolean pathingByClick = false;
   private static Node currentNode;
   private Circle currentDot;
+
+  private Timeline animationTimeline;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
   private Map<String, List<Move>> moveMap;
   @FXML AnchorPane anchor;
@@ -92,6 +96,7 @@ public class PathfindingController {
   @FXML Label timeLabel;
   @FXML Label dateLabel;
   @Getter @FXML private AnchorPane dir;
+
   @Getter @FXML private Pane forms;
 
   private String[] directions;
@@ -141,7 +146,6 @@ public class PathfindingController {
     searchCombo.setItems(
         FXCollections.observableArrayList(
             "A* Search", "Breadth-first Search", "Depth-first Search"));
-
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
@@ -200,9 +204,6 @@ public class PathfindingController {
           } else if (node.getNodeID().equals(endID)) {
             endDot = c;
             endDot.setFill(Color.RED);
-            if (nodeMap != null) {
-              updateTextFieldPosition(nodeMap.get(endDot));
-            }
           }
         }
       }
@@ -210,6 +211,9 @@ public class PathfindingController {
   }
 
   private void changeFloor(String floor, Point2D p) {
+    if (animationTimeline != null) animationTimeline.stop();
+    animationTimeline = null;
+
     currentFloor = floor;
     ImageView image;
     nodeMap.clear();
@@ -300,12 +304,21 @@ public class PathfindingController {
   }
 
   private void drawLines() {
+    linesPlane.getChildren().clear();
+    List<List<Node>> floorPathPairs = new ArrayList<>();
+    floorPathPairs.clear();
     for (List<Node> pair : pathNodePairs) {
       if (pair.get(0).getFloor().equals(currentFloor)
-          && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
-      if ((buttonMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
+          && pair.get(1).getFloor().equals(currentFloor)) {
+        floorPathPairs.add(pair);
+      }
+      if ((buttonMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor)) {
         showButton(buttonMap.get(pair.get(1)));
+      }
     }
+    if (animationTimeline != null) animationTimeline.stop();
+    animationTimeline = null;
+    placeAnimatedLine(floorPathPairs);
   }
 
   public void displayPopUp(Circle dot) {
@@ -385,8 +398,6 @@ public class PathfindingController {
     Pathfinding.setDate(date);
   }
 
-  public void createPathFromNode() {}
-
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
     pathNotFound = false;
@@ -462,13 +473,8 @@ public class PathfindingController {
       Node s = nodes.get(path.get(i));
       Node e = nodes.get(path.get(i + 1));
       pathNodePairs.add(Arrays.asList(s, e));
-
-      if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
-        placeLine(s, e);
-      }
-      if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor))
-        showButton(buttonMap.get(s));
     }
+    drawLines();
     pane.toFront();
 
     if (startDot != null) {
@@ -585,6 +591,9 @@ public class PathfindingController {
   }
 
   public void startPathFromHereClicked() throws IOException {
+    if (animationTimeline != null) animationTimeline.stop();
+    animationTimeline = null;
+    linesPlane.getChildren().clear();
 
     pathingByClick = true;
     Node n = nodeMap.get(currentDot);
@@ -595,7 +604,7 @@ public class PathfindingController {
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.CLICK_PATHFINDING_INSTRUCTION.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
-    forms.getChildren().add(loader.load())
+    forms.getChildren().add(loader.load());
   }
 
   public void showLocationsClicked() {
@@ -609,26 +618,51 @@ public class PathfindingController {
         });
   }
 
-  private void placeLine(Node start, Node end) {
-    Line line = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
-    line.setFill(Color.BLACK);
-    line.setStrokeWidth(5);
+  private void placeAnimatedLine(List<List<Node>> nodePairs) {
+    linesPlane.getChildren().clear();
+    animationTimeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(200),
+                event -> {
+                  Group lineGroup = new Group();
+                  linesPlane.getChildren().add(lineGroup);
+                  Circle line = new Circle(0, 0, 3, Color.BLACK);
 
-    // Add the line to the scene graph and track the nodes that have been added
-    linesPlane.getChildren().add(line);
+                  lineGroup.getChildren().add(line);
+
+                  Path path = getPath(nodePairs);
+
+                  PathTransition transition = new PathTransition();
+                  transition.setInterpolator(Interpolator.LINEAR);
+                  transition.setDuration(Duration.seconds(nodePairs.size()));
+                  transition.setNode(lineGroup);
+                  transition.setPath(path);
+                  transition.setCycleCount(Timeline.INDEFINITE);
+                  transition.play();
+                }));
+    animationTimeline.setCycleCount(Timeline.INDEFINITE);
+    animationTimeline.play();
   }
 
-  private void updateTextFieldPosition(Node endNode) {
-    double textFieldWidth = 10;
-    double textFieldHeight = 10;
-    double textFieldPadding = 10;
+  private Path getPath(List<List<Node>> nodePairs) {
+    Path path = new Path();
+    if (nodePairs.size() > 0)
+      path.getElements()
+          .add(
+              new MoveTo(nodePairs.get(0).get(0).getXCoord(), nodePairs.get(0).get(0).getYCoord()));
+    for (List<Node> pair : nodePairs) {
+      Node end = pair.get(1);
+      int endX = end.getXCoord();
+      int endY = end.getYCoord();
+      path.getElements().add(new LineTo(endX, endY));
+    }
+    return path;
   }
 
   public void helpButtonClicked() {
     Popup.displayPopup(Screen.PATHFINDING_HELP_POP_UP);
   }
-
-  public void searchCombo(ActionEvent actionEvent) {}
 
   public static PathfindingController getInstance() {
     return instance;

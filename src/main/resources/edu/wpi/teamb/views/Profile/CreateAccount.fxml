@@ -16,23 +16,23 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.CreateAccountController">
+<GridPane alignment="CENTER" prefHeight="633.0" prefWidth="1309.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.CreateAccountController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" percentWidth="23.0" prefWidth="192.3999481201172" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" percentWidth="54.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="54.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" percentWidth="23.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="506.800048828125" minHeight="10.0" percentHeight="10.0" prefHeight="506.800048828125" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="670.0" minHeight="30.400048828125023" percentHeight="80.0" prefHeight="30.400048828125023" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="80.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="487.599951171875" minHeight="10.0" percentHeight="10.0" prefHeight="487.599951171875" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <GridPane style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -42,7 +42,7 @@
          <children>
             <VBox alignment="TOP_CENTER" GridPane.rowIndex="1">
                <children>
-                  <MFXButton fx:id="backButton" onAction="#backButtonClicked" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" text="   Back" textFill="WHITE">
+                  <MFXButton id="createAccountButton" fx:id="backButton" onAction="#backButtonClicked" prefHeight="35.0" prefWidth="86.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" stylesheets="@../../../../../css/style.css" text="Back" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -59,35 +59,24 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #F2F2F2;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <MFXScrollPane fitToHeight="true" fitToWidth="true" prefWidth="380.0" style="-fx-background-color: #F2F2F2;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <content>
-                  <VBox alignment="TOP_CENTER">
+                  <VBox alignment="TOP_CENTER" prefWidth="375.0">
                      <children>
-                        <Label id="createAccount" stylesheets="@../../../../../css/style.css" text="Create New Account" wrapText="true">
+                        <Label id="signInTitle" stylesheets="@../../../../../css/style.css" text="Create New Account" textFill="#333333" wrapText="true">
                            <font>
-                              <Font size="48.0" />
+                              <Font size="45.0" />
                            </font>
                         </Label>
-                        <Label id="createAccountBody" stylesheets="@../../../../../css/style.css" text="Create an account as a hospital staff member">
+                        <Label id="createAccountAccent" stylesheets="@../../../../../css/style.css" text="Create an account as a hospital staff member" textFill="#333333" wrapText="true">
                            <VBox.margin>
-                              <Insets top="25.0" />
+                              <Insets left="10.0" top="25.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="System Italic" size="14.0" />
+                              <Font name="System Italic" size="18.0" />
                            </font>
                         </Label>
-                        <MFXTextField id="signInButtons" fx:id="firstNameField" floatMode="ABOVE" minHeight="10.0" prefHeight="65.0" prefWidth="340.0" promptText="First Name" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                           <textFill>
-                              <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
-                           </textFill>
-                        </MFXTextField>
-                        <MFXTextField id="signInButtons" fx:id="lastNameField" floatMode="ABOVE" minHeight="10.0" prefHeight="65.0" prefWidth="340.0" promptText="Last Name" style="-fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXTextField id="createAccountBody" fx:id="firstNameField" floatMode="ABOVE" prefHeight="55.0" prefWidth="375.0" promptText="First Name" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -98,31 +87,42 @@
                               <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
                            </textFill>
                         </MFXTextField>
-                        <MFXTextField id="signInButtons" fx:id="emailField" floatMode="ABOVE" minHeight="10.0" prefHeight="65.0" prefWidth="340.0" promptText="Email" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXTextField id="createAccountBody" fx:id="lastNameField" floatMode="ABOVE" prefHeight="55.0" prefWidth="375.0" promptText="Last Name" style="-fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="17.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="20.0" />
                            </VBox.margin>
                            <textFill>
                               <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
                            </textFill>
                         </MFXTextField>
-                        <MFXTextField id="signInButtons" fx:id="usernameField" floatMode="ABOVE" minHeight="10.0" prefHeight="65.0" prefWidth="340.0" promptText="Username" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXTextField id="createAccountBody" fx:id="emailField" floatMode="ABOVE" prefHeight="55.0" prefWidth="375.0" promptText="Email" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="20.0" />
                            </VBox.margin>
                            <textFill>
                               <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
                            </textFill>
                         </MFXTextField>
-                        <MFXPasswordField id="signInButtons" fx:id="passwordField" borderGap="0.0" floatMode="ABOVE" floatingTextGap="0.0" graphicTextGap="0.0" measureUnitGap="0.0" minHeight="10.0" prefHeight="65.0" prefWidth="340.0" promptText="Password" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXTextField id="createAccountBody" fx:id="usernameField" floatMode="ABOVE" prefHeight="55.0" prefWidth="375.0" promptText="Username" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                           <textFill>
+                              <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
+                           </textFill>
+                        </MFXTextField>
+                        <MFXPasswordField id="createAccountBody" fx:id="passwordField" borderGap="0.0" floatMode="ABOVE" floatingTextGap="0.0" graphicTextGap="0.0" measureUnitGap="0.0" prefHeight="55.0" prefWidth="375.0" promptText="Password" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                           <VBox.margin>
+                              <Insets top="20.0" />
                            </VBox.margin>
                            <font>
                               <Font size="18.0" />
@@ -131,12 +131,12 @@
                               <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
                            </textFill>
                         </MFXPasswordField>
-                        <MFXButton id="createAccountButton" minHeight="46.0" minWidth="100.0" onAction="#submitClicked" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #21357E; -fx-background-radius: 6;" stylesheets="@../../../../../css/style.css" text="Create Account" textFill="WHITE">
+                        <MFXButton id="createAccountButton" minHeight="46.0" minWidth="100.0" onAction="#submitClicked" prefHeight="50.0" prefWidth="375.0" style="-fx-background-color: #21357E; -fx-background-radius: 6;" stylesheets="@../../../../../css/style.css" text="Create Account" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="15.0" top="15.0" />
+                              <Insets top="30.0" />
                            </VBox.margin>
                         </MFXButton>
                         <HBox alignment="CENTER" prefHeight="37.0" prefWidth="800.0" spacing="50.0">

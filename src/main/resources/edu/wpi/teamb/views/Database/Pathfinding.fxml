@@ -4,9 +4,11 @@
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -94,26 +96,6 @@
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="Floor">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <MFXFilterComboBox fx:id="floorCombo" prefWidth="300.0" text="Lower Level 1" />
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
                                     <Label text="Search Type">
                                        <font>
                                           <Font size="24.0" />
@@ -188,7 +170,7 @@
                               </VBox>
                               <HBox>
                                  <children>
-                                    <MFXButton fx:id="pathfind" alignment="CENTER" buttonType="RAISED" style="-fx-background-color: #003DA6;" text="Find Fastest Path" textFill="WHITE">
+                                    <MFXButton fx:id="pathfind" alignment="CENTER" buttonType="RAISED" prefWidth="150.0" style="-fx-background-color: #003DA6;" text="Find Path" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="70.0" top="10.0" />
                                        </HBox.margin>
@@ -242,6 +224,49 @@
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
+                           <children>
+                              <VBox fx:id="frontFloorr" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-radius: 5;" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                                 <children>
+                                    <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="235.0" spacing="10.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, black, 3, 0, 0, 3);">
+                                       <children>
+                                          <Label text="Floor">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <MFXFilterComboBox fx:id="floorCombo" floatMode="ABOVE" prefHeight="40.0" prefWidth="159.0" text="Lower Level 1">
+                                             <HBox.margin>
+                                                <Insets top="5.0" />
+                                             </HBox.margin>
+                                          </MFXFilterComboBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <GridPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="230.0" prefWidth="302.0" style="-fx-effect: dropshadow(three-pass-box, black, 3, 0, 0, 3);" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <MFXScrollPane style="-fx-background-color: #F2F2F2;">
+                                       <content>
+                                          <AnchorPane fx:id="forms" prefHeight="226.0" prefWidth="290.0" style="-fx-background-color: #F2F2F2;" />
+                                       </content></MFXScrollPane>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </GridPane>
+                           </children>
                         </GridPane>
                      </children>
                   </VBox>
@@ -260,7 +285,7 @@
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="dateLabel" text="Label" textFill="WHITE">
+                        <Label id="headerText" fx:id="dateLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -269,7 +294,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="timeLabel" text="Label" textFill="WHITE">
+                        <Label id="headerText" fx:id="timeLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -278,7 +303,7 @@
                   </HBox>
                </children>
                <HBox.margin>
-                  <Insets left="40.0" />
+                  <Insets left="20.0" />
                </HBox.margin>
             </VBox>
          </children>

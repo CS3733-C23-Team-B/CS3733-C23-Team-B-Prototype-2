@@ -1,12 +1,14 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Algorithms.Sorting;
+import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.LocationName;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.Pathfinding.Pathfinding;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.Date;
@@ -52,6 +54,9 @@ public class MoveCreatorController {
     Date newDate = Date.valueOf(datePicker.getValue());
     newMove.setMoveDate(newDate);
     DBSession.addMove(newMove);
+
+    Pathfinding.refreshData();
+    MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
 
     resetFields();
   }

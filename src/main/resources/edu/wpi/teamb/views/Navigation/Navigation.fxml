@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="1405.0" style="-fx-background-color: #21357E;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.NavigationController">
+<HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="1200.0" style="-fx-background-color: #21357E;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.NavigationController">
    <children>
       <MFXButton fx:id="homeButton" alignment="TOP_LEFT" minWidth="-Infinity" onAction="#homeButtonClicked" prefHeight="67.0" prefWidth="257.0" style="-fx-background-color: transparent;" text="." textFill="WHITE">
          <HBox.margin>
@@ -29,7 +29,7 @@
             <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
          </padding>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="forms" onAction="#serviceRequestFormsButtonClicked" prefHeight="42.0" prefWidth="274.0" stylesheets="@../../../../../css/style.css" text="Service Request Forms" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="forms" onAction="#serviceRequestFormsButtonClicked" prefHeight="42.0" prefWidth="241.0" stylesheets="@../../../../../css/style.css" text="Service Request Forms" textFill="#c5d3ea">
          <HBox.margin>
             <Insets />
          </HBox.margin>
@@ -37,7 +37,7 @@
             <Font size="20.0" />
          </font>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="request" layoutX="10.0" layoutY="10.0" onAction="#submittedRequestsButtonClicked" prefHeight="42.0" prefWidth="254.0" stylesheets="@../../../../../css/style.css" text="Submitted Requests" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="request" layoutX="10.0" layoutY="10.0" onAction="#submittedRequestsButtonClicked" prefHeight="42.0" prefWidth="210.0" stylesheets="@../../../../../css/style.css" text="Submitted Requests" textFill="#c5d3ea">
          <HBox.margin>
             <Insets />
          </HBox.margin>
@@ -45,7 +45,7 @@
             <Font size="20.0" />
          </font>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="path" layoutX="52.0" layoutY="10.0" onAction="#pathfindingButtonClicked" prefHeight="43.0" prefWidth="171.0" stylesheets="@../../../../../css/style.css" text="Pathfinding" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="path" layoutX="52.0" layoutY="10.0" onAction="#pathfindingButtonClicked" prefHeight="43.0" prefWidth="146.0" stylesheets="@../../../../../css/style.css" text="Pathfinding" textFill="#c5d3ea">
          <HBox.margin>
             <Insets />
          </HBox.margin>
@@ -53,20 +53,25 @@
             <Font size="20.0" />
          </font>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="map" layoutX="64.0" layoutY="10.0" onAction="#mapEditorButtonClicked" prefHeight="43.0" prefWidth="161.0" stylesheets="@../../../../../css/style.css" text="Map Editor" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="map" layoutX="64.0" layoutY="10.0" onAction="#mapEditorButtonClicked" prefHeight="43.0" prefWidth="141.0" stylesheets="@../../../../../css/style.css" text="Map Editor" textFill="#c5d3ea">
          <font>
             <Font size="20.0" />
          </font>
          <HBox.margin>
             <Insets />
          </HBox.margin>
+      </MFXButton>
+      <MFXButton id="navBarButton" fx:id="editKiosk" onAction="#editKiosk" prefHeight="43.0" prefWidth="131.0" stylesheets="@../../../../../css/style.css" text="Edit Kiosk" textFill="#c5d3ea">
+         <font>
+            <Font size="20.0" />
+         </font>
       </MFXButton>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
             <MenuButton id="menuIcon" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0" style="-fx-border-color: transparent;" stylesheets="@../../../../../css/style.css">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#helpClicked" text="Help" />
-                  <MenuItem mnemonicParsing="false" onAction="#aboutButtonClicked" text="About" />
+                  <MenuItem fx:id="aboutButton" mnemonicParsing="false" onAction="#aboutButtonClicked" text="About" />
                   <MenuItem mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
                   <MenuItem mnemonicParsing="false" onAction="#creditsButtonClicked" text="Credits" />
                   <MenuItem mnemonicParsing="false" onAction="#signOutClicked" text="Sign Out" />
@@ -75,7 +80,7 @@
                   <Insets />
                </HBox.margin>
             </MenuButton>
-            <MFXButton id="navBarButton" onAction="#exitButtonClicked" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../css/style.css" text="Exit" textFill="#c5d3ea">
+            <MFXButton id="navBarButton" onAction="#exitButtonClicked" prefHeight="42.0" prefWidth="103.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../css/style.css" text="Exit" textFill="#c5d3ea">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

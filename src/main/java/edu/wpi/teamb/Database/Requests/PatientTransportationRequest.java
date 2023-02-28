@@ -5,20 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "patienttransportationrequest", schema = "iter3")
+@Table(name = "patienttransportationrequest", schema = "iter4")
 @PrimaryKeyJoinColumn(
     name = "PatientTransportationRequestID",
-    foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey_iter3"))
+    foreignKey = @ForeignKey(name = "PatientTransportationRequestIDKey_iter4"))
 public class PatientTransportationRequest extends GeneralRequest {
   @Column(name = "equipmentNeeded", length = 60)
   @Getter
   @Setter
   private String equipmentNeeded;
-
-  @Column(name = "patientLocation", length = 60)
-  @Getter
-  @Setter
-  private String patientCurrentLocation;
 
   @Column(name = "patientDestination", length = 60)
   @Getter

@@ -22,7 +22,8 @@ public class Navigation {
       progressIndicator.setStyle("-fx-progress-color: #21357E;");
       rootPane.setCenter(progressIndicator);
     }
-    if (!filename.equals(Screen.SIGN_IN.getFilename())) {
+    if (!filename.equals(Screen.SIGN_IN.getFilename())
+        && !filename.equals(Screen.KIOSK_VIEW.getFilename())) {
       if (rootPane.getTop() == null) {
         String header = Screen.NAVIGATION.getFilename();
         final var resource = Bapp.class.getResource(header);

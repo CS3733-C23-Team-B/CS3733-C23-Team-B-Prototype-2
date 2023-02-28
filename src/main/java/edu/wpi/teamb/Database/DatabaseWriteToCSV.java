@@ -84,7 +84,7 @@ public class DatabaseWriteToCSV {
   public static void writeMoves() throws IOException, ParseException {
     String fileName = "moveWriteTo";
     Map<String, Move> ms =
-        MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("3000-01-01"));
+        MapDAO.getLNMoves(new SimpleDateFormat("yyyy-MM-dd").parse("3000-01-01"));
     boolean first = true;
     for (Map.Entry<String, Move> en : ms.entrySet()) {
       Move m = en.getValue();
@@ -150,7 +150,7 @@ public class DatabaseWriteToCSV {
       data[7] = r.getNotes();
       data[8] = r.getStatus().toString();
       data[9] = r.getEquipmentNeeded();
-      data[10] = r.getPatientCurrentLocation();
+      data[10] = r.getLocation();
       data[11] = r.getPatientDestinationLocation();
       data[12] = r.getPatientID();
       writeCsv(fileName, data, first);
@@ -174,7 +174,7 @@ public class DatabaseWriteToCSV {
       data[6] = r.getAssignedEmployee();
       data[7] = r.getNotes();
       data[8] = r.getStatus().toString();
-      data[9] = r.getCleanUpLocation();
+      data[9] = r.getLocation();
       data[10] = r.getTypeOfCleanUp();
       writeCsv(fileName, data, first);
       first = false;
@@ -199,7 +199,7 @@ public class DatabaseWriteToCSV {
       data[8] = r.getStatus().toString();
       data[9] = r.getTypeOfRepair();
       data[10] = r.getDevice();
-      data[11] = r.getRepairLocation();
+      data[11] = r.getLocation();
       writeCsv(fileName, data, first);
       first = false;
     }

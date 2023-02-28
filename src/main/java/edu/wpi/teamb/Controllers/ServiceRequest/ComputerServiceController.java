@@ -22,10 +22,10 @@ public class ComputerServiceController extends BaseRequestController {
   ObservableList<String> typeOfDeviceList =
       FXCollections.observableArrayList("Computer", "Phone", "Monitor");
 
-  @FXML private MFXFilterComboBox locationBox;
   @FXML private MFXFilterComboBox typeOfRepairBox;
   @FXML private MFXFilterComboBox<String> typeOfDeviceBox;
 
+  /** Initialize the page by creating lists of components and declaring choice-box options */
   @FXML
   @Override
   public void initialize() {
@@ -42,19 +42,24 @@ public class ComputerServiceController extends BaseRequestController {
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();
     choiceBoxes = new ArrayList<>();
-    locationBox.setItems(getLocations());
 
     // Create lists of text fields and choice boxes
     for (Control c : components) {
       if (c instanceof MFXTextField) textFields.add((MFXTextField) c);
       if (c instanceof MFXFilterComboBox) choiceBoxes.add((MFXFilterComboBox) c);
     }
+
     typeOfRepairBox.setItems(typeOfRepairList);
     typeOfDeviceBox.setItems(typeOfDeviceList);
 
     super.initialize();
   }
 
+  /**
+   * Store the user's input in the database and show confirmation popup
+   *
+   * @throws IOException
+   */
   @FXML
   @Override
   public void submitButtonClicked() throws IOException {
@@ -64,24 +69,14 @@ public class ComputerServiceController extends BaseRequestController {
 
     super.submit(request);
 
-    request.setRepairLocation(locationBox.getText());
-
     var typeOfrepair = typeOfRepairBox.getValue();
-    if (typeOfrepair == null) {
-      typeOfrepair = "";
-    }
+    request.setTypeOfRepair(typeOfrepair.toString());
+
     var device = typeOfDeviceBox.getValue();
-    if (device == null) {
-      device = "";
-    }
     request.setDevice(device.toString());
 
-    request.setTypeOfRepair(typeOfrepair.toString());
     request.setRequestType(RequestType.COMPUTER);
     DBSession.addRequest(request);
-
-    // may need to clear fields can be done with functions made for clear
-    clearButtonClicked();
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);
   }

@@ -53,9 +53,19 @@ public class CreditsController {
     Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/security"));
   }
 
+  // Medical Equipment Icon
+  public void equipmentClicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
+    Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/medical-equipment"));
+  }
+
   // Laptop Icon
   public void laptopClicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
-    Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/laptop "));
+    Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/laptop"));
+  }
+
+  // Medicine Icon
+  public void medicineClicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
+    Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/drug"));
   }
 
   // Audio/Visual Icon

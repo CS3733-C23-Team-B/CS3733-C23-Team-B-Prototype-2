@@ -149,6 +149,21 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Hyperlink>
+                              <Label text="Facility management icon:">
+                                 <font>
+                                    <Font name="Roboto Italic" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Created by Smashicons - Flaticon">
+                                 <font>
+                                    <Font name="Roboto" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Hyperlink fx:id="profileLink1" onMouseClicked="#profileClicked" text="https://www.flaticon.com/free-icons/facility-management">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Hyperlink>
                               <Label text="Security icon:">
                                  <font>
                                     <Font name="Roboto Italic" size="13.0" />
@@ -164,6 +179,21 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Hyperlink>
+                              <Label text="Medical equipment icon:">
+                                 <font>
+                                    <Font name="Roboto Italic" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Created by Smashicons - Flaticon">
+                                 <font>
+                                    <Font name="Roboto" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Hyperlink fx:id="equipmentLink" onMouseClicked="#equipmentClicked" text="https://www.flaticon.com/free-icons/medical-equipment">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Hyperlink>
                               <Label text="Laptop icons:">
                                  <font>
                                     <Font name="Roboto Italic" size="13.0" />
@@ -175,6 +205,21 @@
                                  </font>
                               </Label>
                               <Hyperlink fx:id="laptopLink" onMouseClicked="#laptopClicked" text="https://www.flaticon.com/free-icons/laptop ">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Hyperlink>
+                              <Label text="Drug icon:">
+                                 <font>
+                                    <Font name="Roboto" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Created by Freepik - Flaticon">
+                                 <font>
+                                    <Font name="Roboto" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Hyperlink fx:id="medicineLink" onMouseClicked="#medicineClicked" text="https://www.flaticon.com/free-icons/drug">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>

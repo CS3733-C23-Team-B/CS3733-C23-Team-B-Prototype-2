@@ -167,7 +167,7 @@ public class MapDAOTests {
   @Test
   public void addMoveTest1() throws ParseException {
 
-    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 
     Node n1 = new Node();
     Node n2 = new Node();

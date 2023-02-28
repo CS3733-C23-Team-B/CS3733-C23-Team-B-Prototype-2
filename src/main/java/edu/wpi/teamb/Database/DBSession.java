@@ -4,8 +4,6 @@ import edu.wpi.teamb.Database.DAO.LoginDAO;
 import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Database.DAO.RequestDAO;
 import edu.wpi.teamb.Database.Requests.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import javafx.collections.ObservableList;
 
@@ -71,6 +69,22 @@ public class DBSession {
     MapDAO.addMove(m);
   }
 
+  public static void addKioskMove(KioskMove km) {
+    MapDAO.addKioskMove(km);
+  }
+
+  public static void addKioskMove(Move m, String message) {
+    MapDAO.addKioskMove(m, message);
+  }
+
+  public static void deleteKioskMove(KioskMove km) {
+    MapDAO.deleteKioskMove(km);
+  }
+
+  public static List<KioskMove> getAllKioskMoves() {
+    return MapDAO.getAllKioskMoves();
+  }
+
   public static void deleteMove(Move m) {
     MapDAO.deleteMove(m);
   }
@@ -119,6 +133,18 @@ public class DBSession {
     return RequestDAO.getAllCRequests();
   }
 
+  public static synchronized List<MedicalEquipmentDeliveryRequest> getAllMEDRequests() {
+    return RequestDAO.getAllMEDRequests();
+  }
+
+  public static synchronized List<MedicineDeliveryRequest> getAllMDRequests() {
+    return RequestDAO.getAllMDRequests();
+  }
+
+  public static synchronized List<FacilitiesRequest> getAllFacRequests() {
+    return RequestDAO.getAllFacRequests();
+  }
+
   public static synchronized Map<String, List<Move>> getIDMoves(Date d) {
     MapDAO.refreshIDMoves(d);
     return MapDAO.getIDMoves();
@@ -162,20 +188,23 @@ public class DBSession {
 
   public static synchronized List<Move> getMostRecentMoves(String NodeID) {
     try {
+      MapDAO.refreshIDMoves(new Date(System.currentTimeMillis()));
       return MapDAO.getIDMoves().get(NodeID);
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
   }
 
+  public static synchronized List<Move> getAllMoves() {
+    return MapDAO.getAllMoves();
+  }
+
   public static synchronized String getMostRecentNodeID(String longName) {
     try {
-      return MapDAO.getLNMoves(new SimpleDateFormat("yyyy-mm-dd").parse("2023-01-01"))
+      return MapDAO.getLNMoves(new Date(System.currentTimeMillis()))
           .get(longName)
           .getNode()
           .getNodeID();
-    } catch (ParseException e) {
-      throw new RuntimeException(e);
     } catch (NullPointerException e) {
       return null;
     }

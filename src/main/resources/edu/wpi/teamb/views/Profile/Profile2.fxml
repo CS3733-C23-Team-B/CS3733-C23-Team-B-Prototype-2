@@ -61,8 +61,18 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <HBox fx:id="mainHBox" alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <children>
+                        <MFXButton fx:id="writeToCSVButton" disable="true" onAction="#writeToCSVClicked" prefHeight="41.0" prefWidth="117.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Write to CSV" textFill="WHITE" visible="false">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="databaseButton" disable="true" onAction="#databaseClicked" prefHeight="41.0" prefWidth="117.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Database" textFill="WHITE" visible="false">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </MFXButton>
                         <MFXButton fx:id="adminButton" disable="true" prefHeight="41.0" prefWidth="117.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="View All Users" textFill="WHITE" visible="false">
                            <HBox.margin>
                               <Insets right="10.0" />

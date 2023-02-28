@@ -26,11 +26,14 @@ public class SubmittedComputerRequestTable extends SubmittedBaseRequestTable {
     setTable();
   }
 
-  @Override
   public TableView getTable(
-      RequestStatus status, String Employee, Urgency urgency, Boolean myRequestsOnly) {
+      RequestStatus status,
+      String Employee,
+      String requestor,
+      Urgency urgency,
+      Boolean myRequests) {
     table.getItems().clear();
-    super.filterTable(status, Employee, convertObj(), urgency, myRequestsOnly);
+    super.filterTable(status, Employee, requestor, convertObj(), urgency, myRequests);
     return table;
   }
 

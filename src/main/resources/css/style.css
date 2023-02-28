@@ -1,11 +1,3 @@
-#pane{
-    -fx-background-image: url("/media/medical_background.jpg");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 1920 1080;
-    -fx-background-position: top left;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
-}
-
 #home{
     -fx-background-image: url("/media/OPACITY.png");
     -fx-background-repeat: stretch;
@@ -14,16 +6,68 @@
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 
-#toolbar{
-    -fx-background-color: rgba(0, 61, 166, 1);
-    -fx-font-family: Nunito, sans-serif;
-    -fx-font-size: 25px;
+#title{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 40px;
 }
 
+#body{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: 500;
+    -fx-font-size: 12px;
+}
 
-#signInGrid{
-    -fx-background-radius: 5px;
-    -fx-background-color: rgba(163, 233, 228, 0.6);
+#button{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+#signInTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+#signInSubtitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 18px;
+}
+
+#signInBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+
+#signInButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+#signInAccent{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 10px;
+}
+
+#createAccountBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+
+#createAccountAccent{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+#createAccountButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
 }
 
 #menuIcon{
@@ -50,37 +94,22 @@
     -fx-fill: gold ;
 }
 
-#titleRoboto{
-    -fx-font-family: Roboto, regular;
-    -fx-font-size: 50px;
-}
-
-#subTitleNunito{
-    -fx-font-family: Nunito, sans-serif;
-    -fx-font-size: 36px;
-}
-
-#categoriesNunito{
-    -fx-font-family: Nunito, sans-serif;
-    -fx-font-size: 22px;
-}
-
 #navBarButton{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-weight: bold;
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
 }
 
 #homePageTitle{
     -fx-font-family: Roboto, regular;
     -fx-font-weight: bold;
-    -fx-font-size: 33px;
+    -fx-font-size: 35px;
 }
 
 #homePageSubtitle{
     -fx-font-family: Roboto, regular;
     -fx-font-weight: bold;
-    -fx-font-size: 28px;
+    -fx-font-size: 25px;
 }
 
 #homePageBody{
@@ -89,19 +118,11 @@
     -fx-font-size: 18px;
 }
 
-#homePageButtons{
+#homePageButton{
     -fx-font-family: Nunito, sans-serif;
-    -fx-font-size: 18px;
-}
-
-#landingPageTitle{
-    -fx-font-family: Roboto, regular;
-    -fx-font-size: 96px;
-}
-
-#landingPageButtons{
-    -fx-font-family: Nunito, sans-serif;
-    -fx-font-size: 43px;
+    -fx-font-weight: 600;
+    -fx-font-size: 20px;
+    -fx-underline: true;
 }
 
 #helpButton{
@@ -110,6 +131,100 @@
     -fx-background-repeat: stretch;
     -fx-background-size: 40 40;
     -fx-background-position: top center;
+}
+
+#exitConfirmation{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 37px;
+}
+
+#forgotPasswordTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 36px;
+}
+
+#forgotPasswordBody{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+}
+
+#forgotPasswordLabel{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 20px;
+}
+
+#headerText{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 17px;
+}
+
+#requestsSubtitle{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+}
+
+#requestsAccent{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 19px;
+    -fx-font-style: italic;
+}
+
+#requestsBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 16px;
+}
+
+#requestsButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#formTitle{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#submittedReqSubtitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+#submittedReqBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: 500;
+    -fx-font-size: 14px;
+}
+
+#submittedReqBodyBold{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#submittedReqBodyItalic{
+    -fx-font-family: Nunito, regular;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+#submittedReqCheckbox{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
+}
+
+#submittedReqButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
 }
 
 #profileTitle {
@@ -136,5 +251,29 @@
 
 #profileBody2{
     -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
+}
+
+#mapEditorButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+#mapEditorCheckbox{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+#mapEditorButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+#pathfindingSubtitle{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
     -fx-font-size: 18px;
 }

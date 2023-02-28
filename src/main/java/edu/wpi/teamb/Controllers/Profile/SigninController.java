@@ -1,6 +1,5 @@
 package edu.wpi.teamb.Controllers.Profile;
 
-import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Login;
 import edu.wpi.teamb.Navigation.Navigation;
@@ -11,16 +10,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -31,6 +26,8 @@ public class SigninController {
   @FXML private Button exitButton;
   @FXML private MFXButton forgot;
   @FXML private Rectangle topRect;
+
+  @FXML private Button backButton;
   public static Login currentUser;
 
   private Map<String, Login> usersMap = new HashMap<>();
@@ -105,36 +102,5 @@ public class SigninController {
 
   public void forgotClicked() {
     Popup.displayPopup(Screen.FORGOT_PASSWORD);
-  }
-
-  public void viewMap() throws IOException {
-    final String filename = Screen.PATHFINDING.getFilename();
-    final BorderPane rootPane = Bapp.getRootPane();
-    final var r = Bapp.class.getResource(filename);
-    final FXMLLoader loader = new FXMLLoader(r);
-    final Parent root = loader.load();
-
-    final String filename1 = Screen.SIGN_IN.getFilename();
-    final var r1 = Bapp.class.getResource(filename1);
-    final FXMLLoader loader1 = new FXMLLoader(r1);
-    final Parent root1 = loader1.load();
-    MFXButton b = new MFXButton();
-    b.setText("Back to Sign In");
-
-    Platform.runLater(
-        () -> {
-          rootPane.setCenter(root);
-          rootPane.setTop(b);
-        });
-
-    b.setOnAction(
-        e -> {
-          Platform.runLater(
-              () -> {
-                rootPane.setCenter(null);
-                rootPane.setTop(null);
-                rootPane.setCenter(root1);
-              });
-        });
   }
 }

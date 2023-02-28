@@ -187,7 +187,7 @@
                      <children>
                         <VBox fx:id="filterVbox1" alignment="TOP_CENTER">
                            <children>
-                              <TableView fx:id="table" prefHeight="516.0" prefWidth="1402.0">
+                              <TableView fx:id="table" onKeyReleased="#handleKeyPress" prefHeight="516.0" prefWidth="1402.0">
                                 <columns>
                                   <TableColumn fx:id="dateCol" maxWidth="-1.0" minWidth="-1.0" prefWidth="-1.0" text="Date" />
                                   <TableColumn fx:id="messageCol" maxWidth="1128.0001068115234" minWidth="-1.0" prefWidth="341.6000541448593" text="Messege" />

@@ -7,7 +7,7 @@ public enum Screen {
   DATABASE_HELP("views/Database/DatabaseHelp.fxml"),
   KIOSK_EDIT("views/Kiosk/KioskEditor.fxml"),
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
-  MAP_EDITOR("views/Database/MapEditor.fxml"),
+  MAP_EDITOR("views/Database/MapEditor2.fxml"),
   NODE_EDITOR("views/Database/NodeEditor.fxml"),
   SIDE_NODE_EDITOR("views/Database/SideNodeEditor.fxml"),
   NODE_CREATOR("views/Database/NodeCreator.fxml"),

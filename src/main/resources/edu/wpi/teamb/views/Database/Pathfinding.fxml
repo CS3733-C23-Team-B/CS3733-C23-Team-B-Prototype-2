@@ -4,6 +4,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -225,31 +226,42 @@
                            <children>
                               <VBox fx:id="frontFloorr" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-radius: 5;" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="245.0" spacing="15.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;">
+                                    <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="235.0" spacing="10.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;">
                                        <children>
                                           <Label text="Floor">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
                                              <HBox.margin>
-                                                <Insets />
+                                                <Insets left="5.0" top="5.0" />
                                              </HBox.margin>
                                           </Label>
                                           <MFXFilterComboBox fx:id="floorCombo" floatMode="ABOVE" prefHeight="40.0" prefWidth="159.0" text="Lower Level 1">
                                              <HBox.margin>
-                                                <Insets />
+                                                <Insets top="5.0" />
                                              </HBox.margin>
                                           </MFXFilterComboBox>
                                        </children>
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
                                     </HBox>
                                  </children>
                                  <GridPane.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
                               </VBox>
+                              <GridPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="230.0" prefWidth="302.0" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <MFXScrollPane style="-fx-background-color: #F2F2F2;" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </GridPane>
                            </children>
                         </GridPane>
                      </children>

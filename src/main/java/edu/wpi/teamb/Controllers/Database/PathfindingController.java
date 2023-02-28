@@ -8,10 +8,7 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.*;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.*;
 import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -58,6 +55,7 @@ public class PathfindingController {
   @FXML MFXButton pathfind;
 
   @FXML VBox frontFloorr;
+  @FXML GridPane scrollPane;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
@@ -162,6 +160,8 @@ public class PathfindingController {
     timeline.play();
     dateLabel.setText(formattedDate);
 
+    scrollPane.setVisible(false);
+
     Platform.runLater(
         () -> {
           changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
@@ -245,6 +245,7 @@ public class PathfindingController {
         });
     drawLines();
     frontFloorr.toFront();
+    scrollPane.toFront();
     Platform.runLater(() -> pane.centreOn(p));
   }
 
@@ -423,6 +424,7 @@ public class PathfindingController {
     setNodeColors();
     // Update the text field position to be above the center of the path
     frontFloorr.toFront();
+    scrollPane.toFront();
   }
 
   private void showButton(MFXButton button) {
@@ -527,23 +529,9 @@ public class PathfindingController {
 
   public void startPathFromHereClicked() {
     pathingByClick = true;
-    //    clearPopUp();
+    scrollPane.setVisible(true);
+    // clearPopUp();
 
-    AnchorPane startPathPopUp = new AnchorPane();
-    startPathPopUp.setTranslateX(500);
-    startPathPopUp.setTranslateY(500);
-    startPathPopUp.setStyle("-fx-background-color: FFFFFF; -fx-border-color: black;");
-
-    VBox vbox = new VBox();
-    startPathPopUp.getChildren().add(vbox);
-
-    vbox.setSpacing(5);
-    vbox.setPadding(new Insets(10, 10, 10, 10));
-
-    Text info = new Text("Please click on your desired destination");
-    vbox.getChildren().add(info);
-
-    aPane.getChildren().add(startPathPopUp);
   }
 
   public void showLocationsClicked() {

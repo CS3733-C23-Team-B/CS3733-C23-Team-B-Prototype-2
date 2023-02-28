@@ -107,8 +107,12 @@ public class KioskViewController {
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
-          slideIn.play();
+          Platform.runLater(
+              () -> {
+                slideIn.play();
+              });
         });
+
     // Schedule a task to update the index and slide in the new message and image every 10 seconds
 
     timeline =
@@ -117,9 +121,11 @@ public class KioskViewController {
                 Duration.seconds(10),
                 event -> {
                   index.getAndIncrement();
-                  slideOut.play();
+                  Platform.runLater(
+                      () -> {
+                        slideOut.play();
+                      });
                 }));
-
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
     Platform.runLater(

@@ -25,16 +25,20 @@ public class SubmittedTransportationRequestTable extends SubmittedBaseRequestTab
     //    addCol(patientDestinationLocation, "patientDestinationLocation");
     //    addCol(equipmentNeeded, "equipmentNeeded");
     super.setTable();
+    // This changes the color of the header of the table. It shouldn't work, but it does so that's
+    // cool.
+    patientID.getStyleClass().add("label");
+    patientID.getStyleClass().add("column-header-background");
   }
 
   public TableView getTable(
       RequestStatus status,
-      String Employee,
+      String assignedEmployee,
       String requestor,
       Urgency urgency,
       Boolean myRequests) {
     table.getItems().clear();
-    super.filterTable(status, Employee, requestor, convertObj(), urgency, myRequests);
+    super.filterTable(status, assignedEmployee, requestor, convertObj(), urgency, myRequests);
     return table;
   }
 

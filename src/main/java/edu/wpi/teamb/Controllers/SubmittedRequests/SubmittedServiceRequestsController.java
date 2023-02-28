@@ -24,7 +24,6 @@ import javafx.geometry.Insets;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -41,7 +40,7 @@ public class SubmittedServiceRequestsController {
   @FXML MFXComboBox<Urgency> requestUrgencyFilter;
   @FXML MFXComboBox<String> requestReporterFilter;
   @FXML MFXCheckbox myRequestsFilter;
-  @FXML ImageView helpButton;
+  @FXML MFXButton helpButton;
   @FXML Label dateLabel;
   @FXML Label timeLabel;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
@@ -184,7 +183,7 @@ public class SubmittedServiceRequestsController {
   }
 
   public void helpButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
+    Navigation.navigate(Screen.SUBMITTED_REQUESTS_HELP);
   }
 
   private void makeTable(RequestType name) {

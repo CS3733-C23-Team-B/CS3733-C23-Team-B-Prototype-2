@@ -736,6 +736,7 @@ public class MapEditorController {
       DBSession.deleteNode(n);
     }
     removeNodes();
+    handleClick();
   }
 
   public void removeNodes() {

@@ -259,7 +259,7 @@
                                     </ImageView>
                                     <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Internal Patient Transportation" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
+                                          <Label id="requestsButton" prefHeight="132.0" prefWidth="130.0" stylesheets="@../../../../../css/style.css" text="Internal Patient Transportation" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
                                        </children>
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -379,7 +379,7 @@
                                     </ImageView>
                                     <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Medical Equipment Delivery" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
+                                          <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Equipment Delivery" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
                                        </children>
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -420,13 +420,13 @@
                            <graphic>
                               <HBox alignment="CENTER_LEFT">
                                  <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0">
+                                       <image>
+                                          <Image url="@../../../../../media/RequestIcons/building.png" />
+                                       </image>
+                                    </ImageView>
                                     <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <ImageView fitHeight="50.0" fitWidth="50.0">
-                                             <image>
-                                                <Image url="@../../../../../../../../../../Downloads/building.png" />
-                                             </image>
-                                          </ImageView>
                                           <Label id="requestsButton" stylesheets="@../../../../../css/style.css" text="Facilities Maintenance" textAlignment="CENTER" textFill="#c5d3ea" wrapText="true" />
                                        </children>
                                        <padding>

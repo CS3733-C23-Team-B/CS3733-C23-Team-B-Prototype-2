@@ -30,7 +30,7 @@
     -fx-font-weight: bold;
 }
 
-#signInBody{
+#signInSubtitle{
     -fx-font-family: Roboto, regular;
     -fx-font-size: 18px;
 }
@@ -97,7 +97,7 @@
 #navBarButton{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-weight: bold;
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
 }
 
 #homePageTitle{

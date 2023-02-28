@@ -4,10 +4,11 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Edge;
 import edu.wpi.teamb.Database.Move;
 import edu.wpi.teamb.Database.Node;
+import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class Pathfinding {
   private static List<Edge> edges = DBSession.getAllEdges();
@@ -143,9 +144,20 @@ public class Pathfinding {
    * @return the list of locationLongNames associated with each NodeID
    */
   private static List<String> nodesToLocations(List<String> path) {
-    return path.stream()
-        .map(nodeID -> DBSession.getMostRecentMoves(nodeID).get(0).getLocationName().getLongName())
-        .collect(Collectors.toList());
+    movesID = DBSession.getIDMoves(new Date(System.currentTimeMillis()));
+    //    return path.stream()
+    //        .map(nodeID -> movesID.get(nodeID).get(0).getLocationName().getLongName())
+    //        .collect(Collectors.toList());
+    List<String> locations = new ArrayList<>();
+    path.forEach(
+        nodeID -> {
+          try {
+            locations.add(movesID.get(nodeID).get(0).getLocationName().getLongName());
+          } catch (NullPointerException e) {
+            locations.add(nodeID);
+          }
+        });
+    return locations;
   }
 
   private static ArrayList<String> getPathBreadth(String startLoc, String endLoc) {
@@ -154,6 +166,48 @@ public class Pathfinding {
 
   private static ArrayList<String> getPathDepth(String startLoc, String endLoc) {
     return getPathBreadthDepth(startLoc, endLoc, false);
+  }
+
+  public static String[] getPathDirections(List<String> list) {
+    String[] directions = {"", "", "", "", "", ""};
+    List<Node> nodeList = new ArrayList<>();
+    list.forEach(n -> nodeList.add(nodes.get(n)));
+    List<String> locationList = nodesToLocations(list);
+    List<String> floors = Arrays.asList("L2", "L1", "G", "1", "2", "3");
+    int index;
+    String s;
+
+    for (int i = 0; i < nodeList.size() - 1; i++) {
+      index = floors.indexOf(nodeList.get(i).getFloor());
+      if (onSameFloor(nodeList.get(i), nodeList.get(i + 1))) {
+        if (directions[index].isEmpty()) s = "Go to " + locationList.get(i + 1) + ".";
+        else s = "Then go to " + locationList.get(i + 1) + ".";
+      } else {
+        boolean found = false;
+        for (int j = i; j < nodeList.size() - 1; j++) {
+          if (nodeList.get(j).getFloor().equals(nodeList.get(j + 1).getFloor())) {
+            i = j;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          s = "Go to " + locationList.get(locationList.size() - 1);
+          i = nodeList.size();
+        } else {
+          s = "Go to floor " + nodeList.get(i).getFloor() + "\n\n";
+          i--;
+        }
+      }
+      if (directions[index].isEmpty()) directions[index] = s;
+      else directions[index] += "\n" + s;
+    }
+
+    return directions;
+  }
+
+  private static boolean onSameFloor(Node n1, Node n2) {
+    return n1.getFloor().equals(n2.getFloor());
   }
 
   static ArrayList<String> getPathBreadthDepth(String startLoc, String endLoc, boolean breadth) {

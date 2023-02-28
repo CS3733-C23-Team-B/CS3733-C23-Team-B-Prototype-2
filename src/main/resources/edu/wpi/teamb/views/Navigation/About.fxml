@@ -183,9 +183,9 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <ImageView fx:id="jackLafond" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#jackLafordClicked" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="jackLafond" fitHeight="125.0" fitWidth="200.0" onMouseClicked="#jackLafondClicked" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../../../../media/Developers/Jack%20Laford.png" />
+                                                      <Image url="@../../../../../media/Developers/Jack%20Lafond.png" />
                                                    </image>
                                                 </ImageView>
                                                 <Label prefHeight="10.0" text="Jack Lafond ">

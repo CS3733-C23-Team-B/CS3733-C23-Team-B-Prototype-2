@@ -50,9 +50,7 @@ public class KioskPopup {
   Map<Circle, Node> nodeMap;
 
   public void initialize() throws SQLException {
-    int index = KioskEditController.getInstance().getRowVal();
-    List<KioskMove> kioskMoveList;
-    kioskMoveList = DBSession.getAllKioskMoves();
+    KioskMove k = KioskEditController.getInstance().getCurrentSelection();
     imageMap.put("L2", Bapp.lowerlevel2);
     imageMap.put("L1", Bapp.lowerlevel);
     imageMap.put("G", Bapp.groundfloor);
@@ -69,18 +67,15 @@ public class KioskPopup {
     center.add(pane, 0, 0);
     pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
     pane.toBack();
-    moveMessage.setText(kioskMoveList.get(index).getMessage());
-    frontLabel.setText(
-        kioskMoveList.get(index).getLocationName().getLongName() + " is being moved");
-    findPath(
-        kioskMoveList.get(index).getPrevNode().getNodeID(),
-        kioskMoveList.get(index).getNextNode().getNodeID());
+    moveMessage.setText(k.getMessage());
+    frontLabel.setText(k.getLocationName().getLongName() + " is being moved");
+    findPath(k.getPrevNode().getNodeID(), k.getNextNode().getNodeID());
 
     frontBox2.toFront();
     frontRight.toFront();
     frontLeft.toFront();
     frontCenter.toFront();
-    Node pr = kioskMoveList.get(index).getPrevNode();
+    Node pr = k.getPrevNode();
     Platform.runLater(
         () -> {
           pane.centreOn(new Point2D(pr.getXCoord(), pr.getYCoord()));

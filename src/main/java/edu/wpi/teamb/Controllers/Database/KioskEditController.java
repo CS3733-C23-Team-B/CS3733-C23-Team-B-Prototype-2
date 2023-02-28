@@ -22,6 +22,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lombok.Getter;
+import lombok.Setter;
 
 public class KioskEditController {
 
@@ -39,7 +41,12 @@ public class KioskEditController {
 
   private List<Move> moves;
 
+  @Getter public static KioskEditController instance;
+
+  @Getter @Setter public int rowVal;
+
   public void initialize() {
+    instance = this;
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     moves = DBSession.getAllMoves();
     List<String> l =
@@ -91,6 +98,10 @@ public class KioskEditController {
                         + ", Message: "
                         + selectedData.getMessage();
                 System.out.println(info);
+                this.getInstance().setRowVal(table.getSelectionModel().getSelectedIndex());
+                table
+                    .getSelectionModel()
+                    .clearSelection(table.getSelectionModel().getSelectedIndex());
                 Popup.displayPopup(Screen.KIOSK_POPUP);
               }
             });

@@ -3,6 +3,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -61,6 +63,143 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <children>
+                  <GridPane alignment="TOP_CENTER" prefHeight="400.0" prefWidth="500.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane fx:id="center" alignment="CENTER" prefHeight="739.0" prefWidth="500.0" GridPane.halignment="RIGHT">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox fx:id="frontRight" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="160.0" prefWidth="150.0" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #21357E; -fx-background-radius: 5;" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="74.0" prefWidth="150.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="39.0" prefWidth="278.0" text="Ambulence Parnking" textAlignment="RIGHT" textFill="#f2f2f2">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="194.0" text="Weee Wooo Weeee Wooo" textAlignment="RIGHT" textFill="#f2f2f2">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                             <image>
+                                                <Image url="@../../../../../media/arrow.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </ImageView>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets bottom="70.0" right="40.0" />
+                                 </GridPane.margin>
+                              </HBox>
+                              <HBox fx:id="frontLeft" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="160.0" prefWidth="150.0" style="-fx-background-color: #21357E; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                                 <children>
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="39.0" prefWidth="159.0" text="Au Bon Pain" textFill="#f2f2f2">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="151.0" text="Im in so much Pain" textFill="#f2f2f2">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../media/arrow.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </ImageView>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets bottom="70.0" left="40.0" />
+                                 </GridPane.margin>
+                              </HBox>
+                              <VBox fx:id="frontBox2" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #FCFCFC; -fx-background-radius: 5;" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                                 <children>
+                                    <Label fx:id="frontLabel" alignment="CENTER" text="Upcoming Location Moves">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label fx:id="moveMessage" alignment="CENTER" maxWidth="-Infinity" text="This is a move messege" wrapText="true">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets top="30.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <HBox fx:id="frontCenter" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="253.0" style="-fx-background-color: #FCFCFC; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                                 <children>
+                                    <MFXButton fx:id="signInButton" prefHeight="24.0" prefWidth="94.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Sign In" textFill="#fcfcfc">
+                                       <font>
+                                          <Font size="9.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="33.0" text="OR">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <MFXButton fx:id="viewMapButton" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #E89F55; -fx-background-radius: 10;" text="View Map">
+                                       <font>
+                                          <Font size="9.0" />
+                                       </font>
+                                    </MFXButton>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <GridPane.margin>
+                                    <Insets bottom="40.0" />
+                                 </GridPane.margin>
+                              </HBox>
+                           </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+               </children>
             </GridPane>
             </children>
         </GridPane>

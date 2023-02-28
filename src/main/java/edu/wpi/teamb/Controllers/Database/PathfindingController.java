@@ -489,9 +489,18 @@ public class PathfindingController {
         MouseEvent.MOUSE_CLICKED,
         e -> {
           if (pathingByClick) {
+            startLoc.clear();
+            endLoc.clear();
             Node n = nodeMap.get(dot);
             String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
-            endLoc.setValue(ln);
+            startLoc.setValue(ln);
+            // commented out code just returns same location as before, I have to make it get the
+            // location from where the start path here is from
+            if (pathingByClick) {
+              Node n2 = nodeMap.get(dot);
+              String ln2 = moveMap.get(n2.getNodeID()).get(0).getLocationName().getLongName();
+              endLoc.setValue(ln2);
+            }
             pathingByClick = false;
             try {
               findPath();

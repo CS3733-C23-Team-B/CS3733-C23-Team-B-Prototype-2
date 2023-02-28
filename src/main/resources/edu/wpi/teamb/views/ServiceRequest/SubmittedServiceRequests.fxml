@@ -7,8 +7,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -350,19 +348,10 @@
                               <Insets top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <MFXButton fx:id="helpButton" onAction="#helpButtonClicked" text=" ">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../../../media/question.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                        </MFXButton>
+                        <MFXButton fx:id="helpButton" minHeight="45.0" minWidth="50.0" onAction="#helpButtonClicked" text=" ">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></MFXButton>
                      </children>
                      <padding>
                         <Insets left="30.0" />

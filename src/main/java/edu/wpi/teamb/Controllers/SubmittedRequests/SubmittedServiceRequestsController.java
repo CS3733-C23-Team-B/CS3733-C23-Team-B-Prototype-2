@@ -6,7 +6,7 @@ import edu.wpi.teamb.Database.Requests.*;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Entities.Urgency;
-import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.*;
 import java.io.IOException;
@@ -183,7 +183,7 @@ public class SubmittedServiceRequestsController {
   }
 
   public void helpButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SUBMITTED_REQUESTS_HELP);
+    Popup.displayPopup(Screen.SUBMITTED_REQUESTS_HELP);
   }
 
   private void makeTable(RequestType name) {
@@ -269,7 +269,7 @@ public class SubmittedServiceRequestsController {
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
     setLabel(page);
     mainVbox.getChildren().add(table);
-    if (page.equals(RequestType.ALLREQUESTS.toString())) {
+    if (page.equals(RequestType.ALLREQUESTS.toString()) && currUser.getAdmin()) {
       displayChart();
     }
   }

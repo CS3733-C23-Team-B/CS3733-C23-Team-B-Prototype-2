@@ -17,9 +17,12 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import javafx.animation.KeyFrame;
+import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +32,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -119,7 +123,6 @@ public class PathfindingController {
     searchCombo.setItems(
         FXCollections.observableArrayList(
             "A* Search", "Breadth-first Search", "Depth-first Search"));
-
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
@@ -252,7 +255,8 @@ public class PathfindingController {
   private void drawLines() {
     for (List<Node> pair : pathNodePairs) {
       if (pair.get(0).getFloor().equals(currentFloor)
-          && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
+          && pair.get(1).getFloor().equals(currentFloor))
+        placeAnimatedLine(pair.get(0), pair.get(1));
       if ((buttonMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
         showButton(buttonMap.get(pair.get(1)));
     }
@@ -319,8 +323,6 @@ public class PathfindingController {
     Pathfinding.setDate(date);
   }
 
-  public void createPathFromNode() {}
-
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
     textField = null;
@@ -384,7 +386,7 @@ public class PathfindingController {
       pathNodePairs.add(Arrays.asList(s, e));
 
       if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
-        placeLine(s, e);
+        placeAnimatedLine(s, e);
       }
       if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor))
         showButton(buttonMap.get(s));
@@ -499,19 +501,45 @@ public class PathfindingController {
         });
   }
 
-  private void placeLine(Node start, Node end) {
-    Line line = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
-    line.setFill(Color.BLACK);
-    line.setStrokeWidth(5);
+  private void placeAnimatedLine(Node start, Node end) {
 
-    // Add the line to the scene graph and track the nodes that have been added
-    linesPlane.getChildren().add(line);
+    Group lineGroup = new Group();
+    linesPlane.getChildren().add(lineGroup);
+    Path path = new Path();
+    int startX = start.getXCoord();
+    int startY = start.getYCoord();
+    int endX = end.getXCoord();
+    int endY = end.getYCoord();
+    int xLength = (startX - endX) / 2;
+    int yLength = (startY - endY) / 2;
+
+    MoveTo moveTo = new MoveTo(startX - xLength, startY - yLength);
+    LineTo lineTo = new LineTo(endX - xLength, endY - yLength);
+    path.getElements().addAll(moveTo, lineTo);
+
+    PathTransition transition = new PathTransition();
+    transition.setDuration(Duration.seconds(2)); // set the duration of the animation
+    transition.setNode(lineGroup); // set the node on which the line will be drawn
+    transition.setPath(path); // set the path along which the line will be animated
+    transition.setCycleCount(Timeline.INDEFINITE); // set the number of cycles for the animation
+
+    // set the properties of the dashed line
+    DoubleProperty dashOffset = new SimpleDoubleProperty();
+    Line line = new Line(startX, startY, endX - xLength, endY - yLength);
+    line.setStroke(Color.BLACK);
+    line.setStrokeWidth(5);
+    line.getStrokeDashArray().addAll(15d, 10d);
+    line.setStrokeDashOffset(0);
+    line.strokeDashOffsetProperty().bind(dashOffset);
+
+    // add the line to the pane
+    lineGroup.getChildren().add(line);
+    transition.play();
   }
 
   private void updateTextFieldPosition(Node endNode) {
     double textFieldWidth = 10;
     double textFieldHeight = 10;
-    double textFieldPadding = 10;
     adminLabel.setLayoutX(endNode.getXCoord() - textFieldWidth / 2);
     adminLabel.setLayoutY(endNode.getYCoord() - textFieldHeight - 30);
     adminLabel.setPromptText("Click to add note");

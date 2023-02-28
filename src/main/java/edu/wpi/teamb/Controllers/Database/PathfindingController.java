@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
@@ -23,7 +24,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -581,7 +581,7 @@ public class PathfindingController {
     animationTimeline =
         new Timeline(
             new KeyFrame(
-                Duration.millis(100),
+                Duration.millis(200),
                 event -> {
                   Group lineGroup = new Group();
                   linesPlane.getChildren().add(lineGroup);
@@ -592,7 +592,8 @@ public class PathfindingController {
                   Path path = getPath(nodePairs);
 
                   PathTransition transition = new PathTransition();
-                  transition.setDuration(Duration.seconds(nodePairs.size() / 2));
+                  transition.setInterpolator(Interpolator.LINEAR);
+                  transition.setDuration(Duration.seconds(nodePairs.size()));
                   transition.setNode(lineGroup);
                   transition.setPath(path);
                   transition.setCycleCount(Timeline.INDEFINITE);
@@ -620,8 +621,6 @@ public class PathfindingController {
   public void helpButtonClicked() {
     Popup.displayPopup(Screen.PATHFINDING_HELP_POP_UP);
   }
-
-  public void searchCombo(ActionEvent actionEvent) {}
 
   public static PathfindingController getInstance() {
     return instance;

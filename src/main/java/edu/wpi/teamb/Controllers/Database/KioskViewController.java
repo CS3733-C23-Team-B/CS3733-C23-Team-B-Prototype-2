@@ -86,12 +86,11 @@ public class KioskViewController {
     frontCenter.toFront();
 
     // Set up the slide-in and slide-out animations
-    TranslateTransition slideOut = new TranslateTransition(Duration.seconds(5), frontBox2);
-    slideOut.setToY(-1000);
+    TranslateTransition slideOut = new TranslateTransition(Duration.seconds(3), frontBox2);
+    slideOut.setToY(-300);
 
-    TranslateTransition slideIn = new TranslateTransition(Duration.seconds(5), frontBox2);
-    slideIn.setToY(80);
-    slideIn.setFromY(center.getHeight());
+    TranslateTransition slideIn = new TranslateTransition(Duration.seconds(3), frontBox2);
+    slideIn.setToY(30);
 
     slideOut.setOnFinished(
         evt -> {
@@ -101,6 +100,13 @@ public class KioskViewController {
           moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
           frontLabel.setText(
               kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
+          try {
+            findPath(
+                kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
+                kioskMoveList.get(index.get()).getNextNode().getNodeID());
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
           slideIn.play();
         });
     // Schedule a task to update the index and slide in the new message and image every 10 seconds
@@ -112,13 +118,6 @@ public class KioskViewController {
                 event -> {
                   index.getAndIncrement();
                   slideOut.play();
-                  try {
-                    findPath(
-                        kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
-                        kioskMoveList.get(index.get()).getNextNode().getNodeID());
-                  } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                  }
                 }));
 
     timeline.setCycleCount(Timeline.INDEFINITE);

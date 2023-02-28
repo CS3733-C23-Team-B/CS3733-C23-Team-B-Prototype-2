@@ -50,7 +50,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../media/Developers/Jack%20Laford.png" />
+                                          <Image url="@../../../../../media/Developers/Jack%20Lafond.png" />
                                        </image>
                                     </ImageView>
                                     <VBox>

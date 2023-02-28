@@ -3,6 +3,8 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Database.DAO.RequestDAO;
 import edu.wpi.teamb.Database.Requests.*;
 import edu.wpi.teamb.Entities.RequestType;
+import edu.wpi.teamb.Navigation.Popup;
+import edu.wpi.teamb.Navigation.Screen;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
@@ -27,6 +29,7 @@ public class MapEditorStatsPopupController {
   private List<AudioVideoRequest> avRs;
 
   public void initialize() {
+    RequestDAO.refreshRequests();
     secRs = RequestDAO.getAllSecRequests(lName);
     sanRs = RequestDAO.getAllSanRequests(lName);
     ptRs = RequestDAO.getAllPTRequests(lName);
@@ -87,5 +90,9 @@ public class MapEditorStatsPopupController {
       default:
         break;
     }
+  }
+
+  public void backButtonClicked() {
+    Popup.hidePopup(Screen.MAP_EDITOR_LOCATION_STATS_POPUP);
   }
 }

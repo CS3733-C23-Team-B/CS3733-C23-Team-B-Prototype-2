@@ -357,7 +357,7 @@ public class MapEditorController {
       statsButton.setOnAction(
           (eventAction) -> {
             try {
-              editClicked();
+              statsButtonClicked();
             } catch (Exception e) {
               throw new RuntimeException(e);
             }
@@ -756,6 +756,10 @@ public class MapEditorController {
 
   public void helpButtonClicked() {
     Popup.displayPopup(Screen.MAP_EDITOR_HELP_POP_UP);
+  }
+
+  public void statsButtonClicked() {
+    Popup.displayPopup(Screen.MAP_EDITOR_LOCATION_STATS_POPUP);
   }
 
   public void drawEdges() {

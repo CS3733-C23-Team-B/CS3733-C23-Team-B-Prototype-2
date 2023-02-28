@@ -57,7 +57,7 @@ public class PathfindingController {
   @FXML MFXCheckbox showLocationsCheckBox;
   @FXML MFXButton pathfind;
 
-  @FXML VBox frontFloorr;
+  @FXML Pane frontFloorr;
   @FXML GridPane scrollPane;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
@@ -89,7 +89,7 @@ public class PathfindingController {
   List<Node> nodePath;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
-  @Getter @FXML private AnchorPane forms;
+  @Getter @FXML private Pane forms;
 
   /** Initializes the dropdown menus */
   public void initialize() {

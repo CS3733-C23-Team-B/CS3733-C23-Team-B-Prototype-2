@@ -93,7 +93,7 @@
                         </HBox>
                         <HBox alignment="CENTER" minHeight="0.0" spacing="20.0">
                            <children>
-                              <MFXFilterComboBox id="button" fx:id="floorCombo" floatMode="DISABLED" maxHeight="40.0" minHeight="25.0" minWidth="0.0" prefHeight="40.0" style="-fx-background-radius: 8; -fx-background-color: #eeeeee; -fx-border-color: #cecece;" text="Lower Level 1">
+                              <MFXFilterComboBox id="button" fx:id="floorCombo" floatMode="DISABLED" maxHeight="40.0" minHeight="25.0" minWidth="0.0" prefHeight="40.0" style="-fx-background-radius: 8; -fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-border-radius: 8;" text="Lower Level 1">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

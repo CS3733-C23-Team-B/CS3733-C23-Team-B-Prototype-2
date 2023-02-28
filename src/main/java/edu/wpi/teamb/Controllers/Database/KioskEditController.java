@@ -1,5 +1,6 @@
 package edu.wpi.teamb.Controllers.Database;
 
+import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.KioskMove;
 import edu.wpi.teamb.Database.Move;
@@ -23,9 +24,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import lombok.Getter;
-import lombok.Setter;
 
 public class KioskEditController {
 
@@ -45,9 +47,7 @@ public class KioskEditController {
   private List<Move> moves;
 
   @Getter public static KioskEditController instance;
-
-  @Getter @Setter public int rowVal;
-  private KioskMove currentSelection;
+  @Getter public KioskMove currentSelection;
 
   public void initialize() {
     instance = this;
@@ -97,7 +97,6 @@ public class KioskEditController {
             (obs, oldSelection, newSelection) -> {
               if (newSelection != null) {
                 currentSelection = table.getSelectionModel().getSelectedItem();
-                this.getInstance().setRowVal(table.getSelectionModel().getSelectedIndex());
                 preview.setDisable(false);
               }
             });
@@ -109,7 +108,7 @@ public class KioskEditController {
         e -> {
           KioskMove kiosk = e.getTableView().getItems().get(e.getTablePosition().getRow());
           kiosk.setMessage(e.getNewValue());
-          // Something   DBSession.updateKiosk(, kiosk.getMessage());
+          MapDAO.updateKioskMove(kiosk);
         });
     table.setEditable(true);
 
@@ -136,5 +135,16 @@ public class KioskEditController {
 
   public void previewClicked() {
     Popup.displayPopup(Screen.KIOSK_POPUP);
+  }
+
+  public void handleKeyPress(KeyEvent event) {
+    if (event.getCode().equals(KeyCode.BACK_SPACE)) {
+      System.out.println("key pressed");
+      if (table.getSelectionModel().getSelectedItem() != null) {
+        KioskMove k = table.getSelectionModel().getSelectedItem();
+        table.getItems().remove(k);
+        DBSession.deleteKioskMove(k);
+      }
+    }
   }
 }

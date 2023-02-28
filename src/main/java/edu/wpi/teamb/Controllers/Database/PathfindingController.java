@@ -266,6 +266,8 @@ public class PathfindingController {
     clearPopUp();
     Node node = nodeMap.get(dot);
 
+    if (node == null) return;
+
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
     popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 - POP_UP_HEIGHT);
@@ -492,18 +494,9 @@ public class PathfindingController {
         MouseEvent.MOUSE_CLICKED,
         e -> {
           if (pathingByClick) {
-            startLoc.clear();
-            endLoc.clear();
             Node n = nodeMap.get(dot);
             String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
-            startLoc.setValue(ln);
-            // commented out code just returns same location as before, I have to make it get the
-            // location from where the start path here is from
-            if (pathingByClick) {
-              Node n2 = nodeMap.get(dot);
-              String ln2 = moveMap.get(n2.getNodeID()).get(0).getLocationName().getLongName();
-              endLoc.setValue(ln2);
-            }
+            endLoc.setValue(ln);
             pathingByClick = false;
             try {
               findPath();
@@ -550,6 +543,9 @@ public class PathfindingController {
 
   public void startPathFromHereClicked() throws IOException {
     pathingByClick = true;
+    Node n = nodeMap.get(currentDot);
+    String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
+    startLoc.setValue(ln);
     scrollPane.setVisible(true);
 
     forms.getChildren().clear();

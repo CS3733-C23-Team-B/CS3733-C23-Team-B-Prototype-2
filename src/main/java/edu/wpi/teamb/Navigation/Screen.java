@@ -7,7 +7,7 @@ public enum Screen {
   DATABASE_HELP("views/Database/DatabaseHelp.fxml"),
   KIOSK_EDIT("views/Kiosk/KioskEditor.fxml"),
   MAP_DATA_EDITOR("views/Database/MapDataEditor.fxml"),
-  MAP_EDITOR("views/Database/MapEditor.fxml"),
+  MAP_EDITOR("views/Database/MapEditor2.fxml"),
   NODE_EDITOR("views/Database/NodeEditor.fxml"),
   SIDE_NODE_EDITOR("views/Database/SideNodeEditor.fxml"),
   NODE_CREATOR("views/Database/NodeCreator.fxml"),
@@ -34,6 +34,7 @@ public enum Screen {
   MAINHELP("views/Popups/MainHelpPage.fxml"),
   FOOTER("views/Navigation/Footer.fxml"),
   SUBMISSION_SUCCESS("views/Popups/SubmissionSuccess.fxml"),
+  KIOSK_POPUP("views/Popups/KioskPopup.fxml"),
   DEVELOPERS("views/Popups/ServiceRequestDevelopers.fxml"),
   CREDITS("views/Navigation/Credits.fxml"),
   SERVICE_REQUEST_SYSTEMS("views/ServiceRequest/ServiceRequestSystems.fxml"),
@@ -49,6 +50,7 @@ public enum Screen {
   PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml"),
   DATABASE_CONFIRMATION("views/Database/DatabaseConfirmation.fxml"),
   MEDICINE_DELIVERY_SERVICE_REQUEST("views/ServiceRequest/MedicineDelivery.fxml"),
+  CLICK_PATHFINDING_INSTRUCTION("views/Database/ClickPathfindingInstruction.fxml"),
   KAVYA_MANI("views/Popups/KavyaPopUp.fxml"),
   ADRIAN_JOHNSON("views/Popups/AdrianPopUp.fxml"),
   JOLIE_WALTS("views/Popups/JoliePopUp.fxml"),
@@ -58,7 +60,7 @@ public enum Screen {
   SAM_COLEBOURN("views/Popups/SamPopUp.fxml"),
   SEAN_LENDRUM("views/Popups/SeanPopUp.fxml"),
   MICHAEL_GATTI("views/Popups/MichaelPopUp.fxml"),
-  JACK_LAFORD("views/Popups/JackPopUp.fxml");
+  JACK_LAFOND("views/Popups/JackPopUp.fxml");
 
   private final String filename;
 

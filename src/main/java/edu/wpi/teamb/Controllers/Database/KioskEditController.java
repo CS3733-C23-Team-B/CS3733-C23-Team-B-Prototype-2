@@ -3,6 +3,9 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.KioskMove;
 import edu.wpi.teamb.Database.Move;
+import edu.wpi.teamb.Navigation.Popup;
+import edu.wpi.teamb.Navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.text.SimpleDateFormat;
@@ -19,25 +22,36 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Duration;
+import lombok.Getter;
+import lombok.Setter;
 
 public class KioskEditController {
 
-  @FXML MFXFilterComboBox moveDropdown;
+  @FXML MFXFilterComboBox<String> moveDropdown;
   @FXML MFXTextField moveMessage;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
+  @FXML MFXButton preview;
 
-  @FXML TableView table;
+  @FXML TableView<KioskMove> table;
   @FXML TableColumn dateCol;
-  @FXML TableColumn messageCol;
+  @FXML TableColumn<KioskMove, String> messageCol;
   @FXML TableColumn nameCol;
   @FXML TableColumn startCol;
   @FXML TableColumn endCol;
 
   private List<Move> moves;
 
+  @Getter public static KioskEditController instance;
+
+  @Getter @Setter public int rowVal;
+  private KioskMove currentSelection;
+
   public void initialize() {
+    instance = this;
+    preview.setDisable(true);
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     moves = DBSession.getAllMoves();
     List<String> l =
@@ -76,6 +90,29 @@ public class KioskEditController {
     startCol.setCellValueFactory(new PropertyValueFactory<>("prevNode"));
     endCol.setCellValueFactory(new PropertyValueFactory<>("nextNode"));
 
+    table
+        .getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (obs, oldSelection, newSelection) -> {
+              if (newSelection != null) {
+                currentSelection = table.getSelectionModel().getSelectedItem();
+                this.getInstance().setRowVal(table.getSelectionModel().getSelectedIndex());
+                preview.setDisable(false);
+              }
+            });
+    if (table.getSelectionModel().getSelectedItem() == null) {
+      preview.setDisable(true);
+    }
+    messageCol.setCellFactory(TextFieldTableCell.forTableColumn());
+    messageCol.setOnEditCommit(
+        e -> {
+          KioskMove kiosk = e.getTableView().getItems().get(e.getTablePosition().getRow());
+          kiosk.setMessage(e.getNewValue());
+          // Something   DBSession.updateKiosk(, kiosk.getMessage());
+        });
+    table.setEditable(true);
+
     setTableValues();
   }
 
@@ -95,5 +132,9 @@ public class KioskEditController {
       moveDropdown.clear();
       setTableValues();
     }
+  }
+
+  public void previewClicked() {
+    Popup.displayPopup(Screen.KIOSK_POPUP);
   }
 }

@@ -264,6 +264,20 @@ public class MapDAO {
     }
   }
 
+  public static void updateKioskMove(KioskMove km) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      session.merge(km);
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+  }
+
   public static void addEdge(Edge ed) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

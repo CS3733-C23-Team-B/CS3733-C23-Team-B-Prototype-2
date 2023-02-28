@@ -5,15 +5,19 @@ import edu.wpi.teamb.Database.Requests.*;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class MapEditorStatsPopupController {
@@ -21,7 +25,7 @@ public class MapEditorStatsPopupController {
   @FXML private Label titleField;
   @FXML private GridPane chartAndTablePane;
   private TableView table;
-  private BarChart chart;
+  private BarChart<String, Number> chart;
   private String lName;
   private List<SecurityRequest> secRs;
   private List<SanitationRequest> sanRs;
@@ -44,23 +48,125 @@ public class MapEditorStatsPopupController {
     facRs = RequestDAO.getAllFacRequests(lName);
     avRs = RequestDAO.getAllAVRequests(lName);
 
+    ArrayList<Integer> sizes = new ArrayList<Integer>();
+    sizes.add(secRs.size());
+    sizes.add(sanRs.size());
+    sizes.add(ptRs.size());
+    sizes.add(cRs.size());
+    sizes.add(medicineRs.size());
+    sizes.add(medequipRs.size());
+    sizes.add(facRs.size());
+    sizes.add(avRs.size());
+    Integer max = Collections.max(sizes);
+
     CategoryAxis types = new CategoryAxis();
     types.setLabel("Request Types");
-    NumberAxis sums = new NumberAxis();
+    NumberAxis sums = new NumberAxis(0, max + 1, 1);
+    sums.setTickMarkVisible(false);
     sums.setLabel("Total");
+    sums.setTickLabelGap(5);
+
     chart = new BarChart(types, sums);
 
     XYChart.Series sr = new XYChart.Series();
-    sr.getData().add(new XYChart.Data("Security", secRs.size()));
-    sr.getData().add(new XYChart.Data("Sanitation", sanRs.size()));
-    sr.getData().add(new XYChart.Data("Patient Transportation", ptRs.size()));
-    sr.getData().add(new XYChart.Data("Computer", cRs.size()));
-    sr.getData().add(new XYChart.Data("Medicine", medicineRs.size()));
-    sr.getData().add(new XYChart.Data("Medical Equipment", medequipRs.size()));
-    sr.getData().add(new XYChart.Data("Facilities", facRs.size()));
-    sr.getData().add(new XYChart.Data("Audio Video", avRs.size()));
+    sr.getData().add(new XYChart.Data(RequestType.SECURITY.toString(), secRs.size()));
+    sr.getData().add(new XYChart.Data(RequestType.SANITATION.toString(), sanRs.size()));
+    sr.getData().add(new XYChart.Data(RequestType.PATIENTTRANSPORTATION.toString(), ptRs.size()));
+    sr.getData().add(new XYChart.Data(RequestType.COMPUTER.toString(), cRs.size()));
+    sr.getData().add(new XYChart.Data(RequestType.MEDICINE.toString(), medicineRs.size()));
+    sr.getData().add(new XYChart.Data(RequestType.MEDICALEQUIPMENT.toString(), medequipRs.size()));
+    sr.getData().add(new XYChart.Data(RequestType.FACILITIES.toString(), facRs.size()));
+    sr.getData().add(new XYChart.Data(RequestType.AUDIOVIDEO.toString(), avRs.size()));
 
     chart.getData().add(sr);
+
+    for (XYChart.Series<String, Number> series : chart.getData()) {
+      for (XYChart.Data<String, Number> data : series.getData()) {
+        String type = data.getXValue();
+        switch (type) {
+          case "Security":
+            data.getNode().setCursor(Cursor.HAND);
+            data.getNode()
+                .setOnMouseReleased(
+                    (MouseEvent event) -> {
+                      updatePage(RequestType.SECURITY);
+                    });
+            break;
+
+          case "Sanitation":
+            data.getNode().setCursor(Cursor.HAND);
+            data.getNode()
+                .setOnMouseReleased(
+                    (MouseEvent event) -> {
+                      updatePage(RequestType.SANITATION);
+                    });
+            break;
+
+          case "Internal Patient Transportation":
+            data.getNode().setCursor(Cursor.HAND);
+            data.getNode()
+                .setOnMouseReleased(
+                    (MouseEvent event) -> {
+                      updatePage(RequestType.PATIENTTRANSPORTATION);
+                    });
+            break;
+
+          case "Computer":
+            data.getNode().setCursor(Cursor.HAND);
+            data.getNode()
+                .setOnMouseReleased(
+                    (MouseEvent event) -> {
+                      updatePage(RequestType.COMPUTER);
+                    });
+            break;
+
+          case "Medicine Delivery":
+            data.getNode().setCursor(Cursor.HAND);
+            data.getNode()
+                .setOnMouseReleased(
+                    (MouseEvent event) -> {
+                      updatePage(RequestType.MEDICINE);
+                    });
+            break;
+
+          case "Medical Equipment Delivery":
+            data.getNode().setCursor(Cursor.HAND);
+            data.getNode()
+                .setOnMouseReleased(
+                    (MouseEvent event) -> {
+                      updatePage(RequestType.MEDICALEQUIPMENT);
+                    });
+            break;
+
+          case "Facilities Maintenance":
+            data.getNode().setCursor(Cursor.HAND);
+            data.getNode()
+                .setOnMouseReleased(
+                    (MouseEvent event) -> {
+                      updatePage(RequestType.FACILITIES);
+                    });
+            break;
+
+          case "Audio and Visual":
+            data.getNode().setCursor(Cursor.HAND);
+            data.getNode()
+                .setOnMouseReleased(
+                    (MouseEvent event) -> {
+                      updatePage(RequestType.AUDIOVIDEO);
+                    });
+            break;
+
+          default:
+            break;
+        }
+      }
+    }
+
+    chart.setLegendVisible(false);
+    chart.setHorizontalGridLinesVisible(false);
+    chart.setVerticalGridLinesVisible(false);
+    chart.setStyle("-fx-background-color: #F2F2F2");
+
     chartAndTablePane.add(chart, 0, 0, 1, 1);
 
     titleField.setText("Request Statistics For Location: " + lName);
@@ -70,6 +176,18 @@ public class MapEditorStatsPopupController {
   }
 
   public void updatePage(RequestType t) {
+    for (XYChart.Series<String, Number> series : chart.getData()) {
+      for (XYChart.Data<String, Number> data : series.getData()) {
+        if (data.getXValue().equals(t.toString())) {
+          data.getNode().setStyle("-fx-background-color: #E89F55");
+        } else {
+          data.getNode().setStyle("-fx-background-color: #21357E;");
+        }
+      }
+    }
+
+    table.getColumns().clear();
+
     TableColumn rIDCol = new TableColumn<GeneralRequest, Integer>("Request ID");
     TableColumn empIDCol = new TableColumn<GeneralRequest, String>("Requestor ID");
     TableColumn assignCol = new TableColumn<GeneralRequest, String>("Assigned To");
@@ -167,7 +285,7 @@ public class MapEditorStatsPopupController {
         table.getItems().addAll(facRs);
         break;
 
-      case AUDIOVISUAL:
+      case AUDIOVIDEO:
         TableColumn avTypeCol = new TableColumn<GeneralRequest, String>("Type");
 
         avTypeCol.setCellValueFactory(new PropertyValueFactory<>("AVType"));

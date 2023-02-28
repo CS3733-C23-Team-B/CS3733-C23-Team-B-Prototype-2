@@ -74,7 +74,7 @@ public class SubmittedServiceRequestsController {
   private ObservableList<RequestType> requestType =
       FXCollections.observableArrayList(
           RequestType.ALLREQUESTS,
-          RequestType.AUDIOVISUAL,
+          RequestType.AUDIOVIDEO,
           RequestType.COMPUTER,
           RequestType.FACILITIES,
           RequestType.PATIENTTRANSPORTATION,
@@ -217,7 +217,7 @@ public class SubmittedServiceRequestsController {
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals(RequestType.AUDIOVISUAL.toString())) {
+    } else if (page.equals(RequestType.AUDIOVIDEO.toString())) {
       table =
           avTable.getTable(
               requestStatusFilter.getValue(),
@@ -338,7 +338,7 @@ public class SubmittedServiceRequestsController {
         addAttribute("Type of Repair:", cr.getTypeOfRepair());
         addAttribute("Type of Device:", cr.getDevice());
         setFields();
-      } else if (r.getRequestType().equals(RequestType.AUDIOVISUAL)) {
+      } else if (r.getRequestType().equals(RequestType.AUDIOVIDEO)) {
         AudioVideoRequest avr = (AudioVideoRequest) r;
         addAttribute("Location:", avr.getLocation());
         addAttribute("Audio Visual Type:", avr.getAVType());

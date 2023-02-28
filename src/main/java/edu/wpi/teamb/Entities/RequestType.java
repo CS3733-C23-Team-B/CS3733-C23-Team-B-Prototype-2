@@ -9,7 +9,7 @@ public enum RequestType {
   MEDICINE("Medicine Delivery"),
   MEDICALEQUIPMENT("Medical Equipment Delivery"),
   FACILITIES("Facilities Maintenance"),
-  AUDIOVISUAL("Audio and Visual");
+  AUDIOVIDEO("Audio and Visual");
 
   private String str;
 

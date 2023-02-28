@@ -14,6 +14,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,40 +81,63 @@ public class KioskViewController {
         kioskMoveList.get(index.get()).getNextNode().getNodeID());
 
     frontBox2.toFront();
-    frontCenter.toFront();
     frontRight.toFront();
     frontLeft.toFront();
-    // Schedule a task to update the index and set the new message and image every 10 seconds
+    frontCenter.toFront();
+
+    // Set up the slide-in and slide-out animations
+    TranslateTransition slideOut = new TranslateTransition(Duration.seconds(3), frontBox2);
+    slideOut.setToY(-300);
+
+    TranslateTransition slideIn = new TranslateTransition(Duration.seconds(3), frontBox2);
+    slideIn.setToY(30);
+
+    slideOut.setOnFinished(
+        evt -> {
+          if (index.get() >= kioskMoveList.size()) {
+            index.set(0);
+          }
+          moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
+          frontLabel.setText(
+              kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
+          try {
+            findPath(
+                kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
+                kioskMoveList.get(index.get()).getNextNode().getNodeID());
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+          Platform.runLater(
+              () -> {
+                slideIn.play();
+              });
+        });
+
+    // Schedule a task to update the index and slide in the new message and image every 10 seconds
+
     timeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(10),
                 event -> {
                   index.getAndIncrement();
-                  if (index.get() >= kioskMoveList.size()) {
-                    index.set(0);
-                  }
-                  moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
-                  frontLabel.setText(
-                      kioskMoveList.get(index.get()).getLocationName().getLongName()
-                          + " is being moved");
-                  try {
-                    findPath(
-                        kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
-                        kioskMoveList.get(index.get()).getNextNode().getNodeID());
-                  } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                  }
+                  Platform.runLater(
+                      () -> {
+                        slideOut.play();
+                      });
                 }));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
     Platform.runLater(
         () -> {
-          changeFloor(
-              kioskMoveList.get(index.get()).getPrevNode().getFloor(),
-              new Point2D(
-                  kioskMoveList.get(index.get()).getPrevNode().getXCoord(),
-                  kioskMoveList.get(index.get()).getPrevNode().getYCoord()));
+          changeFloorLater(kioskMoveList.get(index.get()).getPrevNode());
+        });
+  }
+
+  private void changeFloorLater(Node n) {
+    Platform.runLater(
+        () -> {
+          changeFloor(n.getFloor(), new Point2D(n.getXCoord(), n.getYCoord()));
         });
   }
 
@@ -142,9 +166,9 @@ public class KioskViewController {
     }
     aPane.toFront();
     frontBox2.toFront();
-    frontCenter.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    frontCenter.toFront();
 
     Platform.runLater(() -> pane.centreOn(p));
   }
@@ -154,9 +178,9 @@ public class KioskViewController {
     aPane.getChildren().add(dot);
     aPane.toFront();
     frontBox2.toFront();
-    frontCenter.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    frontCenter.toFront();
     if (buttonMap.get(node) != null) {
       showButton(buttonMap.get(node));
     }
@@ -269,6 +293,7 @@ public class KioskViewController {
   }
 
   public void signIn() {
+    timeline.stop();
     Navigation.navigate(Screen.SIGN_IN);
   }
 }

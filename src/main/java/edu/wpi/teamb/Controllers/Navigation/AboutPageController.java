@@ -66,8 +66,8 @@ public class AboutPageController {
     Popup.displayPopup(Screen.LUKE_GRADY);
   }
 
-  public void jackLafordClicked() {
-    Popup.displayPopup(Screen.JACK_LAFORD);
+  public void jackLafondClicked() {
+    Popup.displayPopup(Screen.JACK_LAFOND);
   }
 
   public void christinaAubeClicked() {

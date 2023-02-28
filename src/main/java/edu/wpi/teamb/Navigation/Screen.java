@@ -58,7 +58,7 @@ public enum Screen {
   SAM_COLEBOURN("views/Popups/SamPopUp.fxml"),
   SEAN_LENDRUM("views/Popups/SeanPopUp.fxml"),
   MICHAEL_GATTI("views/Popups/MichaelPopUp.fxml"),
-  JACK_LAFORD("views/Popups/JackPopUp.fxml");
+  JACK_LAFOND("views/Popups/JackPopUp.fxml");
 
   private final String filename;
 

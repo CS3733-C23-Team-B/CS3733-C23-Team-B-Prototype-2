@@ -253,3 +253,15 @@
     -fx-font-family: Nunito, sans-serif;
     -fx-font-size: 18px;
 }
+
+#mapEditorButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+#mapEditorCheckbox{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}

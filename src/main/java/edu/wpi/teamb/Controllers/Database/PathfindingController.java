@@ -348,6 +348,10 @@ public class PathfindingController {
 
     PathfindingContext pContext = new PathfindingContext(pathfindable);
     ArrayList<String> path = pContext.getShortestPath(start, end);
+    String[] directions = Pathfinding.getPathDirections(path);
+    for (int i = 0; i < directions.length; i++) {
+      System.out.println(i + ":\n" + directions[i]);
+    }
 
     if (path == null) {
       System.out.println("PATH NOT FOUND");
@@ -434,7 +438,6 @@ public class PathfindingController {
     nextFloor.setStyle("-fx-background-color: #21357E; -fx-text-fill: #F2F2F2");
     nextFloor.setLayoutX(startNode.getXCoord() + 20);
     nextFloor.setLayoutY(startNode.getYCoord() - 20);
-    System.out.println("Go to Floor " + endNode.getFloor());
     buttonMap.put(startNode, nextFloor);
   }
 

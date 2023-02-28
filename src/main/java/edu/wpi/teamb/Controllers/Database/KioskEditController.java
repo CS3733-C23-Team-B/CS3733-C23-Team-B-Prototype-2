@@ -3,6 +3,8 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.KioskMove;
 import edu.wpi.teamb.Database.Move;
+import edu.wpi.teamb.Navigation.Popup;
+import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.text.SimpleDateFormat;
@@ -23,12 +25,12 @@ import javafx.util.Duration;
 
 public class KioskEditController {
 
-  @FXML MFXFilterComboBox moveDropdown;
+  @FXML MFXFilterComboBox<String> moveDropdown;
   @FXML MFXTextField moveMessage;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
 
-  @FXML TableView table;
+  @FXML TableView<KioskMove> table;
   @FXML TableColumn dateCol;
   @FXML TableColumn messageCol;
   @FXML TableColumn nameCol;
@@ -76,6 +78,22 @@ public class KioskEditController {
     startCol.setCellValueFactory(new PropertyValueFactory<>("prevNode"));
     endCol.setCellValueFactory(new PropertyValueFactory<>("nextNode"));
 
+    table
+        .getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (obs, oldSelection, newSelection) -> {
+              if (newSelection != null) {
+                KioskMove selectedData = table.getSelectionModel().getSelectedItem();
+                String info =
+                    "Selected: "
+                        + selectedData.getLocationName()
+                        + ", Message: "
+                        + selectedData.getMessage();
+                System.out.println(info);
+                Popup.displayPopup(Screen.KIOSK_POPUP);
+              }
+            });
     setTableValues();
   }
 

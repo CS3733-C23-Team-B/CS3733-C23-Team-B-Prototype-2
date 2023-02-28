@@ -37,10 +37,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -353,7 +350,7 @@ public class MapEditorController {
     Text loc = new Text(t);
 
     Button editButton = new Button("Edit");
-    editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
+    editButton.setStyle("-fx-background-color: #21357E; -fx-text-fill: #FCFCFC;");
     editButton.setOnAction(
         (eventAction) -> {
           try {
@@ -362,6 +359,29 @@ public class MapEditorController {
             throw new RuntimeException(e);
           }
         });
+
+    HBox hboxMain = new HBox();
+    hboxMain.getChildren().add(editButton);
+    hboxMain.setAlignment(Pos.CENTER_LEFT);
+
+    if (t != "NO MOVES") {
+      Button statsButton = new Button("Request Stats");
+      statsButton.setStyle("-fx-background-color: #E89F55; -fx-text-fill: #FCFCFC;");
+      statsButton.setOnAction(
+          (eventAction) -> {
+            try {
+              editClicked();
+            } catch (IOException e) {
+              throw new RuntimeException(e);
+            }
+          });
+      HBox hboxChild = new HBox();
+      hboxChild.getChildren().add(statsButton);
+      hboxChild.setAlignment(Pos.CENTER_RIGHT);
+      HBox.setHgrow(hboxChild, Priority.ALWAYS);
+      hboxMain.getChildren().add(hboxChild);
+    }
+
     vbox.setSpacing(5);
     //    vbox.setAlignment(Pos.CENTER);
     vbox.setPadding(new Insets(10, 10, 10, 10));
@@ -370,10 +390,7 @@ public class MapEditorController {
     vbox.getChildren().add(pos);
     vbox.getChildren().add(loc);
 
-    HBox hbox = new HBox();
-    hbox.getChildren().add(editButton);
-    hbox.setAlignment(Pos.CENTER);
-    vbox.getChildren().add(hbox);
+    vbox.getChildren().add(hboxMain);
 
     currentNode = node;
     drawEdges();

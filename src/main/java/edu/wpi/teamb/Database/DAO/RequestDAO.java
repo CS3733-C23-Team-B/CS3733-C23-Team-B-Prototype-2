@@ -30,9 +30,42 @@ public class RequestDAO {
     return PTRequests;
   }
 
+  public static List<PatientTransportationRequest> getAllPTRequests(String l) {
+    refreshRequests();
+    List<PatientTransportationRequest> rs = new ArrayList<PatientTransportationRequest>();
+    for (PatientTransportationRequest r : PTRequests) {
+      if (r.getLocation().equals(l)) {
+        rs.add(r);
+      }
+    }
+    return rs;
+  }
+
   public static List<SanitationRequest> getAllSanRequests() {
     refreshRequests();
     return SanRequests;
+  }
+
+  public static List<SanitationRequest> getAllSanRequests(String l) {
+    refreshRequests();
+    List<SanitationRequest> rs = new ArrayList<SanitationRequest>();
+    for (SanitationRequest r : SanRequests) {
+      if (r.getLocation().equals(l)) {
+        rs.add(r);
+      }
+    }
+    return rs;
+  }
+
+  public static List<SecurityRequest> getAllSecRequests(String l) {
+    refreshRequests();
+    List<SecurityRequest> rs = new ArrayList<SecurityRequest>();
+    for (SecurityRequest r : SecRequests) {
+      if (r.getLocation().equals(l)) {
+        rs.add(r);
+      }
+    }
+    return rs;
   }
 
   public static List<SecurityRequest> getAllSecRequests() {
@@ -45,9 +78,31 @@ public class RequestDAO {
     return CRequests;
   }
 
+  public static List<ComputerRequest> getAllCRequests(String l) {
+    refreshRequests();
+    List<ComputerRequest> rs = new ArrayList<ComputerRequest>();
+    for (ComputerRequest r : CRequests) {
+      if (r.getLocation().equals(l)) {
+        rs.add(r);
+      }
+    }
+    return rs;
+  }
+
   public static List<AudioVideoRequest> getAllAVRequests() {
     refreshRequests();
     return AVRequests;
+  }
+
+  public static List<AudioVideoRequest> getAllAVRequests(String l) {
+    refreshRequests();
+    List<AudioVideoRequest> rs = new ArrayList<AudioVideoRequest>();
+    for (AudioVideoRequest r : AVRequests) {
+      if (r.getLocation().equals(l)) {
+        rs.add(r);
+      }
+    }
+    return rs;
   }
 
   public static List<MedicalEquipmentDeliveryRequest> getAllMEDRequests() {
@@ -55,14 +110,47 @@ public class RequestDAO {
     return MEDRequests;
   }
 
+  public static List<MedicalEquipmentDeliveryRequest> getAllMEDRequests(String l) {
+    refreshRequests();
+    List<MedicalEquipmentDeliveryRequest> rs = new ArrayList<MedicalEquipmentDeliveryRequest>();
+    for (MedicalEquipmentDeliveryRequest r : MEDRequests) {
+      if (r.getLocation().equals(l)) {
+        rs.add(r);
+      }
+    }
+    return rs;
+  }
+
   public static List<MedicineDeliveryRequest> getAllMDRequests() {
     refreshRequests();
     return MDRequests;
   }
 
+  public static List<MedicineDeliveryRequest> getAllMDRequests(String l) {
+    refreshRequests();
+    List<MedicineDeliveryRequest> rs = new ArrayList<MedicineDeliveryRequest>();
+    for (MedicineDeliveryRequest r : MDRequests) {
+      if (r.getLocation().equals(l)) {
+        rs.add(r);
+      }
+    }
+    return rs;
+  }
+
   public static List<FacilitiesRequest> getAllFacRequests() {
     refreshRequests();
     return FacRequests;
+  }
+
+  public static List<FacilitiesRequest> getAllFacRequests(String l) {
+    refreshRequests();
+    List<FacilitiesRequest> rs = new ArrayList<FacilitiesRequest>();
+    for (FacilitiesRequest r : FacRequests) {
+      if (r.getLocation().equals(l)) {
+        rs.add(r);
+      }
+    }
+    return rs;
   }
 
   public static List<GeneralRequest> getAllRequestsWithEmpID(String id) {

@@ -62,7 +62,7 @@ public class AVServiceController extends BaseRequestController {
     var equipment = typeOfEquipmentBox.getValue();
     request.setAVType(equipment.toString());
 
-    request.setRequestType(RequestType.AUDOVISUAL);
+    request.setRequestType(RequestType.AUDIOVISUAL);
     DBSession.addRequest(request);
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);

@@ -30,7 +30,7 @@
     -fx-font-weight: bold;
 }
 
-#signInBody{
+#signInSubtitle{
     -fx-font-family: Roboto, regular;
     -fx-font-size: 18px;
 }
@@ -97,7 +97,7 @@
 #navBarButton{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-weight: bold;
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
 }
 
 #homePageTitle{
@@ -182,7 +182,7 @@
 #requestsButton{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-weight: bold;
-    -fx-font-size: 18px;
+    -fx-font-size: 16px;
 }
 
 #formTitle{
@@ -251,5 +251,29 @@
 
 #profileBody2{
     -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 18px;
+}
+
+#mapEditorButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+#mapEditorCheckbox{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+#mapEditorButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+#pathfindingSubtitle{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
     -fx-font-size: 18px;
 }

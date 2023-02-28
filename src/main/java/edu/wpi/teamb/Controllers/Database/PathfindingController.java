@@ -8,15 +8,14 @@ import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.*;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import javafx.animation.KeyFrame;
+import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -26,9 +25,12 @@ import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -39,6 +41,7 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
@@ -55,6 +58,9 @@ public class PathfindingController {
   @FXML MFXCheckbox avoidStairsCheckBox;
   @FXML MFXCheckbox showLocationsCheckBox;
   @FXML MFXButton pathfind;
+
+  @FXML Pane frontFloorr;
+  @FXML GridPane scrollPane;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
@@ -62,6 +68,7 @@ public class PathfindingController {
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
   private boolean pathNotFound = false;
+  private boolean pathingByClick = false;
   private static Node currentNode;
   private Circle currentDot;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
@@ -82,12 +89,15 @@ public class PathfindingController {
   private TextField textField;
   private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
   List<Node> nodePath;
-  private TextField adminLabel = new TextField();
   @FXML Label timeLabel;
   @FXML Label dateLabel;
 
+  @Getter @FXML private Pane forms;
+  private static PathfindingController instance;
+
   /** Initializes the dropdown menus */
   public void initialize() {
+    instance = this;
     moveMap = DBSession.getIDMoves(new Date(123, 0, 1));
     Pathfinding.refreshData();
     Pathfinding.setDate(new Date(123, 0, 1));
@@ -122,7 +132,6 @@ public class PathfindingController {
     searchCombo.setItems(
         FXCollections.observableArrayList(
             "A* Search", "Breadth-first Search", "Depth-first Search"));
-
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
@@ -159,6 +168,8 @@ public class PathfindingController {
     timeline.play();
     dateLabel.setText(formattedDate);
 
+    scrollPane.setVisible(false);
+
     Platform.runLater(
         () -> {
           changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
@@ -179,11 +190,6 @@ public class PathfindingController {
           } else if (node.getNodeID().equals(endID)) {
             endDot = c;
             endDot.setFill(Color.RED);
-            if (nodeMap != null) {
-              updateTextFieldPosition(nodeMap.get(endDot));
-              if (!linesPlane.getChildren().contains(adminLabel))
-                linesPlane.getChildren().add(adminLabel);
-            }
           }
         }
       }
@@ -243,13 +249,16 @@ public class PathfindingController {
           }
         });
     drawLines();
+    frontFloorr.toFront();
+    scrollPane.toFront();
     Platform.runLater(() -> pane.centreOn(p));
   }
 
   private void drawLines() {
     for (List<Node> pair : pathNodePairs) {
       if (pair.get(0).getFloor().equals(currentFloor)
-          && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
+          && pair.get(1).getFloor().equals(currentFloor))
+        placeAnimatedLine(pair.get(0), pair.get(1));
       if ((buttonMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
         showButton(buttonMap.get(pair.get(1)));
     }
@@ -258,6 +267,8 @@ public class PathfindingController {
   public void displayPopUp(Circle dot) {
     clearPopUp();
     Node node = nodeMap.get(dot);
+
+    if (node == null) return;
 
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
@@ -282,7 +293,20 @@ public class PathfindingController {
     vbox.getChildren().add(pos);
     vbox.getChildren().add(loc);
 
+    Button startPathButton = new Button("Start Path Here");
+    startPathButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
+    startPathButton.setOnAction(
+        (eventAction) -> {
+          try {
+            startPathFromHereClicked();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+          clearPopUp();
+        });
+
     HBox hbox = new HBox();
+    hbox.getChildren().add(startPathButton);
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
 
@@ -316,8 +340,6 @@ public class PathfindingController {
     Pathfinding.setDate(date);
   }
 
-  public void createPathFromNode() {}
-
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
     pathNotFound = false;
@@ -330,7 +352,6 @@ public class PathfindingController {
       endDot.setFill(Bapp.blue);
       endDot = null;
     }
-    if (linesPlane.getChildren().contains(adminLabel)) linesPlane.getChildren().remove(adminLabel);
 
     textField = null;
     pathNotFoundTextField.setVisible(false);
@@ -338,6 +359,7 @@ public class PathfindingController {
     SearchType type = searchTypeMap.get(searchCombo.getText());
 
     linesPlane.getChildren().clear();
+
     String start = startLoc.getValue();
     String end = endLoc.getValue();
 
@@ -348,6 +370,10 @@ public class PathfindingController {
 
     PathfindingContext pContext = new PathfindingContext(pathfindable);
     ArrayList<String> path = pContext.getShortestPath(start, end);
+    String[] directions = Pathfinding.getPathDirections(path);
+    for (int i = 0; i < directions.length; i++) {
+      System.out.println(i + ":\n" + directions[i]);
+    }
 
     if (path == null) {
       System.out.println("PATH NOT FOUND");
@@ -361,7 +387,6 @@ public class PathfindingController {
     Map<String, Move> moves = Pathfinding.getMovesLN();
     startID = moves.get(start).getNode().getNodeID();
     endID = moves.get(end).getNode().getNodeID();
-
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
@@ -395,7 +420,7 @@ public class PathfindingController {
       pathNodePairs.add(Arrays.asList(s, e));
 
       if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
-        placeLine(s, e);
+        placeAnimatedLine(s, e);
       }
       if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor))
         showButton(buttonMap.get(s));
@@ -412,7 +437,8 @@ public class PathfindingController {
     }
     setNodeColors();
     // Update the text field position to be above the center of the path
-
+    frontFloorr.toFront();
+    scrollPane.toFront();
   }
 
   private void showButton(MFXButton button) {
@@ -434,7 +460,6 @@ public class PathfindingController {
     nextFloor.setStyle("-fx-background-color: #21357E; -fx-text-fill: #F2F2F2");
     nextFloor.setLayoutX(startNode.getXCoord() + 20);
     nextFloor.setLayoutY(startNode.getYCoord() - 20);
-    System.out.println("Go to Floor " + endNode.getFloor());
     buttonMap.put(startNode, nextFloor);
   }
 
@@ -468,6 +493,18 @@ public class PathfindingController {
     dot.addEventHandler(
         MouseEvent.MOUSE_CLICKED,
         e -> {
+          if (pathingByClick) {
+            Node n = nodeMap.get(dot);
+            String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
+            endLoc.setValue(ln);
+            pathingByClick = false;
+            try {
+              findPath();
+              scrollPane.setVisible(false);
+            } catch (SQLException ex) {
+              throw new RuntimeException(ex);
+            }
+          }
           selectedCircle.set(dot);
         });
     return dot;
@@ -493,10 +530,28 @@ public class PathfindingController {
       locLabels.add(loc);
     }
 
+    vbox.setSpacing(5);
+    //    vbox.setAlignment(Pos.CENTER);
+    vbox.setPadding(new Insets(10, 10, 10, 10));
+
     HBox hbox = new HBox();
+    // hbox.getChildren().add(editButton);
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
     aPane.getChildren().add(popPane);
+  }
+
+  public void startPathFromHereClicked() throws IOException {
+    pathingByClick = true;
+    Node n = nodeMap.get(currentDot);
+    String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
+    startLoc.setValue(ln);
+    scrollPane.setVisible(true);
+
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.CLICK_PATHFINDING_INSTRUCTION.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   public void showLocationsClicked() {
@@ -510,22 +565,49 @@ public class PathfindingController {
         });
   }
 
-  private void placeLine(Node start, Node end) {
-    Line line = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
-    line.setFill(Color.BLACK);
+  private void placeAnimatedLine(Node start, Node end) {
+
+    Group lineGroup = new Group();
+    linesPlane.getChildren().add(lineGroup);
+
+    double startX = start.getXCoord() - ((start.getXCoord() - end.getXCoord()) / 3);
+    double startY = start.getYCoord() - ((start.getYCoord() - end.getYCoord()) / 3);
+    double endX = end.getXCoord() + ((start.getXCoord() - end.getXCoord()) / 3);
+    double endY = end.getYCoord() + ((start.getYCoord() - end.getYCoord()) / 3);
+
+    Path path = new Path();
+    path.getElements().add(new MoveTo(startX - 5, startY));
+    path.getElements().add(new LineTo(endX - 5, endY));
+
+    PathTransition transition = new PathTransition();
+    transition.setDuration(Duration.seconds(2)); // set the duration of the animation
+    transition.setNode(lineGroup); // set the node on which the line will be drawn
+    transition.setPath(path); // set the path along which the line will be animated
+    transition.setCycleCount(Timeline.INDEFINITE); // set the number of cycles for the animation
+
+    Line line = new Line(startX, startY, endX, endY);
+    line.setStroke(Color.BLACK);
     line.setStrokeWidth(5);
 
-    // Add the line to the scene graph and track the nodes that have been added
-    linesPlane.getChildren().add(line);
-  }
+    // Create a triangle polygon for the end of the line
+    Polygon triangle = new Polygon();
+    triangle.getPoints().addAll(endX - 5, endY - 10, endX + 5, endY, endX - 5, endY + 10);
 
-  private void updateTextFieldPosition(Node endNode) {
-    double textFieldWidth = 10;
-    double textFieldHeight = 10;
-    double textFieldPadding = 10;
-    adminLabel.setLayoutX(endNode.getXCoord() - textFieldWidth / 2);
-    adminLabel.setLayoutY(endNode.getYCoord() - textFieldHeight - 30);
-    adminLabel.setPromptText("Click to add note");
+    // Calculate the angle between the start and end points
+    double angle = Math.atan2((endY - startY), (endX - startX)) * (180 / Math.PI);
+
+    // Rotate the triangle to match the angle of the line
+    triangle.setRotate(angle);
+
+    // Set the fill and stroke properties of the triangle
+    triangle.setFill(Color.BLACK);
+    triangle.setStroke(Color.BLACK);
+    triangle.setStrokeWidth(5);
+
+    // add the line and triangle to the pane
+    lineGroup.getChildren().addAll(line, triangle);
+
+    transition.play();
   }
 
   public void helpButtonClicked() {
@@ -533,4 +615,16 @@ public class PathfindingController {
   }
 
   public void searchCombo(ActionEvent actionEvent) {}
+
+  public static PathfindingController getInstance() {
+    return instance;
+  }
+
+  public void cancelPath() {
+    pathingByClick = false;
+    scrollPane.setVisible(false);
+    handleClick();
+    startLoc.clear();
+    endLoc.clear();
+  }
 }

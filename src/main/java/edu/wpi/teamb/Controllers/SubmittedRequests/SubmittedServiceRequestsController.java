@@ -6,7 +6,7 @@ import edu.wpi.teamb.Database.Requests.*;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Entities.Urgency;
-import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.*;
 import java.io.IOException;
@@ -24,7 +24,6 @@ import javafx.geometry.Insets;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -41,7 +40,7 @@ public class SubmittedServiceRequestsController {
   @FXML MFXComboBox<Urgency> requestUrgencyFilter;
   @FXML MFXComboBox<String> requestReporterFilter;
   @FXML MFXCheckbox myRequestsFilter;
-  @FXML ImageView helpButton;
+  @FXML MFXButton helpButton;
   @FXML Label dateLabel;
   @FXML Label timeLabel;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
@@ -184,7 +183,7 @@ public class SubmittedServiceRequestsController {
   }
 
   public void helpButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
+    Popup.displayPopup(Screen.SUBMITTED_REQUESTS_HELP);
   }
 
   private void makeTable(RequestType name) {
@@ -270,7 +269,7 @@ public class SubmittedServiceRequestsController {
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
     setLabel(page);
     mainVbox.getChildren().add(table);
-    if (page.equals(RequestType.ALLREQUESTS.toString())) {
+    if (page.equals(RequestType.ALLREQUESTS.toString()) && currUser.getAdmin()) {
       displayChart();
     }
   }

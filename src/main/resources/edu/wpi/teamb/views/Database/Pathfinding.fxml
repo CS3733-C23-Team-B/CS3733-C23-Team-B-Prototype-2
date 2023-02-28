@@ -223,12 +223,27 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <VBox fx:id="frontFloorr" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                              <VBox fx:id="frontFloorr" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-radius: 5;" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                                  <children>
-                                    <HBox>
+                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="245.0" spacing="15.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;">
                                        <children>
-                                          <MFXFilterComboBox fx:id="floorCombo" prefHeight="40.0" prefWidth="159.0" text="Lower Level 1" />
+                                          <Label text="Floor">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                          <MFXFilterComboBox fx:id="floorCombo" floatMode="ABOVE" prefHeight="40.0" prefWidth="159.0" text="Lower Level 1">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </MFXFilterComboBox>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                                  <GridPane.margin>

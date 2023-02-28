@@ -50,6 +50,7 @@ public enum Screen {
   PATHFINDING_HELP_POP_UP("views/Popups/PathfindingHelpPopUp.fxml"),
   DATABASE_CONFIRMATION("views/Database/DatabaseConfirmation.fxml"),
   MEDICINE_DELIVERY_SERVICE_REQUEST("views/ServiceRequest/MedicineDelivery.fxml"),
+  CLICK_PATHFINDING_INSTRUCTION("views/Database/ClickPathfindingInstruction.fxml"),
   KAVYA_MANI("views/Popups/KavyaPopUp.fxml"),
   ADRIAN_JOHNSON("views/Popups/AdrianPopUp.fxml"),
   JOLIE_WALTS("views/Popups/JoliePopUp.fxml"),

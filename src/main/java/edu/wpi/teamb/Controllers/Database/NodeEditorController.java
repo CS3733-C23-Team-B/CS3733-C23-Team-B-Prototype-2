@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 public class NodeEditorController {
@@ -21,6 +22,7 @@ public class NodeEditorController {
   @FXML TextField yField;
   @FXML ChoiceBox<String> floorBox;
   Node node = MapEditorController.getCurrentNode();
+  Circle circle = MapEditorController.getCurrentDot();
   String origFloor;
 
   public void initialize() {
@@ -65,6 +67,7 @@ public class NodeEditorController {
   }
 
   public void cancelClicked() {
+    MapEditorController.setCurrentDot(circle);
     MapEditorController.getInstance().refreshPopUp();
     MapEditorController.getInstance().clearForm();
   }

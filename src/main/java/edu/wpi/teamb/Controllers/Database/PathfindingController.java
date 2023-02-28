@@ -57,7 +57,7 @@ public class PathfindingController {
   @FXML MFXCheckbox showLocationsCheckBox;
   @FXML MFXButton pathfind;
 
-  @FXML VBox frontFloorr;
+  @FXML Pane frontFloorr;
   @FXML GridPane scrollPane;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
@@ -89,10 +89,12 @@ public class PathfindingController {
   List<Node> nodePath;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
-  @Getter @FXML private AnchorPane forms;
+  @Getter @FXML private Pane forms;
+  private static PathfindingController instance;
 
   /** Initializes the dropdown menus */
   public void initialize() {
+    instance = this;
     moveMap = DBSession.getIDMoves(new Date(123, 0, 1));
     Pathfinding.refreshData();
     Pathfinding.setDate(new Date(123, 0, 1));
@@ -265,6 +267,8 @@ public class PathfindingController {
   public void displayPopUp(Circle dot) {
     clearPopUp();
     Node node = nodeMap.get(dot);
+
+    if (node == null) return;
 
     AnchorPane popPane = new AnchorPane();
     popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2);
@@ -541,6 +545,9 @@ public class PathfindingController {
 
   public void startPathFromHereClicked() throws IOException {
     pathingByClick = true;
+    Node n = nodeMap.get(currentDot);
+    String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
+    startLoc.setValue(ln);
     scrollPane.setVisible(true);
 
     forms.getChildren().clear();
@@ -580,4 +587,16 @@ public class PathfindingController {
   }
 
   public void searchCombo(ActionEvent actionEvent) {}
+
+  public static PathfindingController getInstance() {
+    return instance;
+  }
+
+  public void cancelPath() {
+    pathingByClick = false;
+    scrollPane.setVisible(false);
+    handleClick();
+    startLoc.clear();
+    endLoc.clear();
+  }
 }

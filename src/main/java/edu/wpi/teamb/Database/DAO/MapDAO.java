@@ -15,7 +15,6 @@ public class MapDAO {
   private static Map<String, Node> nodes = new HashMap<String, Node>();
   private static List<Edge> edges;
   private static Map<String, LocationName> locationNames = new HashMap<String, LocationName>();
-  private static List<KioskMove> kioskMoves = new ArrayList<KioskMove>();
   private static Map<String, List<Move>> IDMoves = new HashMap<String, List<Move>>();
 
   public static Map<String, Node> getAllNodes() {
@@ -33,24 +32,19 @@ public class MapDAO {
     return locationNames;
   }
 
-  public static List<KioskMove> getAllKioskMoves() {
-    refreshKioskMoves();
-    return kioskMoves;
-  }
-
   public static Map<String, List<Move>> getIDMoves() {
     return IDMoves;
   }
 
   public static void refreshIDMoves(Date d) {
-    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     HashMap<String, List<Move>> moves = new HashMap<String, List<Move>>();
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
     String hql =
         "SELECT DISTINCT locationName, node, moveDate FROM Move WHERE moveDate <= '"
             + d
-            + "' ORDER BY moveDate DESC";
+            + "' ORDER BY moveDate";
     try {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery(hql);
@@ -132,6 +126,24 @@ public class MapDAO {
     }
   }
 
+  public static List<Move> getAllMoves() {
+    List<Move> moves = new ArrayList<Move>();
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    String hql = "FROM Move";
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery(hql, Move.class);
+      moves = q.list();
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+      return moves;
+    }
+  }
+
   public static void refreshNodes() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
@@ -181,9 +193,10 @@ public class MapDAO {
     }
   }
 
-  public static void refreshKioskMoves() {
+  public static List<KioskMove> getAllKioskMoves() {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();
+    List<KioskMove> kioskMoves = new ArrayList<KioskMove>();
     try {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery("FROM KioskMove", KioskMove.class);
@@ -193,6 +206,7 @@ public class MapDAO {
       e.printStackTrace();
     } finally {
       session.close();
+      return kioskMoves;
     }
   }
 
@@ -247,6 +261,20 @@ public class MapDAO {
       session.close();
       refreshNodes();
       refreshEdges();
+    }
+  }
+
+  public static void updateKioskMove(KioskMove km) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      session.merge(km);
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
     }
   }
 
@@ -388,6 +416,41 @@ public class MapDAO {
       e.printStackTrace();
     } finally {
       session.close();
+    }
+  }
+
+  public static void addKioskMove(Move m, String message) {
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+    KioskMove km = new KioskMove();
+    km.setNextNode(m.getNode());
+    km.setLocationName(m.getLocationName());
+    km.setMoveDate(m.getMoveDate());
+    km.setMessage(message);
+    String hql =
+        "FROM Move m WHERE m.locationName = '"
+            + m.getLocationName().getLongName()
+            + "' AND m.moveDate < '"
+            + fmt.format(m.getMoveDate())
+            + "' ORDER BY m.moveDate DESC";
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session s = sf.openSession();
+    try {
+      Transaction tx = s.beginTransaction();
+      Query q = s.createQuery(hql, Move.class);
+      tx.commit();
+      List<Object> results = q.list();
+      if (results.isEmpty()) {
+        km.setPrevNode(km.getNextNode());
+      } else {
+        Move prevM = (Move) results.get(0);
+        Node prevN = prevM.getNode();
+        km.setPrevNode(prevN);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      s.close();
+      addKioskMove(km);
     }
   }
 

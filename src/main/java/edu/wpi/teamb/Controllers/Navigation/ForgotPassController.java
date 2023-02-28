@@ -24,12 +24,15 @@ public class ForgotPassController {
         String password = "ftannejwvxyokvet";
         String recipient = loginMap.get(username.getText()).getEmail();
         String subject = "Forgot Password";
+
         String message =
             "Dear "
                 + loginMap.get(username.getText()).getFirstname()
                 + ",\nYour Password is: "
-                + loginMap.get(username.getText()).getPassword();
+                + loginMap.get(username.getText()).getPassword()
+                + "\nHave a great day! :)";
         sendEmail(user, password, recipient, subject, message);
+
       } catch (MessagingException ex) {
         System.out.println("Failed to send email: " + ex.getMessage());
       }

@@ -6,7 +6,7 @@ import edu.wpi.teamb.Database.Requests.*;
 import edu.wpi.teamb.Entities.RequestStatus;
 import edu.wpi.teamb.Entities.RequestType;
 import edu.wpi.teamb.Entities.Urgency;
-import edu.wpi.teamb.Navigation.Navigation;
+import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.*;
 import java.io.IOException;
@@ -21,9 +21,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -40,9 +40,9 @@ public class SubmittedServiceRequestsController {
   @FXML MFXComboBox<Urgency> requestUrgencyFilter;
   @FXML MFXComboBox<String> requestReporterFilter;
   @FXML MFXCheckbox myRequestsFilter;
-  @FXML ImageView helpButton;
-  @FXML Label dateLabel = new Label();
-  @FXML Label timeLabel = new Label();
+  @FXML MFXButton helpButton;
+  @FXML Label dateLabel;
+  @FXML Label timeLabel;
   SubmittedSanitationRequestTable saniTable = new SubmittedSanitationRequestTable();
   SubmittedTransportationRequestTable ptTable = new SubmittedTransportationRequestTable();
   SubmittedComputerRequestTable comTable = new SubmittedComputerRequestTable();
@@ -110,7 +110,7 @@ public class SubmittedServiceRequestsController {
     requestUrgencyFilter.setOnAction(e -> filter());
     requestReporterFilter.setOnAction(e -> filter());
 
-    mainVbox.setPadding(new Insets(50, 20, 0, 20));
+    mainVbox.setPadding(new Insets(0, 20, 0, 20));
 
     requestStatusFilter.setItems(Status);
     assignedStaffFilter.setItems(staff);
@@ -145,6 +145,25 @@ public class SubmittedServiceRequestsController {
     dateLabel.setText(formattedDate);
   }
 
+  public void displayChart() {
+    ObservableList<PieChart.Data> pieChartData =
+        FXCollections.observableArrayList(
+            new PieChart.Data(
+                "Patient Transportation Requests", DBSession.getAllPTRequests().size()),
+            new PieChart.Data("Sanitation Requests", DBSession.getAllSanRequests().size()),
+            new PieChart.Data("Computer Requests", DBSession.getAllCRequests().size()),
+            new PieChart.Data("A/V Requests", DBSession.getAllAVRequests().size()),
+            new PieChart.Data("Security Requests", DBSession.getAllSecRequests().size()),
+            new PieChart.Data("Medicine Delivery Requests", DBSession.getAllMDRequests().size()),
+            new PieChart.Data("Equipment Delivery Requests", DBSession.getAllMEDRequests().size()),
+            new PieChart.Data(
+                "Facilities Maintenance Requests", DBSession.getAllFacRequests().size()));
+
+    PieChart pieChart = new PieChart(pieChartData);
+    //    pieChart.setTitle("Report");
+    mainVbox.getChildren().add(pieChart);
+  }
+
   public void initLabels() {
     Labels.add(field1label);
     Labels.add(field2label);
@@ -164,7 +183,7 @@ public class SubmittedServiceRequestsController {
   }
 
   public void helpButtonClicked() throws IOException {
-    Navigation.navigate(Screen.SERVICE_REQUEST_SYSTEMS);
+    Popup.displayPopup(Screen.SUBMITTED_REQUESTS_HELP);
   }
 
   private void makeTable(RequestType name) {
@@ -250,6 +269,9 @@ public class SubmittedServiceRequestsController {
     table.setOnMouseClicked(e -> mouseClicked(finalTable));
     setLabel(page);
     mainVbox.getChildren().add(table);
+    if (page.equals(RequestType.ALLREQUESTS.toString()) && currUser.getAdmin()) {
+      displayChart();
+    }
   }
 
   private void setLabel(String name) {
@@ -336,13 +358,14 @@ public class SubmittedServiceRequestsController {
         setFields();
       } else if (r.getRequestType().equals(RequestType.MEDICALEQUIPMENT)) {
         MedicalEquipmentDeliveryRequest equipr = (MedicalEquipmentDeliveryRequest) r;
-        addAttribute("Location:", equipr.getLocation());
+        addAttribute("Equipment Destination:", equipr.getLocation());
         addAttribute("Type of Equipment:", equipr.getEquipmentType());
         setFields();
       } else if (r.getRequestType().equals(RequestType.FACILITIES)) {
         FacilitiesRequest fr = (FacilitiesRequest) r;
         addAttribute("Location:", fr.getLocation());
         addAttribute("Type of Maintenance", fr.getMaintenanceType());
+        setFields();
       }
       addStatusAndNotes(status, notes);
     } else {
@@ -431,7 +454,7 @@ public class SubmittedServiceRequestsController {
       filterVbox.getChildren().add(myRequestsFilter);
     }
 
-    filterVbox.getChildren().add(clearFiltersButton);
+    // filterVbox.getChildren().add(clearFiltersButton);
   }
 
   private void addFilter(Label l, MFXComboBox b) {

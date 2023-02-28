@@ -12,7 +12,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,17 +31,15 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -57,7 +54,7 @@ public class MapEditorController {
   @FXML GridPane map;
   @FXML MFXButton editNodeButton;
   @FXML MFXCheckbox showLocationsCheckBox;
-  @Getter @FXML private AnchorPane forms;
+  @Getter @FXML private Pane forms;
   private List<Label> locLabels = new ArrayList<>();
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   Map<Circle, Node> nodeMap;
@@ -74,8 +71,9 @@ public class MapEditorController {
   private double origSelectX, origSelectY;
   private boolean dragged;
   private boolean selectDragged;
-  private Circle edgeNode1, edgeNode2;
   private boolean creatingEdge;
+  private boolean context = false;
+  private Circle edgeNode1, edgeNode2;
   private static MapEditorController instance;
   private Map<String, List<Move>> moveMap;
   @FXML MFXFilterComboBox<String> floorCombo;
@@ -95,10 +93,11 @@ public class MapEditorController {
   @FXML MFXButton viewmoves;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
+  @FXML ContextMenu contextMenu;
 
   public void initialize() {
     if (instance == null) {
-      moveMap = DBSession.getIDMoves(new Date(2023, 1, 1));
+      moveMap = DBSession.getIDMoves(new Date(System.currentTimeMillis()));
     } else {
       moveMap = DBSession.getIDMoves();
     }
@@ -130,6 +129,8 @@ public class MapEditorController {
     pane = new GesturePane();
     pane.setOnKeyPressed(e -> handleKeyPress(e));
 
+    pane.setPrefHeight(map.getHeight());
+    pane.setPrefWidth(map.getWidth());
     edge.setStrokeWidth(5);
 
     pane.setPrefHeight(714);
@@ -180,12 +181,10 @@ public class MapEditorController {
     aPane.setOnMouseReleased(
         e -> {
           if (selectDragged) aPane.getChildren().remove(selectionRectangle);
-
           if (selectDragged) setSelectedDots();
-
           selectionRectangle = null;
+          if (!context) pane.setGestureEnabled(true);
           selectDragged = false;
-          pane.setGestureEnabled(true);
         });
 
     aPane.setOnMouseClicked(
@@ -204,6 +203,8 @@ public class MapEditorController {
 
             nodeMap.put(c, n);
             selectedCircle.set(c);
+
+            Pathfinding.refreshData();
           }
         });
 
@@ -221,45 +222,8 @@ public class MapEditorController {
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
     Platform.runLater(
         () -> {
-          if (SigninController.currentUser.getAdmin()) {
-            HBox csvBox = new HBox();
-            csvBox.setSpacing(20);
-            csvBox.setPrefWidth(458);
-            csvBox.setPrefHeight(17);
-            MFXButton write = new MFXButton();
-            write.setPrefWidth(155);
-            write.setPrefHeight(42);
-            write.setTextFill(Paint.valueOf("#c5d3ea"));
-            write.setStyle("-fx-background-color: #21357E");
-            write.setFont(new Font("System", 20));
-            write.setText("Write to CSV");
-            write.setOnAction(
-                e -> {
-                  try {
-                    DatabaseWriteToCSV.runWrites();
-                  } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                  } catch (ParseException ex) {
-                    throw new RuntimeException(ex);
-                  }
-                });
+          if (SigninController.currentUser.getAdmin()) {}
 
-            MFXButton restore = new MFXButton();
-            restore.setPrefWidth(155);
-            restore.setPrefHeight(42);
-            restore.setTextFill(Paint.valueOf("#c5d3ea"));
-            restore.setStyle("-fx-background-color: #21357E");
-            restore.setFont(new Font("System", 20));
-            restore.setText("Database");
-            restore.setOnAction(
-                e -> {
-                  Popup.displayPopup(Screen.DATABASE_CONFIRMATION);
-                });
-
-            csvBox.getChildren().add(write);
-            csvBox.getChildren().add(restore);
-            mapEditorButtons.getChildren().add(csvBox);
-          }
           changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
         });
 
@@ -280,6 +244,30 @@ public class MapEditorController {
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
     dateLabel.setText(formattedDate);
+
+    contextMenu = new ContextMenu();
+
+    MenuItem menuDelete = new MenuItem("Delete");
+    menuDelete.setOnAction(e -> deleteNode());
+
+    MenuItem menuEdit = new MenuItem("Edit");
+    menuEdit.setOnAction(
+        e -> {
+          currentNode = nodeMap.get(currentDot);
+          editClicked();
+        });
+
+    contextMenu.getItems().addAll(menuEdit, menuDelete);
+    contextMenu.setOnShown(
+        e -> {
+          pane.setGestureEnabled(false);
+          context = true;
+        });
+    contextMenu.setOnHidden(
+        e -> {
+          pane.setGestureEnabled(true);
+          context = false;
+        });
   }
 
   private void setActive(MFXButton button) {
@@ -350,14 +338,7 @@ public class MapEditorController {
 
     Button editButton = new Button("Edit");
     editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
-    editButton.setOnAction(
-        (eventAction) -> {
-          try {
-            editClicked();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-        });
+    editButton.setOnAction(e -> editClicked());
     vbox.setSpacing(5);
     //    vbox.setAlignment(Pos.CENTER);
     vbox.setPadding(new Insets(10, 10, 10, 10));
@@ -416,12 +397,16 @@ public class MapEditorController {
         });
   }
 
-  private void editClicked() throws IOException {
+  private void editClicked() {
     resetButton();
     forms.getChildren().clear();
     final var res = Bapp.class.getResource(Screen.NODE_EDITOR.getFilename());
     final FXMLLoader loader = new FXMLLoader(res);
-    forms.getChildren().add(loader.load());
+    try {
+      forms.getChildren().add(loader.load());
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   private void clearPopUp() {
@@ -464,10 +449,21 @@ public class MapEditorController {
           c.toFront();
         });
 
+    dot.setOnContextMenuRequested(
+        e -> {
+          contextMenu.show(aPane, e.getScreenX(), e.getScreenY());
+          if (currentDot != null) {
+            currentDot.setFill(Bapp.blue);
+            clearPopUp();
+          }
+          currentDot = dot;
+          currentDot.setFill(Color.GOLD);
+        });
+
     dot.setOnMouseReleased(
         e -> {
           if (e.isControlDown()) return;
-          pane.setGestureEnabled(true);
+          if (!context) pane.setGestureEnabled(true);
           if (dragged) {
             if (currentDots.size() == 0) updateNode(dot);
             else updateNodes();
@@ -531,13 +527,17 @@ public class MapEditorController {
   }
 
   public void handleClick() {
-    selectedCircle.set(null);
+    if (currentDot != null) {
+      currentDot.setFill(Bapp.blue);
+      clearPopUp();
+    }
     clearCurrentLine();
     clearCurrentDots();
     clearPopUp();
     if (edgeNode1 != null) {
       edgeNode1.setFill(Color.GOLD);
     }
+    contextMenu.hide();
   }
 
   public void editLocationClicked() throws IOException {
@@ -673,6 +673,14 @@ public class MapEditorController {
     }
   }
 
+  private void deleteNode() {
+    if (currentDot == null) return;
+    Node n = nodeMap.get(currentDot);
+    promptEdgeRepair(n);
+    removeNode();
+    DBSession.deleteNode(n);
+  }
+
   public void removeNode() {
     aPane.getChildren().remove(currentDot);
     nodeMap.remove(currentDot);
@@ -703,7 +711,7 @@ public class MapEditorController {
     return null;
   }
 
-  public void setCurrentDot(Circle dot) {
+  public static void setCurrentDot(Circle dot) {
     currentDot = dot;
   }
 
@@ -766,31 +774,17 @@ public class MapEditorController {
         Pathfinding.refreshData();
         currentLine = null;
       } else if (currentDot != null) {
-        Node n = nodeMap.get(currentDot);
-        promptEdgeRepair(n);
-        removeNode();
-        DBSession.deleteNode(n);
+        deleteNode();
       }
-
       for (Circle dot : currentDots) {
         Node n = nodeMap.get(dot);
         DBSession.deleteNode(n);
       }
-
       removeNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.S)) {
-      straightenNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.H)) {
-      horizontalNodes();
-    }
-
-    if (e.getCode().equals(KeyCode.V)) {
-      verticalNodes();
-    }
+      MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
+    } else if (e.getCode().equals(KeyCode.S)) straightenNodes();
+    else if (e.getCode().equals(KeyCode.H)) horizontalNodes();
+    else if (e.getCode().equals(KeyCode.V)) verticalNodes();
   }
 
   private void horizontalNodes() {
@@ -920,8 +914,9 @@ public class MapEditorController {
 
   public void setOnMouseClicked(Circle c) {
     c.setOnMouseClicked(
-        ev -> {
-          if (ev.isControlDown()) {
+        e -> {
+          if (e.getButton().equals(MouseButton.SECONDARY)) return;
+          if (e.isControlDown()) {
             currentDots.add(c);
             c.setFill(Color.GOLD);
             return;

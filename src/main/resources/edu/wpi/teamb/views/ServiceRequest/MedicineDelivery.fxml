@@ -56,7 +56,7 @@
             </HBox>
             <HBox GridPane.columnIndex="1">
                <children>
-                  <Label id="formTitle" prefHeight="30.0" prefWidth="308.0" stylesheets="@../../../../../css/style.css" text="Medicine Delivery Request" />
+                  <Label id="formTitle" prefHeight="35.0" prefWidth="314.0" stylesheets="@../../../../../css/style.css" text="Medicine Delivery Request" />
                   <Label id="formBody" stylesheets="@../../../../../css/style.css" text="*Required Field" textFill="RED">
                      <HBox.margin>
                         <Insets top="6.0" />

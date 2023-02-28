@@ -188,9 +188,6 @@ public class PathfindingController {
           } else if (node.getNodeID().equals(endID)) {
             endDot = c;
             endDot.setFill(Color.RED);
-            if (nodeMap != null) {
-              updateTextFieldPosition(nodeMap.get(endDot));
-            }
           }
         }
       }

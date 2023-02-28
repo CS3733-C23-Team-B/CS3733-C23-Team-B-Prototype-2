@@ -15,6 +15,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import javafx.animation.KeyFrame;
+import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -28,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -89,6 +91,7 @@ public class PathfindingController {
   List<Node> nodePath;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
+
   @Getter @FXML private Pane forms;
   private static PathfindingController instance;
 
@@ -129,7 +132,6 @@ public class PathfindingController {
     searchCombo.setItems(
         FXCollections.observableArrayList(
             "A* Search", "Breadth-first Search", "Depth-first Search"));
-
     nodeMap = new HashMap<>();
     nodeMap.clear();
     pane = new GesturePane();
@@ -188,9 +190,6 @@ public class PathfindingController {
           } else if (node.getNodeID().equals(endID)) {
             endDot = c;
             endDot.setFill(Color.RED);
-            if (nodeMap != null) {
-              updateTextFieldPosition(nodeMap.get(endDot));
-            }
           }
         }
       }
@@ -258,7 +257,8 @@ public class PathfindingController {
   private void drawLines() {
     for (List<Node> pair : pathNodePairs) {
       if (pair.get(0).getFloor().equals(currentFloor)
-          && pair.get(1).getFloor().equals(currentFloor)) placeLine(pair.get(0), pair.get(1));
+          && pair.get(1).getFloor().equals(currentFloor))
+        placeAnimatedLine(pair.get(0), pair.get(1));
       if ((buttonMap.get(pair.get(1)) != null) && pair.get(1).getFloor().equals(currentFloor))
         showButton(buttonMap.get(pair.get(1)));
     }
@@ -340,8 +340,6 @@ public class PathfindingController {
     Pathfinding.setDate(date);
   }
 
-  public void createPathFromNode() {}
-
   /** Finds the shortest path by calling the pathfinding method from Pathfinding */
   private void findPath() throws SQLException {
     pathNotFound = false;
@@ -422,7 +420,7 @@ public class PathfindingController {
       pathNodePairs.add(Arrays.asList(s, e));
 
       if (s.getFloor().equals(currentFloor) && e.getFloor().equals(currentFloor)) {
-        placeLine(s, e);
+        placeAnimatedLine(s, e);
       }
       if ((buttonMap.get(s) != null) && s.getFloor().equals(currentFloor))
         showButton(buttonMap.get(s));
@@ -567,19 +565,49 @@ public class PathfindingController {
         });
   }
 
-  private void placeLine(Node start, Node end) {
-    Line line = new Line(start.getXCoord(), start.getYCoord(), end.getXCoord(), end.getYCoord());
-    line.setFill(Color.BLACK);
+  private void placeAnimatedLine(Node start, Node end) {
+
+    Group lineGroup = new Group();
+    linesPlane.getChildren().add(lineGroup);
+
+    double startX = start.getXCoord() - ((start.getXCoord() - end.getXCoord()) / 3);
+    double startY = start.getYCoord() - ((start.getYCoord() - end.getYCoord()) / 3);
+    double endX = end.getXCoord() + ((start.getXCoord() - end.getXCoord()) / 3);
+    double endY = end.getYCoord() + ((start.getYCoord() - end.getYCoord()) / 3);
+
+    Path path = new Path();
+    path.getElements().add(new MoveTo(startX - 5, startY));
+    path.getElements().add(new LineTo(endX - 5, endY));
+
+    PathTransition transition = new PathTransition();
+    transition.setDuration(Duration.seconds(2)); // set the duration of the animation
+    transition.setNode(lineGroup); // set the node on which the line will be drawn
+    transition.setPath(path); // set the path along which the line will be animated
+    transition.setCycleCount(Timeline.INDEFINITE); // set the number of cycles for the animation
+
+    Line line = new Line(startX, startY, endX, endY);
+    line.setStroke(Color.BLACK);
     line.setStrokeWidth(5);
 
-    // Add the line to the scene graph and track the nodes that have been added
-    linesPlane.getChildren().add(line);
-  }
+    // Create a triangle polygon for the end of the line
+    Polygon triangle = new Polygon();
+    triangle.getPoints().addAll(endX - 5, endY - 10, endX + 5, endY, endX - 5, endY + 10);
 
-  private void updateTextFieldPosition(Node endNode) {
-    double textFieldWidth = 10;
-    double textFieldHeight = 10;
-    double textFieldPadding = 10;
+    // Calculate the angle between the start and end points
+    double angle = Math.atan2((endY - startY), (endX - startX)) * (180 / Math.PI);
+
+    // Rotate the triangle to match the angle of the line
+    triangle.setRotate(angle);
+
+    // Set the fill and stroke properties of the triangle
+    triangle.setFill(Color.BLACK);
+    triangle.setStroke(Color.BLACK);
+    triangle.setStrokeWidth(5);
+
+    // add the line and triangle to the pane
+    lineGroup.getChildren().addAll(line, triangle);
+
+    transition.play();
   }
 
   public void helpButtonClicked() {

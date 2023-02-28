@@ -90,9 +90,11 @@ public class PathfindingController {
   @FXML Label timeLabel;
   @FXML Label dateLabel;
   @Getter @FXML private AnchorPane forms;
+  private static PathfindingController instance;
 
   /** Initializes the dropdown menus */
   public void initialize() {
+    instance = this;
     moveMap = DBSession.getIDMoves(new Date(123, 0, 1));
     Pathfinding.refreshData();
     Pathfinding.setDate(new Date(123, 0, 1));
@@ -585,4 +587,16 @@ public class PathfindingController {
   }
 
   public void searchCombo(ActionEvent actionEvent) {}
+
+  public static PathfindingController getInstance() {
+    return instance;
+  }
+
+  public void cancelPath() {
+    pathingByClick = false;
+    scrollPane.setVisible(false);
+    handleClick();
+    startLoc.clear();
+    endLoc.clear();
+  }
 }

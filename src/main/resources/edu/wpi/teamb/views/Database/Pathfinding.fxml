@@ -8,6 +8,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -226,7 +227,7 @@
                            <children>
                               <VBox fx:id="frontFloorr" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-radius: 5;" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                                  <children>
-                                    <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="235.0" spacing="10.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;">
+                                    <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="235.0" spacing="10.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, black, 3, 0, 0, 3);">
                                        <children>
                                           <Label text="Floor">
                                              <font>
@@ -248,7 +249,7 @@
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
                               </VBox>
-                              <GridPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="230.0" prefWidth="302.0" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                              <GridPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="230.0" prefWidth="302.0" style="-fx-effect: dropshadow(three-pass-box, black, 3, 0, 0, 3);" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
@@ -256,7 +257,10 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <MFXScrollPane style="-fx-background-color: #F2F2F2;" />
+                                    <MFXScrollPane style="-fx-background-color: #F2F2F2;">
+                                       <content>
+                                          <AnchorPane fx:id="forms" prefHeight="226.0" prefWidth="290.0" style="-fx-background-color: #F2F2F2;" />
+                                       </content></MFXScrollPane>
                                  </children>
                                  <GridPane.margin>
                                     <Insets right="10.0" top="10.0" />

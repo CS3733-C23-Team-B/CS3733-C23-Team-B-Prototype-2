@@ -9,6 +9,7 @@ import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.*;
 import io.github.palexdev.materialfx.controls.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +24,7 @@ import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -37,6 +39,7 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import lombok.Getter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class PathfindingController {
@@ -86,6 +89,7 @@ public class PathfindingController {
   List<Node> nodePath;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
+  @Getter @FXML private AnchorPane forms;
 
   /** Initializes the dropdown menus */
   public void initialize() {
@@ -289,7 +293,11 @@ public class PathfindingController {
     startPathButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
     startPathButton.setOnAction(
         (eventAction) -> {
-          startPathFromHereClicked();
+          try {
+            startPathFromHereClicked();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
           clearPopUp();
         });
 
@@ -487,6 +495,7 @@ public class PathfindingController {
             pathingByClick = false;
             try {
               findPath();
+              scrollPane.setVisible(false);
             } catch (SQLException ex) {
               throw new RuntimeException(ex);
             }
@@ -527,11 +536,14 @@ public class PathfindingController {
     aPane.getChildren().add(popPane);
   }
 
-  public void startPathFromHereClicked() {
+  public void startPathFromHereClicked() throws IOException {
     pathingByClick = true;
     scrollPane.setVisible(true);
-    // clearPopUp();
 
+    forms.getChildren().clear();
+    final var res = Bapp.class.getResource(Screen.CLICK_PATHFINDING_INSTRUCTION.getFilename());
+    final FXMLLoader loader = new FXMLLoader(res);
+    forms.getChildren().add(loader.load());
   }
 
   public void showLocationsClicked() {

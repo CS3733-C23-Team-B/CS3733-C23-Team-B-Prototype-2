@@ -266,38 +266,38 @@ public class PathfindingController {
           }
         });
     drawLines();
-    if (directions != null)
-      for (int i = 0; i < directions.length; i++) {
-        for (Node value : nodes.values()) {
-          if (value.getFloor().equals(currentFloor)) {
-            AnchorPane dir = new AnchorPane();
-            forms.getChildren().clear();
-
-            dir.setPrefHeight(226);
-            dir.setPrefWidth(290);
-
-            VBox vbox = new VBox();
-            vbox.setSpacing(5);
-            vbox.setPadding(new Insets(10, 10, 10, 10));
-            vbox.setPrefHeight(250);
-            vbox.setPrefHeight(265);
-
-            Label floorDirections = new Label(directions[floors.indexOf(currentFloor)]);
-
-            floorDirections.setPrefHeight(250);
-            floorDirections.setPrefWidth(265);
-
-            HBox hbox = new HBox();
-            hbox.getChildren().add(floorDirections);
-            hbox.setAlignment(Pos.CENTER);
-
-            vbox.getChildren().add(hbox);
-            dir.getChildren().add(vbox);
-            // vbox.getChildren().clear();
-            System.out.println(i + ":\n" + directions[i]);
-          }
-        }
-      }
+    //    if (directions != null)
+    //      for (int i = 0; i < directions.length; i++) {
+    //        for (Node value : nodes.values()) {
+    //          if (value.getFloor().equals(currentFloor)) {
+    //            AnchorPane dir = new AnchorPane();
+    //            forms.getChildren().clear();
+    //
+    //            dir.setPrefHeight(226);
+    //            dir.setPrefWidth(290);
+    //
+    //            VBox vbox = new VBox();
+    //            vbox.setSpacing(5);
+    //            vbox.setPadding(new Insets(10, 10, 10, 10));
+    //            vbox.setPrefHeight(250);
+    //            vbox.setPrefHeight(265);
+    //
+    //            Label floorDirections = new Label(directions[floors.indexOf(currentFloor)]);
+    //
+    //            floorDirections.setPrefHeight(250);
+    //            floorDirections.setPrefWidth(265);
+    //
+    //            HBox hbox = new HBox();
+    //            hbox.getChildren().add(floorDirections);
+    //            hbox.setAlignment(Pos.CENTER);
+    //
+    //            vbox.getChildren().add(hbox);
+    //            dir.getChildren().add(vbox);
+    //            // vbox.getChildren().clear();
+    //            System.out.println(i + ":\n" + directions[i]);
+    //          }
+    //        }
+    //      }
     frontFloorr.toFront();
     scrollPane.toFront();
     Platform.runLater(() -> pane.centreOn(p));
@@ -430,6 +430,40 @@ public class PathfindingController {
     ArrayList<String> path = pContext.getShortestPath(start, end);
     directions = Pathfinding.getPathDirections(path);
 
+    Map<String, Node> nodes = DBSession.getAllNodes();
+    if (directions != null)
+      for (int i = 0; i < directions.length; i++) {
+        for (Node value : nodes.values()) {
+          if (value.getFloor().equals(currentFloor)) {
+            AnchorPane dir = new AnchorPane();
+            forms.getChildren().clear();
+
+            dir.setPrefHeight(226);
+            dir.setPrefWidth(290);
+
+            VBox vbox = new VBox();
+            vbox.setSpacing(5);
+            vbox.setPadding(new Insets(10, 10, 10, 10));
+            vbox.setPrefHeight(250);
+            vbox.setPrefHeight(265);
+
+            Label floorDirections = new Label(directions[floors.indexOf(currentFloor)]);
+
+            floorDirections.setPrefHeight(250);
+            floorDirections.setPrefWidth(265);
+
+            HBox hbox = new HBox();
+            hbox.getChildren().add(floorDirections);
+            hbox.setAlignment(Pos.CENTER);
+
+            vbox.getChildren().add(hbox);
+            dir.getChildren().add(vbox);
+            // vbox.getChildren().clear();
+            System.out.println(i + ":\n" + directions[i]);
+          }
+        }
+      }
+
     if (path == null) {
       System.out.println("PATH NOT FOUND");
       pathNotFoundTextField.setVisible(true);
@@ -442,7 +476,7 @@ public class PathfindingController {
     Map<String, Move> moves = Pathfinding.getMovesLN();
     startID = moves.get(start).getNode().getNodeID();
     endID = moves.get(end).getNode().getNodeID();
-    Map<String, Node> nodes = DBSession.getAllNodes();
+    // Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
 

@@ -29,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -55,6 +56,8 @@ public class PathfindingController {
   @FXML MFXCheckbox avoidStairsCheckBox;
   @FXML MFXCheckbox showLocationsCheckBox;
   @FXML MFXButton pathfind;
+
+  @FXML VBox frontFloorr;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
@@ -62,6 +65,7 @@ public class PathfindingController {
   Map<Circle, Node> nodeMap;
   AnchorPane currentPopUp;
   private boolean pathNotFound = false;
+  private boolean pathingByClick = false;
   private static Node currentNode;
   private Circle currentDot;
   private List<List<Node>> pathNodePairs = new ArrayList<>();
@@ -82,7 +86,6 @@ public class PathfindingController {
   private TextField textField;
   private HashMap<Node, MFXButton> buttonMap = new HashMap<>();
   List<Node> nodePath;
-  private TextField adminLabel = new TextField();
   @FXML Label timeLabel;
   @FXML Label dateLabel;
 
@@ -181,8 +184,6 @@ public class PathfindingController {
             endDot.setFill(Color.RED);
             if (nodeMap != null) {
               updateTextFieldPosition(nodeMap.get(endDot));
-              if (!linesPlane.getChildren().contains(adminLabel))
-                linesPlane.getChildren().add(adminLabel);
             }
           }
         }
@@ -243,6 +244,7 @@ public class PathfindingController {
           }
         });
     drawLines();
+    frontFloorr.toFront();
     Platform.runLater(() -> pane.centreOn(p));
   }
 
@@ -282,7 +284,16 @@ public class PathfindingController {
     vbox.getChildren().add(pos);
     vbox.getChildren().add(loc);
 
+    Button startPathButton = new Button("Start Path Here");
+    startPathButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
+    startPathButton.setOnAction(
+        (eventAction) -> {
+          startPathFromHereClicked();
+          clearPopUp();
+        });
+
     HBox hbox = new HBox();
+    hbox.getChildren().add(startPathButton);
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
 
@@ -330,7 +341,6 @@ public class PathfindingController {
       endDot.setFill(Bapp.blue);
       endDot = null;
     }
-    if (linesPlane.getChildren().contains(adminLabel)) linesPlane.getChildren().remove(adminLabel);
 
     textField = null;
     pathNotFoundTextField.setVisible(false);
@@ -338,6 +348,7 @@ public class PathfindingController {
     SearchType type = searchTypeMap.get(searchCombo.getText());
 
     linesPlane.getChildren().clear();
+
     String start = startLoc.getValue();
     String end = endLoc.getValue();
 
@@ -361,7 +372,6 @@ public class PathfindingController {
     Map<String, Move> moves = Pathfinding.getMovesLN();
     startID = moves.get(start).getNode().getNodeID();
     endID = moves.get(end).getNode().getNodeID();
-
     Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
@@ -412,7 +422,7 @@ public class PathfindingController {
     }
     setNodeColors();
     // Update the text field position to be above the center of the path
-
+    frontFloorr.toFront();
   }
 
   private void showButton(MFXButton button) {
@@ -468,6 +478,17 @@ public class PathfindingController {
     dot.addEventHandler(
         MouseEvent.MOUSE_CLICKED,
         e -> {
+          if (pathingByClick) {
+            Node n = nodeMap.get(dot);
+            String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
+            endLoc.setValue(ln);
+            pathingByClick = false;
+            try {
+              findPath();
+            } catch (SQLException ex) {
+              throw new RuntimeException(ex);
+            }
+          }
           selectedCircle.set(dot);
         });
     return dot;
@@ -493,10 +514,36 @@ public class PathfindingController {
       locLabels.add(loc);
     }
 
+    vbox.setSpacing(5);
+    //    vbox.setAlignment(Pos.CENTER);
+    vbox.setPadding(new Insets(10, 10, 10, 10));
+
     HBox hbox = new HBox();
+    // hbox.getChildren().add(editButton);
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
     aPane.getChildren().add(popPane);
+  }
+
+  public void startPathFromHereClicked() {
+    pathingByClick = true;
+    //    clearPopUp();
+
+    AnchorPane startPathPopUp = new AnchorPane();
+    startPathPopUp.setTranslateX(500);
+    startPathPopUp.setTranslateY(500);
+    startPathPopUp.setStyle("-fx-background-color: FFFFFF; -fx-border-color: black;");
+
+    VBox vbox = new VBox();
+    startPathPopUp.getChildren().add(vbox);
+
+    vbox.setSpacing(5);
+    vbox.setPadding(new Insets(10, 10, 10, 10));
+
+    Text info = new Text("Please click on your desired destination");
+    vbox.getChildren().add(info);
+
+    aPane.getChildren().add(startPathPopUp);
   }
 
   public void showLocationsClicked() {
@@ -523,9 +570,6 @@ public class PathfindingController {
     double textFieldWidth = 10;
     double textFieldHeight = 10;
     double textFieldPadding = 10;
-    adminLabel.setLayoutX(endNode.getXCoord() - textFieldWidth / 2);
-    adminLabel.setLayoutY(endNode.getYCoord() - textFieldHeight - 30);
-    adminLabel.setPromptText("Click to add note");
   }
 
   public void helpButtonClicked() {

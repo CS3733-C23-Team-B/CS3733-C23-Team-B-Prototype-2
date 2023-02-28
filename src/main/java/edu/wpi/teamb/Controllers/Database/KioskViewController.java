@@ -109,11 +109,14 @@ public class KioskViewController {
     timeline.play();
     Platform.runLater(
         () -> {
-          changeFloor(
-              kioskMoveList.get(index.get()).getPrevNode().getFloor(),
-              new Point2D(
-                  kioskMoveList.get(index.get()).getPrevNode().getXCoord(),
-                  kioskMoveList.get(index.get()).getPrevNode().getYCoord()));
+          changeFloorLater(kioskMoveList.get(index.get()).getPrevNode());
+        });
+  }
+
+  private void changeFloorLater(Node n) {
+    Platform.runLater(
+        () -> {
+          changeFloor(n.getFloor(), new Point2D(n.getXCoord(), n.getYCoord()));
         });
   }
 
@@ -269,6 +272,7 @@ public class KioskViewController {
   }
 
   public void signIn() {
+    timeline.stop();
     Navigation.navigate(Screen.SIGN_IN);
   }
 }

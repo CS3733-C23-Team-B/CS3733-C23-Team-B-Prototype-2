@@ -738,6 +738,9 @@ public class MapEditorController {
     currentDot.setCenterY(currentNode.getYCoord());
     nodeMap.replace(currentDot, currentNode);
 
+    removeEdges();
+    drawEdges();
+
     if (currentPopUp != null) {
       ObservableList vboxChildren = ((VBox) (currentPopUp.getChildren().get(0))).getChildren();
       Text id = (Text) vboxChildren.get(0);

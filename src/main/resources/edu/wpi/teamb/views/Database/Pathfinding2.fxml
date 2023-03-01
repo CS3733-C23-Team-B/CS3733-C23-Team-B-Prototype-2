@@ -8,6 +8,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -91,6 +92,9 @@
                                  </textFill>
                               </MFXFilterComboBox>
                            </children>
+                           <GridPane.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </GridPane.margin>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -103,12 +107,15 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <MFXScrollPane fitToHeight="true" fitToWidth="true" minWidth="0.0" style="-fx-background-color: #F2F2F2;" vbarPolicy="NEVER">
+                              <MFXScrollPane fitToHeight="true" fitToWidth="true" minWidth="0.0" style="-fx-background-color: #F2F2F2;">
                                  <content>
-                                    <VBox fx:id="forms" minWidth="0.0" prefHeight="200.0" prefWidth="100.0" />
+                                    <AnchorPane fx:id="forms" prefHeight="370.0" />
                                  </content>
                               </MFXScrollPane>
                            </children>
+                           <GridPane.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </GridPane.margin>
                         </GridPane>
                      </children>
                   </GridPane>

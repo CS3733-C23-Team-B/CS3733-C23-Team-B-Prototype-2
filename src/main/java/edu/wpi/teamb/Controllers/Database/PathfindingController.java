@@ -71,6 +71,7 @@ public class PathfindingController {
   AnchorPane currentPopUp;
   private boolean pathNotFound = false;
   private boolean pathingByClick = false;
+  private boolean pathFound = false;
   private static Node currentNode;
   private Circle currentDot;
 
@@ -97,11 +98,10 @@ public class PathfindingController {
   @FXML Label timeLabel;
   @FXML Label dateLabel;
   @Getter @FXML private AnchorPane dir;
-
   @Getter @FXML private Pane forms;
-
   private String[] directions;
   private static PathfindingController instance;
+  private Label floorDirections;
 
   /** Initializes the dropdown menus */
   public void initialize() {
@@ -222,6 +222,8 @@ public class PathfindingController {
     nodeMap.clear();
 
     image = imageMap.get(floor);
+
+    if (pathFound) floorDirections.setText(directions[floors.indexOf(currentFloor)]);
 
     image.toFront();
     image.setOnMouseClicked(
@@ -418,7 +420,7 @@ public class PathfindingController {
             //            vbox.setPrefHeight(250);
             //            vbox.setPrefHeight(265);
 
-            Label floorDirections = new Label(directions[floors.indexOf(currentFloor)]);
+            floorDirections = new Label();
 
             floorDirections.setPrefHeight(250);
             floorDirections.setPrefWidth(265);
@@ -430,18 +432,21 @@ public class PathfindingController {
             forms.getChildren().add(hbox);
             //            dir.getChildren().add(forms);
             // vbox.getChildren().clear();
-            System.out.println(i + ":\n" + directions[i]);
           }
         }
+        System.out.println(i + ":\n" + directions[i]);
       }
 
     if (path == null) {
       System.out.println("PATH NOT FOUND");
       pathNotFoundTextField.setVisible(true);
       pathNotFound = true;
+      pathFound = false;
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
       return;
     }
+
+    pathFound = true;
 
     System.out.println(path);
     Map<String, Move> moves = Pathfinding.getMovesLN();
@@ -461,6 +466,8 @@ public class PathfindingController {
             if (value.equals(startNode.getFloor())) floorCombo.setValue(key);
           });
     }
+
+    floorDirections.setText(directions[floors.indexOf(currentFloor)]);
 
     List<Node> nodePath = new ArrayList<>();
     for (String s : path) {

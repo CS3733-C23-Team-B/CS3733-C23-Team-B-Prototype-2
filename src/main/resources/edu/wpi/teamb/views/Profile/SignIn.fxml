@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <GridPane prefHeight="650.0" prefWidth="1229.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.SigninController">
@@ -58,7 +59,10 @@
                            </font>
                            <VBox.margin>
                               <Insets top="10.0" />
-                           </VBox.margin></MFXTextField>
+                           </VBox.margin>
+                           <textFill>
+                              <Color />
+                           </textFill></MFXTextField>
                         <HBox prefHeight="20.0" prefWidth="375.0" />
                         <MFXPasswordField id="signInBody" fx:id="passwordField" floatMode="ABOVE" maxHeight="47.0" minHeight="-Infinity" onKeyReleased="#handleKeyPress" prefHeight="35.0" prefWidth="630.0" promptText="Password" style="-fx-border-color: #898989; -fx-background-color: #e8e8e8; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" stylesheets="@../../../../../css/style.css">
                            <font>
@@ -66,7 +70,10 @@
                            </font>
                            <VBox.margin>
                               <Insets top="8.0" />
-                           </VBox.margin></MFXPasswordField>
+                           </VBox.margin>
+                           <textFill>
+                              <Color />
+                           </textFill></MFXPasswordField>
                         <HBox prefHeight="20.0" prefWidth="375.0" />
                         <MFXButton id="signInButton" fx:id="signInButton" depthLevel="LEVEL1" onAction="#signInButtonClicked" prefHeight="53.0" prefWidth="630.0" style="-fx-background-color: #21357e; -fx-background-radius: 6;" stylesheets="@../../../../../css/style.css" text="Sign In" textFill="WHITE">
                            <font>
@@ -88,7 +95,7 @@
                            <children>
                               <HBox alignment="BOTTOM_LEFT">
                                  <children>
-                                    <MFXButton id="signInAccent" alignment="CENTER" contentDisplay="CENTER" onAction="#newAccount" style="-fx-background-color: #00000000;" stylesheets="@../../../../../css/style.css" text="Create an account" textAlignment="CENTER" textFill="#898989">
+                                    <MFXButton id="signInAccent" alignment="CENTER" contentDisplay="CENTER" onAction="#newAccount" style="-fx-background-color: #00000000;" stylesheets="@../../../../../css/style.css" text="Create an account" textAlignment="CENTER" textFill="#898989" underline="true">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
@@ -97,7 +104,7 @@
                               </HBox>
                               <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="2">
                                  <children>
-                                    <MFXButton id="signInAccent" fx:id="forgot" alignment="CENTER" contentDisplay="CENTER" onAction="#forgotClicked" style="-fx-background-color: #00000000;" stylesheets="@../../../../../css/style.css" text="Forgot password?" textAlignment="CENTER" textFill="#898989">
+                                    <MFXButton id="signInAccent" fx:id="forgot" alignment="CENTER" contentDisplay="CENTER" onAction="#forgotClicked" style="-fx-background-color: #00000000;" stylesheets="@../../../../../css/style.css" text="Forgot password?" textAlignment="CENTER" textFill="#898989" underline="true">
                                        <font>
                                           <Font size="10.0" />
                                        </font>

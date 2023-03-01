@@ -13,7 +13,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="58.0" prefWidth="470.0">
                <children>
-                  <MFXDatePicker fx:id="datePicker" onAction="#dateEntered" prefHeight="38.0" prefWidth="260.0" text="Select Date" />
+                  <MFXDatePicker id="button" fx:id="datePicker" onAction="#dateEntered" prefHeight="38.0" prefWidth="260.0" text="Select Date" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="239.0" prefWidth="380.0">

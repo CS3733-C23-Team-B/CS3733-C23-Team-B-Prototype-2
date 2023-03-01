@@ -300,7 +300,9 @@ public class MapDAO {
     try {
       Transaction tx = session.beginTransaction();
       Query q = session.createQuery("FROM KioskLocation", KioskLocation.class);
-      kl = (KioskLocation) q.list().get(0);
+      if (!q.list().isEmpty()) {
+        kl = (KioskLocation) q.list().get(0);
+      }
       tx.commit();
     } catch (Exception e) {
       e.printStackTrace();

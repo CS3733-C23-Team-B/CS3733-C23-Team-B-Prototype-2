@@ -264,6 +264,19 @@ public class MapEditorController {
           editClicked();
         });
 
+    MenuItem dotEdge = new MenuItem("Create Edge");
+    dotEdge.setOnAction(
+        e -> {
+          currentNode = nodeMap.get(currentDot);
+          try {
+            newEdgeClicked();
+          } catch (IOException ex) {
+            throw new RuntimeException(ex);
+          }
+          edgeNode1 = currentDot;
+          currentDot.setFill(Color.GOLD);
+        });
+
     MenuItem dotsDelete = new MenuItem("Delete All");
     dotsDelete.setOnAction(
         e -> {
@@ -280,7 +293,7 @@ public class MapEditorController {
     MenuItem dotsVertical = new MenuItem("Align Vertically");
     dotsVertical.setOnAction(e -> verticalNodes());
 
-    dotContextMenu.getItems().addAll(dotEdit, dotDelete);
+    dotContextMenu.getItems().addAll(dotEdit, dotEdge, dotDelete);
     dotContextMenu.setOnShown(
         e -> {
           pane.setGestureEnabled(false);

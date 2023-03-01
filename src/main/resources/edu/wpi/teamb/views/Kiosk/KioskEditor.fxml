@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
@@ -16,6 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <GridPane prefHeight="650.0" prefWidth="1200.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.KioskEditController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" />
@@ -176,7 +176,7 @@
                                           <Font size="25.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="30.0" />
+                                          <Insets top="40.0" />
                                        </VBox.margin>
                                     </Label>
                                     <VBox maxWidth="-Infinity">
@@ -207,7 +207,7 @@
                                     </VBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                               </VBox>
                            </content>

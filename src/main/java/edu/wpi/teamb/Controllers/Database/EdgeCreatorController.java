@@ -9,11 +9,10 @@ import java.util.Collection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 
 public class EdgeCreatorController {
-  @FXML Text bigText;
+  @FXML Label bigText;
   @FXML MFXFilterComboBox<String> edgeBox;
   private Node node = MapEditorController.getCurrentNode();
 
@@ -24,7 +23,7 @@ public class EdgeCreatorController {
   public void submitClicked() {
     if (edgeBox.getText().isEmpty()) {
       bigText.setText("No selection");
-      bigText.setFill(Color.RED);
+      bigText.setStyle("-fx-text-fill: red");
       return;
     }
 

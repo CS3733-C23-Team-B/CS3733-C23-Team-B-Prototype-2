@@ -58,7 +58,6 @@ public class KioskEditController {
     preview.setDisable(true);
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     moves = DBSession.getAllMoves();
-    String current = MapDAO.getKioskLocation().getLocationName().getLongName();
     List<String> l =
         moves.stream()
             .map(
@@ -75,16 +74,15 @@ public class KioskEditController {
 
     Map<String, LocationName> locationNames = DBSession.getAllLocationNames();
     locationNames.forEach((key, value) -> list.add(value.getLongName()));
+
     Sorting.quickSort(list);
     locationDropdown.setItems(list);
-    locationDropdown.setValue(current);
     locationDropdown.setOnAction(
         e -> {
           System.out.println(locationDropdown.getSelectedItem());
           KioskLocation k = new KioskLocation();
-          if (inverseBox.isSelected()) k.setInverse(true);
-          else k.setInverse(false);
           k.setLocationName(locationNames.get(locationDropdown.getSelectedItem()));
+          k.setRev(inverseBox.isSelected());
           MapDAO.updateKioskLocation(k);
         });
     LocalDate currentDate = LocalDate.now();

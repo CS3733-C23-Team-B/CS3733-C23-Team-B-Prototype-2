@@ -402,15 +402,7 @@ public class PathfindingController {
     ArrayList<String> path = pContext.getShortestPath(start, end);
 
     if (path == null) {
-      System.out.println("PATH NOT FOUND");
-      scrollPane.setVisible(false);
-      pathNotFoundTextField.setVisible(true);
-      if (animationTimeline != null) animationTimeline.stop();
-      animationTimeline = null;
-      linesPlane.getChildren().clear();
-      pathNotFound = true;
-      pathFound = false;
-      pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
+      pathNotFound();
       return;
     }
 
@@ -490,6 +482,18 @@ public class PathfindingController {
     front.toFront();
   }
 
+  public void pathNotFound() {
+    System.out.println("PATH NOT FOUND");
+    scrollPane.setVisible(false);
+    pathNotFoundTextField.setVisible(true);
+    if (animationTimeline != null) animationTimeline.stop();
+    animationTimeline = null;
+    linesPlane.getChildren().clear();
+    pathNotFound = true;
+    pathFound = false;
+    pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
+  }
+
   private void showButton(MFXButton button) {
     aPane.getChildren().add(button);
   }
@@ -546,7 +550,7 @@ public class PathfindingController {
             Node n = nodeMap.get(dot);
             String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
             endLoc.clearSelection();
-            endLoc.setValue(ln);
+            if (ln != null) endLoc.setValue(ln);
             pathingByClick = false;
             try {
               findPath();
@@ -597,7 +601,7 @@ public class PathfindingController {
     Node n = nodeMap.get(currentDot);
     String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
     startLoc.clearSelection();
-    startLoc.setValue(ln);
+    if (ln != null) startLoc.setValue(ln);
     scrollPane.setVisible(true);
 
     forms.getChildren().clear();

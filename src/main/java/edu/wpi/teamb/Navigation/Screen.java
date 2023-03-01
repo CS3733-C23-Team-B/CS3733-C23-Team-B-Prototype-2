@@ -61,6 +61,7 @@ public enum Screen {
   SEAN_LENDRUM("views/Popups/SeanPopUp.fxml"),
   MICHAEL_GATTI("views/Popups/MichaelPopUp.fxml"),
   JACK_LAFOND("views/Popups/JackPopUp.fxml"),
+  MAP_EDITOR_LOCATION_STATS_POPUP("views/Database/RequestStatsPopup.fxml"),
   SUBMITTED_REQUESTS_HELP("views/Popups/SubmittedRequestsHelpPage.fxml");
 
   private final String filename;

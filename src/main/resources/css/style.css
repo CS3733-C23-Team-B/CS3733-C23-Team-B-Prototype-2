@@ -254,6 +254,17 @@
     -fx-font-size: 18px;
 }
 
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: #21357E;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-fint-weight: bold;
+}
+
 #mapEditorButton{
     -fx-font-family: Nunito, sans-serif;
     -fx-font-weight: bold;

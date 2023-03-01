@@ -53,6 +53,7 @@
         <mapping class="edu.wpi.teamb.Database.Requests.MedicineDeliveryRequest"/>
         <mapping class="edu.wpi.teamb.Database.Requests.FacilitiesRequest"/>
         <mapping class="edu.wpi.teamb.Database.KioskMove"/>
+        <mapping class="edu.wpi.teamb.Database.KioskLocation"/>
 
 
 

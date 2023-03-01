@@ -143,19 +143,34 @@
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints percentHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <MFXScrollPane fitToWidth="true" minHeight="0.0" style="-fx-background-color: #e0e0e0;">
                            <content>
                               <VBox fx:id="filterVbox" alignment="TOP_CENTER">
                                  <children>
+                                    <Label id="kioskEditorSubtitle" fx:id="RequestInformationTitle12" alignment="CENTER" text="Change Kiosk Location" textFill="#333333">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <VBox maxWidth="-Infinity">
+                                       <children>
+                                          <Label id="requestsBody" text="Select Location" textFill="#333333">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <MFXFilterComboBox id="requestsButton" fx:id="locationDropdown" floatMode="DISABLED" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="294.0" style="-fx-background-color: #cecece; -fx-border-color: #898989; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" />
+                                       </children>
+                                    </VBox>
                                     <Label id="kioskEditorSubtitle" fx:id="RequestInformationTitle1" alignment="CENTER" text="Add New Move to Display" textFill="#333333">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets top="40.0" />
                                        </VBox.margin>
                                     </Label>
                                     <VBox maxWidth="-Infinity">
@@ -168,7 +183,7 @@
                                           <MFXFilterComboBox id="requestsButton" fx:id="moveDropdown" floatMode="DISABLED" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="294.0" style="-fx-background-color: #cecece; -fx-border-color: #898989; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" />
                                        </children>
                                        <VBox.margin>
-                                          <Insets top="40.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
                                     </VBox>
                                     <VBox maxWidth="-Infinity">
@@ -178,7 +193,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <MFXTextField id="requestsButton" fx:id="moveMessage" alignment="TOP_LEFT" floatMode="DISABLED" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="294.0" promptText="Add move message" style="-fx-background-color: #cecece; -fx-border-color: #898989; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" />
+                                          <MFXTextField id="requestsButton" fx:id="moveMessage" alignment="TOP_LEFT" floatMode="DISABLED" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="294.0" promptText="Add move message" style="-fx-background-color: #cecece; -fx-border-color: #898989; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
@@ -191,7 +206,7 @@
                               </VBox>
                            </content>
                         </MFXScrollPane>
-                        <HBox alignment="CENTER" minHeight="0.0" style="-fx-background-color: #e0e0e0;" GridPane.rowIndex="1">
+                        <HBox alignment="CENTER" minHeight="0.0" prefHeight="79.0" prefWidth="360.0" style="-fx-background-color: #e0e0e0;" GridPane.rowIndex="1">
                            <children>
                               <MFXButton id="requestsButton" minHeight="0.0" onAction="#addKiosk" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Add to Kiosk" textFill="WHITE" />
                            </children>

@@ -181,9 +181,8 @@ public class BaseRequestController {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
     request.setDate(dtf.format(now));
-
-    if (currUser.getAdmin() == true) {
-      var staff = assignedStaffBox.getValue();
+    var staff = assignedStaffBox.getValue();
+    if (currUser.getAdmin() == true && staff != null) {
       request.setAssignedEmployee(staff.toString());
     } else {
       request.setAssignedEmployee("--Select--");

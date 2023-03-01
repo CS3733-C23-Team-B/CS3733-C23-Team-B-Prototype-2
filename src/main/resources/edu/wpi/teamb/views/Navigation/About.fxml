@@ -301,11 +301,23 @@
                         </VBox>
                      </content>
                   </MFXScrollPane>
-                  <MFXButton fx:id="backButton" alignment="CENTER" onMouseReleased="#backButtonClicked" prefHeight="37.0" prefWidth="80.0" style="-fx-background-color: #21357E; -fx-background-radius: 7;" text="Back" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </MFXButton>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <MFXButton fx:id="backButton" alignment="CENTER" onMouseReleased="#backButtonClicked" prefHeight="37.0" prefWidth="80.0" style="-fx-background-color: #21357E; -fx-background-radius: 7;" text="Back" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                        <ImageView fx:id="badgerButton" fitHeight="57.0" fitWidth="58.0" onMouseClicked="#startBadgerGame">
+                           <image>
+                              <Image url="@../../../../../../../../../../Desktop/idle1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

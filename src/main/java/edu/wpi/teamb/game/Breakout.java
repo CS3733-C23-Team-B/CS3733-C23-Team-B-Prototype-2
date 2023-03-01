@@ -7,10 +7,10 @@ public class Breakout extends JFrame {
 
   public Breakout() {
 
-    initUI();
+    initializeUI();
   }
 
-  private void initUI() {
+  private void initializeUI() {
 
     add(new Board());
     setTitle("Badger Breaker");
@@ -21,7 +21,7 @@ public class Breakout extends JFrame {
     pack();
   }
 
-  public static void startGame(){
+  public static void startGame() {
 
     EventQueue.invokeLater(
         () -> {

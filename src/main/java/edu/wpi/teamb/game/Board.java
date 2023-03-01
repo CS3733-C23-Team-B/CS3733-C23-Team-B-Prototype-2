@@ -27,19 +27,19 @@ public class Board extends JPanel {
 
   public Board() {
 
-    initBoard();
+    initializeBoard();
   }
 
-  private void initBoard() {
+  private void initializeBoard() {
 
     addKeyListener(new TAdapter());
     setFocusable(true);
     setPreferredSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
 
-    gameInit();
+    initializeGame();
   }
 
-  private void gameInit() {
+  private void initializeGame() {
 
     bricks = new Brick[Commons.N_OF_BRICKS];
 
@@ -116,7 +116,7 @@ public class Board extends JPanel {
 
   private void gameFinished(Graphics2D g2d) {
 
-    var font = new Font("Verdana", Font.BOLD, 14);
+    var font = new Font("System", Font.BOLD, 14);
     FontMetrics fontMetrics = this.getFontMetrics(font);
 
     g2d.setColor(Color.BLACK);

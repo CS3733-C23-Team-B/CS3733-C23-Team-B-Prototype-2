@@ -1,5 +1,7 @@
 package edu.wpi.teamb.Controllers.Database;
 
+import static javafx.scene.paint.Color.WHITE;
+
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.KioskMove;
@@ -19,7 +21,9 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -28,10 +32,12 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class KioskViewController {
+  public HBox floorH;
   private String currentFloor;
   private AnchorPane aPane = new AnchorPane();
   private GesturePane pane;
@@ -51,7 +57,9 @@ public class KioskViewController {
   @FXML HBox frontCenter;
   @FXML Label frontLabel;
   @FXML VBox frontBox2;
-  Map<Circle, Node> nodeMap;
+  @FXML Label floorLabel;
+  Map<Circle, Node> nodeMap = new HashMap<>();
+  private Map<String, String> floors = new HashMap<>();
 
   Timeline timeline;
 
@@ -65,6 +73,13 @@ public class KioskViewController {
     imageMap.put("1", Bapp.firstfloor);
     imageMap.put("2", Bapp.secondfloor);
     imageMap.put("3", Bapp.thirdfloor);
+
+    floors.put("L1", "Lower Level 1");
+    floors.put("L2", "Lower Level 2");
+    floors.put("G", "Ground Floor");
+    floors.put("1", "First Floor");
+    floors.put("2", "Second Floor");
+    floors.put("3", "Third Floor");
 
     nodeMap = new HashMap<>();
     nodeMap.clear();
@@ -85,6 +100,7 @@ public class KioskViewController {
     frontBox2.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
     frontCenter.toFront();
 
     // Set up the slide-in and slide-out animations
@@ -172,7 +188,7 @@ public class KioskViewController {
     aPane.getChildren().add(image);
     aPane.getChildren().add(linesPlane);
     linesPlane.getChildren().clear();
-
+    floorLabel.setText(floors.get(floor));
     for (Node value : nodes.values()) {
       if (value.getFloor().equals(currentFloor) && path.contains(value.getNodeID())) {
         Circle dot = placeNode(value);
@@ -190,6 +206,7 @@ public class KioskViewController {
     frontBox2.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
     frontCenter.toFront();
 
     Platform.runLater(() -> pane.centreOn(p));
@@ -197,11 +214,15 @@ public class KioskViewController {
 
   private Circle placeNode(Node node) {
     Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Bapp.blue);
+    if (path.get(0).equals(node.getNodeID())) dot.setFill(Color.GREEN);
+    else if (path.get(path.size() - 1).equals(node.getNodeID())) dot.setFill(Color.RED);
+    else dot.setVisible(false);
     aPane.getChildren().add(dot);
     aPane.toFront();
     frontBox2.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
     frontCenter.toFront();
     if (buttonMap.get(node) != null) {
       showButton(buttonMap.get(node));
@@ -211,24 +232,40 @@ public class KioskViewController {
   }
 
   public void openMap() throws IOException {
+    timeline.getKeyFrames().clear();
     timeline.stop();
     final String filename = Screen.PATHFINDING.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
+    final StackPane stackPane = Bapp.getStackPane();
     final var r = Bapp.class.getResource(filename);
     final FXMLLoader loader = new FXMLLoader(r);
     final Parent root = loader.load();
 
-    final String filename1 = Screen.SIGN_IN.getFilename();
+    final String filename1 = Screen.KIOSK_VIEW.getFilename();
     final var r1 = Bapp.class.getResource(filename1);
     final FXMLLoader loader1 = new FXMLLoader(r1);
     final Parent root1 = loader1.load();
+
+    HBox h = new HBox();
     MFXButton b = new MFXButton();
-    b.setText("Back to Sign In");
+
+    b.setText("Back to Kiosk");
+    b.setFont(new Font("Nunito", 12));
+    b.setTextFill(WHITE);
+    b.setStyle("-fx-background-color: #E89F55; -fx-background-radius: 5; -fx-font-weight: bold");
+    b.setPrefHeight(30);
+    b.setPrefWidth(122);
+
+    h.setAlignment(Pos.TOP_RIGHT);
+    h.setPadding(new Insets(10, 10, 10, 10));
+    h.setPickOnBounds(false);
+    h.getChildren().add(b);
 
     Platform.runLater(
         () -> {
           rootPane.setCenter(root);
-          rootPane.setTop(b);
+          // rootPane.setTop(h);
+          stackPane.getChildren().add(h);
         });
 
     b.setOnAction(
@@ -236,7 +273,8 @@ public class KioskViewController {
           Platform.runLater(
               () -> {
                 rootPane.setCenter(null);
-                rootPane.setTop(null);
+                // rootPane.setTop(null);
+                stackPane.getChildren().remove(1);
                 rootPane.setCenter(root1);
               });
         });
@@ -281,6 +319,7 @@ public class KioskViewController {
     frontCenter.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
 
     Platform.runLater(
         () -> {
@@ -315,6 +354,7 @@ public class KioskViewController {
   }
 
   public void signIn() {
+    timeline.getKeyFrames().clear();
     timeline.stop();
     Navigation.navigate(Screen.SIGN_IN);
   }

@@ -147,4 +147,8 @@ public class KioskEditController {
       }
     }
   }
+
+  public void helpButtonClicked() {
+    Popup.displayPopup(Screen.KIOSK_HELP);
+  }
 }

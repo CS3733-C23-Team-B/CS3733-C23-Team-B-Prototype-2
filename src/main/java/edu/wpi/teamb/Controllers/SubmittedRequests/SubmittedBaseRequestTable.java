@@ -47,6 +47,7 @@ public abstract class SubmittedBaseRequestTable {
     addcol(assignedEmployee, "AssignedEmployee");
     addcol(status, "Status");
     //    addcol(notes, "notes");
+    table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
   }
 
   public TableView getTable() {

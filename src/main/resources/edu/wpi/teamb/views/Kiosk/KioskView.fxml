@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="TOP_CENTER" prefHeight="838.0" prefWidth="1207.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.KioskViewController">
+<GridPane alignment="TOP_CENTER" prefHeight="838.0" prefWidth="1207.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.KioskViewController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
   </columnConstraints>
@@ -28,16 +28,31 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+            <HBox fx:id="floorH" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <children>
+                  <Label id="kioskAccent" fx:id="floorLabel" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-radius: 5;" text="Floor" textFill="#333333">
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <GridPane.margin>
+                  <Insets right="10.0" top="10.0" />
+               </GridPane.margin>
+            </HBox>
             <HBox fx:id="frontRight" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #21357E; -fx-background-radius: 5;" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                <children>
                   <VBox alignment="CENTER" prefHeight="74.0" prefWidth="248.0">
                      <children>
-                        <Label alignment="BOTTOM_RIGHT" text="Ambulance Parking" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
+                        <Label id="kioskTitle" alignment="BOTTOM_RIGHT" text="Ambulance Parking" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
                            <font>
                               <Font size="36.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_RIGHT" text="Parking for ambulances only. All other vehicles will be towed" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
+                        <Label id="kioskBody" alignment="TOP_RIGHT" text="Parking for ambulances only. All other vehicles will be towed" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -47,9 +62,9 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                              <ImageView fitHeight="163.0" fitWidth="177.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                  <image>
-                                    <Image url="@../../../../../media/arrow.png" />
+                                    <Image url="@../../../../../media/betterArrow.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -64,38 +79,38 @@
                   <Insets bottom="70.0" right="40.0" />
                </GridPane.margin>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="12.0" />
                </padding>
             </HBox>
             <HBox fx:id="frontLeft" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" style="-fx-background-color: #21357E; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                <children>
                   <VBox alignment="CENTER" prefHeight="350.0" prefWidth="355.0">
                      <children>
-                        <Label alignment="BASELINE_LEFT" text="Waiting Room 1" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
+                        <Label id="kioskTitle" alignment="BASELINE_LEFT" stylesheets="@../../../../../css/style.css" text="Waiting Room 1" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
                            <font>
                               <Font size="36.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" text="First floor waiting room for incoing patients and visitors" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
+                        <Label id="kioskBody" alignment="TOP_LEFT" text="First floor waiting room for incoming patients and visitors" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                         <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="163.0" fitWidth="177.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../media/arrow.png" />
+                                    <Image url="@../../../../../media/betterArrow.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </VBox>
                      </children>
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets />
                      </HBox.margin>
                   </VBox>
                </children>
@@ -103,12 +118,12 @@
                   <Insets bottom="70.0" left="40.0" />
                </GridPane.margin>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="12.0" />
                </padding>
             </HBox>
             <VBox fx:id="frontBox2" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #FCFCFC; -fx-background-radius: 5;" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <children>
-                  <Label fx:id="frontLabel" alignment="CENTER" text="Upcoming Location Moves" textAlignment="CENTER" wrapText="true">
+                  <Label id="kioskTitle" fx:id="frontLabel" alignment="CENTER" stylesheets="@../../../../../css/style.css" text="Upcoming Location Moves" textAlignment="CENTER" textFill="#333333" wrapText="true">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -116,7 +131,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="moveMessage" alignment="CENTER" maxWidth="-Infinity" text="This is a move message" textAlignment="CENTER" wrapText="true">
+                  <Label id="kioskSubtitle" fx:id="moveMessage" alignment="CENTER" maxWidth="-Infinity" text="This is a move message" textAlignment="CENTER" textFill="#333333" wrapText="true">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -131,12 +146,12 @@
             </VBox>
             <HBox fx:id="frontCenter" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="66.0" prefWidth="435.0" style="-fx-background-color: #FCFCFC; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <children>
-                  <MFXButton fx:id="signInButton" onAction="#signIn" prefHeight="41.0" prefWidth="176.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Sign In" textFill="#fcfcfc">
+                  <MFXButton id="kioskButton" fx:id="signInButton" onAction="#signIn" prefHeight="41.0" prefWidth="176.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Sign In" textFill="#fcfcfc">
                      <font>
                         <Font size="23.0" />
                      </font>
                   </MFXButton>
-                  <Label text="OR">
+                  <Label id="kioskAccent" text="OR" textFill="#b9b9b9">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
@@ -144,7 +159,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <MFXButton fx:id="viewMapButton" onAction="#openMap" prefHeight="42.0" prefWidth="164.0" style="-fx-background-color: #E89F55; -fx-background-radius: 10;" text="View Map">
+                  <MFXButton id="kioskButton" fx:id="viewMapButton" onAction="#openMap" prefHeight="42.0" prefWidth="164.0" style="-fx-background-color: #E89F55; -fx-background-radius: 10;" text="View Map" textFill="WHITE">
                      <font>
                         <Font size="23.0" />
                      </font>

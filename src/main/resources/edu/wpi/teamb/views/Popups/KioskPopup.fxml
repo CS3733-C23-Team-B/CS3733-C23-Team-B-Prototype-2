@@ -84,9 +84,14 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="74.0" prefWidth="150.0">
                                        <children>
-                                          <Label fx:id="rightLoc" alignment="CENTER" prefHeight="39.0" prefWidth="278.0" text="Ambulence Parnking" textAlignment="RIGHT" textFill="#f2f2f2">
+                                          <Label alignment="CENTER" prefHeight="39.0" prefWidth="278.0" text="Ambulence Parnking" textAlignment="RIGHT" textFill="#f2f2f2">
                                              <font>
                                                 <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="194.0" text="Weee Wooo Weeee Wooo" textAlignment="RIGHT" textFill="#f2f2f2">
+                                             <font>
+                                                <Font size="9.0" />
                                              </font>
                                           </Label>
                                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
@@ -111,9 +116,14 @@
                                  <children>
                                     <VBox alignment="CENTER">
                                        <children>
-                                          <Label fx:id="leftLoc" alignment="CENTER" prefHeight="39.0" prefWidth="159.0" text="Au Bon Pain" textFill="#f2f2f2">
+                                          <Label alignment="CENTER" prefHeight="39.0" prefWidth="159.0" text="Au Bon Pain" textFill="#f2f2f2">
                                              <font>
                                                 <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="151.0" text="Im in so much Pain" textFill="#f2f2f2">
+                                             <font>
+                                                <Font size="9.0" />
                                              </font>
                                           </Label>
                                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">

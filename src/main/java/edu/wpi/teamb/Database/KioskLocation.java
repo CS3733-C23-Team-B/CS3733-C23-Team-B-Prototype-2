@@ -28,10 +28,5 @@ public class KioskLocation {
   @Getter
   private LocationName locationName;
 
-  @Column(name = "inverse")
-  @Getter
-  @Setter
-  private Boolean inverse;
-
   public KioskLocation() {};
 }

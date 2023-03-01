@@ -7,7 +7,7 @@ public class Breakout extends JFrame {
 
   public Breakout() {
 
-      initializeUI();
+    initializeUI();
   }
 
   private void initializeUI() {
@@ -21,7 +21,7 @@ public class Breakout extends JFrame {
     pack();
   }
 
-  public static void startGame(){
+  public static void startGame() {
 
     EventQueue.invokeLater(
         () -> {

@@ -35,6 +35,7 @@ import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class KioskViewController {
+  public HBox floorH;
   private String currentFloor;
   private AnchorPane aPane = new AnchorPane();
   private GesturePane pane;
@@ -54,7 +55,9 @@ public class KioskViewController {
   @FXML HBox frontCenter;
   @FXML Label frontLabel;
   @FXML VBox frontBox2;
-  Map<Circle, Node> nodeMap;
+  @FXML Label floorLabel;
+  Map<Circle, Node> nodeMap = new HashMap<>();
+  private Map<String, String> floors = new HashMap<>();
 
   Timeline timeline;
 
@@ -68,6 +71,13 @@ public class KioskViewController {
     imageMap.put("1", Bapp.firstfloor);
     imageMap.put("2", Bapp.secondfloor);
     imageMap.put("3", Bapp.thirdfloor);
+
+    floors.put("L1", "Lower Level 1");
+    floors.put("L2", "Lower Level 2");
+    floors.put("G", "Ground Floor");
+    floors.put("1", "First Floor");
+    floors.put("2", "Second Floor");
+    floors.put("3", "Third Floor");
 
     nodeMap = new HashMap<>();
     nodeMap.clear();
@@ -88,6 +98,7 @@ public class KioskViewController {
     frontBox2.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
     frontCenter.toFront();
 
     // Set up the slide-in and slide-out animations
@@ -175,7 +186,7 @@ public class KioskViewController {
     aPane.getChildren().add(image);
     aPane.getChildren().add(linesPlane);
     linesPlane.getChildren().clear();
-
+    floorLabel.setText(floors.get(floor));
     for (Node value : nodes.values()) {
       if (value.getFloor().equals(currentFloor) && path.contains(value.getNodeID())) {
         Circle dot = placeNode(value);
@@ -193,6 +204,7 @@ public class KioskViewController {
     frontBox2.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
     frontCenter.toFront();
 
     Platform.runLater(() -> pane.centreOn(p));
@@ -208,6 +220,7 @@ public class KioskViewController {
     frontBox2.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
     frontCenter.toFront();
     if (buttonMap.get(node) != null) {
       showButton(buttonMap.get(node));
@@ -295,6 +308,7 @@ public class KioskViewController {
     frontCenter.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
 
     Platform.runLater(
         () -> {

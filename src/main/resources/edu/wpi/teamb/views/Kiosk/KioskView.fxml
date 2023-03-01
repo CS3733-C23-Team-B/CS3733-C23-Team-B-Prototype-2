@@ -28,6 +28,21 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+            <HBox fx:id="floorH" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <children>
+                  <Label fx:id="floorLabel" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-radius: 5;" text="Floor">
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <GridPane.margin>
+                  <Insets right="10.0" top="10.0" />
+               </GridPane.margin>
+            </HBox>
             <HBox fx:id="frontRight" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #21357E; -fx-background-radius: 5;" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                <children>
                   <VBox alignment="CENTER" prefHeight="74.0" prefWidth="248.0">

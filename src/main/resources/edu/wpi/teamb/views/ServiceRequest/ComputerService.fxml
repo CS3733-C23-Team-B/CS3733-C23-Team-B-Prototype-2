@@ -117,23 +117,6 @@
                         <Insets bottom="10.0" />
                      </GridPane.margin>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" GridPane.columnIndex="1">
-                     <children>
-                        <HBox>
-                           <children>
-                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Assigned Staff Member" />
-                              <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
-                           </children>
-                        </HBox>
-                        <MFXFilterComboBox fx:id="assignedStaffBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
-                           <textFill>
-                              <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
-                           </textFill></MFXFilterComboBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
-                  </VBox>
                   <VBox layoutX="202.0" layoutY="10.0" GridPane.rowIndex="1">
                      <children>
                         <HBox>
@@ -151,7 +134,7 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="68.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox layoutX="10.0" layoutY="68.0" GridPane.columnIndex="1">
                      <children>
                         <HBox>
                            <children>
@@ -192,6 +175,23 @@
                            <textFill>
                               <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
                            </textFill></MFXTextField>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="assignedStaffMemberBox" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label id="body" stylesheets="@../../../../../css/style.css" text="Assigned Staff Member" />
+                           </children>
+                        </HBox>
+                        <MFXFilterComboBox fx:id="assignedStaffBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">
+                           <textFill>
+                              <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                           </textFill>
+                        </MFXFilterComboBox>
                      </children>
                      <padding>
                         <Insets bottom="10.0" />

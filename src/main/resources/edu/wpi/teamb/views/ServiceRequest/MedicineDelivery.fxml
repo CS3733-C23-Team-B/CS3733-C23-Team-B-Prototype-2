@@ -188,12 +188,11 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="125.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <VBox fx:id="assignedStaffMemberBox" layoutX="10.0" layoutY="125.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <HBox>
                            <children>
                               <Label id="body" stylesheets="@../../../../../css/style.css" text="Assigned Staff Member" />
-                              <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
                         <MFXFilterComboBox fx:id="assignedStaffBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">

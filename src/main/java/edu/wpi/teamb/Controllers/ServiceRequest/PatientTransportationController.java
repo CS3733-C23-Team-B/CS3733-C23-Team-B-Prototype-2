@@ -32,11 +32,11 @@ public class PatientTransportationController extends BaseRequestController {
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
       urgencyBox,
-      assignedStaffBox,
       locationBox,
       patientDestinationBox,
       equipmentNeededBox,
       patientIDField,
+      assignedStaffBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));

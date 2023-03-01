@@ -29,7 +29,7 @@ public class MedicalEquipmentDeliveryController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      urgencyBox, assignedStaffBox, locationBox, equipmentNeededBox, additionalNotesField
+      urgencyBox, locationBox, equipmentNeededBox, assignedStaffBox, additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();

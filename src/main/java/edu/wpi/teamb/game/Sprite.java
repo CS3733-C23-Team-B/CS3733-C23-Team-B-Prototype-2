@@ -1,4 +1,3 @@
 package edu.wpi.teamb.game;
 
-public class Sprite {
-}
+public class Sprite {}

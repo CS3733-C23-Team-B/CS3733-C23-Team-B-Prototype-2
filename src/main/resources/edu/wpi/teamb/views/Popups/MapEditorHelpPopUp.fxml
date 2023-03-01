@@ -54,11 +54,36 @@
                                                 <Font size="15.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="20.0" layoutY="63.0" text="3)  You can also create, delete, and modify locations by clicking on the locations button on the bottom of the page." wrapText="true">
+                                        <Label layoutX="20.0" layoutY="63.0" text="Keyboard Shortcuts:" wrapText="true">
                                             <font>
                                                 <Font size="15.0" />
                                             </font>
                                         </Label>
+                              <Label wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label text="- Double click to create a node" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label text="- Right-click drag to select a group of nodes" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label text="- Press backspace to delete a node, group of nodes, or edge" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label text="- When a group of nodes is selected, press 'S' to straigten, 'H' to align horizontally, and 'V' to align vertically" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
                                     </children>
                                     <padding>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

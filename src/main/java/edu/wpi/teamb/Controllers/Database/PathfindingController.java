@@ -254,7 +254,7 @@ public class PathfindingController {
             displayPopUp(newSelection);
           }
         });
-    drawLines();
+    if (pathNodePairs != null) drawLines();
     frontFloorr.toFront();
     scrollPane.toFront();
     front.toFront();
@@ -276,7 +276,7 @@ public class PathfindingController {
     }
     if (animationTimeline != null) animationTimeline.stop();
     animationTimeline = null;
-    placeAnimatedLine(floorPathPairs);
+    if (floorPathPairs.size() > 0) placeAnimatedLine(floorPathPairs);
   }
 
   public void displayPopUp(Circle dot) {
@@ -584,7 +584,7 @@ public class PathfindingController {
     animationTimeline =
         new Timeline(
             new KeyFrame(
-                Duration.millis(200),
+                Duration.millis(400),
                 event -> {
                   Group lineGroup = new Group();
                   linesPlane.getChildren().add(lineGroup);
@@ -596,7 +596,7 @@ public class PathfindingController {
 
                   PathTransition transition = new PathTransition();
                   transition.setInterpolator(Interpolator.LINEAR);
-                  transition.setDuration(Duration.seconds(nodePairs.size()));
+                  transition.setDuration(Duration.seconds(nodePairs.size() / 2));
                   transition.setNode(lineGroup);
                   transition.setPath(path);
                   transition.setCycleCount(Timeline.INDEFINITE);
@@ -608,16 +608,37 @@ public class PathfindingController {
 
   private Path getPath(List<List<Node>> nodePairs) {
     Path path = new Path();
-    if (nodePairs.size() > 0)
+    if (nodePairs.size() > 0) {
       path.getElements()
           .add(
               new MoveTo(nodePairs.get(0).get(0).getXCoord(), nodePairs.get(0).get(0).getYCoord()));
-    for (List<Node> pair : nodePairs) {
+    }
+    for (int i = 0; i < nodePairs.size() - 1; i++) {
+      List<Node> pair = nodePairs.get(i);
+      Node start = pair.get(0);
       Node end = pair.get(1);
       int endX = end.getXCoord();
       int endY = end.getYCoord();
-      path.getElements().add(new LineTo(endX, endY));
+      if (end.getNodeID() == nodePairs.get(i + 1).get(0).getNodeID()) {
+        path.getElements().add(new LineTo(endX, endY));
+      } else {
+        path.getElements()
+            .add(
+                new LineTo(
+                    nodePairs.get(i).get(1).getXCoord(), nodePairs.get(i).get(1).getYCoord()));
+        path.getElements()
+            .add(
+                new MoveTo(
+                    nodePairs.get(i + 1).get(0).getXCoord(),
+                    nodePairs.get(i + 1).get(0).getYCoord()));
+      }
     }
+    path.getElements()
+        .add(
+            new LineTo(
+                nodePairs.get(nodePairs.size() - 1).get(1).getXCoord(),
+                nodePairs.get(nodePairs.size() - 1).get(1).getYCoord()));
+
     return path;
   }
 

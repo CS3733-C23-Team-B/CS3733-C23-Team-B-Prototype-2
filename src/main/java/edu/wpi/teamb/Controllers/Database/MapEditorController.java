@@ -184,10 +184,12 @@ public class MapEditorController {
 
     aPane.setOnMouseReleased(
         e -> {
-          if (selectDragged) aPane.getChildren().remove(selectionRectangle);
-          if (selectDragged) setSelectedDots();
+          if (selectDragged) {
+            aPane.getChildren().remove(selectionRectangle);
+            setSelectedDots();
+          } else pane.setGestureEnabled(true);
+
           selectionRectangle = null;
-          if (!context) pane.setGestureEnabled(true);
           selectDragged = false;
         });
 
@@ -274,6 +276,15 @@ public class MapEditorController {
           MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
         });
 
+    MenuItem dotsStraighten = new MenuItem("Straighten");
+    dotsStraighten.setOnAction(e -> straightenNodes());
+
+    MenuItem dotsHorizontal = new MenuItem("Align Horizontally");
+    dotsHorizontal.setOnAction(e -> horizontalNodes());
+
+    MenuItem dotsVertical = new MenuItem("Align Vertically");
+    dotsVertical.setOnAction(e -> verticalNodes());
+
     dotContextMenu.getItems().addAll(dotEdit, dotDelete);
     dotContextMenu.setOnShown(
         e -> {
@@ -286,7 +297,7 @@ public class MapEditorController {
           context = false;
         });
 
-    dotsContextMenu.getItems().add(dotsDelete);
+    dotsContextMenu.getItems().addAll(dotsStraighten, dotsHorizontal, dotsVertical, dotsDelete);
     dotsContextMenu.setOnShown(
         e -> {
           pane.setGestureEnabled(false);
@@ -537,14 +548,16 @@ public class MapEditorController {
             }
           } else if (e.getButton().equals(MouseButton.SECONDARY)) {
             // Context Menu Requested
-            if (currentDots.isEmpty()) dotContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
-            else dotsContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
             if (currentDot != null) {
               currentDot.setFill(Bapp.blue);
               clearPopUp();
             }
-            currentDot = dot;
-            currentDot.setFill(Color.GOLD);
+            if (!currentDots.contains(dot)) {
+              handleClick();
+              dotContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
+              currentDot = dot;
+              currentDot.setFill(Color.GOLD);
+            } else dotsContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
           }
           dragged = false;
         });
@@ -999,9 +1012,15 @@ public class MapEditorController {
         e -> {
           if (e.getButton().equals(MouseButton.SECONDARY)) return;
           if (e.isControlDown()) {
-            currentDots.add(c);
-            c.setFill(Color.GOLD);
-            return;
+            if (currentDots.contains(c)) {
+              currentDots.remove(c);
+              c.setFill(Bapp.blue);
+              return;
+            } else {
+              currentDots.add(c);
+              c.setFill(Color.GOLD);
+              return;
+            }
           }
           if (currentDot != null) currentDot.setFill(Bapp.blue);
           clearCurrentLine();

@@ -30,11 +30,11 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
       urgencyBox,
-      assignedStaffBox,
       locationBox,
       typeOfMedicineField,
       dosageField,
       patientIDField,
+      assignedStaffBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));

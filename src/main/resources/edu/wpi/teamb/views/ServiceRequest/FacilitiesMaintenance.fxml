@@ -184,7 +184,6 @@
                         <HBox>
                            <children>
                               <Label id="body" stylesheets="@../../../../../css/style.css" text="Assigned Staff Member" />
-                              <Label id="body" stylesheets="@../../../../../css/style.css" text=" *" textFill="RED" />
                            </children>
                         </HBox>
                         <MFXFilterComboBox fx:id="assignedStaffBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 5; -fx-border-radius: 5;">

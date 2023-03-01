@@ -162,7 +162,7 @@ public class BaseRequestController {
    */
   private boolean isFormFull(int i) {
     // Skip final item, which should be the notes field
-    if (i == components.size() - 2) return !getText(components.get(i)).equals("");
+    if (i == components.size() - 3) return !getText(components.get(i)).equals("");
     return !getText(components.get(i)).equals("") && isFormFull(i + 1);
   }
 

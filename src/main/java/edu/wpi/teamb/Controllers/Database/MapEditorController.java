@@ -47,6 +47,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import lombok.Getter;
+import lombok.Setter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
@@ -74,7 +75,9 @@ public class MapEditorController {
   private boolean creatingEdge;
   private boolean context = false;
   private Circle edgeNode1, edgeNode2;
-  private static MapEditorController instance;
+  @Getter public static MapEditorController instance;
+
+  @Getter @Setter public String currentLoc;
   private Map<String, List<Move>> moveMap;
   @FXML MFXFilterComboBox<String> floorCombo;
   private Map<String, String> floorMap = new HashMap<>();
@@ -93,7 +96,8 @@ public class MapEditorController {
   @FXML MFXButton viewmoves;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
-  @FXML ContextMenu contextMenu;
+  @FXML ContextMenu dotContextMenu, dotsContextMenu, imageContextMenu;
+  List<ContextMenu> contextMenus = new ArrayList<>();
 
   public void initialize() {
     if (instance == null) {
@@ -245,29 +249,58 @@ public class MapEditorController {
     timeline.play();
     dateLabel.setText(formattedDate);
 
-    contextMenu = new ContextMenu();
+    dotContextMenu = new ContextMenu();
+    dotsContextMenu = new ContextMenu();
+    imageContextMenu = new ContextMenu();
 
-    MenuItem menuDelete = new MenuItem("Delete");
-    menuDelete.setOnAction(e -> deleteNode());
+    MenuItem dotDelete = new MenuItem("Delete");
+    dotDelete.setOnAction(
+        e -> {
+          deleteNode();
+          MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
+        });
 
-    MenuItem menuEdit = new MenuItem("Edit");
-    menuEdit.setOnAction(
+    MenuItem dotEdit = new MenuItem("Edit");
+    dotEdit.setOnAction(
         e -> {
           currentNode = nodeMap.get(currentDot);
           editClicked();
         });
 
-    contextMenu.getItems().addAll(menuEdit, menuDelete);
-    contextMenu.setOnShown(
+    MenuItem dotsDelete = new MenuItem("Delete All");
+    dotsDelete.setOnAction(
+        e -> {
+          deleteNodes();
+          MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
+        });
+
+    dotContextMenu.getItems().addAll(dotEdit, dotDelete);
+    dotContextMenu.setOnShown(
         e -> {
           pane.setGestureEnabled(false);
           context = true;
         });
-    contextMenu.setOnHidden(
+    dotContextMenu.setOnHidden(
         e -> {
           pane.setGestureEnabled(true);
           context = false;
         });
+
+    dotsContextMenu.getItems().add(dotsDelete);
+    dotsContextMenu.setOnShown(
+        e -> {
+          pane.setGestureEnabled(false);
+          context = true;
+        });
+    dotsContextMenu.setOnHidden(
+        e -> {
+          pane.setGestureEnabled(true);
+          context = false;
+        });
+
+    contextMenus.add(dotContextMenu);
+    contextMenus.add(dotsContextMenu);
+    contextMenus.add(imageContextMenu);
   }
 
   private void setActive(MFXButton button) {
@@ -334,11 +367,41 @@ public class MapEditorController {
       t = moves.get(0).getLocationName().getLongName();
       if (moves.size() > 1) t += "\n" + moves.get(1).getLocationName().getLongName();
     }
+    this.getInstance().setCurrentLoc(t);
     Text loc = new Text(t);
 
     Button editButton = new Button("Edit");
-    editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
-    editButton.setOnAction(e -> editClicked());
+    editButton.setStyle("-fx-background-color: #21357E; -fx-text-fill: #FCFCFC;");
+    editButton.setOnAction(
+        (eventAction) -> {
+          try {
+            editClicked();
+          } catch (Exception e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    HBox hboxMain = new HBox();
+    hboxMain.getChildren().add(editButton);
+    hboxMain.setAlignment(Pos.CENTER_LEFT);
+
+    if (t != "NO MOVES") {
+      Button statsButton = new Button("Request Stats");
+      statsButton.setStyle("-fx-background-color: #E89F55; -fx-text-fill: #FCFCFC;");
+      statsButton.setOnAction(
+          (eventAction) -> {
+            try {
+              statsButtonClicked();
+            } catch (Exception e) {
+              throw new RuntimeException(e);
+            }
+          });
+      HBox hboxChild = new HBox();
+      hboxChild.getChildren().add(statsButton);
+      hboxChild.setAlignment(Pos.CENTER_RIGHT);
+      HBox.setHgrow(hboxChild, Priority.ALWAYS);
+      hboxMain.getChildren().add(hboxChild);
+    }
     vbox.setSpacing(5);
     //    vbox.setAlignment(Pos.CENTER);
     vbox.setPadding(new Insets(10, 10, 10, 10));
@@ -347,10 +410,7 @@ public class MapEditorController {
     vbox.getChildren().add(pos);
     vbox.getChildren().add(loc);
 
-    HBox hbox = new HBox();
-    hbox.getChildren().add(editButton);
-    hbox.setAlignment(Pos.CENTER);
-    vbox.getChildren().add(hbox);
+    vbox.getChildren().add(hboxMain);
 
     currentNode = node;
     drawEdges();
@@ -437,6 +497,7 @@ public class MapEditorController {
     dot.setOnMousePressed(
         (e) -> {
           if (e.isControlDown()) return;
+          if (e.getButton().equals(MouseButton.SECONDARY)) return;
           origX = e.getSceneX();
           origY = e.getSceneY();
           if (currentDot != null) currentDot.setFill(Bapp.blue);
@@ -449,21 +510,23 @@ public class MapEditorController {
           c.toFront();
         });
 
-    dot.setOnContextMenuRequested(
-        e -> {
-          contextMenu.show(aPane, e.getScreenX(), e.getScreenY());
-          if (currentDot != null) {
-            currentDot.setFill(Bapp.blue);
-            clearPopUp();
-          }
-          currentDot = dot;
-          currentDot.setFill(Color.GOLD);
-        });
+    //    dot.setOnContextMenuRequested(
+    //        e -> {
+    //          if (currentDots.isEmpty()) dotContextMenu.show(aPane, e.getScreenX(),
+    // e.getScreenY());
+    //          else dotsContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
+    //          if (currentDot != null) {
+    //            currentDot.setFill(Bapp.blue);
+    //            clearPopUp();
+    //          }
+    //          currentDot = dot;
+    //          currentDot.setFill(Color.GOLD);
+    //        });
 
     dot.setOnMouseReleased(
         e -> {
           if (e.isControlDown()) return;
-          if (!context) pane.setGestureEnabled(true);
+          //          if (!context) pane.setGestureEnabled(true);
           if (dragged) {
             if (currentDots.size() == 0) updateNode(dot);
             else updateNodes();
@@ -472,6 +535,16 @@ public class MapEditorController {
               popPane.setTranslateX(dot.getCenterX() + dot.getRadius() * 2 - 50);
               popPane.setTranslateY(dot.getCenterY() - dot.getRadius() * 2 + 38);
             }
+          } else if (e.getButton().equals(MouseButton.SECONDARY)) {
+            // Context Menu Requested
+            if (currentDots.isEmpty()) dotContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
+            else dotsContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
+            if (currentDot != null) {
+              currentDot.setFill(Bapp.blue);
+              clearPopUp();
+            }
+            currentDot = dot;
+            currentDot.setFill(Color.GOLD);
           }
           dragged = false;
         });
@@ -537,7 +610,7 @@ public class MapEditorController {
     if (edgeNode1 != null) {
       edgeNode1.setFill(Color.GOLD);
     }
-    contextMenu.hide();
+    for (ContextMenu c : contextMenus) c.hide();
   }
 
   public void editLocationClicked() throws IOException {
@@ -687,6 +760,15 @@ public class MapEditorController {
     clearPopUp();
   }
 
+  private void deleteNodes() {
+    for (Circle dot : currentDots) {
+      Node n = nodeMap.get(dot);
+      DBSession.deleteNode(n);
+    }
+    removeNodes();
+    handleClick();
+  }
+
   public void removeNodes() {
     for (Circle dot : currentDots) {
       aPane.getChildren().remove(dot);
@@ -730,6 +812,10 @@ public class MapEditorController {
 
   public void helpButtonClicked() {
     Popup.displayPopup(Screen.MAP_EDITOR_HELP_POP_UP);
+  }
+
+  public void statsButtonClicked() {
+    Popup.displayPopup(Screen.MAP_EDITOR_LOCATION_STATS_POPUP);
   }
 
   public void drawEdges() {
@@ -776,11 +862,7 @@ public class MapEditorController {
       } else if (currentDot != null) {
         deleteNode();
       }
-      for (Circle dot : currentDots) {
-        Node n = nodeMap.get(dot);
-        DBSession.deleteNode(n);
-      }
-      removeNodes();
+      deleteNodes();
       MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
     } else if (e.getCode().equals(KeyCode.S)) straightenNodes();
     else if (e.getCode().equals(KeyCode.H)) horizontalNodes();

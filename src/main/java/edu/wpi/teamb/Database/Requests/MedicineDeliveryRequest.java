@@ -18,7 +18,7 @@ public class MedicineDeliveryRequest extends GeneralRequest {
   @Column(name = "dosage", length = 60)
   @Getter
   @Setter
-  private String doasage;
+  private String dosage;
 
   @Column(name = "patientID", length = 60)
   @Getter

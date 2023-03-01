@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
@@ -163,6 +164,11 @@
                                              </font>
                                           </Label>
                                           <MFXFilterComboBox id="requestsButton" fx:id="locationDropdown" floatMode="DISABLED" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="294.0" style="-fx-background-color: #cecece; -fx-border-color: #898989; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" />
+                                          <MFXCheckbox fx:id="inverseBox" text="Switch Right and Left">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </MFXCheckbox>
                                        </children>
                                     </VBox>
                                     <Label id="kioskEditorSubtitle" fx:id="RequestInformationTitle1" alignment="CENTER" text="Add New Move to Display" textFill="#333333">
@@ -170,7 +176,7 @@
                                           <Font size="25.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="40.0" />
+                                          <Insets top="30.0" />
                                        </VBox.margin>
                                     </Label>
                                     <VBox maxWidth="-Infinity">
@@ -201,7 +207,7 @@
                                     </VBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" />
                                  </padding>
                               </VBox>
                            </content>

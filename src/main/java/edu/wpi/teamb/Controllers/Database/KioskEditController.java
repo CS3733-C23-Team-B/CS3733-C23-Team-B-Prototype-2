@@ -6,6 +6,7 @@ import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.text.SimpleDateFormat;
@@ -45,6 +46,7 @@ public class KioskEditController {
   @FXML TableColumn nameCol;
   @FXML TableColumn startCol;
   @FXML TableColumn endCol;
+  @FXML MFXCheckbox inverseBox;
 
   private List<Move> moves;
 
@@ -73,7 +75,6 @@ public class KioskEditController {
 
     Map<String, LocationName> locationNames = DBSession.getAllLocationNames();
     locationNames.forEach((key, value) -> list.add(value.getLongName()));
-
     Sorting.quickSort(list);
     locationDropdown.setItems(list);
     locationDropdown.setValue(current);
@@ -81,6 +82,8 @@ public class KioskEditController {
         e -> {
           System.out.println(locationDropdown.getSelectedItem());
           KioskLocation k = new KioskLocation();
+          if (inverseBox.isSelected()) k.setInverse(true);
+          else k.setInverse(false);
           k.setLocationName(locationNames.get(locationDropdown.getSelectedItem()));
           MapDAO.updateKioskLocation(k);
         });

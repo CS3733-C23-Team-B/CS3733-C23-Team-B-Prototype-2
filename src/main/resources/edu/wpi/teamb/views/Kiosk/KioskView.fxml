@@ -30,7 +30,7 @@
          <children>
             <HBox fx:id="floorH" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <children>
-                  <Label fx:id="floorLabel" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-radius: 5;" text="Floor">
+                  <Label id="kioskAccent" fx:id="floorLabel" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-radius: 5;" text="Floor" textFill="#333333">
                      <padding>
                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </padding>

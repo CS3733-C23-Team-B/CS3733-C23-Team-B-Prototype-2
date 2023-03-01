@@ -21,7 +21,9 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -234,6 +236,7 @@ public class KioskViewController {
     timeline.stop();
     final String filename = Screen.PATHFINDING.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
+    final StackPane stackPane = Bapp.getStackPane();
     final var r = Bapp.class.getResource(filename);
     final FXMLLoader loader = new FXMLLoader(r);
     final Parent root = loader.load();
@@ -243,19 +246,26 @@ public class KioskViewController {
     final FXMLLoader loader1 = new FXMLLoader(r1);
     final Parent root1 = loader1.load();
 
+    HBox h = new HBox();
     MFXButton b = new MFXButton();
 
     b.setText("Back to Kiosk");
     b.setFont(new Font("Nunito", 12));
     b.setTextFill(WHITE);
-    b.setStyle("-fx-background-color: #E89F55; -fx-background-radius: 5");
+    b.setStyle("-fx-background-color: #E89F55; -fx-background-radius: 5; -fx-font-weight: bold");
     b.setPrefHeight(30);
     b.setPrefWidth(122);
+
+    h.setAlignment(Pos.TOP_RIGHT);
+    h.setPadding(new Insets(10, 10, 10, 10));
+    h.setPickOnBounds(false);
+    h.getChildren().add(b);
 
     Platform.runLater(
         () -> {
           rootPane.setCenter(root);
-          rootPane.setTop(b);
+          // rootPane.setTop(h);
+          stackPane.getChildren().add(h);
         });
 
     b.setOnAction(
@@ -263,7 +273,8 @@ public class KioskViewController {
           Platform.runLater(
               () -> {
                 rootPane.setCenter(null);
-                rootPane.setTop(null);
+                // rootPane.setTop(null);
+                stackPane.getChildren().remove(1);
                 rootPane.setCenter(root1);
               });
         });

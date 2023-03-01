@@ -61,12 +61,11 @@ public class KioskViewController {
   @FXML Label leftLoc;
   Map<Circle, Node> nodeMap = new HashMap<>();
   private Map<String, String> floors = new HashMap<>();
-
+  List<KioskMove> kioskMoveList;
   Timeline timeline;
 
   public void initialize() throws IOException, SQLException {
     AtomicInteger index = new AtomicInteger(0);
-    List<KioskMove> kioskMoveList;
     kioskMoveList = DBSession.getAllKioskMoves();
     if (kioskMoveList.size() > 0) {
 
@@ -376,9 +375,11 @@ public class KioskViewController {
   }
 
   public void signIn() {
-    timeline.getKeyFrames().clear();
-    timeline.stop();
-    timeline = null;
+    if (!kioskMoveList.isEmpty()) {
+      timeline.getKeyFrames().clear();
+      timeline.stop();
+      timeline = null;
+    }
     Navigation.navigate(Screen.SIGN_IN);
   }
 }

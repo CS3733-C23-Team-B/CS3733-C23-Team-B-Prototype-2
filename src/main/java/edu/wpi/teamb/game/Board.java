@@ -116,7 +116,7 @@ public class Board extends JPanel {
 
   private void gameFinished(Graphics2D g2d) {
 
-    var font = new Font("Verdana", Font.BOLD, 10);
+    var font = new Font("Verdana", Font.BOLD, 14);
     FontMetrics fontMetrics = this.getFontMetrics(font);
 
     g2d.setColor(Color.BLACK);

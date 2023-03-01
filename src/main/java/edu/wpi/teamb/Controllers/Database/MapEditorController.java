@@ -3,6 +3,7 @@ package edu.wpi.teamb.Controllers.Database;
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.DAO.MapDAO;
+import edu.wpi.teamb.Database.DAO.RequestDAO;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
@@ -395,7 +396,8 @@ public class MapEditorController {
     hboxMain.getChildren().add(editButton);
     hboxMain.setAlignment(Pos.CENTER_LEFT);
 
-    if (t != "NO MOVES") {
+    RequestDAO.refreshRequests();
+    if (t != "NO MOVES" && !RequestDAO.getAllRequests(t).isEmpty()) {
       Button statsButton = new Button("Request Stats");
       statsButton.setStyle("-fx-background-color: #E89F55; -fx-text-fill: #FCFCFC;");
       statsButton.setOnAction(

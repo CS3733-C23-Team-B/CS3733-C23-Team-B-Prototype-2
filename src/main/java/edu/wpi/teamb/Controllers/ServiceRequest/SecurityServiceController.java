@@ -41,7 +41,7 @@ public class SecurityServiceController extends BaseRequestController {
     // initialization goes here
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
-      equipNeededBox, urgencyBox, issueBox, assignedStaffBox, numbReqBox, additionalNotesField
+      equipNeededBox, urgencyBox, issueBox, numbReqBox, assignedStaffBox, additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
     textFields = new ArrayList<>();

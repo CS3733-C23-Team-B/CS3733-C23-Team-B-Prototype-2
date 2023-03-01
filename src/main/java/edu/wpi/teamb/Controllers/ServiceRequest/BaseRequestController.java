@@ -24,12 +24,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
+import javafx.scene.layout.VBox;
 
 public class BaseRequestController {
   @FXML protected MFXFilterComboBox<Urgency> urgencyBox;
   @FXML protected MFXFilterComboBox<String> assignedStaffBox;
   @FXML protected MFXFilterComboBox locationBox;
   @FXML protected MFXTextField additionalNotesField;
+  @FXML protected VBox assignedStaffMemberBox;
   private RequestStatus request;
   @FXML protected MFXButton backButton;
   @FXML protected MFXButton helpTextButton;
@@ -65,6 +67,9 @@ public class BaseRequestController {
 
     ObservableList<String> locations = getLocations();
     locationBox.setItems(locations);
+    if (currUser.getAdmin() == true) {
+      assignedStaffMemberBox.setVisible(true);
+    }
   }
 
   /**
@@ -162,7 +167,7 @@ public class BaseRequestController {
    */
   private boolean isFormFull(int i) {
     // Skip final item, which should be the notes field
-    if (i == components.size() - 2) return !getText(components.get(i)).equals("");
+    if (i == components.size() - 3) return !getText(components.get(i)).equals("");
     return !getText(components.get(i)).equals("") && isFormFull(i + 1);
   }
 

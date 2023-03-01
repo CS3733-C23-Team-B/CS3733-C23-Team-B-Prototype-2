@@ -29,7 +29,7 @@
             <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
          </padding>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="forms" onAction="#serviceRequestFormsButtonClicked" prefHeight="42.0" prefWidth="241.0" stylesheets="@../../../../../css/style.css" text="Service Request Forms" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="forms" onAction="#serviceRequestFormsButtonClicked" prefHeight="42.0" prefWidth="241.0" stylesheets="@../../../../../css/style.css" text="Service Request Systems" textFill="#c5d3ea">
          <HBox.margin>
             <Insets />
          </HBox.margin>
@@ -61,7 +61,7 @@
             <Insets />
          </HBox.margin>
       </MFXButton>
-      <MFXButton id="navBarButton" fx:id="editKiosk" onAction="#editKiosk" prefHeight="43.0" prefWidth="131.0" stylesheets="@../../../../../css/style.css" text="Edit Kiosk" textFill="#c5d3ea">
+      <MFXButton id="navBarButton" fx:id="editKiosk" onAction="#editKiosk" prefHeight="43.0" prefWidth="131.0" stylesheets="@../../../../../css/style.css" text="Kiosk Editor" textFill="#c5d3ea">
          <font>
             <Font size="20.0" />
          </font>

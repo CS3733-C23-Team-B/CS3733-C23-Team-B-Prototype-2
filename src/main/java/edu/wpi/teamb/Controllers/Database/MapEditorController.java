@@ -75,7 +75,8 @@ public class MapEditorController {
   private boolean creatingEdge;
   private boolean context = false;
   private Circle edgeNode1, edgeNode2;
-  @Getter public static MapEditorController instance;
+
+  public static MapEditorController instance;
 
   @Getter @Setter public String currentLoc;
   private Map<String, List<Move>> moveMap;
@@ -736,6 +737,9 @@ public class MapEditorController {
     currentDot.setCenterX(currentNode.getXCoord());
     currentDot.setCenterY(currentNode.getYCoord());
     nodeMap.replace(currentDot, currentNode);
+
+    removeEdges();
+    drawEdges();
 
     if (currentPopUp != null) {
       ObservableList vboxChildren = ((VBox) (currentPopUp.getChildren().get(0))).getChildren();

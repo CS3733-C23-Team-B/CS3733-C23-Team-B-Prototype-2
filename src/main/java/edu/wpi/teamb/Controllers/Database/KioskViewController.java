@@ -68,126 +68,129 @@ public class KioskViewController {
     AtomicInteger index = new AtomicInteger(0);
     List<KioskMove> kioskMoveList;
     kioskMoveList = DBSession.getAllKioskMoves();
-    KioskLocation l = MapDAO.getKioskLocation();
+    if (kioskMoveList.size() > 0) {
 
-    if (l.getLocationName() != null) {
-      Map<String, Move> moves = DBSession.getLNMoves(new Date());
-      Node n = moves.get(l.getLocationName().getLongName()).getNode();
-      List<String> direct = Pathfinding.getDirectPaths(n.getNodeID());
-      Map<String, List<Move>> pathMoves = DBSession.getIDMoves(new Date());
-      rightLoc.setText(l.getLocationName().getLongName());
-      leftLoc.setText(l.getLocationName().getLongName());
-      if (pathMoves != null && direct.size() > 1) {
-        String l1 = pathMoves.get(direct.get(0)).get(0).getLocationName().getLongName();
-        String l2 = pathMoves.get(direct.get(1)).get(0).getLocationName().getLongName();
-        rightLoc.setText(l1);
-        leftLoc.setText(l2);
+      KioskLocation l = MapDAO.getKioskLocation();
+
+      if (l.getLocationName() != null) {
+        Map<String, Move> moves = DBSession.getLNMoves(new Date());
+        Node n = moves.get(l.getLocationName().getLongName()).getNode();
+        List<String> direct = Pathfinding.getDirectPaths(n.getNodeID());
+        Map<String, List<Move>> pathMoves = DBSession.getIDMoves(new Date());
+        rightLoc.setText(l.getLocationName().getLongName());
+        leftLoc.setText(l.getLocationName().getLongName());
+        if (pathMoves != null && direct.size() > 1) {
+          String l1 = pathMoves.get(direct.get(0)).get(0).getLocationName().getLongName();
+          String l2 = pathMoves.get(direct.get(1)).get(0).getLocationName().getLongName();
+          rightLoc.setText(l1);
+          leftLoc.setText(l2);
+        }
       }
+
+      imageMap.put("L2", Bapp.lowerlevel2);
+      imageMap.put("L1", Bapp.lowerlevel);
+      imageMap.put("G", Bapp.groundfloor);
+      imageMap.put("1", Bapp.firstfloor);
+      imageMap.put("2", Bapp.secondfloor);
+      imageMap.put("3", Bapp.thirdfloor);
+
+      floors.put("L1", "Lower Level 1");
+      floors.put("L2", "Lower Level 2");
+      floors.put("G", "Ground Floor");
+      floors.put("1", "First Floor");
+      floors.put("2", "Second Floor");
+      floors.put("3", "Third Floor");
+
+      nodeMap = new HashMap<>();
+      nodeMap.clear();
+      pane = new GesturePane();
+      pane.setPrefHeight(714);
+      pane.setPrefWidth(1168);
+      pane.setContent(aPane);
+      center.add(pane, 0, 0);
+      pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+      pane.toBack();
+      moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
+      frontLabel.setText(
+          kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
+      findPath(
+          kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
+          kioskMoveList.get(index.get()).getNextNode().getNodeID());
+
+      frontBox2.toFront();
+      frontRight.toFront();
+      frontLeft.toFront();
+      floorH.toFront();
+      frontCenter.toFront();
+
+      // Set up the slide-in and slide-out animations
+      TranslateTransition slideOut = new TranslateTransition(Duration.seconds(3), frontBox2);
+      slideOut.setToY(-300);
+
+      TranslateTransition slideIn = new TranslateTransition(Duration.seconds(3), frontBox2);
+      slideIn.setToY(30);
+
+      slideOut.setOnFinished(
+          evt -> {
+            if (index.get() >= kioskMoveList.size()) {
+              index.set(0);
+            }
+            moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
+            frontLabel.setText(
+                kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
+            try {
+              findPath(
+                  kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
+                  kioskMoveList.get(index.get()).getNextNode().getNodeID());
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+            Platform.runLater(
+                () -> {
+                  slideIn.play();
+                });
+          });
+
+      // Schedule a task to update the index and slide in the new message and image every 10 seconds
+
+      timeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(10),
+                  event -> {
+                    index.getAndIncrement();
+                    Platform.runLater(
+                        () -> {
+                          slideOut.play();
+                        });
+                  }));
+      timeline.setCycleCount(Timeline.INDEFINITE);
+      timeline.play();
+      EventHandler<MouseEvent> mouseMoveHandler =
+          event -> {
+            timeline.stop();
+            timeline.getKeyFrames().clear();
+            timeline
+                .getKeyFrames()
+                .add(
+                    new KeyFrame(
+                        Duration.seconds(10),
+                        e -> {
+                          index.getAndIncrement();
+                          Platform.runLater(
+                              () -> {
+                                slideOut.play();
+                              });
+                        }));
+            timeline.play();
+          };
+      aPane.setOnMouseMoved(mouseMoveHandler);
+
+      Platform.runLater(
+          () -> {
+            changeFloorLater(kioskMoveList.get(index.get()).getPrevNode());
+          });
     }
-
-    imageMap.put("L2", Bapp.lowerlevel2);
-    imageMap.put("L1", Bapp.lowerlevel);
-    imageMap.put("G", Bapp.groundfloor);
-    imageMap.put("1", Bapp.firstfloor);
-    imageMap.put("2", Bapp.secondfloor);
-    imageMap.put("3", Bapp.thirdfloor);
-
-    floors.put("L1", "Lower Level 1");
-    floors.put("L2", "Lower Level 2");
-    floors.put("G", "Ground Floor");
-    floors.put("1", "First Floor");
-    floors.put("2", "Second Floor");
-    floors.put("3", "Third Floor");
-
-    nodeMap = new HashMap<>();
-    nodeMap.clear();
-    pane = new GesturePane();
-    pane.setPrefHeight(714);
-    pane.setPrefWidth(1168);
-    pane.setContent(aPane);
-    center.add(pane, 0, 0);
-    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
-    pane.toBack();
-    moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
-    frontLabel.setText(
-        kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
-    findPath(
-        kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
-        kioskMoveList.get(index.get()).getNextNode().getNodeID());
-
-    frontBox2.toFront();
-    frontRight.toFront();
-    frontLeft.toFront();
-    floorH.toFront();
-    frontCenter.toFront();
-
-    // Set up the slide-in and slide-out animations
-    TranslateTransition slideOut = new TranslateTransition(Duration.seconds(3), frontBox2);
-    slideOut.setToY(-300);
-
-    TranslateTransition slideIn = new TranslateTransition(Duration.seconds(3), frontBox2);
-    slideIn.setToY(30);
-
-    slideOut.setOnFinished(
-        evt -> {
-          if (index.get() >= kioskMoveList.size()) {
-            index.set(0);
-          }
-          moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
-          frontLabel.setText(
-              kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
-          try {
-            findPath(
-                kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
-                kioskMoveList.get(index.get()).getNextNode().getNodeID());
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-          Platform.runLater(
-              () -> {
-                slideIn.play();
-              });
-        });
-
-    // Schedule a task to update the index and slide in the new message and image every 10 seconds
-
-    timeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.seconds(10),
-                event -> {
-                  index.getAndIncrement();
-                  Platform.runLater(
-                      () -> {
-                        slideOut.play();
-                      });
-                }));
-    timeline.setCycleCount(Timeline.INDEFINITE);
-    timeline.play();
-    EventHandler<MouseEvent> mouseMoveHandler =
-        event -> {
-          timeline.stop();
-          timeline.getKeyFrames().clear();
-          timeline
-              .getKeyFrames()
-              .add(
-                  new KeyFrame(
-                      Duration.seconds(10),
-                      e -> {
-                        index.getAndIncrement();
-                        Platform.runLater(
-                            () -> {
-                              slideOut.play();
-                            });
-                      }));
-          timeline.play();
-        };
-    aPane.setOnMouseMoved(mouseMoveHandler);
-
-    Platform.runLater(
-        () -> {
-          changeFloorLater(kioskMoveList.get(index.get()).getPrevNode());
-        });
   }
 
   private void changeFloorLater(Node n) {

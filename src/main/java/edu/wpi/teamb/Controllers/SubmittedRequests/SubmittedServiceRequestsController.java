@@ -190,9 +190,11 @@ public class SubmittedServiceRequestsController {
     page = name.toString();
     this.cur = name;
     TableView table = new TableView<>();
+    table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
     mainVbox.getChildren().clear();
     if (page.equals(RequestType.SANITATION.toString())) {
+
       table =
           saniTable.getTable(
               requestStatusFilter.getValue(),

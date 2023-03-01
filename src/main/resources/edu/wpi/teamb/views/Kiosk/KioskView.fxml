@@ -30,7 +30,7 @@
          <children>
             <HBox fx:id="floorH" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <children>
-                  <Label fx:id="floorLabel" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-radius: 5;" text="Floor">
+                  <Label id="kioskAccent" fx:id="floorLabel" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-radius: 5;" text="Floor" textFill="#333333">
                      <padding>
                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </padding>
@@ -47,14 +47,9 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="74.0" prefWidth="248.0">
                      <children>
-                        <Label id="kioskTitle" alignment="BOTTOM_RIGHT" text="Ambulance Parking" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
+                        <Label id="kioskTitle" fx:id="rightLoc" alignment="BOTTOM_RIGHT" text="Ambulance Parking" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
                            <font>
                               <Font size="36.0" />
-                           </font>
-                        </Label>
-                        <Label id="kioskBody" alignment="TOP_RIGHT" text="Parking for ambulances only. All other vehicles will be towed" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
-                           <font>
-                              <Font size="16.0" />
                            </font>
                         </Label>
                         <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
@@ -79,21 +74,16 @@
                   <Insets bottom="70.0" right="40.0" />
                </GridPane.margin>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="12.0" />
+                  <Insets bottom="10.0" top="12.0" />
                </padding>
             </HBox>
             <HBox fx:id="frontLeft" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" style="-fx-background-color: #21357E; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                <children>
                   <VBox alignment="CENTER" prefHeight="350.0" prefWidth="355.0">
                      <children>
-                        <Label id="kioskTitle" alignment="BASELINE_LEFT" stylesheets="@../../../../../css/style.css" text="Waiting Room 1" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
+                        <Label id="kioskTitle" fx:id="leftLoc" alignment="BASELINE_LEFT" stylesheets="@../../../../../css/style.css" text="Waiting Room 1" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
                            <font>
                               <Font size="36.0" />
-                           </font>
-                        </Label>
-                        <Label id="kioskBody" alignment="TOP_LEFT" text="First floor waiting room for incoming patients and visitors" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
-                           <font>
-                              <Font size="16.0" />
                            </font>
                         </Label>
                         <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">

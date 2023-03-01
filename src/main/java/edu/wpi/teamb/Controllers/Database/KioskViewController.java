@@ -3,9 +3,8 @@ package edu.wpi.teamb.Controllers.Database;
 import static javafx.scene.paint.Color.WHITE;
 
 import edu.wpi.teamb.Bapp;
-import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.KioskMove;
-import edu.wpi.teamb.Database.Node;
+import edu.wpi.teamb.Database.*;
+import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.*;
@@ -21,7 +20,9 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -56,6 +57,8 @@ public class KioskViewController {
   @FXML Label frontLabel;
   @FXML VBox frontBox2;
   @FXML Label floorLabel;
+  @FXML Label rightLoc;
+  @FXML Label leftLoc;
   Map<Circle, Node> nodeMap = new HashMap<>();
   private Map<String, String> floors = new HashMap<>();
 
@@ -65,6 +68,21 @@ public class KioskViewController {
     AtomicInteger index = new AtomicInteger(0);
     List<KioskMove> kioskMoveList;
     kioskMoveList = DBSession.getAllKioskMoves();
+    KioskLocation l = MapDAO.getKioskLocation();
+
+    Map<String, Move> moves = DBSession.getLNMoves(new Date());
+    Node n = moves.get(l.getLocationName().getLongName()).getNode();
+    List<String> direct = Pathfinding.getDirectPaths(n.getNodeID());
+    Map<String, List<Move>> pathMoves = DBSession.getIDMoves(new Date());
+    rightLoc.setText(l.getLocationName().getLongName());
+    leftLoc.setText(l.getLocationName().getLongName());
+    if (pathMoves != null && direct.size() > 1) {
+      String l1 = pathMoves.get(direct.get(0)).get(0).getLocationName().getLongName();
+      String l2 = pathMoves.get(direct.get(1)).get(0).getLocationName().getLongName();
+      rightLoc.setText(l1);
+      leftLoc.setText(l2);
+    }
+
     imageMap.put("L2", Bapp.lowerlevel2);
     imageMap.put("L1", Bapp.lowerlevel);
     imageMap.put("G", Bapp.groundfloor);
@@ -232,8 +250,10 @@ public class KioskViewController {
   public void openMap() throws IOException {
     timeline.getKeyFrames().clear();
     timeline.stop();
+    timeline = null;
     final String filename = Screen.PATHFINDING.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
+    final StackPane stackPane = Bapp.getStackPane();
     final var r = Bapp.class.getResource(filename);
     final FXMLLoader loader = new FXMLLoader(r);
     final Parent root = loader.load();
@@ -243,19 +263,26 @@ public class KioskViewController {
     final FXMLLoader loader1 = new FXMLLoader(r1);
     final Parent root1 = loader1.load();
 
+    HBox h = new HBox();
     MFXButton b = new MFXButton();
 
     b.setText("Back to Kiosk");
     b.setFont(new Font("Nunito", 12));
     b.setTextFill(WHITE);
-    b.setStyle("-fx-background-color: #E89F55; -fx-background-radius: 5");
+    b.setStyle("-fx-background-color: #E89F55; -fx-background-radius: 5; -fx-font-weight: bold");
     b.setPrefHeight(30);
     b.setPrefWidth(122);
+
+    h.setAlignment(Pos.TOP_RIGHT);
+    h.setPadding(new Insets(10, 10, 10, 10));
+    h.setPickOnBounds(false);
+    h.getChildren().add(b);
 
     Platform.runLater(
         () -> {
           rootPane.setCenter(root);
-          rootPane.setTop(b);
+          // rootPane.setTop(h);
+          stackPane.getChildren().add(h);
         });
 
     b.setOnAction(
@@ -263,7 +290,8 @@ public class KioskViewController {
           Platform.runLater(
               () -> {
                 rootPane.setCenter(null);
-                rootPane.setTop(null);
+                // rootPane.setTop(null);
+                stackPane.getChildren().remove(1);
                 rootPane.setCenter(root1);
               });
         });
@@ -345,6 +373,7 @@ public class KioskViewController {
   public void signIn() {
     timeline.getKeyFrames().clear();
     timeline.stop();
+    timeline = null;
     Navigation.navigate(Screen.SIGN_IN);
   }
 }

@@ -2,9 +2,8 @@ package edu.wpi.teamb.Controllers.Popups;
 
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Controllers.Database.KioskEditController;
-import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.KioskMove;
-import edu.wpi.teamb.Database.Node;
+import edu.wpi.teamb.Database.*;
+import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
@@ -47,10 +46,30 @@ public class KioskPopup {
   @FXML HBox frontCenter;
   @FXML Label frontLabel;
   @FXML VBox frontBox2;
+  @FXML Label rightLoc;
+  @FXML Label leftLoc;
   Map<Circle, Node> nodeMap;
 
   public void initialize() throws SQLException {
     KioskMove k = KioskEditController.getInstance().getCurrentSelection();
+
+    List<KioskMove> kioskMoveList;
+    kioskMoveList = DBSession.getAllKioskMoves();
+    KioskLocation l = MapDAO.getKioskLocation();
+
+    Map<String, Move> moves = DBSession.getLNMoves(new Date());
+    Node n = moves.get(l.getLocationName().getLongName()).getNode();
+    List<String> direct = Pathfinding.getDirectPaths(n.getNodeID());
+    Map<String, List<Move>> pathMoves = DBSession.getIDMoves(new Date());
+    rightLoc.setText(l.getLocationName().getLongName());
+    leftLoc.setText(l.getLocationName().getLongName());
+    if (pathMoves != null && direct.size() > 1) {
+      String l1 = pathMoves.get(direct.get(0)).get(0).getLocationName().getLongName();
+      String l2 = pathMoves.get(direct.get(1)).get(0).getLocationName().getLongName();
+      rightLoc.setText(l1);
+      leftLoc.setText(l2);
+    }
+
     imageMap.put("L2", Bapp.lowerlevel2);
     imageMap.put("L1", Bapp.lowerlevel);
     imageMap.put("G", Bapp.groundfloor);

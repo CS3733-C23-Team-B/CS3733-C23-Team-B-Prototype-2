@@ -91,6 +91,9 @@
                                  </textFill>
                               </MFXFilterComboBox>
                            </children>
+                           <GridPane.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </GridPane.margin>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -109,6 +112,9 @@
                                  </content>
                               </MFXScrollPane>
                            </children>
+                           <GridPane.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </GridPane.margin>
                         </GridPane>
                      </children>
                   </GridPane>

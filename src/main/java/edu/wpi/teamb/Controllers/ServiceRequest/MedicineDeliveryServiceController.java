@@ -71,7 +71,7 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     request.setLocation(destination.toString());
 
     request.setMedicineType(this.typeOfMedicineField.getText());
-    request.setDoasage(this.dosageField.getText());
+    request.setDosage(this.dosageField.getText());
     request.setPatientID(this.patientIDField.getText());
 
     request.setRequestType(RequestType.MEDICINE);

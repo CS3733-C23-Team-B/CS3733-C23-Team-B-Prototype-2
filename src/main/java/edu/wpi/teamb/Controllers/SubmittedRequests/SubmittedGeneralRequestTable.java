@@ -18,7 +18,7 @@ public class SubmittedGeneralRequestTable extends SubmittedBaseRequestTable {
   @Override
   public void initialize() {
     super.initialize();
-    addColGR(requestType, "requestType");
+    addColGR(requestType, "RequestType");
     setTable();
   }
 

@@ -4,12 +4,12 @@ public enum RequestType {
   ALLREQUESTS("All Requests"),
   SECURITY("Security"),
   SANITATION("Sanitation"),
-  PATIENTTRANSPOTATION("Internal Patient Transportation"),
+  PATIENTTRANSPORTATION("Internal Patient Transportation"),
   COMPUTER("Computer"),
   MEDICINE("Medicine Delivery"),
   MEDICALEQUIPMENT("Medical Equipment Delivery"),
   FACILITIES("Facilities Maintenance"),
-  AUDOVISUAL("Audio and Visual");
+  AUDIOVIDEO("Audio and Visual");
 
   private String str;
 

@@ -27,7 +27,7 @@
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                <ColumnConstraints hgrow="SOMETIMES" percentWidth="12.0" />
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" percentHeight="17.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -37,21 +37,53 @@
             <children>
                 <VBox fx:id="helpPage" alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: fcfcfc;" VBox.vgrow="ALWAYS">
+                        <MFXScrollPane fitToWidth="true" prefWidth="450.0" style="-fx-background-color: fcfcfc;" VBox.vgrow="ALWAYS">
                             <VBox.margin>
-                                <Insets top="30.0" />
+                                <Insets top="20.0" />
                             </VBox.margin>
                             <content>
-                                <VBox prefHeight="224.0" prefWidth="820.0">
+                                <VBox maxHeight="1.7976931348623157E308" prefWidth="430.0">
                                     <children>
-                                        <Label text="Select two nodes to find the fastest path between them." wrapText="true">
+                              <Label layoutX="20.0" layoutY="20.0" text="The following page is used to help navigate through the hospital by drawing a path from one location to another." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="20.0" text="Today's date is displayed on the first field on the bar to the left of the map. This can be changed to find a path that takes in to account a future planned move of a location in the hospital." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="294.0" text="To begin pathfinding, search for and select your starting and ending locations in the dropdowns in the left bar and click the &quot;Find Path&quot; button. If you wish to avoid stairs when travelling from your starting location to your destination, please check the box labelled &quot;Avoid Stairs&quot;. The corresponding path as well as textual navigation instructions will appear." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                                        <Label text="Alternatively, you can pathfind by interacting with the map. Start by selecting the floor of your starting node through the dropdown at the top of the map. Then select any starting node by clicking on it on the map.  A popup will appear to confirm that starting node. After that, select the destination or ending node. The corresponding path and instructions will then appear on the map." wrapText="true">
                                             <font>
                                                 <Font size="15.0" />
                                             </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                                         </Label>
+                              <Label layoutX="20.0" layoutY="284.0" text="NOTE: You will need to traverse through the map floors to see the full path if the starting and ending locations are on different floors." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
                                     </children>
                                     <padding>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                        <Insets bottom="10.0" left="10.0" right="10.0" />
                                     </padding>
                                 </VBox>
                             </content>
@@ -60,7 +92,7 @@
                 </VBox>
                 <VBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="1">
                     <children>
-                        <Label text="Help" textOverrun="CLIP">
+                        <Label text="Pathfinding Help" textOverrun="CLIP">
                             <font>
                                 <Font name="System Bold" size="27.0" />
                             </font>

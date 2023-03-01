@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane prefHeight="633.0" prefWidth="1309.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Popups.MainHelpPageController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="18.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <GridPane style="-fx-background-color: fcfcfc;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" percentHeight="17.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox fx:id="helpPage" alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <MFXScrollPane fitToWidth="true" prefWidth="450.0" style="-fx-background-color: fcfcfc;" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <content>
+                        <VBox prefWidth="599.0">
+                           <children>
+                              <Label layoutX="20.0" layoutY="20.0" text="The pages in this application and their uses are listed below:" wrapText="true">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="20.0" text="Home Dashboard:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="42.0" text="If you have made any service requests, they will appear here along with their completion status. On the left are link to new stories about the hospital. The top bar is used to navigate to different pages." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="42.0" text="Service Requests Systems:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Here you can request several different services by filling out a form. Take note that all of the required fields need to be filled out before the form can be submitted." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="148.0" text="Submitted Requests:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="169.0" text="Here you can see previously submitted requests along with their specific information and completion status." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="243.0" text="Pathfinding:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="63.0" prefWidth="493.0" text="If you need to find your way around the hospital, here you can get graphical and textual directions for some desired starting and ending locations within the hospital. " wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="307.0" text="Map Editor:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="20.0" text="Here you can update the hospital's map by creating, modifying, and deleting nodes and locations. You can also create new moves when an office/room's location changes." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="392.0" text="Edit Kiosk:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="413.0" text="Choose which recent moves and custom messages get displayed on the kiosks around the hospital. The move will be displayed on the kiosk by showing the previous and new locations of the node on the map along with the message." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </MFXScrollPane>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="1">
+               <children>
+                  <Label text="Help" textOverrun="CLIP">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <MFXButton fx:id="backButton" onAction="#backButtonClicked" prefHeight="38.0" prefWidth="90.0" style="-fx-background-color: #21357E; -fx-background-radius: 8;" text="Return" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></MFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</GridPane>

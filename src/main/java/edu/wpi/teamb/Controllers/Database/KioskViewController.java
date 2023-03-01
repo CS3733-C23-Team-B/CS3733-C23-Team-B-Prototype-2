@@ -1,5 +1,7 @@
 package edu.wpi.teamb.Controllers.Database;
 
+import static javafx.scene.paint.Color.WHITE;
+
 import edu.wpi.teamb.Bapp;
 import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.KioskMove;
@@ -28,6 +30,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -218,12 +221,19 @@ public class KioskViewController {
     final FXMLLoader loader = new FXMLLoader(r);
     final Parent root = loader.load();
 
-    final String filename1 = Screen.SIGN_IN.getFilename();
+    final String filename1 = Screen.KIOSK_VIEW.getFilename();
     final var r1 = Bapp.class.getResource(filename1);
     final FXMLLoader loader1 = new FXMLLoader(r1);
     final Parent root1 = loader1.load();
+
     MFXButton b = new MFXButton();
-    b.setText("Back to Sign In");
+
+    b.setText("Back to Kiosk");
+    b.setFont(new Font("Nunito", 12));
+    b.setTextFill(WHITE);
+    b.setStyle("-fx-background-color: #E89F55; -fx-background-radius: 5");
+    b.setPrefHeight(30);
+    b.setPrefWidth(122);
 
     Platform.runLater(
         () -> {

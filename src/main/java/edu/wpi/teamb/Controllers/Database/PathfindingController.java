@@ -430,7 +430,7 @@ public class PathfindingController {
             hbox.setAlignment(Pos.CENTER);
 
             forms.getChildren().add(hbox);
-            //            dir.getChildren().add(forms);
+            // dir.getChildren().add(forms);
             // vbox.getChildren().clear();
           }
         }

@@ -45,9 +45,9 @@
             </HBox>
             <HBox fx:id="frontRight" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" style="-fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0); -fx-background-color: #21357E; -fx-background-radius: 5;" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                <children>
-                  <VBox alignment="CENTER" prefHeight="74.0" prefWidth="248.0">
+                  <VBox alignment="CENTER">
                      <children>
-                        <Label id="kioskTitle" fx:id="rightLoc" alignment="BOTTOM_RIGHT" text="Ambulance Parking" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
+                        <Label id="kioskTitle" fx:id="rightLoc" alignment="BASELINE_LEFT" text="Ambulance Parking" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true">
                            <font>
                               <Font size="36.0" />
                            </font>

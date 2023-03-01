@@ -108,7 +108,11 @@ public class NavigationController {
 
   public void helpClicked() {
     resetButtons();
-    Popup.displayPopup(Screen.MAINHELP);
+    if (SigninController.currentUser.getAdmin()) {
+      Popup.displayPopup(Screen.ADMINMAINHELP);
+    } else {
+      Popup.displayPopup(Screen.STAFFMAINHELP);
+    }
   }
 
   public void signOutClicked() {

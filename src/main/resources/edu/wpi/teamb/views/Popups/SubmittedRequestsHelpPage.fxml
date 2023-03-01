@@ -27,12 +27,12 @@
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" percentWidth="12.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" percentHeight="17.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <VBox fx:id="helpPage" alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -44,63 +44,34 @@
                      <content>
                         <VBox prefWidth="599.0">
                            <children>
+                              <Label layoutX="20.0" layoutY="10.0" text="In the table are all previously submitted requests along with their time of submission, type of request, urgency, the employee assigned to fulfill the request, and the completion status." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
                               <Label text="To see additional information of a request click on the table row and all request information will appear in the right hand column." wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" />
+                                    <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="Request Type Filter: Select the type of servcie request you would like to see here." wrapText="true">
+                              <Label layoutX="20.0" layoutY="104.0" text="To filter the requests, use the dropdowns to the left of the table. " wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" />
+                                    <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label layoutX="20.0" layoutY="20.0" text="Urgency Filter: Select an urgency level to filter by urgency." wrapText="true">
+                              <Label layoutX="20.0" layoutY="136.0" text="To assign an employee to complete a request or change who has been assigned, double click on the cell in the 'Assigned Employee' column and the row containing that particular request and select an employee from the dropdown. Similarly, you can update the status of a request by double clicking on the cell in the 'Status' column." wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" />
+                                    <Insets top="10.0" />
                                  </VBox.margin>
-                              </Label>
-                              <Label layoutX="20.0" layoutY="63.0" prefWidth="493.0" text="Request Status Filter: Select a request statue to filter by status." wrapText="true">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label text="Admin only:" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Assigned Staff Filter: Select an assigned staff member to see request assigned to them." wrapText="true">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label text="Request Reports Filter: Select a requestor to see requests placed by them." wrapText="true">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label text="Editing Status and Assigned Employee: Click on a specific request. Go to the entry you would like to edit and double click. Select an option from the drop down. It will now be updated." wrapText="true">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
                               </Label>
                            </children>
                            <padding>

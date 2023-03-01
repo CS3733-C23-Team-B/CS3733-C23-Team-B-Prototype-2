@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
 public class AboutPageController {
 
   @FXML MFXButton backButton;
-  @FXML ImageView badgerButton;
+  @FXML MFXButton gameButton;
   @FXML
   ImageView christinaAube,
       lukeGrady,
@@ -48,7 +48,7 @@ public class AboutPageController {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void startBadgerGame() throws IOException {
+  public void playBadgerGame() throws IOException {
     Breakout.startGame();
   }
 

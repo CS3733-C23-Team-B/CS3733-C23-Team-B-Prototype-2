@@ -311,11 +311,11 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <ImageView fx:id="badgerButton" fitHeight="57.0" fitWidth="58.0" onMouseClicked="#startBadgerGame">
-                           <image>
-                              <Image url="@../../../../../../../../../../Desktop/idle1.png" />
-                           </image>
-                        </ImageView>
+                        <MFXButton fx:id="gameButton" alignment="CENTER" layoutX="361.0" layoutY="10.0" onAction="#playBadgerGame" onMouseReleased="#backButtonClicked" prefHeight="37.0" prefWidth="80.0" style="-fx-background-color: #21357E; -fx-background-radius: 7;" text="Game" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </MFXButton>
                      </children>
                   </HBox>
                </children>

@@ -182,8 +182,12 @@ public class BaseRequestController {
     LocalDateTime now = LocalDateTime.now();
     request.setDate(dtf.format(now));
 
-    var staff = assignedStaffBox.getValue();
-    request.setAssignedEmployee(staff.toString());
+    if (currUser.getAdmin() == true) {
+      var staff = assignedStaffBox.getValue();
+      request.setAssignedEmployee(staff.toString());
+    } else {
+      request.setAssignedEmployee("--Select--");
+    }
 
     var urgency = urgencyBox.getValue();
     request.setUrgency(urgency);

@@ -252,9 +252,11 @@ public class KioskViewController {
   }
 
   public void openMap() throws IOException {
-    timeline.getKeyFrames().clear();
-    timeline.stop();
-    timeline = null;
+    if (!kioskMoveList.isEmpty()) {
+      timeline.getKeyFrames().clear();
+      timeline.stop();
+      timeline = null;
+    }
     final String filename = Screen.PATHFINDING.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
     final StackPane stackPane = Bapp.getStackPane();

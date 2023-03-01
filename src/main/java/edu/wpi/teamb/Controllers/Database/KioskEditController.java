@@ -149,6 +149,6 @@ public class KioskEditController {
   }
 
   public void helpButtonClicked() {
-    Popup.displayPopup(Screen.MAP_EDITOR_HELP_POP_UP);
+    Popup.displayPopup(Screen.KIOSK_HELP);
   }
 }

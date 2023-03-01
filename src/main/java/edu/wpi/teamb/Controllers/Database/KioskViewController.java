@@ -70,17 +70,19 @@ public class KioskViewController {
     kioskMoveList = DBSession.getAllKioskMoves();
     KioskLocation l = MapDAO.getKioskLocation();
 
-    Map<String, Move> moves = DBSession.getLNMoves(new Date());
-    Node n = moves.get(l.getLocationName().getLongName()).getNode();
-    List<String> direct = Pathfinding.getDirectPaths(n.getNodeID());
-    Map<String, List<Move>> pathMoves = DBSession.getIDMoves(new Date());
-    rightLoc.setText(l.getLocationName().getLongName());
-    leftLoc.setText(l.getLocationName().getLongName());
-    if (pathMoves != null && direct.size() > 1) {
-      String l1 = pathMoves.get(direct.get(0)).get(0).getLocationName().getLongName();
-      String l2 = pathMoves.get(direct.get(1)).get(0).getLocationName().getLongName();
-      rightLoc.setText(l1);
-      leftLoc.setText(l2);
+    if (l.getLocationName() != null) {
+      Map<String, Move> moves = DBSession.getLNMoves(new Date());
+      Node n = moves.get(l.getLocationName().getLongName()).getNode();
+      List<String> direct = Pathfinding.getDirectPaths(n.getNodeID());
+      Map<String, List<Move>> pathMoves = DBSession.getIDMoves(new Date());
+      rightLoc.setText(l.getLocationName().getLongName());
+      leftLoc.setText(l.getLocationName().getLongName());
+      if (pathMoves != null && direct.size() > 1) {
+        String l1 = pathMoves.get(direct.get(0)).get(0).getLocationName().getLongName();
+        String l2 = pathMoves.get(direct.get(1)).get(0).getLocationName().getLongName();
+        rightLoc.setText(l1);
+        leftLoc.setText(l2);
+      }
     }
 
     imageMap.put("L2", Bapp.lowerlevel2);

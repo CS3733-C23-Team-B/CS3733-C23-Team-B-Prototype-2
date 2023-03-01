@@ -61,6 +61,7 @@ public class PathfindingController {
 
   @FXML Pane frontFloorr;
   @FXML GridPane scrollPane;
+  @FXML GridPane front;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
@@ -256,6 +257,7 @@ public class PathfindingController {
     if (pathNodePairs != null) drawLines();
     frontFloorr.toFront();
     scrollPane.toFront();
+    front.toFront();
     Platform.runLater(() -> pane.centreOn(p));
   }
 
@@ -447,6 +449,7 @@ public class PathfindingController {
     // Update the text field position to be above the center of the path
     frontFloorr.toFront();
     scrollPane.toFront();
+    front.toFront();
   }
 
   private void showButton(MFXButton button) {

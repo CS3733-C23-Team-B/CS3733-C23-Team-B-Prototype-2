@@ -188,7 +188,7 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="125.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <VBox fx:id="assignedStaffMemberBox" layoutX="10.0" layoutY="125.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <HBox>
                            <children>

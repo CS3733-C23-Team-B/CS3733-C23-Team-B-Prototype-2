@@ -179,7 +179,7 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox fx:id="assignedStaffMemberBox" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <HBox>
                            <children>

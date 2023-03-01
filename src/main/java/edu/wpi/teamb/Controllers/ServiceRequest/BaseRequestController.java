@@ -24,12 +24,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Control;
+import javafx.scene.layout.VBox;
 
 public class BaseRequestController {
   @FXML protected MFXFilterComboBox<Urgency> urgencyBox;
   @FXML protected MFXFilterComboBox<String> assignedStaffBox;
   @FXML protected MFXFilterComboBox locationBox;
   @FXML protected MFXTextField additionalNotesField;
+  @FXML protected VBox assignedStaffMemberBox;
   private RequestStatus request;
   @FXML protected MFXButton backButton;
   @FXML protected MFXButton helpTextButton;
@@ -65,6 +67,9 @@ public class BaseRequestController {
 
     ObservableList<String> locations = getLocations();
     locationBox.setItems(locations);
+    if (currUser.getAdmin() == true) {
+      assignedStaffMemberBox.setVisible(true);
+    }
   }
 
   /**

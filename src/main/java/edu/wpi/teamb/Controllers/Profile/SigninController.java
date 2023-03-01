@@ -103,4 +103,8 @@ public class SigninController {
   public void forgotClicked() {
     Popup.displayPopup(Screen.FORGOT_PASSWORD);
   }
+
+  public void backToKioskClicked() {
+    Navigation.navigate(Screen.KIOSK_VIEW);
+  }
 }

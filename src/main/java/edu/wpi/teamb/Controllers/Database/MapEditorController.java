@@ -1,7 +1,6 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
-import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Navigation.Navigation;
@@ -226,12 +225,6 @@ public class MapEditorController {
           }
         });
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    Platform.runLater(
-        () -> {
-          if (SigninController.currentUser.getAdmin()) {}
-
-          changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
-        });
 
     LocalDate currentDate = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
@@ -312,6 +305,12 @@ public class MapEditorController {
     contextMenus.add(dotContextMenu);
     contextMenus.add(dotsContextMenu);
     contextMenus.add(imageContextMenu);
+
+    // leave this at the end
+    Platform.runLater(
+        () -> {
+          changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
+        });
   }
 
   private void setActive(MFXButton button) {

@@ -28,5 +28,10 @@ public class KioskLocation {
   @Getter
   private LocationName locationName;
 
+  @Column(name = "rev")
+  @Getter
+  @Setter
+  private Boolean rev;
+
   public KioskLocation() {};
 }

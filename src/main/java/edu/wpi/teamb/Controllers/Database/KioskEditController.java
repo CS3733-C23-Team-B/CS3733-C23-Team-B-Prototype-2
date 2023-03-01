@@ -6,6 +6,7 @@ import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.text.SimpleDateFormat;
@@ -45,6 +46,7 @@ public class KioskEditController {
   @FXML TableColumn nameCol;
   @FXML TableColumn startCol;
   @FXML TableColumn endCol;
+  @FXML MFXCheckbox inverseBox;
 
   private List<Move> moves;
 
@@ -56,7 +58,6 @@ public class KioskEditController {
     preview.setDisable(true);
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     moves = DBSession.getAllMoves();
-    String current = MapDAO.getKioskLocation().getLocationName().getLongName();
     List<String> l =
         moves.stream()
             .map(
@@ -76,12 +77,12 @@ public class KioskEditController {
 
     Sorting.quickSort(list);
     locationDropdown.setItems(list);
-    locationDropdown.setValue(current);
     locationDropdown.setOnAction(
         e -> {
           System.out.println(locationDropdown.getSelectedItem());
           KioskLocation k = new KioskLocation();
           k.setLocationName(locationNames.get(locationDropdown.getSelectedItem()));
+          k.setRev(inverseBox.isSelected());
           MapDAO.updateKioskLocation(k);
         });
     LocalDate currentDate = LocalDate.now();

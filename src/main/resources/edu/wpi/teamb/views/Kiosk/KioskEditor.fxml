@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -16,14 +17,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="1480.0" prefWidth="2002.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.KioskEditController">
+<GridPane prefHeight="650.0" prefWidth="1200.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.KioskEditController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
     <RowConstraints percentHeight="2.0" vgrow="SOMETIMES" />
-    <RowConstraints percentHeight="88.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="0.0" percentHeight="88.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <HBox style="-fx-background-color: #21357E;" GridPane.rowIndex="1">
@@ -37,7 +38,7 @@
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="dateLabel" text="Label" textFill="WHITE">
+                        <Label id="headerText" fx:id="dateLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -46,7 +47,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="timeLabel" text="Label" textFill="WHITE">
+                        <Label id="headerText" fx:id="timeLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -55,12 +56,12 @@
                   </HBox>
                </children>
                <HBox.margin>
-                  <Insets left="40.0" />
+                  <Insets left="20.0" />
                </HBox.margin>
             </VBox>
          </children>
       </HBox>
-      <VBox fx:id="mainVbox" prefHeight="536.0" prefWidth="1056.0" GridPane.rowIndex="2">
+      <VBox fx:id="mainVbox" minHeight="0.0" GridPane.rowIndex="2">
          <children>
             <GridPane style="-fx-background-color: #F2F2F2; -fx-background-radius: 5;">
                <columnConstraints>
@@ -68,38 +69,49 @@
                   <ColumnConstraints hgrow="SOMETIMES" percentWidth="70.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="371.0000366210937" minHeight="10.0" prefHeight="130.39999694824218" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="650.9999908447265" minHeight="10.0" prefHeight="520.0000030517579" vgrow="SOMETIMES" />
-                  <RowConstraints />
+                  <RowConstraints percentHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <GridPane GridPane.columnIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" GridPane.columnIndex="1">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <Label id="kioskEditorSubtitle" fx:id="RequestInformationTitle11" alignment="CENTER" contentDisplay="CENTER" text="Current Moves in Kiosk" textFill="#333333">
+                                 <font>
+                                    <Font size="31.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" GridPane.columnIndex="2">
+                           <children>
+                              <MFXButton id="requestsButton" fx:id="preview" minWidth="0.0" onAction="#previewClicked" prefHeight="46.0" prefWidth="96.0" style="-fx-background-color: #e89f55; -fx-background-radius: 5;" text="Preview" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                        </HBox>
+                     </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
-                     <children>
-                        <Label fx:id="RequestInformationTitle11" alignment="CENTER" contentDisplay="CENTER" text="Current Moves in Kiosk">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
-                     <children>
-                        <MFXButton fx:id="preview" onAction="#previewClicked" prefHeight="46.0" prefWidth="96.0" text="Preview">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </MFXButton>
-                     </children>
-                     <GridPane.margin>
-                        <Insets right="100.0" />
-                     </GridPane.margin>
-                  </HBox>
+                  </GridPane>
                   <VBox fx:id="mainVbox11" layoutX="10.0" layoutY="10.0" prefHeight="536.0" prefWidth="1056.0" style="-fx-background-color: #E0E0E0;">
                      <GridPane.margin>
                         <Insets />
@@ -110,73 +122,93 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="la" text="Kiosk Editor">
+                              <Label id="title" fx:id="la" text="Kiosk Editor" textFill="#333333">
                                  <font>
                                     <Font size="48.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="helpButton1" fitHeight="45.0" fitWidth="48.0">
+                              <ImageView fx:id="helpButton1" fitHeight="29.0" fitWidth="31.0">
                                  <image>
                                     <Image url="@../../../../../media/question.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets left="10.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                               </ImageView>
                            </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </HBox>
                      </children>
                   </VBox>
-                  <GridPane style="-fx-background-color: D9D9D9;" GridPane.rowIndex="2">
+                  <GridPane GridPane.rowIndex="1">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints percentHeight="25.0" vgrow="SOMETIMES" />
                      </rowConstraints>
-                  </GridPane>
-                  <VBox fx:id="filterVbox" alignment="TOP_CENTER" style="-fx-background-color: #E0E0E0;" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="RequestInformationTitle1" alignment="CENTER" text="Add New Move to Display">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" right="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label text="Select Move">
-                           <VBox.margin>
-                              <Insets top="40.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <MFXFilterComboBox fx:id="moveDropdown" prefHeight="40.0" prefWidth="400.0" />
-                        <Label text="Messege">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <MFXTextField fx:id="moveMessage" alignment="BOTTOM_LEFT" prefHeight="80.0" prefWidth="402.0" promptText="add move messege">
-                           <VBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </MFXTextField>
-                        <MFXButton onAction="#addKiosk" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #21357E;" text="Add to Kiosk" textFill="WHITE">
-                           <VBox.margin>
-                              <Insets left="20.0" right="20.0" top="40.0" />
-                           </VBox.margin>
-                        </MFXButton>
+                        <MFXScrollPane fitToWidth="true" minHeight="0.0" style="-fx-background-color: #e0e0e0;">
+                           <content>
+                              <VBox fx:id="filterVbox" alignment="TOP_CENTER">
+                                 <children>
+                                    <Label id="kioskEditorSubtitle" fx:id="RequestInformationTitle1" alignment="CENTER" text="Add New Move to Display" textFill="#333333">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <VBox maxWidth="-Infinity">
+                                       <children>
+                                          <Label id="requestsBody" text="Select Move" textFill="#333333">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <MFXFilterComboBox id="requestsButton" fx:id="moveDropdown" floatMode="DISABLED" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="294.0" style="-fx-background-color: #cecece; -fx-border-color: #898989; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="40.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <VBox maxWidth="-Infinity">
+                                       <children>
+                                          <Label id="requestsBody" text="Message" textFill="#333333">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <MFXTextField id="requestsButton" fx:id="moveMessage" alignment="TOP_LEFT" floatMode="DISABLED" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="294.0" promptText="Add move message" style="-fx-background-color: #cecece; -fx-border-color: #898989; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </MFXScrollPane>
+                        <HBox alignment="CENTER" minHeight="0.0" style="-fx-background-color: #e0e0e0;" GridPane.rowIndex="1">
+                           <children>
+                              <MFXButton id="requestsButton" minHeight="0.0" onAction="#addKiosk" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Add to Kiosk" textFill="WHITE" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
                      </children>
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
-                  </VBox>
+                  </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -190,7 +222,7 @@
                               <TableView fx:id="table" onKeyReleased="#handleKeyPress" prefHeight="516.0" prefWidth="1402.0">
                                 <columns>
                                   <TableColumn fx:id="dateCol" maxWidth="-1.0" minWidth="-1.0" prefWidth="-1.0" text="Date" />
-                                  <TableColumn fx:id="messageCol" maxWidth="1128.0001068115234" minWidth="-1.0" prefWidth="341.6000541448593" text="Messege" />
+                                  <TableColumn fx:id="messageCol" maxWidth="1128.0001068115234" minWidth="-1.0" prefWidth="341.6000541448593" text="Message" />
                                     <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="283.1999206542969" text="Location Name" />
                                     <TableColumn fx:id="startCol" minWidth="0.0" prefWidth="175.2000732421875" text="Start Node" />
                                     <TableColumn fx:id="endCol" minWidth="0.0" prefWidth="187.2000732421875" text="End Node" />

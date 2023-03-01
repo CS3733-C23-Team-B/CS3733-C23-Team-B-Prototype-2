@@ -294,3 +294,10 @@
     -fx-font-weight: bold;
     -fx-font-size: 36;
 }
+
+#kioskEditorSubtitle{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+    -fx-font-style: italic;
+}

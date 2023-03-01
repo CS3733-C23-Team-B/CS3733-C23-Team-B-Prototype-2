@@ -101,7 +101,7 @@
                                     <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
                                  </textFill>
                               </MFXFilterComboBox>
-                              <MFXCheckbox id="mapEditorCheckbox" fx:id="showLocationsCheckBox" minWidth="0.0" onAction="#showLocationsClicked" text="Show Locations" textFill="#333333" wrapText="true">
+                              <MFXCheckbox id="mapEditorCheckbox" fx:id="showLocationsCheckBox" minWidth="0.0" onAction="#showLocationsClicked" onMouseMoved="#showLocationsClicked" text="Show Locations" textFill="#333333" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

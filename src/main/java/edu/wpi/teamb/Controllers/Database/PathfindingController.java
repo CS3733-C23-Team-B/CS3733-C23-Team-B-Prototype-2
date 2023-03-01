@@ -435,17 +435,17 @@ public class PathfindingController {
       for (int i = 0; i < directions.length; i++) {
         for (Node value : nodes.values()) {
           if (value.getFloor().equals(currentFloor)) {
-            AnchorPane dir = new AnchorPane();
+            // AnchorPane dir = new AnchorPane();
             forms.getChildren().clear();
 
-            dir.setPrefHeight(226);
-            dir.setPrefWidth(290);
+            //            dir.setPrefHeight(226);
+            //            dir.setPrefWidth(290);
 
-            VBox vbox = new VBox();
-            vbox.setSpacing(5);
-            vbox.setPadding(new Insets(10, 10, 10, 10));
-            vbox.setPrefHeight(250);
-            vbox.setPrefHeight(265);
+            //            VBox vbox = new VBox();
+            //            vbox.setSpacing(5);
+            //            vbox.setPadding(new Insets(10, 10, 10, 10));
+            //            vbox.setPrefHeight(250);
+            //            vbox.setPrefHeight(265);
 
             Label floorDirections = new Label(directions[floors.indexOf(currentFloor)]);
 
@@ -456,8 +456,8 @@ public class PathfindingController {
             hbox.getChildren().add(floorDirections);
             hbox.setAlignment(Pos.CENTER);
 
-            vbox.getChildren().add(hbox);
-            dir.getChildren().add(vbox);
+            forms.getChildren().add(hbox);
+            //            dir.getChildren().add(forms);
             // vbox.getChildren().clear();
             System.out.println(i + ":\n" + directions[i]);
           }

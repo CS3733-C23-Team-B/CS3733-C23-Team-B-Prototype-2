@@ -400,6 +400,20 @@ public class PathfindingController {
 
     PathfindingContext pContext = new PathfindingContext(pathfindable);
     ArrayList<String> path = pContext.getShortestPath(start, end);
+
+    if (path == null) {
+      System.out.println("PATH NOT FOUND");
+      scrollPane.setVisible(false);
+      pathNotFoundTextField.setVisible(true);
+      if (animationTimeline != null) animationTimeline.stop();
+      animationTimeline = null;
+      linesPlane.getChildren().clear();
+      pathNotFound = true;
+      pathFound = false;
+      pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
+      return;
+    }
+
     directions = Pathfinding.getPathDirections(path);
 
     Map<String, Node> nodes = DBSession.getAllNodes();
@@ -414,15 +428,6 @@ public class PathfindingController {
     hbox.setAlignment(Pos.CENTER);
 
     forms.getChildren().add(hbox);
-
-    if (path == null) {
-      System.out.println("PATH NOT FOUND");
-      pathNotFoundTextField.setVisible(true);
-      pathNotFound = true;
-      pathFound = false;
-      pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
-      return;
-    }
 
     pathFound = true;
     scrollPane.setVisible(true);
@@ -538,6 +543,7 @@ public class PathfindingController {
           if (pathingByClick) {
             Node n = nodeMap.get(dot);
             String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
+            endLoc.clearSelection();
             endLoc.setValue(ln);
             pathingByClick = false;
             try {
@@ -588,6 +594,7 @@ public class PathfindingController {
     pathingByClick = true;
     Node n = nodeMap.get(currentDot);
     String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
+    startLoc.clearSelection();
     startLoc.setValue(ln);
     scrollPane.setVisible(true);
 

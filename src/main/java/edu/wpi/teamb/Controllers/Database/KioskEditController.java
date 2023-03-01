@@ -56,6 +56,7 @@ public class KioskEditController {
     preview.setDisable(true);
     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     moves = DBSession.getAllMoves();
+    String current = MapDAO.getKioskLocation().getLocationName().getLongName();
     List<String> l =
         moves.stream()
             .map(
@@ -75,6 +76,7 @@ public class KioskEditController {
 
     Sorting.quickSort(list);
     locationDropdown.setItems(list);
+    locationDropdown.setValue(current);
     locationDropdown.setOnAction(
         e -> {
           System.out.println(locationDropdown.getSelectedItem());

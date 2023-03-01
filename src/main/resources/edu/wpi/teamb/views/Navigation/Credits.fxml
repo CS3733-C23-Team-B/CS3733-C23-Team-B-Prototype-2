@@ -231,6 +231,13 @@
                               </Label>
                               <Label text="Created by berkahicon - Flaticon" />
                               <Hyperlink fx:id="audioVisualLink" onMouseClicked="#audioVisualClicked" text="https://www.flaticon.com/free-icons/video-and-audio" />
+                              <Label layoutX="10.0" layoutY="696.0" text="Breakout Game Code:">
+                                 <font>
+                                    <Font name="Roboto Italic" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="711.0" text="Created by janbodnar with ZetCode " />
+                              <Hyperlink fx:id="gameLink" layoutX="10.0" layoutY="728.0" onMouseClicked="#gameClicked" text="https://zetcode.com/javagames/breakout/" />
                            </children>
                         </VBox>
                      </content>

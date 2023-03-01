@@ -881,6 +881,13 @@ public class MapEditorController {
     } else if (e.getCode().equals(KeyCode.S)) straightenNodes();
     else if (e.getCode().equals(KeyCode.H)) horizontalNodes();
     else if (e.getCode().equals(KeyCode.V)) verticalNodes();
+    else if (e.getCode().equals(KeyCode.E)) {
+      try {
+        newEdgeClicked();
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    } else if (e.getCode().equals(KeyCode.ESCAPE)) cancelClickEdge();
   }
 
   private void horizontalNodes() {
@@ -1016,12 +1023,11 @@ public class MapEditorController {
             if (currentDots.contains(c)) {
               currentDots.remove(c);
               c.setFill(Bapp.blue);
-              return;
             } else {
               currentDots.add(c);
               c.setFill(Color.GOLD);
-              return;
             }
+            return;
           }
           if (currentDot != null) currentDot.setFill(Bapp.blue);
           clearCurrentLine();

@@ -188,6 +188,8 @@ public class PathfindingController {
         () -> {
           changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
         });
+
+    datePicker.setPromptText(currentDate.toString());
   }
 
   public void setNodeColors() {
@@ -388,7 +390,6 @@ public class PathfindingController {
   }
 
   public void dateEntered() {
-    datePicker.setValue(LocalDate.now());
     LocalDate d = datePicker.getValue();
     ZoneId z = ZoneId.of("-05:00");
     LocalDateTime ldt = d.atTime(23, 59, 59, 999_000_000);

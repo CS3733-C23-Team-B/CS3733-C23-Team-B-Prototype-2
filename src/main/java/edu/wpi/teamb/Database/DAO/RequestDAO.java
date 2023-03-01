@@ -28,19 +28,23 @@ public class RequestDAO {
 
   public static List<GeneralRequest> getAllRequests(String l) {
     List<GeneralRequest> rs = new ArrayList<GeneralRequest>();
-    for (GeneralRequest r : allRequests) {
-      if (r instanceof PatientTransportationRequest) {
-        if (r.getLocation().equalsIgnoreCase(l)
-            || ((PatientTransportationRequest) r)
-                .getPatientDestinationLocation()
-                .equalsIgnoreCase(l)) {
-          rs.add(r);
-        }
-      } else {
-        if (r.getLocation().equalsIgnoreCase(l)) {
-          rs.add(r);
+    try {
+      for (GeneralRequest r : allRequests) {
+        if (r instanceof PatientTransportationRequest) {
+          if (r.getLocation().equalsIgnoreCase(l)
+              || ((PatientTransportationRequest) r)
+                  .getPatientDestinationLocation()
+                  .equalsIgnoreCase(l)) {
+            rs.add(r);
+          }
+        } else {
+          if (r.getLocation().equalsIgnoreCase(l)) {
+            rs.add(r);
+          }
         }
       }
+    } catch (NullPointerException e) {
+      return new ArrayList<>();
     }
     return rs;
   }

@@ -18,6 +18,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
@@ -191,10 +193,16 @@ public class ServiceRequestSystemsController {
     for (Button b : buttons) {
       if (b.equals(button)) {
         b.setStyle("-fx-background-color: #6D9BF8; -fx-background-radius: 10");
-        b.setTextFill(Paint.valueOf("#FFFFFF"));
+        HBox labelBox = (HBox) b.getChildrenUnmodifiable().get(1);
+        HBox subBox = (HBox) labelBox.getChildren().get(1);
+        Label la = (Label) subBox.getChildren().get(0);
+        la.setTextFill(Color.color(1, 1, 1));
       } else {
         b.setStyle("-fx-background-color: #21357E; -fx-background-radius: 10");
-        b.setTextFill(Paint.valueOf("#c5d3ea"));
+        HBox labelBox = (HBox) b.getChildrenUnmodifiable().get(1);
+        HBox subBox = (HBox) labelBox.getChildren().get(1);
+        Label la = (Label) subBox.getChildren().get(0);
+        la.setTextFill(Paint.valueOf("#c5d3ea"));
       }
     }
   }

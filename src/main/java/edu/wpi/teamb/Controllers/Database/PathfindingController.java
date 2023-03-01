@@ -59,7 +59,6 @@ public class PathfindingController {
   @FXML MFXCheckbox avoidStairsCheckBox;
   @FXML MFXCheckbox showLocationsCheckBox;
   @FXML MFXButton pathfind;
-
   @FXML Pane frontFloorr;
   @FXML GridPane scrollPane;
   @FXML GridPane front;
@@ -71,6 +70,7 @@ public class PathfindingController {
   AnchorPane currentPopUp;
   private boolean pathNotFound = false;
   private boolean pathingByClick = false;
+  private boolean pathFound = false;
   private static Node currentNode;
   private Circle currentDot;
 
@@ -97,11 +97,10 @@ public class PathfindingController {
   @FXML Label timeLabel;
   @FXML Label dateLabel;
   @Getter @FXML private AnchorPane dir;
-
-  @Getter @FXML private Pane forms;
-
+  @Getter @FXML private AnchorPane forms;
   private String[] directions;
   private static PathfindingController instance;
+  private Label floorDirections;
 
   /** Initializes the dropdown menus */
   public void initialize() {
@@ -222,6 +221,8 @@ public class PathfindingController {
     nodeMap.clear();
 
     image = imageMap.get(floor);
+
+    if (pathFound) floorDirections.setText(directions[floors.indexOf(currentFloor)]);
 
     image.toFront();
     image.setOnMouseClicked(
@@ -399,49 +400,39 @@ public class PathfindingController {
 
     PathfindingContext pContext = new PathfindingContext(pathfindable);
     ArrayList<String> path = pContext.getShortestPath(start, end);
-    directions = Pathfinding.getPathDirections(path);
-
-    Map<String, Node> nodes = DBSession.getAllNodes();
-    if (directions != null)
-      for (int i = 0; i < directions.length; i++) {
-        for (Node value : nodes.values()) {
-          if (value.getFloor().equals(currentFloor)) {
-            // AnchorPane dir = new AnchorPane();
-            forms.getChildren().clear();
-
-            //            dir.setPrefHeight(226);
-            //            dir.setPrefWidth(290);
-
-            //            VBox vbox = new VBox();
-            //            vbox.setSpacing(5);
-            //            vbox.setPadding(new Insets(10, 10, 10, 10));
-            //            vbox.setPrefHeight(250);
-            //            vbox.setPrefHeight(265);
-
-            Label floorDirections = new Label(directions[floors.indexOf(currentFloor)]);
-
-            floorDirections.setPrefHeight(250);
-            floorDirections.setPrefWidth(265);
-
-            HBox hbox = new HBox();
-            hbox.getChildren().add(floorDirections);
-            hbox.setAlignment(Pos.CENTER);
-
-            forms.getChildren().add(hbox);
-            //            dir.getChildren().add(forms);
-            // vbox.getChildren().clear();
-            System.out.println(i + ":\n" + directions[i]);
-          }
-        }
-      }
 
     if (path == null) {
       System.out.println("PATH NOT FOUND");
+      scrollPane.setVisible(false);
       pathNotFoundTextField.setVisible(true);
+      if (animationTimeline != null) animationTimeline.stop();
+      animationTimeline = null;
+      linesPlane.getChildren().clear();
       pathNotFound = true;
+      pathFound = false;
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
       return;
     }
+
+    directions = Pathfinding.getPathDirections(path);
+
+    Map<String, Node> nodes = DBSession.getAllNodes();
+    forms.getChildren().clear();
+
+    floorDirections = new Label();
+    //    MFXScrollPane direction = new MFXScrollPane();
+    //    Pane bruh = new Pane();
+    //    floorDirections.setPrefHeight(250);
+    //    floorDirections.setPrefWidth(265);
+
+    // HBox hbox = new HBox();
+    // hbox.getChildren().add(floorDirections);
+    // hbox.setAlignment(Pos.CENTER);
+
+    forms.getChildren().add(floorDirections);
+
+    pathFound = true;
+    scrollPane.setVisible(true);
 
     System.out.println(path);
     Map<String, Move> moves = Pathfinding.getMovesLN();
@@ -461,6 +452,8 @@ public class PathfindingController {
             if (value.equals(startNode.getFloor())) floorCombo.setValue(key);
           });
     }
+
+    floorDirections.setText(directions[floors.indexOf(currentFloor)]);
 
     List<Node> nodePath = new ArrayList<>();
     for (String s : path) {
@@ -552,11 +545,11 @@ public class PathfindingController {
           if (pathingByClick) {
             Node n = nodeMap.get(dot);
             String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
+            endLoc.clearSelection();
             endLoc.setValue(ln);
             pathingByClick = false;
             try {
               findPath();
-              // scrollPane.setVisible(false);
             } catch (SQLException ex) {
               throw new RuntimeException(ex);
             }
@@ -590,7 +583,6 @@ public class PathfindingController {
     vbox.setPadding(new Insets(10, 10, 10, 10));
 
     HBox hbox = new HBox();
-    // hbox.getChildren().add(editButton);
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
     aPane.getChildren().add(popPane);
@@ -604,6 +596,7 @@ public class PathfindingController {
     pathingByClick = true;
     Node n = nodeMap.get(currentDot);
     String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
+    startLoc.clearSelection();
     startLoc.setValue(ln);
     scrollPane.setVisible(true);
 

@@ -97,7 +97,7 @@ public class PathfindingController {
   @FXML Label timeLabel;
   @FXML Label dateLabel;
   @Getter @FXML private AnchorPane dir;
-  @Getter @FXML private Pane forms;
+  @Getter @FXML private AnchorPane forms;
   private String[] directions;
   private static PathfindingController instance;
   private Label floorDirections;
@@ -420,14 +420,16 @@ public class PathfindingController {
     forms.getChildren().clear();
 
     floorDirections = new Label();
-    floorDirections.setPrefHeight(250);
-    floorDirections.setPrefWidth(265);
+    //    MFXScrollPane direction = new MFXScrollPane();
+    //    Pane bruh = new Pane();
+    //    floorDirections.setPrefHeight(250);
+    //    floorDirections.setPrefWidth(265);
 
-    HBox hbox = new HBox();
-    hbox.getChildren().add(floorDirections);
-    hbox.setAlignment(Pos.CENTER);
+    // HBox hbox = new HBox();
+    // hbox.getChildren().add(floorDirections);
+    // hbox.setAlignment(Pos.CENTER);
 
-    forms.getChildren().add(hbox);
+    forms.getChildren().add(floorDirections);
 
     pathFound = true;
     scrollPane.setVisible(true);

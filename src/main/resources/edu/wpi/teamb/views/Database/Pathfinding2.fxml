@@ -8,6 +8,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -106,9 +107,9 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <MFXScrollPane fitToHeight="true" fitToWidth="true" minWidth="0.0" style="-fx-background-color: #F2F2F2;" vbarPolicy="NEVER">
+                              <MFXScrollPane fitToHeight="true" fitToWidth="true" minWidth="0.0" style="-fx-background-color: #F2F2F2;">
                                  <content>
-                                    <VBox fx:id="forms" minWidth="0.0" prefHeight="200.0" prefWidth="100.0" />
+                                    <AnchorPane fx:id="forms" prefHeight="370.0" />
                                  </content>
                               </MFXScrollPane>
                            </children>

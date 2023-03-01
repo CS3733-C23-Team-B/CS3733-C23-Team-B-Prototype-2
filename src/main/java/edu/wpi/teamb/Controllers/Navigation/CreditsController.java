@@ -77,4 +77,8 @@ public class CreditsController {
   public void audioVisualClicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
     Desktop.getDesktop().browse(new URI("https://www.flaticon.com/free-icons/video-and-audio"));
   }
+
+  public void gameClicked(MouseEvent mouseEvent) throws URISyntaxException, IOException {
+    Desktop.getDesktop().browse(new URI("https://zetcode.com/javagames/breakout/"));
+  }
 }

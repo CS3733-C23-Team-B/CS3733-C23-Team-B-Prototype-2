@@ -330,16 +330,17 @@ public class MapEditorController {
 
   private void setActive(MFXButton button) {
     resetButton();
-    button.setStyle("-fx-background-color: #6D9BF8;");
+    button.setStyle("-fx-background-color: #6D9BF8; -fx-text-fill:white;");
   }
 
   private void resetButton() {
-    newnode.setStyle("-fx-background-color:  #21357E;");
-    newedge.setStyle("-fx-background-color:  #21357E;");
-    editlocation.setStyle("-fx-background-color:  #21357E;");
-    newLocation.setStyle("-fx-background-color:  #21357E;");
-    newmove.setStyle("-fx-background-color:  #21357E;");
-    viewmoves.setStyle("-fx-background-color:  #21357E;");
+
+    newnode.setStyle("-fx-background-color:  #21357E; -fx-text-fill: #C5D3EA;");
+    newedge.setStyle("-fx-background-color:  #21357E;-fx-text-fill: #C5D3EA;");
+    editlocation.setStyle("-fx-background-color:  #21357E;-fx-text-fill: #C5D3EA;");
+    newLocation.setStyle("-fx-background-color:  #21357E;-fx-text-fill: #C5D3EA;");
+    newmove.setStyle("-fx-background-color:  #21357E;-fx-text-fill: #C5D3EA;");
+    viewmoves.setStyle("-fx-background-color:  #21357E;-fx-text-fill: #C5D3EA;");
   }
 
   private void changeFloor(String floor, Point2D p) {

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.CreditsController">
+<GridPane stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Navigation.CreditsController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0" />
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="60.0" />
@@ -38,7 +38,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="779.0">
                      <children>
-                        <Label alignment="CENTER" text="Credits">
+                        <Label id="title" alignment="CENTER" text="Credits">
                            <font>
                               <Font name="Raanana" size="40.0" />
                            </font>
@@ -65,19 +65,6 @@
                      <content>
                         <VBox prefHeight="274.0" style="-fx-background-color: #F2F2F2;">
                            <children>
-                              <Label text="APIs: ">
-                                 <font>
-                                    <Font name="Roboto Bold" size="15.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-                              <Label text="News">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Label>
                               <Label text="Images:">
                                  <font>
                                     <Font name="Roboto Bold" size="15.0" />
@@ -88,7 +75,7 @@
                                     <Font name="Roboto Italic" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="backgroundImageLink" onMouseClicked="#link1Clicked" text="https://www.massgeneralbrigham.org/en/patient-care/international/about/brigham-and-womens-hospital" wrapText="true">
+                              <Hyperlink id="creditsLink" fx:id="backgroundImageLink" onMouseClicked="#link1Clicked" text="https://www.massgeneralbrigham.org/en/patient-care/international/about/brigham-and-womens-hospital" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -98,7 +85,7 @@
                                     <Font name="Roboto Italic" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="logoLink" onMouseClicked="#link2Clicked" text="https://innovation.massgeneralbrigham.org/about/about-mass-general-brigham">
+                              <Hyperlink id="creditsLink" fx:id="logoLink" onMouseClicked="#link2Clicked" text="https://innovation.massgeneralbrigham.org/about/about-mass-general-brigham">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -118,7 +105,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="profileLink" onMouseClicked="#profileClicked" text="https://www.flaticon.com/free-icons/ui">
+                              <Hyperlink id="creditsLink" fx:id="profileLink" onMouseClicked="#profileClicked" text="https://www.flaticon.com/free-icons/ui">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -133,7 +120,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="stretcherLink" onMouseClicked="#stretcherClicked" text="https://www.flaticon.com/free-icons/stretcher">
+                              <Hyperlink id="creditsLink" fx:id="stretcherLink" onMouseClicked="#stretcherClicked" text="https://www.flaticon.com/free-icons/stretcher">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -144,7 +131,7 @@
                                  </font>
                               </Label>
                               <Label text="Created by monkik - Flaticon" />
-                              <Hyperlink fx:id="cleaningLink" onMouseClicked="#cleaningClicked" text="https://www.flaticon.com/free-icons/cleaning">
+                              <Hyperlink id="creditsLink" fx:id="cleaningLink" onMouseClicked="#cleaningClicked" text="https://www.flaticon.com/free-icons/cleaning">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -159,7 +146,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="facilitiesLink" onMouseClicked="#facilitiesClicked" text="https://www.flaticon.com/free-icons/facility-management">
+                              <Hyperlink id="creditsLink" fx:id="facilitiesLink" onMouseClicked="#facilitiesClicked" text="https://www.flaticon.com/free-icons/facility-management">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -174,7 +161,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="securityLink" onMouseClicked="#securityClicked" text="https://www.flaticon.com/free-icons/security">
+                              <Hyperlink id="creditsLink" fx:id="securityLink" onMouseClicked="#securityClicked" text="https://www.flaticon.com/free-icons/security">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -189,7 +176,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="equipmentLink" onMouseClicked="#equipmentClicked" text="https://www.flaticon.com/free-icons/medical-equipment">
+                              <Hyperlink id="creditsLink" fx:id="equipmentLink" onMouseClicked="#equipmentClicked" text="https://www.flaticon.com/free-icons/medical-equipment">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -204,7 +191,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="laptopLink" onMouseClicked="#laptopClicked" text="https://www.flaticon.com/free-icons/laptop ">
+                              <Hyperlink id="creditsLink" fx:id="laptopLink" onMouseClicked="#laptopClicked" text="https://www.flaticon.com/free-icons/laptop ">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -219,7 +206,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="medicineLink" onMouseClicked="#medicineClicked" text="https://www.flaticon.com/free-icons/drug">
+                              <Hyperlink id="creditsLink" fx:id="medicineLink" onMouseClicked="#medicineClicked" text="https://www.flaticon.com/free-icons/drug">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -230,7 +217,7 @@
                                  </font>
                               </Label>
                               <Label text="Created by berkahicon - Flaticon" />
-                              <Hyperlink fx:id="audioVisualLink" onMouseClicked="#audioVisualClicked" text="https://www.flaticon.com/free-icons/video-and-audio" />
+                              <Hyperlink id="creditsLink" fx:id="audioVisualLink" onMouseClicked="#audioVisualClicked" text="https://www.flaticon.com/free-icons/video-and-audio" />
                            </children>
                         </VBox>
                      </content>
@@ -239,7 +226,7 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="91.0" prefWidth="641.0" GridPane.rowIndex="2">
                <children>
-                  <MFXButton fx:id="backButton" onAction="#backButtonClicked" text="Back">
+                  <MFXButton id="mapEditorCheckbox" fx:id="backButton" onAction="#backButtonClicked" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Back" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font></MFXButton>

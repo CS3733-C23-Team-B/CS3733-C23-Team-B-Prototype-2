@@ -6,187 +6,167 @@
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="1480.0" prefWidth="2002.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.MapEditorController">
+<GridPane prefHeight="650.0" prefWidth="1200.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.MapEditorController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-    <RowConstraints percentHeight="2.0" vgrow="SOMETIMES" />
-    <RowConstraints percentHeight="89.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="2.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="88.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <GridPane fx:id="gridPane" GridPane.rowIndex="2">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" percentWidth="26.0" />
-            <ColumnConstraints hgrow="SOMETIMES" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints percentHeight="0.0" vgrow="SOMETIMES" />
-         </rowConstraints>
+      <VBox prefHeight="125.0" prefWidth="1543.0">
          <children>
-            <GridPane>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
-               </rowConstraints>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="350.0" prefWidth="498.0" style="-fx-background-color: #F2F2F2;">
+                  <Label id="headerText" fx:id="dateLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label id="headerText" fx:id="timeLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </VBox>
+      <GridPane fx:id="gridPane" style="-fx-background-color: #f2f2f2;" GridPane.rowIndex="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" />
+          <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane fx:id="map" GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="TOP_CENTER" spacing="15.0">
                      <children>
-                        <VBox>
+                        <HBox maxHeight="-Infinity">
                            <children>
-                              <HBox prefHeight="41.0" prefWidth="458.0">
+                              <Label id="title" maxHeight="-Infinity" text="Map Editor" textFill="#333333">
+                                 <font>
+                                    <Font size="40.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" maxWidth="-Infinity" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label alignment="CENTER" text="Map Editor">
-                                       <font>
-                                          <Font size="40.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </Label>
-                                    <MFXButton id="helpButton" fx:id="helpButton" onAction="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets left="75.0" top="10.0" />
-                                       </HBox.margin>
-                                    </MFXButton>
+                                    <MFXButton id="helpButton" fx:id="helpButton" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" minWidth="-Infinity" onAction="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" />
                                  </children>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
                               </HBox>
                            </children>
-                           <VBox.margin>
-                              <Insets left="40.0" />
-                           </VBox.margin>
-                        </VBox>
-                        <HBox spacing="20.0">
+                        </HBox>
+                        <HBox alignment="CENTER" minHeight="0.0" spacing="20.0">
                            <children>
-                              <MFXFilterComboBox fx:id="floorCombo" prefHeight="42.0" prefWidth="155.0" text="Lower Level 1">
-                                 <HBox.margin>
-                                    <Insets left="40.0" />
-                                 </HBox.margin>
+                              <MFXFilterComboBox id="button" fx:id="floorCombo" floatMode="DISABLED" maxHeight="40.0" minHeight="25.0" minWidth="0.0" prefHeight="40.0" style="-fx-background-radius: 8; -fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-border-radius: 8;" text="Lower Level 1">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
+                                 <textFill>
+                                    <Color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" opacity="0.8700000047683716" />
+                                 </textFill>
                               </MFXFilterComboBox>
-                              <MFXCheckbox fx:id="showLocationsCheckBox" onAction="#showLocationsClicked" onMouseMoved="#showLocationsClicked" text="Show Locations">
+                              <MFXCheckbox id="mapEditorCheckbox" fx:id="showLocationsCheckBox" minWidth="0.0" onAction="#showLocationsClicked" onMouseMoved="#showLocationsClicked" text="Show Locations" textFill="#333333" wrapText="true">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font size="14.0" />
                                  </font>
-                                 <HBox.margin>
-                                    <Insets top="10.0" />
-                                 </HBox.margin>
                               </MFXCheckbox>
                            </children>
-                           <padding>
-                              <Insets top="15.0" />
-                           </padding>
                         </HBox>
-                        <VBox fx:id="mapEditorButtons">
+                        <VBox fx:id="mapEditorButtons" spacing="15.0">
                            <children>
-                              <HBox prefHeight="17.0" prefWidth="458.0" spacing="20.0">
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
+                              <HBox alignment="TOP_CENTER" spacing="15.0">
                                  <children>
-                                    <MFXButton fx:id="newnode" buttonType="RAISED" depthLevel="LEVEL3" onAction="#newNodeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Node" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="newnode" depthLevel="LEVEL3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newNodeClicked" prefWidth="150.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Node" textFill="#c5d3ea">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="18.0" />
                                        </font>
                                     </MFXButton>
-                                    <MFXButton fx:id="newedge" buttonType="RAISED" depthLevel="LEVEL3" onAction="#newEdgeClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Edge" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="newedge" depthLevel="LEVEL3" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newEdgeClicked" prefWidth="150.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Edge" textFill="#c5d3ea">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="18.0" />
                                        </font>
                                     </MFXButton>
                                  </children>
                               </HBox>
-                              <HBox layoutX="10.0" layoutY="40.0" prefHeight="17.0" prefWidth="458.0" spacing="20.0">
+                              <HBox alignment="TOP_CENTER" spacing="15.0">
                                  <children>
-                                    <MFXButton fx:id="newLocation" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" onAction="#newLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Location" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="newLocation" depthLevel="LEVEL3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newLocationClicked" prefWidth="150.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Location" textFill="#c5d3ea">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="18.0" />
                                        </font>
                                     </MFXButton>
-                                    <MFXButton fx:id="editlocation" buttonType="RAISED" depthLevel="LEVEL3" onAction="#editLocationClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="Edit Location" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="editlocation" depthLevel="LEVEL3" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#editLocationClicked" prefWidth="150.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Edit Location" textFill="#c5d3ea">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="18.0" />
                                        </font>
                                     </MFXButton>
                                  </children>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
                               </HBox>
-                              <HBox layoutX="10.0" layoutY="93.0" prefHeight="17.0" prefWidth="458.0" spacing="20.0">
+                              <HBox alignment="TOP_CENTER" spacing="15.0">
                                  <children>
-                                    <MFXButton fx:id="newmove" buttonType="RAISED" depthLevel="LEVEL3" maxHeight="-Infinity" onAction="#newMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="New Move" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="newmove" depthLevel="LEVEL3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#newMovesClicked" prefWidth="150.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Move" textFill="#c5d3ea">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="18.0" />
                                        </font>
                                     </MFXButton>
-                                    <MFXButton fx:id="viewmoves" buttonType="RAISED" depthLevel="LEVEL3" onAction="#viewMovesClicked" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #21357E;" text="View Moves" textFill="#c5d3ea">
+                                    <MFXButton id="mapEditorButton" fx:id="viewmoves" depthLevel="LEVEL3" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#viewMovesClicked" prefWidth="150.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="View Moves" textFill="#c5d3ea">
                                        <font>
-                                          <Font size="20.0" />
+                                          <Font size="18.0" />
                                        </font>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
                                     </MFXButton>
                                  </children>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" top="10.0" />
-                                 </VBox.margin>
                               </HBox>
                            </children>
-                           <VBox.margin>
-                              <Insets left="40.0" />
-                           </VBox.margin>
                         </VBox>
                      </children>
                      <GridPane.margin>
-                        <Insets />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                   </VBox>
-                  <MFXScrollPane style="-fx-background-color: #F2F2F2;" GridPane.rowIndex="1">
+                  <MFXScrollPane fitToWidth="true" hbarPolicy="NEVER" minHeight="0.0" style="-fx-background-color: #f2f2f2;" GridPane.rowIndex="1">
                      <content>
-                        <AnchorPane fx:id="forms" prefHeight="300.0" prefWidth="380.0" style="-fx-background-color: #F2F2F2;" />
+                        <VBox fx:id="forms" alignment="BOTTOM_CENTER" />
                      </content>
                   </MFXScrollPane>
-               </children>
-            </GridPane>
-            <GridPane GridPane.columnIndex="1">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <VBox>
-                     <children>
-                        <GridPane fx:id="map" prefHeight="714.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                     </children>
-                  </VBox>
                </children>
             </GridPane>
          </children>
@@ -195,35 +175,6 @@
          <padding>
             <Insets top="10.0" />
          </padding>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <VBox prefHeight="125.0" prefWidth="1543.0">
-               <children>
-                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label id="headerText" fx:id="dateLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label id="headerText" fx:id="timeLabel" style="-fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 4);" text="Label" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </VBox>
-         </children>
       </HBox>
    </children>
 </GridPane>

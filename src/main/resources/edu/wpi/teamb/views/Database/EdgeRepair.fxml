@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.EdgeRepairController">
+<GridPane style="-fx-background-color: #00000090;" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.EdgeRepairController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="700.0" />
@@ -33,12 +33,12 @@
          <children>
             <VBox alignment="CENTER" prefHeight="297.0" prefWidth="700.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deleting this node will create a gap between two nodes.">
+                  <Text id="edgeRepairBody" fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Deleting this node will create a gap between two nodes.">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Would you like to mend this gap by creating an edge between the following nodes?">
+                  <Text id="edgeRepairBody" strokeType="OUTSIDE" strokeWidth="0.0" text="Would you like to mend this gap by creating an edge between the following nodes?">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -48,8 +48,8 @@
                         <Insets top="50.0" />
                      </VBox.margin>
                      <children>
-                        <Text fx:id="node1Field" strokeType="OUTSIDE" strokeWidth="0.0" text="Node 1" />
-                        <Text fx:id="node2Field" strokeType="OUTSIDE" strokeWidth="0.0" text="Node 2" />
+                        <Text id="body" fx:id="node1Field" strokeType="OUTSIDE" strokeWidth="0.0" text="Node 1" />
+                        <Text id="body" fx:id="node2Field" strokeType="OUTSIDE" strokeWidth="0.0" text="Node 2" />
                      </children>
                   </HBox>
                </children>
@@ -58,12 +58,12 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="46.0" prefWidth="700.0" spacing="100.0">
                      <children>
-                        <MFXButton fx:id="yesButton" onAction="#yesButtonClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Yes" textAlignment="CENTER" textFill="WHITE">
+                        <MFXButton id="edgeRepairButton" fx:id="yesButton" onAction="#yesButtonClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #21357E; -fx-background-radius: 10;" text="Yes" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton fx:id="noButton" onAction="#noButtonClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #898989; -fx-background-radius: 10;" text="No" textFill="WHITE">
+                        <MFXButton id="edgeRepairButton" fx:id="noButton" onAction="#noButtonClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #898989; -fx-background-radius: 10;" text="No" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>

@@ -295,6 +295,29 @@
     -fx-font-size: 36px;
 }
 
+#mapEditorPopupTitle{
+    -fx-font-family: Roboto, regular;
+    -fx-font-weight: bold;
+    -fx-font-size: 34;
+}
+
+#mapEditorPopupButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+}
+
+#mapEditorPopupBody{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: 600;
+    -fx-font-size: 17;
+}
+
+#mapEditorPopupBodySmall{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-size: 15px;
+}
+
 #kioskTitle{
     -fx-font-family: Roboto, regular;
     -fx-font-size: 36px;
@@ -328,4 +351,20 @@
     -fx-font-weight: bold;
     -fx-font-size: 24px;
     -fx-font-style: italic;
+}
+
+#edgeRepairBody{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 16px;
+}
+
+#edgeRepairButton{
+    -fx-font-family: Nunito, sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+#requestStats{
+    -fx-font-family: Roboto, regular;
+    -fx-font-size: 24px;
 }

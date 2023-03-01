@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane minHeight="-Infinity" prefHeight="225.0" prefWidth="285.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.ClickPathfindingInstruction">
+<GridPane prefHeight="250.0" prefWidth="250.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.ClickPathfindingInstruction">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
@@ -25,7 +25,7 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Label id="databasePopupTitle" text="Find a Path">
+                  <Label id="databasePopupTitle" text="Find a Path" textFill="#333333">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -42,7 +42,7 @@
       </VBox>
       <HBox alignment="CENTER" GridPane.rowIndex="3">
          <children>
-            <MFXButton id="button" onAction="#cancelClicked" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE" />
+            <MFXButton id="button" onAction="#cancelClicked" style="-fx-background-color: #898989; -fx-background-radius: 5;" text="Cancel" textFill="WHITE" />
          </children>
          <GridPane.margin>
             <Insets />
@@ -55,7 +55,7 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Label id="body" text="Now click on a second node" textAlignment="CENTER">
+                  <Label id="body" text="Now click on a second node" textAlignment="CENTER" textFill="#333333">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -67,7 +67,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Label id="body" text="to pathfind between them" textAlignment="CENTER">
+                  <Label id="body" text="to pathfind between them" textAlignment="CENTER" textFill="#333333">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

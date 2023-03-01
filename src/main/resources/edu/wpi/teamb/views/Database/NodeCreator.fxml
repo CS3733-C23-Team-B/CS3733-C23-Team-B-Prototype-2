@@ -4,111 +4,96 @@
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="380.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.NodeCreatorController">
-   <right>
-      <VBox prefHeight="300.0" prefWidth="380.0" BorderPane.alignment="CENTER">
+<GridPane stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.NodeCreatorController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+      <ColumnConstraints hgrow="SOMETIMES" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <VBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <HBox alignment="CENTER" prefHeight="8.0" prefWidth="326.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" prefWidth="287.0" spacing="10.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X-Coordinate">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </Text>
-                  <MFXTextField minHeight="-Infinity" prefHeight="40.0" prefWidth="220.0" fx:id="xField">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin></MFXTextField>
+                  <Label id="mapEditorPopupBodySmall" maxHeight="1.7976931348623157E308" text="X-Coordinate" textAlignment="CENTER" textFill="#333333" wrapText="true" />
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXTextField id="button" floatMode="DISABLED" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="153.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 8; -fx-border-radius: 8;" fx:id="xField" />
+                     </children>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="16.0" prefWidth="326.0">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefWidth="287.0" spacing="10.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y-Coordinate">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Text>
-                  <MFXTextField fx:id="yField" minHeight="-Infinity" prefHeight="40.0" prefWidth="220.0">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </MFXTextField>
+                  <Label id="mapEditorPopupBodySmall" maxHeight="1.7976931348623157E308" text="Y-Coordinate" textAlignment="CENTER" textFill="#333333" wrapText="true" />
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXTextField id="button" fx:id="yField" floatMode="DISABLED" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="153.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 8; -fx-border-radius: 8;" />
+                     </children>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="35.0" prefWidth="326.0">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefWidth="287.0" spacing="10.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Floor">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Text>
-                  <MFXFilterComboBox fx:id="floorBox" prefHeight="42.0" prefWidth="220.0">
-                     <HBox.margin>
-                        <Insets left="75.0" />
-                     </HBox.margin>
-                  </MFXFilterComboBox>
+                  <Label id="mapEditorPopupBodySmall" maxHeight="1.7976931348623157E308" text="Floor" textAlignment="CENTER" textFill="#333333" wrapText="true" />
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXFilterComboBox id="button" fx:id="floorBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="153.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 8; -fx-border-radius: 8;" />
+                     </children>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="14.0" prefWidth="326.0">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="192.0" maxHeight="1.7976931348623157E308" prefWidth="287.0" spacing="10.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Text>
-                  <MFXFilterComboBox fx:id="buildingBox" prefHeight="42.0" prefWidth="220.0">
-                     <HBox.margin>
-                        <Insets left="60.0" />
-                     </HBox.margin>
-                  </MFXFilterComboBox>
+                  <Label id="mapEditorPopupBodySmall" maxHeight="1.7976931348623157E308" text="Building" textAlignment="CENTER" textFill="#333333" wrapText="true" />
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXFilterComboBox id="button" fx:id="buildingBox" floatMode="DISABLED" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="153.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 8; -fx-border-radius: 8;" />
+                     </children>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="19.0" prefWidth="800.0">
-               <children>
-                  <MFXButton fx:id="submitButton" minHeight="46.0" minWidth="100.0" onAction="#submitClicked" style="-fx-background-color: #003DA6;" text="Submit" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </MFXButton>
-               </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>
-   </right>
-</BorderPane>
+      <HBox alignment="CENTER" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <MFXButton id="mapEditorPopupButton" fx:id="submitButton" minHeight="46.0" minWidth="100.0" onAction="#submitClicked" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="Submit" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </MFXButton>
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</GridPane>

@@ -200,6 +200,9 @@ public class KioskViewController {
 
   private Circle placeNode(Node node) {
     Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Bapp.blue);
+    if (path.get(0).equals(node.getNodeID())) dot.setFill(Color.GREEN);
+    else if (path.get(path.size() - 1).equals(node.getNodeID())) dot.setFill(Color.RED);
+    else dot.setVisible(false);
     aPane.getChildren().add(dot);
     aPane.toFront();
     frontBox2.toFront();

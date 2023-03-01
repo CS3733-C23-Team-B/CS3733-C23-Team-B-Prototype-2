@@ -31,7 +31,8 @@ public enum Screen {
   SIGN_IN("views/Profile/SignIn.fxml"),
   SUBMITTED_SERVICE_REQUESTS("views/ServiceRequest/SubmittedServiceRequests.fxml"),
   PROFILE("views/Profile/Profile2.fxml"),
-  MAINHELP("views/Popups/MainHelpPage.fxml"),
+  ADMINMAINHELP("views/Popups/AdminMainHelpPage.fxml"),
+  STAFFMAINHELP("views/Popups/StaffMainHelpPage.fxml"),
   FOOTER("views/Navigation/Footer.fxml"),
   SUBMISSION_SUCCESS("views/Popups/SubmissionSuccess.fxml"),
   KIOSK_POPUP("views/Popups/KioskPopup.fxml"),
@@ -61,6 +62,7 @@ public enum Screen {
   SEAN_LENDRUM("views/Popups/SeanPopUp.fxml"),
   MICHAEL_GATTI("views/Popups/MichaelPopUp.fxml"),
   JACK_LAFOND("views/Popups/JackPopUp.fxml"),
+  MAP_EDITOR_LOCATION_STATS_POPUP("views/Database/RequestStatsPopup.fxml"),
   SUBMITTED_REQUESTS_HELP("views/Popups/SubmittedRequestsHelpPage.fxml");
 
   private final String filename;

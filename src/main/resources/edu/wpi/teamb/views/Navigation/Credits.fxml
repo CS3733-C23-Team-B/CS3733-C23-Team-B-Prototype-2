@@ -159,7 +159,7 @@
                                     <Font name="Roboto" size="13.0" />
                                  </font>
                               </Label>
-                              <Hyperlink fx:id="profileLink1" onMouseClicked="#profileClicked" text="https://www.flaticon.com/free-icons/facility-management">
+                              <Hyperlink fx:id="facilitiesLink" onMouseClicked="#facilitiesClicked" text="https://www.flaticon.com/free-icons/facility-management">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>

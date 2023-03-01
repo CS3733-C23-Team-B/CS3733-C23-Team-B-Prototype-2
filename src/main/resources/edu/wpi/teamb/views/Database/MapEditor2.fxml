@@ -77,17 +77,20 @@
                <children>
                   <VBox alignment="TOP_CENTER" spacing="15.0">
                      <children>
-                        <HBox>
+                        <HBox maxHeight="-Infinity">
                            <children>
-                              <Label id="title" text="Map Editor" textFill="#333333">
+                              <Label id="title" maxHeight="-Infinity" text="Map Editor" textFill="#333333">
                                  <font>
                                     <Font size="40.0" />
                                  </font>
                               </Label>
-                              <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                              <HBox alignment="CENTER" maxWidth="-Infinity" HBox.hgrow="ALWAYS">
                                  <children>
                                     <MFXButton id="helpButton" fx:id="helpButton" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" minWidth="-Infinity" onAction="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" />
                                  </children>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
                               </HBox>
                            </children>
                         </HBox>

@@ -338,20 +338,24 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="674.0">
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity">
                      <children>
                         <Label id="title" fx:id="la" stylesheets="@../../../../../css/style.css" text="Submitted Requests" textFill="#333333">
                            <font>
                               <Font name="System Bold" size="60.0" />
                            </font>
                            <HBox.margin>
-                              <Insets top="5.0" />
+                              <Insets />
                            </HBox.margin>
                         </Label>
-                        <MFXButton fx:id="helpButton" minHeight="45.0" minWidth="50.0" onAction="#helpButtonClicked" text=" ">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity">
                            <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin></MFXButton>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <children>
+                              <MFXButton fx:id="helpButton" minHeight="-Infinity" minWidth="-Infinity" onAction="#helpButtonClicked" prefHeight="40.0" prefWidth="40.0" text=" " />
+                           </children>
+                        </HBox>
                      </children>
                      <padding>
                         <Insets left="30.0" />

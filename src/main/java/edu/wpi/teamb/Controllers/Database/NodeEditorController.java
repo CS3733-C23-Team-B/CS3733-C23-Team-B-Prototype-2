@@ -13,11 +13,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
 public class NodeEditorController {
-  @FXML Label nodeIDText;
+  @FXML Text nodeIDText;
   @FXML MFXTextField xField;
   @FXML MFXTextField yField;
   @FXML MFXFilterComboBox<String> floorBox;

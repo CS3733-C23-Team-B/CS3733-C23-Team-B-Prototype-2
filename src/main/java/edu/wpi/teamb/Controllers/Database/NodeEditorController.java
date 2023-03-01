@@ -33,7 +33,7 @@ public class NodeEditorController {
     origFloor = node.getFloor();
     floorBox.setItems(floors);
     floorBox.setValue(origFloor);
-    nodeIDText.setStyle("-fx-text-fill: red");
+    nodeIDText.setText(node.getNodeID());
   }
 
   public void submitClicked() {

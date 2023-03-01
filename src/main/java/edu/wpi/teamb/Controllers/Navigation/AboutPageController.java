@@ -3,6 +3,7 @@ package edu.wpi.teamb.Controllers.Navigation;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
+import edu.wpi.teamb.game.Breakout;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,6 +15,7 @@ import javafx.scene.image.ImageView;
 public class AboutPageController {
 
   @FXML MFXButton backButton;
+  @FXML ImageView badgerButton;
   @FXML
   ImageView christinaAube,
       lukeGrady,
@@ -44,6 +46,10 @@ public class AboutPageController {
 
   public void backButtonClicked() throws IOException {
     Navigation.navigate(Screen.HOME);
+  }
+
+  public void startBadgerGame() throws IOException {
+    Breakout.startGame();
   }
 
   public void kavyaManiClicked() {

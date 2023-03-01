@@ -76,7 +76,7 @@ public class PatientTransportationController extends BaseRequestController {
     request.setPatientDestinationLocation(destination.toString());
 
     request.setPatientID(this.patientIDField.getText());
-    request.setRequestType(RequestType.PATIENTTRANSPOTATION);
+    request.setRequestType(RequestType.PATIENTTRANSPORTATION);
     DBSession.addRequest(request);
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);

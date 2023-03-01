@@ -59,7 +59,6 @@ public class PathfindingController {
   @FXML MFXCheckbox avoidStairsCheckBox;
   @FXML MFXCheckbox showLocationsCheckBox;
   @FXML MFXButton pathfind;
-
   @FXML Pane frontFloorr;
   @FXML GridPane scrollPane;
   @FXML GridPane front;
@@ -404,38 +403,17 @@ public class PathfindingController {
     directions = Pathfinding.getPathDirections(path);
 
     Map<String, Node> nodes = DBSession.getAllNodes();
-    if (directions != null)
-      for (int i = 0; i < directions.length; i++) {
-        for (Node value : nodes.values()) {
-          if (value.getFloor().equals(currentFloor)) {
-            // AnchorPane dir = new AnchorPane();
-            forms.getChildren().clear();
+    forms.getChildren().clear();
 
-            //            dir.setPrefHeight(226);
-            //            dir.setPrefWidth(290);
+    floorDirections = new Label();
+    floorDirections.setPrefHeight(250);
+    floorDirections.setPrefWidth(265);
 
-            //            VBox vbox = new VBox();
-            //            vbox.setSpacing(5);
-            //            vbox.setPadding(new Insets(10, 10, 10, 10));
-            //            vbox.setPrefHeight(250);
-            //            vbox.setPrefHeight(265);
+    HBox hbox = new HBox();
+    hbox.getChildren().add(floorDirections);
+    hbox.setAlignment(Pos.CENTER);
 
-            floorDirections = new Label();
-
-            floorDirections.setPrefHeight(250);
-            floorDirections.setPrefWidth(265);
-
-            HBox hbox = new HBox();
-            hbox.getChildren().add(floorDirections);
-            hbox.setAlignment(Pos.CENTER);
-
-            forms.getChildren().add(hbox);
-            //            dir.getChildren().add(forms);
-            // vbox.getChildren().clear();
-          }
-        }
-        System.out.println(i + ":\n" + directions[i]);
-      }
+    forms.getChildren().add(hbox);
 
     if (path == null) {
       System.out.println("PATH NOT FOUND");
@@ -447,6 +425,7 @@ public class PathfindingController {
     }
 
     pathFound = true;
+    scrollPane.setVisible(true);
 
     System.out.println(path);
     Map<String, Move> moves = Pathfinding.getMovesLN();
@@ -563,7 +542,6 @@ public class PathfindingController {
             pathingByClick = false;
             try {
               findPath();
-              // scrollPane.setVisible(false);
             } catch (SQLException ex) {
               throw new RuntimeException(ex);
             }
@@ -597,7 +575,6 @@ public class PathfindingController {
     vbox.setPadding(new Insets(10, 10, 10, 10));
 
     HBox hbox = new HBox();
-    // hbox.getChildren().add(editButton);
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
     aPane.getChildren().add(popPane);

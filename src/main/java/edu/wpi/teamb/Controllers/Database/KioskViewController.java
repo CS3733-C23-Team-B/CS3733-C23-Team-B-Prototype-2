@@ -234,6 +234,7 @@ public class KioskViewController {
   public void openMap() throws IOException {
     timeline.getKeyFrames().clear();
     timeline.stop();
+    timeline = null;
     final String filename = Screen.PATHFINDING.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
     final StackPane stackPane = Bapp.getStackPane();
@@ -356,6 +357,7 @@ public class KioskViewController {
   public void signIn() {
     timeline.getKeyFrames().clear();
     timeline.stop();
+    timeline = null;
     Navigation.navigate(Screen.SIGN_IN);
   }
 }

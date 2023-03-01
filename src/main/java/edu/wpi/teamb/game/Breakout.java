@@ -7,10 +7,10 @@ public class Breakout extends JFrame {
 
   public Breakout() {
 
-    initUI();
+      initializeUI();
   }
 
-  private void initUI() {
+  private void initializeUI() {
 
     add(new Board());
     setTitle("Badger Breaker");

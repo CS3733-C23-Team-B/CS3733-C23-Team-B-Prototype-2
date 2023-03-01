@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <GridPane prefHeight="650.0" prefWidth="1200.0" stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.KioskEditController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" />
@@ -163,6 +164,11 @@
                                              </font>
                                           </Label>
                                           <MFXFilterComboBox id="requestsButton" fx:id="locationDropdown" floatMode="DISABLED" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="294.0" style="-fx-background-color: #cecece; -fx-border-color: #898989; -fx-border-width: 1.5; -fx-background-radius: 8; -fx-border-radius: 8;" />
+                                          <MFXCheckbox fx:id="inverseBox" text="Switch Right and Left">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </MFXCheckbox>
                                        </children>
                                     </VBox>
                                     <Label id="kioskEditorSubtitle" fx:id="RequestInformationTitle1" alignment="CENTER" text="Add New Move to Display" textFill="#333333">

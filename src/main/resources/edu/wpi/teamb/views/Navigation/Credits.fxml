@@ -63,7 +63,7 @@
                <children>
                   <MFXScrollPane style="-fx-background-color: #F2F2F2;" GridPane.columnIndex="1">
                      <content>
-                        <VBox prefHeight="274.0" style="-fx-background-color: #F2F2F2;">
+                        <VBox prefHeight="1000.0" style="-fx-background-color: #F2F2F2;">
                            <children>
                               <Label text="Images:">
                                  <font>
@@ -217,7 +217,27 @@
                                  </font>
                               </Label>
                               <Label text="Created by berkahicon - Flaticon" />
-                              <Hyperlink id="creditsLink" fx:id="audioVisualLink" onMouseClicked="#audioVisualClicked" text="https://www.flaticon.com/free-icons/video-and-audio" />
+                              <Hyperlink id="creditsLink" fx:id="audioVisualLink" onMouseClicked="#audioVisualClicked" text="https://www.flaticon.com/free-icons/video-and-audio">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin></Hyperlink>
+                              <Label layoutX="10.0" layoutY="644.0" text="Badger Images">
+                                 <font>
+                                    <Font name="Roboto Italic" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="660.0" text="Created by Caitlyn Riley">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="699.0" text="Breakout Game Code">
+                                 <font>
+                                    <Font name="Roboto Italic" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="714.0" text="Created by janbodnar on GitHub- ZetCode" />
+                              <Hyperlink id="creditsLink" fx:id="gameLink" layoutX="10.0" layoutY="677.0" onMouseClicked="#gameClicked" text="https://zetcode.com/javagames/breakout/" />
                            </children>
                         </VBox>
                      </content>

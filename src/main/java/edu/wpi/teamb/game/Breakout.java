@@ -15,7 +15,7 @@ public class Breakout extends JFrame {
     add(new Board());
     setTitle("Badger Breaker");
 
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setDefaultCloseOperation(HIDE_ON_CLOSE);
     setLocationRelativeTo(null);
     setResizable(false);
     pack();

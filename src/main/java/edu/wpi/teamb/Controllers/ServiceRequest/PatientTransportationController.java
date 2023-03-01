@@ -32,11 +32,11 @@ public class PatientTransportationController extends BaseRequestController {
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
       urgencyBox,
-      assignedStaffBox,
       locationBox,
       patientDestinationBox,
       equipmentNeededBox,
       patientIDField,
+      assignedStaffBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
@@ -76,7 +76,7 @@ public class PatientTransportationController extends BaseRequestController {
     request.setPatientDestinationLocation(destination.toString());
 
     request.setPatientID(this.patientIDField.getText());
-    request.setRequestType(RequestType.PATIENTTRANSPOTATION);
+    request.setRequestType(RequestType.PATIENTTRANSPORTATION);
     DBSession.addRequest(request);
 
     Popup.displayPopup(Screen.SUBMISSION_SUCCESS);

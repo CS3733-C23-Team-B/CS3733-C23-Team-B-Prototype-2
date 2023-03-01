@@ -12,12 +12,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 
 public class EdgeEditorController {
-  @FXML Text nodeIDText;
-  @FXML Text bigText;
+  @FXML Label nodeIDText;
+  @FXML Label bigText;
   @FXML MFXFilterComboBox<String> edgesBox;
   private Node node;
 
@@ -56,7 +55,7 @@ public class EdgeEditorController {
     String s = edgesBox.getValue();
     if (edgesBox.getText().isEmpty()) {
       bigText.setText("No selection");
-      bigText.setFill(Color.RED);
+      bigText.setStyle("-fx-text-fill: red");
       return;
     }
     Node n1 = node;

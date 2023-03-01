@@ -5,22 +5,22 @@ import edu.wpi.teamb.Database.DBSession;
 import edu.wpi.teamb.Database.Node;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.Pathfinding;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 public class NodeEditorController {
   @FXML Text nodeIDText;
-  @FXML TextField xField;
-  @FXML TextField yField;
-  @FXML ChoiceBox<String> floorBox;
+  @FXML MFXTextField xField;
+  @FXML MFXTextField yField;
+  @FXML MFXFilterComboBox<String> floorBox;
   Node node = MapEditorController.getCurrentNode();
   Circle circle = MapEditorController.getCurrentDot();
   String origFloor;

@@ -38,15 +38,16 @@ public abstract class SubmittedBaseRequestTable {
 
   public void initialize() {
     l = SigninController.getInstance().currentUser;
-    addcol(date, "date");
+    addcol(date, "Date");
     //    addcol(firstname, "firstname");
     //    addcol(lastname, "lastname");
     //    addcol(employeeID, "employeeID");
     //    addcol(email, "email");
-    addcol(urgency, "urgency");
-    addcol(assignedEmployee, "assignedEmployee");
-    addcol(status, "status");
+    addcol(urgency, "Urgency");
+    addcol(assignedEmployee, "AssignedEmployee");
+    addcol(status, "Status");
     //    addcol(notes, "notes");
+    table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
   }
 
   public TableView getTable() {

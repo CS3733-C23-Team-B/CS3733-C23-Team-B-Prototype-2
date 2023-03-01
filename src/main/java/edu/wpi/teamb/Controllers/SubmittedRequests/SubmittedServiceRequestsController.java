@@ -73,10 +73,10 @@ public class SubmittedServiceRequestsController {
   private ObservableList<RequestType> requestType =
       FXCollections.observableArrayList(
           RequestType.ALLREQUESTS,
-          RequestType.AUDOVISUAL,
+          RequestType.AUDIOVIDEO,
           RequestType.COMPUTER,
           RequestType.FACILITIES,
-          RequestType.PATIENTTRANSPOTATION,
+          RequestType.PATIENTTRANSPORTATION,
           RequestType.MEDICALEQUIPMENT,
           RequestType.MEDICINE,
           RequestType.SANITATION,
@@ -190,9 +190,11 @@ public class SubmittedServiceRequestsController {
     page = name.toString();
     this.cur = name;
     TableView table = new TableView<>();
+    table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
     mainVbox.getChildren().clear();
     if (page.equals(RequestType.SANITATION.toString())) {
+
       table =
           saniTable.getTable(
               requestStatusFilter.getValue(),
@@ -200,7 +202,7 @@ public class SubmittedServiceRequestsController {
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals(RequestType.PATIENTTRANSPOTATION.toString())) {
+    } else if (page.equals(RequestType.PATIENTTRANSPORTATION.toString())) {
       table =
           ptTable.getTable(
               requestStatusFilter.getValue(),
@@ -216,7 +218,7 @@ public class SubmittedServiceRequestsController {
               requestReporterFilter.getValue(),
               requestUrgencyFilter.getValue(),
               myrequests);
-    } else if (page.equals(RequestType.AUDOVISUAL.toString())) {
+    } else if (page.equals(RequestType.AUDIOVIDEO.toString())) {
       table =
           avTable.getTable(
               requestStatusFilter.getValue(),
@@ -319,7 +321,7 @@ public class SubmittedServiceRequestsController {
       String notes = r.getNotes();
       //      type, date, requestor, employeeId, email, urgency, assignedEmployee
       addCommonAttritbutes(type, date, requestor, employeeId, email, urgency, assignedEmployee);
-      if (r.getRequestType().equals(RequestType.PATIENTTRANSPOTATION)) {
+      if (r.getRequestType().equals(RequestType.PATIENTTRANSPORTATION)) {
         PatientTransportationRequest pt = (PatientTransportationRequest) r;
         addAttribute("Patient ID:", pt.getPatientID());
         addAttribute("Patient Destination:", pt.getPatientDestinationLocation());
@@ -337,7 +339,7 @@ public class SubmittedServiceRequestsController {
         addAttribute("Type of Repair:", cr.getTypeOfRepair());
         addAttribute("Type of Device:", cr.getDevice());
         setFields();
-      } else if (r.getRequestType().equals(RequestType.AUDOVISUAL)) {
+      } else if (r.getRequestType().equals(RequestType.AUDIOVIDEO)) {
         AudioVideoRequest avr = (AudioVideoRequest) r;
         addAttribute("Location:", avr.getLocation());
         addAttribute("Audio Visual Type:", avr.getAVType());
@@ -353,7 +355,7 @@ public class SubmittedServiceRequestsController {
         MedicineDeliveryRequest medr = (MedicineDeliveryRequest) r;
         addAttribute("Location:", medr.getLocation());
         addAttribute("Type of Medicine:", medr.getMedicineType());
-        addAttribute("Dosage:", medr.getDoasage());
+        addAttribute("Dosage:", medr.getDosage());
         addAttribute("Patient ID:", medr.getPatientID());
         setFields();
       } else if (r.getRequestType().equals(RequestType.MEDICALEQUIPMENT)) {

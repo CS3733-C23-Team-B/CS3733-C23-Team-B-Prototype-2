@@ -3,102 +3,90 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="edgesBorder" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.EdgeEditorController">
-   <center>
-      <VBox maxHeight="600.0" maxWidth="350.0" minHeight="400.0" minWidth="350.0" prefHeight="350.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+<GridPane stylesheets="@../../../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Database.EdgeEditorController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="25.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <VBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <HBox alignment="CENTER" prefHeight="73.0" prefWidth="350.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" prefWidth="287.0" spacing="10.0">
                <children>
-                  <Text fx:id="bigText" strokeType="OUTSIDE" strokeWidth="0.0" text="Edges" textAlignment="CENTER" wrappingWidth="141.1109161376953">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="164.0" prefHeight="105.0" prefWidth="350.0">
-               <children>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="80.0" prefWidth="113.0">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
+                  <Label id="mapEditorPopupBody" maxHeight="1.7976931348623157E308" text="Current Node:" textAlignment="CENTER" textFill="#333333" wrapText="true" />
+                  <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current Node:" wrappingWidth="112.4033203125">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edges:" textAlignment="RIGHT" textOrigin="CENTER">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </Text>
+                        <Label id="mapEditorPopupBody" fx:id="nodeIDText" />
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="85.0" prefWidth="184.0">
-                     <children>
-                        <Text fx:id="nodeIDText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="173.33333837985992">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Text>
-                        <MFXFilterComboBox fx:id="edgesBox" prefHeight="15.0" prefWidth="184.0">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </MFXFilterComboBox>
-                     </children>
-                  </VBox>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="344.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefWidth="287.0" spacing="10.0">
                <children>
-                  <MFXButton minHeight="46.0" minWidth="100.0" onAction="#newEdgeClicked" style="-fx-background-color: green;" text="New Edge" textFill="WHITE">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </MFXButton>
-                  <MFXButton alignment="CENTER" minHeight="46.0" minWidth="100.0" onAction="#deleteClicked" style="-fx-background-color: crimson;" text="Delete Edge" textFill="WHITE">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </MFXButton>
+                  <Label id="mapEditorPopupBody" maxHeight="1.7976931348623157E308" text="Edges:" textAlignment="CENTER" textFill="#333333" wrapText="true" />
+                  <MFXFilterComboBox id="button" fx:id="edgesBox" floatMode="DISABLED" maxHeight="1.7976931348623157E308" prefHeight="40.0" prefWidth="153.0" style="-fx-background-color: #eeeeee; -fx-border-color: #cecece; -fx-background-radius: 8; -fx-border-radius: 8;" />
                </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="19.0" prefWidth="800.0" spacing="50.0">
-               <children>
-                  <MFXButton minHeight="46.0" minWidth="100.0" onAction="#cancelClicked" style="-fx-background-color: gray;" text="Cancel" textFill="WHITE">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </MFXButton>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>
-   </center>
-</BorderPane>
+      <HBox alignment="CENTER" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <MFXButton id="button" onAction="#newEdgeClicked" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #21357E; -fx-background-radius: 5;" text="New Edge" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </MFXButton>
+            <MFXButton id="button" layoutX="57.0" layoutY="12.0" onAction="#deleteClicked" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: E89F55; -fx-background-radius: 5;" text="Delete Edge" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </MFXButton>
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label id="mapEditorPopupTitle" fx:id="bigText" text="Edges" textFill="#333333" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <MFXButton id="button" onAction="#cancelClicked" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #898989; -fx-background-radius: 5;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </MFXButton>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </HBox>
+   </children>
+</GridPane>

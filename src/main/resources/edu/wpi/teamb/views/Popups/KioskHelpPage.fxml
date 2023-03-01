@@ -27,7 +27,7 @@
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" percentWidth="12.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" percentHeight="17.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -39,35 +39,38 @@
                <children>
                   <MFXScrollPane fitToWidth="true" prefWidth="450.0" style="-fx-background-color: fcfcfc;" VBox.vgrow="ALWAYS">
                      <VBox.margin>
-                        <Insets top="30.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                      <content>
                         <VBox prefWidth="599.0">
                            <children>
-                              <Label text="Service Requests: Fill out the required form. Take note that all of the required fields need to be filled out before the form can be submitted. You can also view your previously submitted requests via the labeled button." wrapText="true">
+                              <Label text="This page controls what is displayed on the kiosks around the hospital. The kiosks will show any recent moves along with a custom message." wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </Label>
-                              <Label layoutX="20.0" layoutY="20.0" text="Map Editor: Click on a node to select it and view it. When you have a node selected, you can choose the to edit the node. You can also create, delete, and modify locations by clicking on the location buttons on the top-left of the page." wrapText="true">
+                              <Label layoutX="20.0" layoutY="169.0" text="Start by selecting a move from the dropdown labelled 'Select Move' on the left. Next, add a message that will be displayed with the move and hit the 'Add to Kiosk' button." wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" />
+                                    <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label layoutX="20.0" layoutY="63.0" prefWidth="493.0" text="Pathfinding: Select two nodes to find the fastest path between them." wrapText="true">
+                              <Label layoutX="20.0" layoutY="63.0" prefWidth="493.0" text="The move to be displayed will then show up in the table on the right. You can preview what this move will look like on a kiosk by clicking the row it is on and clicking the 'Preview' button." wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </Label>
                            </children>
                            <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" />
                            </padding>
                         </VBox>
                      </content>
@@ -76,7 +79,7 @@
             </VBox>
             <VBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="1">
                <children>
-                  <Label text="Help" textOverrun="CLIP">
+                  <Label text="Kiosk Help" textOverrun="CLIP">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>

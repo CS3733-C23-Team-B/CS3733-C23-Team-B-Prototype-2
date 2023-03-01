@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" prefHeight="633.0" prefWidth="1309.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.CreateAccountController">
+<GridPane alignment="CENTER" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Profile.CreateAccountController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" percentWidth="23.0" prefWidth="192.3999481201172" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="54.0" />
@@ -42,7 +42,7 @@
          <children>
             <VBox alignment="TOP_CENTER" GridPane.rowIndex="1">
                <children>
-                  <MFXButton id="createAccountButton" fx:id="backButton" onAction="#backButtonClicked" prefHeight="35.0" prefWidth="86.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" stylesheets="@../../../../../css/style.css" text="Back" textFill="WHITE">
+                  <MFXButton id="createAccountButton" fx:id="backButton" graphicTextGap="12.0" onAction="#backButtonClicked" prefHeight="35.0" prefWidth="86.0" style="-fx-background-color: #898989; -fx-background-radius: 8;" stylesheets="@../../../../../css/style.css" text="Back" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -76,7 +76,7 @@
                               <Font name="System Italic" size="18.0" />
                            </font>
                         </Label>
-                        <MFXTextField id="createAccountBody" fx:id="firstNameField" floatMode="ABOVE" prefHeight="55.0" prefWidth="375.0" promptText="First Name" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXTextField id="createAccountBody" fx:id="firstNameField" floatMode="ABOVE" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="375.0" promptText="First Name" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -84,54 +84,54 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                            <textFill>
-                              <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
+                              <Color />
                            </textFill>
                         </MFXTextField>
-                        <MFXTextField id="createAccountBody" fx:id="lastNameField" floatMode="ABOVE" prefHeight="55.0" prefWidth="375.0" promptText="Last Name" style="-fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXTextField id="createAccountBody" fx:id="lastNameField" floatMode="ABOVE" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="375.0" promptText="Last Name" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="17.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="12.0" />
                            </VBox.margin>
                            <textFill>
-                              <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
+                              <Color />
                            </textFill>
                         </MFXTextField>
-                        <MFXTextField id="createAccountBody" fx:id="emailField" floatMode="ABOVE" prefHeight="55.0" prefWidth="375.0" promptText="Email" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXTextField id="createAccountBody" fx:id="emailField" floatMode="ABOVE" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="375.0" promptText="Email" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="12.0" />
                            </VBox.margin>
                            <textFill>
-                              <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
+                              <Color />
                            </textFill>
                         </MFXTextField>
-                        <MFXTextField id="createAccountBody" fx:id="usernameField" floatMode="ABOVE" prefHeight="55.0" prefWidth="375.0" promptText="Username" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXTextField id="createAccountBody" fx:id="usernameField" floatMode="ABOVE" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="375.0" promptText="Username" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="12.0" />
                            </VBox.margin>
                            <textFill>
-                              <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
+                              <Color />
                            </textFill>
                         </MFXTextField>
-                        <MFXPasswordField id="createAccountBody" fx:id="passwordField" borderGap="0.0" floatMode="ABOVE" floatingTextGap="0.0" graphicTextGap="0.0" measureUnitGap="0.0" prefHeight="55.0" prefWidth="375.0" promptText="Password" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
+                        <MFXPasswordField id="createAccountBody" fx:id="passwordField" borderGap="0.0" floatMode="ABOVE" floatingTextGap="0.0" graphicTextGap="0.0" maxWidth="1.7976931348623157E308" measureUnitGap="0.0" prefHeight="55.0" prefWidth="375.0" promptText="Password" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: #e8e8e8; -fx-border-color: #898989; -fx-border-width: 1.5;" stylesheets="@../../../../../css/style.css">
                            <VBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="12.0" />
                            </VBox.margin>
                            <font>
                               <Font size="18.0" />
                            </font>
                            <textFill>
-                              <Color red="0.5372549295425415" green="0.5372549295425415" blue="0.5372549295425415" opacity="0.8700000047683716" />
+                              <Color />
                            </textFill>
                         </MFXPasswordField>
-                        <MFXButton id="createAccountButton" minHeight="46.0" minWidth="100.0" onAction="#submitClicked" prefHeight="50.0" prefWidth="375.0" style="-fx-background-color: #21357E; -fx-background-radius: 6;" stylesheets="@../../../../../css/style.css" text="Create Account" textFill="WHITE">
+                        <MFXButton id="createAccountButton" maxWidth="1.7976931348623157E308" minHeight="36.0" minWidth="100.0" onAction="#submitClicked" prefHeight="36.0" prefWidth="302.0" style="-fx-background-color: #21357E; -fx-background-radius: 6;" stylesheets="@../../../../../css/style.css" text="Create Account" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>

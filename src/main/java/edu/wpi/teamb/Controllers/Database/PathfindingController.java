@@ -12,6 +12,7 @@ import io.github.palexdev.materialfx.controls.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.*;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import javafx.animation.Interpolator;
@@ -58,9 +59,9 @@ public class PathfindingController {
   @FXML MFXCheckbox avoidStairsCheckBox;
   @FXML MFXCheckbox showLocationsCheckBox;
   @FXML MFXButton pathfind;
-
   @FXML Pane frontFloorr;
   @FXML GridPane scrollPane;
+  @FXML GridPane front;
   private final ObjectProperty<Circle> selectedCircle = new SimpleObjectProperty<>();
   private AnchorPane aPane = new AnchorPane();
   private AnchorPane linesPlane = new AnchorPane();
@@ -69,6 +70,7 @@ public class PathfindingController {
   AnchorPane currentPopUp;
   private boolean pathNotFound = false;
   private boolean pathingByClick = false;
+  private boolean pathFound = false;
   private static Node currentNode;
   private Circle currentDot;
 
@@ -83,6 +85,7 @@ public class PathfindingController {
   private String startID;
   private String endID;
   @FXML TextField pathNotFoundTextField;
+  private List<String> floors = new ArrayList<>();
   private Map<String, String> floorMap = new HashMap<>();
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
@@ -93,16 +96,18 @@ public class PathfindingController {
   List<Node> nodePath;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
-
-  @Getter @FXML private Pane forms;
+  @Getter @FXML private AnchorPane dir;
+  @Getter @FXML private AnchorPane forms;
+  private String[] directions;
   private static PathfindingController instance;
+  private Label floorDirections;
 
   /** Initializes the dropdown menus */
   public void initialize() {
     instance = this;
-    moveMap = DBSession.getIDMoves(new Date(123, 0, 1));
+    moveMap = DBSession.getIDMoves(new Date());
     Pathfinding.refreshData();
-    Pathfinding.setDate(new Date(123, 0, 1));
+    Pathfinding.setDate(new Date());
 
     floorMap.put("Lower Level 2", "L2");
     floorMap.put("Lower Level 1", "L1");
@@ -121,6 +126,13 @@ public class PathfindingController {
     searchTypeMap.put("A* Search", SearchType.A_STAR);
     searchTypeMap.put("Breadth-first Search", SearchType.BREADTH_FIRST);
     searchTypeMap.put("Depth-first Search", SearchType.DEPTH_FIRST);
+
+    floors.add("L2");
+    floors.add("L1");
+    floors.add("G");
+    floors.add("1");
+    floors.add("2");
+    floors.add("3");
 
     floorCombo.setItems(
         FXCollections.observableArrayList(
@@ -176,6 +188,8 @@ public class PathfindingController {
         () -> {
           changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
         });
+
+    datePicker.setPromptText(currentDate.toString());
   }
 
   public void setNodeColors() {
@@ -207,6 +221,8 @@ public class PathfindingController {
     nodeMap.clear();
 
     image = imageMap.get(floor);
+
+    if (pathFound) floorDirections.setText(directions[floors.indexOf(currentFloor)]);
 
     image.toFront();
     image.setOnMouseClicked(
@@ -253,9 +269,10 @@ public class PathfindingController {
             displayPopUp(newSelection);
           }
         });
-    drawLines();
+    if (pathNodePairs != null) drawLines();
     frontFloorr.toFront();
     scrollPane.toFront();
+    front.toFront();
     Platform.runLater(() -> pane.centreOn(p));
   }
 
@@ -274,7 +291,7 @@ public class PathfindingController {
     }
     if (animationTimeline != null) animationTimeline.stop();
     animationTimeline = null;
-    placeAnimatedLine(floorPathPairs);
+    if (floorPathPairs.size() > 0) placeAnimatedLine(floorPathPairs);
   }
 
   public void displayPopUp(Circle dot) {
@@ -383,24 +400,37 @@ public class PathfindingController {
 
     PathfindingContext pContext = new PathfindingContext(pathfindable);
     ArrayList<String> path = pContext.getShortestPath(start, end);
-    String[] directions = Pathfinding.getPathDirections(path);
-    for (int i = 0; i < directions.length; i++) {
-      System.out.println(i + ":\n" + directions[i]);
-    }
 
     if (path == null) {
-      System.out.println("PATH NOT FOUND");
-      pathNotFoundTextField.setVisible(true);
-      pathNotFound = true;
-      pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
+      pathNotFound();
       return;
     }
+
+    directions = Pathfinding.getPathDirections(path);
+
+    Map<String, Node> nodes = DBSession.getAllNodes();
+    forms.getChildren().clear();
+
+    floorDirections = new Label();
+    //    MFXScrollPane direction = new MFXScrollPane();
+    //    Pane bruh = new Pane();
+    //    floorDirections.setPrefHeight(250);
+    //    floorDirections.setPrefWidth(265);
+
+    // HBox hbox = new HBox();
+    // hbox.getChildren().add(floorDirections);
+    // hbox.setAlignment(Pos.CENTER);
+
+    forms.getChildren().add(floorDirections);
+
+    pathFound = true;
+    scrollPane.setVisible(true);
 
     System.out.println(path);
     Map<String, Move> moves = Pathfinding.getMovesLN();
     startID = moves.get(start).getNode().getNodeID();
     endID = moves.get(end).getNode().getNodeID();
-    Map<String, Node> nodes = DBSession.getAllNodes();
+    // Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
 
@@ -414,6 +444,8 @@ public class PathfindingController {
             if (value.equals(startNode.getFloor())) floorCombo.setValue(key);
           });
     }
+
+    floorDirections.setText(directions[floors.indexOf(currentFloor)]);
 
     List<Node> nodePath = new ArrayList<>();
     for (String s : path) {
@@ -447,6 +479,19 @@ public class PathfindingController {
     // Update the text field position to be above the center of the path
     frontFloorr.toFront();
     scrollPane.toFront();
+    front.toFront();
+  }
+
+  public void pathNotFound() {
+    System.out.println("PATH NOT FOUND");
+    scrollPane.setVisible(false);
+    pathNotFoundTextField.setVisible(true);
+    if (animationTimeline != null) animationTimeline.stop();
+    animationTimeline = null;
+    linesPlane.getChildren().clear();
+    pathNotFound = true;
+    pathFound = false;
+    pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
   }
 
   private void showButton(MFXButton button) {
@@ -504,11 +549,11 @@ public class PathfindingController {
           if (pathingByClick) {
             Node n = nodeMap.get(dot);
             String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
-            endLoc.setValue(ln);
+            endLoc.clearSelection();
+            if (ln != null) endLoc.setValue(ln);
             pathingByClick = false;
             try {
               findPath();
-              scrollPane.setVisible(false);
             } catch (SQLException ex) {
               throw new RuntimeException(ex);
             }
@@ -539,11 +584,9 @@ public class PathfindingController {
     }
 
     vbox.setSpacing(5);
-    //    vbox.setAlignment(Pos.CENTER);
     vbox.setPadding(new Insets(10, 10, 10, 10));
 
     HBox hbox = new HBox();
-    // hbox.getChildren().add(editButton);
     hbox.setAlignment(Pos.CENTER);
     vbox.getChildren().add(hbox);
     aPane.getChildren().add(popPane);
@@ -553,10 +596,12 @@ public class PathfindingController {
     if (animationTimeline != null) animationTimeline.stop();
     animationTimeline = null;
     linesPlane.getChildren().clear();
+
     pathingByClick = true;
     Node n = nodeMap.get(currentDot);
     String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
-    startLoc.setValue(ln);
+    startLoc.clearSelection();
+    if (ln != null) startLoc.setValue(ln);
     scrollPane.setVisible(true);
 
     forms.getChildren().clear();
@@ -581,7 +626,7 @@ public class PathfindingController {
     animationTimeline =
         new Timeline(
             new KeyFrame(
-                Duration.millis(200),
+                Duration.millis(400),
                 event -> {
                   Group lineGroup = new Group();
                   linesPlane.getChildren().add(lineGroup);
@@ -593,7 +638,7 @@ public class PathfindingController {
 
                   PathTransition transition = new PathTransition();
                   transition.setInterpolator(Interpolator.LINEAR);
-                  transition.setDuration(Duration.seconds(nodePairs.size()));
+                  transition.setDuration(Duration.seconds(nodePairs.size() / 2));
                   transition.setNode(lineGroup);
                   transition.setPath(path);
                   transition.setCycleCount(Timeline.INDEFINITE);
@@ -605,16 +650,37 @@ public class PathfindingController {
 
   private Path getPath(List<List<Node>> nodePairs) {
     Path path = new Path();
-    if (nodePairs.size() > 0)
+    if (nodePairs.size() > 0) {
       path.getElements()
           .add(
               new MoveTo(nodePairs.get(0).get(0).getXCoord(), nodePairs.get(0).get(0).getYCoord()));
-    for (List<Node> pair : nodePairs) {
+    }
+    for (int i = 0; i < nodePairs.size() - 1; i++) {
+      List<Node> pair = nodePairs.get(i);
+      Node start = pair.get(0);
       Node end = pair.get(1);
       int endX = end.getXCoord();
       int endY = end.getYCoord();
-      path.getElements().add(new LineTo(endX, endY));
+      if (end.getNodeID() == nodePairs.get(i + 1).get(0).getNodeID()) {
+        path.getElements().add(new LineTo(endX, endY));
+      } else {
+        path.getElements()
+            .add(
+                new LineTo(
+                    nodePairs.get(i).get(1).getXCoord(), nodePairs.get(i).get(1).getYCoord()));
+        path.getElements()
+            .add(
+                new MoveTo(
+                    nodePairs.get(i + 1).get(0).getXCoord(),
+                    nodePairs.get(i + 1).get(0).getYCoord()));
+      }
     }
+    path.getElements()
+        .add(
+            new LineTo(
+                nodePairs.get(nodePairs.size() - 1).get(1).getXCoord(),
+                nodePairs.get(nodePairs.size() - 1).get(1).getYCoord()));
+
     return path;
   }
 

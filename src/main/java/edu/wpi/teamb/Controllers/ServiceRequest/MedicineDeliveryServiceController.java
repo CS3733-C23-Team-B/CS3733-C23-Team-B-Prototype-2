@@ -30,11 +30,11 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     // Create list of components; additionalNotesField MUST be last
     Control[] ctrl = {
       urgencyBox,
-      assignedStaffBox,
       locationBox,
       typeOfMedicineField,
       dosageField,
       patientIDField,
+      assignedStaffBox,
       additionalNotesField
     };
     components = new ArrayList<>(Arrays.asList(ctrl));
@@ -71,7 +71,7 @@ public class MedicineDeliveryServiceController extends BaseRequestController {
     request.setLocation(destination.toString());
 
     request.setMedicineType(this.typeOfMedicineField.getText());
-    request.setDoasage(this.dosageField.getText());
+    request.setDosage(this.dosageField.getText());
     request.setPatientID(this.patientIDField.getText());
 
     request.setRequestType(RequestType.MEDICINE);

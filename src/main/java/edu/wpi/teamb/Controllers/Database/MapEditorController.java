@@ -1,9 +1,9 @@
 package edu.wpi.teamb.Controllers.Database;
 
 import edu.wpi.teamb.Bapp;
-import edu.wpi.teamb.Controllers.Profile.SigninController;
 import edu.wpi.teamb.Database.*;
 import edu.wpi.teamb.Database.DAO.MapDAO;
+import edu.wpi.teamb.Database.DAO.RequestDAO;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Popup;
 import edu.wpi.teamb.Navigation.Screen;
@@ -47,6 +47,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import lombok.Getter;
+import lombok.Setter;
 import net.kurobako.gesturefx.GesturePane;
 
 public class MapEditorController {
@@ -74,7 +75,10 @@ public class MapEditorController {
   private boolean creatingEdge;
   private boolean context = false;
   private Circle edgeNode1, edgeNode2;
-  private static MapEditorController instance;
+
+  public static MapEditorController instance;
+
+  @Getter @Setter public String currentLoc;
   private Map<String, List<Move>> moveMap;
   @FXML MFXFilterComboBox<String> floorCombo;
   private Map<String, String> floorMap = new HashMap<>();
@@ -181,10 +185,12 @@ public class MapEditorController {
 
     aPane.setOnMouseReleased(
         e -> {
-          if (selectDragged) aPane.getChildren().remove(selectionRectangle);
-          if (selectDragged) setSelectedDots();
+          if (selectDragged) {
+            aPane.getChildren().remove(selectionRectangle);
+            setSelectedDots();
+          } else pane.setGestureEnabled(true);
+
           selectionRectangle = null;
-          if (!context) pane.setGestureEnabled(true);
           selectDragged = false;
         });
 
@@ -221,12 +227,6 @@ public class MapEditorController {
           }
         });
     pane.zoomTo(-5000, -3000, Point2D.ZERO);
-    Platform.runLater(
-        () -> {
-          if (SigninController.currentUser.getAdmin()) {}
-
-          changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
-        });
 
     LocalDate currentDate = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
@@ -264,6 +264,19 @@ public class MapEditorController {
           editClicked();
         });
 
+    MenuItem dotEdge = new MenuItem("Create Edge");
+    dotEdge.setOnAction(
+        e -> {
+          currentNode = nodeMap.get(currentDot);
+          try {
+            newEdgeClicked();
+          } catch (IOException ex) {
+            throw new RuntimeException(ex);
+          }
+          edgeNode1 = currentDot;
+          currentDot.setFill(Color.GOLD);
+        });
+
     MenuItem dotsDelete = new MenuItem("Delete All");
     dotsDelete.setOnAction(
         e -> {
@@ -271,7 +284,16 @@ public class MapEditorController {
           MapDAO.refreshIDMoves(new java.util.Date(System.currentTimeMillis()));
         });
 
-    dotContextMenu.getItems().addAll(dotEdit, dotDelete);
+    MenuItem dotsStraighten = new MenuItem("Straighten");
+    dotsStraighten.setOnAction(e -> straightenNodes());
+
+    MenuItem dotsHorizontal = new MenuItem("Align Horizontally");
+    dotsHorizontal.setOnAction(e -> horizontalNodes());
+
+    MenuItem dotsVertical = new MenuItem("Align Vertically");
+    dotsVertical.setOnAction(e -> verticalNodes());
+
+    dotContextMenu.getItems().addAll(dotEdit, dotEdge, dotDelete);
     dotContextMenu.setOnShown(
         e -> {
           pane.setGestureEnabled(false);
@@ -283,7 +305,7 @@ public class MapEditorController {
           context = false;
         });
 
-    dotsContextMenu.getItems().add(dotsDelete);
+    dotsContextMenu.getItems().addAll(dotsStraighten, dotsHorizontal, dotsVertical, dotsDelete);
     dotsContextMenu.setOnShown(
         e -> {
           pane.setGestureEnabled(false);
@@ -298,6 +320,12 @@ public class MapEditorController {
     contextMenus.add(dotContextMenu);
     contextMenus.add(dotsContextMenu);
     contextMenus.add(imageContextMenu);
+
+    // leave this at the end
+    Platform.runLater(
+        () -> {
+          changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
+        });
   }
 
   private void setActive(MFXButton button) {
@@ -364,11 +392,42 @@ public class MapEditorController {
       t = moves.get(0).getLocationName().getLongName();
       if (moves.size() > 1) t += "\n" + moves.get(1).getLocationName().getLongName();
     }
+    this.getInstance().setCurrentLoc(t);
     Text loc = new Text(t);
 
     Button editButton = new Button("Edit");
-    editButton.setStyle("-fx-background-color: #003AD6; -fx-text-fill: white;");
-    editButton.setOnAction(e -> editClicked());
+    editButton.setStyle("-fx-background-color: #21357E; -fx-text-fill: #FCFCFC;");
+    editButton.setOnAction(
+        (eventAction) -> {
+          try {
+            editClicked();
+          } catch (Exception e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    HBox hboxMain = new HBox();
+    hboxMain.getChildren().add(editButton);
+    hboxMain.setAlignment(Pos.CENTER_LEFT);
+
+    RequestDAO.refreshRequests();
+    if (t != "NO MOVES" && !RequestDAO.getAllRequests(t).isEmpty()) {
+      Button statsButton = new Button("Request Stats");
+      statsButton.setStyle("-fx-background-color: #E89F55; -fx-text-fill: #FCFCFC;");
+      statsButton.setOnAction(
+          (eventAction) -> {
+            try {
+              statsButtonClicked();
+            } catch (Exception e) {
+              throw new RuntimeException(e);
+            }
+          });
+      HBox hboxChild = new HBox();
+      hboxChild.getChildren().add(statsButton);
+      hboxChild.setAlignment(Pos.CENTER_RIGHT);
+      HBox.setHgrow(hboxChild, Priority.ALWAYS);
+      hboxMain.getChildren().add(hboxChild);
+    }
     vbox.setSpacing(5);
     //    vbox.setAlignment(Pos.CENTER);
     vbox.setPadding(new Insets(10, 10, 10, 10));
@@ -377,10 +436,7 @@ public class MapEditorController {
     vbox.getChildren().add(pos);
     vbox.getChildren().add(loc);
 
-    HBox hbox = new HBox();
-    hbox.getChildren().add(editButton);
-    hbox.setAlignment(Pos.CENTER);
-    vbox.getChildren().add(hbox);
+    vbox.getChildren().add(hboxMain);
 
     currentNode = node;
     drawEdges();
@@ -507,14 +563,16 @@ public class MapEditorController {
             }
           } else if (e.getButton().equals(MouseButton.SECONDARY)) {
             // Context Menu Requested
-            if (currentDots.isEmpty()) dotContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
-            else dotsContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
             if (currentDot != null) {
               currentDot.setFill(Bapp.blue);
               clearPopUp();
             }
-            currentDot = dot;
-            currentDot.setFill(Color.GOLD);
+            if (!currentDots.contains(dot)) {
+              handleClick();
+              dotContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
+              currentDot = dot;
+              currentDot.setFill(Color.GOLD);
+            } else dotsContextMenu.show(aPane, e.getScreenX(), e.getScreenY());
           }
           dragged = false;
         });
@@ -693,6 +751,9 @@ public class MapEditorController {
     currentDot.setCenterY(currentNode.getYCoord());
     nodeMap.replace(currentDot, currentNode);
 
+    removeEdges();
+    drawEdges();
+
     if (currentPopUp != null) {
       ObservableList vboxChildren = ((VBox) (currentPopUp.getChildren().get(0))).getChildren();
       Text id = (Text) vboxChildren.get(0);
@@ -784,6 +845,10 @@ public class MapEditorController {
     Popup.displayPopup(Screen.MAP_EDITOR_HELP_POP_UP);
   }
 
+  public void statsButtonClicked() {
+    Popup.displayPopup(Screen.MAP_EDITOR_LOCATION_STATS_POPUP);
+  }
+
   public void drawEdges() {
     List<String> edges = Pathfinding.getDirectPaths(currentNode.getNodeID());
     Map<String, Node> map = DBSession.getAllNodes();
@@ -833,6 +898,13 @@ public class MapEditorController {
     } else if (e.getCode().equals(KeyCode.S)) straightenNodes();
     else if (e.getCode().equals(KeyCode.H)) horizontalNodes();
     else if (e.getCode().equals(KeyCode.V)) verticalNodes();
+    else if (e.getCode().equals(KeyCode.E)) {
+      try {
+        newEdgeClicked();
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    } else if (e.getCode().equals(KeyCode.ESCAPE)) cancelClickEdge();
   }
 
   private void horizontalNodes() {
@@ -965,8 +1037,13 @@ public class MapEditorController {
         e -> {
           if (e.getButton().equals(MouseButton.SECONDARY)) return;
           if (e.isControlDown()) {
-            currentDots.add(c);
-            c.setFill(Color.GOLD);
+            if (currentDots.contains(c)) {
+              currentDots.remove(c);
+              c.setFill(Bapp.blue);
+            } else {
+              currentDots.add(c);
+              c.setFill(Color.GOLD);
+            }
             return;
           }
           if (currentDot != null) currentDot.setFill(Bapp.blue);

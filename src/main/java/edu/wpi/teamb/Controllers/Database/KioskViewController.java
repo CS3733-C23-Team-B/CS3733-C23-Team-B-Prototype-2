@@ -1,9 +1,10 @@
 package edu.wpi.teamb.Controllers.Database;
 
+import static javafx.scene.paint.Color.WHITE;
+
 import edu.wpi.teamb.Bapp;
-import edu.wpi.teamb.Database.DBSession;
-import edu.wpi.teamb.Database.KioskMove;
-import edu.wpi.teamb.Database.Node;
+import edu.wpi.teamb.Database.*;
+import edu.wpi.teamb.Database.DAO.MapDAO;
 import edu.wpi.teamb.Navigation.Navigation;
 import edu.wpi.teamb.Navigation.Screen;
 import edu.wpi.teamb.Pathfinding.*;
@@ -16,20 +17,26 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 public class KioskViewController {
+  public HBox floorH;
   private String currentFloor;
   private AnchorPane aPane = new AnchorPane();
   private GesturePane pane;
@@ -49,89 +56,140 @@ public class KioskViewController {
   @FXML HBox frontCenter;
   @FXML Label frontLabel;
   @FXML VBox frontBox2;
-  Map<Circle, Node> nodeMap;
-
+  @FXML Label floorLabel;
+  @FXML Label rightLoc;
+  @FXML Label leftLoc;
+  Map<Circle, Node> nodeMap = new HashMap<>();
+  private Map<String, String> floors = new HashMap<>();
+  List<KioskMove> kioskMoveList;
   Timeline timeline;
 
   public void initialize() throws IOException, SQLException {
     AtomicInteger index = new AtomicInteger(0);
-    List<KioskMove> kioskMoveList;
     kioskMoveList = DBSession.getAllKioskMoves();
-    imageMap.put("L2", Bapp.lowerlevel2);
-    imageMap.put("L1", Bapp.lowerlevel);
-    imageMap.put("G", Bapp.groundfloor);
-    imageMap.put("1", Bapp.firstfloor);
-    imageMap.put("2", Bapp.secondfloor);
-    imageMap.put("3", Bapp.thirdfloor);
+    if (kioskMoveList.size() > 0) {
 
-    nodeMap = new HashMap<>();
-    nodeMap.clear();
-    pane = new GesturePane();
-    pane.setPrefHeight(714);
-    pane.setPrefWidth(1168);
-    pane.setContent(aPane);
-    center.add(pane, 0, 0);
-    pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
-    pane.toBack();
-    moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
-    frontLabel.setText(
-        kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
-    findPath(
-        kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
-        kioskMoveList.get(index.get()).getNextNode().getNodeID());
+      KioskLocation l = MapDAO.getKioskLocation();
 
-    frontBox2.toFront();
-    frontRight.toFront();
-    frontLeft.toFront();
-    frontCenter.toFront();
+      if (l.getLocationName() != null) {
+        Map<String, Move> moves = DBSession.getLNMoves(new Date());
+        Node n = moves.get(l.getLocationName().getLongName()).getNode();
+        List<String> direct = Pathfinding.getDirectPaths(n.getNodeID());
+        Map<String, List<Move>> pathMoves = DBSession.getIDMoves(new Date());
+        rightLoc.setText(l.getLocationName().getLongName());
+        leftLoc.setText(l.getLocationName().getLongName());
+        if (pathMoves != null && direct.size() > 1) {
+          String l1 = pathMoves.get(direct.get(0)).get(0).getLocationName().getLongName();
+          String l2 = pathMoves.get(direct.get(1)).get(0).getLocationName().getLongName();
+          rightLoc.setText(l1);
+          leftLoc.setText(l2);
+        }
+      }
 
-    // Set up the slide-in and slide-out animations
-    TranslateTransition slideOut = new TranslateTransition(Duration.seconds(3), frontBox2);
-    slideOut.setToY(-300);
+      imageMap.put("L2", Bapp.lowerlevel2);
+      imageMap.put("L1", Bapp.lowerlevel);
+      imageMap.put("G", Bapp.groundfloor);
+      imageMap.put("1", Bapp.firstfloor);
+      imageMap.put("2", Bapp.secondfloor);
+      imageMap.put("3", Bapp.thirdfloor);
 
-    TranslateTransition slideIn = new TranslateTransition(Duration.seconds(3), frontBox2);
-    slideIn.setToY(30);
+      floors.put("L1", "Lower Level 1");
+      floors.put("L2", "Lower Level 2");
+      floors.put("G", "Ground Floor");
+      floors.put("1", "First Floor");
+      floors.put("2", "Second Floor");
+      floors.put("3", "Third Floor");
 
-    slideOut.setOnFinished(
-        evt -> {
-          if (index.get() >= kioskMoveList.size()) {
-            index.set(0);
-          }
-          moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
-          frontLabel.setText(
-              kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
-          try {
-            findPath(
-                kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
-                kioskMoveList.get(index.get()).getNextNode().getNodeID());
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-          Platform.runLater(
-              () -> {
-                slideIn.play();
-              });
-        });
+      nodeMap = new HashMap<>();
+      nodeMap.clear();
+      pane = new GesturePane();
+      pane.setPrefHeight(714);
+      pane.setPrefWidth(1168);
+      pane.setContent(aPane);
+      center.add(pane, 0, 0);
+      pane.setScrollBarPolicy(GesturePane.ScrollBarPolicy.NEVER);
+      pane.toBack();
+      moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
+      frontLabel.setText(
+          kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
+      findPath(
+          kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
+          kioskMoveList.get(index.get()).getNextNode().getNodeID());
 
-    // Schedule a task to update the index and slide in the new message and image every 10 seconds
+      frontBox2.toFront();
+      frontRight.toFront();
+      frontLeft.toFront();
+      floorH.toFront();
+      frontCenter.toFront();
 
-    timeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.seconds(10),
-                event -> {
-                  index.getAndIncrement();
-                  Platform.runLater(
-                      () -> {
-                        slideOut.play();
-                      });
-                }));
-    timeline.setCycleCount(Timeline.INDEFINITE);
-    timeline.play();
-    Platform.runLater(
-        () -> {
-          changeFloorLater(kioskMoveList.get(index.get()).getPrevNode());
-        });
+      // Set up the slide-in and slide-out animations
+      TranslateTransition slideOut = new TranslateTransition(Duration.seconds(3), frontBox2);
+      slideOut.setToY(-300);
+
+      TranslateTransition slideIn = new TranslateTransition(Duration.seconds(3), frontBox2);
+      slideIn.setToY(30);
+
+      slideOut.setOnFinished(
+          evt -> {
+            if (index.get() >= kioskMoveList.size()) {
+              index.set(0);
+            }
+            moveMessage.setText(kioskMoveList.get(index.get()).getMessage());
+            frontLabel.setText(
+                kioskMoveList.get(index.get()).getLocationName().getLongName() + " is being moved");
+            try {
+              findPath(
+                  kioskMoveList.get(index.get()).getPrevNode().getNodeID(),
+                  kioskMoveList.get(index.get()).getNextNode().getNodeID());
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+            Platform.runLater(
+                () -> {
+                  slideIn.play();
+                });
+          });
+
+      // Schedule a task to update the index and slide in the new message and image every 10 seconds
+
+      timeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(10),
+                  event -> {
+                    index.getAndIncrement();
+                    Platform.runLater(
+                        () -> {
+                          slideOut.play();
+                        });
+                  }));
+      timeline.setCycleCount(Timeline.INDEFINITE);
+      timeline.play();
+      EventHandler<MouseEvent> mouseMoveHandler =
+          event -> {
+            timeline.stop();
+            timeline.getKeyFrames().clear();
+            timeline
+                .getKeyFrames()
+                .add(
+                    new KeyFrame(
+                        Duration.seconds(10),
+                        e -> {
+                          index.getAndIncrement();
+                          Platform.runLater(
+                              () -> {
+                                slideOut.play();
+                              });
+                        }));
+            timeline.play();
+          };
+      aPane.setOnMouseMoved(mouseMoveHandler);
+
+      Platform.runLater(
+          () -> {
+            changeFloorLater(kioskMoveList.get(index.get()).getPrevNode());
+          });
+    }
   }
 
   private void changeFloorLater(Node n) {
@@ -150,7 +208,7 @@ public class KioskViewController {
     aPane.getChildren().add(image);
     aPane.getChildren().add(linesPlane);
     linesPlane.getChildren().clear();
-
+    floorLabel.setText(floors.get(floor));
     for (Node value : nodes.values()) {
       if (value.getFloor().equals(currentFloor) && path.contains(value.getNodeID())) {
         Circle dot = placeNode(value);
@@ -168,6 +226,7 @@ public class KioskViewController {
     frontBox2.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
     frontCenter.toFront();
 
     Platform.runLater(() -> pane.centreOn(p));
@@ -175,11 +234,15 @@ public class KioskViewController {
 
   private Circle placeNode(Node node) {
     Circle dot = new Circle(node.getXCoord(), node.getYCoord(), 10, Bapp.blue);
+    if (path.get(0).equals(node.getNodeID())) dot.setFill(Color.GREEN);
+    else if (path.get(path.size() - 1).equals(node.getNodeID())) dot.setFill(Color.RED);
+    else dot.setVisible(false);
     aPane.getChildren().add(dot);
     aPane.toFront();
     frontBox2.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
     frontCenter.toFront();
     if (buttonMap.get(node) != null) {
       showButton(buttonMap.get(node));
@@ -189,24 +252,43 @@ public class KioskViewController {
   }
 
   public void openMap() throws IOException {
-    timeline.stop();
+    if (!kioskMoveList.isEmpty()) {
+      timeline.getKeyFrames().clear();
+      timeline.stop();
+      timeline = null;
+    }
     final String filename = Screen.PATHFINDING.getFilename();
     final BorderPane rootPane = Bapp.getRootPane();
+    final StackPane stackPane = Bapp.getStackPane();
     final var r = Bapp.class.getResource(filename);
     final FXMLLoader loader = new FXMLLoader(r);
     final Parent root = loader.load();
 
-    final String filename1 = Screen.SIGN_IN.getFilename();
+    final String filename1 = Screen.KIOSK_VIEW.getFilename();
     final var r1 = Bapp.class.getResource(filename1);
     final FXMLLoader loader1 = new FXMLLoader(r1);
     final Parent root1 = loader1.load();
+
+    HBox h = new HBox();
     MFXButton b = new MFXButton();
-    b.setText("Back to Sign In");
+
+    b.setText("Back to Kiosk");
+    b.setFont(new Font("Nunito", 12));
+    b.setTextFill(WHITE);
+    b.setStyle("-fx-background-color: #E89F55; -fx-background-radius: 5; -fx-font-weight: bold");
+    b.setPrefHeight(30);
+    b.setPrefWidth(122);
+
+    h.setAlignment(Pos.TOP_RIGHT);
+    h.setPadding(new Insets(10, 10, 10, 10));
+    h.setPickOnBounds(false);
+    h.getChildren().add(b);
 
     Platform.runLater(
         () -> {
           rootPane.setCenter(root);
-          rootPane.setTop(b);
+          // rootPane.setTop(h);
+          stackPane.getChildren().add(h);
         });
 
     b.setOnAction(
@@ -214,7 +296,8 @@ public class KioskViewController {
           Platform.runLater(
               () -> {
                 rootPane.setCenter(null);
-                rootPane.setTop(null);
+                // rootPane.setTop(null);
+                stackPane.getChildren().remove(1);
                 rootPane.setCenter(root1);
               });
         });
@@ -259,6 +342,7 @@ public class KioskViewController {
     frontCenter.toFront();
     frontRight.toFront();
     frontLeft.toFront();
+    floorH.toFront();
 
     Platform.runLater(
         () -> {
@@ -293,7 +377,11 @@ public class KioskViewController {
   }
 
   public void signIn() {
-    timeline.stop();
+    if (!kioskMoveList.isEmpty()) {
+      timeline.getKeyFrames().clear();
+      timeline.stop();
+      timeline = null;
+    }
     Navigation.navigate(Screen.SIGN_IN);
   }
 }

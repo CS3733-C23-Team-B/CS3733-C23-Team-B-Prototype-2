@@ -278,6 +278,40 @@ public class MapDAO {
     }
   }
 
+  public static void updateKioskLocation(KioskLocation kl) {
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx1 = session.beginTransaction();
+      session.createQuery("DELETE FROM KioskLocation").executeUpdate();
+      tx1.commit();
+      Transaction tx2 = session.beginTransaction();
+      session.persist(kl);
+      tx2.commit();
+    } finally {
+      session.close();
+    }
+  }
+
+  public static KioskLocation getKioskLocation() {
+    KioskLocation kl = new KioskLocation();
+    SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
+    Session session = sf.openSession();
+    try {
+      Transaction tx = session.beginTransaction();
+      Query q = session.createQuery("FROM KioskLocation", KioskLocation.class);
+      if (!q.list().isEmpty()) {
+        kl = (KioskLocation) q.list().get(0);
+      }
+      tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+      return kl;
+    }
+  }
+
   public static void addEdge(Edge ed) {
     SessionFactory sf = SessionGetter.CONNECTION.getSessionFactory();
     Session session = sf.openSession();

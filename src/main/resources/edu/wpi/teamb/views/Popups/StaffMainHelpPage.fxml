@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="633.0" prefWidth="1309.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Popups.ServiceRequestFormHelpController">
+<GridPane prefHeight="633.0" prefWidth="1309.0" style="-fx-background-color: #00000090;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamb.Controllers.Popups.MainHelpPageController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -37,41 +37,76 @@
          <children>
             <VBox fx:id="helpPage" alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: fcfcfc;" VBox.vgrow="ALWAYS">
+                  <MFXScrollPane fitToWidth="true" prefWidth="450.0" style="-fx-background-color: fcfcfc;" VBox.vgrow="ALWAYS">
                      <VBox.margin>
-                        <Insets top="30.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                      <content>
-                        <VBox prefHeight="224.0" prefWidth="820.0">
+                        <VBox prefWidth="599.0">
                            <children>
-                              <Label text="1)  To select a field to enter information, click on it with your cursor and fill in your information." wrapText="true">
+                              <Label layoutX="20.0" layoutY="20.0" text="The pages in this application and their uses are listed below:" wrapText="true">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="20.0" text="Home Dashboard:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="42.0" text="If you have made any service requests, they will appear here along with their completion status. On the left are link to new stories about the hospital. The top bar is used to navigate to different pages." wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="20.0" layoutY="20.0" text="2)  To select the choices in the drop-down menus, click on the small arrow with your cursor." wrapText="true">
+                              <Label layoutX="20.0" layoutY="42.0" text="Service Requests Systems:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Here you can request several different services by filling out a form. Take note that all of the required fields need to be filled out before the form can be submitted." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="148.0" text="Submitted Requests:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="169.0" text="Here you can see your previously submitted requests along with their specific information and completion status." wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="20.0" layoutY="63.0" text="3)  If you would like to return to the landing page, select &quot;Back&quot; at the top of the form." wrapText="true">
+                              <Label layoutX="20.0" layoutY="243.0" text="Pathfinding:" wrapText="true">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </Label>
-                              <Label layoutX="20.0" layoutY="105.0" text="4)  To clear all answers from the form, select &quot;Clear&quot; at the bottom of the form." wrapText="true">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="20.0" layoutY="148.0" minWidth="-Infinity" prefHeight="22.0" prefWidth="422.0" text="5)  If your form is complete, please select &quot;Submit.&quot;" wrapText="true">
+                              <Label layoutX="20.0" layoutY="63.0" prefWidth="493.0" text="If you need to find your way around the hospital, here you can get graphical and textual directions for some desired starting and ending locations within the hospital. " wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
                            </children>
                            <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" />
                            </padding>
                         </VBox>
                      </content>

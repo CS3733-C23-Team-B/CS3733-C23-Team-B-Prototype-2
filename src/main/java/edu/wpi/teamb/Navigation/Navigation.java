@@ -16,7 +16,9 @@ public class Navigation {
     final BorderPane rootPane = Bapp.getRootPane();
 
     // Show loading indicator
-    if (screen == Screen.MAP_EDITOR || screen == Screen.PATHFINDING) {
+    if (screen == Screen.MAP_EDITOR
+        || screen == Screen.PATHFINDING
+        || screen == Screen.SUBMITTED_SERVICE_REQUESTS) {
       final ProgressIndicator progressIndicator = new ProgressIndicator();
       progressIndicator.setMaxSize(100, 100);
       progressIndicator.setStyle("-fx-progress-color: #21357E;");

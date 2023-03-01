@@ -48,11 +48,10 @@ public class KioskPopup {
   @FXML VBox frontBox2;
   @FXML Label rightLoc;
   @FXML Label leftLoc;
+
   Map<Circle, Node> nodeMap;
 
   public void initialize() throws SQLException {
-    KioskMove k = KioskEditController.getInstance().getCurrentSelection();
-
     List<KioskMove> kioskMoveList;
     kioskMoveList = DBSession.getAllKioskMoves();
     KioskLocation l = MapDAO.getKioskLocation();
@@ -70,6 +69,7 @@ public class KioskPopup {
       leftLoc.setText(l2);
     }
 
+    KioskMove k = KioskEditController.getInstance().getCurrentSelection();
     imageMap.put("L2", Bapp.lowerlevel2);
     imageMap.put("L1", Bapp.lowerlevel);
     imageMap.put("G", Bapp.groundfloor);

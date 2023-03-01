@@ -169,6 +169,11 @@ public class Pathfinding {
   }
 
   public static String[] getPathDirections(List<String> list) {
+    char right = '\u21b1';
+    char left = '\u21b0';
+    char bRight = '\u2197';
+    char bLeft = '\u2196';
+
     String[] directions = {"", "", "", "", "", ""};
     List<Node> nodeList = new ArrayList<>();
     list.forEach(n -> nodeList.add(nodes.get(n)));
@@ -176,12 +181,37 @@ public class Pathfinding {
     List<String> floors = Arrays.asList("L2", "L1", "G", "1", "2", "3");
     int index;
     String s;
+    double target, dAng;
+    double ang = 0;
+    boolean skip = false;
 
     for (int i = 0; i < nodeList.size() - 1; i++) {
+      s = "";
       index = floors.indexOf(nodeList.get(i).getFloor());
+
+      if (skip) {
+        ang = getAngle(nodeList.get(i), nodeList.get(i + 1));
+        skip = false;
+      } else {
+        target = getAngle(nodeList.get(i), nodeList.get(i + 1));
+        dAng = target - ang;
+        dAng = Math.toDegrees(dAng);
+
+        dAng = (dAng > 180) ? dAng - 360 : dAng;
+        dAng = (dAng < -180) ? dAng + 360 : dAng;
+
+        ang = target;
+
+        if (dAng < -15 && dAng > -70) s += "Bear right " + bRight + "\n";
+        else if (dAng <= -70 && dAng > -135) s += "Turn right " + right + "\n";
+        else if (dAng > 15 && dAng < 70) s += "Bear left " + bLeft + "\n";
+        else if (dAng >= 70 && dAng < 135) s += "Turn left " + left + "\n";
+        else if (dAng <= -135 || dAng >= 135) s += "Turn around\n";
+      }
+
       if (onSameFloor(nodeList.get(i), nodeList.get(i + 1))) {
-        if (directions[index].isEmpty()) s = "Go to " + locationList.get(i + 1) + ".";
-        else s = "Then go to " + locationList.get(i + 1) + ".";
+        if (directions[index].isEmpty()) s += "Go to " + locationList.get(i + 1) + ".";
+        else s += "Then go to " + locationList.get(i + 1) + ".";
       } else {
         boolean found = false;
         for (int j = i; j < nodeList.size() - 1; j++) {
@@ -192,11 +222,12 @@ public class Pathfinding {
           }
         }
         if (!found) {
-          s = "Go to " + locationList.get(locationList.size() - 1);
+          s += "Go to " + locationList.get(locationList.size() - 1);
           i = nodeList.size();
         } else {
-          s = "Go to floor " + nodeList.get(i).getFloor() + "\n\n";
+          s += "Go to floor " + nodeList.get(i).getFloor() + "\n\n";
           i--;
+          skip = true;
         }
       }
       if (directions[index].isEmpty()) directions[index] = s;
@@ -204,6 +235,12 @@ public class Pathfinding {
     }
 
     return directions;
+  }
+
+  private static double getAngle(Node n1, Node n2) {
+    double dx = n2.getXCoord() - n1.getXCoord();
+    double dy = n1.getYCoord() - n2.getYCoord();
+    return Math.atan2(dy, dx);
   }
 
   private static boolean onSameFloor(Node n1, Node n2) {

@@ -71,6 +71,7 @@ public class PathfindingController {
   private boolean pathNotFound = false;
   private boolean pathingByClick = false;
   private boolean pathFound = false;
+  private boolean useNodes = false;
   private static Node currentNode;
   private Circle currentDot;
 
@@ -390,16 +391,50 @@ public class PathfindingController {
 
     linesPlane.getChildren().clear();
 
-    String start = startLoc.getValue();
-    String end = endLoc.getValue();
+    ArrayList<String> path = null; // also startID and endID
 
-    Pathfindable pathfindable;
-    if (type == SearchType.BREADTH_FIRST) pathfindable = new BreadthFirstPathfinder();
-    else if (type == SearchType.DEPTH_FIRST) pathfindable = new DepthFirstPathfinder();
-    else pathfindable = new AStarPathfinder();
+    if (!useNodes) {
+      String start = startLoc.getValue();
+      String end = endLoc.getValue();
 
-    PathfindingContext pContext = new PathfindingContext(pathfindable);
-    ArrayList<String> path = pContext.getShortestPath(start, end);
+      Map<String, Move> locMap = Pathfinding.getMovesLN();
+
+      boolean exits1 = locMap.get(start) != null;
+      boolean exits2 = locMap.get(end) != null;
+
+      boolean skip = false;
+
+      if (startID != null && endID != null) {
+        if (!exits1 || !exits2) {
+          skip = true;
+          if (type == SearchType.A_STAR) path = Pathfinding.getPathFromID(startID, endID);
+          if (type == SearchType.BREADTH_FIRST)
+            path = Pathfinding.getPathBreadthDepthFromID(startID, endID, true);
+          if (type == SearchType.DEPTH_FIRST)
+            path = Pathfinding.getPathBreadthDepthFromID(startID, endID, false);
+        }
+      }
+
+      if (!skip) {
+        Pathfindable pathfindable;
+        if (type == SearchType.BREADTH_FIRST) pathfindable = new BreadthFirstPathfinder();
+        else if (type == SearchType.DEPTH_FIRST) pathfindable = new DepthFirstPathfinder();
+        else pathfindable = new AStarPathfinder();
+
+        PathfindingContext pContext = new PathfindingContext(pathfindable);
+        path = pContext.getShortestPath(start, end);
+
+        Map<String, Move> moves = Pathfinding.getMovesLN();
+        startID = moves.get(start).getNode().getNodeID();
+        endID = moves.get(end).getNode().getNodeID();
+      }
+    } else {
+      if (type == SearchType.A_STAR) path = Pathfinding.getPathFromID(startID, endID);
+      if (type == SearchType.BREADTH_FIRST)
+        path = Pathfinding.getPathBreadthDepthFromID(startID, endID, true);
+      if (type == SearchType.DEPTH_FIRST)
+        path = Pathfinding.getPathBreadthDepthFromID(startID, endID, false);
+    }
 
     if (path == null) {
       System.out.println("PATH NOT FOUND");
@@ -413,6 +448,10 @@ public class PathfindingController {
       pathNotFoundTextField.setStyle("-fx-text-fill: red; -fx-background-color:  #F2F2F2");
       return;
     }
+
+    useNodes = false;
+    //    startID = null;
+    //    endID = null;
 
     directions = Pathfinding.getPathDirections(path);
 
@@ -435,9 +474,6 @@ public class PathfindingController {
     scrollPane.setVisible(true);
 
     System.out.println(path);
-    Map<String, Move> moves = Pathfinding.getMovesLN();
-    startID = moves.get(start).getNode().getNodeID();
-    endID = moves.get(end).getNode().getNodeID();
     // Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
@@ -544,9 +580,11 @@ public class PathfindingController {
         e -> {
           if (pathingByClick) {
             Node n = nodeMap.get(dot);
+            endID = n.getNodeID();
             String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
             endLoc.clearSelection();
-            endLoc.setValue(ln);
+            if (ln == null) useNodes = true;
+            else endLoc.setValue(ln);
             pathingByClick = false;
             try {
               findPath();
@@ -595,9 +633,11 @@ public class PathfindingController {
 
     pathingByClick = true;
     Node n = nodeMap.get(currentDot);
+    startID = n.getNodeID();
     String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();
     startLoc.clearSelection();
-    startLoc.setValue(ln);
+    if (ln == null) useNodes = true;
+    else startLoc.setValue(ln);
     scrollPane.setVisible(true);
 
     forms.getChildren().clear();

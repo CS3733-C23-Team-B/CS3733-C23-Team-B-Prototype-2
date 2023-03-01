@@ -260,6 +260,11 @@ public class Pathfinding {
     String start = startMove.getNode().getNodeID();
     String end = endMove.getNode().getNodeID();
 
+    return getPathBreadthDepthFromID(start, end, breadth);
+  }
+
+  public static ArrayList<String> getPathBreadthDepthFromID(
+      String start, String end, boolean breadth) {
     boolean done = false;
     HashMap<String, String> cameFrom = new HashMap<String, String>();
 

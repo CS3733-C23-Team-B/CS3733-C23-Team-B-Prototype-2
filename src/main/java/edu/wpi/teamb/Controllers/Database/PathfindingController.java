@@ -12,6 +12,7 @@ import io.github.palexdev.materialfx.controls.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.*;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import javafx.animation.Interpolator;
@@ -84,6 +85,7 @@ public class PathfindingController {
   private String startID;
   private String endID;
   @FXML TextField pathNotFoundTextField;
+  private List<String> floors = new ArrayList<>();
   private Map<String, String> floorMap = new HashMap<>();
   private Map<String, ImageView> imageMap = new HashMap<>();
   private Map<String, SearchType> searchTypeMap = new HashMap<>();
@@ -94,16 +96,19 @@ public class PathfindingController {
   List<Node> nodePath;
   @FXML Label timeLabel;
   @FXML Label dateLabel;
+  @Getter @FXML private AnchorPane dir;
 
   @Getter @FXML private Pane forms;
+
+  private String[] directions;
   private static PathfindingController instance;
 
   /** Initializes the dropdown menus */
   public void initialize() {
     instance = this;
-    moveMap = DBSession.getIDMoves(new Date(123, 0, 1));
+    moveMap = DBSession.getIDMoves(new Date());
     Pathfinding.refreshData();
-    Pathfinding.setDate(new Date(123, 0, 1));
+    Pathfinding.setDate(new Date());
 
     floorMap.put("Lower Level 2", "L2");
     floorMap.put("Lower Level 1", "L1");
@@ -122,6 +127,13 @@ public class PathfindingController {
     searchTypeMap.put("A* Search", SearchType.A_STAR);
     searchTypeMap.put("Breadth-first Search", SearchType.BREADTH_FIRST);
     searchTypeMap.put("Depth-first Search", SearchType.DEPTH_FIRST);
+
+    floors.add("L2");
+    floors.add("L1");
+    floors.add("G");
+    floors.add("1");
+    floors.add("2");
+    floors.add("3");
 
     floorCombo.setItems(
         FXCollections.observableArrayList(
@@ -177,6 +189,8 @@ public class PathfindingController {
         () -> {
           changeFloor("L1", new javafx.geometry.Point2D(2215, 1045));
         });
+
+    datePicker.setPromptText(currentDate.toString());
   }
 
   public void setNodeColors() {
@@ -385,10 +399,41 @@ public class PathfindingController {
 
     PathfindingContext pContext = new PathfindingContext(pathfindable);
     ArrayList<String> path = pContext.getShortestPath(start, end);
-    String[] directions = Pathfinding.getPathDirections(path);
-    for (int i = 0; i < directions.length; i++) {
-      System.out.println(i + ":\n" + directions[i]);
-    }
+    directions = Pathfinding.getPathDirections(path);
+
+    Map<String, Node> nodes = DBSession.getAllNodes();
+    if (directions != null)
+      for (int i = 0; i < directions.length; i++) {
+        for (Node value : nodes.values()) {
+          if (value.getFloor().equals(currentFloor)) {
+            // AnchorPane dir = new AnchorPane();
+            forms.getChildren().clear();
+
+            //            dir.setPrefHeight(226);
+            //            dir.setPrefWidth(290);
+
+            //            VBox vbox = new VBox();
+            //            vbox.setSpacing(5);
+            //            vbox.setPadding(new Insets(10, 10, 10, 10));
+            //            vbox.setPrefHeight(250);
+            //            vbox.setPrefHeight(265);
+
+            Label floorDirections = new Label(directions[floors.indexOf(currentFloor)]);
+
+            floorDirections.setPrefHeight(250);
+            floorDirections.setPrefWidth(265);
+
+            HBox hbox = new HBox();
+            hbox.getChildren().add(floorDirections);
+            hbox.setAlignment(Pos.CENTER);
+
+            forms.getChildren().add(hbox);
+            //            dir.getChildren().add(forms);
+            // vbox.getChildren().clear();
+            System.out.println(i + ":\n" + directions[i]);
+          }
+        }
+      }
 
     if (path == null) {
       System.out.println("PATH NOT FOUND");
@@ -402,7 +447,7 @@ public class PathfindingController {
     Map<String, Move> moves = Pathfinding.getMovesLN();
     startID = moves.get(start).getNode().getNodeID();
     endID = moves.get(end).getNode().getNodeID();
-    Map<String, Node> nodes = DBSession.getAllNodes();
+    // Map<String, Node> nodes = DBSession.getAllNodes();
 
     pathNodePairs.clear();
 
@@ -511,7 +556,7 @@ public class PathfindingController {
             pathingByClick = false;
             try {
               findPath();
-              scrollPane.setVisible(false);
+              // scrollPane.setVisible(false);
             } catch (SQLException ex) {
               throw new RuntimeException(ex);
             }
@@ -542,7 +587,6 @@ public class PathfindingController {
     }
 
     vbox.setSpacing(5);
-    //    vbox.setAlignment(Pos.CENTER);
     vbox.setPadding(new Insets(10, 10, 10, 10));
 
     HBox hbox = new HBox();
@@ -556,6 +600,7 @@ public class PathfindingController {
     if (animationTimeline != null) animationTimeline.stop();
     animationTimeline = null;
     linesPlane.getChildren().clear();
+
     pathingByClick = true;
     Node n = nodeMap.get(currentDot);
     String ln = moveMap.get(n.getNodeID()).get(0).getLocationName().getLongName();

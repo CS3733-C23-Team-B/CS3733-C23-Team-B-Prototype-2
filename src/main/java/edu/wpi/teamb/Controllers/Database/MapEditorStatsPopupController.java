@@ -37,7 +37,6 @@ public class MapEditorStatsPopupController {
   private List<AudioVideoRequest> avRs;
 
   public void initialize() {
-    RequestDAO.refreshRequests();
     lName = MapEditorController.getInstance().getCurrentLoc();
     secRs = RequestDAO.getAllSecRequests(lName);
     sanRs = RequestDAO.getAllSanRequests(lName);
@@ -236,7 +235,8 @@ public class MapEditorStatsPopupController {
         TableColumn patientCol = new TableColumn<GeneralRequest, String>("Patient");
 
         transportEquipCol.setCellValueFactory(new PropertyValueFactory<>("equipmentNeeded"));
-        destinationCol.setCellValueFactory(new PropertyValueFactory<>("patientDestination"));
+        destinationCol.setCellValueFactory(
+            new PropertyValueFactory<>("patientDestinationLocation"));
         patientCol.setCellValueFactory(new PropertyValueFactory<>("patientID"));
 
         table.getColumns().addAll(transportEquipCol, destinationCol, patientCol);
@@ -296,6 +296,11 @@ public class MapEditorStatsPopupController {
 
       default:
         break;
+    }
+    for (int i = chartAndTablePane.getChildren().size() - 1; i >= 0; i--) {
+      if (chartAndTablePane.getChildren().get(i) instanceof TableView<?>) {
+        chartAndTablePane.getChildren().remove(i);
+      }
     }
     chartAndTablePane.add(table, 1, 0, 1, 1);
   }

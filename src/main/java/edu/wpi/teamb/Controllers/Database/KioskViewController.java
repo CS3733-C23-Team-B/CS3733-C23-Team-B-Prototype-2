@@ -16,12 +16,14 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -128,6 +130,26 @@ public class KioskViewController {
                 }));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
+    EventHandler<MouseEvent> mouseMoveHandler =
+        event -> {
+          timeline.stop();
+          timeline.getKeyFrames().clear();
+          timeline
+              .getKeyFrames()
+              .add(
+                  new KeyFrame(
+                      Duration.seconds(10),
+                      e -> {
+                        index.getAndIncrement();
+                        Platform.runLater(
+                            () -> {
+                              slideOut.play();
+                            });
+                      }));
+          timeline.play();
+        };
+    aPane.setOnMouseMoved(mouseMoveHandler);
+
     Platform.runLater(
         () -> {
           changeFloorLater(kioskMoveList.get(index.get()).getPrevNode());
